@@ -4,6 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
+    "dev": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +14,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.7.0"
   }
 }
