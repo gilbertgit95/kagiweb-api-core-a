@@ -2,7 +2,7 @@ const express = require('express');
 const { Sequelize, sequelize } = require('./dataSource/models');
 
 const app = express();
-const port = 3000;
+const port = process.env.REST_API_PORT;
 
 app.get('/', (req, res) => {
   res.send('test main')
