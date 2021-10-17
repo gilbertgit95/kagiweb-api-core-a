@@ -1,16 +1,31 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const { Sequelize, sequelize } = require('./dataSource/models');
 const { jsonRespHandler } = require('./utilities/responseHandler');
 
-const app = express();
 const port = process.env.REST_API_PORT;
 
-app.get('/', async (req, res) => {
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/:mainRoute', async (req, res) => {
   return await jsonRespHandler(req, res)
     .execute(props => {
       // throw({code: 500, message: 'na daot'})
       // throw({code: 404, message: 'na daot'})
-      return {processresult: 'response data'}
+      return {processresult: 'response data', props}
+    })
+})
+
+app.post('/postTest/:endRoute', async (req, res) => {
+  return await jsonRespHandler(req, res)
+    .execute(props => {
+      // throw({code: 500, message: 'na daot'})
+      // throw({code: 404, message: 'na daot'})
+      return {processresult: 'response data', props}
     })
 })
 
