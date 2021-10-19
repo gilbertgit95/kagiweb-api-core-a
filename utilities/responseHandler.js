@@ -26,7 +26,8 @@ module.exports = {
     
                 } catch(err) {
                     //  default error is 500
-                    let errorResp = errorsStatus[500]
+                    let defaultStatus = 500
+                    let errorResp = errorsStatus[defaultStatus]
                     if (err && err.code && errorsStatus[err.code]) {
                         errorResp = {...errorsStatus[err.code], ...err}
                     }

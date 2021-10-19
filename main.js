@@ -1,13 +1,17 @@
+require('dotenv').config()
+
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const { Sequelize, sequelize } = require('./dataSource/models');
 const { jsonRespHandler } = require('./utilities/responseHandler');
 
-const port = process.env.REST_API_PORT;
+const port = process.env.APP_PORT;
 
 const app = express();
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -16,7 +20,7 @@ app.get('/:mainRoute', async (req, res) => {
     .execute(props => {
       // throw({code: 500, message: 'na daot'})
       // throw({code: 404, message: 'na daot'})
-      return {processresult: 'response data', props}
+      return {processResult: 'response data', props}
     })
 })
 
@@ -25,7 +29,7 @@ app.post('/postTest/:endRoute', async (req, res) => {
     .execute(props => {
       // throw({code: 500, message: 'na daot'})
       // throw({code: 404, message: 'na daot'})
-      return {processresult: 'response data', props}
+      return {processResult: 'response data', props}
     })
 })
 
