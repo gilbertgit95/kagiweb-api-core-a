@@ -1,5 +1,8 @@
 const errorsStatus = require('./statusCodes')
 
+const successStatus = 200
+const defaultErrorStatus = 500
+
 module.exports = {
     jsonRespHandler: (req, res) => {
         return new class {
@@ -19,15 +22,14 @@ module.exports = {
                             query:   req.query
                         })
                         this.response({
-                            code: 200,
+                            code: successStatus,
                             data: result
                         })
                     }
     
                 } catch(err) {
-                    //  default error is 500
-                    let defaultStatus = 500
-                    let errorResp = errorsStatus[defaultStatus]
+
+                    let errorResp = errorsStatus[defaultErrorStatus]
                     if (err && err.code && errorsStatus[err.code]) {
                         errorResp = {...errorsStatus[err.code], ...err}
                     }
@@ -42,7 +44,7 @@ module.exports = {
                 let statusCode = resp.code
                 delete resp.code
     
-                if (resp.code == statusCode) {
+                if (resp.code == successStatus) {
                     return this.res.json(resp && resp.data? resp.data: {})
                 } else {
                     return this.res
