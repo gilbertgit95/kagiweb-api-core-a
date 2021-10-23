@@ -4,11 +4,12 @@ const successStatus = 200
 const defaultErrorStatus = 500
 
 module.exports = {
-    jsonRespHandler: (req, res) => {
+    jsonRespHandler: (req, res, next) => {
         return new class {
             constructor() {
                 this.req = req
                 this.res = res
+                this.next = next
             }
     
             // the main process
@@ -21,10 +22,19 @@ module.exports = {
                             uparams: req.params,
                             query:   req.query
                         })
-                        this.response({
-                            code: successStatus,
-                            data: result
-                        })
+
+                        // if thers a next parameter, execure the next function
+                        // it means the is used as a middleware
+                        if (this.next && typeof this.next == 'function') {
+                            this.next()
+                        
+                        // else, then it is used as a route controller
+                        } else {
+                            this.response({
+                                code: successStatus,
+                                data: result
+                            })
+                        }
                     }
     
                 } catch(err) {

@@ -11,6 +11,7 @@ const getRoles = async (req, res) => {
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
             // throw({code: 404, message: 'na daot'})
+            console.log('getRoles: ', req.account)
             return {}
         })
 }
