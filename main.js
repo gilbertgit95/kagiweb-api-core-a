@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const { Sequelize, sequelize } = require('./dataSource/models');
 const { jsonRespHandler } = require('./utilities/responseHandler');
+const appRoutes = require('./controllers');
 
 const port = process.env.APP_PORT;
 
@@ -15,7 +16,7 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+app.use(appRoutes);
 
 
 app.listen(port, () => {
