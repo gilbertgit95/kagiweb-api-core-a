@@ -24,8 +24,8 @@ router.use('/api/v1/auth', authRoute)
  * secured routes
  */
 
-// middleware to check access and provide account information the
-// in the request object
+// middleware to check access and provide
+// account information in the request object
 router.use(accountAccessAndProvider)
 
 router.use('/api/v1', accountsRoute)

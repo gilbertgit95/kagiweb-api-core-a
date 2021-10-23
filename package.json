@@ -2,14 +2,19 @@
   "name": "kagiweb-api-core-a",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
+  "keywords": ["boilerplate", "api basecode", "express app"],
+  "author": {
+    "name" : "Gilbert D. Cuerbo",
+    "email" : "gilbert.cuerbo@gmail.com",
+    "url" : "https://gilbertgit95.github.io/"
+  },
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
     "dev": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
