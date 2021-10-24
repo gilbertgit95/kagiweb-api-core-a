@@ -1,5 +1,5 @@
-const { jsonRespHandler } = require('./../utilities/responseHandler');
-const { hasMatchEndpoints } = require('./../utilities/matchersHandler');
+const { jsonRespHandler } = require('../utilities/responseHandler');
+const { hasMatchEndpoints } = require('../utilities/matchersHandler');
 
 module.exports = async (req, res, next) => {
     return await jsonRespHandler(req, res, next)

@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { jsonRespHandler } = require('./../../utilities/responseHandler');
+const { jsonRespHandler } = require('../../utilities/responseHandler');
 
 const {
     Sequelize,
