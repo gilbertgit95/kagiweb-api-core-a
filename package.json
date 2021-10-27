@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
-  "keywords": ["boilerplate", "api basecode", "express app"],
+  "keywords": [
+    "boilerplate",
+    "api basecode",
+    "express app"
+  ],
   "author": {
-    "name" : "Gilbert D. Cuerbo",
-    "email" : "gilbert.cuerbo@gmail.com",
-    "url" : "https://gilbertgit95.github.io/"
+    "name": "Gilbert D. Cuerbo",
+    "email": "gilbert.cuerbo@gmail.com",
+    "url": "https://gilbertgit95.github.io/"
   },
   "main": "main.js",
   "scripts": {
@@ -22,6 +26,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "node-cache": "^5.1.2",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.7.0"
