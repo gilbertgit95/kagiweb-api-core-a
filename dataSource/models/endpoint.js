@@ -14,9 +14,38 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Endpoint.init({
-    endpoint: DataTypes.STRING,
-    type: DataTypes.STRING,
-    category: DataTypes.STRING,
+    endpoint: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    subcategory: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
     description: DataTypes.STRING
   }, {
     sequelize,

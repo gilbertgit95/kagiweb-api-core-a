@@ -9,13 +9,36 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       endpoint: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true
+        }
       },
       type: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true
+        }
       },
       category: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true
+        }
+      },
+      subcategory: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true
+        }
       },
       description: {
         type: Sequelize.STRING
