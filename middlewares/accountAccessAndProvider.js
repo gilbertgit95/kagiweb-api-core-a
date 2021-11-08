@@ -22,9 +22,9 @@ module.exports = async (req, res, next) => {
             // let reg = pathToRegexp('/api/v1/tests/:vals')
             // let isMatch = reg.test(req.path)
 
-            console.log('method: ', req.method)
-            console.log('path: ', req.path)
-            console.log('isMatch: ', isMatch)
+            // console.log('method: ', req.method)
+            // console.log('path: ', req.path)
+            // console.log('isMatch: ', isMatch)
             // console.log('check access then bind account info in the request object')
     
             req.account = {info: 'test account'}

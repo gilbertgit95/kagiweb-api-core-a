@@ -19,7 +19,7 @@ module.exports = {
                     if (callback && typeof callback == 'function') {
                         let result = await callback({
                             body:    req.body,
-                            uparams: req.params,
+                            params: req.params,
                             query:   req.query
                         })
 
