@@ -1,5 +1,8 @@
 const moment = require('moment');
-const { jsonRespHandler } = require('../../utilities/responseHandler');
+const {
+    jsonRespHandler,
+    queryWithPagination
+} = require('../../utilities/responseHandler');
 
 const {
     Sequelize,
@@ -7,24 +10,33 @@ const {
     Endpoint
 } = require('./../../dataSource/models');
 
-const defaultPageSize = process.env.DEFAULT_PAGINATION
-const defaultPageNumber = 1
-
 const getMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
-        .execute(props => {
-            // parse query
-            let pagesize = (parseInt(props.query.pagesize))? parseInt(props.query.pagesize): defaultPageSize
-            let pagenumber = (parseInt(props.query.pageNumber))? parseInt(props.query.pageNumber): defaultPageNumber
-            
-            // throw({code: 500, message: 'na daot'})
-            // throw({code: 404, message: 'na daot'})
-            return {
-                next: null,
-                items: [],
-                pagesize,
-                pagenumber,
-                total: null
+        .execute(async (props) => {
+
+            try {
+                // fetching and pagination computation
+                return await queryWithPagination(
+                    {
+                        // props contains the query params
+                        props,
+                        // overwite page size (optional)
+                        // null will just use the default pagination
+                        pageSize: null,
+                        // base path for the next page
+                        path: 'api/v1/endpoints'
+                    },
+
+                    // callback for the actual query
+                    async ({limit, offset}) => {
+                        return await Endpoint.findAndCountAll({
+                            limit,
+                            offset
+                        })
+                    }
+                )
+            } catch (err) {
+                throw({code: 500, message: 'Error while fetching the endpoints.'})
             }
         })
 }
