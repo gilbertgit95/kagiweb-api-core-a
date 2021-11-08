@@ -12,8 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    toJSON() {
+      return {...this.get(), id: undefined}
+    }
   };
   Endpoint.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     endpoint: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -50,6 +58,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Endpoint',
+    tableName: 'endpoints'
   });
   return Endpoint;
 };

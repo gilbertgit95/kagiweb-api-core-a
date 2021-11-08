@@ -1,44 +1,32 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Endpoint', {
+    await queryInterface.createTable('endpoints', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      uuid: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
+      },
       endpoint: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notNull: true,
-          notEmpty: true
-        }
+        allowNull: false
       },
       type: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notNull: true,
-          notEmpty: true
-        }
+        allowNull: false
       },
       category: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notNull: true,
-          notEmpty: true
-        }
+        allowNull: false
       },
       subcategory: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notNull: true,
-          notEmpty: true
-        }
+        allowNull: false
       },
       description: {
         type: Sequelize.STRING
@@ -54,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Endpoint');
+    await queryInterface.dropTable('endpoints');
   }
 };

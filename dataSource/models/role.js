@@ -12,13 +12,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    toJSON() {
+      return {...this.get(), id: undefined}
+    }
   };
   Role.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     name: DataTypes.STRING,
     description: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Role',
+    tableName: 'roles'
   });
   return Role;
 };
