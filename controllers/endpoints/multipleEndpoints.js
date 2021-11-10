@@ -1,8 +1,14 @@
 const moment = require('moment');
 const {
-    jsonRespHandler,
-    queryWithPagination
+    jsonRespHandler
 } = require('../../utilities/responseHandler');
+
+const {
+    getItems,
+    bulkCreate,
+    bulkUpdate,
+    bulkDelete
+} = require('../../utilities/queryHandler');
 
 const {
     Sequelize,
@@ -14,104 +20,72 @@ const getMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
 
-            try {
-                // fetching and pagination computation
-                return await queryWithPagination(
-                    {
-                        // props contains the query params
-                        props,
-                        // overwite page size (optional)
-                        // null will just use the default pagination
-                        pageSize: null,
-                        // base path for the next page
-                        path: 'api/v1/endpoints'
-                    },
+            // fetching and pagination computation
+            return await getItems(
+                {
+                    // props contains the query params
+                    props,
+                    // overwite page size (optional)
+                    // null will just use the default pagination
+                    pageSize: null,
+                    // base path for the next page
+                    path: 'api/v1/endpoints'
+                },
 
-                    // callback for the actual query
-                    async ({limit, offset}) => {
-                        return await Endpoint.findAndCountAll({
-                            limit,
-                            offset
-                        })
-                    }
-                )
-            } catch (err) {
-                throw({code: 500, message: 'Error while fetching the endpoints.'})
-            }
+                // callback for the actual query
+                async ({limit, offset}) => {
+                    return await Endpoint.findAndCountAll({
+                        limit,
+                        offset
+                    })
+                }
+            )
+
         })
 }
 
 const createMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let {
-                endpoint,
-                type,
-                category,
-                subcategory,
-                description
-            } = props.body
-
-            let createdData = {}
-
-            try {
-                createdData = await Endpoint.create({
-                    endpoint,
-                    type,
-                    category,
-                    subcategory,
-                    description
-                })
-            } catch (err) {
-                throw({code: 500, message: err.errors[0].message})
-            }
-
-            return createdData
+            let endpointsData = props.body
+            
+            return await bulkCreate(Endpoint, endpointsData)
         })
 }
 
 const updateMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let {
-                uuid,
-                endpoint,
-                type,
-                category,
-                subcategory,
-                description
-            } = props.body
+            let endpointsData = props.body
 
-            let tobeUpdated = {}
-            let updates = {}
+            return await bulkUpdate(
+                // endpont model
+                Endpoint,
 
-            if (endpoint) updates['endpoint'] = endpoint
-            if (type) updates['type'] = type
-            if (category) updates['category'] = category
-            if (subcategory) updates['subcategory'] = subcategory
-            if (description) updates['description'] = description
+                // endpoints to update
+                endpointsData,
 
-            try {
-                tobeUpdated = await Endpoint.findOne({ uuid })
-                tobeUpdated = {
-                    ...tobeUpdated,
-                    ...updates
+                // setter function
+                (endpointModel, endpointData) => {
+
+                    if (endpointData.endpoint)    endpointModel['endpoint'] = endpointData.endpoint
+                    if (endpointData.type)        endpointModel['type'] = endpointData.type
+                    if (endpointData.category)    endpointModel['category'] = endpointData.category
+                    if (endpointData.subcategory) endpointModel['subcategory'] = endpointData.subcategory
+                    if (endpointData.description) endpointModel['description'] = endpointData.description
+
+                    return endpointModel
                 }
-                await tobeUpdated.save()
-            } catch (err) {
-                throw({code: 500, message: err.errors[0].message})
-            }
-
-            return tobeUpdated
+            )
         })
 }
 
 const deleteMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
-        .execute(props => {
-            // throw({code: 500, message: 'na daot'})
-            // throw({code: 404, message: 'na daot'})
-            return {}
+        .execute(async (props) => {
+            let endpointsData = props.body
+
+            return await bulkDelete(Endpoint, endpointsData)
         })
 }
 
