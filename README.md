@@ -1,26 +1,31 @@
 # kagiweb API core (type A)
- (kagiweb-api-core-a)
+ > kagiweb-api-core-a
+
+ ___
  
- created: Gilbert D. Cuerbo | 2021
+| Created    | Info    |
+|------------|:-------:|
+| Created by | Gilbert |
+| Created on | 2021    |
 
 
 ## Overview
 This repository contains the backend part of a web application. The main purpose of this repo is tobe an api
-boilerplate or base application, so we dont need to create a new app from scratch everytime we develop a
-web api application. The main technology use in this application are NodeJS, ExpressJS, Sequelize, SQL DB.
-The compatible databases or atleast tested database use in developing this app are mysql, mssql and postgresql.
+base code application, so we dont need to create a new app from scratch everytime we develop a web api. The main
+technology use in this app are NodeJS, ExpressJS, Sequelize, SQL DB. The compatible databases or atleast tested
+database use in development are mysql, mssql, sqlite and postgresql.
 
 
 ## Development features
 Why we should use this boilerplate? below are some of its features
 - easy to setup
-- use of the best frameworks like, node.js, javascript, expressJS, sequelize (ORM), JEST(testing), swagger(for documentation).
-- ready to use endpoints and data models like: accounts, account administration, secure login and more. You dont need to
+- use of the best frameworks like, expressJS, sequelize (ORM), JEST(testing), swagger(for documentation).
+- ready to use endpoints and data models like: accounts, roles, account administration, secure login and more. You dont need to
   implement most of the core features because its included on this base app.
 - because of ORM, sql database compatibility is flexible, so you can choose wide range of database server as long as it
   is supported by squelize.
-- use different methods of signing in and logging in, from basic authentication to Oauth2 by using external Identity services
-  like: google, microsoft, yahoo, facebook. Note! There are few steps to enable the use of Oauth2.
+- use different methods of signing in and logging in, from basic authentication to Oauth2 identity login by using external
+  Identity services like: google, microsoft, yahoo, facebook. Note! There are few steps to enable the use of Oauth2.
 
 
 ## Installation
@@ -40,6 +45,8 @@ and configurations. App configuration resides inside the .env file in the root f
 - open .env file from the root folder of this repository
 - change the database settings to your current installed db settings like: the dialect, username, password,
   host and more. You can just leave the other settings unchange.
+- you may need to install or uninstall some npm dependencies if you are using sql server other than postgres. For more instructions
+  about this dependencies, please refer to sequelize installation documentation https://sequelize.org/master/manual/getting-started.html
   
 ### Initialization
 - run this command in the root folder `sequelize db:create`. this will create the app database indicated
@@ -49,4 +56,8 @@ and configurations. App configuration resides inside the .env file in the root f
 
 ### Execution
 - run by typing `npm start` or for development `npm run dev`
-- open a browser, then goto localhost:[port] to view the webapp. [port] is the port number inside the .env file.
+- open a browser, then goto localhost:**port** to view the webapp. **port** is the port number inside the .env file.
+
+### Note
+For Security Purposes. Please do not include the **.env** file from git in you actual project. This is only use as a basis for the
+env variables used on this application.

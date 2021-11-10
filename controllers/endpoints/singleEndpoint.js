@@ -41,8 +41,13 @@ const updateSingleEndpoint = async (req, res) => {
             let endpointItem = {...endpointData, ...{ uuid }}
 
             return await updateItem(
+                // model
                 Endpoint,
+
+                // update data
                 endpointItem,
+
+                // setter function
                 (endpointModel, endpointData) => {
 
                     if (endpointData.endpoint)    endpointModel['endpoint'] = endpointData.endpoint

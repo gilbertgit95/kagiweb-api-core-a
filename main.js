@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(appRoutes);
 
-
 app.listen(port, async () => {
   // express log
   console.log(`App is listening at port ${ port }`)
