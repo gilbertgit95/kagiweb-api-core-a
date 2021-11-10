@@ -1,12 +1,6 @@
-# kagiweb API core (type A)
- > kagiweb-api-core-a
-
- ___
- 
-| Created    | Info    |
-|------------|:-------:|
-| Created by | Gilbert |
-| Created on | 2021    |
+# kagiweb api core (Type A)
+ > Project: kagiweb-api-core-a  
+ > Created: Gilbert D. Cuerbo, 2021
 
 
 ## Overview
@@ -58,6 +52,6 @@ and configurations. App configuration resides inside the .env file in the root f
 - run by typing `npm start` or for development `npm run dev`
 - open a browser, then goto localhost:**port** to view the webapp. **port** is the port number inside the .env file.
 
-### Note
-For Security Purposes. Please do not include the **.env** file from git in you actual project. This is only use as a basis for the
+### Note!
+**For Security Purposes**. Please do not include the **.env** file from git in you actual project. This is only use as a basis for the
 env variables used on this application.
