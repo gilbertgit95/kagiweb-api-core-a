@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const jwtSecret = process.env.JWT_SECRET_KEY || 'Please_provide_secret_in_dot_env_file'
+const jwtExp =    process.env.JWT_EXPIRATION || 24
+
 module.exports = {
     btoa(text) {
         return Buffer.from(text).toString('base64')
@@ -21,14 +24,14 @@ module.exports = {
 
     generateJWT(data) {
         return jwt.sign(
-            data, process.env.JWT_SECRET_KEY,
-            { expiresIn: process.env.JWT_EXPIRATION * 3600 }
+            data, jwtSecret,
+            { expiresIn: jwtExp * 3600 }
         )
     },
 
     verifyJWT(token) {
         return new Promise((resolve, reject) => {
-            jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+            jwt.verify(token, jwtSecret, (err, decoded) => {
                 if (!err) {
                     resolve(decoded)
                 } else {

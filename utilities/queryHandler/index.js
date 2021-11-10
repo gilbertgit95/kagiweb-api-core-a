@@ -2,7 +2,7 @@ const { Sequelize } = require('../../dataSource/models');
 
 const OPERATORS = Sequelize.Op;
 
-const defaultPageSize = parseInt(process.env.DEFAULT_PAGINATION);
+const defaultPageSize = parseInt(process.env.DEFAULT_PAGINATION) || 100;
 const defaultPageNumber = 1;
 
 module.exports = {
