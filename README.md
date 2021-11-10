@@ -3,6 +3,12 @@
  > Created: Gilbert D. Cuerbo, 2021
 
 
+## Contents  
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+
+
 ## Overview
 This repository contains the backend part of a web application. The main purpose of this repo is tobe an api
 base code application, so we dont need to create a new app from scratch everytime we develop a web api. The main
@@ -10,7 +16,7 @@ technology use in this app are NodeJS, ExpressJS, Sequelize, SQL DB. The compati
 database use in development are mysql, mssql, sqlite and postgresql.
 
 
-## Development features
+## Features
 Why we should use this boilerplate? below are some of its features
 - easy to setup
 - use of the best frameworks like, expressJS, sequelize (ORM), JEST(testing), swagger(for documentation).
@@ -53,5 +59,8 @@ and configurations. App configuration resides inside the .env file in the root f
 - open a browser, then goto localhost:**port** to view the webapp. **port** is the port number inside the .env file.
 
 ### Note!
-**For Security Purposes**. Please do not include the **.env** file from git in you actual project. This is only use as a basis for the
-env variables used on this application.
+**For Security Purposes**. Please do not include the **.env** file from git. The .env file here is
+just a example format for this app.
+
+
+## 
