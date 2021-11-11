@@ -13,13 +13,13 @@ module.exports = {
         try {
             endPoint = await model.findOne({ where: { uuid }})
 
-            if (!endPoint) throw({code: 500, message: 'None existing data.'})
+            if (!endPoint) throw({})
 
         } catch (err) {
             if (err.errors) {
                 throw({code: 500, message: err.errors[0].message})
             } else {
-                throw(err)
+                throw({code: 404, message: 'None existing data.'})
             }
         }
 

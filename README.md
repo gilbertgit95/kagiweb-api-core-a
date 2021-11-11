@@ -1,4 +1,4 @@
-# kagiweb api core (Type A)
+# Kagiweb api core (type A)
  > Project: kagiweb-api-core-a  
  > Created: Gilbert D. Cuerbo, 2021
 

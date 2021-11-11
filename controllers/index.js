@@ -5,6 +5,7 @@ const authRoute = require('./auth/routes');
 const accountsRoute = require('./accounts/routes');
 const endpointsRoute = require('./endpoints/routes');
 const rolesRoute = require('./roles/routes');
+const apiDocRoute = require('./apiDoc/routes');
 const testsRoute = require('./tests/routes');
 
 const accountAccessAndProvider = require('./../middlewares/accountAccessAndProvider');
@@ -32,6 +33,11 @@ router.use(accountAccessAndProvider)
 router.use('/api/v1', accountsRoute)
 router.use('/api/v1', endpointsRoute)
 router.use('/api/v1', rolesRoute)
+
+/**
+ * api documentation
+ */
+ router.use('/api/', apiDocRoute)
 
 /**
  * test routes

@@ -43,10 +43,8 @@ const updateSingleEndpoint = async (req, res) => {
             return await updateItem(
                 // model
                 Endpoint,
-
                 // update data
                 endpointItem,
-
                 // setter function
                 (endpointModel, endpointData) => {
 

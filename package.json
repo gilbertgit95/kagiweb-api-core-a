@@ -1,7 +1,7 @@
 {
   "name": "kagiweb-api-core-a",
   "version": "1.0.0",
-  "description": "",
+  "description": "Kagiweb api core (type A). The main purpose of this repo is tobe an api base code application, so we dont need to create a new app from scratch everytime we develop a web api",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
     "api basecode",
@@ -31,6 +31,8 @@
     "node-cache": "^5.1.2",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.7.0"
+    "sequelize": "^6.7.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   }
 }
