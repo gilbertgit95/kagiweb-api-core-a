@@ -16,7 +16,7 @@
   "scripts": {
     "start": "node main.js",
     "dev": "nodemon main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "localScript:genRandomKey": "node ./localScripts/generateRandomKey.js"
   },
   "license": "MIT",
@@ -34,5 +34,8 @@
     "sequelize": "^6.7.0",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
   }
 }
