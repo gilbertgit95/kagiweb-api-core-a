@@ -50,7 +50,7 @@ module.exports = {
         try {
             tobeUpdated = await model.findOne({ where: { uuid: item.uuid }})
 
-            if (!tobeUpdated) throw({code: 500, message: 'None existing data.'})
+            if (!tobeUpdated) throw({})
 
             tobeUpdated = setter(tobeUpdated, item)
 
@@ -60,7 +60,7 @@ module.exports = {
             if (err.errors) {
                 throw({code: 500, message: err.errors[0].message})
             } else {
-                throw(err)
+                throw({code: 404, message: 'None existing data.'})
             }
         }
 
@@ -74,7 +74,7 @@ module.exports = {
         try {
             tobeDeleted = await model.findOne({ where: { uuid }})
 
-            if (!tobeDeleted) throw({code: 500, message: 'None existing data.'})
+            if (!tobeDeleted) throw({})
 
             await tobeDeleted.destroy()
 
@@ -82,7 +82,7 @@ module.exports = {
             if (err.errors) {
                 throw({code: 500, message: err.errors[0].message})
             } else {
-                throw(err)
+                throw({code: 404, message: 'None existing data.'})
             }
         }
 
@@ -197,7 +197,7 @@ module.exports = {
                     }
                 } catch (err) {
                     let error = err.errors? err.errors[0].message: err
-                    result.push({...item.updateData, ...{error}})
+                    result.push({...{uuid: item.updateData.uuid}, ...{error}})
                 }
             }
         } catch (err) {

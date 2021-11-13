@@ -11,6 +11,21 @@ const testsRoute = require('./tests/routes');
 const accountAccessAndProvider = require('./../middlewares/accountAccessAndProvider');
 
 /**
+ * @swagger
+ * components:
+ *      schemas:
+ *          Error:
+ *              type: object
+ *              properties:
+ *                  defaultMessage:
+ *                      type: string
+ *                      description: Default error message
+ *                  message:
+ *                      type: string
+ *                      description: Error message
+ */
+
+/**
  * public routes
  */
 

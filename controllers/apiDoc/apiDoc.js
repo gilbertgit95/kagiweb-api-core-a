@@ -13,11 +13,25 @@ const options = {
         },
         servers: [
             {
+                description: 'Local Development Server',
                 url: `http://localhost:${ process.env.PORT || 3000 }`
             }
         ]
     },
-    apis: ['./controllers/*/*.js']
+    // components: {
+    //     securitySchemes: {
+    //         BearerAuth: {
+    //             type: 'http',
+    //             scheme: 'bearer'
+    //         }
+    //     },
+    // },
+    // security: [
+    //     {
+    //         BearerAuth: [],
+    //     }
+    // ],
+    apis: ['./controllers/index.js', './controllers/*/routes.js']
 }
 
 const swaggerJsDocSpec = swaggerJsDoc(options)

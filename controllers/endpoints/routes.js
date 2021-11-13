@@ -59,7 +59,6 @@ const {
  *                  description: create a single endpoint,
  *                  createdAt: 2021-11-08T06:19:31.163Z,
  *                  updatedAt: 2021-11-08T08:11:11.815Z
- *      
  */
 
 /**
@@ -118,10 +117,157 @@ const {
  *                                              type: array
  *                                              items:
  *                                                  $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
  */
 router.get('/endpoints', getMultipleEndpoints)
+
+/**
+ * @swagger
+ * /api/v1/endpoints:
+ *      post:
+ *          tags: [Endpoints]
+ *          summary: Create a new endpoints
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              required:
+ *                                  - endpoint
+ *                                  - type
+ *                                  - category
+ *                                  - subcategory
+ *                              properties:
+ *                                  endpoint:
+ *                                      type: string
+ *                                  type:
+ *                                      type: string
+ *                                  category:
+ *                                      type: string
+ *                                  subcategory:
+ *                                      type: string
+ *                                  description:
+ *                                      type: string
+ *          responses:
+ *              200:
+ *                  description: return endpoints
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: object
+ *                              properties:
+ *                                  data:
+ *                                      type: array
+ *                                      items:
+ *                                          $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ */
 router.post('/endpoints', createMultipleEndpoints)
+
+/**
+ * @swagger
+ * /api/v1/endpoints:
+ *      put:
+ *          tags: [Endpoints]
+ *          summary: Update endpoints
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              properties:
+ *                                  uuid:
+ *                                      type: string
+ *                                  endpoint:
+ *                                      type: string
+ *                                  type:
+ *                                      type: string
+ *                                  category:
+ *                                      type: string
+ *                                  subcategory:
+ *                                      type: string
+ *                                  description:
+ *                                      type: string
+ *          responses:
+ *              200:
+ *                  description: return updated endpoints
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: object
+ *                              properties:
+ *                                  data:
+ *                                      type: array
+ *                                      items:
+ *                                          oneOf:
+ *                                              - type: object
+ *                                                properties:
+ *                                                    uuid:
+ *                                                        type: string
+ *                                                    error:
+ *                                                        type: string
+ *                                              - $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ */
 router.put('/endpoints', updateMultipleEndpoints)
+
+/**
+ * @swagger
+ * /api/v1/endpoints:
+ *      delete:
+ *          tags: [Endpoints]
+ *          summary: Delete endpoints
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              properties:
+ *                                  uuid:
+ *                                      type: string
+ *          responses:
+ *              200:
+ *                  description: return deleted endpoints
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: object
+ *                              properties:
+ *                                  data:
+ *                                      type: array
+ *                                      items:
+ *                                          $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ */
 router.delete('/endpoints', deleteMultipleEndpoints)
 
 // routes for handling single data
@@ -153,27 +299,166 @@ router.delete('/endpoints', deleteMultipleEndpoints)
  *                  content:
  *                      application/json:
  *                          schema:
- *                              type: object
- *                              properties:
- *                                  message:
- *                                      type: string
- *                                  defaultMessage:
- *                                      type: string
+ *                              $ref: '#/components/schemas/Error'
  *              404:
  *                  description: None existing data
  *                  content:
  *                      application/json:
  *                          schema:
- *                              type: object
- *                              properties:
- *                                  message:
- *                                      type: string
- *                                  defaultMessage:
- *                                      type: string             
+ *                              $ref: '#/components/schemas/Error'
  */
 router.get('/endpoints/:uuid', getSingleEndpoint)
+
+/**
+ * @swagger
+ * /api/v1/endpoints/new:
+ *      post:
+ *          tags: [Endpoints]
+ *          summary: Create a new endpoint
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          required:
+ *                              - endpoint
+ *                              - type
+ *                              - category
+ *                              - subcategory
+ *                          properties:
+ *                              endpoint:
+ *                                  type: string
+ *                              type:
+ *                                  type: string
+ *                              category:
+ *                                  type: string
+ *                              subcategory:
+ *                                  type: string
+ *                              description:
+ *                                  type: string
+ *                          example:
+ *                              endpoint: /api/v1/endpoints/new,
+ *                              type: server,
+ *                              category: route,
+ *                              subcategory: POST,
+ *                              description: create a single endpoint,
+ *          responses:
+ *              200:
+ *                  description: returns endpoint
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: object
+ *                              properties:
+ *                                  data:
+ *                                      $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ */
 router.post('/endpoints/new', createSingleEndpoint)
+
+/**
+ * @swagger
+ * /api/v1/endpoints/{uuid}:
+ *      put:
+ *          tags: [Endpoints]
+ *          summary: Update endpoint
+ *          parameters:
+ *              - in: path
+ *                name: uuid
+ *                schema:
+ *                      type: string
+ *                required: true
+ *                description: uuid of endpoint
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              endpoint:
+ *                                  type: string
+ *                              type:
+ *                                  type: string
+ *                              category:
+ *                                  type: string
+ *                              subcategory:
+ *                                  type: string
+ *                              description:
+ *                                  type: string
+ *                          example:
+ *                              endpoint: /api/v1/endpoints/new,
+ *                              type: server,
+ *                              category: route,
+ *                              subcategory: POST,
+ *                              description: create a single endpoint,
+ *          responses:
+ *              200:
+ *                  description: returns the updated endpoint
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: object
+ *                              properties:
+ *                                  data:
+ *                                      $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ *              404:
+ *                  description: None existing data
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ */
 router.put('/endpoints/:uuid', updateSingleEndpoint)
+
+/**
+ * @swagger
+ * /api/v1/endpoints/{uuid}:
+ *      delete:
+ *          tags: [Endpoints]
+ *          summary: Delete endpoint
+ *          parameters:
+ *              - in: path
+ *                name: uuid
+ *                schema:
+ *                      type: string
+ *                required: true
+ *                description: uuid of endpoint
+ *          responses:
+ *              200:
+ *                  description: returns the endpoint
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: object
+ *                              properties:
+ *                                  data:
+ *                                      $ref: '#/components/schemas/Endpoint'
+ *              500:
+ *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ *              404:
+ *                  description: None existing data
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ */
 router.delete('/endpoints/:uuid', deleteSingleEndpoint)
 
 module.exports = router
