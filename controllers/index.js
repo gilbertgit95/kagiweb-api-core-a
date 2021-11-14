@@ -23,6 +23,9 @@ const accountAccessAndProvider = require('./../middlewares/accountAccessAndProvi
  *                  message:
  *                      type: string
  *                      description: Error message
+ *              example:
+ *                  defaultMessage: Internal Server Error
+ *                  message: No name property of undefined
  */
 
 /**

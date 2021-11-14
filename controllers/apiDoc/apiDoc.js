@@ -34,9 +34,33 @@ const options = {
     apis: ['./controllers/index.js', './controllers/*/routes.js']
 }
 
+const customStyle = {
+    customSiteTitle: (packageJSON.name || '') + ' Documentation',
+    customfavIcon: "/assets/favicon.png",
+    customCss: `
+        .swagger-ui .topbar {
+            display: none;
+        }
+
+        .swagger-ui button.models-control:focus {
+            outline: none;
+        }
+        .swagger-ui .model-box-control:focus {
+            outline: none;
+        }
+        .swagger-ui .opblock-summary-control:focus {
+            outline: none;
+        }
+        .inner-object table.model {
+            margin-top: 15px;
+        }
+    `
+}
+
 const swaggerJsDocSpec = swaggerJsDoc(options)
 
 module.exports = {
     swaggerUI,
-    swaggerJsDocSpec
+    swaggerJsDocSpec,
+    customStyle
 }

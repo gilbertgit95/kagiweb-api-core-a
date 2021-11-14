@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { swaggerUI, swaggerJsDocSpec } = require('./apiDoc');
+const { swaggerUI, swaggerJsDocSpec, customStyle } = require('./apiDoc');
 
 router.use(
     '/documentation',
     swaggerUI.serve,
-    swaggerUI.setup(swaggerJsDocSpec)
+    swaggerUI.setup(swaggerJsDocSpec, customStyle)
 )
 
 module.exports = router
