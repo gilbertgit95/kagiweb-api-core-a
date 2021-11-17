@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const { sequelize } = require('./dataSource/models');
+const { sequelize, Log } = require('./dataSource/models');
 const appRoutes = require('./controllers');
 
 const port = process.env.PORT || 3000;
