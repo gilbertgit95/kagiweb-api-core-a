@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const initCronJobs = require('./cronJobs')
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -31,3 +33,6 @@ app.listen(port, async () => {
   }
 
 })
+
+// initialize cron jobs
+initCronJobs()
