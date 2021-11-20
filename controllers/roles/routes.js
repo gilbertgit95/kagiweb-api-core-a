@@ -1,15 +1,21 @@
 const router = require('express').Router();
 
 const {
-    getRoles,
-    createRoles,
-    updateRoles,
-    deleteRoles
-} = require('./roles');
+    getMultipleRoles
+} = require('./multipleRoles');
 
-router.get('/roles', getRoles)
-router.post('/roles', createRoles)
-router.put('/roles', updateRoles)
-router.delete('/roles', deleteRoles)
+const {
+    getSingleRole,
+    createSingleRole,
+    updateSingleRole,
+    deleteSingleRole
+} = require('./singleRole');
+
+router.get('/roles', getMultipleRoles)
+
+router.get('/roles/:uuid', getSingleRole)
+router.post('/roles/new', createSingleRole)
+router.put('/roles/:uuid', updateSingleRole)
+router.delete('/roles/:uuid', deleteSingleRole)
 
 module.exports = router

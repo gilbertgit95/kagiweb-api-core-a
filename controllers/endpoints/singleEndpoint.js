@@ -37,8 +37,8 @@ const updateSingleEndpoint = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             let uuid = props.params.uuid
-            let endpointData = props.body
-            let endpointItem = {...endpointData, ...{ uuid }}
+            let endpointdata = props.body
+            let endpointItem = {...endpointdata, ...{ uuid }}
 
             return await updateItem(
                 // model
