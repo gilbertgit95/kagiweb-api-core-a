@@ -1,4 +1,4 @@
-const { executeCommands } = require('../utilities/cliExecutionHandler');
+const { executeCommands } = require('../../utilities/cliExecutionHandler');
 const prompts = require('prompts');
 
 (async () => {

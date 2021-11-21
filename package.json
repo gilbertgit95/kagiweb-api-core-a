@@ -17,8 +17,8 @@
     "start": "node main.js",
     "dev": "nodemon main.js",
     "test": "jest",
-    "localScript:genRandomKey": "node ./localScripts/generateRandomKey.js",
-    "localScript:resetApp": "node ./localScripts/resetApplication.js"
+    "localScript:genRandomKey": "node ./localScripts/generateRandomKey/main.js",
+    "localScript:resetApp": "node ./localScripts/resetApplication/main.js"
   },
   "license": "MIT",
   "dependencies": {
