@@ -49,10 +49,7 @@ and configurations. App configuration resides inside the .env file in the root f
   about this dependencies, please refer to sequelize installation documentation https://sequelize.org/master/manual/getting-started.html
   
 ### Initialization
-- run this command in the root folder `sequelize db:create`. this will create the app database indicated
-  inside the .env file
-- then `sequelize db:migrate`, this will setup the tables in the database.
-- then `sequelize db:seed:all` to populate the tables.
+- run this command on a terminal ```npm run localScript:resetApp```. This will create the database, tables and the initial data. **Note!** all your data in the database will be lost.
 
 ### Execution
 - run by typing `npm start` or for development `npm run dev`
