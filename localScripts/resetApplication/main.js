@@ -7,8 +7,8 @@ const prompts = require('prompts');
         name: 'proceed',
         message:
             'Please be aware that if you have existing database \n' +
-            'all your data will be lost. Type [yes] if you still \n' +
-            'want to proceed:'
+            'all your data will be lost. Type [yes] if you want \n' +
+            'to proceed:'
     });
 
     if (question.proceed.toLowerCase() != 'yes') {
