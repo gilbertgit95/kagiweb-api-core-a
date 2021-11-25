@@ -8,6 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      roleId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'roles', key: 'id' }
+      },
+      endpointId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'endpoints', key: 'id' }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
