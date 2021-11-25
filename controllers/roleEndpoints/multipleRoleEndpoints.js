@@ -39,7 +39,7 @@ const getMultipleRoleEndpoints = async (req, res) => {
                     return await Role.findAndCountAll({
                         limit,
                         offset,
-                        include: [Endpoint]
+                        include: ['endpoints']
                     })
                 }
             )

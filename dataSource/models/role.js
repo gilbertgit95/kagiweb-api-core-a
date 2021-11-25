@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Role, Endpoint, RoleEndpoint }) {
       // define association here
       this.belongsToMany(Endpoint, {
+        as: 'endpoints',
         through: RoleEndpoint,
         foreignKey: 'roleId',
         foreignKeyConstraint: true
