@@ -18,6 +18,10 @@ module.exports = () => {
         testJob
     ]
 
+    jobs = jobs.filter(job => !job.disabled)
+
+    if (!(jobs && jobs.length)) return
+ 
     console.group('Initialize cron jobs')
     // run all jobs
     for (let job of jobs) {
