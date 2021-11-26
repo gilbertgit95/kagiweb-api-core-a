@@ -1,16 +1,17 @@
 const router = require('express').Router();
 
 const {
-    getMultipleRoleEndpoints
-} = require('./multipleRoleEndpoints');
+    getRolesEndpoints,
+    getRoleEndpoints,
+    addRoleEndpoints,
+    updateRoleEndpoints,
+    deleteRoleEndpoints
+} = require('./roleEndpoints');
 
-// const {
-//     getSingleRoleEndpoint,
-//     createSingleRoleEndpoint,
-//     updateSingleRoleEndpoint,
-//     deleteSingleRoleEndpoint
-// } = require('./singleRoleEndpoint');
-
-router.get('/roleEndpoints', getMultipleRoleEndpoints)
+router.get('/roleEndpoints', getRolesEndpoints)
+router.get('/roleEndpoints/:uuid', getRoleEndpoints)
+router.post('/roleEndpoints/:uuid', addRoleEndpoints)
+router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
+router.put('/roleEndpoints/:uuid', deleteRoleEndpoints)
 
 module.exports = router

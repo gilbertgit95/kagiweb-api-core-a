@@ -7,13 +7,20 @@ const defaultPageNumber = 1;
 
 module.exports = {
     // responsible for getting a single item
-    async getItem(model, uuid) {
-        let endPoint = {}
+    async getItem(modelQuery, uuid) {
+        let item = {}
 
         try {
-            endPoint = await model.findOne({ where: { uuid }})
+            // if a query function exist use this instead
+            if (modelQuery && typeof modelQuery == 'function') {
+                item = await modelQuery()
 
-            if (!endPoint) throw({})
+            // the default query is through the model
+            } else {
+                item = await modelQuery.findOne({ where: { uuid }})
+            }
+
+            if (!item) throw({})
 
         } catch (err) {
             if (err.errors) {
@@ -23,7 +30,7 @@ module.exports = {
             }
         }
 
-        return endPoint
+        return item
     },
 
     // responsible for single creation
@@ -90,46 +97,53 @@ module.exports = {
     },
 
     // responsible for handling data into paginated format
-    async getItems({ pageSize, props, path }, query) {
+    async getItems(propsQuery, query) {
         try {
+            // if a propsQuery is a function then use this function to query
+            if (propsQuery && typeof propsQuery == 'function') {
+                return await propsQuery()
 
-            let pagesize = (parseInt(props.query.pageSize))? parseInt(props.query.pageSize): defaultPageSize
-            let pageNumber = (parseInt(props.query.pageNumber))? parseInt(props.query.pageNumber): defaultPageNumber
+            // the default process is query with pagination
+            } else {
+                let { pageSize, props, path } = propsQuery
+                let pagesize = (parseInt(props.query.pageSize))? parseInt(props.query.pageSize): defaultPageSize
+                let pageNumber = (parseInt(props.query.pageNumber))? parseInt(props.query.pageNumber): defaultPageNumber
 
-            // overwrite page size value if pageSize parameter is supplied
-            if (pageSize) pagesize = pageSize
-            
-            let limit = pagesize
-            let offset = (pageNumber - 1) * pagesize
+                // overwrite page size value if pageSize parameter is supplied
+                if (pageSize) pagesize = pageSize
+                
+                let limit = pagesize
+                let offset = (pageNumber - 1) * pagesize
 
-            let resultData = await query({limit, offset})
+                let resultData = await query({limit, offset})
 
-            let items = resultData.rows
-            let totalItems = resultData.count
-            let totalPage = Math.ceil(totalItems / pagesize)
-            let hasNext = pageNumber < totalPage
+                let items = resultData.rows
+                let totalItems = resultData.count
+                let totalPage = Math.ceil(totalItems / pagesize)
+                let hasNext = pageNumber < totalPage
 
-            // generate next path
-            let nextPage = `${ path }?`
-            nextPage += [
-                // append the page number and pagesize
-                ...[
-                    `pageNumber=${ pageNumber + 1 }`,
-                    `pageSize=${ pagesize }`
-                ],
-                // append the other query params
-                ...Object.keys(props.query)
-                    .filter(i => !(new Set(['pageNumber', 'pageSize'])).has(i))
-                    .map(i => `${ i }=${ props.query[i] }`)
-            ].join('&')
+                // generate next path
+                let nextPage = `${ path }?`
+                nextPage += [
+                    // append the page number and pagesize
+                    ...[
+                        `pageNumber=${ pageNumber + 1 }`,
+                        `pageSize=${ pagesize }`
+                    ],
+                    // append the other query params
+                    ...Object.keys(props.query)
+                        .filter(i => !(new Set(['pageNumber', 'pageSize'])).has(i))
+                        .map(i => `${ i }=${ props.query[i] }`)
+                ].join('&')
 
-            return {
-                next: hasNext? nextPage: null,
-                pageSize: pagesize,
-                pageNumber,
-                totalPage,
-                totalItems,
-                items
+                return {
+                    next: hasNext? nextPage: null,
+                    pageSize: pagesize,
+                    pageNumber,
+                    totalPage,
+                    totalItems,
+                    items
+                }
             }
 
         } catch (err) {
