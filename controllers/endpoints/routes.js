@@ -51,13 +51,13 @@ const {
  *                      type: string
  *                      description: date when this item was updated
  *              example:
- *                  uuid: db422ca5-b0a0-43b1-9381-417be994f08e,
- *                  endpoint: /api/v1/endpoints/new,
- *                  type: server,
- *                  category: route,
- *                  subcategory: POST,
- *                  description: create a single endpoint,
- *                  createdAt: 2021-11-08T06:19:31.163Z,
+ *                  uuid: db422ca5-b0a0-43b1-9381-417be994f08e
+ *                  endpoint: /api/v1/endpoints/new
+ *                  type: server
+ *                  category: route
+ *                  subcategory: POST
+ *                  description: create a single endpoint
+ *                  createdAt: 2021-11-08T06:19:31.163Z
  *                  updatedAt: 2021-11-08T08:11:11.815Z
  */
 
@@ -338,11 +338,11 @@ router.get('/endpoints/:uuid', getSingleEndpoint)
  *                              description:
  *                                  type: string
  *                          example:
- *                              endpoint: /api/v1/endpoints/new,
- *                              type: server,
- *                              category: route,
- *                              subcategory: POST,
- *                              description: create a single endpoint,
+ *                              endpoint: /api/v1/endpoints/new
+ *                              type: server
+ *                              category: route
+ *                              subcategory: POST
+ *                              description: create a single endpoint
  *          responses:
  *              200:
  *                  description: returns endpoint
@@ -393,11 +393,11 @@ router.post('/endpoints/new', createSingleEndpoint)
  *                              description:
  *                                  type: string
  *                          example:
- *                              endpoint: /api/v1/endpoints/new,
- *                              type: server,
- *                              category: route,
- *                              subcategory: POST,
- *                              description: create a single endpoint,
+ *                              endpoint: /api/v1/endpoints/new
+ *                              type: server
+ *                              category: route
+ *                              subcategory: POST
+ *                              description: create a single endpoint
  *          responses:
  *              200:
  *                  description: returns the updated endpoint

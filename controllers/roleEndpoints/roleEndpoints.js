@@ -50,7 +50,12 @@ const addRoleEndpoints = async (req, res) => {
         .execute(async (props) => {
             let uuid = props.params.uuid
 
-            return {}
+            return await getItem(async () => {
+                return await Role.findOne({
+                    where: { uuid },
+                    include: ['endpoints']
+                })
+            })
         })
 }
 
@@ -59,7 +64,12 @@ const updateRoleEndpoints = async (req, res) => {
         .execute(async (props) => {
             let uuid = props.params.uuid
 
-            return {}
+            return await getItem(async () => {
+                return await Role.findOne({
+                    where: { uuid },
+                    include: ['endpoints']
+                })
+            })
         })
 }
 
@@ -68,7 +78,12 @@ const deleteRoleEndpoints = async (req, res) => {
         .execute(async (props) => {
             let uuid = props.params.uuid
 
-            return {}
+            return await getItem(async () => {
+                return await Role.findOne({
+                    where: { uuid },
+                    include: ['endpoints']
+                })
+            })
         })
 } 
 

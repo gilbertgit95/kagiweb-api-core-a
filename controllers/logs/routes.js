@@ -30,11 +30,11 @@ const {
  *                      type: string
  *                      description: date when this item was updated
  *              example:
- *                  id: 3,
- *                  title: Authentication,
- *                  message: login by bearer authentication,
- *                  creator: Gilbert Cuerbo,
- *                  createdAt: 2021-11-08T13:18:40.558Z,
+ *                  id: 3
+ *                  title: Authentication
+ *                  message: login by bearer authentication
+ *                  creator: Gilbert Cuerbo
+ *                  createdAt: 2021-11-08T13:18:40.558Z
  *                  updatedAt: 2021-11-08T13:18:40.558Z
  */
 

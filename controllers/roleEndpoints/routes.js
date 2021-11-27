@@ -31,9 +31,9 @@ const {
  *                      type: string
  *                      description: date when this item was updated
  *              example:
- *                  createdAt: 2021-11-08T13:18:40.558Z,
- *                  updatedAt: 2021-11-08T13:18:40.558Z,
- *                  endpointId: 1,
+ *                  createdAt: 2021-11-08T13:18:40.558Z
+ *                  updatedAt: 2021-11-08T13:18:40.558Z
+ *                  endpointId: 1
  *                  roleId: 1
  */
 
@@ -126,6 +126,12 @@ router.get('/roleEndpoints', getRolesEndpoints)
  *                      application/json:
  *                          schema:
  *                              $ref: '#/components/schemas/Error'
+ *              404:
+ *                  description: None existing data
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
  */
 router.get('/roleEndpoints/:uuid', getRoleEndpoints)
 
@@ -134,7 +140,7 @@ router.get('/roleEndpoints/:uuid', getRoleEndpoints)
  * /api/v1/roleEndpoints/{uuid}:
  *      post:
  *          tags: [RoleEndpoints]
- *          summary: Returns role and its endpoints
+ *          summary: Returns role and its endpoints including the newly created ones
  *          parameters:
  *              - in: path
  *                name: uuid
@@ -142,6 +148,25 @@ router.get('/roleEndpoints/:uuid', getRoleEndpoints)
  *                      type: string
  *                required: true
  *                description: uuid of role
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              required:
+ *                                  - roleId
+ *                                  - endpointId
+ *                              properties:
+ *                                  roleId:
+ *                                      type: number
+ *                                  endpointId:
+ *                                      type: number
+ *                              example:
+ *                                  roleId: 1
+ *                                  endpointId: 1
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -158,15 +183,29 @@ router.get('/roleEndpoints/:uuid', getRoleEndpoints)
  *                                              endpoints:
  *                                                  type: array
  *                                                  items:
- *                                                      allOf:
- *                                                          - $ref: '#/components/schemas/Endpoint'
+ *                                                      oneOf:
  *                                                          - type: object
  *                                                            properties:
- *                                                              RoleEndpoint:
- *                                                                  $ref: '#/components/schemas/RoleEndpoint'
- *                                                                  
+ *                                                              roleId:
+ *                                                                  type: string
+ *                                                              endpointId:
+ *                                                                  type: string
+ *                                                              error:
+ *                                                                  type: string
+ *                                                          - allOf:
+ *                                                              - $ref: '#/components/schemas/Endpoint'
+ *                                                              - type: object
+ *                                                                properties:
+ *                                                                  RoleEndpoint:
+ *                                                                      $ref: '#/components/schemas/RoleEndpoint'                        
  *              500:
  *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ *              404:
+ *                  description: None existing data
  *                  content:
  *                      application/json:
  *                          schema:
@@ -179,7 +218,7 @@ router.post('/roleEndpoints/:uuid', addRoleEndpoints)
  * /api/v1/roleEndpoints/{uuid}:
  *      put:
  *          tags: [RoleEndpoints]
- *          summary: Returns role and its endpoints
+ *          summary: Returns role and its endpoints including the updated ones
  *          parameters:
  *              - in: path
  *                name: uuid
@@ -187,6 +226,25 @@ router.post('/roleEndpoints/:uuid', addRoleEndpoints)
  *                      type: string
  *                required: true
  *                description: uuid of role
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              required:
+ *                                  - roleId
+ *                                  - endpointId
+ *                              properties:
+ *                                  roleId:
+ *                                      type: number
+ *                                  endpointId:
+ *                                      type: number
+ *                              example:
+ *                                  roleId: 1
+ *                                  endpointId: 1
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -203,15 +261,30 @@ router.post('/roleEndpoints/:uuid', addRoleEndpoints)
  *                                              endpoints:
  *                                                  type: array
  *                                                  items:
- *                                                      allOf:
- *                                                          - $ref: '#/components/schemas/Endpoint'
+ *                                                      oneOf:
  *                                                          - type: object
  *                                                            properties:
- *                                                              RoleEndpoint:
- *                                                                  $ref: '#/components/schemas/RoleEndpoint'
+ *                                                              roleId:
+ *                                                                  type: string
+ *                                                              endpointId:
+ *                                                                  type: string
+ *                                                              error:
+ *                                                                  type: string
+ *                                                          - allOf:
+ *                                                              - $ref: '#/components/schemas/Endpoint'
+ *                                                              - type: object
+ *                                                                properties:
+ *                                                                  RoleEndpoint:
+ *                                                                      $ref: '#/components/schemas/RoleEndpoint'
  *                                                                  
  *              500:
  *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ *              404:
+ *                  description: None existing data
  *                  content:
  *                      application/json:
  *                          schema:
@@ -224,7 +297,7 @@ router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
  * /api/v1/roleEndpoints/{uuid}:
  *      delete:
  *          tags: [RoleEndpoints]
- *          summary: Returns role and its endpoints
+ *          summary: Returns role and its endpoints without the deleted ones
  *          parameters:
  *              - in: path
  *                name: uuid
@@ -232,6 +305,25 @@ router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
  *                      type: string
  *                required: true
  *                description: uuid of role
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              required:
+ *                                  - roleId
+ *                                  - endpointId
+ *                              properties:
+ *                                  roleId:
+ *                                      type: number
+ *                                  endpointId:
+ *                                      type: number
+ *                              example:
+ *                                  roleId: 1
+ *                                  endpointId: 1
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -248,15 +340,30 @@ router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
  *                                              endpoints:
  *                                                  type: array
  *                                                  items:
- *                                                      allOf:
- *                                                          - $ref: '#/components/schemas/Endpoint'
+ *                                                      oneOf:
  *                                                          - type: object
  *                                                            properties:
- *                                                              RoleEndpoint:
- *                                                                  $ref: '#/components/schemas/RoleEndpoint'
+ *                                                              roleId:
+ *                                                                  type: string
+ *                                                              endpointId:
+ *                                                                  type: string
+ *                                                              error:
+ *                                                                  type: string
+ *                                                          - allOf:
+ *                                                              - $ref: '#/components/schemas/Endpoint'
+ *                                                              - type: object
+ *                                                                properties:
+ *                                                                  RoleEndpoint:
+ *                                                                      $ref: '#/components/schemas/RoleEndpoint'
  *                                                                  
  *              500:
  *                  description: Some error occured in the server
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Error'
+ *              404:
+ *                  description: None existing data
  *                  content:
  *                      application/json:
  *                          schema:

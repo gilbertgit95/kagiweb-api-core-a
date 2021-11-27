@@ -36,10 +36,10 @@ const {
  *                      type: string
  *                      description: date when this item was updated
  *              example:
- *                  uuid: 4a21f627-9455-4920-ac8f-550d91b752bc,
- *                  name: Normal user,
- *                  description: Has access to some major endpoints,
- *                  createdAt: 2021-11-20T15:30:48.794Z,
+ *                  uuid: 4a21f627-9455-4920-ac8f-550d91b752bc
+ *                  name: Normal user
+ *                  description: Has access to some major endpoints
+ *                  createdAt: 2021-11-20T15:30:48.794Z
  *                  updatedAt: 2021-11-20T15:30:48.794Z
  */
 
@@ -165,7 +165,7 @@ router.get('/roles/:uuid', getSingleRole)
  *                              description:
  *                                  type: string
  *                          example:
- *                              name: Client,
+ *                              name: Client
  *                              description: Has access to only minor endpoints
  *          responses:
  *              200:
@@ -211,7 +211,7 @@ router.post('/roles/new', createSingleRole)
  *                              description:
  *                                  type: string
  *                          example:
- *                              name: Client,
+ *                              name: Client
  *                              description: Has access to only minor endpoints
  *          responses:
  *              200:
