@@ -18,6 +18,9 @@ const {
  *                  - roleId
  *                  - endpointId
  *              properties:
+ *                  uuid:
+ *                      type: string
+ *                      description: auto generated value
  *                  roleId:
  *                      type: number
  *                      description: foriegn key to a role
@@ -31,6 +34,7 @@ const {
  *                      type: string
  *                      description: date when this item was updated
  *              example:
+ *                  uuid: 6ff0af1-851c-480c-ba97-69fef72316d2
  *                  createdAt: 2021-11-08T13:18:40.558Z
  *                  updatedAt: 2021-11-08T13:18:40.558Z
  *                  endpointId: 1

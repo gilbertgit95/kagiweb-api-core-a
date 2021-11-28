@@ -147,6 +147,7 @@ module.exports = {
             }
 
         } catch (err) {
+            console.log(err)
             throw({code: 500, message: 'Error while fetching the data.'})
         }
     },

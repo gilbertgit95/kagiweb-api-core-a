@@ -13,7 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  RoleEndpoint.init({}, {
+  RoleEndpoint.init({
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    }
+  }, {
     sequelize,
     modelName: 'RoleEndpoint',
     tableName: 'role_endpoints'

@@ -18,10 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKeyConstraint: true
       })
     }
-
-    toJSON() {
-      return {...this.get(), id: undefined}
-    }
   };
   Endpoint.init({
     uuid: {

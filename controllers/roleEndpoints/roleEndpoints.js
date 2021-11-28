@@ -6,9 +6,9 @@ const {
 const {
     getItem,
     getItems,
-    createItem,
-    updateItem,
-    deleteItem
+    bulkCreate,
+    bulkUpdate,
+    bulkDelete
 } = require('../../utilities/queryHandler');
 
 const {
@@ -49,6 +49,9 @@ const addRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             let uuid = props.params.uuid
+            let roleEndpointsData = props.body
+
+            await bulkCreate(RoleEndpoint, roleEndpointsData)
 
             return await getItem(async () => {
                 return await Role.findOne({
@@ -63,6 +66,24 @@ const updateRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             let uuid = props.params.uuid
+            let roleEndpointssData = props.body
+
+            await bulkUpdate(
+                // roleEndpoints model
+                RoleEndpoints,
+
+                // roleEndpointss to update
+                roleEndpointssData,
+
+                // setter function
+                (roleEndpointsModel, roleEndpointsData) => {
+
+                    if (roleEndpointsData.roleId) roleEndpointsModel['roleId'] = roleEndpointsData.roleId
+                    if (roleEndpointsData.endpointId) roleEndpointsModel['endpointId'] = roleEndpointsData.endpointId
+
+                    return roleEndpointsModel
+                }
+            )
 
             return await getItem(async () => {
                 return await Role.findOne({
@@ -77,6 +98,10 @@ const deleteRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             let uuid = props.params.uuid
+
+            let roleEndpointsData = props.body
+
+            await bulkDelete(Endpoint, roleEndpointsData)
 
             return await getItem(async () => {
                 return await Role.findOne({
