@@ -1,4 +1,48 @@
-const { Sequelize } = require('../../dataSource/models');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>utilities/queryHandler/index.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-cliExecutionHandler.html">cliExecutionHandler</a><ul class='methods'><li data-type='method'><a href="module-cliExecutionHandler.html#~executeCommand">executeCommand</a></li><li data-type='method'><a href="module-cliExecutionHandler.html#~executeCommands">executeCommands</a></li></ul></li><li><a href="module-matchersHandler.html">matchersHandler</a><ul class='methods'><li data-type='method'><a href="module-matchersHandler.html#~hasMatchEndpoints">hasMatchEndpoints</a></li></ul></li><li><a href="module-queryHandler.html">queryHandler</a><ul class='methods'><li data-type='method'><a href="module-queryHandler.html#.bulkCreate">bulkCreate</a></li><li data-type='method'><a href="module-queryHandler.html#.bulkDelete">bulkDelete</a></li><li data-type='method'><a href="module-queryHandler.html#.bulkUpdate">bulkUpdate</a></li><li data-type='method'><a href="module-queryHandler.html#.createItem">createItem</a></li><li data-type='method'><a href="module-queryHandler.html#.deleteItem">deleteItem</a></li><li data-type='method'><a href="module-queryHandler.html#.getItem">getItem</a></li><li data-type='method'><a href="module-queryHandler.html#.getItems">getItems</a></li><li data-type='method'><a href="module-queryHandler.html#.updateItem">updateItem</a></li></ul></li><li><a href="utilities.module_encryptionHandler.html">encryptionHandler</a><ul class='methods'><li data-type='method'><a href="utilities.module_encryptionHandler.html#.atob">atob</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.btoa">btoa</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.generateJWT">generateJWT</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.hashText">hashText</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.verifyJWT">verifyJWT</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.verifyTextToHash">verifyTextToHash</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">utilities/queryHandler/index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { Sequelize } = require('../../dataSource/models');
 
 /**
  * This module is responsible for the most common db queries
@@ -16,7 +60,7 @@ const { Sequelize } = require('../../dataSource/models');
  * @property { number } pageNumber - the current page number
  * @property { number } totalPage - the total number of pages
  * @property { number } totalItems - the total number of items
- * @property { Array<Object> } items - the items of the current page
+ * @property { Array&lt;Object> } items - the items of the current page
  */
 
 const OPERATORS = Sequelize.Op;
@@ -30,7 +74,7 @@ module.exports = {
      * @async
      * @param { Object | Function } modelQuery - a custom query function or a sequelize model
      * @param { string } uuid - uuid of the item
-     * @returns { Promise<Object> } the item being fetched
+     * @returns { Promise&lt;Object> } the item being fetched
      * @throws { ErrorMessage } if an error occurs throw error message with code 500 or 404
      */
     async getItem(modelQuery, uuid) {
@@ -38,7 +82,7 @@ module.exports = {
 
         try {
             // if a query function exist use this instead
-            if (modelQuery && typeof modelQuery == 'function') {
+            if (modelQuery &amp;&amp; typeof modelQuery == 'function') {
                 item = await modelQuery()
 
             // the default query is through the model
@@ -64,7 +108,7 @@ module.exports = {
      * @async
      * @param { Object } modelQuery - a sequelize model
      * @param { Object } item - item tobe created
-     * @returns { Promise<Object> } the item that is created
+     * @returns { Promise&lt;Object> } the item that is created
      * @throws { ErrorMessage } if an error occurs throw error message
      */
     async createItem(model, item) {
@@ -89,7 +133,7 @@ module.exports = {
      * @param { Object } model - a sequelize model
      * @param { Object } item - item tobe updated
      * @param { Function } setter - a function that is responsible for setting the values
-     * @returns { Promise<Object> } the updated item
+     * @returns { Promise&lt;Object> } the updated item
      * @throws { ErrorMessage } if an error occurs throw error message 500 or 404
      */
     async updateItem(model, item, setter) {
@@ -120,7 +164,7 @@ module.exports = {
      * @async
      * @param { Object } model - sequelize model
      * @param { string } uuid - uuid of the item tobe deleted
-     * @returns { Promise<Object> } the deleted item
+     * @returns { Promise&lt;Object> } the deleted item
      * @throws { ErrorMessage } if an error occurs throw error message 500 or 404
      */
     async deleteItem(model, uuid) {
@@ -149,13 +193,13 @@ module.exports = {
      * @async
      * @param { Object | Function } propsQuery - if object then expect to return pagginated data if function then expect to return a plain arary of items
      * @param { Function } query - the query function
-     * @returns { Promise<PagginatedItems | Array<Object>> } paginated return or just a plain array of items
+     * @returns { Promise&lt;PagginatedItems | Array&lt;Object>> } paginated return or just a plain array of items
      * @throws { ErrorMessage } if an error occurs throw error message
      */
     async getItems(propsQuery, query) {
         try {
             // if a propsQuery is a function then use this function to query
-            if (propsQuery && typeof propsQuery == 'function') {
+            if (propsQuery &amp;&amp; typeof propsQuery == 'function') {
                 return await propsQuery()
 
             // the default process is query with pagination
@@ -175,7 +219,7 @@ module.exports = {
                 let items = resultData.rows
                 let totalItems = resultData.count
                 let totalPage = Math.ceil(totalItems / pagesize)
-                let hasNext = pageNumber < totalPage
+                let hasNext = pageNumber &lt; totalPage
 
                 // generate next path
                 let nextPage = `${ path }?`
@@ -189,7 +233,7 @@ module.exports = {
                     ...Object.keys(props.query)
                         .filter(i => !(new Set(['pageNumber', 'pageSize'])).has(i))
                         .map(i => `${ i }=${ props.query[i] }`)
-                ].join('&')
+                ].join('&amp;')
 
                 return {
                     next: hasNext? nextPage: null,
@@ -211,14 +255,14 @@ module.exports = {
      * ->. Bulk create items
      * @async
      * @param { Object } model - Sequelize model
-     * @param { Array<Object> } items - the array of items tobe created
-     * @returns { Promise<Array<Object>> } return the created items
+     * @param { Array&lt;Object> } items - the array of items tobe created
+     * @returns { Promise&lt;Array&lt;Object>> } return the created items
      * @throws { ErrorMessage } if an error occurs throw error message
      */
     async bulkCreate(model, items) {
         let createdData = null
 
-        if (!(items && items.length)) {
+        if (!(items &amp;&amp; items.length)) {
             throw({code: 500, message: 'No items to create.'})
         }
 
@@ -241,9 +285,9 @@ module.exports = {
      * ->. Bulk update items
      * @async
      * @param { Object } model - Sequelize model
-     * @param { Array<Object> } items - the array of items tobe updated
+     * @param { Array&lt;Object> } items - the array of items tobe updated
      * @param { Function } setter - callback function the lets you update values
-     * @returns { Promise<Array<Object>> } return the updated items
+     * @returns { Promise&lt;Array&lt;Object>> } return the updated items
      * @throws { ErrorMessage } if an error occurs throw error message
      */
     async bulkUpdate(model, items, setter) {
@@ -300,14 +344,14 @@ module.exports = {
      * ->. Bulk delete items
      * @async
      * @param { Object } model - Sequelize model
-     * @param { Array<Object> } items - the array of items tobe deleted
-     * @returns { Promise<Array<Object>> } return the deleted items
+     * @param { Array&lt;Object> } items - the array of items tobe deleted
+     * @returns { Promise&lt;Array&lt;Object>> } return the deleted items
      * @throws { ErrorMessage } if an error occurs throw error message
      */
     async bulkDelete(model, items) {
         let deleted = null
 
-        if (!(items && items.length)) {
+        if (!(items &amp;&amp; items.length)) {
             throw({code: 500, message: 'No items to delete.'})
         }
 
@@ -332,4 +376,28 @@ module.exports = {
 
         return deleted
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 20:52:40 GMT+0800 (Taipei Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

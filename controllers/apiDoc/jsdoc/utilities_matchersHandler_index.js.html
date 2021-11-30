@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dataSource/models/endpoint.js - Documentation</title>
+    <title>utilities/matchersHandler/index.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dataSource/models/endpoint.js</h1>
+    <h1 class="page-title">utilities/matchersHandler/index.js</h1>
     
 
     
@@ -42,72 +42,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Endpoint extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate({ Role, Endpoint, RoleEndpoint }) {
-      // define association here
-      this.belongsToMany(Role, {
-        as: 'roles',
-        through: RoleEndpoint,
-        foreignKey: 'endpointId',
-        foreignKeyConstraint: true
-      })
-    }
-  };
-  Endpoint.init({
-    uuid: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
-    },
-    endpoint: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    subcategory: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    description: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Endpoint',
-    tableName: 'endpoints'
-  });
-  return Endpoint;
-};</code></pre>
+            <pre class="prettyprint source linenums"><code>const pathToRegexp = require('path-to-regexp');
+/**
+ * Contains matching functions
+ * @module matchersHandler
+ */
+
+/**
+ * ->. Match an endpoint to list of endpoints, then returns
+ * true if it has atleast 1 match
+ * @param { Object } reqEndpoint - request endpoint to compare
+ * @param { Array&lt;Object> } accessEndpoints - list endpoints for comparison
+ * @returns { Boolean } true if it has a match
+ */
+const hasMatchEndpoints = (reqEndpoint, accessEndpoints) => {
+    let endpoints = accessEndpoints.filter(item => {
+        return (   item.method == reqEndpoint.method
+                &amp;&amp; pathToRegexp(item.path).test(reqEndpoint.path))
+    })
+
+    return Boolean(endpoints.length)
+}
+
+module.exports = {
+    hasMatchEndpoints
+}</code></pre>
         </article>
     </section>
 

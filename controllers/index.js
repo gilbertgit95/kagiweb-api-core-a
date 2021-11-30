@@ -13,6 +13,14 @@ const testsRoute = require('./tests/routes');
 const accountAccessAndProvider = require('./../middlewares/accountAccessAndProvider');
 
 /**
+ * Error message thrown by controllers
+ * 
+ * @typedef ErrorMessage
+ * @property { number } code - error code
+ * @property { string } message - error message
+ */
+
+/**
  * @swagger
  * components:
  *      schemas:

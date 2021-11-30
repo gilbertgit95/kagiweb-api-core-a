@@ -11,6 +11,8 @@
             "dataSource",
             "middlewares",
             "controllers",
+            "localScripts",
+            "cronJobs",
             "utilities"
         ],
         "exclude": [

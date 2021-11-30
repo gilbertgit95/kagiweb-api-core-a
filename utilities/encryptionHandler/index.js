@@ -55,7 +55,7 @@ module.exports = {
 
     /**
      * ->. This will generate jwt token
-     * @param { obj } data - object that will be encrypted into jwt
+     * @param { Object } data - object that will be encrypted into jwt
      * @returns { string } a JWT token
      */
     generateJWT(data) {
@@ -65,6 +65,12 @@ module.exports = {
         )
     },
 
+    /**
+     * ->. This will return the original object from the jwt token
+     * @async
+     * @param { string } token - jwt token
+     * @returns { Promise<Object> } the encrypted object
+     */
     verifyJWT(token) {
         return new Promise((resolve, reject) => {
             jwt.verify(token, jwtSecret, (err, decoded) => {
