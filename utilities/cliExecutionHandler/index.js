@@ -3,7 +3,7 @@ const prompts = require('prompts');
 
 /**
  * Responsible for executing cli commands inside javascript process
- * @module cliExecutionHandler
+ * @module utilities/cliExecutionHandler
  */
 
 /**

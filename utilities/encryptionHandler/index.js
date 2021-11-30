@@ -5,8 +5,7 @@ const jwt = require('jsonwebtoken');
  * This module is responsible for handling encryptions, like
  * passwords, jwt and some base64 convertions.
  * 
- * @module encryptionHandler
- * @memberof utilities
+ * @module utilities/encryptionHandler
  */
 
 const jwtSecret = process.env.JWT_SECRET_KEY || 'Please_provide_secret_in_dot_env_file'

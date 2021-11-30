@@ -1,7 +1,7 @@
 const pathToRegexp = require('path-to-regexp');
 /**
  * Contains matching functions
- * @module matchersHandler
+ * @module utilities/matchersHandler
  */
 
 /**

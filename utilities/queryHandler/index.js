@@ -5,7 +5,7 @@ const { Sequelize } = require('../../dataSource/models');
  * like, fetch single item, update, create, fetch with paggination
  * and more.
  * 
- * @module queryHandler
+ * @module utilities/queryHandler
  */
 
 /**
