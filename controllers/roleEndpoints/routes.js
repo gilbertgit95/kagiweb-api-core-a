@@ -161,16 +161,12 @@ router.get('/roleEndpoints/:uuid', getRoleEndpoints)
  *                          items:
  *                              type: object
  *                              required:
- *                                  - roleId
- *                                  - endpointId
+ *                                  - endpointUuid
  *                              properties:
- *                                  roleId:
- *                                      type: number
- *                                  endpointId:
- *                                      type: number
+ *                                  endpointUuid:
+ *                                      type: string
  *                              example:
- *                                  roleId: 1
- *                                  endpointId: 1
+ *                                  endpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -239,16 +235,16 @@ router.post('/roleEndpoints/:uuid', addRoleEndpoints)
  *                          items:
  *                              type: object
  *                              required:
- *                                  - roleId
- *                                  - endpointId
+ *                                  - endpointUuid
+ *                                  - roleEndpointUuid
  *                              properties:
- *                                  roleId:
- *                                      type: number
- *                                  endpointId:
- *                                      type: number
+ *                                  endpointUuid:
+ *                                      type: string
+ *                                  roleEndpointUuid:
+ *                                      type: string
  *                              example:
- *                                  roleId: 1
- *                                  endpointId: 1
+ *                                  endpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
+ *                                  roleEndpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -318,16 +314,12 @@ router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
  *                          items:
  *                              type: object
  *                              required:
- *                                  - roleId
- *                                  - endpointId
+ *                                  - roleEndpointUuid
  *                              properties:
- *                                  roleId:
- *                                      type: number
- *                                  endpointId:
- *                                      type: number
+ *                                  roleEndpointUuid:
+ *                                      type: string
  *                              example:
- *                                  roleId: 1
- *                                  endpointId: 1
+ *                                  roleEndpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints

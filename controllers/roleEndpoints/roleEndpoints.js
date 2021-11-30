@@ -51,6 +51,11 @@ const addRoleEndpoints = async (req, res) => {
             let uuid = props.params.uuid
             let roleEndpointsData = props.body
 
+            // fetch existing role endpoints
+
+            //  filter only the none existing
+
+            // then bulk create
             await bulkCreate(RoleEndpoint, roleEndpointsData)
 
             return await getItem(async () => {
@@ -68,6 +73,11 @@ const updateRoleEndpoints = async (req, res) => {
             let uuid = props.params.uuid
             let roleEndpointssData = props.body
 
+            // fetch existing role endpoints
+
+            // filter only those that exist
+
+            //  then bulk update
             await bulkUpdate(
                 // roleEndpoints model
                 RoleEndpoints,

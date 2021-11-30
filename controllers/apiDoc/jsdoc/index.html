@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="utilities.module_encryptionHandler.html">encryptionHandler</a><ul class='methods'><li data-type='method'><a href="utilities.module_encryptionHandler.html#.atob">atob</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.btoa">btoa</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.generateJWT">generateJWT</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.hashText">hashText</a></li><li data-type='method'><a href="utilities.module_encryptionHandler.html#.verifyTextToHash">verifyTextToHash</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><h1>Kagiweb api core (type A)</h1>
+<blockquote>
+<p>Project: kagiweb-api-core-a<br>
+Created: Gilbert D. Cuerbo, 2021</p>
+</blockquote>
+<h2>Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#architecture">Architecture</a></li>
+</ul>
+<h2>Overview</h2>
+<p>This repository contains the backend part of a web application. The main purpose of this repo is tobe an api
+base code application, so we dont need to create a new app from scratch everytime we develop a web api. The main
+technology use in this app are NodeJS, ExpressJS, Sequelize, SQL DB. The compatible databases or atleast tested
+database use in development are mysql, mssql, sqlite and postgresql.</p>
+<h2>Features</h2>
+<p>Why we should use this boilerplate? below are some of its features</p>
+<ul>
+<li>easy to setup</li>
+<li>use of the best frameworks like, <strong>expressJS</strong>, <strong>sequelize</strong> (ORM), <strong>JEST</strong> (testing), <strong>swagger</strong> (for documentation).</li>
+<li>ready to use utilites, endpoints and data models like: <strong>accounts</strong>, <strong>logging</strong>, <strong>administration</strong>, <strong>secure login</strong> and more. You dont need to
+implement most of the core features because its included on this base app.</li>
+<li>because of ORM, sql database compatibility is flexible, so you can choose <strong>wide range of database server</strong> as long as it
+is supported by squelize.</li>
+<li>use different methods of signing in and logging in, from <strong>bearer authentication</strong> to <strong>External identity login</strong> like: google, microsoft, yahoo, facebook. Note! There are few steps to enable the use of external identity.</li>
+</ul>
+<h2>Installation</h2>
+<p>To succesfully run the application. please follow the steps below and please take note of the app versions
+and configurations. App configuration resides inside the .env file in the root folder.</p>
+<h3>Software dependencies</h3>
+<ul>
+<li>make sure a sql database server is installed</li>
+<li>make sure node and npm are installed on you machine, at the time of development node version
+is <code>v14.17.0</code> and npm is <code>6.14.13</code></li>
+<li>Clone this repo to you local machine</li>
+<li>install app dependencies by running <code>npm i</code></li>
+<li>install global app development dependencies by running <code>npm install -g sequelize-cli nodemon</code>,
+at the time of development sequelize-cli version is <code>6.2.0</code> and nodemon is <code>2.0.13</code></li>
+</ul>
+<h3>Configuration</h3>
+<ul>
+<li>open .env file from the root folder of this repository</li>
+<li>change the database settings to your current installed db settings like: the dialect, username, password,
+host and more. You can just leave the other settings unchange.</li>
+<li>you may need to install or uninstall some npm dependencies if you are using sql server other than postgres. For more instructions
+about this dependencies, please refer to sequelize installation documentation https://sequelize.org/master/manual/getting-started.html</li>
+</ul>
+<h3>Initialization</h3>
+<ul>
+<li>run this command on a terminal in the root folder of the application <code>npm run localScript:resetApp</code>. This will create the database, tables and the initial data. <strong>Note!</strong> if you already have existing database all your data will be lost.</li>
+</ul>
+<h3>Execution</h3>
+<ul>
+<li>run by typing <code>npm start</code> or for development <code>npm run dev</code></li>
+<li>open a browser, then goto localhost:<strong>port</strong> to view the webapp. <strong>port</strong> is the port number inside the .env file.</li>
+</ul>
+<h3>Note!</h3>
+<p><strong>For Security Purposes</strong>. Please do not include the <strong>.env</strong> file from git. The .env file here is
+just a example format for this app.</p>
+<h2>Architecture</h2>
+<p>inprogress...</p></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Tue Nov 30 2021 12:49:05 GMT+0800 (Taipei Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
