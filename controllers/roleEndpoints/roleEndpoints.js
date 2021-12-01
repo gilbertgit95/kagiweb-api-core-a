@@ -1,4 +1,7 @@
 const moment = require('moment');
+
+const { removeRedundancy } = require('../../utilities')
+
 const {
     jsonRespHandler
 } = require('../../utilities/responseHandler');
@@ -74,7 +77,12 @@ const addRoleEndpoints = async (req, res) => {
                 }, {})
 
             // filter and transform data that are valid tobe created
+            roleEndpointsData = removeRedundancy(
+                roleEndpointsData,
+                'endpointUuid'
+            )
             roleEndpointsData = roleEndpointsData
+                // remove redundant endpoints
                 // filter only those that are existing in the endpoints
                 .filter(item => {
                     return item.endpointUuid && allEndpointsMap[item.endpointUuid]
@@ -93,8 +101,8 @@ const addRoleEndpoints = async (req, res) => {
 
 
             // then bulk create
-            await bulkCreate(RoleEndpoint, roleEndpointsData)
-            // console.log('bulk create: ', roleEndpointsData)
+            // await bulkCreate(RoleEndpoint, roleEndpointsData)
+            console.log('bulk create: ', roleEndpointsData)
 
             return await getItem(async () => {
                 return await Role.findOne({
@@ -109,27 +117,31 @@ const updateRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             let uuid = props.params.uuid
-            let roleEndpointssData = props.body
+            let roleEndpointsData = props.body
 
             // fetch existing role endpoints
 
+            // remove redundant data
+
             // filter only those that exist in the role endpoints
+
+            // filter only those endpoints that are not currently assigned to this role
 
             //  then bulk update
             await bulkUpdate(
                 // roleEndpoints model
                 RoleEndpoints,
 
-                // roleEndpointss to update
-                roleEndpointssData,
+                // roleEndpoints to update
+                roleEndpointsData,
 
                 // setter function
-                (roleEndpointsModel, roleEndpointsData) => {
+                (roleEndpointModel, roleEndpointData) => {
 
-                    if (roleEndpointsData.roleId) roleEndpointsModel['roleId'] = roleEndpointsData.roleId
-                    if (roleEndpointsData.endpointId) roleEndpointsModel['endpointId'] = roleEndpointsData.endpointId
+                    if (roleEndpointData.roleId) roleEndpointModel['roleId'] = roleEndpointData.roleId
+                    if (roleEndpointData.endpointId) roleEndpointModel['endpointId'] = roleEndpointData.endpointId
 
-                    return roleEndpointsModel
+                    return roleEndpointModel
                 }
             )
 
