@@ -51,12 +51,50 @@ const addRoleEndpoints = async (req, res) => {
             let uuid = props.params.uuid
             let roleEndpointsData = props.body
 
-            // fetch existing role endpoints
+            // fetch all endpoints
+            let allEndpoints = await getItems(async () => {
+                return await Endpoint.findAll({})
+            })
+            let allEndpointsMap = allEndpoints.reduce((acc, item) => {
+                acc[item.uuid] = item
+                return acc
+            }, {})
 
-            //  filter only the none existing
+            // fetch role endpoints
+            let roleEndpoints = await getItem(async () => {
+                return await Role.findOne({
+                    where: { uuid },
+                    include: ['endpoints']
+                })
+            })
+            let roleEndpointsMap = roleEndpoints.endpoints
+                .reduce((acc, item) => {
+                    acc[item.uuid] = item
+                    return acc
+                }, {})
+
+            // filter and transform data that are valid tobe created
+            roleEndpointsData = roleEndpointsData
+                // filter only those that are existing in the endpoints
+                .filter(item => {
+                    return item.endpointUuid && allEndpointsMap[item.endpointUuid]
+                })
+                // filter only those that are none existing in role endpoints
+                .filter(item => {
+                    return item.endpointUuid && !roleEndpointsMap[item.endpointUuid]
+                })
+                // transform data for bulk creation
+                .map(item => {
+                    return {
+                        roleId:     roleEndpoints.id,
+                        endpointId: allEndpointsMap[item.endpointUuid].id
+                    }
+                })
+
 
             // then bulk create
             await bulkCreate(RoleEndpoint, roleEndpointsData)
+            // console.log('bulk create: ', roleEndpointsData)
 
             return await getItem(async () => {
                 return await Role.findOne({
@@ -75,7 +113,7 @@ const updateRoleEndpoints = async (req, res) => {
 
             // fetch existing role endpoints
 
-            // filter only those that exist
+            // filter only those that exist in the role endpoints
 
             //  then bulk update
             await bulkUpdate(
@@ -111,6 +149,11 @@ const deleteRoleEndpoints = async (req, res) => {
 
             let roleEndpointsData = props.body
 
+            // fetch role endpoints
+
+            // filter only that are existing in the role endpoint
+
+            // bulk delete
             await bulkDelete(Endpoint, roleEndpointsData)
 
             return await getItem(async () => {
