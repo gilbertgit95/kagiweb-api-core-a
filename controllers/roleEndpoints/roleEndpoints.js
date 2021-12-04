@@ -15,8 +15,6 @@ const {
 } = require('../../utilities/queryHandler');
 
 const {
-    Sequelize,
-    sequelize,
     Role,
     Endpoint,
     RoleEndpoint
@@ -101,8 +99,8 @@ const addRoleEndpoints = async (req, res) => {
 
 
             // then bulk create
-            // await bulkCreate(RoleEndpoint, roleEndpointsData)
-            console.log('bulk create: ', roleEndpointsData)
+            await bulkCreate(RoleEndpoint, roleEndpointsData)
+            // console.log('bulk create: ', roleEndpointsData)
 
             return await getItem(async () => {
                 return await Role.findOne({
@@ -119,18 +117,59 @@ const updateRoleEndpoints = async (req, res) => {
             let uuid = props.params.uuid
             let roleEndpointsData = props.body
 
+            // fetch all endpoints
+            let allEndpoints = await getItems(async () => {
+                return await Endpoint.findAll({})
+            })
+            let allEndpointsMap = allEndpoints.reduce((acc, item) => {
+                acc[item.uuid] = item
+                return acc
+            }, {})
+
             // fetch existing role endpoints
+            let roleEndpoints = await getItem(async () => {
+                return await Role.findOne({
+                    where: { uuid },
+                    include: ['endpoints']
+                })
+            })
+            let roleEndpointsMap = roleEndpoints.endpoints
+                .reduce((acc, item) => {
+                    acc.roleEnds[item.RoleEndpoint.uuid] = item
+                    acc.ends[item.uuid] = item
+                    return acc
+                }, { roleEnds: {}, ends: {} })
 
             // remove redundant data
+            roleEndpointsData = removeRedundancy(
+                roleEndpointsData, 'endpointUuid'
+            )
+            roleEndpointsData = removeRedundancy(
+                roleEndpointsData, 'roleEndpointUuid'
+            )
 
-            // filter only those that exist in the role endpoints
+            roleEndpointsData = roleEndpointsData
+                // filter only those that exist in the role endpoints
+                .filter(item => {
+                    return item.roleEndpointUuid && roleEndpointsMap.roleEnds[item.roleEndpointUuid]
+                })
+                // filter only those endpoints that are not currently assigned to this role
+                .filter(item => {
+                    return item.endpointUuid && !roleEndpointsMap.ends[item.endpointUuid]
+                })
+                // transform data in preperation to bulk saving
+                .map(item => {
+                    return {
+                        uuid: item.roleEndpointUuid,
+                        endpointId: allEndpointsMap[item.endpointUuid].id
+                    }
+                })
 
-            // filter only those endpoints that are not currently assigned to this role
-
-            //  then bulk update
+            // console.log('bulk update: ', roleEndpointsData)
+            // then bulk update
             await bulkUpdate(
                 // roleEndpoints model
-                RoleEndpoints,
+                RoleEndpoint,
 
                 // roleEndpoints to update
                 roleEndpointsData,
@@ -138,8 +177,9 @@ const updateRoleEndpoints = async (req, res) => {
                 // setter function
                 (roleEndpointModel, roleEndpointData) => {
 
-                    if (roleEndpointData.roleId) roleEndpointModel['roleId'] = roleEndpointData.roleId
-                    if (roleEndpointData.endpointId) roleEndpointModel['endpointId'] = roleEndpointData.endpointId
+                    if (roleEndpointData.endpointId) {
+                        roleEndpointModel['endpointId'] = roleEndpointData.endpointId
+                    }
 
                     return roleEndpointModel
                 }

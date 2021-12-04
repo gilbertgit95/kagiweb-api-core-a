@@ -281,11 +281,13 @@ module.exports = {
                         throw('None Existing data')
                     }
                 } catch (err) {
+                    console.log('setter error', err)
                     let error = err.errors? err.errors[0].message: err
                     result.push({...{uuid: item.updateData.uuid}, ...{error}})
                 }
             }
         } catch (err) {
+            console.log('update error: ', err)
             if (err.errors) {
                 throw({code: 500, message: err.errors[0].message})
             } else {
