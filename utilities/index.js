@@ -1,6 +1,6 @@
 /**
  * contains the most common services
- * @module utilitiesRoot
+ * @module utilities/
  */
 
 module.exports = {
