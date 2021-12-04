@@ -24,7 +24,7 @@ module.exports = {
      * remove all redundant data in the list
      * @param { Array<Object> } items - list of object to be checked for redundancy
      * @param { string } prop - a property tobe checked in side the object
-     * @returns { Araray<Object> } list of unique object wityh respect to the property specified
+     * @returns { Array<Object> } list of unique object wityh respect to the property specified
      */
     removeRedundancy(items, prop) {
         let redundancy = {}
