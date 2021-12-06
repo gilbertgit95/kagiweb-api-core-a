@@ -202,8 +202,25 @@ const deleteRoleEndpoints = async (req, res) => {
             let roleEndpointsData = props.body
 
             // fetch role endpoints
+            // fetch existing role endpoints
+            let roleEndpoints = await getItem(async () => {
+                return await Role.findOne({
+                    where: { uuid },
+                    include: ['endpoints']
+                })
+            })
+            let roleEndpointsMap = roleEndpoints.endpoints
+                .reduce((acc, item) => {
+                    acc[item.RoleEndpoint.uuid] = item
+                    return acc
+                }, {})
 
             // filter only that are existing in the role endpoint
+            roleEndpointsData = roleEndpointsData
+                // filter only those that exist in the role endpoints
+                .filter(item => {
+                    return item.roleEndpointUuid && roleEndpointsMap[item.roleEndpointUuid]
+                })
 
             // bulk delete
             await bulkDelete(Endpoint, roleEndpointsData)
