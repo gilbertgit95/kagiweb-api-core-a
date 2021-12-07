@@ -20,12 +20,12 @@ database use in development are mysql, mssql, sqlite and postgresql.
 ## Features
 Why we should use this boilerplate? below are some of its features
 - easy to setup
-- use of the best frameworks like, **expressJS**, **sequelize** (ORM), **JEST** (testing), **JSDoc and
+- use of the best technologies like, **expressJS**, **graphQL**, **sequelize** (ORM), **JEST** (testing), **JSDoc and
   swagger** (for documentation).
 - ready to use utilites, endpoints and data models like: **accounts**, **logging**, **administration**,
   **secure login** and more. You dont need to implement most of the core features because its included
   on this base app.
-- because of ORM, sql database compatibility is flexible, so you can choose **wide range of database server**
+- because of ORM, sql database compatibility is flexible, so you can choose **wide range of SQL database server**
   as long as it is supported by squelize.
 - use different methods of signing in and logging in, from **bearer authentication** to **External identity login**
   like: google, microsoft, yahoo, facebook. Note! There are few steps to enable the use of external identity.
