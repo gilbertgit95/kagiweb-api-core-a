@@ -4,7 +4,7 @@ const { jsonRespHandler } = require('../../utilities/responseHandler');
 const {
     Sequelize,
     sequelize
-} = require('./../../dataSource/models');
+} = require('../../dataSource/models');
 
 const getAccounts = async (req, res) => {
     return await jsonRespHandler(req, res)

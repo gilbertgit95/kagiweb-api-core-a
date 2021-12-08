@@ -5,7 +5,7 @@ const {
     createAccounts,
     updateAccounts,
     deleteAccounts
-} = require('./accounts');
+} = require('./singleAccount');
 
 router.get('/accounts', getAccounts)
 router.post('/accounts', createAccounts)
