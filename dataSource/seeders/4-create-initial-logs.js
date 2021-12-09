@@ -13,6 +13,7 @@ module.exports = {
     */
     await queryInterface.bulkInsert('logs', [
       {
+        id: 'db422ca5-b0a0-43b1-9381-417be994f08e',
         message: "accessing the app during development",
         title: "Test log",
         creator: "Gilbert Cuerbo",
@@ -20,6 +21,7 @@ module.exports = {
         updatedAt: "2021-11-08T06:19:31.163Z"
       },
       {
+        id: 'db422ca5-b0a0-43b1-9381-417be994f09e',
         message: "another logging test",
         title: "Test log",
         creator: "Gilbert Cuerbo",
@@ -27,6 +29,7 @@ module.exports = {
         updatedAt: "2021-11-08T08:12:28.774Z"
       },
       {
+        id: 'db422ca5-b0a0-43b1-9381-417be994f10e',
         message: "login by bearer authentication",
         title: "Authentication",
         creator: "Gilbert Cuerbo",
@@ -34,6 +37,7 @@ module.exports = {
         updatedAt: "2021-11-08T13:18:40.558Z"
       },
       {
+        id: 'db422ca5-b0a0-43b1-9381-417be994f11e',
         message: "trigger logout",
         title: "Authentication",
         creator: "Gilbert Cuerbo",

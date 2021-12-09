@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Log.init({
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+    },
     message: DataTypes.STRING,
     title: DataTypes.STRING,
     creator: DataTypes.STRING
