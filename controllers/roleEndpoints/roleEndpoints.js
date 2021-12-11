@@ -35,11 +35,11 @@ const getRolesEndpoints = async (req, res) => {
 const getRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
 
             return await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })
@@ -49,7 +49,7 @@ const getRoleEndpoints = async (req, res) => {
 const addRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
             let roleEndpointsData = props.body
 
             // fetch all endpoints
@@ -57,43 +57,43 @@ const addRoleEndpoints = async (req, res) => {
                 return await Endpoint.findAll({})
             })
             let allEndpointsMap = allEndpoints.reduce((acc, item) => {
-                acc[item.uuid] = item
+                acc[item.id] = item
                 return acc
             }, {})
 
             // fetch role endpoints
             let roleEndpoints = await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })
             let roleEndpointsMap = roleEndpoints.endpoints
                 .reduce((acc, item) => {
-                    acc[item.uuid] = item
+                    acc[item.id] = item
                     return acc
                 }, {})
 
             // filter and transform data that are valid tobe created
             roleEndpointsData = removeRedundancy(
                 roleEndpointsData,
-                'endpointUuid'
+                'endpointId'
             )
             roleEndpointsData = roleEndpointsData
                 // remove redundant endpoints
                 // filter only those that are existing in the endpoints
                 .filter(item => {
-                    return item.endpointUuid && allEndpointsMap[item.endpointUuid]
+                    return item.endpointId && allEndpointsMap[item.endpointId]
                 })
                 // filter only those that are none existing in role endpoints
                 .filter(item => {
-                    return item.endpointUuid && !roleEndpointsMap[item.endpointUuid]
+                    return item.endpointId && !roleEndpointsMap[item.endpointId]
                 })
                 // transform data for bulk creation
                 .map(item => {
                     return {
                         roleId:     roleEndpoints.id,
-                        endpointId: allEndpointsMap[item.endpointUuid].id
+                        endpointId: allEndpointsMap[item.endpointId].id
                     }
                 })
 
@@ -104,7 +104,7 @@ const addRoleEndpoints = async (req, res) => {
 
             return await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })
@@ -114,7 +114,7 @@ const addRoleEndpoints = async (req, res) => {
 const updateRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
             let roleEndpointsData = props.body
 
             // fetch all endpoints
@@ -122,46 +122,46 @@ const updateRoleEndpoints = async (req, res) => {
                 return await Endpoint.findAll({})
             })
             let allEndpointsMap = allEndpoints.reduce((acc, item) => {
-                acc[item.uuid] = item
+                acc[item.id] = item
                 return acc
             }, {})
 
             // fetch existing role endpoints
             let roleEndpoints = await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })
             let roleEndpointsMap = roleEndpoints.endpoints
                 .reduce((acc, item) => {
-                    acc.roleEnds[item.RoleEndpoint.uuid] = item
-                    acc.ends[item.uuid] = item
+                    acc.roleEnds[item.RoleEndpoint.id] = item
+                    acc.ends[item.id] = item
                     return acc
                 }, { roleEnds: {}, ends: {} })
 
             // remove redundant data
             roleEndpointsData = removeRedundancy(
-                roleEndpointsData, 'endpointUuid'
+                roleEndpointsData, 'endpointId'
             )
             roleEndpointsData = removeRedundancy(
-                roleEndpointsData, 'roleEndpointUuid'
+                roleEndpointsData, 'roleEndpointId'
             )
 
             roleEndpointsData = roleEndpointsData
                 // filter only those that exist in the role endpoints
                 .filter(item => {
-                    return item.roleEndpointUuid && roleEndpointsMap.roleEnds[item.roleEndpointUuid]
+                    return item.roleEndpointId && roleEndpointsMap.roleEnds[item.roleEndpointId]
                 })
                 // filter only those endpoints that are not currently assigned to this role
                 .filter(item => {
-                    return item.endpointUuid && !roleEndpointsMap.ends[item.endpointUuid]
+                    return item.endpointId && !roleEndpointsMap.ends[item.endpointId]
                 })
                 // transform data in preperation to bulk saving
                 .map(item => {
                     return {
-                        uuid: item.roleEndpointUuid,
-                        endpointId: allEndpointsMap[item.endpointUuid].id
+                        id: item.roleEndpointId,
+                        endpointId: allEndpointsMap[item.endpointId].id
                     }
                 })
 
@@ -187,7 +187,7 @@ const updateRoleEndpoints = async (req, res) => {
 
             return await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })
@@ -197,7 +197,7 @@ const updateRoleEndpoints = async (req, res) => {
 const deleteRoleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
 
             let roleEndpointsData = props.body
 
@@ -205,13 +205,13 @@ const deleteRoleEndpoints = async (req, res) => {
             // fetch existing role endpoints
             let roleEndpoints = await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })
             let roleEndpointsMap = roleEndpoints.endpoints
                 .reduce((acc, item) => {
-                    acc[item.RoleEndpoint.uuid] = item
+                    acc[item.RoleEndpoint.id] = item
                     return acc
                 }, {})
 
@@ -219,7 +219,7 @@ const deleteRoleEndpoints = async (req, res) => {
             roleEndpointsData = roleEndpointsData
                 // filter only those that exist in the role endpoints
                 .filter(item => {
-                    return item.roleEndpointUuid && roleEndpointsMap[item.roleEndpointUuid]
+                    return item.roleEndpointId && roleEndpointsMap[item.roleEndpointId]
                 })
 
             // bulk delete
@@ -227,7 +227,7 @@ const deleteRoleEndpoints = async (req, res) => {
 
             return await getItem(async () => {
                 return await Role.findOne({
-                    where: { uuid },
+                    where: { id },
                     include: ['endpoints']
                 })
             })

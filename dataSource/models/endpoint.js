@@ -20,9 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Endpoint.init({
-    uuid: {
+    id: {
+      primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
     },
     endpoint: {
       type: DataTypes.STRING,

@@ -17,9 +17,9 @@ const {
 const getSingleRole = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
 
-            return await getItem(Role, uuid)
+            return await getItem(Role, id)
         })
 }
 
@@ -36,9 +36,9 @@ const createSingleRole = async (req, res) => {
 const updateSingleRole = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
             let roledata = props.body
-            let roleItem = {...roledata, ...{ uuid }}
+            let roleItem = {...roledata, ...{ id }}
 
             return await updateItem(
                 // model
@@ -60,9 +60,9 @@ const updateSingleRole = async (req, res) => {
 const deleteSingleRole = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
 
-            return await deleteItem(Role, uuid)
+            return await deleteItem(Role, id)
         })
 }
 

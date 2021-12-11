@@ -26,14 +26,14 @@ const defaultPageNumber = 1;
 
 module.exports = {
     /**
-     * ->. fetches a single item using a uuid
+     * ->. fetches a single item using a id
      * @async
      * @param { Object | Function } modelQuery - a custom query function or a sequelize model
-     * @param { string } uuid - uuid of the item
+     * @param { string } id - id of the item
      * @returns { Promise<Object> } the item being fetched
      * @throws { ErrorMessage } if an error occurs throw error message with code 500 or 404
      */
-    async getItem(modelQuery, uuid) {
+    async getItem(modelQuery, id) {
         let item = {}
 
         try {
@@ -43,7 +43,7 @@ module.exports = {
 
             // the default query is through the model
             } else {
-                item = await modelQuery.findOne({ where: { uuid }})
+                item = await modelQuery.findOne({ where: { id }})
             }
 
             if (!item) throw({})
@@ -96,7 +96,7 @@ module.exports = {
         let tobeUpdated = {}
 
         try {
-            tobeUpdated = await model.findOne({ where: { uuid: item.uuid }})
+            tobeUpdated = await model.findOne({ where: { id: item.id }})
 
             if (!tobeUpdated) throw({})
 
@@ -116,18 +116,18 @@ module.exports = {
     },
 
     /**
-     * ->. Delete an item using its uuid
+     * ->. Delete an item using its id
      * @async
      * @param { Object } model - sequelize model
-     * @param { string } uuid - uuid of the item tobe deleted
+     * @param { string } id - id of the item tobe deleted
      * @returns { Promise<Object> } the deleted item
      * @throws { ErrorMessage } if an error occurs throw error message 500 or 404
      */
-    async deleteItem(model, uuid) {
+    async deleteItem(model, id) {
         let tobeDeleted = {}
 
         try {
-            tobeDeleted = await model.findOne({ where: { uuid }})
+            tobeDeleted = await model.findOne({ where: { id }})
 
             if (!tobeDeleted) throw({})
 
@@ -252,19 +252,19 @@ module.exports = {
         try {
             // fetching items
             let queryOptions = {
-                where: { uuid: { [OPERATORS.in]: items.map(item => item.uuid) }}
+                where: { id: { [OPERATORS.in]: items.map(item => item.id) }}
             }
             let existingItems = await model.findAll(queryOptions)
             
             // generate map using existing items in the database
             let existingItemsMap = existingItems.reduce((acc, item) => {
-                acc[item.uuid] = item
+                acc[item.id] = item
                 return acc
             }, {})
             // generate paired model and update items
             let pairedModelToUpdate = items.map(item => {
                 return {
-                    modelData: existingItemsMap[item.uuid],
+                    modelData: existingItemsMap[item.id],
                     updateData: item
                 }
             })
@@ -283,7 +283,7 @@ module.exports = {
                 } catch (err) {
                     console.log('setter error', err)
                     let error = err.errors? err.errors[0].message: err
-                    result.push({...{uuid: item.updateData.uuid}, ...{error}})
+                    result.push({...{id: item.updateData.id}, ...{error}})
                 }
             }
         } catch (err) {
@@ -315,7 +315,7 @@ module.exports = {
 
         try {
             let queryOptions = {
-                where: { uuid: { [OPERATORS.in]: items.map(item => item.uuid) }}
+                where: { id: { [OPERATORS.in]: items.map(item => item.id) }}
             }
 
             // fetch data tobe deleted

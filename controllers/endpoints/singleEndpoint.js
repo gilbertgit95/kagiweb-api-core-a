@@ -17,9 +17,9 @@ const {
 const getSingleEndpoint = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
 
-            return await getItem(Endpoint, uuid)
+            return await getItem(Endpoint, id)
         })
 }
 
@@ -36,9 +36,9 @@ const createSingleEndpoint = async (req, res) => {
 const updateSingleEndpoint = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
             let endpointdata = props.body
-            let endpointItem = {...endpointdata, ...{ uuid }}
+            let endpointItem = {...endpointdata, ...{ id }}
 
             return await updateItem(
                 // model
@@ -63,9 +63,9 @@ const updateSingleEndpoint = async (req, res) => {
 const deleteSingleEndpoint = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let uuid = props.params.uuid
+            let id = props.params.id
 
-            return await deleteItem(Endpoint, uuid)
+            return await deleteItem(Endpoint, id)
         })
 }
 

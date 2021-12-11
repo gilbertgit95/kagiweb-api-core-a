@@ -18,14 +18,14 @@ const {
  *                  - roleId
  *                  - endpointId
  *              properties:
- *                  uuid:
+ *                  id:
  *                      type: string
  *                      description: auto generated value
  *                  roleId:
- *                      type: number
+ *                      type: string
  *                      description: foriegn key to a role
  *                  endpointId:
- *                      type: number
+ *                      type: string
  *                      description: foriegn key to an endpoint
  *                  createdAt:
  *                      type: string
@@ -34,7 +34,7 @@ const {
  *                      type: string
  *                      description: date when this item was updated
  *              example:
- *                  uuid: 6ff0af1-851c-480c-ba97-69fef72316d2
+ *                  id: 6ff0af1-851c-480c-ba97-69fef72316d2
  *                  createdAt: 2021-11-08T13:18:40.558Z
  *                  updatedAt: 2021-11-08T13:18:40.558Z
  *                  endpointId: 1
@@ -90,17 +90,17 @@ router.get('/roleEndpoints', getRolesEndpoints)
 
 /**
  * @swagger
- * /api/v1/roleEndpoints/{uuid}:
+ * /api/v1/roleEndpoints/{id}:
  *      get:
  *          tags: [RoleEndpoints]
  *          summary: Returns role and its endpoints
  *          parameters:
  *              - in: path
- *                name: uuid
+ *                name: id
  *                schema:
  *                      type: string
  *                required: true
- *                description: uuid of role
+ *                description: id of role
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -137,21 +137,21 @@ router.get('/roleEndpoints', getRolesEndpoints)
  *                          schema:
  *                              $ref: '#/components/schemas/Error'
  */
-router.get('/roleEndpoints/:uuid', getRoleEndpoints)
+router.get('/roleEndpoints/:id', getRoleEndpoints)
 
 /**
  * @swagger
- * /api/v1/roleEndpoints/{uuid}:
+ * /api/v1/roleEndpoints/{id}:
  *      post:
  *          tags: [RoleEndpoints]
  *          summary: Returns role and its endpoints including the newly created ones
  *          parameters:
  *              - in: path
- *                name: uuid
+ *                name: id
  *                schema:
  *                      type: string
  *                required: true
- *                description: uuid of role
+ *                description: id of role
  *          requestBody:
  *              required: true
  *              content:
@@ -161,12 +161,12 @@ router.get('/roleEndpoints/:uuid', getRoleEndpoints)
  *                          items:
  *                              type: object
  *                              required:
- *                                  - endpointUuid
+ *                                  - endpointId
  *                              properties:
- *                                  endpointUuid:
+ *                                  endpointId:
  *                                      type: string
  *                              example:
- *                                  endpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
+ *                                  endpointId: 6ff0af1-851c-480c-ba97-69fef72316d2
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -211,21 +211,21 @@ router.get('/roleEndpoints/:uuid', getRoleEndpoints)
  *                          schema:
  *                              $ref: '#/components/schemas/Error'
  */
-router.post('/roleEndpoints/:uuid', addRoleEndpoints)
+router.post('/roleEndpoints/:id', addRoleEndpoints)
 
 /**
  * @swagger
- * /api/v1/roleEndpoints/{uuid}:
+ * /api/v1/roleEndpoints/{id}:
  *      put:
  *          tags: [RoleEndpoints]
  *          summary: Returns role and its endpoints including the updated ones
  *          parameters:
  *              - in: path
- *                name: uuid
+ *                name: id
  *                schema:
  *                      type: string
  *                required: true
- *                description: uuid of role
+ *                description: id of role
  *          requestBody:
  *              required: true
  *              content:
@@ -235,16 +235,16 @@ router.post('/roleEndpoints/:uuid', addRoleEndpoints)
  *                          items:
  *                              type: object
  *                              required:
- *                                  - endpointUuid
- *                                  - roleEndpointUuid
+ *                                  - endpointId
+ *                                  - roleEndpointId
  *                              properties:
- *                                  endpointUuid:
+ *                                  endpointId:
  *                                      type: string
- *                                  roleEndpointUuid:
+ *                                  roleEndpointId:
  *                                      type: string
  *                              example:
- *                                  endpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
- *                                  roleEndpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
+ *                                  endpointId: 6ff0af1-851c-480c-ba97-69fef72316d2
+ *                                  roleEndpointId: 6ff0af1-851c-480c-ba97-69fef72316d2
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -290,21 +290,21 @@ router.post('/roleEndpoints/:uuid', addRoleEndpoints)
  *                          schema:
  *                              $ref: '#/components/schemas/Error'
  */
-router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
+router.put('/roleEndpoints/:id', updateRoleEndpoints)
 
 /**
  * @swagger
- * /api/v1/roleEndpoints/{uuid}:
+ * /api/v1/roleEndpoints/{id}:
  *      delete:
  *          tags: [RoleEndpoints]
  *          summary: Returns role and its endpoints without the deleted ones
  *          parameters:
  *              - in: path
- *                name: uuid
+ *                name: id
  *                schema:
  *                      type: string
  *                required: true
- *                description: uuid of role
+ *                description: id of role
  *          requestBody:
  *              required: true
  *              content:
@@ -314,12 +314,12 @@ router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
  *                          items:
  *                              type: object
  *                              required:
- *                                  - roleEndpointUuid
+ *                                  - roleEndpointId
  *                              properties:
- *                                  roleEndpointUuid:
+ *                                  roleEndpointId:
  *                                      type: string
  *                              example:
- *                                  roleEndpointUuid: 6ff0af1-851c-480c-ba97-69fef72316d2
+ *                                  roleEndpointId: 6ff0af1-851c-480c-ba97-69fef72316d2
  *          responses:
  *              200:
  *                  description: object containing a role and its endpoints
@@ -365,6 +365,6 @@ router.put('/roleEndpoints/:uuid', updateRoleEndpoints)
  *                          schema:
  *                              $ref: '#/components/schemas/Error'
  */
-router.delete('/roleEndpoints/:uuid', deleteRoleEndpoints)
+router.delete('/roleEndpoints/:id', deleteRoleEndpoints)
 
 module.exports = router

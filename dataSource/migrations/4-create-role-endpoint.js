@@ -3,21 +3,17 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('role_endpoints', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      uuid: {
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
       },
       roleId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: { model: 'roles', key: 'id' }
       },
       endpointId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: { model: 'endpoints', key: 'id' }
       },
       createdAt: {

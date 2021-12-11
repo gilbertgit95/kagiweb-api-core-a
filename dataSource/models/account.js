@@ -13,14 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
 
-    toJSON() {
-      return {...this.get(), id: undefined}
-    }
+    // toJSON() {
+    //   return {...this.get(), id: undefined}
+    // }
   };
   Account.init({
-    uuid: {
+    id: {
+      primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
     },
     username: DataTypes.STRING,
     password: DataTypes.STRING,
