@@ -35,15 +35,15 @@ module.exports = {
      */
     async getItem(modelQuery, id) {
         let item = {}
-
+        console.log('test')
         try {
-            // if a query function exist use this instead
-            if (modelQuery && typeof modelQuery == 'function') {
-                item = await modelQuery()
-
             // the default query is through the model
-            } else {
+            if (   modelQuery
+                && modelQuery.findOne) {
                 item = await modelQuery.findOne({ where: { id }})
+            // if a query function exist use this instead
+            } else {
+                item = await modelQuery()
             }
 
             if (!item) throw({})
