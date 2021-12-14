@@ -69,11 +69,21 @@ const updateMultipleAccounts = async (req, res) => {
                 // setter function
                 (accountModel, accountData) => {
 
-                    // if (accountData.Account)    accountModel['Account'] = accountData.Account
-                    // if (accountData.type)        accountModel['type'] = accountData.type
-                    // if (accountData.category)    accountModel['category'] = accountData.category
-                    // if (accountData.subcategory) accountModel['subcategory'] = accountData.subcategory
-                    // if (accountData.description) accountModel['description'] = accountData.description
+                    if (accountData.password)               accountModel['password'] = accountData.password
+                    if (accountData.fullname)               accountModel['fullname'] = accountData.fullname
+                    if (accountData.disableAccount)         accountModel['disableAccount'] = accountData.disableAccount
+                    if (accountData.primaryEmail)           accountModel['primaryEmail'] = accountData.primaryEmail
+                    if (accountData.secondayEmail)          accountModel['secondayEmail'] = accountData.secondayEmail
+                    if (accountData.primaryEmailVerified)   accountModel['primaryEmailVerified'] = accountData.primaryEmailVerified
+                    if (accountData.secondaryEmailVerified) accountModel['secondaryEmailVerified'] = accountData.secondaryEmailVerified
+                    if (accountData.primaryNumber)          accountModel['primaryNumber'] = accountData.primaryNumber
+                    if (accountData.secondayNumber)         accountModel['secondayNumber'] = accountData.secondayNumber
+                    if (accountData.primaryNumberVerified)  accountModel['primaryNumberVerified'] = accountData.primaryNumberVerified
+                    if (accountData.secondaryNumberVerified)accountModel['secondaryNumberVerified'] = accountData.secondaryNumberVerified
+                    if (accountData.resetPasswordKey)       accountModel['resetPasswordKey'] = accountData.resetPasswordKey
+                    if (accountData.resetPasswordAttempt)   accountModel['resetPasswordAttempt'] = accountData.resetPasswordAttempt
+                    if (accountData.loginAccountKey)        accountModel['loginAccountKey'] = accountData.loginAccountKey
+                    if (accountData.loginAccountAttempt)    accountModel['loginAccountAttempt'] = accountData.loginAccountAttempt
 
                     return accountModel
                 }
