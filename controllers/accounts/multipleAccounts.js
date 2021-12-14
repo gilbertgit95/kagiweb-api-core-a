@@ -69,6 +69,7 @@ const updateMultipleAccounts = async (req, res) => {
                 // setter function
                 (accountModel, accountData) => {
 
+                    if (accountData.roleId)                 accountModel['roleId'] = accountData.password
                     if (accountData.password)               accountModel['password'] = accountData.password
                     if (accountData.fullname)               accountModel['fullname'] = accountData.fullname
                     if (accountData.disableAccount)         accountModel['disableAccount'] = accountData.disableAccount
