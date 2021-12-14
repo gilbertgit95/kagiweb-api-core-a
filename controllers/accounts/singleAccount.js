@@ -6,7 +6,7 @@ const {
     sequelize
 } = require('../../dataSource/models');
 
-const getAccounts = async (req, res) => {
+const getAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -15,7 +15,7 @@ const getAccounts = async (req, res) => {
         })
 }
 
-const createAccounts = async (req, res) => {
+const createAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -24,7 +24,7 @@ const createAccounts = async (req, res) => {
         })
 }
 
-const updateAccounts = async (req, res) => {
+const updateAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -33,7 +33,7 @@ const updateAccounts = async (req, res) => {
         })
 }
 
-const deleteAccounts = async (req, res) => {
+const deleteAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -43,8 +43,8 @@ const deleteAccounts = async (req, res) => {
 }
 
 module.exports = {
-    getAccounts,
-    createAccounts,
-    updateAccounts,
-    deleteAccounts
+    getAccount,
+    createAccount,
+    updateAccount,
+    deleteAccount
 }

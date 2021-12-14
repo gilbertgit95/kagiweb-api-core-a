@@ -30,6 +30,8 @@ test('Check password hashing and verification', async () => {
     let test1 = await verifyTextToHash(testData, hash)
     let test2 = await verifyTextToHash(testData2, hash)
 
+    console.log('password: ', await hashText('master101'))
+
     expect(test1).toBe(true)
     expect(test1).toBeTruthy()
     expect(test1).not.toBeNull()
