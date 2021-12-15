@@ -57,14 +57,9 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    fullname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true,
-        is: /[a-zA-Z\s]+/
-      }
+    twoFactorAuth: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     disableAccount: {
       type: DataTypes.BOOLEAN,

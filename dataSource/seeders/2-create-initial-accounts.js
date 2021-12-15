@@ -16,7 +16,7 @@ module.exports = {
       {
         "id": "e79c8692-4cc2-4971-a52c-832e87b28e8f",
         "username": "master",
-        "fullname": "Master Account",
+        "twoFactorAuth": false,
         "password": "$2b$10$Uk6avcqftAoPCNvk10Serubf8kl1bHQw1.yG.xCpBtbjn3QwX5fTC",
         "disableAccount": false,
         "primaryEmail": null,
@@ -38,7 +38,7 @@ module.exports = {
       {
         "id": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
         "username": "gilbert95",
-        "fullname": "Berto",
+        "twoFactorAuth": false,
         "password": "$2b$10$Uk6avcqftAoPCNvk10Serubf8kl1bHQw1.yG.xCpBtbjn3QwX5fTC",
         "disableAccount": false,
         "primaryEmail": null,

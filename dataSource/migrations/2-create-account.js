@@ -21,9 +21,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      fullname: {
-        type: Sequelize.STRING,
-        allowNull: false
+      twoFactorAuth: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       disableAccount: {
         type: Sequelize.BOOLEAN,
