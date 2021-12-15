@@ -37,7 +37,7 @@ const getMultipleAccounts = async (req, res) => {
                     return await Account.findAndCountAll({
                         limit,
                         offset,
-                        include: 'role'
+                        include: ['role', 'accountClaims']
                     })
                 }
             )

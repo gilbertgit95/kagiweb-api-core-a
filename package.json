@@ -19,7 +19,7 @@
     "test": "jest",
     "jsdoc": "jsdoc -c jsdoc.json",
     "ls:genRandomKey": "node ./localScripts/generateRandomKey/main.js",
-    "ls:resetApp": "node ./localScripts/resetApplication/main.js"
+    "ls:reset": "node ./localScripts/resetApplication/main.js"
   },
   "license": "MIT",
   "dependencies": {

@@ -14,9 +14,9 @@ module.exports = {
 
     await queryInterface.bulkInsert('accounts', [
       {
-        "id": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
-        "username": "gilbert95",
-        "fullname": "Master Berto",
+        "id": "e79c8692-4cc2-4971-a52c-832e87b28e8f",
+        "username": "master",
+        "fullname": "Master Account",
         "password": "$2b$10$Uk6avcqftAoPCNvk10Serubf8kl1bHQw1.yG.xCpBtbjn3QwX5fTC",
         "disableAccount": false,
         "primaryEmail": null,
@@ -33,12 +33,12 @@ module.exports = {
         "loginAccountAttempt": 0,
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z",
-        "roleId": "6b1b7d6a-c325-4908-912c-f485078a53fc"
+        "roleId": "e79c8692-4cc2-4971-a52c-832e87b46e8f"
       },
       {
         "id": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
         "username": "gilbert95",
-        "fullname": "Master Berto",
+        "fullname": "Berto",
         "password": "$2b$10$Uk6avcqftAoPCNvk10Serubf8kl1bHQw1.yG.xCpBtbjn3QwX5fTC",
         "disableAccount": false,
         "primaryEmail": null,
