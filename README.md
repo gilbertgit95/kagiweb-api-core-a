@@ -51,7 +51,7 @@ and configurations. App configuration resides inside the .env file in the root f
   https://sequelize.org/master/manual/getting-started.html
   
 ### Initialization
-- run this command on a terminal in the root folder of the application ```npm run ls:resetApp```. This will
+- run this command on a terminal in the root folder of the application ```npm run ls:reset```. This will
   create the database, tables and the initial data. **Note!** if you already have existing database all your
   data will be lost.
 

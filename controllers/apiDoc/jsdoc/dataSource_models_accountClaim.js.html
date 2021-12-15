@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dataSource/models/endpoint.js - Documentation</title>
+    <title>dataSource/models/accountClaim.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dataSource/models/endpoint.js</h1>
+    <h1 class="page-title">dataSource/models/accountClaim.js</h1>
     
 
     
@@ -47,30 +47,27 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Endpoint extends Model {
+  class AccountClaim extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Role, Endpoint, RoleEndpoint }) {
+    static associate({ Account }) {
       // define association here
-      this.belongsToMany(Role, {
-        as: 'roles',
-        through: RoleEndpoint,
-        foreignKey: 'endpointId',
-        foreignKeyConstraint: true
-      })
     }
+
+    // toJSON() {
+    // }
   };
-  Endpoint.init({
+  AccountClaim.init({
     id: {
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
     },
-    endpoint: {
+    key: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -78,37 +75,15 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    subcategory: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
-    },
-    description: DataTypes.STRING
+    value: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
-    modelName: 'Endpoint',
-    tableName: 'endpoints'
+    modelName: 'AccountClaim',
+    tableName: 'account_claims'
   });
-  return Endpoint;
+  return AccountClaim;
 };</code></pre>
         </article>
     </section>
