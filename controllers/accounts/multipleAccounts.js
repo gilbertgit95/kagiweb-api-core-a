@@ -16,12 +16,14 @@ const {
     Account
 } = require('./../../dataSource/models');
 
+const OPERATORS = Sequelize.Op;
+
 const getMultipleAccounts = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
 
             // fetching and pagination computation
-            return await getItems(
+            let pagginatedAccounts = await getItems(
                 {
                     // props contains the query params
                     props,
@@ -37,11 +39,22 @@ const getMultipleAccounts = async (req, res) => {
                     return await Account.findAndCountAll({
                         limit,
                         offset,
-                        include: ['role', 'accountClaims']
+                        attributes: ['id']
                     })
                 }
             )
+            let accountIds = pagginatedAccounts.items.map(item => item.id)
 
+            let accountsWithInfos = await getItems(async () => {
+                return await Account.findAll({
+                    where: { id: { [OPERATORS.in]: accountIds } },
+                    include: ['role', 'accountClaims']
+                })
+            })
+
+            pagginatedAccounts.items = accountsWithInfos
+
+            return pagginatedAccounts
         })
 }
 
