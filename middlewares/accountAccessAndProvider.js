@@ -25,7 +25,7 @@ module.exports = async (req, res, next) => {
             // console.log('method: ', req.method)
             // console.log('path: ', req.path)
             // console.log('isMatch: ', isMatch)
-            // console.log('check access then bind account info in the request object')
+            console.log('check access then bind account info in the request object')
     
             req.account = {info: 'test account'}
 

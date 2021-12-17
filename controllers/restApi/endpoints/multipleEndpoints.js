@@ -1,20 +1,20 @@
 const moment = require('moment');
 const {
     jsonRespHandler
-} = require('../../utilities/responseHandler');
+} = require('../../../utilities/responseHandler');
 
 const {
     getItems,
     bulkCreate,
     bulkUpdate,
     bulkDelete
-} = require('../../utilities/queryHandler');
+} = require('../../../utilities/queryHandler');
 
 const {
     Sequelize,
     sequelize,
     Endpoint
-} = require('./../../dataSource/models');
+} = require('./../../../dataSource/models');
 
 const getMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)

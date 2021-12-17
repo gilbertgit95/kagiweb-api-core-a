@@ -1,10 +1,10 @@
 const moment = require('moment');
 
-const { removeRedundancy } = require('../../utilities')
+const { removeRedundancy } = require('../../../utilities')
 
 const {
     jsonRespHandler
-} = require('../../utilities/responseHandler');
+} = require('../../../utilities/responseHandler');
 
 const {
     getItem,
@@ -12,13 +12,13 @@ const {
     bulkCreate,
     bulkUpdate,
     bulkDelete
-} = require('../../utilities/queryHandler');
+} = require('../../../utilities/queryHandler');
 
 const {
     Role,
     Endpoint,
     RoleEndpoint
-} = require('./../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const getRolesEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)

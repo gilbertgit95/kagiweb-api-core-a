@@ -1,20 +1,22 @@
 const moment = require('moment');
-
 const {
     jsonRespHandler
-} = require('../../utilities/responseHandler');
+} = require('../../../utilities/responseHandler');
 
 const {
-    getItems
-} = require('../../utilities/queryHandler');
+    getItems,
+    bulkCreate,
+    bulkUpdate,
+    bulkDelete
+} = require('../../../utilities/queryHandler');
 
 const {
     Sequelize,
     sequelize,
-    Log
-} = require('./../../dataSource/models');
+    Role
+} = require('./../../../dataSource/models');
 
-const fetchLogs =  async (req, res) => {
+const getMultipleRoles = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
 
@@ -27,12 +29,12 @@ const fetchLogs =  async (req, res) => {
                     // null will just use the default pagination
                     pageSize: null,
                     // base path for the next page
-                    path: 'api/v1/logs'
+                    path: 'api/v1/roles'
                 },
 
                 // callback for the actual query
                 async ({limit, offset}) => {
-                    return await Log.findAndCountAll({
+                    return await Role.findAndCountAll({
                         limit,
                         offset
                     })
@@ -43,5 +45,5 @@ const fetchLogs =  async (req, res) => {
 }
 
 module.exports = {
-    fetchLogs
+    getMultipleRoles
 }

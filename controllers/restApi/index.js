@@ -10,7 +10,7 @@ const logsRoute = require('./logs/routes');
 const apiDocRoute = require('./apiDoc/routes');
 const testsRoute = require('./tests/routes');
 
-const accountAccessAndProvider = require('./../middlewares/accountAccessAndProvider');
+const accountAccessAndProvider = require('../../middlewares/accountAccessAndProvider');
 
 /**
  * Error message thrown by controllers
@@ -42,12 +42,19 @@ const accountAccessAndProvider = require('./../middlewares/accountAccessAndProvi
  * public routes
  */
 
-// for static files
 router.use(express.static('public'))
 router.use('/assets', express.static('assets'))
 
-// for authentication
+/**
+ * api for authentications
+ */
 router.use('/api/v1/auth', authRoute)
+
+
+/**
+ * api documentation
+ */
+ router.use('/api/', apiDocRoute)
 
 
 /**
@@ -63,11 +70,6 @@ router.use('/api/v1', endpointsRoute)
 router.use('/api/v1', rolesRoute)
 router.use('/api/v1', roleEndpointsRoute)
 router.use('/api/v1', logsRoute)
-
-/**
- * api documentation
- */
- router.use('/api/', apiDocRoute)
 
 /**
  * test routes

@@ -1,7 +1,7 @@
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 
-const packageJSON = require(__dirname + '/../../package.json');
+const packageJSON = require(__dirname + '/../../../package.json');
 
 const options = {
     definition: {
@@ -31,7 +31,7 @@ const options = {
     //         BearerAuth: [],
     //     }
     // ],
-    apis: ['./controllers/index.js', './controllers/*/routes.js']
+    apis: ['./controllers/restApi/index.js', './controllers/restApi/*/routes.js']
 }
 
 const customStyle = {

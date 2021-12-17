@@ -12,7 +12,7 @@ router.use(
 // jsdoc generated pages
 router.use(
     '/documentation/core',
-    express.static('controllers/apiDoc/jsdoc')
+    express.static('controllers/restApi/apiDoc/jsdoc')
 )
 
 module.exports = router

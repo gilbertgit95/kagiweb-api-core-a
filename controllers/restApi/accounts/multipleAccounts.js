@@ -1,20 +1,20 @@
 const moment = require('moment');
 const {
     jsonRespHandler
-} = require('../../utilities/responseHandler');
+} = require('../../../utilities/responseHandler');
 
 const {
     getItems,
     bulkCreate,
     bulkUpdate,
     bulkDelete
-} = require('../../utilities/queryHandler');
+} = require('../../../utilities/queryHandler');
 
 const {
     Sequelize,
     sequelize,
     Account
-} = require('./../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const OPERATORS = Sequelize.Op;
 

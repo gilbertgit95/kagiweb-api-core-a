@@ -1,12 +1,12 @@
 const moment = require('moment');
-const { jsonRespHandler } = require('../../utilities/responseHandler');
+const { jsonRespHandler } = require('../../../utilities/responseHandler');
 
 const {
     Sequelize,
     sequelize
-} = require('./../../dataSource/models');
+} = require('../../../dataSource/models');
 
-const login = async (req, res) => {
+const getAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -15,7 +15,7 @@ const login = async (req, res) => {
         })
 }
 
-const logout = async (req, res) => {
+const createAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -24,7 +24,16 @@ const logout = async (req, res) => {
         })
 }
 
-const passwordReset = async (req, res) => {
+const updateAccount = async (req, res) => {
+    return await jsonRespHandler(req, res)
+        .execute(props => {
+            // throw({code: 500, message: 'na daot'})
+            // throw({code: 404, message: 'na daot'})
+            return {}
+        })
+}
+
+const deleteAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
@@ -34,7 +43,8 @@ const passwordReset = async (req, res) => {
 }
 
 module.exports = {
-    login,
-    logout,
-    passwordReset
+    getAccount,
+    createAccount,
+    updateAccount,
+    deleteAccount
 }

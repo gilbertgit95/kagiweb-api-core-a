@@ -1,18 +1,18 @@
 const moment = require('moment');
-const { jsonRespHandler } = require('../../utilities/responseHandler');
+const { jsonRespHandler } = require('../../../utilities/responseHandler');
 
 const {
     Sequelize,
     sequelize,
     Endpoint
-} = require('./../../dataSource/models');
+} = require('./../../../dataSource/models');
 
 const {
     getItem,
     createItem,
     updateItem,
     deleteItem
-} = require('../../utilities/queryHandler');
+} = require('../../../utilities/queryHandler');
 
 const getSingleEndpoint = async (req, res) => {
     return await jsonRespHandler(req, res)

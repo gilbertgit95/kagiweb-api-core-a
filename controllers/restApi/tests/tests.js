@@ -1,12 +1,12 @@
 const moment = require('moment');
-const { jsonRespHandler } = require('../../utilities/responseHandler');
-const { btoa, atob, hashText, verifyTextToHash, generateJWT, verifyJWT } = require('../../utilities/encryptionHandler');
-const utils = require('../../utilities/');
+const { jsonRespHandler } = require('../../../utilities/responseHandler');
+const { btoa, atob, hashText, verifyTextToHash, generateJWT, verifyJWT } = require('../../../utilities/encryptionHandler');
+const utils = require('../../../utilities/');
 
 const {
     Sequelize,
     sequelize
-} = require('./../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const getTests = async (req, res) => {
     return await jsonRespHandler(req, res)

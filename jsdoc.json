@@ -20,7 +20,7 @@
             "public",
             ".vscode",
             "assets",
-            "controllers/apiDoc/jsdoc"
+            "controllers/restApi/apiDoc/jsdoc"
         ],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"
@@ -37,7 +37,7 @@
     "opts": {
         "template": "node_modules/docdash",
         "encoding": "utf8",
-        "destination": "./controllers/apiDoc/jsdoc/",
+        "destination": "./controllers/restApi/apiDoc/jsdoc/",
         "recurse": true
     }
 }
