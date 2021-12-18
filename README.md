@@ -13,7 +13,7 @@
 ## Overview
 This repository contains the backend part of a web application. The main purpose of this repo is tobe an api
 base code application, so we dont need to create a new app from scratch everytime we develop a web api. The main
-technology use in this app are NodeJS, ExpressJS, Sequelize, SQL DB. The compatible databases or atleast tested
+technology use in this app are NodeJS, ExpressJS, GraphQL, Sequelize, SQL DB. The compatible databases or atleast tested
 database use in development are mysql, mssql, sqlite and postgresql.
 
 
