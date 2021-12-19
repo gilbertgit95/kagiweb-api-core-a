@@ -3,59 +3,28 @@ const graphql = require('graphql');
 const {
     graphqlHTTP
 } = require('express-graphql');
-const { Log } = require('../../dataSource/models');
+const log = require('./logs');
 
 const router = express.Router();
 const {
     GraphQLSchema,
-    GraphQLObjectType,
-    GraphQLInt,
-    GraphQLString,
-    GraphQLList
-} = graphql
+    GraphQLObjectType
+} = graphql;
 
-let LogType = new GraphQLObjectType({
-    name: 'Log',
-    fields: () => ({
-        id:       { type: GraphQLString },
-        message:  { type: GraphQLString },
-        title:    { type: GraphQLString },
-        creator:  { type: GraphQLString },
-        createdAt:{ type: GraphQLString },
-        updatedAt:{ type: GraphQLString }
-    })
-})
-
-let rootQuery = new GraphQLObjectType({
+const rootQuery = new GraphQLObjectType({
     name: 'RootQuery',
     fields: {
-        getAllLogs: {
-            type: new GraphQLList(LogType),
-            args: {},
-            async resolve(parent, args) {
-                return await Log.findAll({})
-            }
-        }
+        ...log.queries
     }
 })
-let rootMutation = new GraphQLObjectType({
+const rootMutation = new GraphQLObjectType({
     name: 'RootMutation',
     fields: {
-        createlog: {
-            type: LogType,
-            args: {
-                message: { type: GraphQLString },
-                title:   { type: GraphQLString },
-                creator: { type: GraphQLString }
-            },
-            async resolve(parent, args) {
-                return args
-            }
-        }
+        ...log.mutations
     }
 })
 
-let schema = new GraphQLSchema({
+const schema = new GraphQLSchema({
     query: rootQuery,
     mutation: rootMutation
 })
