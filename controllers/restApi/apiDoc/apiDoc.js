@@ -31,7 +31,7 @@ const options = {
     //         BearerAuth: [],
     //     }
     // ],
-    apis: ['./controllers/restApi/index.js', './controllers/restApi/*/routes.js']
+    apis: ['./controllers/restapi/index.js', './controllers/restapi/*/routes.js']
 }
 
 const customStyle = {

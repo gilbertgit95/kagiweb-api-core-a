@@ -5,7 +5,7 @@ const {
     Sequelize,
     sequelize,
     Endpoint
-} = require('./../../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const {
     getItem,

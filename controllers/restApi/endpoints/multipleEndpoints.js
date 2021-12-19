@@ -14,7 +14,7 @@ const {
     Sequelize,
     sequelize,
     Endpoint
-} = require('./../../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const getMultipleEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)

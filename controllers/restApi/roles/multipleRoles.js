@@ -14,7 +14,7 @@ const {
     Sequelize,
     sequelize,
     Role
-} = require('./../../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const getMultipleRoles = async (req, res) => {
     return await jsonRespHandler(req, res)

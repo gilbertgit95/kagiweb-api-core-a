@@ -1,7 +1,7 @@
 const moment = require('moment');
 const { jsonRespHandler } = require('../../../utilities/responseHandler');
 const { btoa, atob, hashText, verifyTextToHash, generateJWT, verifyJWT } = require('../../../utilities/encryptionHandler');
-const utils = require('../../../utilities/');
+const utils = require('../../../utilities');
 
 const {
     Sequelize,

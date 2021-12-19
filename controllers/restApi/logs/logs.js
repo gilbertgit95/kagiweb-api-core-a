@@ -12,7 +12,7 @@ const {
     Sequelize,
     sequelize,
     Log
-} = require('./../../../dataSource/models');
+} = require('../../../dataSource/models');
 
 const fetchLogs =  async (req, res) => {
     return await jsonRespHandler(req, res)
