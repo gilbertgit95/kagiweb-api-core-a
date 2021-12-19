@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 const { sequelize, Log } = require('./dataSource/models');
 const restRoutes = require('./controllers/restApi');
+const graphql = require('./controllers/graphQl');
 
 const port = process.env.PORT || 3000;
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(restRoutes);
+app.use(graphql);
 
 app.listen(port, async () => {
   // express log
