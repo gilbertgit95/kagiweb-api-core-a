@@ -1,8 +1,7 @@
 const express = require('express');
 const graphql = require('graphql');
-const {
-    graphqlHTTP
-} = require('express-graphql');
+const { graphqlHTTP } = require('express-graphql');
+
 const log = require('./logs');
 
 const router = express.Router();
@@ -31,7 +30,8 @@ const schema = new GraphQLSchema({
 
 router.use('/api/v1/graphql', graphqlHTTP({
     schema,
-    graphiql: true
+    // only show graphiql ui if the environment is not in production
+    graphiql: process.env.NODE_ENV && process.env.NODE_ENV != 'production'
 }))
 
 module.exports = router
