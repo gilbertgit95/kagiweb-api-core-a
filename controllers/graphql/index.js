@@ -4,6 +4,10 @@ const { graphqlHTTP } = require('express-graphql');
 
 const log = require('./logs');
 
+// initial constants
+const ENV = process.env.NODE_ENV || 'development';
+const ROOT_GRAPHQL = process.env.ROOT_GRAPHQL || '/api/v1/graphql';
+
 const router = express.Router();
 const {
     GraphQLSchema,
@@ -28,10 +32,10 @@ const schema = new GraphQLSchema({
     mutation: rootMutation
 })
 
-router.use('/api/v1/graphql', graphqlHTTP({
+router.use(ROOT_GRAPHQL, graphqlHTTP({
     schema,
-    // only show graphiql ui if the environment is not in production
-    graphiql: process.env.NODE_ENV && process.env.NODE_ENV != 'production'
+    // only show graphiql ui if the environment is not in production mode
+    graphiql: ENV != 'production'
 }))
 
 module.exports = router

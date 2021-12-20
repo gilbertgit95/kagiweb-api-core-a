@@ -2,18 +2,21 @@ const express = require('express');
 const router = express.Router();
 const { swaggerUI, swaggerJsDocSpec, customStyle } = require('./apiDoc');
 
-// only add doc routes if the environment is not in production
-if (process.env.NODE_ENV && process.env.NODE_ENV != 'production') {
+// initial constants
+const ENV = process.env.NODE_ENV || 'development';
+
+// only add doc routes if the environment is not in production mode
+if (ENV != 'production') {
     // swagger generated pages
     router.use(
-        '/documentation/rest',
+        '/rest',
         swaggerUI.serve,
         swaggerUI.setup(swaggerJsDocSpec, customStyle)
     )
 
     // jsdoc generated pages
     router.use(
-        '/documentation/core',
+        '/core',
         express.static('controllers/restapi/apiDoc/jsdoc')
     )
 }

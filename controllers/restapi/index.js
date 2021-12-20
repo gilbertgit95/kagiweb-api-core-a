@@ -12,6 +12,10 @@ const testsRoute = require('./tests/routes');
 
 const accountAccessAndProvider = require('../../middlewares/accountAccessAndProvider');
 
+// initial constants
+const ROOT_DOCS = process.env.ROOT_REST_DOCS || '/api/documentation';
+const ROOT_REST = process.env.ROOT_REST || '/api/v1';
+
 /**
  * Error message thrown by controllers
  * 
@@ -46,15 +50,14 @@ router.use(express.static('public'))
 router.use('/assets', express.static('assets'))
 
 /**
- * api for authentications
- */
-router.use('/api/v1/auth', authRoute)
-
-
-/**
  * api documentation
  */
- router.use('/api/', apiDocRoute)
+ router.use(ROOT_DOCS, apiDocRoute)
+
+/**
+ * api for authentications
+ */
+router.use(`${ ROOT_REST }/auth`, authRoute)
 
 
 /**
@@ -65,15 +68,15 @@ router.use('/api/v1/auth', authRoute)
 // account information in the request object
 router.use(accountAccessAndProvider)
 
-router.use('/api/v1', accountsRoute)
-router.use('/api/v1', endpointsRoute)
-router.use('/api/v1', rolesRoute)
-router.use('/api/v1', roleEndpointsRoute)
-router.use('/api/v1', logsRoute)
+router.use(ROOT_REST, accountsRoute)
+router.use(ROOT_REST, endpointsRoute)
+router.use(ROOT_REST, rolesRoute)
+router.use(ROOT_REST, roleEndpointsRoute)
+router.use(ROOT_REST, logsRoute)
 
 /**
  * test routes
  */
-router.use('/api/v1', testsRoute)
+router.use(ROOT_REST, testsRoute)
 
 module.exports = router
