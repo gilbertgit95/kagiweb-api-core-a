@@ -9,7 +9,7 @@ module.exports = {
         allowNull: false,
       },
       key: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
           notNull: true,
@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       value: {
-        type: DataTypes.STRING
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
