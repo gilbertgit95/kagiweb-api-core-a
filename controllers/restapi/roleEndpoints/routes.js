@@ -63,22 +63,40 @@ const {
  *                              type: object
  *                              properties:
  *                                  data:
- *                                      type: array
- *                                      items:
- *                                          allOf:
- *                                              - $ref: '#/components/schemas/Role'
- *                                              - type: object
- *                                                properties:
- *                                                      endpoints:
- *                                                          type: array
- *                                                          items:
- *                                                              allOf:
- *                                                                  - $ref: '#/components/schemas/Endpoint'
- *                                                                  - type: object
- *                                                                    properties:
- *                                                                          RoleEndpoint:
- *                                                                              $ref: '#/components/schemas/RoleEndpoint'
- *                                                                  
+ *                                      type: object
+ *                                      properties:
+ *                                          next:
+ *                                              type: string
+ *                                              nullable: true
+ *                                              description: url pointing to the next page
+ *                                          pageSize:
+ *                                              type: number
+ *                                              description: number of items per page
+ *                                          pageNumber:
+ *                                              type: number
+ *                                              description: the current page number
+ *                                          totalPage:
+ *                                              type: number
+ *                                              description: all the availbale pages
+ *                                          totalItems:
+ *                                              type: number
+ *                                              description: all items in all pages
+ *                                          items:
+ *                                              type: array
+ *                                              items:
+ *                                                    allOf:
+ *                                                        - $ref: '#/components/schemas/Role'
+ *                                                        - type: object
+ *                                                          properties:
+ *                                                                endpoints:
+ *                                                                    type: array
+ *                                                                    items:
+ *                                                                        allOf:
+ *                                                                            - $ref: '#/components/schemas/Endpoint'
+ *                                                                            - type: object
+ *                                                                              properties:
+ *                                                                                    RoleEndpoint:
+ *                                                                                        $ref: '#/components/schemas/RoleEndpoint'
  *              500:
  *                  description: Some error occured in the server
  *                  content:

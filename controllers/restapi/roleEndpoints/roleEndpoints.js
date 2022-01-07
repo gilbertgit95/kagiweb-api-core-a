@@ -17,18 +17,49 @@ const {
 const {
     Role,
     Endpoint,
-    RoleEndpoint
+    RoleEndpoint,
+    Sequelize
 } = require('../../../dataSource/models');
+
+const OPERATORS = Sequelize.Op;
 
 const getRolesEndpoints = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
 
-            return await getItems(async () => {
+            // fetching and pagination computation
+            let pagginatedRoleEndpoints = await getItems(
+                {
+                    // props contains the query params
+                    props,
+                    // overwite page size (optional)
+                    // null will just use the default pagination
+                    pageSize: null,
+                    // base path for the next page
+                    path: 'api/v1/roleEndpoints'
+                },
+
+                // callback for the actual query
+                async ({limit, offset}) => {
+                    return await Role.findAndCountAll({
+                        limit,
+                        offset,
+                        attributes: ['id']
+                    })
+                }
+            )
+            let roleIds = pagginatedRoleEndpoints.items.map(item => item.id)
+
+            let roleEndpointsWithInfos = await getItems(async () => {
                 return await Role.findAll({
+                    where: { id: { [OPERATORS.in]: roleIds } },
                     include: ['endpoints']
                 })
             })
+
+            pagginatedRoleEndpoints.items = roleEndpointsWithInfos
+
+            return pagginatedRoleEndpoints
         })
 }
 
