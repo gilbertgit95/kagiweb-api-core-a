@@ -47,6 +47,8 @@ const ROOT_REST = process.env.ROOT_REST || '/api/v1';
  */
 
 router.use(express.static('public'))
+router.use('/core*', express.static('public'))
+
 router.use('/assets', express.static('assets'))
 
 /**
