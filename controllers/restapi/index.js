@@ -15,6 +15,7 @@ const accountAccessAndProvider = require('../../middlewares/accountAccessAndProv
 // initial constants
 const ROOT_DOCS = process.env.ROOT_REST_DOCS || '/api/documentation';
 const ROOT_REST = process.env.ROOT_REST || '/api/v1';
+const ROOT_CLIENT = process.env.ROOT_CLIENT || '/core';
 
 /**
  * Error message thrown by controllers
@@ -43,11 +44,11 @@ const ROOT_REST = process.env.ROOT_REST || '/api/v1';
  */
 
 /**
- * public routes
+ * public routes, client route where ui  are served
  */
 
 router.use(express.static('public'))
-router.use('/core*', express.static('public'))
+router.use(`${ ROOT_CLIENT }*`, express.static('public'))
 
 router.use('/assets', express.static('assets'))
 
