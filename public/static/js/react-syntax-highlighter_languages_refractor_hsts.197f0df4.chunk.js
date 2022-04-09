@@ -1,0 +1,2 @@
+(this["webpackJsonpkagiweb-ui-core-a"]=this["webpackJsonpkagiweb-ui-core-a"]||[]).push([[55],{364:function(a,e,s){"use strict";function i(a){a.languages.hsts={directive:{pattern:/\b(?:max-age=|includeSubDomains|preload)/,alias:"keyword"},safe:{pattern:/\d{8,}/,alias:"selector"},unsafe:{pattern:/\d{1,7}/,alias:"function"}}}a.exports=i,i.displayName="hsts",i.aliases=[]}}]);
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_hsts.197f0df4.chunk.js.map

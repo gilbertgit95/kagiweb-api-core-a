@@ -1,0 +1,2 @@
+(this["webpackJsonpkagiweb-ui-core-a"]=this["webpackJsonpkagiweb-ui-core-a"]||[]).push([[18],{331:function(a,e,t){"use strict";function i(a){a.languages.brainfuck={pointer:{pattern:/<|>/,alias:"keyword"},increment:{pattern:/\+/,alias:"inserted"},decrement:{pattern:/-/,alias:"deleted"},branching:{pattern:/\[|\]/,alias:"important"},operator:/[.,]/,comment:/\S+/}}a.exports=i,i.displayName="brainfuck",i.aliases=[]}}]);
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_brainfuck.2494de9e.chunk.js.map
