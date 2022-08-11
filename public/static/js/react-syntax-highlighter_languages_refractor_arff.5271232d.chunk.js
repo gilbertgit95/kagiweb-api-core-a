@@ -1,2 +1,0 @@
-(this["webpackJsonpkagiweb-ui-core-a"]=this["webpackJsonpkagiweb-ui-core-a"]||[]).push([[8],{360:function(a,e,t){"use strict";function i(a){a.languages.arff={comment:/%.*/,string:{pattern:/(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,greedy:!0},keyword:/@(?:attribute|data|end|relation)\b/i,number:/\b\d+(?:\.\d+)?\b/,punctuation:/[{},]/}}a.exports=i,i.displayName="arff",i.aliases=[]}}]);
-//# sourceMappingURL=react-syntax-highlighter_languages_refractor_arff.5271232d.chunk.js.map
