@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const multer = require('multer');
+
+const upload = multer();
 
 const {
     login,
@@ -6,7 +9,8 @@ const {
     passwordReset
 } = require('./auth');
 
-router.post('/login', login)
+// upload none is use to recieve form field data
+router.post('/login', upload.none(), login)
 router.post('/logout', logout)
 router.post('/passwordReset', passwordReset)
 

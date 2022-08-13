@@ -5,7 +5,6 @@ const initCronJobs = require('./cronJobs')
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 const { sequelize, Log } = require('./dataSource/models');
 const restapi = require('./controllers/restapi');
 const graphql = require('./controllers/graphql');
