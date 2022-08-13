@@ -10,7 +10,7 @@ const login = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
             // get username and password from the request
-            console.log('props: ', props.body.username)
+            console.log('props: ', props)
 
             // check if the user using the credential
 
