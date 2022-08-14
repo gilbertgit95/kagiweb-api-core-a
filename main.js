@@ -4,20 +4,17 @@ const initCronJobs = require('./cronJobs')
 
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
 const bodyParser = require('body-parser');
 const { sequelize, Log } = require('./dataSource/models');
 const restapi = require('./controllers/restapi');
 const graphql = require('./controllers/graphql');
 
 const port = process.env.PORT || 3000;
-const upload = multer();
 const app = express();
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(upload.none()) // default to form text fields
 
 app.use(restapi);
 app.use(graphql);

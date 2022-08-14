@@ -23,7 +23,7 @@ const login = async (req, res) => {
             // check the credential existed on the request
             if (!(password && username)) {
                 let errMsg = 'Bad request, missing credential'
-                await logger.setLogContent({ message: errMsg }).log()
+                await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
                 throw({
                     message: errMsg,
                     code: 400,
@@ -69,6 +69,7 @@ const logout = async (req, res) => {
         .execute(props => {
             // throw({code: 500, message: 'na daot'})
             // throw({code: 404, message: 'na daot'})
+            console.log('props: ', props)
             return {}
         })
 }
