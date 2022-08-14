@@ -51,15 +51,14 @@ module.exports = {
     
             // response handlers
             response(resp) {
-                let statusCode = resp.code
-                delete resp.code
-    
                 if (resp.code == successStatus) {
                     return this.res.json(resp && resp.data? resp.data: {})
                 } else {
                     return this.res
-                        .status(statusCode)
-                        .json(resp)
+                        .status(resp.code)
+                        .json({
+                            message: resp.message? resp.message: ''
+                        })
                 }
             }
         }

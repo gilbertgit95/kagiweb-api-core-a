@@ -3,6 +3,7 @@ const moment = require('moment');
 const encryptionHandler = require('../../../utilities/encryptionHandler');
 const { jsonRespHandler } = require('../../../utilities/responseHandler');
 const { getItem } = require('../../../utilities/queryHandler');
+const { Logger } = require('../../../utilities/logHandler');
 
 const {
     Account,
@@ -16,11 +17,15 @@ const login = async (req, res) => {
             // get username and password from the request
             let { username, password } = props.body
             let accessToken = null
+            let logger = new Logger({title: 'Auth Login Attempt'})
+
 
             // check the credential existed on the request
             if (!(password && username)) {
+                let errMsg = 'Bad request, missing credential'
+                await logger.setLogContent({ message: errMsg }).log()
                 throw({
-                    message: 'Bad request, missing credential',
+                    message: errMsg,
                     code: 400,
                 })
             }
@@ -29,6 +34,7 @@ const login = async (req, res) => {
             // also if the user is using the password
             let passMatched = false
             let user = await Account.findOne({ where: { username }})
+            logger.setLogContent({ account: user })
             if (user && user.password) {
                 passMatched = await encryptionHandler.verifyTextToHash(
                     password,
@@ -41,12 +47,15 @@ const login = async (req, res) => {
             // else if user does not exist
             // return 401 or Unauthorized status
             if (user && passMatched) {
+                await logger.setLogContent({ message: 'Successful Login' }).log()
                 accessToken = encryptionHandler.generateJWT({
                     username
                 })
             } else {
+                let errMsg = 'Bad request, wrong username or password'
+                await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
                 throw({
-                    message: 'Bad request, wrong username or password',
+                    message: errMsg,
                     code: 400,
                 })
             }
