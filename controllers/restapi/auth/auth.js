@@ -107,6 +107,15 @@ const logout = async (req, res) => {
         })
 }
 
+const passwordResetCodeRequest = async (req, res) => {
+    return await jsonRespHandler(req, res)
+        .execute(props => {
+            // throw({code: 500, message: 'na daot'})
+            // throw({code: 404, message: 'na daot'})
+            return {}
+        })
+}
+
 const passwordReset = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
@@ -119,5 +128,6 @@ const passwordReset = async (req, res) => {
 module.exports = {
     login,
     logout,
-    passwordReset
+    passwordReset,
+    passwordResetCodeRequest
 }
