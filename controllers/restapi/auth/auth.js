@@ -66,11 +66,44 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
     return await jsonRespHandler(req, res)
-        .execute(props => {
-            // throw({code: 500, message: 'na daot'})
-            // throw({code: 404, message: 'na daot'})
-            console.log('props: ', props)
-            return {}
+        .execute(async (props) => {
+
+            // get authorization from request header
+            let token = req.headers.authorization
+            let tokenContent = null
+
+            // if not present on the header
+            // return error 400 no auth present
+            if (token) {
+                tokenContent = await encryptionHandler.verifyJWT(token)
+            } else {
+                throw({
+                    message: 'No authorizition present in the request header',
+                    code: 400,
+                })
+            }
+
+            // check authorization validity
+            // if author. is not valid
+            // return 400 auth not valid
+            if (!tokenContent) {
+                throw({
+                    message: 'Authorization is not valid',
+                    code: 400,
+                })
+            }
+
+            // return successfull logout
+            // log successfull logout user
+            let message = 'Successful Logout'
+            let logger = new Logger({
+                title: 'Auth Logout Attempt',
+                creator: tokenContent.username,
+                message
+            })
+            await logger.log()
+
+            return { message }
         })
 }
 
