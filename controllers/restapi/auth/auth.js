@@ -156,7 +156,13 @@ const passwordResetCodeRequest = async (req, res) => {
         .execute(props => {
             // get email or username in the request
 
-            // check if the user is active
+            // if no username or email present
+            // return error 400
+
+            // check if the user really exist
+            // if no user existed
+
+
 
 
             return {}
