@@ -11,6 +11,9 @@ const {
     sequelize
 } = require('../../../dataSource/models');
 
+const maxLoginAttempts = parseInt(process.env.MAX_LOGIN_ATTEMPTS || 5)
+const maxPassResetAttempts = parseInt(process.env.MAX_PASSWORD_RESET_ATTEMPTS || 5)
+
 const login = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
@@ -20,7 +23,7 @@ const login = async (req, res) => {
             let logger = new Logger({title: 'Auth Login Attempt'})
 
 
-            // check the credential existed on the request
+            // check the credential if it existed on the request
             if (!(password && username)) {
                 let errMsg = 'Bad request, missing credential'
                 await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
@@ -34,13 +37,31 @@ const login = async (req, res) => {
             // also if the user is using the password
             let passMatched = false
             let user = await Account.findOne({ where: { username }})
-            console.log('test')
             logger.setLogContent({ account: user })
             if (user && user.password) {
                 passMatched = await encryptionHandler.verifyTextToHash(
                     password,
                     user.password
                 )
+            }
+
+            // if user exist and the maximum login attempt exceeds
+            // disable the user account
+            if (   user
+                && !user.disabledAccount
+                && user.loginAccountAttempt >= maxLoginAttempts) {
+                
+                user.disabledAccount = true
+                user.loginAccountAttempt = 0
+                await user.save()
+                
+                let errMsg = 'Forbidden resources, you have reach the maximum login attempts. This account has been disable, please contact the administrator.'
+                await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
+                
+                throw({
+                    message: errMsg,
+                    code: 403,
+                })
             }
 
             // if the user exist
@@ -66,7 +87,7 @@ const login = async (req, res) => {
             // if the account is disabled
             // the return 403 not accessable
             if (user && passMatched && user.disabledAccount) {
-                let errMsg = 'Forbidden, the account you are trying to access is disabled.'
+                let errMsg = 'Forbidden resources, the account you are trying to access is disabled.'
                 await logger.setLogContent({ message: errMsg }).log()
                 throw({
                     message: errMsg,
