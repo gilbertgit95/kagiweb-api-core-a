@@ -240,10 +240,27 @@ const passwordResetCodeRequest = async (req, res) => {
 
 const passwordReset = async (req, res) => {
     return await jsonRespHandler(req, res)
-        .execute(props => {
-            // throw({code: 500, message: 'na daot'})
-            // throw({code: 404, message: 'na daot'})
-            return {}
+        .execute(async (props) => {
+
+            // get username and resetCode from the request
+            let { username = '', resetKey = '', newPassword='' } = props.body
+            let logger = new Logger({title: 'Auth Password Reset'})
+
+            // check required parameters
+            if (!(Boolean(username) && Boolean(resetKey) && Boolean(newPassword))) {
+                throw({
+                    message: 'Bad request, username, resetKey and newPassword are required.',
+                    code: 400,
+                })
+            }
+
+            // check if the new password is valid
+            // also check if the new password is the same as the old one
+            let message = 'P'
+            // let user = await Account.findOne({ where: { username }})
+
+            return { message }
+            
         })
 }
 
