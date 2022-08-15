@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    disableAccount: {
+    disabledAccount: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },

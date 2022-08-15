@@ -34,6 +34,7 @@ const login = async (req, res) => {
             // also if the user is using the password
             let passMatched = false
             let user = await Account.findOne({ where: { username }})
+            console.log('test')
             logger.setLogContent({ account: user })
             if (user && user.password) {
                 passMatched = await encryptionHandler.verifyTextToHash(
@@ -42,16 +43,17 @@ const login = async (req, res) => {
                 )
             }
 
-            // if the user did exists
-            // generate authorization token
-            // else if user does not exist
-            // return 401 or Unauthorized status
-            if (user && passMatched) {
-                await logger.setLogContent({ message: 'Successful Login' }).log()
-                accessToken = encryptionHandler.generateJWT({
-                    username
-                })
-            } else {
+            // if the user exist
+            // encrement login account attempt
+            // then save user update
+            if (user) {
+                user.loginAccountAttempt++
+                await user.save()
+            }
+
+
+            // if the user does not match return error 400 wrong cred.
+            if (!(user && passMatched)) {
                 let errMsg = 'Bad request, wrong username or password'
                 await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
                 throw({
@@ -59,6 +61,27 @@ const login = async (req, res) => {
                     code: 400,
                 })
             }
+
+
+            // if the account is disabled
+            // the return 403 not accessable
+            if (user && passMatched && user.disabledAccount) {
+                let errMsg = 'Forbidden, the account you are trying to access is disabled.'
+                await logger.setLogContent({ message: errMsg }).log()
+                throw({
+                    message: errMsg,
+                    code: 403,
+                })
+            }
+
+            // if the user did exists
+            // generate authorization token
+            // set login account key and
+            // login account attempt to its zero values
+            await logger.setLogContent({ message: 'Successful Login' }).log()
+            accessToken = encryptionHandler.generateJWT({ username })
+            user.loginAccountAttempt = 0
+            await user.save()
 
             return { accessToken }
         })
@@ -110,8 +133,11 @@ const logout = async (req, res) => {
 const passwordResetCodeRequest = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(props => {
-            // throw({code: 500, message: 'na daot'})
-            // throw({code: 404, message: 'na daot'})
+            // get email or username in the request
+
+            // check if the user is active
+
+
             return {}
         })
 }

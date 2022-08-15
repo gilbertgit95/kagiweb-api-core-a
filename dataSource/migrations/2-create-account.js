@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      disableAccount: {
+      disabledAccount: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
