@@ -80,6 +80,14 @@ module.exports = {
                 }
             })
         })
+    },
+
+    /**
+     * ->. this will generate a 6 digit random number
+     * @returns { Number } 6 digit key number
+     */
+    generateRandNumberkey() {
+        return Math.floor (1e5 + Math.random () * 9e5)
     }
 
 }

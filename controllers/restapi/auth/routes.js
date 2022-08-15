@@ -10,10 +10,10 @@ const {
     passwordResetCodeRequest
 } = require('./auth');
 
-// upload none is use to recieve form field data
+// upload none is use to recieve form field text data
 router.post('/login', upload.none(), login)
 router.post('/logout', logout)
-router.post('/passwordReset', passwordReset)
-router.post('/passwordResetCodeRequest', passwordResetCodeRequest)
+router.post('/passwordReset', upload.none(), passwordReset)
+router.post('/passwordResetCodeRequest', upload.none(), passwordResetCodeRequest)
 
 module.exports = router
