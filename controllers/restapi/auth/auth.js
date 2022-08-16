@@ -120,34 +120,36 @@ const logout = async (req, res) => {
         .execute(async (props) => {
 
             // get authorization from request header
-            let token = req.headers.authorization
-            let tokenContent = null
+            let tokenContent = req.headers.authorization? req.headers.authorization.replace('Bearer ', ''): ''
+            let authContent = await encryptionHandler.verifyJWT(tokenContent)
 
-            // if not present on the header
-            // return error 400 no auth present
-            if (token) {
-                tokenContent = await encryptionHandler.verifyJWT(token)
-            } else {
+            // if auth is empty throw error 400 no tokenContent supplied
+            if (!Boolean(tokenContent)) {
                 throw({
-                    message: 'No authorizition present in the request header',
                     code: 400,
+                    message: 'Bad request, no authorization supplied in the request.'
                 })
             }
 
-            // check authorization validity
-            // if author. is not valid
-            // return 400 auth not valid
-            if (!tokenContent) {
-                throw({
-                    message: 'Authorization is not valid',
-                    code: 400,
-                })
+            // check for validity
+            // if auth is invalid throw error 400 invalid tokenContent
+            let invalidMsg = {
+                code: 400,
+                message: 'Bad request, Invalid authorization.'
             }
+            if (!authContent) throw(invalidMsg)
+            if (authContent && !authContent.username) throw(invalidMsg)
+
+            // fetch user using username inside the token
+            let user = await Account.findOne({username: authContent.username})
+            // if user does not exist throw error 400 invalid tokenContent
+            if (!user) throw(invalidMsg)
 
             // return successfull logout
             // log successfull logout user
             let message = 'Successful Logout'
             let logger = new Logger({
+                account: user,
                 title: 'Auth Logout Attempt',
                 creator: tokenContent.username,
                 message
