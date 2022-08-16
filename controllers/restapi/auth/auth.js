@@ -141,7 +141,7 @@ const logout = async (req, res) => {
             if (authContent && !authContent.username) throw(invalidMsg)
 
             // fetch user using username inside the token
-            let user = await Account.findOne({username: authContent.username})
+            let user = await Account.findOne({ where: { username: authContent.username}})
             // if user does not exist throw error 400 invalid tokenContent
             if (!user) throw(invalidMsg)
 

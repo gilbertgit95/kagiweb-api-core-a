@@ -35,11 +35,11 @@ module.exports = async (req, res, next) => {
             // ___ end reference code ___
 
             // get authorization
-            let authKey = req.headers.authorization? req.headers.authorization.replace('Bearer ', ''): ''
-            let authContent = await encryptionHandler.verifyJWT(authKey)
+            let tokenContent = req.headers.authorization? req.headers.authorization.replace('Bearer ', ''): ''
+            let authContent = await encryptionHandler.verifyJWT(tokenContent)
 
-            // if auth is empty throw error 400 no authkey supplied
-            if (!Boolean(authKey)) {
+            // if auth is empty throw error 400 no tokenContent supplied
+            if (!Boolean(tokenContent)) {
                 throw({
                     code: 400,
                     message: 'Bad request, no authorization supplied in the request.'
@@ -47,7 +47,7 @@ module.exports = async (req, res, next) => {
             }
 
             // check for validity
-            // if auth is invalid throw error 400 invalid authkey
+            // if auth is invalid throw error 400 invalid tokenContent
             let invalidMsg = {
                 code: 400,
                 message: 'Bad request, Invalid authorization.'
@@ -56,8 +56,11 @@ module.exports = async (req, res, next) => {
             if (authContent && !authContent.username) throw(invalidMsg)
 
             // fetch user using username inside the token
-            let user = await Account.findOne({username: authContent.username})
-            // if user does not exist throw error 400 invalid authkey
+            let user = await Account.findOne({
+                where: { username: authContent.username},
+                raw: true, nest: true,
+            })
+            // if user does not exist throw error 400 invalid tokenContent
             if (!user) throw(invalidMsg)
 
             // if user exist

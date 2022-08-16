@@ -21,7 +21,7 @@ const OPERATORS = Sequelize.Op;
 const getMultipleAccounts = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            console.log('request.account: ', req.account.username)
+            console.log('request.account: ', req.account)
 
             // fetching and pagination computation
             let pagginatedAccounts = await getItems(
