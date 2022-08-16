@@ -1,6 +1,7 @@
 const moment = require('moment');
 
-const utils = require('../../../utilities')
+const utils = require('../../../utilities');
+const validationHandler = require('../../../utilities/validationHandler');
 const encryptionHandler = require('../../../utilities/encryptionHandler');
 const { jsonRespHandler } = require('../../../utilities/responseHandler');
 const { getItem } = require('../../../utilities/queryHandler');
@@ -46,6 +47,17 @@ const login = async (req, res) => {
                 )
             }
 
+            // if the account is disabled
+            // the return 403 not accessable
+            if (user && user.disabledAccount) {
+                let errMsg = 'Forbidden resources, the account you are trying to access is disabled.'
+                await logger.setLogContent({ message: errMsg }).log()
+                throw({
+                    message: errMsg,
+                    code: 403,
+                })
+            }
+
             // if user exist and the maximum login attempt exceeds
             // disable the user account
             if (   user
@@ -56,7 +68,7 @@ const login = async (req, res) => {
                 user.loginAccountAttempt = 0
                 await user.save()
                 
-                let errMsg = 'Forbidden resources, you have reach the maximum login attempts. This account has been disable, please contact the administrator.'
+                let errMsg = 'Forbidden resources, you have reach the maximum login attempts. This account has been disabled, please contact the administrator.'
                 await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
                 
                 throw({
@@ -84,25 +96,19 @@ const login = async (req, res) => {
                 })
             }
 
-
-            // if the account is disabled
-            // the return 403 not accessable
-            if (user && passMatched && user.disabledAccount) {
-                let errMsg = 'Forbidden resources, the account you are trying to access is disabled.'
-                await logger.setLogContent({ message: errMsg }).log()
-                throw({
-                    message: errMsg,
-                    code: 403,
-                })
-            }
-
             // if the user did exists
             // generate authorization token
             // set login account key and
             // login account attempt to its zero values
             await logger.setLogContent({ message: 'Successful Login' }).log()
             accessToken = encryptionHandler.generateJWT({ username })
+
             user.loginAccountAttempt = 0
+            user.loginAccountKey = null
+
+            user.resetPasswordAttempt = 0
+            user.resetPasswordKey = null
+
             await user.save()
 
             return { accessToken }
@@ -152,7 +158,7 @@ const logout = async (req, res) => {
         })
 }
 
-const passwordResetCodeRequest = async (req, res) => {
+const passwordResetCode = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             // get username in the request
@@ -175,10 +181,21 @@ const passwordResetCodeRequest = async (req, res) => {
             // if it does not exist
             // return error 400
             let user = await Account.findOne({ where: { username }})
+            logger.setLogContent({ account: user })
             if (!user) {
                 throw({
                     message: 'Not Found, user does not exist.',
                     code: 404,
+                })
+            }
+
+            // return error 403 when the account is disabled
+            if (user && user.disabledAccount) {
+                let errMsg = 'Forbidden resources, the account you are trying to access is disabled.'
+                await logger.setLogContent({ message: errMsg }).log()
+                throw({
+                    message: errMsg,
+                    code: 403,
                 })
             }
 
@@ -193,7 +210,7 @@ const passwordResetCodeRequest = async (req, res) => {
                 user.resetPasswordKey = null
                 await user.save()
                 
-                let errMsg = 'Forbidden resources, you have reach the maximum password reset attempts. This account has been disable, please contact the administrator.'
+                let errMsg = 'Forbidden resources, you have reach the maximum password reset attempts. This account has been disabled, please contact the administrator.'
                 await logger.setLogContent({ message: errMsg + `. username: ${ username }` }).log()
                 
                 throw({
@@ -206,15 +223,6 @@ const passwordResetCodeRequest = async (req, res) => {
             if (user && !user.disabledAccount) {
                 user.resetPasswordAttempt++
                 await user.save()
-            }
-
-            if (user && user.disabledAccount) {
-                let errMsg = 'Forbidden resources, the account you are trying to access is disabled.'
-                await logger.setLogContent({ message: errMsg }).log()
-                throw({
-                    message: errMsg,
-                    code: 403,
-                })
             }
 
             // save generated key to
@@ -256,10 +264,93 @@ const passwordReset = async (req, res) => {
 
             // check if the new password is valid
             // also check if the new password is the same as the old one
-            let message = 'P'
-            // let user = await Account.findOne({ where: { username }})
+            let user = await Account.findOne({ where: { username }})
+            logger.setLogContent({ account: user })
+            if (!user) {
+                throw({
+                    message: 'Not Found, user does not exist.',
+                    code: 404,
+                })
+            }
 
-            return { message }
+            // return error 403 when the account is disabled
+            if (user && user.disabledAccount) {
+                let errMsg = 'Forbidden resources, the account you are trying to access is disabled.'
+                await logger.setLogContent({ message: errMsg }).log()
+                throw({
+                    message: errMsg,
+                    code: 403,
+                })
+            }
+
+            // if reset attempt is greater than or equal to max reset attempt
+            // disable the user
+            if (   user
+                && !user.disabledAccount
+                && user.resetPasswordAttempt >= maxPassResetAttempts) {
+                
+                user.disabledAccount = true
+                user.resetPasswordAttempt = 0
+                user.resetPasswordKey = null
+                await user.save()
+                
+                let errMsg = 'Forbidden resources, you have reach the maximum password reset attempts. This account has been disabled, please contact the administrator.'
+                await logger.setLogContent({ message: errMsg + `. username: ${ username }` }).log()
+                
+                throw({
+                    message: errMsg,
+                    code: 403,
+                })
+            }
+
+            // increment reset attempt
+            if (user && !user.disabledAccount) {
+                user.resetPasswordAttempt++
+                await user.save()
+            }
+
+            // check if the resetKey is coorect
+            if (user.resetPasswordKey != resetKey) {
+                let errMsg = 'Invalid Reset Key.'
+                await logger.setLogContent({ message: errMsg + `. username: ${ username }, resetKey: ${ resetKey }, newPassword: ${ newPassword }` }).log()
+                
+                throw({
+                    message: errMsg,
+                    code: 400,
+                })
+            }
+
+            // check the new password pattern
+            let [isValidPassword, passErrors] = validationHandler.isValidPassword(newPassword)
+            if (!isValidPassword) {
+                let fErr = passErrors.length? passErrors[0]: 'Invalid Password.'
+                await logger.setLogContent({ message: fErr + `. username: ${ username }, resetKey: ${ resetKey }, newPassword: ${ newPassword }` }).log()
+                
+                throw({
+                    message: fErr,
+                    code: 400,
+                })
+            }
+
+            // check if the new password is the same as the old one
+            let newAndOldPassMatched = await encryptionHandler.verifyTextToHash(newPassword, user.password)
+            if (newAndOldPassMatched) {
+                throw({
+                    message: 'New Password should not be the same as the current one.',
+                    code: 400,
+                })
+            }
+
+            // hash the new password then set to user
+            // reset passwordResetKey and attempts ot its zero values
+            // then save to the user
+            let newHashPass = await encryptionHandler.hashText(newPassword)
+            user.password = newHashPass
+            user.resetPasswordKey = null
+            user.resetPasswordAttempt = 0
+            await user.save()
+
+            return { message: 'Successful Password reset.' }
             
         })
 }
@@ -268,5 +359,5 @@ module.exports = {
     login,
     logout,
     passwordReset,
-    passwordResetCodeRequest
+    passwordResetCode
 }

@@ -7,13 +7,13 @@ const {
     login,
     logout,
     passwordReset,
-    passwordResetCodeRequest
+    passwordResetCode
 } = require('./auth');
 
 // upload none is use to recieve form field text data
 router.post('/login', upload.none(), login)
 router.post('/logout', logout)
 router.post('/passwordReset', upload.none(), passwordReset)
-router.post('/passwordResetCodeRequest', upload.none(), passwordResetCodeRequest)
+router.post('/passwordResetCode', upload.none(), passwordResetCode)
 
 module.exports = router
