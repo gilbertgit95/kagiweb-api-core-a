@@ -1,6 +1,6 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const initCronJobs = require('./cronJobs')
+const initCronJobs = require('./cronJobs');
 
 const express = require('express');
 const cors = require('cors');
@@ -12,9 +12,9 @@ const graphql = require('./controllers/graphql');
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use(cors())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(restapi);
 app.use(graphql);
