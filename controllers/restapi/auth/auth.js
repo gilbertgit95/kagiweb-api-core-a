@@ -101,7 +101,7 @@ const login = async (req, res) => {
             // set login account key and
             // login account attempt to its zero values
             await logger.setLogContent({ message: 'Successful Login' }).log()
-            accessToken = encryptionHandler.generateJWT({ username })
+            accessToken = 'Bearer ' + encryptionHandler.generateJWT({ username })
 
             user.loginAccountAttempt = 0
             user.loginAccountKey = null
