@@ -4,6 +4,20 @@ const swaggerUI = require('swagger-ui-express');
 const packageJSON = require(__dirname + '/../../../package.json');
 
 const options = {
+    // swaggerOptions: {
+    //     authAction :{
+    //         JWT: {
+    //             name: "JWT",
+    //             schema: {
+    //                 type: "apiKey",
+    //                 in: "header",
+    //                 name: "Authorization",
+    //                 description: ""
+    //             },
+    //             value: "Bearer <JWT>"
+    //         }
+    //     }
+    // },
     definition: {
         openapi: '3.0.0',
         info: {
@@ -16,21 +30,21 @@ const options = {
                 description: 'Local Development Server',
                 url: `http://localhost:${ process.env.PORT || 3000 }`
             }
+        ],
+        components: {
+            securitySchemes: {
+                BearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer'
+                }
+            },
+        },
+        security: [
+            {
+                BearerAuth: [],
+            }
         ]
     },
-    // components: {
-    //     securitySchemes: {
-    //         BearerAuth: {
-    //             type: 'http',
-    //             scheme: 'bearer'
-    //         }
-    //     },
-    // },
-    // security: [
-    //     {
-    //         BearerAuth: [],
-    //     }
-    // ],
     apis: ['./controllers/restapi/index.js', './controllers/restapi/*/routes.js']
 }
 
