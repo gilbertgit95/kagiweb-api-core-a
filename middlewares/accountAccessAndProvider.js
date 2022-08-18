@@ -2,7 +2,7 @@ const encryptionHandler = require('../utilities/encryptionHandler');
 const { jsonRespHandler } = require('../utilities/responseHandler');
 const { hasMatchEndpoints } = require('../utilities/matchersHandler');
 
-const { Account } = require('../dataSource/models');
+const { Account, Role } = require('../dataSource/models');
 
 module.exports = async (req, res, next) => {
     return await jsonRespHandler(req, res, next)
@@ -58,7 +58,12 @@ module.exports = async (req, res, next) => {
             // fetch user using username inside the token
             let user = await Account.findOne({
                 where: { username: authContent.username},
-                raw: true, nest: true,
+                include: [{
+                    as: 'role',
+                    model: Role,
+                    include: ['endpoints']
+                }]
+                // raw: true, nest: true,
             })
             // if user does not exist throw error 400 invalid tokenContent
             if (!user) throw(invalidMsg)
