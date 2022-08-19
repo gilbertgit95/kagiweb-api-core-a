@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const {
     getAccount,
-    updateAccount
+    updateAccountCred,
+    updateAccountProfile,
+    updateAccountSettings
 } = require('./accountInfo');
 
 /**
@@ -67,6 +69,8 @@ const {
  */
 
 router.get('/loggedAccount', getAccount)
-router.post('/loggedAccount', updateAccount)
+router.post('/loggedAccount/credential', updateAccountCred)
+router.post('/loggedAccount/profile', updateAccountProfile)
+router.post('/loggedAccount/settings', updateAccountSettings)
 
 module.exports = router

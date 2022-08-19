@@ -19,32 +19,32 @@ const getAccount = async (req, res) => {
         })
 }
 
-const updateAccount = async (req, res) => {
+const updateAccountCred = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let id = props.params.id
-            let accountdata = props.body
-            let accountItem = {...accountdata, ...{ id }}
-
-            return await updateItem(
-                // model
-                Account,
-                // update data
-                accountItem,
-                // setter function
-                (accountModel, accountData) => {
-
-                    if (accountData.roleId)                 accountModel['roleId'] = accountData.password
-                    if (accountData.fullname)               accountModel['fullname'] = accountData.fullname
-                    if (accountData.disableAccount)         accountModel['disableAccount'] = accountData.disableAccount
-
-                    return accountModel
-                }
-            )
+            return req.account
         })
 }
 
+const updateAccountProfile = async (req, res) => {
+    return await jsonRespHandler(req, res)
+        .execute(async (props) => {
+            return req.account
+        })
+}
+
+const updateAccountSettings = async (req, res) => {
+    return await jsonRespHandler(req, res)
+        .execute(async (props) => {
+            return req.account
+        })
+}
+
+
+
 module.exports = {
     getAccount,
-    updateAccount
+    updateAccountCred,
+    updateAccountProfile,
+    updateAccountSettings
 }
