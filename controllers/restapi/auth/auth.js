@@ -8,6 +8,7 @@ const { getItem } = require('../../../utilities/queryHandler');
 const { Logger } = require('../../../utilities/logHandler');
 
 const {
+    Role,
     Account,
     Sequelize,
     sequelize
@@ -28,7 +29,7 @@ const login = async (req, res) => {
             // check the credential if it existed on the request
             if (!(password && username)) {
                 let errMsg = 'Bad request, missing credential'
-                await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
+                // await logger.setLogContent({ message: errMsg + `. username: ${ username }, password: ${ password }` }).log()
                 throw({
                     message: errMsg,
                     code: 400,
@@ -38,7 +39,14 @@ const login = async (req, res) => {
             // check if the user really exist and
             // also if the user is using the password
             let passMatched = false
-            let user = await Account.findOne({ where: { username }})
+            let user = await Account.findOne({
+                where: { username },
+                include: [{
+                    as: 'role',
+                    model: Role,
+                    include: ['endpoints']
+                }]
+            })
             logger.setLogContent({ account: user })
             if (user && user.password) {
                 passMatched = await encryptionHandler.verifyTextToHash(
@@ -111,7 +119,7 @@ const login = async (req, res) => {
 
             await user.save()
 
-            return { accessToken }
+            return { accessToken, user }
         })
 }
 
