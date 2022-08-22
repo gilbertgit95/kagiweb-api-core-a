@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
+    type: {
+      type: DataTypes.STRING,
+      defaultValue: 'text'
+    },
     value: {
       type: DataTypes.STRING
     }

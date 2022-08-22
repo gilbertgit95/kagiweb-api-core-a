@@ -172,17 +172,24 @@ const passwordResetCode = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             // get username in the request
-            let { username } = props.body
+            let { type, value } = props.body
+            let query = null
+
+            // generate request
+            if (value && type === 'username') query = { username: value }
+            if (value && type === 'email') query = { primaryEmail: value }
+            if (value && type === 'phone') query = { primaryNumber: value }
+
+            console.log('Query: ', query)
             let logger = new Logger({
-                title: 'Auth password reset key request',
-                creator: username
+                title: 'Auth password reset key request'
             })
 
             // if no username present
             // return error 400
-            if (!Boolean(username)) {
+            if (!query) {
                 throw({
-                    message: 'No (username)identification supplied.',
+                    message: 'No identification supplied.',
                     code: 400,
                 })
             }
@@ -190,7 +197,7 @@ const passwordResetCode = async (req, res) => {
             // fetch user info
             // if it does not exist
             // return error 400
-            let user = await Account.findOne({ where: { username }})
+            let user = await Account.findOne({ where: query})
             logger.setLogContent({ account: user })
             if (!user) {
                 throw({
@@ -221,7 +228,7 @@ const passwordResetCode = async (req, res) => {
                 await user.save()
                 
                 let errMsg = 'Forbidden resources, you have reach the maximum password reset attempts. This account has been disabled, please contact the administrator.'
-                await logger.setLogContent({ message: errMsg + `. username: ${ username }` }).log()
+                await logger.setLogContent({ message: errMsg + `. username: ${ user.username }` }).log()
                 
                 throw({
                     message: errMsg,
@@ -246,7 +253,7 @@ const passwordResetCode = async (req, res) => {
             // log info
             // send notification to user email or
             // notify the administrator
-            await logger.setLogContent({ message: respMsg + ` username: ${ username }, key: ${ resetKey }` }).log()
+            await logger.setLogContent({ message: respMsg + ` username: ${ user.username }, key: ${ resetKey }` }).log()
             // :todo
             // mailer.send()
             // admin.notify()

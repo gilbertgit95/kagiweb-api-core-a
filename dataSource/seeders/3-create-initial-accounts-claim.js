@@ -17,6 +17,7 @@ module.exports = {
         "id": "e79c8692-4cc2-4971-a52c-832e87b11e8f",
         "accountId": "e79c8692-4cc2-4971-a52c-832e87b28e8f",
         "key": "fullName",
+        "type": "text",
         "value": "Master Account",
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z"
@@ -25,6 +26,7 @@ module.exports = {
         "id": "e79c8692-4cc2-4971-a52c-832e87b12e8f",
         "accountId": "e79c8692-4cc2-4971-a52c-832e87b28e8f",
         "key": "gender",
+        "type": "text",
         "value": "Male",
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z"
@@ -33,6 +35,7 @@ module.exports = {
         "id": "e79c8692-4cc2-4971-a52c-832e87b13e8f",
         "accountId": "e79c8692-4cc2-4971-a52c-832e87b28e8f",
         "key": "language",
+        "type": "text",
         "value": "Bisaya",
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z"
@@ -41,6 +44,7 @@ module.exports = {
         "id": "e79c8692-4cc2-4971-a52c-832e87b11e7f",
         "accountId": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
         "key": "fullName",
+        "type": "text",
         "value": "Berto Admin",
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z"
@@ -49,6 +53,7 @@ module.exports = {
         "id": "e79c8692-4cc2-4971-a52c-832e87b12e7f",
         "accountId": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
         "key": "gender",
+        "type": "text",
         "value": "Male",
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z"
@@ -57,6 +62,7 @@ module.exports = {
         "id": "e79c8692-4cc2-4971-a52c-832e87b13e7f",
         "accountId": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
         "key": "language",
+        "type": "text",
         "value": "Bisaya",
         "createdAt": "2021-11-20T15:27:31.513Z",
         "updatedAt": "2021-11-20T15:27:31.513Z"
