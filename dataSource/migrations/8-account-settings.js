@@ -8,6 +8,10 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
       },
+      accountId: {
+        type: Sequelize.UUID,
+        references: { model: 'accounts', key: 'id' }
+      },
       key: {
         type: Sequelize.STRING,
         allowNull: false,

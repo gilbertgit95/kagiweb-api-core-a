@@ -43,7 +43,7 @@ module.exports = {
                     if (err && err.code && errorsStatus[err.code]) {
                         errorResp = {...errorsStatus[err.code], ...err}
                     }
-                    // console.log('Jsonhandler Error: ', err)
+                    console.log('Jsonhandler Error: ', err)
                     this.response(errorResp)
                 }
     

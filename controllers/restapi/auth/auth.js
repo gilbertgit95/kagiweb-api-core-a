@@ -10,6 +10,8 @@ const { Logger } = require('../../../utilities/logHandler');
 const {
     Role,
     Account,
+    AccountClaim,
+    AccountSettings,
     Sequelize,
     sequelize
 } = require('../../../dataSource/models');
@@ -41,11 +43,21 @@ const login = async (req, res) => {
             let passMatched = false
             let user = await Account.findOne({
                 where: { username },
-                include: [{
-                    as: 'role',
-                    model: Role,
-                    include: ['endpoints']
-                }]
+                include: [
+                    {
+                        as: 'role',
+                        model: Role,
+                        include: ['endpoints']
+                    },
+                    {
+                        as: 'accountSettings',
+                        model: AccountSettings
+                    },
+                    {
+                        as: 'accountClaims',
+                        model: AccountClaim
+                    }
+                ]
             })
             logger.setLogContent({ account: user })
             if (user && user.password) {
