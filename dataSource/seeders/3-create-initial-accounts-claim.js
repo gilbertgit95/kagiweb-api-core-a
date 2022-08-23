@@ -133,7 +133,7 @@ module.exports = {
         {
             "id": "e13c8692-4cc2-4971-a52c-832e87b11e8f",
             "accountId": "e79c8692-4cc2-4971-a52c-832e87b28e8f",
-            "key": "companyRole",
+            "key": "companyrole",
             "type": "text",
             "value": "Fullstack Javascript Developer",
             "createdAt": "2021-11-20T15:27:31.513Z",
@@ -331,7 +331,7 @@ module.exports = {
         {
             "id": "e13c8692-4cc2-4971-a52c-846e87b11e8f",
             "accountId": "e79c8692-4cc2-4971-a52c-832e87b27e7f",
-            "key": "companyRole",
+            "key": "companyrole",
             "type": "text",
             "value": "",
             "createdAt": "2021-11-20T15:27:31.513Z",
