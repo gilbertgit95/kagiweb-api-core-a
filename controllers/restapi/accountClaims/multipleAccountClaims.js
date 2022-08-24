@@ -18,12 +18,12 @@ const {
 
 const OPERATORS = Sequelize.Op;
 
-const getMultipleAccounts = async (req, res) => {
+const getMultipleAccountClaims = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
 
             // fetching and pagination computation
-            let pagginatedAccounts = await getItems(
+            let pagginatedAccountClaims = await getItems(
                 {
                     // props contains the query params
                     props,
@@ -43,7 +43,7 @@ const getMultipleAccounts = async (req, res) => {
                     })
                 }
             )
-            let accountIds = pagginatedAccounts.items.map(item => item.id)
+            let accountIds = pagginatedAccountClaims.items.map(item => item.id)
 
             let accountsWithInfos = await getItems(async () => {
                 return await Account.findAll({
@@ -52,22 +52,22 @@ const getMultipleAccounts = async (req, res) => {
                 })
             })
 
-            pagginatedAccounts.items = accountsWithInfos
+            pagginatedAccountClaims.items = accountsWithInfos
 
-            return pagginatedAccounts
+            return pagginatedAccountClaims
         })
 }
 
-const createMultipleAccounts = async (req, res) => {
+const createMultipleAccountClaims = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let AccountsData = props.body
+            let accountClaimsData = props.body
             
-            return await bulkCreate(Account, AccountsData)
+            return await bulkCreate(Account, accountClaimsData)
         })
 }
 
-const updateMultipleAccounts = async (req, res) => {
+const updateMultipleAccountClaims = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             let accountsData = props.body
@@ -80,11 +80,11 @@ const updateMultipleAccounts = async (req, res) => {
                 accountsData,
 
                 // setter function
-                (accountModel, accountData) => {
+                (accountModel, accountClaimData) => {
 
-                    if (accountData.roleId)                 accountModel['roleId'] = accountData.password
-                    if (accountData.fullname)               accountModel['fullname'] = accountData.fullname
-                    if (accountData.disableAccount)         accountModel['disableAccount'] = accountData.disableAccount
+                    if (accountClaimData.roleId)                 accountModel['roleId'] = accountClaimData.password
+                    if (accountClaimData.fullname)               accountModel['fullname'] = accountClaimData.fullname
+                    if (accountClaimData.disableAccount)         accountModel['disableAccount'] = accountClaimData.disableAccount
 
                     return accountModel
                 }
@@ -92,18 +92,18 @@ const updateMultipleAccounts = async (req, res) => {
         })
 }
 
-const deleteMultipleAccounts = async (req, res) => {
+const deleteMultipleAccountClaims = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let accountsData = props.body
+            let accountClaimsData = props.body
 
-            return await bulkDelete(Endpoint, accountsData)
+            return await bulkDelete(Endpoint, accountClaimsData)
         })
 }
 
 module.exports = {
-    getMultipleAccounts,
-    createMultipleAccounts,
-    updateMultipleAccounts,
-    deleteMultipleAccounts
+    getMultipleAccountClaims,
+    createMultipleAccountClaims,
+    updateMultipleAccountClaims,
+    deleteMultipleAccountClaims
 }
