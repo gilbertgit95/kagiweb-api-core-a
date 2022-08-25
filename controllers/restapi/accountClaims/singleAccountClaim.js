@@ -48,9 +48,10 @@ const updateAccountClaim = async (req, res) => {
                 // setter function
                 (accountClaimModel, accountClaimData) => {
 
-                    if (accountClaimData.roleId)                 accountClaimModel['roleId'] = accountClaimData.password
-                    if (accountClaimData.fullname)               accountClaimModel['fullname'] = accountClaimData.fullname
-                    if (accountClaimData.disableAccountClaim)         accountClaimModel['disableAccountClaim'] = accountClaimData.disableAccountClaim
+                    if (accountClaimData.accountId) accountClaimModel['accountId'] = accountClaimData.accountId
+                    if (accountClaimData.key)       accountClaimModel['key'] = accountClaimData.key
+                    if (accountClaimData.type)      accountClaimModel['type'] = accountClaimData.type
+                    if (accountClaimData.value)     accountClaimModel['value'] = accountClaimData.value
 
                     return accountClaimModel
                 }

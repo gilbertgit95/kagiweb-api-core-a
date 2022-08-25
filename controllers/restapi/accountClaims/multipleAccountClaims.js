@@ -13,7 +13,7 @@ const {
 const {
     Sequelize,
     sequelize,
-    Account
+    AccountClaim
 } = require('../../../dataSource/models');
 
 const OPERATORS = Sequelize.Op;
@@ -31,12 +31,12 @@ const getMultipleAccountClaims = async (req, res) => {
                     // null will just use the default pagination
                     pageSize: null,
                     // base path for the next page
-                    path: 'api/v1/accounts'
+                    path: 'api/v1/accountClaims'
                 },
 
                 // callback for the actual query
                 async ({limit, offset}) => {
-                    return await Account.findAndCountAll({
+                    return await AccountClaim.findAndCountAll({
                         limit,
                         offset,
                         attributes: ['id']
@@ -46,9 +46,8 @@ const getMultipleAccountClaims = async (req, res) => {
             let accountIds = pagginatedAccountClaims.items.map(item => item.id)
 
             let accountsWithInfos = await getItems(async () => {
-                return await Account.findAll({
-                    where: { id: { [OPERATORS.in]: accountIds } },
-                    include: ['role', 'accountClaims']
+                return await AccountClaim.findAll({
+                    where: { accountId: { [OPERATORS.in]: accountIds } }
                 })
             })
 
@@ -63,30 +62,31 @@ const createMultipleAccountClaims = async (req, res) => {
         .execute(async (props) => {
             let accountClaimsData = props.body
             
-            return await bulkCreate(Account, accountClaimsData)
+            return await bulkCreate(AccountClaim, accountClaimsData)
         })
 }
 
 const updateMultipleAccountClaims = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
-            let accountsData = props.body
+            let accountClaimsData = props.body
 
             return await bulkUpdate(
                 // Account model
-                Account,
+                AccountClaim,
 
                 // Accounts to update
-                accountsData,
+                accountClaimsData,
 
                 // setter function
-                (accountModel, accountClaimData) => {
+                (accountClaimModel, accountClaimData) => {
 
-                    if (accountClaimData.roleId)                 accountModel['roleId'] = accountClaimData.password
-                    if (accountClaimData.fullname)               accountModel['fullname'] = accountClaimData.fullname
-                    if (accountClaimData.disableAccount)         accountModel['disableAccount'] = accountClaimData.disableAccount
+                    if (accountClaimData.accountId) accountClaimModel['accountId'] = accountClaimData.accountId
+                    if (accountClaimData.key)       accountClaimModel['key'] = accountClaimData.key
+                    if (accountClaimData.type)      accountClaimModel['type'] = accountClaimData.type
+                    if (accountClaimData.value)     accountClaimModel['value'] = accountClaimData.value
 
-                    return accountModel
+                    return accountClaimModel
                 }
             )
         })
@@ -97,7 +97,7 @@ const deleteMultipleAccountClaims = async (req, res) => {
         .execute(async (props) => {
             let accountClaimsData = props.body
 
-            return await bulkDelete(Endpoint, accountClaimsData)
+            return await bulkDelete(AccountClaim, accountClaimsData)
         })
 }
 
