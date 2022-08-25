@@ -23,8 +23,7 @@ const updateAccountCred = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             // get the required action type and parameters
-            // action type
-            // let actionType = 'password' // password || emails || phones
+            let actionType = 'changePassword'
 
             // parameters
             // for password change:
@@ -41,6 +40,28 @@ const updateAccountCred = async (req, res) => {
 
             // base on the action type
             // execute the right process
+            // process for changing the password
+            if (actionType === 'changePassword') {
+            // get current password
+            // get the new password
+
+            // process for changing emails
+            } else if (actionType === 'changeEmails') {
+            // get the emails
+
+
+            // process for changing phone numbers
+            } else if (actionType === 'changePhones') {
+            // get the phones
+            
+
+            // return status 400 if invalid action type
+            } else {
+                throw({
+                    code: 400,
+                    message: 'Bad request, none or invalid action type.'
+                })
+            }
 
             return req.account
         })
