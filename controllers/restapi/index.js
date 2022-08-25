@@ -3,6 +3,7 @@ const router = express.Router();
 
 const authRoute = require('./auth/routes');
 const loggedAccRoute = require('./loggedAccount/routes');
+const accountClaimssRoute = require('./accountClaims/routes');
 const accountsRoute = require('./accounts/routes');
 const endpointsRoute = require('./endpoints/routes');
 const rolesRoute = require('./roles/routes');
@@ -73,6 +74,7 @@ router.use(`${ ROOT_REST }/auth`, authRoute)
 router.use(accountAccessAndProvider)
 
 router.use(ROOT_REST, loggedAccRoute)
+router.use(ROOT_REST, accountClaimssRoute)
 router.use(ROOT_REST, accountsRoute)
 router.use(ROOT_REST, endpointsRoute)
 router.use(ROOT_REST, rolesRoute)

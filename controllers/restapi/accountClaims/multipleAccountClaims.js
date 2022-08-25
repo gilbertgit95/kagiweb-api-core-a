@@ -23,7 +23,7 @@ const getMultipleAccountClaims = async (req, res) => {
         .execute(async (props) => {
 
             // fetching and pagination computation
-            let pagginatedAccountClaims = await getItems(
+            return await getItems(
                 {
                     // props contains the query params
                     props,
@@ -38,22 +38,10 @@ const getMultipleAccountClaims = async (req, res) => {
                 async ({limit, offset}) => {
                     return await AccountClaim.findAndCountAll({
                         limit,
-                        offset,
-                        attributes: ['id']
+                        offset
                     })
                 }
             )
-            let accountIds = pagginatedAccountClaims.items.map(item => item.id)
-
-            let accountsWithInfos = await getItems(async () => {
-                return await AccountClaim.findAll({
-                    where: { accountId: { [OPERATORS.in]: accountIds } }
-                })
-            })
-
-            pagginatedAccountClaims.items = accountsWithInfos
-
-            return pagginatedAccountClaims
         })
 }
 
