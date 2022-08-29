@@ -1,4 +1,6 @@
 const moment = require('moment');
+const validationHandler = require('../../../utilities/validationHandler');
+const encryptionHandler = require('../../../utilities/encryptionHandler');
 const { jsonRespHandler } = require('../../../utilities/responseHandler');
 
 const {
@@ -23,30 +25,79 @@ const updateAccountCred = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
             // get the required action type and parameters
-            let actionType = 'changePassword'
+            let {
+                actionType,
+                currentPassword,
+                newPassword,
+                primaryEmail,
+                secondaryEmail,
+                primaryPhone,
+                secondaryPhone
+            } = props.body
 
             // if current password is empty
             // return status 400, the current password does not exist in the request
+            if (!Boolean(currentPassword)) {
+                throw({
+                    code: 400,
+                    message: 'Bad request, current password is required.'
+                })
+            }
 
             // check if the current password matched the user password
             // if not
             // return status 400, wrong password
+            let currentPassMatch = await encryptionHandler.verifyTextToHash(currentPassword, req.account.password)
+            if (!currentPassMatch) {
+                throw({
+                    code: 400,
+                    message: 'Bad request, wrong password.'
+                })
+            }
 
 
             if (actionType === 'changePassword') {
-            // get current password
-            // get the new password
+                // get current password
+                // get the new password
 
-            // if current password or new password is empty
-            // return status 400, the current or the new password does not exist in the request
+                // if new password is empty
+                // return status 400, the new password does not exist in the request
+                if (!Boolean(newPassword)) {
+                    throw({
+                        code: 400,
+                        message: 'Bad request, new password is not in the request.'
+                    })
+                }
 
-            // if new password is not valid
-            // return status 400, not valid password
+                // check if the new password is the same as the old one
+                let newAndOldPassMatched = await encryptionHandler.verifyTextToHash(newPassword, req.account.password)
+                if (newAndOldPassMatched) {
+                    throw({
+                        message: 'New Password should not be the same as the current.',
+                        code: 400,
+                    })
+                }
 
-            // hash the new password
-            // then set the new hash to the current user password
+                // if new password is not valid
+                // return status 400, not valid password
+                let [isValidPassword, passErrors] = validationHandler.isValidPassword(newPassword)
+                if (!isValidPassword) {
+                    let err = passErrors.length? passErrors[0]: 'Invalid Password.'
 
-            // return success message
+                    throw({
+                        message: err,
+                        code: 400,
+                    })
+                }
+
+                // hash the new password
+                // then set the new hash to the current user password
+                let newHashPass = await encryptionHandler.hashText(newPassword)
+                req.account.password = newHashPass
+                await req.account.save()
+
+                // return success message
+                return { message: 'Successfull change of password.' }
 
             // process for changing emails
             } else if (actionType === 'changeEmails') {

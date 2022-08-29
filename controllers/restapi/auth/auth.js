@@ -365,7 +365,7 @@ const passwordReset = async (req, res) => {
             let newAndOldPassMatched = await encryptionHandler.verifyTextToHash(newPassword, user.password)
             if (newAndOldPassMatched) {
                 throw({
-                    message: 'New Password should not be the same as the current one.',
+                    message: 'New Password should not be the same as the current.',
                     code: 400,
                 })
             }
