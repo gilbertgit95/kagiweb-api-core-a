@@ -2,6 +2,7 @@ const moment = require('moment');
 const validationHandler = require('../../../utilities/validationHandler');
 const encryptionHandler = require('../../../utilities/encryptionHandler');
 const { jsonRespHandler } = require('../../../utilities/responseHandler');
+const { Logger } = require('../../../utilities/logHandler');
 
 const {
     Sequelize,
@@ -34,6 +35,7 @@ const updateAccountCred = async (req, res) => {
                 primaryPhone,
                 secondaryPhone
             } = props.body
+            let logger = new Logger({title: 'LoggedAccount', account: req.account})
 
             // if current password is empty
             // return status 400, the current password does not exist in the request
@@ -95,6 +97,10 @@ const updateAccountCred = async (req, res) => {
                 let newHashPass = await encryptionHandler.hashText(newPassword)
                 req.account.password = newHashPass
                 await req.account.save()
+                await logger.setLogContent({
+                    title: 'LoggedAccount Password Change',
+                    message: 'Sucessfull password change'
+                }).log()
 
                 // return success message
                 return { message: 'Successfull change of password.' }
