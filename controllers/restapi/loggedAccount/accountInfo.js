@@ -34,8 +34,8 @@ const updateAccountCred = async (req, res) => {
                 newPassword,
                 primaryEmail,
                 secondaryEmail,
-                primaryPhone,
-                secondaryPhone
+                primaryNumber,
+                secondaryNumber
             } = props.body
             let logger = new Logger({title: 'LoggedAccount', account: req.account})
 
@@ -169,35 +169,97 @@ const updateAccountCred = async (req, res) => {
                     }
                 }
 
-                // save changes when a field has updates
-                if (hasUpdate) {
-                    await req.account.save()
-                    await logger.setLogContent({
-                        title: 'LoggedAccount Email Change',
-                        message: 'Sucessfull email change'
-                    }).log()
-                    return { message: 'Successfull email setting.' }
+                // in no changes is detected
+                if (!hasUpdate) {
+                    // return success message
+                    throw({code: 400, message: 'Bad request, no email change in the request was detected.' })
                 }
+                    
+                await req.account.save()
+                await logger.setLogContent({
+                    title: 'LoggedAccount Email Change',
+                    message: 'Sucessfull email change'
+                }).log()
 
                 // return success message
-                return { message: 'No changes in the email setting.' }
+                return { message: 'Successfull email setting.' }
 
             // process for changing phone numbers
             } else if (actionType === 'changePhones') {
-                // get the phones, primary and secondary
-                
-                
-                // check if the primary phone number exist and is valid
-                // if not return status 400, primary phone number is not valid
-                // else set user primary phone number with the new primary phone number
+                let hasUpdate = false
+                // check the phones, primary and secondary
+                if (!(Boolean(primaryNumber) || Boolean(secondaryNumber))) {
+                    throw({code: 400, message: 'Bad request, no phone supplied in the request.'})
+                }
 
-                // check if the secondary phone number exist and is valid
-                // if not return status 400, secondary phone number is not valid
-                // else set user secondary phone number with the new secondary phone number
+                // primary and secondary should not be equals
+                if (primaryNumber === secondaryNumber) {
+                    throw({code: 400, message: 'Bad request, primary and secondary phone should not be the same.'})
+                }
+                
+                // check if the primary phone is valid
+                // if not return status 400, primary phone is not valid
+                // else set user primary phone with the new primary
+                let [priPhoneIsvalid, priPhoneErrors] = validationHandler.isValidPhone(primaryNumber)
+                if (Boolean(primaryNumber)) {
+                    // check if primary phone is the same as in the account
+                    if (req.account.primaryNumber != primaryNumber) {
+                        if (!priPhoneIsvalid) {
+                            throw({code: 400, message: priPhoneErrors? priPhoneErrors[0]: 'Invalid primary phone.'})
+                        }
+    
+                        let hasAccountUsing = await Account.findOne({where: { [OPERATORS.or]: [
+                            { primaryNumber: primaryNumber },
+                            { secondaryNumber: primaryNumber }
+                        ]}})
+    
+                        if (hasAccountUsing) {
+                            throw({code: 400, message: 'Bad request, primary phone has already been assigned to a user.'})
+                        }
+    
+                        req.account.primaryNumber = primaryNumber
+                        hasUpdate = true
+                    }
+                }
+
+                // check if the secondary phone exist and is valid
+                // if not return status 400, secondary phone is not valid
+                // else set user secondary phone with the new secondary
+                let [secPhoneIsvalid, secPhoneErrors] = validationHandler.isValidPhone(secondaryNumber)
+                if (Boolean(secondaryNumber)) {
+                    if (req.account.secondaryNumber != secondaryNumber) {
+                        if (!secPhoneIsvalid) {
+                            throw({code: 400, message: secPhoneErrors? secPhoneErrors[0]: 'Invalid secondary phone.'})
+                        }
+
+                        let hasAccountUsing = await Account.findOne({where: { [OPERATORS.or]: [
+                            { primaryNumber: secondaryNumber },
+                            { secondaryNumber: secondaryNumber }
+                        ]}})
+
+                        if (hasAccountUsing) {
+                            throw({code: 400, message: 'Bad request, secondary phone has already been assigned to a user.'})
+                        }
+
+                        req.account.secondaryNumber = secondaryNumber
+                        hasUpdate = true
+                    }
+                }
+
+                // in no changes is detected
+                if (!hasUpdate) {
+                    // return success message
+                    throw({code: 400, message: 'Bad request, no phone change in the request was detected.' })
+                }
+                    
+                await req.account.save()
+                await logger.setLogContent({
+                    title: 'LoggedAccount Phone Change',
+                    message: 'Sucessfull phone change'
+                }).log()
 
                 // return success message
-
-                // return status 400 if invalid action type
+                return { message: 'Successfull phone setting.' }
             } else {
                 throw({
                     code: 400,

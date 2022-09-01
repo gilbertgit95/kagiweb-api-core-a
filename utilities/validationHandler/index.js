@@ -5,5 +5,9 @@ module.exports = {
 
     isValidEmail() {
         return [true, []]
+    },
+
+    isValidPhone() {
+        return [true, []]
     }
 }
