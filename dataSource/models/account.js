@@ -77,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     },
-    secondayEmail: {
+    secondaryEmail: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
@@ -96,7 +96,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true
     },
-    secondayNumber: {
+    secondaryNumber: {
       type: DataTypes.STRING,
       unique: true
     },

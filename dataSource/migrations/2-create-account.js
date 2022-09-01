@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
-      secondayEmail: {
+      secondaryEmail: {
         type: Sequelize.STRING,
         unique: true
       },
@@ -49,7 +49,7 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
-      secondayNumber: {
+      secondaryNumber: {
         type: Sequelize.STRING,
         unique: true
       },

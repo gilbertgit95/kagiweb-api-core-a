@@ -15,6 +15,8 @@ const {
     updateItem
 } = require('../../../utilities/queryHandler');
 
+const OPERATORS = Sequelize.Op;
+
 const getAccount = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
@@ -103,38 +105,99 @@ const updateAccountCred = async (req, res) => {
                 }).log()
 
                 // return success message
-                return { message: 'Successfull change of password.' }
+                return { message: 'Successfull password setting.' }
 
             // process for changing emails
             } else if (actionType === 'changeEmails') {
-            // get the emails, primary and secondary
-            
-            // check if the primary email exist and is valid
-            // if not return status 400, primary email is not valid
-            // else set user primary email with the new primary email
+                let hasUpdate = false
+                // check the emails, primary and secondary
+                if (!(Boolean(primaryEmail) || Boolean(secondaryEmail))) {
+                    throw({code: 400, message: 'Bad request, no email supplied in the request.'})
+                }
 
-            // check if the secondary email exist and is valid
-            // if not return status 400, secondary email is not valid
-            // else set user secondary email with the new secondary email
-            
-            throw({code: 500, message: 'This endpoint is still inprogress.'})
-            // return success message
+                // primary and secondary should not be equals
+                if (primaryEmail === secondaryEmail) {
+                    throw({code: 400, message: 'Bad request, primary and secondary email should not be the same.'})
+                }
+                
+                // check if the primary email is valid
+                // if not return status 400, primary email is not valid
+                // else set user primary email with the new primary email
+                let [priEmailIsvalid, priEmailErrors] = validationHandler.isValidEmail(primaryEmail)
+                if (Boolean(primaryEmail)) {
+                    // check if primary email is the same as in the account
+                    if (req.account.primaryEmail != primaryEmail) {
+                        if (!priEmailIsvalid) {
+                            throw({code: 400, message: priEmailErrors? priEmailErrors[0]: 'Invalid primary email.'})
+                        }
+    
+                        let hasAccountUsing = await Account.findOne({where: { [OPERATORS.or]: [
+                            { primaryEmail: primaryEmail },
+                            { secondaryEmail: primaryEmail }
+                        ]}})
+    
+                        if (hasAccountUsing) {
+                            throw({code: 400, message: 'Bad request, primary email has already been assigned to a user.'})
+                        }
+    
+                        req.account.primaryEmail = primaryEmail
+                        hasUpdate = true
+                    }
+                }
+
+                // check if the secondary email exist and is valid
+                // if not return status 400, secondary email is not valid
+                // else set user secondary email with the new secondary email
+                let [secEmailIsvalid, secEmailErrors] = validationHandler.isValidEmail(secondaryEmail)
+                if (Boolean(secondaryEmail)) {
+                    if (req.account.secondaryEmail != secondaryEmail) {
+                        if (!secEmailIsvalid) {
+                            throw({code: 400, message: secEmailErrors? secEmailErrors[0]: 'Invalid secondary email.'})
+                        }
+
+                        let hasAccountUsing = await Account.findOne({where: { [OPERATORS.or]: [
+                            { primaryEmail: secondaryEmail },
+                            { secondaryEmail: secondaryEmail }
+                        ]}})
+
+                        if (hasAccountUsing) {
+                            throw({code: 400, message: 'Bad request, secondary email has already been assigned to a user.'})
+                        }
+
+                        req.account.secondaryEmail = secondaryEmail
+                        hasUpdate = true
+                    }
+                }
+
+                // save changes when a field has updates
+                if (hasUpdate) {
+                    await req.account.save()
+                    await logger.setLogContent({
+                        title: 'LoggedAccount Email Change',
+                        message: 'Sucessfull email change'
+                    }).log()
+                    return { message: 'Successfull email setting.' }
+                }
+
+                // return success message
+                return { message: 'No changes in the email setting.' }
 
             // process for changing phone numbers
             } else if (actionType === 'changePhones') {
-            // get the phones, primary and secondary
-            
-            // check if the primary phone number exist and is valid
-            // if not return status 400, primary phone number is not valid
-            // else set user primary phone number with the new primary phone number
+                // get the phones, primary and secondary
+                
+                
+                // check if the primary phone number exist and is valid
+                // if not return status 400, primary phone number is not valid
+                // else set user primary phone number with the new primary phone number
 
-            // check if the secondary phone number exist and is valid
-            // if not return status 400, secondary phone number is not valid
-            // else set user secondary phone number with the new secondary phone number
+                // check if the secondary phone number exist and is valid
+                // if not return status 400, secondary phone number is not valid
+                // else set user secondary phone number with the new secondary phone number
 
-            // return success message
+                // return success message
 
-            // return status 400 if invalid action type
+                // return status 400 if invalid action type
             } else {
                 throw({
                     code: 400,
