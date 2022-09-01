@@ -116,7 +116,8 @@ const updateAccountCred = async (req, res) => {
             // check if the secondary email exist and is valid
             // if not return status 400, secondary email is not valid
             // else set user secondary email with the new secondary email
-
+            
+            throw({code: 500, message: 'This endpoint is still inprogress.'})
             // return success message
 
             // process for changing phone numbers
