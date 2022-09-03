@@ -274,32 +274,67 @@ const updateAccountCred = async (req, res) => {
 const updateAccountProfile = async (req, res) => {
     return await jsonRespHandler(req, res)
         .execute(async (props) => {
+            let {
+                actionType,
+
+                profilepicture,
+                gender,
+                nickname,
+                firstname,
+                middlename,
+                lastname,
+
+                country,
+                nationality,
+                birthdate,
+                birthplace,
+                homeaddress,
+                personalwebsite,
+                bio,
+
+                companyrole,
+                companyname,
+                companydesc,
+                companycountry,
+                companyindustry,
+                companyemail,
+                companyphone,
+                companywebsite,
+                companyaddress
+            } = props.body
+
             // set this fields
             // basic profile:
-            // - profilePhoto
-            // - gender
-            // - nickname
-            // - firstname
-            // - middlename
-            // - lastname
+            if (actionType === 'changeBasicInfo') {
+                // - profilePhoto
+                // - gender
+                // - nickname
+                // - firstname
+                // - middlename
+                // - lastname
+            }
 
             // advance profile:
-            // - nationality
-            // - birthDate
-            // - birthPlace
-            // - homeAddress
-            // - website
-            // - bio
+            if (actionType === 'changeAdvanceInfo') {
+                // - nationality
+                // - birthDate
+                // - birthPlace
+                // - homeAddress
+                // - website
+                // - bio
+            }
 
             // work related:
-            // - jobTitle
-            // - companyName
-            // - companyDesc
-            // - companyIndustryType
-            // - companyEmail
-            // - companyNumber
-            // - companyWebsite
-            // - companyAddress
+            if (actionType === 'changeWorkInfo') {
+                // - jobTitle
+                // - companyName
+                // - companyDesc
+                // - companyIndustryType
+                // - companyEmail
+                // - companyNumber
+                // - companyWebsite
+                // - companyAddress
+            }
 
             return req.account
         })
