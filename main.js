@@ -6,6 +6,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { sequelize, Log } = require('./dataSource/models');
+const reqAddressProvider = require('./middlewares/reqAddressProvider')
+
 const restapi = require('./controllers/restapi');
 const graphql = require('./controllers/graphql');
 
@@ -15,6 +17,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(reqAddressProvider);
+
 
 app.use(restapi);
 app.use(graphql);

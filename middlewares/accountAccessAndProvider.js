@@ -80,6 +80,8 @@ module.exports = async (req, res, next) => {
                 ]
                 // raw: true, nest: true,
             })
+
+            // console.log('req: ', req.headers)
             // if user does not exist throw error 400 invalid tokenContent
             if (!user) throw(invalidMsg)
 
