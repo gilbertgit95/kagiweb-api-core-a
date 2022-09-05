@@ -2,12 +2,6 @@ const { getClientIp } = require('@supercharge/request-ip');
 const geoip = require('geoip-country');
 const { jsonRespHandler } = require('../utilities/responseHandler');
 
-const countries = require('country-data-list').countries;
-const currencies = require('country-data-list').currencies;
-const regions = require('country-data-list').regions;
-const languages = require('country-data-list').languages;
-const callingCountries = require('country-data-list').callingCountries;
-
 module.exports = async (req, res, next) => {
     return await jsonRespHandler(req, res, next)
         .execute(async (props) => {
@@ -22,14 +16,7 @@ module.exports = async (req, res, next) => {
 
             req.address = addressInfo
 
-            console.log('reqAddressProvider: ', addressInfo)
-            console.log(
-                countries.all
-                // currencies
-                // regions
-                // languages
-                // callingCountries
-            )
+            // console.log('reqAddressProvider: ', addressInfo)
 
             return
         })

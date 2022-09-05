@@ -52,8 +52,11 @@ module.exports = {
     
             // response handlers
             response(resp) {
+                // success response
                 if (resp.code == successStatus) {
                     return this.res.json(resp && resp.data? resp.data: {})
+
+                // normal error response
                 } else {
                     return this.res
                         .status(resp.code)

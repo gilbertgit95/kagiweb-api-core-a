@@ -9,6 +9,7 @@ const endpointsRoute = require('./endpoints/routes');
 const rolesRoute = require('./roles/routes');
 const roleEndpointsRoute = require('./roleEndpoints/routes');
 const logsRoute = require('./logs/routes');
+const staticOptions = require('./staticOptions/routes');
 const apiDocRoute = require('./apiDoc/routes');
 const testsRoute = require('./tests/routes');
 
@@ -79,6 +80,7 @@ router.use(ROOT_REST, accountsRoute)
 router.use(ROOT_REST, endpointsRoute)
 router.use(ROOT_REST, rolesRoute)
 router.use(ROOT_REST, roleEndpointsRoute)
+router.use(ROOT_REST, staticOptions)
 router.use(ROOT_REST, logsRoute)
 
 /**
