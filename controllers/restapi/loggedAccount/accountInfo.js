@@ -306,7 +306,7 @@ const updateAccountProfile = async (req, res) => {
             // set this fields
             // basic profile:
             if (actionType === 'changeBasicInfo') {
-                // - profilePhoto
+                // - profilepicture
                 // - gender
                 // - nickname
                 // - firstname
