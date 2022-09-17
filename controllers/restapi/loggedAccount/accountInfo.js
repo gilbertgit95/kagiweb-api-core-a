@@ -306,36 +306,39 @@ const updateAccountProfile = async (req, res) => {
             // set this fields
             // basic profile:
             if (actionType === 'changeBasicInfo') {
-                // - profilepicture
-                // - gender
-                // - nickname
-                // - firstname
-                // - middlename
-                // - lastname
 
-                // check 
+                let [profilepictureIsValid, profilepictureError] = validationHandler.isValidUrl(profilepicture)
+                let [genderIsValid, genderError] = validationHandler.isValidGender(gender)
+                let [nicknameIsValid, nicknameError] = validationHandler.isValidName(nickname)
+                let [firstnameIsValid, firstnameError] = validationHandler.isValidName(firstname)
+                let [middlenameIsValid, middlenameError] = validationHandler.isValidName(middlename)
+                let [lastnameIsValid, lastnameError] = validationHandler.isValidName(lastname)
             }
 
             // advance profile:
             if (actionType === 'changeAdvanceInfo') {
-                // - nationality
-                // - birthDate
-                // - birthPlace
-                // - homeAddress
-                // - website
-                // - bio
+
+                let [countryIsValid, countryError] = validationHandler.isValidName(country)
+                let [nationalityIsValid, nationalityError] = validationHandler.isValidName(nationality)
+                let [birthdateIsValid, birthdateError] = validationHandler.isValidDate(birthdate)
+                let [birthplaceIsValid, birthplaceError] = validationHandler.isValidDesc(birthplace)
+                let [homeaddressIsValid, homeaddressError] = validationHandler.isValidDesc(homeaddress)
+                let [personalwebsiteIsValid, personalwebsiteError] = validationHandler.isValidUrl(personalwebsite)
+                let [bioIsValid, bioError] = validationHandler.isValidDesc(bio)
             }
 
             // work related:
             if (actionType === 'changeWorkInfo') {
-                // - jobTitle
-                // - companyName
-                // - companyDesc
-                // - companyIndustryType
-                // - companyEmail
-                // - companyNumber
-                // - companyWebsite
-                // - companyAddress
+
+                let [companyroleIsValid, companyroleError] = validationHandler.isValidDesc(companyrole)
+                let [companynameIsValid, companynameError] = validationHandler.isValidDesc(companyname)
+                let [companydescIsValid, companydescError] = validationHandler.isValidDesc(companydesc)
+                let [companycountryIsValid, companycountryError] = validationHandler.isValidDesc(companycountry)
+                let [companyindustryIsValid, companyindustryError] = validationHandler.isValidDesc(companyindustry)
+                let [companyemailIsValid, companyemailError] = validationHandler.isValidEmail(companyemail)
+                let [companyphoneIsValid, companyphoneError] = validationHandler.isValidDesc(companyphone)
+                let [companywebsiteIsValid, companywebsiteError] = validationHandler.isValidDesc(companywebsite)
+                let [companyaddressIsValid, companyaddressError] = validationHandler.isValidDesc(companyaddress)
             }
 
             return req.account

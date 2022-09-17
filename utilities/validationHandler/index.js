@@ -1,13 +1,39 @@
+const moment = require('moment');
+
 module.exports = {
-    isValidPassword() {
+    isValidPassword(str) {
         return [true, []]
     },
 
-    isValidEmail() {
+    isValidEmail(str) {
         return [true, []]
     },
 
-    isValidPhone() {
+    isValidPhone(str) {
+        return [true, []]
+    },
+    
+    isValidName(str) {
+        return [true, []]
+    },
+
+    isValidCountry(str) {
+        return [true, []]
+    },
+
+    isValidUrl(str) {
+        return [true, []]
+    },
+
+    isValidGender(str) {
+        return [true, []]
+    },
+
+    isValidDesc(str) {
+        return [true, []]
+    },
+
+    isValidDate(str) {
         return [true, []]
     }
 }
