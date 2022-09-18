@@ -313,6 +313,14 @@ const updateAccountProfile = async (req, res) => {
                 let [firstnameIsValid, firstnameError] = validationHandler.isValidName(firstname)
                 let [middlenameIsValid, middlenameError] = validationHandler.isValidName(middlename)
                 let [lastnameIsValid, lastnameError] = validationHandler.isValidName(lastname)
+
+                if (profilepicture) {
+                    if (profilepictureIsValid) {
+
+                    } else {
+                        throw({code: 400, message: profilepictureError[0]})
+                    }
+                }
             }
 
             // advance profile:
@@ -341,7 +349,7 @@ const updateAccountProfile = async (req, res) => {
                 let [companyaddressIsValid, companyaddressError] = validationHandler.isValidDesc(companyaddress)
             }
 
-            return req.account
+            return { message: 'Sucessfully account information update.' }
         })
 }
 
