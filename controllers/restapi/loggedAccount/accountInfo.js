@@ -303,6 +303,14 @@ const updateAccountProfile = async (req, res) => {
                 companyaddress
             } = props.body
 
+            let hasUpdate = false
+            let accountClaims = req.account.accountClaims.reduce((acc, item) => {
+                acc[item.key] = item
+                return acc
+            }, {})
+
+            // console.log('accountClaims: ', accountClaims)
+
             // set this fields
             // basic profile:
             if (actionType === 'changeBasicInfo') {
@@ -314,11 +322,63 @@ const updateAccountProfile = async (req, res) => {
                 let [middlenameIsValid, middlenameError] = validationHandler.isValidName(middlename)
                 let [lastnameIsValid, lastnameError] = validationHandler.isValidName(lastname)
 
-                if (profilepicture) {
+                if (Boolean(profilepicture)) {
                     if (profilepictureIsValid) {
-
+                        accountClaims['profilepicture'] = profilepicture
+                        await accountClaims['profilepicture'].save()
+                        hasUpdate = true
                     } else {
                         throw({code: 400, message: profilepictureError[0]})
+                    }
+                }
+
+                if (Boolean(gender)) {
+                    if (genderIsValid) {
+                        accountClaims['gender'] = gender
+                        await accountClaims['gender'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: profilepictureError[0]})
+                    }
+                }
+
+                if (Boolean(nickname)) {
+                    if (nicknameIsValid) {
+                        accountClaims['nickname'] = nickname
+                        await accountClaims['nickname'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: profilepictureError[0]})
+                    }
+                }
+
+                if (Boolean(firstname)) {
+                    if (firstnameIsValid) {
+                        accountClaims['firstname'] = firstname
+                        await accountClaims['firstname'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: profilepictureError[0]})
+                    }
+                }
+
+                if (Boolean(middlename)) {
+                    if (middlenameIsValid) {
+                        accountClaims['middlename'] = middlename
+                        await accountClaims['middlename'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: middlenameError[0]})
+                    }
+                }
+
+                if (Boolean(lastname)) {
+                    if (lastnameIsValid) {
+                        accountClaims['lastname'] = lastname
+                        await accountClaims['lastname'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: lastnameError[0]})
                     }
                 }
             }
@@ -347,6 +407,11 @@ const updateAccountProfile = async (req, res) => {
                 let [companyphoneIsValid, companyphoneError] = validationHandler.isValidDesc(companyphone)
                 let [companywebsiteIsValid, companywebsiteError] = validationHandler.isValidDesc(companywebsite)
                 let [companyaddressIsValid, companyaddressError] = validationHandler.isValidDesc(companyaddress)
+            }
+
+            // check for changes
+            if (!hasUpdate) {
+                throw({code: 400, message: 'Bad request, no changes has been detected'})
             }
 
             return { message: 'Sucessfully account information update.' }
