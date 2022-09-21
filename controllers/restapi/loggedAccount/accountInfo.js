@@ -322,9 +322,9 @@ const updateAccountProfile = async (req, res) => {
                 let [middlenameIsValid, middlenameError] = validationHandler.isValidName(middlename)
                 let [lastnameIsValid, lastnameError] = validationHandler.isValidName(lastname)
 
-                if (Boolean(profilepicture)) {
+                if (Boolean(profilepicture) && profilepicture !== accountClaims['profilepicture'].value) {
                     if (profilepictureIsValid) {
-                        accountClaims['profilepicture'] = profilepicture
+                        accountClaims['profilepicture'].value = profilepicture
                         await accountClaims['profilepicture'].save()
                         hasUpdate = true
                     } else {
@@ -332,39 +332,39 @@ const updateAccountProfile = async (req, res) => {
                     }
                 }
 
-                if (Boolean(gender)) {
+                if (Boolean(gender) && gender !== accountClaims['gender'].value) {
                     if (genderIsValid) {
-                        accountClaims['gender'] = gender
+                        accountClaims['gender'].value = gender
                         await accountClaims['gender'].save()
                         hasUpdate = true
                     } else {
-                        throw({code: 400, message: profilepictureError[0]})
+                        throw({code: 400, message: genderError[0]})
                     }
                 }
 
-                if (Boolean(nickname)) {
+                if (Boolean(nickname) && nickname !== accountClaims['nickname'].value) {
                     if (nicknameIsValid) {
-                        accountClaims['nickname'] = nickname
+                        accountClaims['nickname'].value = nickname
                         await accountClaims['nickname'].save()
                         hasUpdate = true
                     } else {
-                        throw({code: 400, message: profilepictureError[0]})
+                        throw({code: 400, message: nicknameError[0]})
                     }
                 }
 
-                if (Boolean(firstname)) {
+                if (Boolean(firstname) && firstname !== accountClaims['firstname'].value) {
                     if (firstnameIsValid) {
-                        accountClaims['firstname'] = firstname
+                        accountClaims['firstname'].value = firstname
                         await accountClaims['firstname'].save()
                         hasUpdate = true
                     } else {
-                        throw({code: 400, message: profilepictureError[0]})
+                        throw({code: 400, message: firstnameError[0]})
                     }
                 }
 
-                if (Boolean(middlename)) {
+                if (Boolean(middlename) && middlename !== accountClaims['middlename'].value) {
                     if (middlenameIsValid) {
-                        accountClaims['middlename'] = middlename
+                        accountClaims['middlename'].value = middlename
                         await accountClaims['middlename'].save()
                         hasUpdate = true
                     } else {
@@ -372,9 +372,9 @@ const updateAccountProfile = async (req, res) => {
                     }
                 }
 
-                if (Boolean(lastname)) {
+                if (Boolean(lastname) && lastname !== accountClaims['lastname'].value) {
                     if (lastnameIsValid) {
-                        accountClaims['lastname'] = lastname
+                        accountClaims['lastname'].value = lastname
                         await accountClaims['lastname'].save()
                         hasUpdate = true
                     } else {
@@ -414,7 +414,7 @@ const updateAccountProfile = async (req, res) => {
                 throw({code: 400, message: 'Bad request, no changes has been detected'})
             }
 
-            return { message: 'Sucessfully account information update.' }
+            return { message: 'Account information is sucessfully updated.' }
         })
 }
 
