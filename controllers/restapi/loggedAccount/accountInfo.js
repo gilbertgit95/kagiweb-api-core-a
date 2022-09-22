@@ -393,6 +393,70 @@ const updateAccountProfile = async (req, res) => {
                 let [homeaddressIsValid, homeaddressError] = validationHandler.isValidDesc(homeaddress)
                 let [personalwebsiteIsValid, personalwebsiteError] = validationHandler.isValidUrl(personalwebsite)
                 let [bioIsValid, bioError] = validationHandler.isValidDesc(bio)
+
+                if (Boolean(country) && country !== accountClaims['country'].value) {
+                    if (countryIsValid) {
+                        accountClaims['country'].value = country
+                        await accountClaims['country'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: countryError[0]})
+                    }
+                }
+                if (Boolean(nationality) && nationality !== accountClaims['nationality'].value) {
+                    if (nationalityIsValid) {
+                        accountClaims['nationality'].value = nationality
+                        await accountClaims['nationality'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: nationalityError[0]})
+                    }
+                }
+                if (Boolean(birthdate) && birthdate !== accountClaims['birthdate'].value) {
+                    if (birthdateIsValid) {
+                        accountClaims['birthdate'].value = birthdate
+                        await accountClaims['birthdate'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: birthdateError[0]})
+                    }
+                }
+                if (Boolean(birthplace) && birthplace !== accountClaims['birthplace'].value) {
+                    if (birthplaceIsValid) {
+                        accountClaims['birthplace'].value = birthplace
+                        await accountClaims['birthplace'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: birthplaceError[0]})
+                    }
+                }
+                if (Boolean(homeaddress) && homeaddress !== accountClaims['homeaddress'].value) {
+                    if (homeaddressIsValid) {
+                        accountClaims['homeaddress'].value = homeaddress
+                        await accountClaims['homeaddress'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: homeaddressError[0]})
+                    }
+                }
+                if (Boolean(personalwebsite) && personalwebsite !== accountClaims['personalwebsite'].value) {
+                    if (personalwebsiteIsValid) {
+                        accountClaims['personalwebsite'].value = personalwebsite
+                        await accountClaims['personalwebsite'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: personalwebsiteError[0]})
+                    }
+                }
+                if (Boolean(bio) && bio !== accountClaims['bio'].value) {
+                    if (bioIsValid) {
+                        accountClaims['bio'].value = bio
+                        await accountClaims['bio'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: bioError[0]})
+                    }
+                }
             }
 
             // work related:
@@ -407,6 +471,88 @@ const updateAccountProfile = async (req, res) => {
                 let [companyphoneIsValid, companyphoneError] = validationHandler.isValidDesc(companyphone)
                 let [companywebsiteIsValid, companywebsiteError] = validationHandler.isValidDesc(companywebsite)
                 let [companyaddressIsValid, companyaddressError] = validationHandler.isValidDesc(companyaddress)
+
+                if (Boolean(companyrole) && companyrole !== accountClaims['companyrole'].value) {
+                    if (companyroleIsValid) {
+                        accountClaims['companyrole'].value = companyrole
+                        await accountClaims['companyrole'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companyroleError[0]})
+                    }
+                }
+                if (Boolean(companyname) && companyname !== accountClaims['companyname'].value) {
+                    if (companynameIsValid) {
+                        accountClaims['companyname'].value = companyname
+                        await accountClaims['companyname'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companynameError[0]})
+                    }
+                }
+                if (Boolean(companydesc) && companydesc !== accountClaims['companydesc'].value) {
+                    if (companydescIsValid) {
+                        accountClaims['companydesc'].value = companydesc
+                        await accountClaims['companydesc'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companydescError[0]})
+                    }
+                }
+                if (Boolean(companycountry) && companycountry !== accountClaims['companycountry'].value) {
+                    if (companycountryIsValid) {
+                        accountClaims['companycountry'].value = companycountry
+                        await accountClaims['companycountry'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companycountryError[0]})
+                    }
+                }
+                if (Boolean(companyindustry) && companyindustry !== accountClaims['companyindustry'].value) {
+                    if (companyindustryIsValid) {
+                        accountClaims['companyindustry'].value = companyindustry
+                        await accountClaims['companyindustry'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companyindustryError[0]})
+                    }
+                }
+                if (Boolean(companyemail) && companyemail !== accountClaims['companyemail'].value) {
+                    if (companyemailIsValid) {
+                        accountClaims['companyemail'].value = companyemail
+                        await accountClaims['companyemail'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companyemailError[0]})
+                    }
+                }
+                if (Boolean(companyphone) && companyphone !== accountClaims['companyphone'].value) {
+                    if (companyphoneIsValid) {
+                        accountClaims['companyphone'].value = companyphone
+                        await accountClaims['companyphone'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companyphoneError[0]})
+                    }
+                }
+                if (Boolean(companywebsite) && companywebsite !== accountClaims['companywebsite'].value) {
+                    if (companywebsiteIsValid) {
+                        accountClaims['companywebsite'].value = companywebsite
+                        await accountClaims['companywebsite'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companywebsiteError[0]})
+                    }
+                }
+                if (Boolean(companyaddress) && companyaddress !== accountClaims['companyaddress'].value) {
+                    if (companyaddressIsValid) {
+                        accountClaims['companyaddress'].value = companyaddress
+                        await accountClaims['companyaddress'].save()
+                        hasUpdate = true
+                    } else {
+                        throw({code: 400, message: companyaddressError[0]})
+                    }
+                }
             }
 
             // check for changes
@@ -424,8 +570,6 @@ const updateAccountSettings = async (req, res) => {
             return req.account
         })
 }
-
-
 
 module.exports = {
     getAccount,
