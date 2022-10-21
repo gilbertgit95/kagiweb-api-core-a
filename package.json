@@ -18,9 +18,10 @@
     "dev": "nodemon main.js",
     "test": "jest",
     "jsdoc": "jsdoc -c jsdoc.json",
-    "ls:genHashedPass": "node ./localScripts/generateHashedPassword/main.js",
-    "ls:genRandomKey": "node ./localScripts/generateRandomKey/main.js",
-    "ls:reset": "node ./localScripts/resetApplication/main.js"
+    "kw:backupRestore": "node ./localScripts/backupRestoreData/main.js",
+    "kw:genHashedPass": "node ./localScripts/generateHashedPassword/main.js",
+    "kw:genRandomKey": "node ./localScripts/generateRandomKey/main.js",
+    "kw:reset": "node ./localScripts/resetApplication/main.js"
   },
   "license": "MIT",
   "dependencies": {
