@@ -1,0 +1,6 @@
+- name: Features
+  description: Contains all endpoints related to features. This will be the bases for user access in the roles
+- name: Roles
+  description: Contains all endpoints related to roles. This will give a package access to users
+- name: Users
+  description: Contains all endpoints related to users.

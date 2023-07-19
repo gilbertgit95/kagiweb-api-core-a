@@ -7,10 +7,13 @@ info:
     name: Gilbert D. Cuerbo
     email: gilbert.cuerbo@gmail.com
   license:
-    name: Apache 2.0
+    name: MIT
+    url: https://github.com/gilbertgit95/kagiweb-api-core-a/blob/master/LICENSE
 schemes: [http, https]
 host: localhost:3000
 basePath: /api/v1/
+tags: 
+  $ref: ./tags.yml
 paths:
   $ref: ./paths/index.yml
 definitions:
