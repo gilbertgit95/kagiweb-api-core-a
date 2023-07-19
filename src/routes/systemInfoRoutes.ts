@@ -1,7 +1,7 @@
 import express from 'express'
 
 import Config from '../utilities/config'
-import systemInfoController, { ISystemInfo } from '../controllers/systemInfoController'
+import systemInfoController from '../controllers/systemInfoController'
 
 const router = express.Router()
 const env = Config.getEnv()

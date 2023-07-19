@@ -1,5 +1,5 @@
 import clipboard from 'clipboardy'
-import prompts from 'prompts'
+// import prompts from 'prompts'
 import Encryption from '../utilities/encryption'
 
 class GenerateKey {

@@ -1,9 +1,9 @@
 import DataCache from '../utilities/dataCache'
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import Config from '../utilities/config'
+// import Config from '../utilities/config'
 
-const env = Config.getEnv()
+// const env = Config.getEnv()
 
 class FeatureController {
     public cachedData:DataCache

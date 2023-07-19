@@ -2,11 +2,11 @@ import Encryption from '../../src/utilities/encryption'
 
 describe('encryption utility testing', () => {
     test('Check btoa and atob', () => {
-        let testData = 'wordtest'
-        let testData2 = 'wordtest2'
+        const testData = 'wordtest'
+        const testData2 = 'wordtest2'
     
-        let encrypted = Encryption.btoa(testData)
-        let decrypted = Encryption.atob(encrypted)
+        const encrypted = Encryption.btoa(testData)
+        const decrypted = Encryption.atob(encrypted)
     
         expect(decrypted).toBe(testData)
         expect(decrypted).toBeTruthy()
@@ -17,12 +17,12 @@ describe('encryption utility testing', () => {
     })
     
     test('Check password hashing and verification', async () => {
-        let testData = 'wordtest'
-        let testData2 = 'wordtest2'
+        const testData = 'wordtest'
+        const testData2 = 'wordtest2'
     
-        let hash = await Encryption.hashText(testData)
-        let test1 = await Encryption.verifyTextToHash(testData, hash)
-        let test2 = await Encryption.verifyTextToHash(testData2, hash)
+        const hash = await Encryption.hashText(testData)
+        const test1 = await Encryption.verifyTextToHash(testData, hash)
+        const test2 = await Encryption.verifyTextToHash(testData2, hash)
     
         // console.log('password: ', await hashText('master101'))
     
@@ -35,12 +35,12 @@ describe('encryption utility testing', () => {
     })
     
     test('Check jwt generator and verifier', async () => {
-        let testData = {
+        const testData = {
             prop: 'testData'
         }
     
-        let jwt = Encryption.generateJWT(testData)
-        let data = await Encryption.verifyJWT(jwt)
+        const jwt = Encryption.generateJWT(testData)
+        const data = await Encryption.verifyJWT(jwt)
     
         // delete some additional info not existed in the original data
         delete data.exp

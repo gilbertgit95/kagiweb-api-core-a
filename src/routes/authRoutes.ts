@@ -1,6 +1,6 @@
 import express from 'express'
 
-import UserModel, { IUser } from '../dataSource/models/userModel'
+// import UserModel, { IUser } from '../dataSource/models/userModel'
 import Config from '../utilities/config'
 
 const env = Config.getEnv()

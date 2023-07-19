@@ -1,8 +1,8 @@
 import UserModel, { IUser } from '../dataSource/models/userModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import Config from '../utilities/config'
+import DataRequest, { IPgeInfo } from '../utilities/dataQuery'
+// import Config from '../utilities/config'
 
-const env = Config.getEnv()
+// const env = Config.getEnv()
 
 interface ISigninResult {
     userInfo: IUser,

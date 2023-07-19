@@ -1,6 +1,6 @@
 import NodeCache from 'node-cache'
 
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
+import DataRequest from '../utilities/dataQuery'
 
 const allItemskey = 'all_items'
 
