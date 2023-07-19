@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "name": "Typescript101",
+            "request": "launch",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsnd",
+            "program": "src/app.ts",
+            "args": [
+                "--transpile-only",
+                "--respawn",
+                "--project",
+                "tsconfig.json",
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        }
+    ]
+}

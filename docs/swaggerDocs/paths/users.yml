@@ -1,0 +1,19 @@
+get:
+    tags :
+      - Users
+    summary: Get all the Users
+    description: Get all the Users
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Users fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ../definitions/user.yml
+      400:
+        description: Error in fetching users
+        schema:
+          type: object
+          $ref: ../definitions/error.yml

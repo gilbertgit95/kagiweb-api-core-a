@@ -1,0 +1,17 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: API documenations using Swagger
+  description: Sample project which generates API documentaion using swagger.
+  contact:
+    name: Gilbert D. Cuerbo
+    email: gilbert.cuerbo@gmail.com
+  license:
+    name: Apache 2.0
+schemes: [http, https]
+host: localhost:3000
+basePath: /api/v1/
+paths:
+  $ref: ./paths/index.yml
+definitions:
+  $ref: ./definitions/index.yml
