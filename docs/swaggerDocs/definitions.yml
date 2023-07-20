@@ -1,0 +1,8 @@
+Error:
+  $ref: ./global/errorDefinition.yml
+Feature:
+  $ref: ./features/featureDefinition.yml
+Role:
+  $ref: ./roles/roleDefinition.yml
+User:
+  $ref: ./users/userDefinition.yml

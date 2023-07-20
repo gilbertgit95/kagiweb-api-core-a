@@ -2,7 +2,7 @@ import express from 'express'
 import swaggerUI from 'swagger-ui-express'
 
 import Config from '../utilities/config'
-import swaggerData from '../../docs/swaggerDocs/index.json'
+import swaggerData from '../../docs/swaggerDocsBuild.json'
 import appPackageInfo from '../../package.json'
 
 const router = express.Router()

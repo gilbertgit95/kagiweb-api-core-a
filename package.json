@@ -15,7 +15,7 @@
     "build": "tsc -p ./tsconfig.json",
     "lint": "eslint . --ext .ts",
     "test": "jest",
-    "apidoc": "swagger-cli bundle docs/swaggerDocs/index.yml --outfile docs/swaggerDocs/index.json",
+    "apidoc": "swagger-cli bundle docs/swaggerDocs/index.yml --outfile docs/swaggerDocsBuild.json",
     "admin": "node build/src/adminCli/index.js"
   },
   "author": {

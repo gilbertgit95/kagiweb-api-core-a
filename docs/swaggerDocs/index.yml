@@ -15,6 +15,6 @@ basePath: /api/v1/
 tags: 
   $ref: ./tags.yml
 paths:
-  $ref: ./paths/index.yml
+  $ref: ./paths.yml
 definitions:
-  $ref: ./definitions/index.yml
+  $ref: ./definitions.yml

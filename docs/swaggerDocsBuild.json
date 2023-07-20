@@ -34,6 +34,66 @@
     }
   ],
   "paths": {
+    "/features": {
+      "get": {
+        "tags": [
+          "Features"
+        ],
+        "summary": "Get all the Features",
+        "description": "Get all the Features",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Features fetched successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Feature"
+              }
+            }
+          },
+          "400": {
+            "description": "Error in fetching Features",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/roles": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get all the Roles",
+        "description": "Get all the Roles",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Roles fetched successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          },
+          "400": {
+            "description": "Error in fetching Roles",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "tags": [
@@ -70,6 +130,40 @@
       "type": "object",
       "properties": {
         "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Feature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         }
       }

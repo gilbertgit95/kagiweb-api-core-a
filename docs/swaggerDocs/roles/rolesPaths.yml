@@ -1,0 +1,19 @@
+get:
+    tags :
+      - Roles
+    summary: Get all the Roles
+    description: Get all the Roles
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Roles fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./roleDefinition.yml
+      400:
+        description: Error in fetching Roles
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml

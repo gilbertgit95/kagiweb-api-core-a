@@ -1,0 +1,19 @@
+get:
+    tags :
+      - Features
+    summary: Get all the Features
+    description: Get all the Features
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Features fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./featureDefinition.yml
+      400:
+        description: Error in fetching Features
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml

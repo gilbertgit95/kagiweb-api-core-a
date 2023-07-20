@@ -1,0 +1,11 @@
+# paths inside /features
+/features:
+  $ref: ./features/featuresPaths.yml
+
+# paths inside /roles
+/roles:
+  $ref: ./roles/rolesPaths.yml
+
+# paths inside /users
+/users:
+  $ref: ./users/usersPaths.yml
