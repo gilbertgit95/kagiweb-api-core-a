@@ -1,5 +1,5 @@
 import UserModel, { IUser } from '../dataSource/models/userModel'
-import DataRequest, { IPgeInfo } from '../utilities/dataQuery'
+import DataRequest from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -10,7 +10,8 @@ interface ISigninResult {
 }
 
 class AuthController {
-    public async signin(userData:IUser, userAgent:string, ipAddress:string ):Promise<ISigninResult | null> {
+    // userData:IUser, userAgent:string, ipAddress:string 
+    public async signin():Promise<ISigninResult | null> {
         // get user using username
 
         // if it exist then check password if it match
@@ -28,7 +29,8 @@ class AuthController {
         return result
     }
 
-    public async signinOTP(userId:string, code:string):Promise<ISigninResult | null> {
+    // userId:string, code:string
+    public async signinOTP():Promise<ISigninResult | null> {
         // chech user using the userId ifexist
         // then check code it exist and is valid
 
@@ -42,7 +44,8 @@ class AuthController {
         return result
     }
 
-    public async signout(jwt:string):Promise<boolean | null> {
+    // jwt:string
+    public async signout():Promise<boolean | null> {
         // check the validity of jwt, then get user info inside jwt
 
         // chek if th user exist
@@ -60,7 +63,7 @@ class AuthController {
         return result
     }
 
-    public async signup(pageInfo: IPgeInfo):Promise<IUser | null> {
+    public async signup():Promise<IUser | null> {
         const userReq = new DataRequest(UserModel)
 
         const result = await userReq.getItem()
@@ -68,7 +71,7 @@ class AuthController {
         return result
     }
 
-    public async forgotPassword(pageInfo: IPgeInfo):Promise<IUser | null> {
+    public async forgotPassword():Promise<IUser | null> {
         const userReq = new DataRequest(UserModel)
 
         const result = await userReq.getItem()
@@ -76,7 +79,7 @@ class AuthController {
         return result
     }
 
-    public async resetPassword(pageInfo: IPgeInfo):Promise<IUser | null> {
+    public async resetPassword():Promise<IUser | null> {
         const userReq = new DataRequest(UserModel)
 
         const result = await userReq.getItem()

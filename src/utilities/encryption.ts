@@ -82,7 +82,7 @@ class Encryption {
      * @returns { Promise<Object> } the encrypted object
      */
     public static async verifyJWT(token: string):Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             jwt.verify(token, env.JwtSecretKey, (err, decoded) => {
                 if (!err) {
                     resolve(decoded)

@@ -60,41 +60,41 @@ describe('User Route Testing', () => {
         ]
     }
 
-    const userUpdateData:IUser = {
-        username: 'bertwothree',
-        passwords: [{
-            key: '101',
-            type: 'current'
-        }],
-        userInfo: [],
-        roleRefs: [
-            {
-                roleId: ''
-            }
-        ],
-        contactInfos: [],
-        clientDevices: [],
-        limitedTransactions: [
-            {
-                limit: 15,
-                type: 'otp-signin',
-                key: 0,
-                attempts: 0
-            },
-            {
-                limit: 15,
-                type: 'pass-reset',
-                key: 0,
-                attempts: 0
-            },
-            {
-                limit: 15,
-                type: '',
-                key: 0,
-                attempts: 0
-            }
-        ]
-    }
+    // const userUpdateData:IUser = {
+    //     username: 'bertwothree',
+    //     passwords: [{
+    //         key: '101',
+    //         type: 'current'
+    //     }],
+    //     userInfo: [],
+    //     roleRefs: [
+    //         {
+    //             roleId: ''
+    //         }
+    //     ],
+    //     contactInfos: [],
+    //     clientDevices: [],
+    //     limitedTransactions: [
+    //         {
+    //             limit: 15,
+    //             type: 'otp-signin',
+    //             key: 0,
+    //             attempts: 0
+    //         },
+    //         {
+    //             limit: 15,
+    //             type: 'pass-reset',
+    //             key: 0,
+    //             attempts: 0
+    //         },
+    //         {
+    //             limit: 15,
+    //             type: '',
+    //             key: 0,
+    //             attempts: 0
+    //         }
+    //     ]
+    // }
 
     test('POST - /api/core/v1/users/create', async () => {
         const res = await request.post('/api/core/v1/users/create').send(userData)
