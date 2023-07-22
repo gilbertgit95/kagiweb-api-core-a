@@ -1,0 +1,8 @@
+type: object
+properties:
+  _id:
+    type: string
+  createdAt:
+    type: date
+  updatedAt:
+    type: date
