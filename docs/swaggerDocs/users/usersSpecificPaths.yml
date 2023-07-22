@@ -1,0 +1,98 @@
+get:
+    tags :
+      - Users
+    summary: Create a Users
+    description: Create a User
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    responses:
+      200:
+        description: Users fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./userDefinition.yml
+      400:
+        description: Error in fetching users
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml
+post:
+    tags :
+      - Users
+    summary: Create a Users
+    description: Create a User
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: body
+        name: user
+        description: user info tobe created
+        schema:
+          type: object
+          required:
+            - username
+          properties:
+            usernane:
+              type: string
+    responses:
+      200:
+        description: Users fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./userDefinition.yml
+      400:
+        description: Error in fetching users
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml
+put:
+    tags :
+      - Users
+    summary: Create a Users
+    description: Create a User
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Users fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./userDefinition.yml
+      400:
+        description: Error in fetching users
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml
+delete:
+    tags :
+      - Users
+    summary: Create a Users
+    description: Create a User
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Users fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./userDefinition.yml
+      400:
+        description: Error in fetching users
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml

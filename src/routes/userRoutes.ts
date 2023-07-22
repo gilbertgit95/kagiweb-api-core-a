@@ -12,24 +12,39 @@ const env = Config.getEnv()
 router.get(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
+    console.log('pageInfo: ',pageInfo)
+
     const result = await userController.getUsersByPage({}, pageInfo)
 
     return res.json(result)
 })
 
+router.post(env.RootApiCoreEndpoint + 'users', async (req, res) => {
+    const userData = req.body
+    let result = null
+    // const resp = await userController.saveUser(userData)
+    console.log('bulk or single add user: ', userData)
+    return res.json(result)
+})
+
 router.get(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
-
-    const result = await userController.getUser({_id: userId})
+    let result = null
+    // const resp = await userController.saveUser(userData)
+    console.log('get user: ', userId)
 
     return res.json(result)
 })
 
-router.post(env.RootApiCoreEndpoint + 'users/create', async (req, res) => {
+router.post(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
+    const { userId } = req.params
     const userData = req.body
-    const resp = await userController.saveUser(userData)
+    let result = null
+    // const resp = await userController.saveUser(userData)
+    console.log('get user: ', userId)
+    console.log('update user: ', userData)
 
-    return res.json(resp)
+    return res.json(result)
 })
 
 router.put(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {

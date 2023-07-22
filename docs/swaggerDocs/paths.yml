@@ -9,3 +9,5 @@
 # paths inside /users
 /users:
   $ref: ./users/usersPaths.yml
+/users/{id}:
+  $ref: ./users/usersSpecificPaths.yml
