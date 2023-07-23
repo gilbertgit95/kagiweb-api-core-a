@@ -16,7 +16,9 @@ interface Env {
 
     RootLogsDir: string,
     RootWebappDir: string,
+    RootAssetsDir: string,
     RootWebappEndpoint: string
+    RootAssetsEndpoint: string
     RootApiCoreEndpoint: string,
     RootApiEndpoint: string,
 
@@ -42,7 +44,9 @@ class Config {
 
             RootLogsDir: process.env.ROOT_LOGS_DIR? process.env.ROOT_LOGS_DIR: '',
             RootWebappDir: process.env.ROOT_WEBAPP_DIR? process.env.ROOT_WEBAPP_DIR: '',
+            RootAssetsDir: process.env.ROOT_ASSETS_DIR? process.env.ROOT_ASSETS_DIR: '',
             RootWebappEndpoint: process.env.ROOT_WEBAPP_ENDPOINT? process.env.ROOT_WEBAPP_ENDPOINT: '',
+            RootAssetsEndpoint: process.env.ROOT_ASSETS_ENDPOINT? process.env.ROOT_ASSETS_ENDPOINT: '',
             RootApiCoreEndpoint: process.env.ROOT_API_CORE_ENDPOINT? process.env.ROOT_API_CORE_ENDPOINT: '',
             RootApiEndpoint: process.env.ROOT_API_ENDPOINT? process.env.ROOT_API_ENDPOINT: '',
 

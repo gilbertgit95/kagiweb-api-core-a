@@ -13,30 +13,29 @@ const env = Config.getEnv()
 const theme = new SwaggerTheme('v3') // Specifying the Swagger Version
 const swaggerOptions = {
     // explorer: true,
+    customSiteTitle: (appPackageInfo.name || '') + ' Documentation',
+    customfavIcon: env.RootAssetsEndpoint + 'logoV2/favicon.ico',
     customCss: theme.getBuffer('dark')
 }
-const customStyle = {
-    customSiteTitle: (appPackageInfo.name || '') + ' Documentation',
-    customfavIcon: '/assets/favicon.png',
-    customCss: `
-        .swagger-ui .topbar {
-            display: none;
-        }
 
-        .swagger-ui button.models-control:focus {
-            outline: none;
-        }
-        .swagger-ui .model-box-control:focus {
-            outline: none;
-        }
-        .swagger-ui .opblock-summary-control:focus {
-            outline: none;
-        }
-        .inner-object table.model {
-            margin-top: 15px;
-        }
-    `
-}
+swaggerOptions.customCss += `
+    .swagger-ui .topbar {
+        display: none;
+    }
+
+    .swagger-ui button.models-control:focus {
+        outline: none;
+    }
+    .swagger-ui .model-box-control:focus {
+        outline: none;
+    }
+    .swagger-ui .opblock-summary-control:focus {
+        outline: none;
+    }
+    .inner-object table.model {
+        margin-top: 15px;
+    }
+`
 
 // update some swagger data
 // author, title, description, version, license, port, servers
@@ -55,8 +54,7 @@ router.use(
     swaggerUI.serve,
     swaggerUI.setup(
         swaggerData,
-        swaggerOptions,
-        customStyle
+        swaggerOptions
     )
 )
 

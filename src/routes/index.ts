@@ -18,8 +18,9 @@ import userRoutes from './userRoutes'
 const router = express.Router()
 const env = Config.getEnv()
 
-// public routes for static files
-router.get(env.RootWebappEndpoint, express.static(env.RootWebappDir))
+// public routes for webapp files, api assets and api documentation
+router.use(env.RootWebappEndpoint, express.static(env.RootWebappDir))
+router.use(env.RootAssetsEndpoint, express.static(env.RootAssetsDir))
 router.use(documentationRoutes)
 
 // middlewares executed when accessing routes including auths
