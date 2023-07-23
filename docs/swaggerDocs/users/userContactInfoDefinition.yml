@@ -2,9 +2,21 @@ type: object
 properties:
   type:
     type: string
+    description: the type of contact information.
+    example: email, phone and more
   value:
     type: string
+    description: the actual value of the contact type.
+    example: gilbert.cuerbo@gmail.com
   countryCode:
     type: string
+    description: the country code
+    example: PH for PHilippines
   disabled:
-    type: string
+    type: boolean
+    description: the user wont be able to use this contact info if this is true
+example:
+  type: email
+  value: gilbert.cuerbo@gmail.com
+  countryCode: PH
+  disabled: false

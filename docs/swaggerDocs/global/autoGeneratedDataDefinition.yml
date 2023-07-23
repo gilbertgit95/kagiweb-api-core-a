@@ -1,0 +1,15 @@
+type: object
+properties:
+  _id:
+    type: string
+    format: uuid
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time
+example:
+  _id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+  createdAt: 2023-07-23T11:22:30.886Z
+  updatedAt: 2023-07-23T11:22:30.886Z

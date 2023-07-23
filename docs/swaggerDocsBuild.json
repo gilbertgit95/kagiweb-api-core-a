@@ -1,5 +1,5 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.3",
   "info": {
     "version": "1.0.0",
     "title": "API documenations using Swagger",
@@ -13,12 +13,11 @@
       "url": "https://github.com/gilbertgit95/kagiweb-api-core-a/blob/master/LICENSE"
     }
   },
-  "schemes": [
-    "http",
-    "https"
+  "servers": [
+    {
+      "url": "localhost:5000/api/core/v1/"
+    }
   ],
-  "host": "localhost:3000",
-  "basePath": "/api/v1/",
   "tags": [
     {
       "name": "Features",
@@ -50,7 +49,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Feature"
+                "$ref": "#/components/schemas/Feature"
               }
             }
           },
@@ -58,7 +57,7 @@
             "description": "Error in fetching Features",
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -80,7 +79,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Role"
+                "$ref": "#/components/schemas/Role"
               }
             }
           },
@@ -88,7 +87,7 @@
             "description": "Error in fetching Roles",
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -126,7 +125,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/components/schemas/User"
               }
             }
           },
@@ -134,7 +133,7 @@
             "description": "Error in fetching users",
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -154,7 +153,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/components/schemas/User"
               }
             }
           },
@@ -162,7 +161,7 @@
             "description": "Error in fetching users",
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -194,7 +193,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/components/schemas/User"
               }
             }
           },
@@ -202,7 +201,7 @@
             "description": "Error in fetching users",
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -220,109 +219,87 @@
           {
             "in": "path",
             "name": "id",
+            "description": "this the uuid of the user in the database.",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
-          },
-          {
-            "in": "body",
-            "name": "user",
-            "description": "user info tobe created",
-            "schema": {
-              "type": "object",
-              "required": [
-                "username",
-                "password"
-              ],
-              "properties": {
-                "username": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                },
-                "userInfos": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "createdAt": {
-                            "type": "date"
-                          },
-                          "updatedAt": {
-                            "type": "date"
-                          }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  },
+                  "userInfos": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AutoGeneratedData"
+                        },
+                        {
+                          "$ref": "#/components/schemas/UsersInfo"
                         }
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "key": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          },
-                          "type": {
-                            "type": "string"
-                          }
+                      ]
+                    }
+                  },
+                  "contactInfos": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AutoGeneratedData"
+                        },
+                        {
+                          "$ref": "#/components/schemas/UsersContactInfo"
                         }
-                      }
-                    ]
-                  }
-                },
-                "contactInfos": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/paths/~1users~1%7Bid%7D/post/parameters/1/schema/properties/userInfos/items/allOf/0"
-                      },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          },
-                          "countryCode": {
-                            "type": "string"
-                          },
-                          "disabled": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    ]
+                      ]
+                    }
                   }
                 }
               }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Users fetched successfully",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/User"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
               }
             }
           },
           "400": {
             "description": "Error in fetching users",
-            "schema": {
-              "type": "object",
-              "$ref": "#/definitions/Error"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
             }
           }
         }
@@ -342,7 +319,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/components/schemas/User"
               }
             }
           },
@@ -350,7 +327,7 @@
             "description": "Error in fetching users",
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
@@ -370,78 +347,150 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/components/schemas/User"
               }
             }
           },
           "400": {
             "description": "Error in fetching users",
             "schema": {
-              "type": "object",
-              "$ref": "#/definitions/Error"
+              "$ref": "#/components/schemas/Error"
             }
           }
         }
       }
     }
   },
-  "definitions": {
-    "Error": {
-      "type": "object",
-      "properties": {
-        "message": {
+  "components": {
+    "schemas": {
+      "AutoGeneratedData": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "createdAt": "2023-07-23T11:22:30.886Z",
+          "updatedAt": "2023-07-23T11:22:30.886Z"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Feature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "UsersInfo": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "key": "firstname",
+          "value": "Gilbert",
           "type": "string"
         }
-      }
-    },
-    "Feature": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
+      },
+      "UsersContactInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "the type of contact information.",
+            "example": "email, phone and more"
+          },
+          "value": {
+            "type": "string",
+            "description": "the actual value of the contact type.",
+            "example": "gilbert.cuerbo@gmail.com"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "the country code",
+            "example": "PH for PHilippines"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "the user wont be able to use this contact info if this is true"
+          }
         },
-        "name": {
-          "type": "string"
-        },
-        "mobile": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        }
-      }
-    },
-    "Role": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "mobile": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        }
-      }
-    },
-    "User": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "mobile": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
+        "example": {
+          "type": "email",
+          "value": "gilbert.cuerbo@gmail.com",
+          "countryCode": "PH",
+          "disabled": false
         }
       }
     }

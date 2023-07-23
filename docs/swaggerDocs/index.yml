@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.0.3
 info:
   version: 1.0.0
   title: API documenations using Swagger
@@ -9,12 +9,12 @@ info:
   license:
     name: MIT
     url: https://github.com/gilbertgit95/kagiweb-api-core-a/blob/master/LICENSE
-schemes: [http, https]
-host: localhost:3000
-basePath: /api/v1/
+servers:
+  - url: localhost:5000/api/core/v1/
 tags: 
   $ref: ./tags.yml
 paths:
   $ref: ./paths.yml
-definitions:
-  $ref: ./definitions.yml
+components:
+  schemas:
+    $ref: ./definitions.yml

@@ -62,6 +62,7 @@
     "node-cache": "^5.1.2",
     "prompts": "^2.4.2",
     "request-ip": "^3.3.0",
+    "swagger-themes": "^1.2.30",
     "swagger-ui-express": "^4.6.3",
     "ua-parser-js": "^1.0.35",
     "winston": "^3.10.0",

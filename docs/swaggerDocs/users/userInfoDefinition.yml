@@ -6,3 +6,7 @@ properties:
     type: string
   type:
     type: string
+example:
+  key: firstname
+  value: Gilbert
+  type: string
