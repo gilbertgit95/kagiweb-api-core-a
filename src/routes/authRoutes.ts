@@ -6,7 +6,7 @@ import Config from '../utilities/config'
 const env = Config.getEnv()
 const router = express.Router()
 
-router.post(env.RootApiCoreEndpoint + 'signin', async (req, res) => {
+router.post(env.RootApiEndpoint + 'signin', async (req, res) => {
     // get username and password from the request query
     console.log(req.body)
 
@@ -21,27 +21,27 @@ router.post(env.RootApiCoreEndpoint + 'signin', async (req, res) => {
     return res.json({})
 })
 
-router.post(env.RootApiCoreEndpoint + 'signinOTP', async (req, res) => {
+router.post(env.RootApiEndpoint + 'signinOTP', async (req, res) => {
 
     return res.json({})
 })
 
-router.post(env.RootApiCoreEndpoint + 'signout', async (req, res) => {
+router.post(env.RootApiEndpoint + 'signout', async (req, res) => {
 
     return res.json({})
 })
 
-router.post(env.RootApiCoreEndpoint + 'signup', async (req, res) => {
+router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
 
     return res.json({})
 })
 
-router.post(env.RootApiCoreEndpoint + 'forgotPassword', async (req, res) => {
+router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
 
     return res.json({})
 })
 
-router.post(env.RootApiCoreEndpoint + 'resetPassword', async (req, res) => {
+router.post(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
 
     return res.json({})
 })

@@ -9,7 +9,7 @@ import userController from '../controllers/userController'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiCoreEndpoint + 'users', async (req, res) => {
+router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     console.log('pageInfo: ',pageInfo)
@@ -19,7 +19,7 @@ router.get(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     return res.json(result)
 })
 
-router.post(env.RootApiCoreEndpoint + 'users', async (req, res) => {
+router.post(env.RootApiEndpoint + 'users', async (req, res) => {
     const userData = req.body
     let result = null
     // const resp = await userController.saveUser(userData)
@@ -27,7 +27,7 @@ router.post(env.RootApiCoreEndpoint + 'users', async (req, res) => {
     return res.json(result)
 })
 
-router.get(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
+router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     let result = null
     // const resp = await userController.saveUser(userData)
@@ -36,7 +36,7 @@ router.get(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
     return res.json(result)
 })
 
-router.post(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
+router.post(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     const userData = req.body
     let result = null
@@ -47,7 +47,7 @@ router.post(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
     return res.json(result)
 })
 
-router.put(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
+router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     const userData = req.body
     let resp = null
@@ -59,7 +59,7 @@ router.put(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
     return res.json(resp)
 })
 
-router.delete(env.RootApiCoreEndpoint + 'users/:userId', async (req, res) => {
+router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     let resp = null
 

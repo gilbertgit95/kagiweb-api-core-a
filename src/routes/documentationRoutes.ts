@@ -46,11 +46,11 @@ swaggerData.info.contact.name = appPackageInfo.author.name
 swaggerData.info.contact.email = appPackageInfo.author.email
 swaggerData.info.license.name = appPackageInfo.license
 swaggerData.servers = [
-    { url: `http://localhost:${ env.AppPort + env.RootApiCoreEndpoint }` }
+    { url: `http://localhost:${ env.AppPort + env.RootApiEndpoint }` }
 ]
 
 router.use(
-    env.RootApiCoreEndpoint + 'apiDoc',
+    env.RootApiEndpoint + 'apiDoc',
     swaggerUI.serve,
     swaggerUI.setup(
         swaggerData,

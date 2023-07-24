@@ -9,7 +9,7 @@ import featureController from '../controllers/featureController'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiCoreEndpoint + 'features', async (req, res) => {
+router.get(env.RootApiEndpoint + 'features', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     const result = await featureController.getFeaturesByPage({}, pageInfo)
@@ -17,7 +17,7 @@ router.get(env.RootApiCoreEndpoint + 'features', async (req, res) => {
     return res.json(result)
 })
 
-router.get(env.RootApiCoreEndpoint + 'features/:featureId', async (req, res) => {
+router.get(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
 
     const result = await featureController.getFeature({_id: featureId})
@@ -25,14 +25,14 @@ router.get(env.RootApiCoreEndpoint + 'features/:featureId', async (req, res) => 
     return res.json(result)
 })
 
-router.post(env.RootApiCoreEndpoint + 'features/create', async (req, res) => {
+router.post(env.RootApiEndpoint + 'features/create', async (req, res) => {
     const featureData = req.body
     const resp = await featureController.saveFeature(featureData)
 
     return res.json(resp)
 })
 
-router.put(env.RootApiCoreEndpoint + 'features/:featureId', async (req, res) => {
+router.put(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
     const featureData = req.body
     let resp = null
@@ -44,7 +44,7 @@ router.put(env.RootApiCoreEndpoint + 'features/:featureId', async (req, res) => 
     return res.json(resp)
 })
 
-router.delete(env.RootApiCoreEndpoint + 'features/:featureId', async (req, res) => {
+router.delete(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
     let resp = null
 
