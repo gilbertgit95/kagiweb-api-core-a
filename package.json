@@ -16,7 +16,7 @@
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "apidoc": "swagger-cli bundle docs/swaggerDocs/index.yml --outfile docs/swaggerDocsBuild.json",
-    "admin": "node build/src/adminCli/index.js"
+    "admin": "node build/src/adminCli/mainCli.js"
   },
   "author": {
     "name": "Gilbert D. Cuerbo",

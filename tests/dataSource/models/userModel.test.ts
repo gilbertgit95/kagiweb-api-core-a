@@ -96,7 +96,7 @@ describe('User Model Testing', () => {
         const user = new UserModel(userData)
         const createdUser = await user.save()
 
-        console.log(createdUser)
+        // console.log(createdUser)
         expect(createdUser).toBeDefined()
         expect(createdUser.username).toBe(user.username)
     })

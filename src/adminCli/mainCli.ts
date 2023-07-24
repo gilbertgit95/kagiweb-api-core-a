@@ -11,7 +11,6 @@ class AdminCli {
         console.log('+--------------------------+')
         console.log('|    Admin Cli started     |')
         console.log('+--------------------------+')
-        console.log('\n')
 
         // start connection to mongodb
         await mongoose.connect(env.MongoURI? env.MongoURI: '', {
@@ -27,7 +26,6 @@ class AdminCli {
             active: 'yes',
             inactive: 'no'
         })
-        console.log('\n')
 
         // select action to execute
         if (initPrompt.proceed) {
@@ -64,11 +62,9 @@ class AdminCli {
         // end connection to mongodb
         await mongoose.disconnect()
 
-        console.log('\n')
         console.log('+--------------------------+')
         console.log('|      Admin Cli ended     |')
         console.log('+--------------------------+')
-        console.log('\n')
     }
 }
 
