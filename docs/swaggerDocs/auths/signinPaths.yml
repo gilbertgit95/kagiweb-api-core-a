@@ -1,0 +1,34 @@
+post:
+    tags :
+      - Auths
+    security: []
+    summary: Get all the Roles
+    description: Get all the Roles
+    produces:
+      - application/json
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required:
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+                format: password
+    responses:
+      200:
+        description: Roles fetched successfully
+        schema:
+          type: array
+          items:
+            $ref: ./signinDefinition.yml
+      400:
+        description: Error in fetching Roles
+        schema:
+          type: object
+          $ref: ../global/errorDefinition.yml

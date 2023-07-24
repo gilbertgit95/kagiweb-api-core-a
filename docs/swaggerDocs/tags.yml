@@ -1,3 +1,4 @@
+- $ref: ./auths/authTag.yml
 - $ref: ./features/featuresTag.yml
 - $ref: ./roles/rolesTag.yml
 - $ref: ./users/usersTag.yml

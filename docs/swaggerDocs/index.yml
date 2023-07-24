@@ -15,6 +15,13 @@ tags:
   $ref: ./tags.yml
 paths:
   $ref: ./paths.yml
+security:
+  - BearerAuth: []
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     $ref: ./definitions.yml

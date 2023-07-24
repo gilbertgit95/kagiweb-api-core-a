@@ -1,3 +1,7 @@
+# authentications related paths
+/signin:
+  $ref: ./auths/signinPaths.yml
+
 # paths inside /features
 /features:
   $ref: ./features/featuresPaths.yml
