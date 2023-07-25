@@ -1,6 +1,7 @@
 import express from 'express'
 
 // import UserModel, { IUser } from '../dataSource/models/userModel'
+import ErrorHandler from '../utilities/errorHandler'
 import DataRequest from '../utilities/dataQuery'
 import Config from '../utilities/config'
 
@@ -12,52 +13,63 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    console.log('pageInfo: ',pageInfo)
+    const [result, statusCode] = await ErrorHandler.execute(async () => {
+        return await userController.getUsersByPage({}, pageInfo)
+    })
 
-    const result = await userController.getUsersByPage({}, pageInfo)
-
+    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
     return res.json(result)
 })
 
 router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
-    const result = null
-    // const resp = await userController.saveUser(userData)
-    console.log('get user: ', userId)
 
+    const [result, statusCode] = await ErrorHandler.execute(async () => {
+        // return = await userController.saveUser(userData)
+        console.log('get user: ', userId)
+    })
+
+    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
     return res.json(result)
 })
 
 router.post(env.RootApiEndpoint + 'users/create', async (req, res) => {
     const userData = req.body
-    const result = null
-    // const resp = await userController.saveUser(userData)
-    console.log('update user: ', userData)
 
+    const [result, statusCode] = await ErrorHandler.execute(async () => {
+        // return = await userController.saveUser(userData)
+        console.log('create user: ', userData)
+    })
+
+    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
     return res.json(result)
 })
 
 router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     const userData = req.body
-    let resp = null
 
-    if (userId && userData) {
-        resp = await userController.updateUser(userId, userData)
-    }
+    const [result, statusCode] = await ErrorHandler.execute(async () => {
+        if (userId && userData) {
+            return await userController.updateUser(userId, userData)
+        }
+    })
 
-    return res.json(resp)
+    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
+    return res.json(result)
 })
 
 router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
-    let resp = null
 
-    if (userId) {
-        resp = await userController.deleteUser(userId)
-    }
+    const [result, statusCode] = await ErrorHandler.execute(async () => {
+        if (userId) {
+            return await userController.deleteUser(userId)
+        }
+    })
 
-    return res.json(resp)
+    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
+    return res.json(result)
 })
 
 export default router
