@@ -194,75 +194,9 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get all the Users",
-        "description": "Get all the Users",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Users fetched successfully",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "400": {
-            "description": "Error in fetching users",
-            "schema": {
-              "type": "object",
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
       }
     },
-    "/users/{id}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Create a Users",
-        "description": "Create a User",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Users fetched successfully",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          },
-          "400": {
-            "description": "Error in fetching users",
-            "schema": {
-              "type": "object",
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
+    "/users/create": {
       "post": {
         "tags": [
           "Users"
@@ -271,18 +205,6 @@
         "description": "Create a User",
         "produces": [
           "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "description": "this the uuid of the user in the database.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
         ],
         "requestBody": {
           "content": {
@@ -360,6 +282,48 @@
             }
           }
         }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a Users",
+        "description": "Create a User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "this the uuid of the user in the database.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users fetched successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Error in fetching users",
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -369,6 +333,18 @@
         "description": "Create a User",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "this the uuid of the user in the database.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -397,6 +373,18 @@
         "description": "Create a User",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "this the uuid of the user in the database.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
         "responses": {
           "200": {

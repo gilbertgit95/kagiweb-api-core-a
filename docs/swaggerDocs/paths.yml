@@ -13,5 +13,7 @@
 # paths inside /users
 /users:
   $ref: ./users/usersPaths.yml
+/users/create:
+  $ref: ./users/usersCreatePaths.yml
 /users/{id}:
   $ref: ./users/usersSpecificPaths.yml

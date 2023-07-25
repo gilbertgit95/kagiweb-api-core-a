@@ -19,14 +19,6 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     return res.json(result)
 })
 
-router.post(env.RootApiEndpoint + 'users', async (req, res) => {
-    const userData = req.body
-    const result = null
-    // const resp = await userController.saveUser(userData)
-    console.log('bulk or single add user: ', userData)
-    return res.json(result)
-})
-
 router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     const result = null
@@ -36,12 +28,10 @@ router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     return res.json(result)
 })
 
-router.post(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
-    const { userId } = req.params
+router.post(env.RootApiEndpoint + 'users/create', async (req, res) => {
     const userData = req.body
     const result = null
     // const resp = await userController.saveUser(userData)
-    console.log('get user: ', userId)
     console.log('update user: ', userData)
 
     return res.json(result)
