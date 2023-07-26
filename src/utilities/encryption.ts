@@ -68,9 +68,9 @@ class Encryption {
      * @param { Object } data - object that will be encrypted into jwt
      * @returns { string } a JWT token
      */
-    public static  generateJWT(data: any):string {
+    public static  generateJWT<Type>(data: Type):string {
         return jwt.sign(
-            data, env.JwtSecretKey,
+            data as Buffer, env.JwtSecretKey,
             { expiresIn: env.JwtExp * 3600 }
         )
     }
@@ -81,11 +81,11 @@ class Encryption {
      * @param { string } token - jwt token
      * @returns { Promise<Object> } the encrypted object
      */
-    public static async verifyJWT(token: string):Promise<any> {
+    public static async verifyJWT<Type>(token: string):Promise<Type | null> {
         return new Promise((resolve) => {
             jwt.verify(token, env.JwtSecretKey, (err, decoded) => {
                 if (!err) {
-                    resolve(decoded)
+                    resolve(decoded as Type)
                 } else {
                     resolve(null)
                 }

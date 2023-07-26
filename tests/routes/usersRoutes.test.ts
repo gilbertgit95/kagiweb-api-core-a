@@ -96,8 +96,8 @@ describe('User Route Testing', () => {
     //     ]
     // }
 
-    test('POST - /api/v1/users', async () => {
-        const res = await request.post('/api/v1/users').send(userData)
+    test('POST - /api/v1/users/create', async () => {
+        const res = await request.post('/api/v1/users/create').send(userData)
         // const body = res.body
         // const username = body.username
 

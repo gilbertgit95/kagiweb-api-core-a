@@ -15,12 +15,12 @@ class FeatureController {
     }
 
     public async getFeature(query:any):Promise<IFeature|null> {
-        return await this.cachedData.getItem(query._id)
+        return await this.cachedData.getItem<IFeature>(query._id)
     }
 
     public async getAllFeatures():Promise<IFeature[]> {
 
-        const result = await this.cachedData.getAllItems()
+        const result = await this.cachedData.getAllItems<IFeature>()
 
         return result
     }
@@ -34,14 +34,14 @@ class FeatureController {
 
     public async saveFeature(doc:IFeature):Promise<IFeature | null> {
 
-        const result = await this.cachedData.createItem(doc)
+        const result = await this.cachedData.createItem<IFeature>(doc)
 
         return result
     }
 
     public async updateFeature(id:string, doc:any):Promise<IFeature | null> {
 
-        const result = await this.cachedData.updateItem(id, doc)
+        const result = await this.cachedData.updateItem<IFeature>(id, doc)
 
         return result
     }

@@ -1,4 +1,5 @@
-import NodeCache from 'node-cache'
+import NodeCache, {Options} from 'node-cache'
+import { Model } from 'mongoose'
 
 import DataRequest from '../utilities/dataQuery'
 
@@ -8,7 +9,7 @@ class DataCache {
     public cache:NodeCache
     public request:DataRequest
 
-    constructor(DataModel:any, cachingOptions:any = {}) {
+    constructor(DataModel: Model<any>, cachingOptions:Options) {
         this.cache = new NodeCache(cachingOptions)
         this.request = new DataRequest(DataModel)
     }
@@ -18,7 +19,7 @@ class DataCache {
      * @param data - atleast field _id existed on this parameter
      * @return {Promise<object|null>} the document with the id in the parameters
      */
-    public async getItem(id:string):Promise<any|null> {
+    public async getItem<Type>(id:string):Promise<Type|null> {
         let item = null
 
         // check if the user existed on the cache
@@ -43,7 +44,7 @@ class DataCache {
      * or limit number of data, for example: countries, roles, features and more
      * @returns {Array<object>} list of all documents fetched
      */
-    public async getAllItems():Promise<any[]> {
+    public async getAllItems<Type>():Promise<Type[]> {
         let result = []
 
         if (this.cache.has(allItemskey)) {
@@ -66,7 +67,7 @@ class DataCache {
      * @param {object} doc - is a document object tobe created
      * @returns {Promise<object | null>} the object created or null if it was not able to create the document
      */
-    public async createItem(doc:any):Promise<any | null> {
+    public async createItem<Type>(doc:Type):Promise<Type | null> {
         let result = null
 
         if (doc) {
@@ -85,7 +86,7 @@ class DataCache {
      * @param {object} doc - fields tobe updated
      * @returns {Promise<object|null>} the updated document
      */
-    public async updateItem(id:string, doc:any):Promise<any | null> {
+    public async updateItem<Type>(id:string, doc:Type):Promise<Type | null> {
         let result = null
 
         if (id) {

@@ -31,7 +31,7 @@ class SystemInfo {
 
             // match interface name
             if (netKey === netInterface) {
-                netvalue?.forEach((item:any) => {
+                netvalue?.forEach((item) => {
                     // match family type or ip version
                     if (item.family === familyType) address = item.address
                 })
