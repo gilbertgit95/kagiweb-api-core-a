@@ -2,7 +2,7 @@ import express from 'express'
 
 // import UserModel, { IUser } from '../dataSource/models/userModel'
 import ErrorHandler from '../utilities/errorHandler'
-import DataRequest from '../utilities/dataQuery'
+import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 
 import userController from '../controllers/userController'
@@ -13,12 +13,11 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const [result, statusCode] = await ErrorHandler.execute(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IListOutput>(async () => {
         return await userController.getUsersByPage({}, pageInfo)
     })
 
-    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
@@ -29,8 +28,7 @@ router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
         console.log('get user: ', userId)
     })
 
-    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'users/create', async (req, res) => {
@@ -41,8 +39,7 @@ router.post(env.RootApiEndpoint + 'users/create', async (req, res) => {
         console.log('create user: ', userData)
     })
 
-    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
@@ -55,8 +52,7 @@ router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
         }
     })
 
-    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
@@ -68,8 +64,7 @@ router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
         }
     })
 
-    if (typeof statusCode === 'number') return res.status(statusCode).send(result)
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 export default router

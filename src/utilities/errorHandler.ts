@@ -3,12 +3,19 @@ interface IError {
 }
 
 class ErrorHandler {
-    public static async execute(process:any): Promise<[any, any]> {
+    public static async execute<Type>(process: () => Promise<Type>): Promise<[Type | IError, number]> {
+        let result:Type | IError
+        let statusCode: number
+
         try {
-            return [process(), null]
+            result = await process()
+            statusCode = 200
         } catch (err) {
-            return [{ message: 'Error while executing procedure.'}, 400]
+            result = { message: 'Error while executing procedure.'}
+            statusCode = 400
         }
+
+        return [result, statusCode]
     }
 }
 
