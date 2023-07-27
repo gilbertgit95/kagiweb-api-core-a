@@ -9,7 +9,7 @@ class DataCache {
     public cache:NodeCache
     public request:DataRequest
 
-    constructor(DataModel: Model<any>, cachingOptions:Options) {
+    constructor(DataModel: Model<any>, cachingOptions:Options) { // eslint-disable-line @typescript-eslint/no-explicit-any
         this.cache = new NodeCache(cachingOptions)
         this.request = new DataRequest(DataModel)
     }

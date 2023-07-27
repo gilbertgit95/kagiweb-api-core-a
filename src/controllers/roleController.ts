@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import RoleModel, { IRole } from '../dataSource/models/roleModel'
+import RoleModel, { IRole, IRoleQuery } from '../dataSource/models/roleModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -14,18 +14,19 @@ class RoleController {
         this.request = new DataRequest(RoleModel)
     }
 
-    public async getRole(query:any):Promise<IRole|null> {
+    public async getRole(query:IRoleQuery):Promise<IRole|null> {
+        if (!query._id) return null
         return await this.cachedData.getItem(query._id)
     }
 
     public async getAllRoles():Promise<IRole[]> {
 
-        const result = await this.cachedData.getAllItems()
+        const result = await this.cachedData.getAllItems<IRole>()
 
         return result
     }
 
-    public async getRolesByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getRolesByPage(query:IRoleQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
         const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 
@@ -39,9 +40,9 @@ class RoleController {
         return result
     }
 
-    public async updateRole(id:string, doc:any):Promise<IRole | null> {
+    public async updateRole(id:string, doc:IRole):Promise<IRole | null> {
 
-        const result = await this.cachedData.updateItem(id, doc)
+        const result = await this.cachedData.updateItem<IRole>(id, doc)
 
         return result
     }

@@ -6,6 +6,15 @@ import { randomUUID } from 'crypto'
 // - User Admin - has access to some Adminitrative features
 // - Normal User - has access to some features
 
+// queries
+interface IRoleQuery {
+    _id?: string
+}
+
+interface IRoleUpdate {
+    name?: string
+}
+
 // create interfaces
 interface IFeatureRef {
     _id?: string,
@@ -42,6 +51,8 @@ const RoleSchema = new Schema<IRole>({
 const RoleModel = model<IRole>('Role', RoleSchema)
 
 export {
+    IRoleQuery,
+    IRoleUpdate,
     IFeatureRef,
     IRole
 }

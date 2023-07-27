@@ -7,6 +7,15 @@ import { randomUUID } from 'crypto'
 // - ui-module
 type TFeatureType = 'api-route' | 'ui-route' | 'ui-module'
 
+// queries
+interface IFeatureQuery {
+    _id?: string
+}
+
+interface IFeatureUpdate {
+    name?: string
+}
+
 // create interfaces
 interface IFeature {
     _id?: string,
@@ -31,6 +40,8 @@ const FeatureSchema = new Schema<IFeature>({
 const FeatureModel = model<IFeature>('Feature', FeatureSchema)
 
 export {
+    IFeatureQuery,
+    IFeatureUpdate,
     TFeatureType,
     IFeature
 }

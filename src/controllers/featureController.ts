@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
+import FeatureModel, { IFeature, IFeatureQuery } from '../dataSource/models/featureModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -14,7 +14,8 @@ class FeatureController {
         this.request = new DataRequest(FeatureModel)
     }
 
-    public async getFeature(query:any):Promise<IFeature|null> {
+    public async getFeature(query:IFeatureQuery):Promise<IFeature|null> {
+        if (!query._id) return null
         return await this.cachedData.getItem<IFeature>(query._id)
     }
 
@@ -25,7 +26,7 @@ class FeatureController {
         return result
     }
 
-    public async getFeaturesByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getFeaturesByPage(query:IFeatureQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
         const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 
@@ -39,7 +40,7 @@ class FeatureController {
         return result
     }
 
-    public async updateFeature(id:string, doc:any):Promise<IFeature | null> {
+    public async updateFeature(id:string, doc:IFeature):Promise<IFeature | null> {
 
         const result = await this.cachedData.updateItem<IFeature>(id, doc)
 

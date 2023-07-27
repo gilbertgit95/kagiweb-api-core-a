@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser } from '../dataSource/models/userModel'
+import UserModel, { IUser, IUserQuery } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -14,18 +14,19 @@ class UserController {
         this.request = new DataRequest(UserModel)
     }
 
-    public async getUser(query:any):Promise<IUser|null> {
+    public async getUser(query:IUserQuery):Promise<IUser|null> {
+        if (!query._id) return null
         return await this.cachedData.getItem(query._id)
     }
 
     public async getAllUsers():Promise<IUser[]> {
 
-        const result = await this.cachedData.getAllItems()
+        const result = await this.cachedData.getAllItems<IUser>()
 
         return result
     }
 
-    public async getUsersByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getUsersByPage(query:IUserQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
 
         const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
 
@@ -39,9 +40,9 @@ class UserController {
         return result
     }
 
-    public async updateUser(id:string, doc:any):Promise<IUser | null> {
+    public async updateUser(id:string, doc:IUser):Promise<IUser | null> {
 
-        const result = await this.cachedData.updateItem(id, doc)
+        const result = await this.cachedData.updateItem<IUser>(id, doc)
 
         return result
     }

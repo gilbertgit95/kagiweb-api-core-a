@@ -3,7 +3,7 @@ import Config from './config'
 const env = Config.getEnv()
 
 interface IListOutput {
-    items: any[],
+    items: any[], // eslint-disable-line @typescript-eslint/no-explicit-any
     totalItems: number,
     page: number,
     pageSize: number,
@@ -17,25 +17,25 @@ interface IPgeInfo {
 }
 
 class DataQuery {
-    private DataModel:any
+    private DataModel:any // eslint-disable-line @typescript-eslint/no-explicit-any
 
-    constructor(DataModel:any) {
+    constructor(DataModel:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         this.DataModel = DataModel
     }
 
-    public static getPageInfoQuery(queries:any):IPgeInfo {
+    public static getPageInfoQuery(queries:any):IPgeInfo { // eslint-disable-line @typescript-eslint/no-explicit-any
         return {
             page: queries.page? parseInt(queries.page, 10): 1,
             pageSize: queries.pageSize? parseInt(queries.pageSize, 10): env.DafaultPagination
         }
     }
 
-    public async getItem(query:any = {}):Promise<any> {
+    public async getItem(query:any = {}):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const item = await this.DataModel.findOne(query)
         return item
     }
 
-    public async getItems(query:any = {}, project:any = {}, options:any = {}):Promise<IListOutput> {
+    public async getItems(query:any = {}, project:any = {}, options:any = {}):Promise<IListOutput> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const output:IListOutput = {
             items: [],
             totalItems: 0,
@@ -51,7 +51,7 @@ class DataQuery {
         return output
     }
 
-    public async getItemsByPage(query:any, project:any, options:any, pageOptions:IPgeInfo):Promise<IListOutput> {
+    public async getItemsByPage(query:any, project:any, options:any, pageOptions:IPgeInfo):Promise<IListOutput> { // eslint-disable-line @typescript-eslint/no-explicit-any
         options.skip = (pageOptions.page - 1) * pageOptions.pageSize
         options.limit = pageOptions.pageSize
 
@@ -67,17 +67,17 @@ class DataQuery {
         return output
     }
 
-    public async createItem(doc:any):Promise<any> {
+    public async createItem(doc:any):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const resp = await this.DataModel.create(doc)
         return resp
     }
 
-    public async updateItem(query:any, doc:any):Promise<any> {
+    public async updateItem(query:any, doc:any):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const resp = await this.DataModel.findOneAndUpdate(query, doc)
         return resp
     }
 
-    public async deleteItem(query:any):Promise<any> {
+    public async deleteItem(query:any):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const resp = await this.DataModel.deleteOne(query)
         return resp
     }

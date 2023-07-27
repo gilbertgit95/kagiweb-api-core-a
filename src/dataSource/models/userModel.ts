@@ -7,6 +7,15 @@ type TPasswordType = 'current' | 'old'
 type TLimitedTransactionType = 'otp-signin' | 'pass-reset' | ''
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
+// queries
+interface IUserQuery {
+    _id?: string
+}
+
+interface IUserUpdate {
+    name?: string
+}
+
 // create interfaces
 interface IRoleRef {
     _id?: string,
@@ -187,6 +196,8 @@ const UserSchema = new Schema<IUser>({
 const UserModel = model<IUser>('User', UserSchema)
 
 export {
+    IUserQuery,
+    IUserUpdate,
     TContactInfoType,
     TPasswordType,
     TLimitedTransactionType,
