@@ -1,9 +1,9 @@
-import { Response, NextFunction } from 'express'
-import { AppRequest } from '../utilities/globalTypes'
+// import { Response, NextFunction } from 'express'
+// import { AppRequest } from '../utilities/globalTypes'
 import UAParser from 'ua-parser-js'
 
 class ClientInfoProvider {
-    public async middleware(req:AppRequest, res:Response, next:NextFunction) {
+    public async middleware(req:any, res:any, next:any) {
         const userAgentString = req.headers['user-agent']
         const userAgent = new UAParser(userAgentString)
 
