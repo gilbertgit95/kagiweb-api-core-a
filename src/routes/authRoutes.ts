@@ -2,6 +2,7 @@ import express from 'express'
 
 // import UserModel, { IUser } from '../dataSource/models/userModel'
 import Config from '../utilities/config'
+import ErrorHandler from '../utilities/errorHandler'
 
 const env = Config.getEnv()
 const router = express.Router()
@@ -18,7 +19,11 @@ router.post(env.RootApiEndpoint + 'signin', async (req, res) => {
 
     // call signin controller with the above parameters
 
-    return res.json({})
+    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
+        return null
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'signinOTP', async (req, res) => {

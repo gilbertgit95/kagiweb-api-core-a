@@ -1,10 +1,12 @@
 import express from 'express'
 
 // import RoleModel, { IRole } from '../dataSource/models/roleModel'
-import DataRequest  from '../utilities/dataQuery'
+import ErrorHandler from '../utilities/errorHandler'
+import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 import Config from '../utilities/config'
 
 import roleController from '../controllers/roleController'
+import { IRole } from '../dataSource/models/roleModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -12,47 +14,60 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'roles', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await roleController.getRolesByPage({}, pageInfo)
+    const [result, statusCode] = await ErrorHandler.execute<IListOutput>(async () => {
+        return await roleController.getRolesByPage({}, pageInfo)
+    })
 
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const { roleId } = req.params
 
-    const result = await roleController.getRole({_id: roleId})
+    const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
+        // return = await roleController.getRole({_id: roleId})
+        return null
+    })
 
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'roles/create', async (req, res) => {
     const roleData = req.body
-    const resp = await roleController.saveRole(roleData)
 
-    return res.json(resp)
+    const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
+        // return = await await roleController.saveRole(roleData)
+        return null
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const { roleId } = req.params
     const roleData = req.body
-    let resp = null
 
-    if (roleId && roleData) {
-        resp = await roleController.updateRole(roleId, roleData)
-    }
+    const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
+        if (roleId && roleData) {
+            return await roleController.updateRole(roleId, roleData)
+        }
+        return null
+    })
 
-    return res.json(resp)
+    return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const { roleId } = req.params
-    let resp = null
 
-    if (roleId) {
-        resp = await roleController.deleteRole(roleId)
-    }
+    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
+        if (roleId) {
+            return await roleController.deleteRole(roleId)
+        }
+        return null
+    })
 
-    return res.json(resp)
+    return res.status(statusCode).send(result)
 })
 
 export default router

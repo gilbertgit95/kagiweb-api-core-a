@@ -6,6 +6,7 @@ import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 
 import userController from '../controllers/userController'
+import { IUser } from '../dataSource/models/userModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -23,9 +24,10 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
 router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
         // return = await userController.saveUser(userData)
         console.log('get user: ', userId)
+        return null
     })
 
     return res.status(statusCode).send(result)
@@ -34,9 +36,10 @@ router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
 router.post(env.RootApiEndpoint + 'users/create', async (req, res) => {
     const userData = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
         // return = await userController.saveUser(userData)
         console.log('create user: ', userData)
+        return null
     })
 
     return res.status(statusCode).send(result)
@@ -46,10 +49,11 @@ router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
     const userData = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
         if (userId && userData) {
             return await userController.updateUser(userId, userData)
         }
+        return null
     })
 
     return res.status(statusCode).send(result)
@@ -58,10 +62,11 @@ router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
 router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
         if (userId) {
             return await userController.deleteUser(userId)
         }
+        return null
     })
 
     return res.status(statusCode).send(result)

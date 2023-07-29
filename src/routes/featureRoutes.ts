@@ -1,10 +1,12 @@
 import express from 'express'
 
 // import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
-import DataRequest from '../utilities/dataQuery'
+import ErrorHandler from '../utilities/errorHandler'
+import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 
 import featureController from '../controllers/featureController'
+import { IFeature } from '../dataSource/models/featureModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -12,47 +14,61 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'features', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const result = await featureController.getFeaturesByPage({}, pageInfo)
+    const [result, statusCode] = await ErrorHandler.execute<IListOutput>(async () => {
+        return await featureController.getFeaturesByPage({}, pageInfo)
+    })
 
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
 
-    const result = await featureController.getFeature({_id: featureId})
+    const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
+        // return = await featureController.getFeature({_id: featureId})
+        return null
+    })
 
-    return res.json(result)
+    return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'features/create', async (req, res) => {
     const featureData = req.body
-    const resp = await featureController.saveFeature(featureData)
 
-    return res.json(resp)
+    const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
+        // return = await featureController.saveFeature(featureData)
+
+        return null
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
     const featureData = req.body
-    let resp = null
 
-    if (featureId && featureData) {
-        resp = await featureController.updateFeature(featureId, featureData)
-    }
+    const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
+        if (featureId && featureData) {
+           return await featureController.updateFeature(featureId, featureData)
+        }
+        return null
+    })
 
-    return res.json(resp)
+    return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
-    let resp = null
 
-    if (featureId) {
-        resp = await featureController.deleteFeature(featureId)
-    }
+    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
+        if (featureId) {
+            return await featureController.deleteFeature(featureId)
+        }
+        return null
+    })
 
-    return res.json(resp)
+    return res.status(statusCode).send(result)
 })
 
 export default router

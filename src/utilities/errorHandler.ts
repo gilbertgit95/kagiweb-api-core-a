@@ -3,8 +3,8 @@ interface IError {
 }
 
 class ErrorHandler {
-    public static async execute<Type>(process: () => Promise<Type>): Promise<[Type | IError, number]> {
-        let result:Type | IError
+    public static async execute<Type>(process: () => Promise<Type | null>): Promise<[Type | IError | null, number]> {
+        let result:Type | IError | null
         let statusCode: number
 
         try {
