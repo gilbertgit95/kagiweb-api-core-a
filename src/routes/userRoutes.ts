@@ -7,6 +7,7 @@ import Config from '../utilities/config'
 
 import userController from '../controllers/userController'
 import { IUser } from '../dataSource/models/userModel'
+import { IRole } from '../dataSource/models/roleModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -14,7 +15,7 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const [result, statusCode] = await ErrorHandler.execute<IListOutput>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IListOutput<IUser>>(async () => {
         return await userController.getUsersByPage({}, pageInfo)
     })
 

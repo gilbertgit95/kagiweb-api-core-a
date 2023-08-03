@@ -14,7 +14,7 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'features', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const [result, statusCode] = await ErrorHandler.execute<IListOutput>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IListOutput<IFeature>>(async () => {
         return await featureController.getFeaturesByPage({}, pageInfo)
     })
 
