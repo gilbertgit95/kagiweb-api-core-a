@@ -3,7 +3,7 @@
 import UAParser from 'ua-parser-js'
 
 class ClientInfoProvider {
-    public async middleware(req:any, res:any, next:any) {
+    public async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         const userAgentString = req.headers['user-agent']
         const userAgent = new UAParser(userAgentString)
 

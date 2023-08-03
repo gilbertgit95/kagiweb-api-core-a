@@ -26,9 +26,9 @@ class FeatureController {
         return result
     }
 
-    public async getFeaturesByPage(query:IFeatureQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getFeaturesByPage(query:IFeatureQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IFeature>> {
 
-        const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
+        const result = await this.request.getItemsByPage<IFeature>(query, {}, {}, pageInfo)
 
         return result
     }

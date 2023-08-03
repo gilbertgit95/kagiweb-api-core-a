@@ -26,9 +26,9 @@ class RoleController {
         return result
     }
 
-    public async getRolesByPage(query:IRoleQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getRolesByPage(query:IRoleQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IRole>> {
 
-        const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
+        const result = await this.request.getItemsByPage<IRole>(query, {}, {}, pageInfo)
 
         return result
     }

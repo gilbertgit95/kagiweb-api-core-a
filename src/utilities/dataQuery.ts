@@ -2,8 +2,8 @@ import Config from './config'
 
 const env = Config.getEnv()
 
-interface IListOutput {
-    items: any[], // eslint-disable-line @typescript-eslint/no-explicit-any
+interface IListOutput<Type> {
+    items: Type[], // eslint-disable-line @typescript-eslint/no-explicit-any
     totalItems: number,
     page: number,
     pageSize: number,
@@ -30,13 +30,13 @@ class DataQuery {
         }
     }
 
-    public async getItem(query:any = {}):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public async getItem<Type>(query:any = {}):Promise<Type> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const item = await this.DataModel.findOne(query)
         return item
     }
 
-    public async getItems(query:any = {}, project:any = {}, options:any = {}):Promise<IListOutput> { // eslint-disable-line @typescript-eslint/no-explicit-any
-        const output:IListOutput = {
+    public async getItems<Type>(query:any = {}, project:any = {}, options:any = {}):Promise<IListOutput<Type>> { // eslint-disable-line @typescript-eslint/no-explicit-any
+        const output:IListOutput<Type> = {
             items: [],
             totalItems: 0,
             page: 0,
@@ -51,11 +51,11 @@ class DataQuery {
         return output
     }
 
-    public async getItemsByPage(query:any, project:any, options:any, pageOptions:IPgeInfo):Promise<IListOutput> { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public async getItemsByPage<Type>(query:any, project:any, options:any, pageOptions:IPgeInfo):Promise<IListOutput<Type>> { // eslint-disable-line @typescript-eslint/no-explicit-any
         options.skip = (pageOptions.page - 1) * pageOptions.pageSize
         options.limit = pageOptions.pageSize
 
-        const output = await this.getItems(query, project, options)
+        const output = await this.getItems<Type>(query, project, options)
 
         // output.items is already populated correctly
         // output.totalItems is already populated correctly
@@ -67,12 +67,12 @@ class DataQuery {
         return output
     }
 
-    public async createItem(doc:any):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public async createItem<Type>(doc:Type):Promise<Type> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const resp = await this.DataModel.create(doc)
         return resp
     }
 
-    public async updateItem(query:any, doc:any):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public async updateItem<Type>(query:any, doc:any):Promise<Type> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const resp = await this.DataModel.findOneAndUpdate(query, doc)
         return resp
     }

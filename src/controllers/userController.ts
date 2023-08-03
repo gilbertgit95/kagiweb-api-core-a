@@ -26,9 +26,9 @@ class UserController {
         return result
     }
 
-    public async getUsersByPage(query:IUserQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput> {
+    public async getUsersByPage(query:IUserQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IUser>> {
 
-        const result = await this.request.getItemsByPage(query, {}, {}, pageInfo)
+        const result = await this.request.getItemsByPage<IUser>(query, {}, {}, pageInfo)
 
         return result
     }

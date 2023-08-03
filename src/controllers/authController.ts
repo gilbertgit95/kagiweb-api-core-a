@@ -24,9 +24,9 @@ class AuthController {
         // then return user info and the generated jwt
 
         const userReq = new DataRequest(UserModel)
-        const result = await userReq.getItem()
+        const result = await userReq.getItem<IUser>()
 
-        return result
+        return null
     }
 
     // userId:string, code:string
@@ -39,9 +39,9 @@ class AuthController {
 
         // then return user info and the generated jwt
         const userReq = new DataRequest(UserModel)
-        const result = await userReq.getItem()
+        const result = await userReq.getItem<IUser>()
 
-        return result
+        return null
     }
 
     // jwt:string
@@ -58,33 +58,33 @@ class AuthController {
 
         // then return boolean, true if successfully signed out
         const userReq = new DataRequest(UserModel)
-        const result = await userReq.getItem()
+        const result = await userReq.getItem<IUser>()
 
-        return result
+        return null
     }
 
     public async signup():Promise<IUser | null> {
         const userReq = new DataRequest(UserModel)
 
-        const result = await userReq.getItem()
+        const result = await userReq.getItem<IUser>()
 
-        return result
+        return null
     }
 
     public async forgotPassword():Promise<IUser | null> {
         const userReq = new DataRequest(UserModel)
 
-        const result = await userReq.getItem()
+        const result = await userReq.getItem<IUser>()
 
-        return result
+        return null
     }
 
     public async resetPassword():Promise<IUser | null> {
         const userReq = new DataRequest(UserModel)
 
-        const result = await userReq.getItem()
+        const result = await userReq.getItem<IUser>()
 
-        return result
+        return null
     }
 }
 
