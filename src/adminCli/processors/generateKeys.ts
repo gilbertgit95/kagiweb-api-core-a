@@ -1,8 +1,5 @@
-// import clipboard from 'clipboardy'
-// const clipboard = (...args) => import('clipboardy').then(({default: fetch}) => fetch(...args))
-import copy from 'copy-to-clipboard'
 import prompts from 'prompts'
-// import prompts from 'prompts'
+
 import Encryption from '../../utilities/encryption'
 
 class GenerateKey {
@@ -11,7 +8,35 @@ class GenerateKey {
     public desc = 'This will generate random keys'
 
     public async execute():Promise<void> {
-        console.log('select options to execute')
+        const initPrompt = await prompts({
+            type: 'select',
+            name: 'action',
+            message: 'Select sub process you want to execute',
+            choices: [
+                {
+                    title: 'Generate random Key',
+                    value: 'genRandKey',
+                    description: 'This will generate a random key'
+                },
+                {
+                    title: 'Encrypt password',
+                    value: 'hashPass',
+                    description: 'This will generate hash out of a readable password'
+                }
+            ]
+        })
+
+        // select action to execute
+        switch(initPrompt.action) {
+            case 'genRandKey':
+                this.randomKey()
+                break
+            case 'hashPass':
+                this.hashPassword()
+                break
+            default:
+                console.log('No option has been selected')
+        }
     }
 
     /**
@@ -21,7 +46,6 @@ class GenerateKey {
     public async randomKey():Promise<void> {
         console.log('[Generate Random Key]')
         const key = Encryption.generateRandKey()
-        await copy(key)
         console.log(` - Key has been written to clipboard: ${ key }`)
         console.log(` - You can just paste it anyware you want.`)
     }
@@ -36,10 +60,7 @@ class GenerateKey {
         // then hash the text
         const hash = await Encryption.hashText(input.value)
 
-        // then write hash to console and clipboard
-        await copy(hash)
-        console.log(` - Hashed text has been written to clipboard: ${ hash }`)
-        console.log(` - You can just paste it anyware you want.`)
+        console.log(` - Hashed text is : ${ hash }`)
     }
 
 }

@@ -3,15 +3,43 @@ import prompts from 'prompts'
 
 import Config from '../utilities/config'
 import generateKeys from './processors/generateKeys'
+import resetApp from './processors/resetAppData'
+import seeder from './processors/seedAppData'
 
 const env = Config.getEnv()
 
-class AdminCli {
+const logo = `
+    oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    ooooooooooo/  /oo.*  .*ooooooooooooooooooooooooooooooooooooooooooooooooo
+    oooooooooo/  /o*  .ooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    ooooooooo/     .*oo/    |/       |/.  _/|o/   |o/  /  ____/  __   /ooooo
+    oooooooo/    *oooo/  o  |  /oo|__|/  /  |/    |/  /  |ooo/. /oo  /oooooo
+    ooooooo/  .o.  *o/  _   | /oo+---+  /|  |  |  |  /|   __/  __  ooooooooo
+    oooooo/  /ooo*.  *./o|  | |oo|  |  /o|  . /|  . /o|  |o/__/ooo  /ooooooo
+    ooooo/__/oooooo*.__*o|__|.______|__/o|___/o|___/oo|_______/____/oooooooo
+    oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+`
 
-    public static async execute():Promise<void> {
-        console.log('+--------------------------+')
-        console.log('|    Admin Cli started     |')
-        console.log('+--------------------------+')
+interface IProcessor {
+    label: string,
+    value: string,
+    desc: string,
+    execute: () => void
+}
+
+class AdminCli {
+    private processors:IProcessor[] = [
+        generateKeys,
+        resetApp,
+        seeder
+    ]
+
+    private getSelectedProc(val:string):IProcessor {
+        return this.processors.filter(item => item.value === val)[0]
+    }
+
+    async execute():Promise<void> {
+        console.log(logo)
 
         // start connection to mongodb
         await mongoose.connect(env.MongoURI? env.MongoURI: '', {
@@ -31,44 +59,27 @@ class AdminCli {
         // select action to execute
         if (initPrompt.proceed) {
 
-            const actionToExecute = await prompts(
-                {
-                    type: 'select',
-                    name: 'action',
-                    message: 'Select action to execute: ',
-                    choices: [
-                        { title: 'Reset Application Data', value: 'reset' },
-                        { title: 'Seed Application Data', value: 'seed' },
-                        { title: 'Exit', value: 'exit' }
-                    ],
-                }
-            )
+            const actionToExecute = await prompts({
+                type: 'select',
+                name: 'action',
+                message: 'Select action to execute: ',
+                choices: this.processors.map(item => ({
+                    title: item.label,
+                    value: item.value,
+                    description: item.desc
+                })),
+            })
 
             // execution
-            switch(actionToExecute.action) {
-                case 'reset':
-                    console.log('execute reset')
-                    break
-                case 'seed':
-                    console.log('execute seeder')
-                    break
-                case 'exit':
-                    console.log('exiting app')
-                    break
-                default:
-                    console.log('')
+            if (actionToExecute.action) {
+                let proc = this.getSelectedProc(actionToExecute.action)
+                await proc.execute()
             }
-
-            await generateKeys.execute()
         }
 
         // end connection to mongodb
         await mongoose.disconnect()
-
-        console.log('+--------------------------+')
-        console.log('|      Admin Cli ended     |')
-        console.log('+--------------------------+')
     }
 }
 
-export default AdminCli.execute()
+(new AdminCli()).execute()
