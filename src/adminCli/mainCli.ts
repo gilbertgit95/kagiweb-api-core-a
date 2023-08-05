@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import prompts from 'prompts'
 
 import Config from '../utilities/config'
+import generateKeys from './processors/generateKeys'
 
 const env = Config.getEnv()
 
@@ -57,6 +58,8 @@ class AdminCli {
                 default:
                     console.log('')
             }
+
+            await generateKeys.execute()
         }
 
         // end connection to mongodb
