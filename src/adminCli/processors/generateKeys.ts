@@ -1,4 +1,6 @@
-import clipboard from 'clipboardy'
+// import clipboard from 'clipboardy'
+// const clipboard = (...args) => import('clipboardy').then(({default: fetch}) => fetch(...args))
+import copy from 'copy-to-clipboard'
 import prompts from 'prompts'
 // import prompts from 'prompts'
 import Encryption from '../../utilities/encryption'
@@ -19,7 +21,7 @@ class GenerateKey {
     public async randomKey():Promise<void> {
         console.log('[Generate Random Key]')
         const key = Encryption.generateRandKey()
-        await clipboard.write(key)
+        await copy(key)
         console.log(` - Key has been written to clipboard: ${ key }`)
         console.log(` - You can just paste it anyware you want.`)
     }
@@ -35,7 +37,7 @@ class GenerateKey {
         const hash = await Encryption.hashText(input.value)
 
         // then write hash to console and clipboard
-        await clipboard.write(hash)
+        await copy(hash)
         console.log(` - Hashed text has been written to clipboard: ${ hash }`)
         console.log(` - You can just paste it anyware you want.`)
     }
