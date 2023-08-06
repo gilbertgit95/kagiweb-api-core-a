@@ -1,30 +1,7 @@
-import supertest from 'supertest'
+import { IUser } from '../models/userModel'
 
-import {
-    connectDB,
-    disconnectDB,
-    clearDatabase
-} from '../dataSource/dataSourceConn'
-import UserModel, { IUser } from '../../src/dataSource/models/userModel'
-import app from '../../src/app'
-
-const request = supertest(app)
-
-describe('User Route Testing', () => {
-    beforeAll(async () => {
-        await connectDB();
-    })
-
-    afterAll(async () => {
-        await UserModel.collection.drop();
-        await disconnectDB()
-    })
-
-    afterEach(async () => {
-        await clearDatabase()
-    })
-
-    const userData:IUser = {
+const users:IUser[] = [
+    {
         _id: '37410e75-1760-4bb6-85e0-d0a138d374bc',
         username: 'master',
         passwords: [{
@@ -73,13 +50,6 @@ describe('User Route Testing', () => {
             }
         ]
     }
+]
 
-    test('POST - /api/v1/users/create', async () => {
-        const res = await request.post('/api/v1/users/create').send(userData)
-        // const body = res.body
-        // const username = body.username
-
-        expect(res.statusCode).toBe(200)
-        // expect(username).toBe(userData.username)
-    })
-})
+export default users

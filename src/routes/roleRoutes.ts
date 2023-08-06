@@ -4,6 +4,7 @@ import express from 'express'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 import Config from '../utilities/config'
+import routerIdentity from '../utilities/routerIdentity'
 
 import roleController from '../controllers/roleController'
 import { IRole } from '../dataSource/models/roleModel'
@@ -70,4 +71,5 @@ router.delete(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
+routerIdentity.addAppRouteObj(router)
 export default router

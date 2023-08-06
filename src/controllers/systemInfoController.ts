@@ -1,5 +1,6 @@
 import os from 'os'
 import Config from '../utilities/config'
+import routerIdentity, { IRouteInfo } from '../utilities/routerIdentity'
 
 const env = Config.getEnv()
 
@@ -45,12 +46,17 @@ class SystemInfo {
      * @returns
      */
     public details():ISystemInfo {
+
         return {
             currentDir: process.env.PWD? process.env.PWD: null,
             appPort: String(env.AppPort),
             localWifiAddress: this.getIp('Wi-Fi'),
             os: process.env.OS? process.env.OS: null
         }
+    }
+
+    public getAppRoutes():void {
+        console.log('system getAppRoutes: ', routerIdentity.getAppRoutes())
     }
 }
 

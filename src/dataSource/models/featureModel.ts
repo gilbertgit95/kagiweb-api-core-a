@@ -34,7 +34,7 @@ const FeatureSchema = new Schema<IFeature>({
     tags: { type: [String], required: false },
     value: { type: String, required: true },
     description: { type: String, required: false }
-})
+}, { timestamps: true })
 
 // create model
 const FeatureModel = model<IFeature>('Feature', FeatureSchema)

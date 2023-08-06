@@ -2,6 +2,7 @@ import express from 'express'
 
 import Config from '../utilities/config'
 import ErrorHandler from '../utilities/errorHandler'
+import routerIdentity from '../utilities/routerIdentity'
 import systemInfoController, {ISystemInfo} from '../controllers/systemInfoController'
 
 const router = express.Router()
@@ -16,4 +17,5 @@ router.get(env.RootApiEndpoint + 'systemInfo', async (req, res) => {
   return res.status(statusCode).send(result)
 })
 
+routerIdentity.addAppRouteObj(router)
 export default router

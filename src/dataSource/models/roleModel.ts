@@ -15,36 +15,23 @@ interface IRoleUpdate {
     name?: string
 }
 
-// create interfaces
-interface IFeatureRef {
-    _id?: string,
-    featureId: string
-}
-
 interface IRole {
     _id?: string,
     name: string,
     level: number,
     description?: string,
     absoluteAuthority?: boolean,
-    includedfeatures: IFeatureRef[]
-    excludedFeatures: IFeatureRef[]
+    featuresRefs: string[]
 }
 
 // create schemas
-const RoleRefSchema = new Schema<IFeatureRef>({
-    _id: { type: String, default: () => randomUUID() },
-    featureId: { type: String, required: true }
-}, { timestamps: true })
-
 const RoleSchema = new Schema<IRole>({
     _id: { type: String, default: () => randomUUID() },
     name: { type: String, required: true, unique: true },
     level: { type: Number, required: true,  unique: true },
     description: { type: String, required: false },
     absoluteAuthority: { type: Boolean, required: false, default: false },
-    includedfeatures: { type: [RoleRefSchema], required: false },
-    excludedFeatures: { type: [RoleRefSchema], required: false },
+    featuresRefs: { type: [String], required: false }
 }, { timestamps: true })
 
 // create model
@@ -53,7 +40,6 @@ const RoleModel = model<IRole>('Role', RoleSchema)
 export {
     IRoleQuery,
     IRoleUpdate,
-    IFeatureRef,
     IRole
 }
 export default RoleModel

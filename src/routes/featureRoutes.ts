@@ -4,6 +4,7 @@ import express from 'express'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
+import routerIdentity from '../utilities/routerIdentity'
 
 import featureController from '../controllers/featureController'
 import { IFeature } from '../dataSource/models/featureModel'
@@ -71,4 +72,5 @@ router.delete(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
+routerIdentity.addAppRouteObj(router)
 export default router
