@@ -27,9 +27,7 @@ router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        // return = await userController.saveUser(userData)
-        console.log('get user: ', userId)
-        return null
+        return await userController.getUser({_id: userId})
     })
 
     return res.status(statusCode).send(result)

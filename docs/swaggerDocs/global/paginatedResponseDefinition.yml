@@ -1,0 +1,19 @@
+type: object
+properties:
+  totalItems: 
+    type: number
+  page:
+    type: number
+  pageSize:
+    type: number
+  totalPages:
+    type: number
+  nextUrl:
+    type: string
+    nullable: true
+example:
+  totalItems: 100
+  page: 1
+  pageSize: 50
+  totalPages: 2
+  nextUrl: 'api/v1/module?page=2'
