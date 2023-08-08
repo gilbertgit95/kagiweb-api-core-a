@@ -47,9 +47,9 @@ class UserController {
         return result
     }
 
-    public async deleteUser(id:string):Promise<string | null> {
+    public async deleteUser(id:string):Promise<IUser | null> {
 
-        const result = await this.cachedData.deleteItem(id)
+        const result = await this.cachedData.deleteItem<IUser>(id)
 
         return result
     }

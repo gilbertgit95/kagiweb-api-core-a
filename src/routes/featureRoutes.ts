@@ -47,10 +47,7 @@ router.put(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const featureData = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
-        if (featureId && featureData) {
-           return await featureController.updateFeature(featureId, featureData)
-        }
-        return null
+        return await featureController.updateFeature(featureId, featureData)
     })
 
     return res.status(statusCode).send(result)
@@ -59,11 +56,8 @@ router.put(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
 router.delete(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
-        if (featureId) {
-            return await featureController.deleteFeature(featureId)
-        }
-        return null
+    const [result, statusCode] = await ErrorHandler.execute(async () => {
+        return await featureController.deleteFeature(featureId)
     })
 
     return res.status(statusCode).send(result)

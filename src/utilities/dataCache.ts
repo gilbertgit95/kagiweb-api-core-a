@@ -108,8 +108,8 @@ class DataCache {
      * @param {string} id - the id of the document
      * @returns {string:null} the id if successfull and null if its not
      */
-    public async deleteItem(id:string):Promise<string | null> {
-        let result = null
+    public async deleteItem<Type>(id:string):Promise<Type | null> {
+        let result:Type|null = null
 
         if (id) {
             result = await this.request.deleteItem({_id: id})

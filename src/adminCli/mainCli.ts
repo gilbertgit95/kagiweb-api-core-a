@@ -72,7 +72,7 @@ class AdminCli {
 
             // execution
             if (actionToExecute.action) {
-                let proc = this.getSelectedProc(actionToExecute.action)
+                const proc = this.getSelectedProc(actionToExecute.action)
                 await proc.execute()
             }
         }

@@ -47,9 +47,9 @@ class FeatureController {
         return result
     }
 
-    public async deleteFeature(id:string):Promise<string | null> {
+    public async deleteFeature(id:string):Promise<IFeature | null> {
 
-        const result = await this.cachedData.deleteItem(id)
+        const result = await this.cachedData.deleteItem<IFeature>(id)
 
         return result
     }

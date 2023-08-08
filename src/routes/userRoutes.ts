@@ -8,7 +8,6 @@ import routerIdentity from '../utilities/routerIdentity'
 
 import userController from '../controllers/userController'
 import { IUser } from '../dataSource/models/userModel'
-import { IRole } from '../dataSource/models/roleModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -62,11 +61,8 @@ router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
 router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
-        if (userId) {
-            return await userController.deleteUser(userId)
-        }
-        return null
+    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
+        return await userController.deleteUser(userId)
     })
 
     return res.status(statusCode).send(result)

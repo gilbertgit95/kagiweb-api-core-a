@@ -1,0 +1,40 @@
+400:
+  description: Incorrect content in the request.
+  content:
+    application/json:
+      schema:
+        $ref: ./errorDefinition.yml
+      example:
+        message: Incorrect content in the request.
+401:
+  description: Unauthorized.
+  content:
+    application/json:
+      schema:
+        $ref: ./errorDefinition.yml
+      example:
+        message: Unauthorized.
+403:
+  description: Forbidden access to resources.
+  content:
+    application/json:
+      schema:
+        $ref: ./errorDefinition.yml
+      example:
+        message: Forbidden access to resources.
+404:
+  description: Resources not found.
+  content:
+    application/json:
+      schema:
+        $ref: ./errorDefinition.yml
+      example:
+        message: Resources not found.
+500:
+  description: Internal server error
+  content:
+    application/json:
+      schema:
+        $ref: ./errorDefinition.yml
+      example:
+        message: Internal server error

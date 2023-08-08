@@ -26,8 +26,7 @@ router.get(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const { roleId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-        // return = await roleController.getRole({_id: roleId})
-        return null
+        return await roleController.getRole({_id: roleId})
     })
 
     return res.status(statusCode).send(result)
@@ -37,8 +36,7 @@ router.post(env.RootApiEndpoint + 'roles/create', async (req, res) => {
     const roleData = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-        // return = await await roleController.saveRole(roleData)
-        return null
+        return await roleController.saveRole(roleData)
     })
 
     return res.status(statusCode).send(result)
@@ -61,11 +59,8 @@ router.put(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
 router.delete(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const { roleId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
-        if (roleId) {
-            return await roleController.deleteRole(roleId)
-        }
-        return null
+    const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
+        return await roleController.deleteRole(roleId)
     })
 
     return res.status(statusCode).send(result)

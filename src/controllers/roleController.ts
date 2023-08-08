@@ -47,9 +47,9 @@ class RoleController {
         return result
     }
 
-    public async deleteRole(id:string):Promise<string | null> {
+    public async deleteRole(id:string):Promise<IRole | null> {
 
-        const result = await this.cachedData.deleteItem(id)
+        const result = await this.cachedData.deleteItem<IRole>(id)
 
         return result
     }

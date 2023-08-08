@@ -1,3 +1,4 @@
+import {} from 'express'
 import Config from './config'
 
 const env = Config.getEnv()
@@ -73,12 +74,12 @@ class DataQuery {
     }
 
     public async updateItem<Type>(query:any, doc:any):Promise<Type> { // eslint-disable-line @typescript-eslint/no-explicit-any
-        const resp = await this.DataModel.findOneAndUpdate(query, doc)
+        const resp = await this.DataModel.findOneAndUpdate(query, doc, { new: true })
         return resp
     }
 
-    public async deleteItem(query:any):Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
-        const resp = await this.DataModel.deleteOne(query)
+    public async deleteItem<Type>(query:any):Promise<Type> { // eslint-disable-line @typescript-eslint/no-explicit-any
+        const resp = await this.DataModel.findOneAndDelete(query)
         return resp
     }
 }
