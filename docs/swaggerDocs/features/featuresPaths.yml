@@ -1,5 +1,5 @@
 get:
-    tags :
+    tags:
       - Features
     summary: Get all the Features
     description: Get all the Features

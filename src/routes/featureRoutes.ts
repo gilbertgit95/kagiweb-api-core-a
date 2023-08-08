@@ -36,9 +36,7 @@ router.post(env.RootApiEndpoint + 'features/create', async (req, res) => {
     const featureData = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
-        // return = await featureController.saveFeature(featureData)
-
-        return null
+        return await featureController.saveFeature(featureData)
     })
 
     return res.status(statusCode).send(result)

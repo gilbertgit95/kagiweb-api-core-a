@@ -5,6 +5,10 @@
 # paths inside /features
 /features:
   $ref: ./features/featuresPaths.yml
+/features/create:
+  $ref: ./features/featuresCreatePaths.yml
+/features/{id}:
+  $ref: ./features/featuresSpecificPaths.yml
 
 # paths inside /roles
 /roles:
