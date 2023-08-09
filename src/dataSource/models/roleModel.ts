@@ -21,7 +21,7 @@ interface IRole {
     level: number,
     description?: string,
     absoluteAuthority?: boolean,
-    featuresRefs: string[]
+    featuresRefs?: string[]
 }
 
 // create schemas
@@ -31,7 +31,7 @@ const RoleSchema = new Schema<IRole>({
     level: { type: Number, required: true,  unique: true },
     description: { type: String, required: false },
     absoluteAuthority: { type: Boolean, required: false, default: false },
-    featuresRefs: { type: [String], required: false }
+    featuresRefs: { type: [String], required: false, default: [] }
 }, { timestamps: true })
 
 // create model

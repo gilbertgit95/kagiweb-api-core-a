@@ -13,6 +13,10 @@
 # paths inside /roles
 /roles:
   $ref: ./roles/rolesPaths.yml
+/roles/create:
+  $ref: ./roles/rolesCreatePaths.yml
+/roles/{id}:
+  $ref: ./roles/rolesSpecificPaths.yml
 
 # paths inside /users
 /users:

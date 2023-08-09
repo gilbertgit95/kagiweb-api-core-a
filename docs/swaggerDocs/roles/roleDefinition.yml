@@ -1,10 +1,26 @@
 type: object
+required:
+  - name
+  - level
 properties:
-  id:
-    type: string
   name:
     type: string
-  mobile:
+  level:
     type: string
-  email:
+  description:
     type: string
+  absoluteAuthority:
+    type: boolean
+  featuresRefs:
+    type: array
+    items:
+      type: string
+example:
+  absoluteAuthority: false
+  description: Have access to most of the resources.
+  featuresRefs:
+      - 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+      - 03b2f7f8-119f-4a7b-a9ea-af732a90f56a
+      - c2b6d920-a101-45e5-bbdb-0f6a07da1f33
+  level: 1
+  name: Manager

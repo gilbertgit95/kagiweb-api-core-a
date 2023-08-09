@@ -119,71 +119,7 @@
         "responses": {
           "allOf": [
             {
-              "400": {
-                "description": "Incorrect content in the request.",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Error"
-                    },
-                    "example": {
-                      "message": "Incorrect content in the request."
-                    }
-                  }
-                }
-              },
-              "401": {
-                "description": "Unauthorized.",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Error"
-                    },
-                    "example": {
-                      "message": "Unauthorized."
-                    }
-                  }
-                }
-              },
-              "403": {
-                "description": "Forbidden access to resources.",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Error"
-                    },
-                    "example": {
-                      "message": "Forbidden access to resources."
-                    }
-                  }
-                }
-              },
-              "404": {
-                "description": "Resources not found.",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Error"
-                    },
-                    "example": {
-                      "message": "Resources not found."
-                    }
-                  }
-                }
-              },
-              "500": {
-                "description": "Internal server error",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Error"
-                    },
-                    "example": {
-                      "message": "Internal server error"
-                    }
-                  }
-                }
-              }
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
             },
             {
               "200": {
@@ -273,7 +209,7 @@
         "responses": {
           "allOf": [
             {
-              "$ref": "#/paths/~1features/get/responses/allOf/0"
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
             },
             {
               "200": {
@@ -338,7 +274,7 @@
         "responses": {
           "allOf": [
             {
-              "$ref": "#/paths/~1features/get/responses/allOf/0"
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
             },
             {
               "200": {
@@ -410,7 +346,7 @@
         "responses": {
           "allOf": [
             {
-              "$ref": "#/paths/~1features/get/responses/allOf/0"
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
             },
             {
               "200": {
@@ -473,7 +409,7 @@
         "responses": {
           "allOf": [
             {
-              "$ref": "#/paths/~1features/get/responses/allOf/0"
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
             },
             {
               "200": {
@@ -523,23 +459,415 @@
         "produces": [
           "application/json"
         ],
-        "responses": {
-          "200": {
-            "description": "Roles fetched successfully",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
             "schema": {
-              "type": "array",
-              "items": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "allOf": [
+            {
+              "400": {
+                "description": "Incorrect content in the request.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "example": {
+                      "message": "Incorrect content in the request."
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "example": {
+                      "message": "Unauthorized."
+                    }
+                  }
+                }
+              },
+              "403": {
+                "description": "Forbidden access to resources.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "example": {
+                      "message": "Forbidden access to resources."
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Resources not found.",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "example": {
+                      "message": "Resources not found."
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "example": {
+                      "message": "Internal server error"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "200": {
+                "description": "array of roles",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/PagginatedResponse"
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "allOf": [
+                                    {
+                                      "$ref": "#/components/schemas/AutoGeneratedData"
+                                    },
+                                    {
+                                      "$ref": "#/components/schemas/Role"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "example": {
+                      "items": [
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "absoluteAuthority": false,
+                          "description": "Have access to most of the resources.",
+                          "featuresRefs": [
+                            "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                            "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
+                            "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                          ],
+                          "level": 1,
+                          "name": "Manager"
+                        }
+                      ],
+                      "page": 1,
+                      "pageSize": 100,
+                      "totalPages": 1,
+                      "nextURL": null
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "/roles/create": {
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create a Role",
+        "description": "Create a Role",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
                 "$ref": "#/components/schemas/Role"
               }
             }
-          },
-          "400": {
-            "description": "Error in fetching Roles",
+          }
+        },
+        "responses": {
+          "allOf": [
+            {
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
+            },
+            {
+              "200": {
+                "description": "Successfull role creation",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AutoGeneratedData"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Role"
+                        }
+                      ]
+                    },
+                    "example": {
+                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                      "createdAt": "2023-08-06T18:03:06.290Z",
+                      "updatedAt": "2023-08-07T03:10:24.423Z",
+                      "absoluteAuthority": false,
+                      "description": "Have access to most of the resources.",
+                      "featuresRefs": [
+                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
+                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                      ],
+                      "level": 1,
+                      "name": "Manager"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "/roles/{id}": {
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get a Role",
+        "description": "Get a Role",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "this the uuid of the role to get",
+            "required": true,
             "schema": {
-              "type": "object",
-              "$ref": "#/components/schemas/Error"
+              "type": "string",
+              "format": "uuid"
             }
           }
+        ],
+        "responses": {
+          "allOf": [
+            {
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
+            },
+            {
+              "200": {
+                "description": "Successfull role creation",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AutoGeneratedData"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Role"
+                        }
+                      ]
+                    },
+                    "example": {
+                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                      "createdAt": "2023-08-06T18:03:06.290Z",
+                      "updatedAt": "2023-08-07T03:10:24.423Z",
+                      "absoluteAuthority": false,
+                      "description": "Have access to most of the resources.",
+                      "featuresRefs": [
+                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
+                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                      ],
+                      "level": 1,
+                      "name": "Manager"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "put": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Update a Role",
+        "description": "Update a Role",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "this the uuid of the role to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Role"
+              }
+            }
+          }
+        },
+        "responses": {
+          "allOf": [
+            {
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
+            },
+            {
+              "200": {
+                "description": "Successfull role update",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AutoGeneratedData"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Role"
+                        }
+                      ]
+                    },
+                    "example": {
+                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                      "createdAt": "2023-08-06T18:03:06.290Z",
+                      "updatedAt": "2023-08-07T03:10:24.423Z",
+                      "absoluteAuthority": false,
+                      "description": "Have access to most of the resources.",
+                      "featuresRefs": [
+                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
+                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                      ],
+                      "level": 1,
+                      "name": "Manager"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "delete": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Delete a Feature",
+        "description": "Delete a Feature",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "this the uuid of the feature to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "allOf": [
+            {
+              "$ref": "#/paths/~1roles/get/responses/allOf/0"
+            },
+            {
+              "200": {
+                "description": "Successfull role deletion",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AutoGeneratedData"
+                        },
+                        {
+                          "$ref": "#/components/schemas/Role"
+                        }
+                      ]
+                    },
+                    "example": {
+                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                      "createdAt": "2023-08-06T18:03:06.290Z",
+                      "updatedAt": "2023-08-07T03:10:24.423Z",
+                      "absoluteAuthority": false,
+                      "description": "Have access to most of the resources.",
+                      "featuresRefs": [
+                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
+                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                      ],
+                      "level": 1,
+                      "name": "Manager"
+                    }
+                  }
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -926,19 +1254,40 @@
       },
       "Role": {
         "type": "object",
+        "required": [
+          "name",
+          "level"
+        ],
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "name": {
             "type": "string"
           },
-          "mobile": {
+          "level": {
             "type": "string"
           },
-          "email": {
+          "description": {
             "type": "string"
+          },
+          "absoluteAuthority": {
+            "type": "boolean"
+          },
+          "featuresRefs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
+        },
+        "example": {
+          "absoluteAuthority": false,
+          "description": "Have access to most of the resources.",
+          "featuresRefs": [
+            "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+            "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
+            "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+          ],
+          "level": 1,
+          "name": "Manager"
         }
       },
       "User": {

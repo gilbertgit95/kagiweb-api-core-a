@@ -47,10 +47,7 @@ router.put(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const roleData = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-        if (roleId && roleData) {
             return await roleController.updateRole(roleId, roleData)
-        }
-        return null
     })
 
     return res.status(statusCode).send(result)
