@@ -84,14 +84,14 @@ put:
 delete:
     tags:
       - Roles
-    summary: Delete a Feature
-    description: Delete a Feature
+    summary: Delete a Roles
+    description: Delete a Roles
     produces:
       - application/json
     parameters:
       - in: path
         name: id
-        description: this the uuid of the feature to delete
+        description: this the uuid of the role to delete
         required: true
         schema:
           type: string

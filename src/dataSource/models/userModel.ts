@@ -17,6 +17,11 @@ interface IUserUpdate {
 }
 
 // create interfaces
+interface IRoleRef {
+    _id?: string,
+    roleId: string,
+}
+
 interface IPassword {
     _id?: string,
     key: string,
@@ -86,7 +91,7 @@ interface IUserInfo {
 interface IUser {
     _id?: string,
     username: string,
-    rolesRefs: string[],
+    rolesRefs: IRoleRef[],
     userInfo: IUserInfo[],
 
     passwords: IPassword[],
@@ -100,6 +105,11 @@ interface IUser {
 }
 
 // create schemas
+const RoleRef = new Schema<IRoleRef>({
+    _id: { type: String, default: () => randomUUID()},
+    roleId: { type: String, require: true }
+}, { timestamps: true })
+
 const PasswordSchema = new Schema<IPassword>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
@@ -169,7 +179,7 @@ const UserInfoSchema = new Schema<IUserInfo>({
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID()},
     username: { type: String, required: true },
-    rolesRefs: { type: [String], required: true },
+    rolesRefs: { type: [RoleRef], required: true },
     userInfo: { type: [UserInfoSchema], required: false },
 
     passwords: { type: [PasswordSchema], required: false },

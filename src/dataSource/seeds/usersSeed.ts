@@ -16,9 +16,9 @@ const users:IUser[] = [
             }
         ],
         rolesRefs: [
-            '798c16ff-d75c-41b6-b9f5-69e21b08879a',
-            'cbe58c3c-9d86-466c-a8b4-1b26c379f276',
-            'f2b124a8-0452-40f3-b053-c6f3b426e656'
+            { roleId: '798c16ff-d75c-41b6-b9f5-69e21b08879a' },
+            { roleId: 'cbe58c3c-9d86-466c-a8b4-1b26c379f276' },
+            { roleId: 'f2b124a8-0452-40f3-b053-c6f3b426e656' }
         ],
         contactInfos: [
             {
