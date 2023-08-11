@@ -588,9 +588,24 @@
                           "absoluteAuthority": false,
                           "description": "Have access to most of the resources.",
                           "featuresRefs": [
-                            "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                            "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
-                            "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                            {
+                              "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                              "createdAt": "2023-08-06T18:03:06.290Z",
+                              "updatedAt": "2023-08-07T03:10:24.423Z",
+                              "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                            },
+                            {
+                              "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
+                              "createdAt": "2023-08-06T18:03:06.290Z",
+                              "updatedAt": "2023-08-07T03:10:24.423Z",
+                              "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
+                            },
+                            {
+                              "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
+                              "createdAt": "2023-08-06T18:03:06.290Z",
+                              "updatedAt": "2023-08-07T03:10:24.423Z",
+                              "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                            }
                           ],
                           "level": 1,
                           "name": "Manager"
@@ -656,9 +671,24 @@
                       "absoluteAuthority": false,
                       "description": "Have access to most of the resources.",
                       "featuresRefs": [
-                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
-                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        }
                       ],
                       "level": 1,
                       "name": "Manager"
@@ -721,9 +751,24 @@
                       "absoluteAuthority": false,
                       "description": "Have access to most of the resources.",
                       "featuresRefs": [
-                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
-                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        }
                       ],
                       "level": 1,
                       "name": "Manager"
@@ -793,9 +838,24 @@
                       "absoluteAuthority": false,
                       "description": "Have access to most of the resources.",
                       "featuresRefs": [
-                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
-                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        }
                       ],
                       "level": 1,
                       "name": "Manager"
@@ -856,9 +916,24 @@
                       "absoluteAuthority": false,
                       "description": "Have access to most of the resources.",
                       "featuresRefs": [
-                        "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                        "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
-                        "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
+                        },
+                        {
+                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
+                          "createdAt": "2023-08-06T18:03:06.290Z",
+                          "updatedAt": "2023-08-07T03:10:24.423Z",
+                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        }
                       ],
                       "level": 1,
                       "name": "Manager"
@@ -1274,7 +1349,13 @@
           "featuresRefs": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "featureId": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
             }
           }
         },
@@ -1282,9 +1363,15 @@
           "absoluteAuthority": false,
           "description": "Have access to most of the resources.",
           "featuresRefs": [
-            "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-            "03b2f7f8-119f-4a7b-a9ea-af732a90f56a",
-            "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+            {
+              "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+            },
+            {
+              "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
+            },
+            {
+              "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+            }
           ],
           "level": 1,
           "name": "Manager"

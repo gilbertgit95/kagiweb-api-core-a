@@ -25,8 +25,7 @@ interface IRoleRef {
 interface IPassword {
     _id?: string,
     key: string,
-    type: TPasswordType,
-    disabled?: boolean
+    type: TPasswordType
 }
 
 interface IContactInfo {
@@ -34,13 +33,14 @@ interface IContactInfo {
     type: TContactInfoType,
     value: string,
     countryCode?: string,
-    disabled?: boolean
+    validated?: boolean
 }
 
 interface IAccessToken {
     _id?: string,
     jwt: string,
     ipAddress?: string,
+    disabled?: boolean
 }
 
 interface IClientDevice {
@@ -114,7 +114,6 @@ const PasswordSchema = new Schema<IPassword>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
     type: { type: String, require: true },
-    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const ContactInfoSchema = new Schema<IContactInfo>({
@@ -122,13 +121,14 @@ const ContactInfoSchema = new Schema<IContactInfo>({
     type: { type: String, require: true },
     value: { type: String, require: true },
     countryCode: { type: String, require: false },
-    disabled: { type: Boolean, require: false, default: false }
+    validated: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const AccessTokenSchema = new Schema<IAccessToken>({
     _id: { type: String, default: () => randomUUID()},
     jwt: { type: String, require: true },
-    ipAddress: { type: String, require: false }
+    ipAddress: { type: String, require: false },
+    disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const ClientDeviceSchema = new Schema<IClientDevice>({
@@ -181,14 +181,10 @@ const UserSchema = new Schema<IUser>({
     username: { type: String, required: true },
     rolesRefs: { type: [RoleRef], required: true },
     userInfo: { type: [UserInfoSchema], required: false },
-
     passwords: { type: [PasswordSchema], required: false },
-
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
-
     limitedTransactions: { type: [LimitedTransactionSchema], required: false },
-
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
