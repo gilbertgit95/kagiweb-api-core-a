@@ -1,26 +1,21 @@
 import express from 'express'
 
-// import UserModel, { IUser } from '../dataSource/models/userModel'
+import {AppRequest } from '../utilities/globalTypes'
 import Config from '../utilities/config'
 import ErrorHandler from '../utilities/errorHandler'
+import authController from '../controllers/authController'
+
+import { IUser } from '../dataSource/models/userModel'
 
 const env = Config.getEnv()
 const router = express.Router()
 
 router.post(env.RootApiEndpoint + 'signin', async (req, res) => {
-    // get username and password from the request query
-    console.log(req.body)
+    const { username, password } = req.body
+    // const ua = req.userAgentInfo? req.userAgentInfo: null
 
-    // get user data
-
-    // get request user agent info
-
-    // get request ip address
-
-    // call signin controller with the above parameters
-
-    const [result, statusCode] = await ErrorHandler.execute<string>(async () => {
-        return null
+    const [result, statusCode] = await ErrorHandler.execute<String>(async () => {
+        return await authController.signin(username, password, null)
     })
 
     return res.status(statusCode).send(result)

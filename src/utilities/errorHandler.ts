@@ -11,8 +11,16 @@ class ErrorHandler {
             result = await process()
             statusCode = 200
         } catch (err) {
+
+            // default error status
             result = { message: 'Internal server error.'}
             statusCode = 500
+
+            // check error 400
+            if (err === 'Incorrect content in the request.') {
+                result = { message: 'Username or password is incorrect.'}
+                statusCode = 400
+            }
         }
 
         // if result is null or undefined return error 404

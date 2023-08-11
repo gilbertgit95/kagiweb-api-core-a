@@ -9,7 +9,8 @@ type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
 // queries
 interface IUserQuery {
-    _id?: string
+    _id?: string,
+    username?: string
 }
 
 interface IUserUpdate {
