@@ -31,7 +31,7 @@ class AuthController {
         return passwordMatch
     }
 
-    public async signin(username:string, password:string, ua:UAParser|null):Promise<string | null> {
+    public async signin(username:string, password:string, ua:UAParser|null, ip:string|null):Promise<string | null> {
 
         // fetch user using the username
         const user = await UserModel.findOne({ username })
@@ -39,9 +39,19 @@ class AuthController {
         // get the current password
         const isMatch = await this.verifyPassword(user, password)
         const jwtStr = (user && isMatch)? await Encryption.generateJWT({userId: user._id}): ''
-        const userAgent = ''
 
-        if (!isMatch) throw('Incorrect content in the request.')
+        // if a match, set user authentication related data
+        // credential match
+        if (user && isMatch) {
+            console.log(user)
+            console.log(ua)
+            console.log(jwtStr)
+            console.log(ip)
+
+        // Throw error when user does not exist or password not match
+        } else {
+            throw(400) // Incorrect content in the request.
+        }
 
         return jwtStr
     }

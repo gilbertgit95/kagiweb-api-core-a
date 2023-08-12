@@ -12,20 +12,35 @@ class ErrorHandler {
             statusCode = 200
         } catch (err) {
 
+            // check error 400
+            // Incorrect content in the request
+            if (err === 400) {
+                statusCode = 400
+                result = { message: 'Incorrect content in the request.'}
+            }
+
+            // check error 400
+            // Unauthorized.
+            if (err === 401) {
+                statusCode = 401
+                result = { message: 'Unauthorized.'}
+            }
+
+            // check error 400
+            // Forbidden access to resources.
+            if (err === 403) {
+                statusCode = 403
+                result = { message: 'Forbidden access to resources.'}
+            }
+
             // default error status
             result = { message: 'Internal server error.'}
             statusCode = 500
-
-            // check error 400
-            if (err === 'Incorrect content in the request.') {
-                result = { message: 'Username or password is incorrect.'}
-                statusCode = 400
-            }
         }
 
         // if result is null or undefined return error 404
         if (result === null || result === undefined) {
-            result = { message: 'Requested data does not exist.'}
+            result = { message: 'Resource not found'}
             statusCode = 404
         }
 

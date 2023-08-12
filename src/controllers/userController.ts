@@ -5,6 +5,24 @@ import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 
 // const env = Config.getEnv()
 
+// querying
+// const doc = order.lineItems.id(`6277ddade65b3236b1eb65d6`)
+
+// create
+// order.lineItems.push({
+//     name: 'T-shirt',
+//     price: 6,
+//     qty: 2,
+//     total: 12
+// })
+
+// update
+// order.lineItems.id(id).qty = 3
+
+// delete
+// order.lineItems.id(`6277ddade65b3236b1eb65d6`).remove()
+// const updated = await order.save()
+
 class UserController {
     public cachedData:DataCache
     public request:DataRequest

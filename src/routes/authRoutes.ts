@@ -10,12 +10,16 @@ import { IUser } from '../dataSource/models/userModel'
 const env = Config.getEnv()
 const router = express.Router()
 
-router.post(env.RootApiEndpoint + 'signin', async (req, res) => {
-    const { username, password } = req.body
-    // const ua = req.userAgentInfo? req.userAgentInfo: null
+router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => {
+    const ua = req.userAgentInfo? req.userAgentInfo: null
+    const ip = req.clientIp? req.clientIp: null
+    const {
+        username,
+        password
+    } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<String>(async () => {
-        return await authController.signin(username, password, null)
+        return await authController.signin(username, password, ua, ip)
     })
 
     return res.status(statusCode).send(result)

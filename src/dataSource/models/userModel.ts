@@ -69,7 +69,6 @@ interface IClientDevice {
         architecture: string | undefined,
     },
     accessTokens?: IAccessToken[],
-    lastUsageDate?: Date,
     disabled?: boolean
 }
 
@@ -157,7 +156,6 @@ const ClientDeviceSchema = new Schema<IClientDevice>({
         architecture: { type: String, require: false, default: '' },
     },
     accessTokens: { type: [AccessTokenSchema], require: false },
-    lastUsageDate: { type: Date, require: false },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
