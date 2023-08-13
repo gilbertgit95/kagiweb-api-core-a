@@ -1,5 +1,5 @@
 
-import UserModel, { IUser } from '../dataSource/models/userModel'
+import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
 import Encryption from '../utilities/encryption'
 // import Config from '../utilities/config'
@@ -12,7 +12,13 @@ interface ISigninResult {
 }
 
 class AuthController {
-    public async verifyPassword(user:IUser|null, password:string):Promise<boolean> {
+    /**
+     * 
+     * @param {Object} user - is user object
+     * @param {string} password - plain text password
+     * @returns {boolean}
+     */
+    public async verifyPassword(user:IUser, password:string):Promise<boolean> {
         const currPasswords = user?.passwords
             .filter(pass => pass.type === 'current')
         const currPassword = (
@@ -31,22 +37,32 @@ class AuthController {
         return passwordMatch
     }
 
-    public async signin(username:string, password:string, ua:UAParser|null, ip:string|null):Promise<string | null> {
+    public async regUserDevice(user:IUser, device:IClientDevice):Promise<IUser> {
+        return user
+    }
+
+    public async regUserAccessToken(user:IUser, device:IClientDevice, accessToken:IAccessToken):Promise<IUser> {
+        return user
+    }
+
+    public async signin(username:string, password:string, ua:IClientDevice, ip:string):Promise<string | null> {
 
         // fetch user using the username
-        const user = await UserModel.findOne({ username })
-
+        let user:IUser|null = await UserModel.findOne({ username })
         // get the current password
-        const isMatch = await this.verifyPassword(user, password)
-        const jwtStr = (user && isMatch)? await Encryption.generateJWT({userId: user._id}): ''
+        const isMatch = user? await this.verifyPassword(user, password): false
+        let jwtStr = null
 
         // if a match, set user authentication related data
         // credential match
         if (user && isMatch) {
-            console.log(user)
-            console.log(ua)
-            console.log(jwtStr)
-            console.log(ip)
+            const accessToken:IAccessToken = {
+                jwt: await Encryption.generateJWT({userId: user._id}),
+                ipAddress: ip,
+                disabled: false
+            }
+            user = await this.regUserDevice(user, ua)
+            user = await this.regUserAccessToken(user, ua, accessToken)
 
         // Throw error when user does not exist or password not match
         } else {

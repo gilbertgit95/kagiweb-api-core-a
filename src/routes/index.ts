@@ -1,6 +1,7 @@
 import express from 'express'
 import requestIP from 'request-ip'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 import Config from '../utilities/config'
 
@@ -24,6 +25,7 @@ router.use(env.RootAssetsEndpoint, express.static(env.RootAssetsDir))
 router.use(documentationRoutes)
 
 // middlewares executed when accessing routes including auths
+router.use(cors())
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(requestIP.mw())

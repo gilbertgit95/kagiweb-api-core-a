@@ -18,24 +18,23 @@ class ErrorHandler {
                 statusCode = 400
                 result = { message: 'Incorrect content in the request.'}
             }
-
             // check error 400
             // Unauthorized.
-            if (err === 401) {
+            else if (err === 401) {
                 statusCode = 401
                 result = { message: 'Unauthorized.'}
             }
-
             // check error 400
             // Forbidden access to resources.
-            if (err === 403) {
+            else if (err === 403) {
                 statusCode = 403
                 result = { message: 'Forbidden access to resources.'}
-            }
+            } else {
 
-            // default error status
-            result = { message: 'Internal server error.'}
-            statusCode = 500
+                // default error status
+                result = { message: 'Internal server error.'}
+                statusCode = 500
+            }
         }
 
         // if result is null or undefined return error 404
