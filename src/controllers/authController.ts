@@ -56,8 +56,9 @@ class AuthController {
         // if a match, set user authentication related data
         // credential match
         if (user && isMatch) {
+            jwtStr = await Encryption.generateJWT({userId: user._id})
             const accessToken:IAccessToken = {
-                jwt: await Encryption.generateJWT({userId: user._id}),
+                jwt: jwtStr,
                 ipAddress: ip,
                 disabled: false
             }
