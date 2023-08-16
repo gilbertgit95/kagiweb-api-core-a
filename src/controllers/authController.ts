@@ -1,4 +1,3 @@
-
 import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
 import Encryption from '../utilities/encryption'
@@ -37,11 +36,30 @@ class AuthController {
         return passwordMatch
     }
 
-    public async regUserDevice(user:IUser, device:IClientDevice):Promise<IUser> {
-        return user
-    }
 
-    public async regUserAccessToken(user:IUser, device:IClientDevice, accessToken:IAccessToken):Promise<IUser> {
+    public assignUserDeviceAccessToken(user:IUser, device:IClientDevice, accessToken:IAccessToken|null):IUser {
+        let deviceExist = false
+
+        // find device if already existing
+        user.clientDevices = user.clientDevices.map(cDevice => {
+            // check ua info
+            if (cDevice.ua === device.ua) {
+                deviceExist = true
+                if (accessToken) cDevice.accessTokens?.push(accessToken)
+            }
+
+            return cDevice
+        })
+
+        // if device does not exist then insert the device
+        // with the access token
+        if (!deviceExist) {
+            user.clientDevices.push({
+                ...device,
+                ...(accessToken? {accessTokens: [accessToken]}: {})
+            })
+        }
+
         return user
     }
 
@@ -62,9 +80,11 @@ class AuthController {
                 ipAddress: ip,
                 disabled: false
             }
-            user = await this.regUserDevice(user, ua)
-            user = await this.regUserAccessToken(user, ua, accessToken)
+            // assign access token to device
+            user = this.assignUserDeviceAccessToken(user, ua, accessToken)
 
+            // save the updates
+            if (user._id && user.clientDevices) await userController.updateUser(user._id, {clientDevices: user.clientDevices})
         // Throw error when user does not exist or password not match
         } else {
             throw(400) // Incorrect content in the request.

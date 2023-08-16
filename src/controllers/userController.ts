@@ -58,7 +58,7 @@ class UserController {
         return result
     }
 
-    public async updateUser(id:string, doc:IUser):Promise<IUser | null> {
+    public async updateUser(id:string, doc:any):Promise<IUser | null> {
 
         const result = await this.cachedData.updateItem<IUser>(id, doc)
 
