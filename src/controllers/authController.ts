@@ -36,37 +36,20 @@ class AuthController {
         return passwordMatch
     }
 
+    public getDevice(user:IUser, device:IClientDevice):string|undefined {
+        let deviceId:string|undefined
 
-    public assignUserDeviceAccessToken(user:IUser, device:IClientDevice, accessToken:IAccessToken|null):IUser {
-        let deviceExist = false
-
-        // find device if already existing
-        user.clientDevices = user.clientDevices.map(cDevice => {
-            // check ua info
-            if (cDevice.ua === device.ua) {
-                deviceExist = true
-                if (accessToken) cDevice.accessTokens?.push(accessToken)
-            }
-
-            return cDevice
+        user.clientDevices.forEach(cDevice => {
+            if (cDevice.ua === device.ua) deviceId = cDevice._id
         })
 
-        // if device does not exist then insert the device
-        // with the access token
-        if (!deviceExist) {
-            user.clientDevices.push({
-                ...device,
-                ...(accessToken? {accessTokens: [accessToken]}: {})
-            })
-        }
-
-        return user
+        return deviceId
     }
 
-    public async signin(username:string, password:string, ua:IClientDevice, ip:string):Promise<string | null> {
+    public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<string | null> {
 
         // fetch user using the username
-        let user:IUser|null = await UserModel.findOne({ username })
+        let user = await UserModel.findOne({ username })
         // get the current password
         const isMatch = user? await this.verifyPassword(user, password): false
         let jwtStr = null
@@ -80,11 +63,20 @@ class AuthController {
                 ipAddress: ip,
                 disabled: false
             }
-            // assign access token to device
-            user = this.assignUserDeviceAccessToken(user, ua, accessToken)
 
-            // save the updates
-            if (user._id && user.clientDevices) await userController.updateUser(user._id, {clientDevices: user.clientDevices})
+            // assign access token to device
+            // get device 
+            let deviceId = this.getDevice(user, device)
+            // if device exist, push the new token to the existing device
+            if (!deviceId) {
+                user.clientDevices.push(device)
+                user = await user.save()
+                deviceId = this.getDevice(user, device)
+            }
+            user.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
+
+            await user.save()
+
         // Throw error when user does not exist or password not match
         } else {
             throw(400) // Incorrect content in the request.

@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Document, Types } from 'mongoose'
 import { randomUUID } from 'crypto'
 
 // types
@@ -68,7 +68,7 @@ interface IClientDevice {
     cpu: {
         architecture: string | undefined,
     },
-    accessTokens?: IAccessToken[],
+    accessTokens?: Types.DocumentArray<IAccessToken & Document>,
     disabled?: boolean
 }
 
@@ -91,15 +91,15 @@ interface IUserInfo {
 interface IUser {
     _id?: string,
     username: string,
-    rolesRefs: IRoleRef[],
-    userInfo: IUserInfo[],
+    rolesRefs: Types.DocumentArray<IRoleRef & Document>,
+    userInfo: Types.DocumentArray<IUserInfo & Document>,
 
-    passwords: IPassword[],
+    passwords: Types.DocumentArray<IPassword & Document>,
 
-    contactInfos: IContactInfo[],
-    clientDevices: IClientDevice[],
+    contactInfos: Types.DocumentArray<IContactInfo & Document>,
+    clientDevices: Types.DocumentArray<IClientDevice & Document>,
 
-    limitedTransactions: ILimitedTransaction[],
+    limitedTransactions: Types.DocumentArray<ILimitedTransaction & Document>,
 
     disabled?: boolean
 }
