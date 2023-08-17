@@ -2,35 +2,21 @@ post:
     tags :
       - Auths
     security: []
-    summary: Signin to the application to get jwt
-    description: Signin to the application to get jwt
+    summary: Signout to the application, remove token from user
+    description: Signout to the application, remove token from user
     produces:
       - application/json
-    requestBody:
-      content:
-        application/x-www-form-urlencoded:
-          schema:
-            type: object
-            required:
-              - username
-              - password
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-                format: password
     responses:
       200:
-        description: jwrt response
+        description: okay message
         content:
           application/json:
             schema:
               type: object
               properties:
-                token: string
+                message: string
             example:
-              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk
+              message: user has logged out
       400:
         description: Incorrect content in the request.
         content:

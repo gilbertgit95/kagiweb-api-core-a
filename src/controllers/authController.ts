@@ -46,7 +46,7 @@ class AuthController {
         return deviceId
     }
 
-    public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<string | null> {
+    public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token: string} | null> {
 
         // fetch user using the username
         let user = await UserModel.findOne({ username })
@@ -82,7 +82,7 @@ class AuthController {
             throw(400) // Incorrect content in the request.
         }
 
-        return jwtStr
+        return {token: jwtStr}
     }
 
     // userId:string, code:string

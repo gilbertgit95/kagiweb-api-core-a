@@ -43,8 +43,8 @@
           "Auths"
         ],
         "security": [],
-        "summary": "Get all the Roles",
-        "description": "Get all the Roles",
+        "summary": "Signin to the application to get jwt",
+        "description": "Signin to the application to get jwt",
         "produces": [
           "application/json"
         ],
@@ -72,19 +72,106 @@
         },
         "responses": {
           "200": {
-            "description": "Roles fetched successfully",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SigninResponse"
+            "description": "jwrt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": "string"
+                  }
+                },
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk"
+                }
               }
             }
           },
           "400": {
-            "description": "Error in fetching Roles",
-            "schema": {
-              "type": "object",
-              "$ref": "#/components/schemas/Error"
+            "description": "Incorrect content in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Incorrect content in the request."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Internal server error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signout": {
+      "post": {
+        "tags": [
+          "Auths"
+        ],
+        "security": [],
+        "summary": "Signout to the application, remove token from user",
+        "description": "Signout to the application, remove token from user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "okay message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "string"
+                  }
+                },
+                "example": {
+                  "message": "user has logged out"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect content in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Incorrect content in the request."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Internal server error."
+                }
+              }
             }
           }
         }

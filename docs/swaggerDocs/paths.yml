@@ -1,6 +1,8 @@
 # authentications related paths
 /signin:
   $ref: ./auths/signinPaths.yml
+/signout:
+  $ref: ./auths/signoutPaths.yml
 
 # paths inside /features
 /features:
