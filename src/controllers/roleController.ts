@@ -10,7 +10,7 @@ class RoleController {
     public request:DataRequest
 
     constructor() {
-        this.cachedData = new DataCache(RoleModel, { stdTTL: 120, checkperiod: 120 })
+        this.cachedData = new DataCache(RoleModel, { stdTTL: 30, checkperiod: 15 })
         this.request = new DataRequest(RoleModel)
     }
 

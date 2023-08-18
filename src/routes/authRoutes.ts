@@ -1,16 +1,16 @@
 import express from 'express'
 
-import {AppRequest } from '../utilities/globalTypes'
+// import {AppRequest } from '../utilities/globalTypes'
 import Config from '../utilities/config'
 import ErrorHandler from '../utilities/errorHandler'
 import authController from '../controllers/authController'
 
-import { IUser } from '../dataSource/models/userModel'
+// import { IUser } from '../dataSource/models/userModel'
 
 const env = Config.getEnv()
 const router = express.Router()
 
-router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => {
+router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
     const ua = req.userAgentInfo? req.userAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const {
@@ -32,7 +32,7 @@ router.post(env.RootApiEndpoint + 'signinOTP', async (req, res) => {
     return res.json({})
 })
 
-router.post(env.RootApiEndpoint + 'signout', async (req:any, res:any) => {
+router.post(env.RootApiEndpoint + 'signout', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
     const authorization = req.headers.authorization
     const ua = req.userAgentInfo? req.userAgentInfo: null
     

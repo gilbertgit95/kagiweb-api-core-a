@@ -1,4 +1,3 @@
-import { Document } from 'mongoose'
 import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
 import Encryption from '../utilities/encryption'
@@ -120,8 +119,8 @@ class AuthController {
         let resp:{message:string}|null = null
         if (!authorization || !client) throw(400)
 
-        let type = authorization.split(' ')[0]
-        let token = authorization.split(' ')[1]
+        const type = authorization.split(' ')[0]
+        const token = authorization.split(' ')[1]
 
         if (type && type === 'Bearer' && token) {
 

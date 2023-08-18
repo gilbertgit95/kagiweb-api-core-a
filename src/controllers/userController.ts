@@ -28,7 +28,7 @@ class UserController {
     public request:DataRequest
 
     constructor() {
-        this.cachedData = new DataCache(UserModel, { stdTTL: 120, checkperiod: 120 })
+        this.cachedData = new DataCache(UserModel, { stdTTL: 30, checkperiod: 15 })
         this.request = new DataRequest(UserModel)
     }
 
@@ -58,7 +58,7 @@ class UserController {
         return result
     }
 
-    public async updateUser(id:string, doc:any):Promise<IUser | null> {
+    public async updateUser(id:string, doc:any):Promise<IUser | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
 
         const result = await this.cachedData.updateItem<IUser>(id, doc)
 

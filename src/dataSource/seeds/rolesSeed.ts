@@ -1,6 +1,6 @@
-import { IRole } from '../models/roleModel'
+// import { IRole } from '../models/roleModel'
 
-const roles:IRole[] = [
+const roles = [
     {
         '_id': '798c16ff-d75c-41b6-b9f5-69e21b08879a',
         'absoluteAuthority': true,

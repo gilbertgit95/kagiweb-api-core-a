@@ -1,6 +1,6 @@
-import { IUser } from '../models/userModel'
+// import { IUser } from '../models/userModel'
 
-const users:IUser[] = [
+const users = [
     {
         _id: '37410e75-1760-4bb6-85e0-d0a138d374bc',
         username: 'master',

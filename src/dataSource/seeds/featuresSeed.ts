@@ -1,6 +1,6 @@
-import { IFeature } from '../models/featureModel'
+// import { IFeature } from '../models/featureModel'
 
-const features:IFeature[] = [
+const features = [
     {
         '_id': '3f74c3a5-3200-4c9f-a5c7-077515e1e45b',
         'description': 'One of the server endpoint',
