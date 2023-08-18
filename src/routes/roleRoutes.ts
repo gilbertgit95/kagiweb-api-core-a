@@ -22,21 +22,21 @@ router.get(env.RootApiEndpoint + 'roles', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
-    const { roleId } = req.params
+router.post(env.RootApiEndpoint + 'roles', async (req, res) => {
+    const roleData = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-        return await roleController.getRole({_id: roleId})
+        return await roleController.saveRole(roleData)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'roles/create', async (req, res) => {
-    const roleData = req.body
+router.get(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
+    const { roleId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-        return await roleController.saveRole(roleData)
+        return await roleController.getRole({_id: roleId})
     })
 
     return res.status(statusCode).send(result)

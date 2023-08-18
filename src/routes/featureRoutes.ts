@@ -22,21 +22,21 @@ router.get(env.RootApiEndpoint + 'features', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
-    const { featureId } = req.params
+router.post(env.RootApiEndpoint + 'features', async (req, res) => {
+    const featureData = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
-        return await featureController.getFeature({_id: featureId})
+        return await featureController.saveFeature(featureData)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'features/create', async (req, res) => {
-    const featureData = req.body
+router.get(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
+    const { featureId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
-        return await featureController.saveFeature(featureData)
+        return await featureController.getFeature({_id: featureId})
     })
 
     return res.status(statusCode).send(result)

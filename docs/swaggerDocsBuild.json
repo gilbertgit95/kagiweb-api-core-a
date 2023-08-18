@@ -271,9 +271,7 @@
             }
           ]
         }
-      }
-    },
-    "/features/create": {
+      },
       "post": {
         "tags": [
           "Features"
@@ -708,9 +706,7 @@
             }
           ]
         }
-      }
-    },
-    "/roles/create": {
+      },
       "post": {
         "tags": [
           "Roles"
@@ -1076,9 +1072,7 @@
             }
           }
         }
-      }
-    },
-    "/users/create": {
+      },
       "post": {
         "tags": [
           "Users"

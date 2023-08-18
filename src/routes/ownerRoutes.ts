@@ -86,19 +86,19 @@ router.delete(env.RootApiEndpoint + 'owner/passwords/:id', async (req, res) => {
 })
 
 // routes for owner limited transactions
-router.get(env.RootApiEndpoint + 'owner/limitedtransaction', async (req, res) => {
+router.get(env.RootApiEndpoint + 'owner/limitedTransactions', async (req, res) => {
     return res.json({})
 })
-router.post(env.RootApiEndpoint + 'owner/limitedtransaction', async (req, res) => {
+router.post(env.RootApiEndpoint + 'owner/limitedTransactions', async (req, res) => {
     return res.json({})
 })
-router.get(env.RootApiEndpoint + 'owner/limitedtransaction/:id', async (req, res) => {
+router.get(env.RootApiEndpoint + 'owner/limitedTransactions/:id', async (req, res) => {
     return res.json({})
 })
-router.put(env.RootApiEndpoint + 'owner/limitedtransaction/:id', async (req, res) => {
+router.put(env.RootApiEndpoint + 'owner/limitedTransactions/:id', async (req, res) => {
     return res.json({})
 })
-router.delete(env.RootApiEndpoint + 'owner/limitedtransaction/:id', async (req, res) => {
+router.delete(env.RootApiEndpoint + 'owner/limitedTransactions/:id', async (req, res) => {
     return res.json({})
 })
 

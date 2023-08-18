@@ -7,23 +7,17 @@
 # paths inside /features
 /features:
   $ref: ./features/featuresPaths.yml
-/features/create:
-  $ref: ./features/featuresCreatePaths.yml
 /features/{id}:
   $ref: ./features/featuresSpecificPaths.yml
 
 # paths inside /roles
 /roles:
   $ref: ./roles/rolesPaths.yml
-/roles/create:
-  $ref: ./roles/rolesCreatePaths.yml
 /roles/{id}:
   $ref: ./roles/rolesSpecificPaths.yml
 
 # paths inside /users
 /users:
   $ref: ./users/usersPaths.yml
-/users/create:
-  $ref: ./users/usersCreatePaths.yml
 /users/{id}:
   $ref: ./users/usersSpecificPaths.yml
