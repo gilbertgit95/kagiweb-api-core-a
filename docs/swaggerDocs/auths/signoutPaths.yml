@@ -1,7 +1,6 @@
 post:
     tags :
       - Auths
-    security: []
     summary: Signout to the application, remove token from user
     description: Signout to the application, remove token from user
     produces:

@@ -122,6 +122,17 @@ class DataCache {
 
         return result
     }
+
+    /**
+     * 
+     * @param id - id of the data to remove from cache
+     */
+    public removeCacheData(id:string):void {
+        if (this.cache.has(id)) {
+            this.cache.del(id)
+            if (this.cache.has(allItemskey)) this.cache.del(allItemskey)
+        }
+    }
 }
 
 export default DataCache

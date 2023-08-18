@@ -32,10 +32,15 @@ router.post(env.RootApiEndpoint + 'signinOTP', async (req, res) => {
     return res.json({})
 })
 
-router.post(env.RootApiEndpoint + 'signout', async (req, res) => {
+router.post(env.RootApiEndpoint + 'signout', async (req:any, res:any) => {
     const authorization = req.headers.authorization
-    console.log('Authorization: ', authorization)
-    return res.json({})
+    const ua = req.userAgentInfo? req.userAgentInfo: null
+    
+    const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
+        return await authController.signout(ua, authorization)
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'signup', async (req, res) => {

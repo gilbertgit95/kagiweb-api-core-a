@@ -1,3 +1,4 @@
+import { Document } from 'mongoose'
 import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
 import Encryption from '../utilities/encryption'
@@ -45,6 +46,17 @@ class AuthController {
 
         return deviceId
     }
+    public getToken(device:IClientDevice|null, token:string):string|undefined {
+        let tokenId:string|undefined
+
+        if (!device) return tokenId
+
+        device.accessTokens?.forEach(item => {
+            if (item.jwt === token) tokenId = item._id
+        })
+
+        return tokenId
+    }
 
     public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token: string} | null> {
 
@@ -77,6 +89,9 @@ class AuthController {
 
             await user.save()
 
+            // remove cache
+            userController.cachedData.removeCacheData(user._id)
+
         // Throw error when user does not exist or password not match
         } else {
             throw(400) // Incorrect content in the request.
@@ -101,22 +116,39 @@ class AuthController {
     }
 
     // jwt:string
-    public async signout():Promise<boolean | null> {
-        // check the validity of jwt, then get user info inside jwt
+    public async signout(client:IClientDevice, authorization:string):Promise<{message:string} | null> {
+        let resp:{message:string}|null = null
+        if (!authorization || !client) throw(400)
 
-        // chek if th user exist
+        let type = authorization.split(' ')[0]
+        let token = authorization.split(' ')[1]
 
-        // then check if the device exist in the user
+        if (type && type === 'Bearer' && token) {
 
-        // then check for the jwt record inside user -> device -> tokens
+            const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
+            if (!(tokenObj && tokenObj.userId)) throw(400)
 
-        // then remove the jwt
+            const user = await UserModel.findOne({ _id: tokenObj.userId })
+            if (!user) throw(400)
 
-        // then return boolean, true if successfully signed out
-        // const userReq = new DataRequest(UserModel)
-        // const result = await userReq.getItem<IUser>()
+            const deviceId = this.getDevice(user, client)
+            if (!deviceId) throw(400)
 
-        return null
+            const tokenId = this.getToken(user.clientDevices.id(deviceId), token)
+            if (!tokenId) throw(400)
+
+            user.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()
+            await user.save()
+            userController.cachedData.removeCacheData(user._id)
+            resp = { message: 'Successfull signout' }
+
+        } else {
+            throw(400)
+        }
+
+        // remove cache
+        // userController.cachedData.removeCacheData(user._id)
+        return resp
     }
 
     public async signup():Promise<IUser | null> {

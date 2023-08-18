@@ -85,6 +85,7 @@ class Encryption {
         return new Promise((resolve) => {
             jwt.verify(token, env.JwtSecretKey, (err, decoded) => {
                 if (!err) {
+                    console.log(decoded)
                     resolve(decoded as Type)
                 } else {
                     resolve(null)
