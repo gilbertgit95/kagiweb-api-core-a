@@ -68,5 +68,124 @@ router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
+// routes for owner user info
+router.get(env.RootApiEndpoint + 'users/:userId/userInfo', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/userInfo', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/userInfo/:userInfoId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/userInfo/:userInfoId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/userInfo/:userInfoId', async (req, res) => {
+    return res.json({})
+})
+
+// routes for users/:userId contact info
+router.get(env.RootApiEndpoint + 'users/:userId/contactInfo', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/contactInfo', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/contactInfo/:contactInfoId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/contactInfo/:contactInfoId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/contactInfo/:contactInfoId', async (req, res) => {
+    return res.json({})
+})
+
+// routes for users/:userId roles
+router.get(env.RootApiEndpoint + 'users/:userId/roles', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/roles', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/roles/:roleId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/roles/:roleId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/roles/:roleId', async (req, res) => {
+    return res.json({})
+})
+
+// routes for users/:userId passwords
+router.get(env.RootApiEndpoint + 'users/:userId/passwords', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/passwords', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/passwords/:passwordId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/passwords/:passwordId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/passwords/:passwordId', async (req, res) => {
+    return res.json({})
+})
+
+// routes for users/:userId limited transactions
+router.get(env.RootApiEndpoint + 'users/:userId/limitedTransactions', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/limitedTransactions', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/limitedTransactions/:ltId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/limitedTransactions/:ltId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/limitedTransactions/:ltId', async (req, res) => {
+    return res.json({})
+})
+
+// routes for users/:userId devices
+router.get(env.RootApiEndpoint + 'users/:userId/devices', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/devices', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/devices/:deviceId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/devices/:deviceId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/devices/:deviceId', async (req, res) => {
+    return res.json({})
+})
+
+// routes for users/:userId device access token
+router.get(env.RootApiEndpoint + 'users/:userId/devices/:deviceId/tokens', async (req, res) => {
+    return res.json({})
+})
+router.post(env.RootApiEndpoint + 'users/:userId/devices/:deviceId/tokens', async (req, res) => {
+    return res.json({})
+})
+router.get(env.RootApiEndpoint + 'users/:userId/devices/:deviceId/tokens/:tokenId', async (req, res) => {
+    return res.json({})
+})
+router.put(env.RootApiEndpoint + 'users/:userId/devices/:deviceId/tokens/:tokenId', async (req, res) => {
+    return res.json({})
+})
+router.delete(env.RootApiEndpoint + 'users/:userId/devices/:deviceId/tokens/:tokenId', async (req, res) => {
+    return res.json({})
+})
+
 routerIdentity.addAppRouteObj(router)
 export default router

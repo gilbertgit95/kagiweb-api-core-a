@@ -15,6 +15,7 @@ import systemInfo from './systemInfoRoutes'
 import featureRoutes from './featureRoutes'
 import roleRoutes from './roleRoutes'
 import userRoutes from './userRoutes'
+import ownerRoutes from './ownerRoutes'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -43,6 +44,7 @@ router.use(systemInfo)
 router.use(featureRoutes)
 router.use(roleRoutes)
 router.use(userRoutes)
+router.use(ownerRoutes)
 
 
 export default router

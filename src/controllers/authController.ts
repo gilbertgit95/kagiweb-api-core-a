@@ -36,27 +36,6 @@ class AuthController {
         return passwordMatch
     }
 
-    public getDevice(user:IUser, device:IClientDevice):string|undefined {
-        let deviceId:string|undefined
-
-        user.clientDevices.forEach(cDevice => {
-            if (cDevice.ua === device.ua) deviceId = cDevice._id
-        })
-
-        return deviceId
-    }
-    public getToken(device:IClientDevice|null, token:string):string|undefined {
-        let tokenId:string|undefined
-
-        if (!device) return tokenId
-
-        device.accessTokens?.forEach(item => {
-            if (item.jwt === token) tokenId = item._id
-        })
-
-        return tokenId
-    }
-
     public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token: string} | null> {
 
         // fetch user using the username
@@ -77,12 +56,12 @@ class AuthController {
 
             // assign access token to device
             // get device 
-            let deviceId = this.getDevice(user, device)
+            let deviceId = userController.getDevice(user, device)
             // if device exist, push the new token to the existing device
             if (!deviceId) {
                 user.clientDevices.push(device)
                 user = await user.save()
-                deviceId = this.getDevice(user, device)
+                deviceId = userController.getDevice(user, device)
             }
             user.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
 
@@ -130,10 +109,10 @@ class AuthController {
             const user = await UserModel.findOne({ _id: tokenObj.userId })
             if (!user) throw(400)
 
-            const deviceId = this.getDevice(user, client)
+            const deviceId = userController.getDevice(user, client)
             if (!deviceId) throw(400)
 
-            const tokenId = this.getToken(user.clientDevices.id(deviceId), token)
+            const tokenId = userController.getToken(user.clientDevices.id(deviceId), token)
             if (!tokenId) throw(400)
 
             user.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()

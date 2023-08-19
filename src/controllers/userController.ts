@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser, IUserQuery } from '../dataSource/models/userModel'
+import UserModel, { IUser, IUserQuery, IClientDevice } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -30,6 +30,27 @@ class UserController {
     constructor() {
         this.cachedData = new DataCache(UserModel, { stdTTL: 30, checkperiod: 15 })
         this.request = new DataRequest(UserModel)
+    }
+
+    public getDevice(user:IUser, device:IClientDevice):string|undefined {
+        let deviceId:string|undefined
+
+        user.clientDevices.forEach(cDevice => {
+            if (cDevice.ua === device.ua) deviceId = cDevice._id
+        })
+
+        return deviceId
+    }
+    public getToken(device:IClientDevice|null, token:string):string|undefined {
+        let tokenId:string|undefined
+
+        if (!device) return tokenId
+
+        device.accessTokens?.forEach(item => {
+            if (item.jwt === token) tokenId = item._id
+        })
+
+        return tokenId
     }
 
     public async getUser(query:IUserQuery):Promise<IUser|null> {
