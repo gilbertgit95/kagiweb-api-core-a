@@ -40,11 +40,11 @@ router.use(userInfoProvider)
 router.use(accessChecker)
 
 // routes for data api needs authorization
+router.use(ownerRoutes)
 router.use(systemInfo)
 router.use(featureRoutes)
 router.use(roleRoutes)
 router.use(userRoutes)
-router.use(ownerRoutes)
 
 
 export default router
