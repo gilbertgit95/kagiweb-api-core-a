@@ -7,7 +7,7 @@ import Encryption from '../utilities/encryption'
 
 class UserInfoProvider {
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-
+        req.userInfo = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
