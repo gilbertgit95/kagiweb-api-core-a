@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser, IUserQuery, IClientDevice } from '../dataSource/models/userModel'
+import UserModel, { IUser, IUserQuery, IClientDevice, ILimitedTransaction, IAccessToken } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -32,25 +32,37 @@ class UserController {
         this.request = new DataRequest(UserModel)
     }
 
-    public getDevice(user:IUser, device:IClientDevice):string|undefined {
-        let deviceId:string|undefined
+    public getLimitedTransaction(user:IUser, limitedTransac:string):ILimitedTransaction|undefined {
+        let result:ILimitedTransaction|undefined
+
+        user.limitedTransactions.forEach(item => {
+            if (item.type === limitedTransac && item.disabled) {
+                result = item
+            }
+        })
+
+        return result
+    }
+
+    public getDevice(user:IUser, device:IClientDevice):IClientDevice|undefined {
+        let result:IClientDevice|undefined
 
         user.clientDevices.forEach(cDevice => {
-            if (cDevice.ua === device.ua) deviceId = cDevice._id
+            if (cDevice.ua === device.ua) result = cDevice
         })
 
-        return deviceId
+        return result
     }
-    public getToken(device:IClientDevice|null, token:string):string|undefined {
-        let tokenId:string|undefined
+    public getToken(device:IClientDevice|null, token:string):IAccessToken|undefined {
+        let result:IAccessToken|undefined
 
-        if (!device) return tokenId
+        if (!device) return result
 
         device.accessTokens?.forEach(item => {
-            if (item.jwt === token) tokenId = item._id
+            if (item.jwt === token) result = item
         })
 
-        return tokenId
+        return result
     }
 
     public async getUser(query:IUserQuery):Promise<IUser|null> {

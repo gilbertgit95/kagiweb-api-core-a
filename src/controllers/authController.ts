@@ -56,12 +56,12 @@ class AuthController {
 
             // assign access token to device
             // get device 
-            let deviceId = userController.getDevice(user, device)
+            let deviceId = userController.getDevice(user, device)?._id
             // if device exist, push the new token to the existing device
             if (!deviceId) {
                 user.clientDevices.push(device)
                 user = await user.save()
-                deviceId = userController.getDevice(user, device)
+                deviceId = userController.getDevice(user, device)?._id
             }
             user.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
 
@@ -109,10 +109,10 @@ class AuthController {
             const user = await UserModel.findOne({ _id: tokenObj.userId })
             if (!user) throw(400)
 
-            const deviceId = userController.getDevice(user, client)
+            const deviceId = userController.getDevice(user, client)?._id
             if (!deviceId) throw(400)
 
-            const tokenId = userController.getToken(user.clientDevices.id(deviceId), token)
+            const tokenId = userController.getToken(user.clientDevices.id(deviceId), token)?._id
             if (!tokenId) throw(400)
 
             user.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()
