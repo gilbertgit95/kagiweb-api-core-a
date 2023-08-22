@@ -3,8 +3,7 @@ import { randomUUID } from 'crypto'
 
 // types
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone'
-type TPasswordType = 'current' | 'old'
-type TLimitedTransactionType = 'otp-signin' | 'pass-reset' | ''
+type TLimitedTransactionType = 'signin' | 'otp-signin' | 'pass-reset' | ''
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
 // queries
@@ -21,12 +20,13 @@ interface IUserUpdate {
 interface IRoleRef {
     _id?: string,
     roleId: string,
+    isActive?: boolean
 }
 
 interface IPassword {
     _id?: string,
     key: string,
-    type: TPasswordType
+    isActive?: boolean
 }
 
 interface IContactInfo {
@@ -107,13 +107,14 @@ interface IUser {
 // create schemas
 const RoleRef = new Schema<IRoleRef>({
     _id: { type: String, default: () => randomUUID()},
-    roleId: { type: String, require: true }
+    roleId: { type: String, require: true },
+    isActive: { type: Boolean, requires: false, default: false }
 }, { timestamps: true })
 
 const PasswordSchema = new Schema<IPassword>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
-    type: { type: String, require: true },
+    isActive: { type: Boolean, require: false, default: true },
 }, { timestamps: true })
 
 const ContactInfoSchema = new Schema<IContactInfo>({
@@ -194,7 +195,6 @@ export {
     IUserQuery,
     IUserUpdate,
     TContactInfoType,
-    TPasswordType,
     TLimitedTransactionType,
     TUserInfoType,
     IPassword,

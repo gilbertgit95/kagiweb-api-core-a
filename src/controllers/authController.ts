@@ -19,7 +19,7 @@ class AuthController {
      */
     public async verifyPassword(user:IUser, password:string):Promise<boolean> {
         const currPasswords = user?.passwords
-            .filter(pass => pass.type === 'current')
+            .filter(pass => pass.isActive)
         const currPassword = (
                currPasswords
             && currPasswords.length
