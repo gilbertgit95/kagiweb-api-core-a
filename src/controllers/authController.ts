@@ -18,7 +18,7 @@ class AuthController {
      * @returns {boolean}
      */
     public async verifyPassword(user:IUser, password:string):Promise<boolean> {
-        const currPasswords = user?.passwords
+        const currPasswords = user!.passwords
             .filter(pass => pass.isActive)
         const currPassword = (
                currPasswords
@@ -28,7 +28,7 @@ class AuthController {
 
         // match password
         let passwordMatch = false
-        if (user && currPassword) {
+        if (currPassword) {
             passwordMatch = await Encryption
                 .verifyTextToHash(password, currPassword.key)
         }
@@ -62,7 +62,7 @@ class AuthController {
             await user.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
         }
-        // check if signin is enable and also check for the attmpts copared to the limit
+        // check if signin is enable and also check for the attmpts compared to the limit
         if (signinLT && signinLT.limit < newTotalAttempts) {
             user.disabled = true
             await user.save()
