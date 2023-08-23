@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import DataCache from '../utilities/dataCache'
 import UserModel, { IUser, IUserQuery, IClientDevice, ILimitedTransaction, IAccessToken } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
@@ -30,6 +32,34 @@ class UserController {
     constructor() {
         this.cachedData = new DataCache(UserModel, { stdTTL: 30, checkperiod: 15 })
         this.request = new DataRequest(UserModel)
+    }
+
+    public isLimitedTransactionValid(user:IUser, lt:string):boolean {
+        let ltData:ILimitedTransaction|undefined
+
+        // get limited transaction
+        user.limitedTransactions.forEach(item => {
+            if (item.type === lt && !item.disabled) {
+                ltData = item
+            }
+        })
+
+        // checker if no lt exist
+        if (!ltData) return false
+        // checker if lt is disabled
+        if (ltData.disabled) return false
+        // checker if attempts is higher than the limit
+        if (ltData.limit < ltData.attempts) return false
+        // time expiration checker, current time versus time in expTime
+        if (ltData.expTime) {
+            let currTime = moment()
+            let ltTime = moment(ltData.expTime)
+            // check time is valid
+            // then check if curren time is greater than the ltTime
+            // if (inValid || curr > lt) return false
+        }
+
+        return true
     }
 
     public getLimitedTransaction(user:IUser, limitedTransac:string):ILimitedTransaction|undefined {

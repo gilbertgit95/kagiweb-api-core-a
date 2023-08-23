@@ -53,6 +53,8 @@ const users = [
                 type: 'signin',
                 key: '',
                 attempts: 0,
+                expTime: '',
+                recipient: 'app-admin',
                 disabled: false
             },
             {
@@ -61,6 +63,8 @@ const users = [
                 type: 'otp-signin',
                 key: '',
                 attempts: 0,
+                expTime: '',
+                recipient: 'app-admin',
                 disabled: false
             },
             {
@@ -69,6 +73,8 @@ const users = [
                 type: 'pass-reset',
                 key: '',
                 attempts: 0,
+                expTime: '',
+                recipient: 'app-admin',
                 disabled: false
             },
             {
@@ -77,6 +83,8 @@ const users = [
                 type: '',
                 key: '',
                 attempts: 0,
+                expTime: '',
+                recipient: 'app-admin',
                 disabled: false
             }
         ]

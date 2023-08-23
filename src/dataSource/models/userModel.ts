@@ -2,7 +2,7 @@ import { Schema, model, Document, Types } from 'mongoose'
 import { randomUUID } from 'crypto'
 
 // types
-type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone'
+type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'pass-reset' | ''
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
@@ -78,6 +78,8 @@ interface ILimitedTransaction {
     type?: TLimitedTransactionType,
     key?: string,
     attempts: number,
+    expTime?: string, // optional expiration time, only for timed LT
+    recipient?: TContactInfoType, // optional, only for some LT like: otp, pass reset
     disabled?: boolean
 }
 
@@ -166,6 +168,8 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     type: { type: String, require: false },
     key: { type: String, require: false, default: '' },
     attempts: { type: Number, require: false, default: 0 },
+    expTime: { type: String, require: false, default: '' },
+    recipient: { type: String, require: false, default: 'app-admin' },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
