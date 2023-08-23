@@ -51,7 +51,7 @@ const users = [
                 _id: '5efafc09-a05b-4acd-825d-689675298ae3',
                 limit: 5,
                 type: 'signin',
-                key: 0,
+                key: '',
                 attempts: 0,
                 disabled: false
             },
@@ -59,7 +59,7 @@ const users = [
                 _id: '94e5e5f1-3314-4d79-96e3-9080efad667d',
                 limit: 5,
                 type: 'otp-signin',
-                key: 0,
+                key: '',
                 attempts: 0,
                 disabled: false
             },
@@ -67,7 +67,7 @@ const users = [
                 _id: 'c81694f1-e54f-48a4-b3b1-a5fd4dc3ad08',
                 limit: 5,
                 type: 'pass-reset',
-                key: 0,
+                key: '',
                 attempts: 0,
                 disabled: false
             },
@@ -75,7 +75,7 @@ const users = [
                 _id: '33c18b8c-087a-4787-8fd8-350da317098e',
                 limit: 5,
                 type: '',
-                key: 0,
+                key: '',
                 attempts: 0,
                 disabled: false
             }

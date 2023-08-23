@@ -36,18 +36,47 @@ class AuthController {
         return passwordMatch
     }
 
-    public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token: string} | null> {
+    public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, userId?: string} | null> {
 
         // fetch user using the username
         let user = await UserModel.findOne({ username })
-        // get the current password
-        const isMatch = user? await this.verifyPassword(user, password): false
-        let jwtStr = null
+        let result:{token?: string, userId?: string} | null
+
+
+        // if no user found
+        if (!user) {
+            throw(404) // resource not found
+        }
+        if (user && user.disabled) {
+            throw(423) // is locked
+        }
+
+
+        // if user exist then encrement the signin attempt
+        let signinLT = userController.getLimitedTransaction(user, 'signin')
+        let newTotalAttempts:number = 0
+        // encrement attempt
+        if (signinLT) {
+            newTotalAttempts = user.limitedTransactions.id(signinLT._id)!.attempts + 1
+            user.limitedTransactions.id(signinLT._id)!.attempts = newTotalAttempts
+            await user.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
+        }
+        // check if signin is enable and also check for the attmpts copared to the limit
+        if (signinLT && signinLT.limit < newTotalAttempts) {
+            user.disabled = true
+            await user.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
+            throw(423) // is locked
+        }
+
 
         // if a match, set user authentication related data
         // credential match
-        if (user && isMatch) {
-            jwtStr = await Encryption.generateJWT({userId: user._id})
+        if (await this.verifyPassword(user, password)) {
+
+            // normal signin
+            const jwtStr = await Encryption.generateJWT({userId: user!._id})
             const accessToken:IAccessToken = {
                 jwt: jwtStr,
                 ipAddress: ip,
@@ -56,26 +85,30 @@ class AuthController {
 
             // assign access token to device
             // get device 
-            let deviceId = userController.getDevice(user, device)?._id
+            let deviceId = userController.getDevice(user!, device)?._id
             // if device exist, push the new token to the existing device
             if (!deviceId) {
-                user.clientDevices.push(device)
-                user = await user.save()
+                user!.clientDevices.push(device)
+                user = await user!.save()
                 deviceId = userController.getDevice(user, device)?._id
             }
-            user.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
+            user!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
+            result = {token: jwtStr}
 
-            await user.save()
+            // reset signinLT
+            if (signinLT) {
+                user.limitedTransactions.id(signinLT._id)!.attempts = 0
+            }
 
-            // remove cache
-            userController.cachedData.removeCacheData(user._id)
+            await user!.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
 
         // Throw error when user does not exist or password not match
         } else {
-            throw(400) // Incorrect content in the request.
+            throw(404) // Resource not found
         }
 
-        return {token: jwtStr}
+        return result
     }
 
     // userId:string, code:string

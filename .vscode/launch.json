@@ -6,7 +6,7 @@
     "configurations": [
         {
             "type": "node",
-            "name": "Typescript101",
+            "name": "Server",
             "request": "launch",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsnd",
             "program": "src/app.ts",
@@ -18,7 +18,7 @@
             ],
             "skipFiles": [
                 "<node_internals>/**"
-            ],
+            ]
         }
     ]
 }

@@ -20,7 +20,7 @@ router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // esl
 
     // console.log(username, password)
 
-    const [result, statusCode] = await ErrorHandler.execute<{token:string}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
         return await authController.signin(username, password, ua, ip)
     })
 

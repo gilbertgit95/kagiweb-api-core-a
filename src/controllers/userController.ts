@@ -36,7 +36,7 @@ class UserController {
         let result:ILimitedTransaction|undefined
 
         user.limitedTransactions.forEach(item => {
-            if (item.type === limitedTransac && item.disabled) {
+            if (item.type === limitedTransac && !item.disabled) {
                 result = item
             }
         })

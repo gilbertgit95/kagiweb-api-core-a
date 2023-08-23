@@ -76,7 +76,7 @@ interface ILimitedTransaction {
     _id?: string,
     limit: number,
     type?: TLimitedTransactionType,
-    key?: number,
+    key?: string,
     attempts: number,
     disabled?: boolean
 }
@@ -164,8 +164,8 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     _id: { type: String, default: () => randomUUID()},
     limit: { type: Number, require: true },
     type: { type: String, require: false },
-    key: { type: Number, require: false },
-    attempts: { type: Number, require: true },
+    key: { type: String, require: false, default: '' },
+    attempts: { type: Number, require: false, default: 0 },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 

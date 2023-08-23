@@ -29,9 +29,19 @@ class ErrorHandler {
             else if (err === 403) {
                 statusCode = 403
                 result = { message: 'Forbidden access to resources.'}
-            } else {
-
-                // default error status
+            }
+            // Resource not found
+            else if (err === 404) {
+                statusCode = 404
+                result = { message: 'Resource not found'}
+            }
+            // is locked
+            else if (err === 423) {
+                statusCode = 423
+                result = { message: 'Locked.'}
+            }
+            // default error status
+            else {
                 result = { message: 'Internal server error.'}
                 statusCode = 500
             }
