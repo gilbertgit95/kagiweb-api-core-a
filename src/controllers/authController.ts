@@ -216,6 +216,74 @@ class AuthController {
         return result
     }
 
+    public async signup():Promise<IUser | null> {
+        // const userReq = new DataRequest(UserModel)
+
+        // const result = await userReq.getItem<IUser>()
+
+        return null
+    }
+
+    public async forgotPassword(username:string):Promise<{ username:string } | null> {
+        // fetch user using the username
+        let user = await UserModel.findOne({ username })
+        let result:{ username: string } | null = null
+
+
+        // if no user found
+        if (!user) {
+            throw(404) // resource not found
+        }
+        if (user && user.disabled) {
+            throw(423) // is locked
+        }
+
+
+        // if user exist then encrement the forgot-pass attempt
+        const resetPassLT = userController.getLT(user, 'reset-pass')
+        const forgotPassLT = userController.getLT(user, 'forgot-pass')
+        // encrement attempt
+        if (forgotPassLT) {
+            user!.limitedTransactions.id(forgotPassLT._id)!.attempts++
+            await user.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
+        }
+        // check if forgot-pass is enable and also check for the attmpts compared to the limit
+        if (!userController.isLTValid(user, 'forgot-pass')) {
+            user.disabled = true
+            await user.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
+            throw(423) // is locked
+        }
+
+        if (resetPassLT && !resetPassLT.disabled) {
+            const otpKey:string = Encryption.generateRandNumber().toString()
+            const expTime:string = moment()
+                .add(env.DafaultUserLTExpiration, 'minutes')
+                .toDate().toISOString()
+
+            // reset otp-signin with the random key
+            user.limitedTransactions.id(resetPassLT._id)!.attempts = 0
+            user.limitedTransactions.id(resetPassLT._id)!.key = otpKey
+            user.limitedTransactions.id(resetPassLT._id)!.expTime = expTime
+            await user.save()
+
+            result = { username: user.username }
+        } else {
+            throw(400) // Incorrect content in the request
+        }
+
+        return result
+    }
+
+    public async resetPassword(username:string, key:string):Promise<{ message: string } | null> {
+        // const userReq = new DataRequest(UserModel)
+
+        // const result = await userReq.getItem<IUser>()
+
+        return null
+    }
+
     // jwt:string
     public async signout(client:IClientDevice, authorization:string):Promise<{message:string} | null> {
         let resp:{message:string}|null = null
@@ -244,36 +312,12 @@ class AuthController {
             resp = { message: 'Successfull signout' }
 
         } else {
-            throw(400)
+            throw(400) // Incorrect content in the request
         }
 
         // remove cache
         // userController.cachedData.removeCacheData(user._id)
         return resp
-    }
-
-    public async signup():Promise<IUser | null> {
-        // const userReq = new DataRequest(UserModel)
-
-        // const result = await userReq.getItem<IUser>()
-
-        return null
-    }
-
-    public async forgotPassword(username:string):Promise<{ username:string } | null> {
-        // const userReq = new DataRequest(UserModel)
-
-        // const result = await userReq.getItem<IUser>()
-
-        return null
-    }
-
-    public async resetPassword(username:string, key:string):Promise<{ message: string } | null> {
-        // const userReq = new DataRequest(UserModel)
-
-        // const result = await userReq.getItem<IUser>()
-
-        return null
     }
 }
 

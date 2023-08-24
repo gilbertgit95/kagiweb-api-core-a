@@ -43,12 +43,24 @@ router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
 
 router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
 
-    return res.json({})
+    const { username } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<{username:string}>(async () => {
+        return await authController.forgotPassword(username)
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
 
-    return res.json({})
+    const { username, key } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
+        return await authController.resetPassword(username, key)
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'signout', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
