@@ -34,7 +34,7 @@ class UserController {
         this.request = new DataRequest(UserModel)
     }
 
-    public isLimitedTransactionValid(user:IUser, lt:string):boolean {
+    public isLTValid(user:IUser, lt:string):boolean {
         let ltData:ILimitedTransaction|undefined
 
         // get limited transaction
@@ -45,30 +45,28 @@ class UserController {
         })
 
         // checker if no lt exist
-        if (!ltData) return false
         // checker if lt is disabled
-        if (ltData.disabled) return false
-        // checker if attempts is higher than the limit
-        if (ltData.limit < ltData.attempts) return false
-        // time expiration checker, current time versus time in expTime
-        if (ltData.expTime) {
-            let currTime = moment()
-            let ltTime = moment(ltData.expTime)
-            // check time is valid
-            // then check if curren time is greater than the ltTime
-            // if (inValid || curr > lt) return false
+        if (ltData && !Boolean(ltData.disabled)) {
+            // checker if attempts is higher than the limit
+            if (ltData.limit < ltData.attempts) return false
+            // time expiration checker, current time versus time in expTime
+            if (ltData.expTime) {
+                let currTime = moment()
+                let ltTime = moment(ltData.expTime)
+                // check time is valid
+                // then check if curren time is greater than the ltTime
+                if (ltTime.isValid() && currTime.isAfter(ltTime)) return false
+            }
         }
 
         return true
     }
 
-    public getLimitedTransaction(user:IUser, limitedTransac:string):ILimitedTransaction|undefined {
+    public getLT(user:IUser, limitedTransac:string):ILimitedTransaction|undefined {
         let result:ILimitedTransaction|undefined
 
         user.limitedTransactions.forEach(item => {
-            if (item.type === limitedTransac && !item.disabled) {
-                result = item
-            }
+            if (item.type === limitedTransac) result = item
         })
 
         return result

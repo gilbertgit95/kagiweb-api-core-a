@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Document, Types } from 'mongoose'
 import { randomUUID } from 'crypto'
 
 // Roles:
@@ -26,7 +26,7 @@ interface IRole {
     level: number,
     description?: string,
     absoluteAuthority?: boolean,
-    featuresRefs?: IfeatureRef[]
+    featuresRefs?: Types.DocumentArray<IfeatureRef & Document>
 }
 
 // create schemas

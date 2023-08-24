@@ -1,6 +1,12 @@
 # authentications related paths
 /signin:
   $ref: ./auths/signinPaths.yml
+/signinOTP:
+  $ref: ./auths/otpSigninPaths.yml
+/forgotPassword:
+  $ref: ./auths/forgotPasswordPaths.yml
+/resetPassword:
+  $ref: ./auths/resetPasswordPaths.yml
 /signout:
   $ref: ./auths/signoutPaths.yml
 

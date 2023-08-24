@@ -78,6 +78,116 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "username": "string",
+                    "token": "string"
+                  }
+                },
+                "example": {
+                  "username": "master",
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect content in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Incorrect content in the request."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Resource not found."
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "locked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "locked"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Internal server error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signinOTP": {
+      "post": {
+        "tags": [
+          "Auths"
+        ],
+        "security": [],
+        "summary": "OTP Signin to the application to get jwt",
+        "description": "OTP Signin to the application to get jwt",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "key"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "jwrt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
                     "token": "string"
                   }
                 },
@@ -101,6 +211,246 @@
               }
             }
           },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Resource not found."
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "locked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "locked"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Internal server error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/forgotPassword": {
+      "post": {
+        "tags": [
+          "Auths"
+        ],
+        "security": [],
+        "summary": "File a forgot request password",
+        "description": "File a forgot request password",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "jwrt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": "string"
+                  }
+                },
+                "example": {
+                  "username": "master"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect content in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Incorrect content in the request."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Resource not found."
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "locked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "locked"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Internal server error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resetPassword": {
+      "put": {
+        "tags": [
+          "Auths"
+        ],
+        "security": [],
+        "summary": "Reset the password using otp key",
+        "description": "Reset the password using otp key",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "username",
+                  "key"
+                ],
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "jwrt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "string"
+                  }
+                },
+                "example": {
+                  "message": "Password has been change"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect content in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Incorrect content in the request."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Resource not found."
+                }
+              }
+            }
+          },
+          "423": {
+            "description": "locked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "locked"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Internal server error.",
             "content": {
@@ -119,12 +469,12 @@
       }
     },
     "/signout": {
-      "post": {
+      "delete": {
         "tags": [
           "Auths"
         ],
-        "summary": "Signout to the application, remove token from user",
-        "description": "Signout to the application, remove token from user",
+        "summary": "Signout to the application, remove access token from user device",
+        "description": "Signout to the application, remove access token from user device",
         "produces": [
           "application/json"
         ],

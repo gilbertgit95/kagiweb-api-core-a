@@ -8,8 +8,8 @@ interface Env {
     AppAdminConfirmKey: string,
 
     DafaultPagination: number,
-    DafaultMaxLoginAttempts: number,
-    DafaultMaxResetAttempts: number,
+    DafaultUserLTLimit: number,
+    DafaultUserLTExpiration: number,
 
     MongoURI: string | undefined,
     DBName: string | undefined,
@@ -35,8 +35,8 @@ class Config {
             AppAdminConfirmKey: process.env.APP_ADMIN_CONFIRM_KEY? process.env.APP_ADMIN_CONFIRM_KEY: '',
 
             DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
-            DafaultMaxLoginAttempts: Number(process.env.DEFAULT_MAX_LOGIN_ATTEMPTS),
-            DafaultMaxResetAttempts: Number(process.env.DEFAULT_MAX_RESET_ATTEMPTS),
+            DafaultUserLTLimit: Number(process.env.DEFAULT_USER_LT_LIMIT),
+            DafaultUserLTExpiration: Number(process.env.DEFAULT_USER_LT_EXP),
 
             MongoURI: process.env[`${ appEnv }_MONGO_URI`]? process.env[`${ appEnv }_MONGO_URI`]: '',
             DBName: process.env[`${ appEnv }_MONGO_DB_NAME`]? process.env[`${ appEnv }_MONGO_DB_NAME`]: '',

@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto'
 
 // types
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
-type TLimitedTransactionType = 'signin' | 'otp-signin' | 'pass-reset' | ''
+type TLimitedTransactionType = 'signin' | 'otp-signin' | 'reset-pass' | 'forgot-pass'
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
 // queries

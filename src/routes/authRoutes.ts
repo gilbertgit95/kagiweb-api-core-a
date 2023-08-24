@@ -13,10 +13,7 @@ const router = express.Router()
 router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
     const ua = req.userAgentInfo? req.userAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
-    const {
-        username,
-        password
-    } = req.body
+    const { username, password } = req.body
 
     // console.log(username, password)
 
@@ -27,17 +24,13 @@ router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // esl
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'signinOTP', async (req, res) => {
-
-    return res.json({})
-})
-
-router.post(env.RootApiEndpoint + 'signout', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-    const authorization = req.headers.authorization
+router.post(env.RootApiEndpoint + 'signinOTP', async (req:any, res:any) => {
     const ua = req.userAgentInfo? req.userAgentInfo: null
-    
-    const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
-        return await authController.signout(ua, authorization)
+    const ip = req.clientIp? req.clientIp: null
+    const { username, key } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
+        return await authController.signinOTP(username, key, ua, ip)
     })
 
     return res.status(statusCode).send(result)
@@ -53,9 +46,20 @@ router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
     return res.json({})
 })
 
-router.post(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
+router.put(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
 
     return res.json({})
+})
+
+router.delete(env.RootApiEndpoint + 'signout', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+    const authorization = req.headers.authorization
+    const ua = req.userAgentInfo? req.userAgentInfo: null
+    
+    const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
+        return await authController.signout(ua, authorization)
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 export default router

@@ -68,9 +68,9 @@ const users = [
                 disabled: false
             },
             {
-                _id: 'c81694f1-e54f-48a4-b3b1-a5fd4dc3ad08',
+                _id: '33c18b8c-087a-4787-8fd8-350da317098e',
                 limit: 5,
-                type: 'pass-reset',
+                type: 'forgot-pass',
                 key: '',
                 attempts: 0,
                 expTime: '',
@@ -78,9 +78,9 @@ const users = [
                 disabled: false
             },
             {
-                _id: '33c18b8c-087a-4787-8fd8-350da317098e',
+                _id: 'c81694f1-e54f-48a4-b3b1-a5fd4dc3ad08',
                 limit: 5,
-                type: '',
+                type: 'reset-pass',
                 key: '',
                 attempts: 0,
                 expTime: '',

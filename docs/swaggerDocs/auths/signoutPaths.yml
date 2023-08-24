@@ -1,8 +1,8 @@
-post:
+delete:
     tags :
       - Auths
-    summary: Signout to the application, remove token from user
-    description: Signout to the application, remove token from user
+    summary: Signout to the application, remove access token from user device
+    description: Signout to the application, remove access token from user device
     produces:
       - application/json
     responses:
