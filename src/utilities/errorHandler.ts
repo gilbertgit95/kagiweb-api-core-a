@@ -35,6 +35,11 @@ class ErrorHandler {
                 statusCode = err
                 result = { message: 'Resource not found'}
             }
+            // Conflict
+            else if (err === 409) {
+                statusCode = err
+                result = { message: 'Conflict'}
+            }
             // is locked
             else if (err === 423) {
                 statusCode = err

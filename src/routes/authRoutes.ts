@@ -37,8 +37,13 @@ router.post(env.RootApiEndpoint + 'signinOTP', async (req:any, res:any) => {
 })
 
 router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
+    const { username, password, email, phone } = req.body
 
-    return res.json({})
+    const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
+        return await authController.signup(username, password, email, phone)
+    })
+
+    return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {

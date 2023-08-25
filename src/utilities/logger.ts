@@ -16,7 +16,7 @@ class Logger {
     constructor(logCollection:string|null) {
         this.logger = createLogger({
             transports: [
-                new transports.Console(),
+                // new transports.Console(),
                 new DailyRotateFile({
                     filename: (typeof logCollection === 'string')? `${ env.RootLogsDir }/${ logCollection }/%DATE%.log`: `${ env.RootLogsDir }/%DATE%.log`,
                     datePattern: 'YYYY-MM-DD-HH',

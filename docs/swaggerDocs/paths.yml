@@ -3,6 +3,8 @@
   $ref: ./auths/signinPaths.yml
 /signinOTP:
   $ref: ./auths/otpSigninPaths.yml
+/signup:
+  $ref: ./auths/signupPaths.yml
 /forgotPassword:
   $ref: ./auths/forgotPasswordPaths.yml
 /resetPassword:

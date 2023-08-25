@@ -1,8 +1,10 @@
 import moment from 'moment'
-import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
-import userController from '../controllers/userController'
+import UserModel, { IUser, IClientDevice, IAccessToken, IContactInfo } from '../dataSource/models/userModel'
+import userController from './userController'
+import roleController from './roleController'
 import Encryption from '../utilities/encryption'
 import Config from '../utilities/config'
+import { IRole } from '../dataSource/models/roleModel'
 
 const env = Config.getEnv()
 
@@ -63,7 +65,7 @@ class AuthController {
     public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, username?: string} | null> {
 
         // fetch user using the username
-        let user = await UserModel.findOne({ username })
+        let user = await UserModel.findOne({ username, verified: true })
         let result:{token?: string, username?: string} | null
 
 
@@ -157,7 +159,7 @@ class AuthController {
     // userId:string, code:string
     public async signinOTP(username:string, key:string, device:IClientDevice, ip:string):Promise<{token: string} | null> {
         // fetch user using the username
-        let user = await UserModel.findOne({ username })
+        let user = await UserModel.findOne({ username, verified: true })
         let result:{ token: string } | null
 
 
@@ -227,17 +229,75 @@ class AuthController {
         return result
     }
 
-    public async signup():Promise<IUser | null> {
-        // const userReq = new DataRequest(UserModel)
+    public async signup(username:string, password:string, email?:string, phone?:string):Promise<{message:string}> {
+        let contactinfos:IContactInfo[] = []
+        // check username and password exist
+        if (!(username && password)) throw(400) // Incorrect content in the request
+        // check username is unique
+        if (await UserModel.findOne({username})) throw(409) // conflict
 
-        // const result = await userReq.getItem<IUser>()
+        // validate data here ---->>>
 
-        return null
+        // if email exist check if email is unique then generate email contact info
+        if (email) {
+            if (await UserModel.findOne({'contactInfos.value': email})) {
+                throw(409) // conflict
+            } else {
+                contactinfos.push({
+                    type: 'email-address',
+                    value: email
+                })
+            }
+        }
+        // if phone exist check if phone is unique then generate phone contact info
+        if (phone) {
+            if (await UserModel.findOne({'contactInfos.value': phone})) {
+                throw(409) // conflict
+            } else {
+                contactinfos.push({
+                    type: 'mobile-number',
+                    value: phone
+                })
+            }
+        }
+
+        // get the least role available
+        const role = await roleController.getLeastRole()
+
+        // create new user entry data with default data
+        // set the contact informations
+        // set the password
+        const user = {
+            username,
+            rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
+            userInfo: [],
+            passwords: [
+                { key: await Encryption.hashText(password), isActive: true }
+            ],
+            contactInfos: contactinfos,
+            clientDevices: [],
+            limitedTransactions: [
+                { limit: 5, type: 'signin' },
+                { limit: 5, type: 'otp-signin', disabled: true },
+                { limit: 5, type: 'forgot-pass' },
+                { limit: 5, type: 'reset-pass' },
+                { limit: 5, type: 'verify-contact'}
+            ],
+            disabled: true,
+            verified: false
+        }
+
+        // then save the new user to the database
+        await UserModel.create(user)
+
+        // send notification to recepient here ------>>>>
+
+        return { message: 'User successfully created' }
     }
 
     public async forgotPassword(username:string):Promise<{ username:string } | null> {
         // fetch user using the username
-        let user = await UserModel.findOne({ username })
+        let user = await UserModel.findOne({ username, verified: true })
         let result:{ username: string } | null = null
 
 
@@ -292,7 +352,7 @@ class AuthController {
 
     public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
         // fetch user using the username
-        let user = await UserModel.findOne({ username })
+        let user = await UserModel.findOne({ username, verified: true })
         let result:{ message: string } | null = null
 
 
@@ -367,7 +427,7 @@ class AuthController {
             const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
             if (!(tokenObj && tokenObj.userId)) throw(400)
 
-            const user = await UserModel.findOne({ _id: tokenObj.userId })
+            const user = await UserModel.findOne({ _id: tokenObj.userId, verified: true })
             if (!user) throw(400)
 
             const deviceId = userController.getDevice(user, client)?._id

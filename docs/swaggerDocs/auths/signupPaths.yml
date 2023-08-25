@@ -1,0 +1,74 @@
+post:
+    tags :
+      - Auths
+    security: []
+    summary: File a forgot request password
+    description: File a forgot request password
+    produces:
+      - application/json
+    requestBody:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            required:
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              email:
+                type: string
+                description: email address (optional)
+              phone:
+                type: string
+                description: mobile phone number (optional)
+    responses:
+      200:
+        description: jwrt response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username: string
+            example:
+              username: master
+      400:
+        description: Incorrect content in the request.
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: ../global/errorDefinition.yml
+            example:
+              message: Incorrect content in the request.
+      404:
+        description: Resource not found.
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: ../global/errorDefinition.yml
+            example:
+              message: Resource not found.
+      423:
+        description: locked
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: ../global/errorDefinition.yml
+            example:
+              message: locked
+      500:
+        description: Internal server error.
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: ../global/errorDefinition.yml
+            example:
+              message: Internal server error.

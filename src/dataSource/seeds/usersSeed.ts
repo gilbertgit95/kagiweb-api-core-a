@@ -4,6 +4,8 @@ const users = [
     {
         _id: '37410e75-1760-4bb6-85e0-d0a138d374bc',
         username: 'master',
+        disabled: false,
+        verified: true,
         passwords: [
             {
                 _id: 'a8490a11-6d18-41b1-b0fb-f78ce73cd4b1',
@@ -11,7 +13,7 @@ const users = [
                 isActive: true
             }
         ],
-        userInfo: [
+        userInfos: [
             {
                 _id: 'c54a858a-b095-4405-9a1c-8567ec91da5e',
                 key: 'fullname',
@@ -42,7 +44,7 @@ const users = [
                 type: 'email-address',
                 value: 'gilbert.cuerbo@gmail.com',
                 countryCode: 'PH',
-                validated: false
+                verified: false
             }
         ],
         clientDevices: [],
@@ -52,6 +54,7 @@ const users = [
                 limit: 5,
                 type: 'signin',
                 key: '',
+                value: '',
                 attempts: 0,
                 expTime: '',
                 recipient: 'app-admin',
@@ -62,6 +65,7 @@ const users = [
                 limit: 5,
                 type: 'otp-signin',
                 key: '',
+                value: '',
                 attempts: 0,
                 expTime: '',
                 recipient: 'app-admin',
@@ -72,6 +76,7 @@ const users = [
                 limit: 5,
                 type: 'forgot-pass',
                 key: '',
+                value: '',
                 attempts: 0,
                 expTime: '',
                 recipient: 'app-admin',
@@ -82,6 +87,18 @@ const users = [
                 limit: 5,
                 type: 'reset-pass',
                 key: '',
+                value: '',
+                attempts: 0,
+                expTime: '',
+                recipient: 'app-admin',
+                disabled: false
+            },
+            {
+                _id: '328d8474-978b-4a97-8230-418559e7449c',
+                limit: 5,
+                type: 'verify-contact',
+                key: '',
+                value: '',
                 attempts: 0,
                 expTime: '',
                 recipient: 'app-admin',

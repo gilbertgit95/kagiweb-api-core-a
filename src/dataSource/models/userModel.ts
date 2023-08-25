@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto'
 
 // types
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
-type TLimitedTransactionType = 'signin' | 'otp-signin' | 'reset-pass' | 'forgot-pass'
+type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
 // queries
@@ -34,7 +34,7 @@ interface IContactInfo {
     type: TContactInfoType,
     value: string,
     countryCode?: string,
-    validated?: boolean
+    verified?: boolean
 }
 
 interface IAccessToken {
@@ -75,9 +75,10 @@ interface IClientDevice {
 interface ILimitedTransaction {
     _id?: string,
     limit: number,
-    type?: TLimitedTransactionType,
-    key?: string,
     attempts: number,
+    type: TLimitedTransactionType,
+    key?: string,
+    value?: string, // optional, can be use to store additional info
     expTime?: string, // optional expiration time, only for timed LT
     recipient?: TContactInfoType, // optional, only for some LT like: otp, pass reset
     disabled?: boolean
@@ -94,7 +95,7 @@ interface IUser {
     _id?: string,
     username: string,
     rolesRefs: Types.DocumentArray<IRoleRef & Document>,
-    userInfo: Types.DocumentArray<IUserInfo & Document>,
+    userInfos: Types.DocumentArray<IUserInfo & Document>,
 
     passwords: Types.DocumentArray<IPassword & Document>,
 
@@ -103,11 +104,12 @@ interface IUser {
 
     limitedTransactions: Types.DocumentArray<ILimitedTransaction & Document>,
 
-    disabled?: boolean
+    disabled?: boolean,
+    verified?: boolean
 }
 
 // create schemas
-const RoleRef = new Schema<IRoleRef>({
+const RoleRefSchema = new Schema<IRoleRef>({
     _id: { type: String, default: () => randomUUID()},
     roleId: { type: String, require: true },
     isActive: { type: Boolean, requires: false, default: false }
@@ -124,7 +126,7 @@ const ContactInfoSchema = new Schema<IContactInfo>({
     type: { type: String, require: true },
     value: { type: String, require: true },
     countryCode: { type: String, require: false },
-    validated: { type: Boolean, require: false, default: false }
+    verified: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 const AccessTokenSchema = new Schema<IAccessToken>({
@@ -165,9 +167,10 @@ const ClientDeviceSchema = new Schema<IClientDevice>({
 const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     _id: { type: String, default: () => randomUUID()},
     limit: { type: Number, require: true },
+    attempts: { type: Number, require: false, default: 0 },
     type: { type: String, require: false },
     key: { type: String, require: false, default: '' },
-    attempts: { type: Number, require: false, default: 0 },
+    value: { type: String, require: false, default: '' },
     expTime: { type: String, require: false, default: '' },
     recipient: { type: String, require: false, default: 'app-admin' },
     disabled: { type: Boolean, require: false, default: false }
@@ -181,15 +184,16 @@ const UserInfoSchema = new Schema<IUserInfo>({
 }, { timestamps: true })
 
 const UserSchema = new Schema<IUser>({
-    _id: { type: String, default: () => randomUUID()},
+    _id: { type: String, default: () => randomUUID() },
     username: { type: String, required: true },
-    rolesRefs: { type: [RoleRef], required: true },
-    userInfo: { type: [UserInfoSchema], required: false },
+    rolesRefs: { type: [RoleRefSchema], required: true },
+    userInfos: { type: [UserInfoSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
     limitedTransactions: { type: [LimitedTransactionSchema], required: false },
-    disabled: { type: Boolean, require: false, default: false }
+    disabled: { type: Boolean, require: false, default: false },
+    verified: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
 // create model

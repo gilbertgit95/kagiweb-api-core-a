@@ -14,6 +14,30 @@ class RoleController {
         this.request = new DataRequest(RoleModel)
     }
 
+    public async getLeastRole():Promise<IRole|null> {
+        let result:IRole|null = null
+
+        const roles = await this.getAllRoles()
+
+        if (roles) {
+            if (roles.length > 1) {
+                result = roles
+                    .map((item:any) => {
+                        item.power = item.featuresRefs?.length
+                        if (item.absoluteAuthority) item.power = 1e6
+                        return item
+                    })
+                    .sort((a, b) => {
+                        return a.power - b.power
+                    })[0]
+            } else {
+                result = roles[0]
+            }
+        }
+
+        return result
+    }
+
     public async getRole(query:IRoleQuery):Promise<IRole|null> {
         if (!query._id) return null
         return await this.cachedData.getItem(query._id)
