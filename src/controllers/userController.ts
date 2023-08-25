@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser, IUserQuery, IClientDevice, ILimitedTransaction, IAccessToken } from '../dataSource/models/userModel'
+import UserModel, { IUser, IUserQuery, IClientDevice, ILimitedTransaction, IAccessToken, IPassword } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -22,7 +22,7 @@ import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // order.lineItems.id(id).qty = 3
 
 // delete
-// order.lineItems.id(`6277ddade65b3236b1eb65d6`).remove()
+// order.lineItems.id(`6277ddade65b3236b1eb65d6`).deleteOne()
 // const updated = await order.save()
 
 class UserController {
@@ -60,6 +60,16 @@ class UserController {
         }
 
         return true
+    }
+
+    public geActivePassword(user:IUser):IPassword|undefined {
+        let result:IPassword|undefined
+
+        user.passwords.forEach(item => {
+            if (item.isActive) result = item
+        })
+
+        return result
     }
 
     public getLT(user:IUser, limitedTransac:string):ILimitedTransaction|undefined {

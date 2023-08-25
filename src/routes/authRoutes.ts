@@ -54,10 +54,10 @@ router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
 
 router.put(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
 
-    const { username, key } = req.body
+    const { username, key, newPassword } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
-        return await authController.resetPassword(username, key)
+        return await authController.resetPassword(username, key, newPassword)
     })
 
     return res.status(statusCode).send(result)

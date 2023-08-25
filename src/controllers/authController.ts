@@ -37,6 +37,19 @@ class AuthController {
         return passwordMatch
     }
 
+    public async verifyPasswordNotYetUsed(user:IUser, password:string):Promise<boolean> {
+        let result  = true
+
+        for (const pass of user.passwords) {
+            if (await Encryption.verifyTextToHash(password, pass.key)) {
+                result = false
+                break
+            }
+        }
+
+        return result
+    }
+
     public verifyLTKey(user:IUser, lt:string, key:string):boolean {
         let result = false
 
@@ -100,6 +113,7 @@ class AuthController {
                 await user.save()
                 // send otp to the LT recepient
                 // ---------------->>>>> code here for sending opt key
+                console.log(`System is sending signin otp to ${ signinLT!.recipient } with key ${ otpKey }`)
                 // then return userId
                 return { username: user.username }
             }
@@ -149,7 +163,7 @@ class AuthController {
 
         // if no user found
         if (!user) {
-            throw(404) // resource not found
+            throw(403) // Forbidden access to resources.
         }
         if (user && user.disabled) {
             throw(423) // is locked
@@ -167,10 +181,7 @@ class AuthController {
         }
         // check if signin is enable and also check for the attmpts compared to the limit
         if (!userController.isLTValid(user, 'otp-signin')) {
-            user.disabled = true
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
-            throw(423) // is locked
+            throw(403) // Forbidden access to resources.
         }
 
         if (this.verifyLTKey(user, 'otp-signin', key)) {
@@ -210,7 +221,7 @@ class AuthController {
             await user!.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
         } else {
-            throw(400) // Incorrect content in the request
+            throw(403) // Forbidden access to resources.
         }
 
         return result
@@ -267,21 +278,80 @@ class AuthController {
             user.limitedTransactions.id(resetPassLT._id)!.key = otpKey
             user.limitedTransactions.id(resetPassLT._id)!.expTime = expTime
             await user.save()
-
+            // send otp to the LT recepient
+            // ---------------->>>>> code here for sending opt key
+            console.log(`System is sending password reset otp to ${ forgotPassLT!.recipient } with key ${ otpKey }`)
+            // then return userId
             result = { username: user.username }
         } else {
-            throw(400) // Incorrect content in the request
+            throw(404) // resource not found
         }
 
         return result
     }
 
-    public async resetPassword(username:string, key:string):Promise<{ message: string } | null> {
-        // const userReq = new DataRequest(UserModel)
+    public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
+        // fetch user using the username
+        let user = await UserModel.findOne({ username })
+        let result:{ message: string } | null = null
 
-        // const result = await userReq.getItem<IUser>()
 
-        return null
+        // if no user found
+        if (!user) {
+            throw(403) // Forbidden access to resources.
+        }
+        if (user && user.disabled) {
+            throw(423) // is locked
+        }
+
+
+        // if user exist then encrement the signin attempt
+        const forgotPassLT = userController.getLT(user, 'forgot-pass')
+        const resetPassLT = userController.getLT(user, 'reset-pass')
+        // encrement attempt
+        if (resetPassLT) {
+            user!.limitedTransactions.id(resetPassLT._id)!.attempts++
+            await user.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
+        }
+        // check if signin is enable and also check for the attmpts compared to the limit
+        if (!userController.isLTValid(user, 'reset-pass')) {
+            throw(403) // Forbidden access to resources.
+        }
+
+        if (this.verifyLTKey(user, 'reset-pass', key)) {
+            // check password exist before
+            if (!await this.verifyPasswordNotYetUsed(user, newPassword)) throw(400) // Incorrect content in the request.
+
+            // get current password
+            const currPass = userController.geActivePassword(user)
+            if (!Boolean(currPass)) throw(403) // Forbidden access to resources.
+            // deactivate the current used password
+            user.passwords.id(currPass!._id)!.isActive = false
+            // set the new password with active status
+            user.passwords.push({
+                key: await Encryption.hashText(newPassword),
+                isActive: true
+            })
+
+            // reset forgotPassLT
+            if (forgotPassLT) {
+                user.limitedTransactions.id(forgotPassLT._id)!.attempts = 0
+            }
+            if (resetPassLT) {
+                user.limitedTransactions.id(resetPassLT._id)!.attempts = 0
+                user.limitedTransactions.id(resetPassLT._id)!.key = ''
+                user.limitedTransactions.id(resetPassLT._id)!.expTime = ''
+            }
+
+            await user!.save()
+            userController.cachedData.removeCacheData(user!._id) // remove cache
+            result = { message: 'Password has been changed.' }
+        } else {
+            throw(403) // Forbidden access to resources.
+        }
+
+        return result
     }
 
     // jwt:string

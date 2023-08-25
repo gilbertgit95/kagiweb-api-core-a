@@ -378,13 +378,17 @@
                 "type": "object",
                 "required": [
                   "username",
-                  "key"
+                  "key",
+                  "newPassword"
                 ],
                 "properties": {
                   "username": {
                     "type": "string"
                   },
                   "key": {
+                    "type": "string"
+                  },
+                  "newPassword": {
                     "type": "string"
                   }
                 }
@@ -404,7 +408,7 @@
                   }
                 },
                 "example": {
-                  "message": "Password has been change"
+                  "message": "Password has been changed"
                 }
               }
             }
