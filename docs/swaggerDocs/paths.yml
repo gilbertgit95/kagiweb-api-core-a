@@ -29,3 +29,9 @@
   $ref: ./users/usersPaths.yml
 /users/{id}:
   $ref: ./users/usersSpecificPaths.yml
+
+# paths owner
+/owner:
+  $ref: ./owner/ownerPaths.yml
+/owner/{id}:
+  $ref: ./owner/ownerSpecificPaths.yml

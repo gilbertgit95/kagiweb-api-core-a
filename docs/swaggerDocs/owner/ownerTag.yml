@@ -1,0 +1,2 @@
+name: Owner
+description: Contains all endpoints related to the current signedin user.

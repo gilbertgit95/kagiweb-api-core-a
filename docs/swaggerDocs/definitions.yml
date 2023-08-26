@@ -25,3 +25,7 @@ UsersInfo:
   $ref: ./users/userInfoDefinition.yml
 UsersContactInfo:
   $ref: ./users/userContactInfoDefinition.yml
+
+# owner relate definations
+Owner:
+  $ref: ./owner/ownerDefinition.yml
