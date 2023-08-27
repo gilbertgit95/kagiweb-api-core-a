@@ -23,6 +23,10 @@
   $ref: ./roles/rolesPaths.yml
 /roles/{id}:
   $ref: ./roles/rolesSpecificPaths.yml
+/roles/{roleId}/features:
+  $ref: ./rolesFeatures/rolesFeaturesPaths.yml
+/roles/{roleId}/features/{featureId}:
+  $ref: ./rolesFeatures/rolesFeaturesSpecificPaths.yml
 
 # paths inside /users
 /users:
