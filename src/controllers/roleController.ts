@@ -22,13 +22,8 @@ class RoleController {
         if (roles) {
             if (roles.length > 1) {
                 result = roles
-                    .map((item:any) => {
-                        item.power = item.featuresRefs?.length
-                        if (item.absoluteAuthority) item.power = 1e6
-                        return item
-                    })
                     .sort((a, b) => {
-                        return a.power - b.power
+                        return b.level - a.level
                     })[0]
             } else {
                 result = roles[0]

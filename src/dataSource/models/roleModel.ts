@@ -23,6 +23,7 @@ interface IfeatureRef {
 interface IRole {
     _id?: string,
     name: string,
+    level: number,
     description?: string,
     absoluteAuthority?: boolean,
     featuresRefs?: Types.DocumentArray<IfeatureRef & Document>
@@ -37,6 +38,7 @@ const FeatureRefSchema = new Schema<IfeatureRef>({
 const RoleSchema = new Schema<IRole>({
     _id: { type: String, default: () => randomUUID() },
     name: { type: String, required: true, unique: true },
+    level: { type: Number, required: true, unique: true },
     description: { type: String, required: false },
     absoluteAuthority: { type: Boolean, required: false, default: false },
     featuresRefs: { type: [FeatureRefSchema], required: false, default: [] }

@@ -6,6 +6,7 @@ const roles = [
         'absoluteAuthority': true,
         'description': 'The highest role for this app, this has access to all resurces',
         'featuresRefs': [],
+        'level': 0,
         'name': 'Master'
     },
     {
@@ -78,6 +79,7 @@ const roles = [
               '_id': 'bc0fdc4b-1f49-469b-ae93-1d05f4ce46a5'
             }
         ],
+        'level': 1,
         'name': 'Manager'
     },
     {
@@ -150,6 +152,7 @@ const roles = [
               '_id': 'bc0fdc4b-1f49-469b-ae93-1d05f4ce46a5'
             }
         ],
+        'level': 2,
         'name': 'Agent'
     },
     {
@@ -157,6 +160,7 @@ const roles = [
         'absoluteAuthority': false,
         'description': 'Lowest access to resources',
         'featuresRefs': [],
+        'level': 3,
         'name': 'Intern'
     }
 ]
