@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import FeatureModel, { IFeature, IFeatureQuery } from '../dataSource/models/featureModel'
+import FeatureModel, { IFeature, IFeatureQuery, TFeatureType } from '../dataSource/models/featureModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -33,9 +33,12 @@ class FeatureController {
         return result
     }
 
-    public async saveFeature(doc:IFeature):Promise<IFeature | null> {
+    public async saveFeature(type: TFeatureType, value:string, name:string, tags:string, description:string):Promise<IFeature | null> {
+        const data:IFeature = {type, value, name, tags: [], description}
 
-        const result = await this.cachedData.createItem<IFeature>(doc)
+        if (tags && tags.length) data.tags = tags.split(',')
+
+        const result = await this.cachedData.createItem<IFeature>(data)
 
         return result
     }

@@ -32,6 +32,9 @@ swaggerOptions.customCss += `
     .swagger-ui .opblock-summary-control:focus {
         outline: none;
     }
+    .btn.btn-sm.json-schema-form-item-remove.null.button {
+        margin-left: 10px;
+    }
     .inner-object table.model {
         margin-top: 15px;
     }

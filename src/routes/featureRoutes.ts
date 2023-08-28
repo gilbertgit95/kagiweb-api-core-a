@@ -23,10 +23,10 @@ router.get(env.RootApiEndpoint + 'features', async (req, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'features', async (req, res) => {
-    const featureData = req.body
+    const { type, value, name, tags, description } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
-        return await featureController.saveFeature(featureData)
+        return await featureController.saveFeature(type, value, name, tags, description)
     })
 
     return res.status(statusCode).send(result)

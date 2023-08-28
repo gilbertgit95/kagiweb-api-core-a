@@ -54,9 +54,27 @@ put:
         format: uuid
   requestBody:
     content:
-      application/json:
+      application/x-www-form-urlencoded:
         schema:
-          $ref: ./featureDefinition.yml
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [api-route, ui-route, ui-module]
+              description: this is use to categorize features
+            value:
+              type: string
+              description: this is the value that the access middleware will check.
+            name:
+              type: string
+              description: to make a user friendly identifier
+            tags:
+              type: array
+              item:
+                type: string
+              description: this value will be used in the UI to further categorize features like directories
+            description:
+              type: string
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
