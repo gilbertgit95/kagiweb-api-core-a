@@ -1,78 +1,92 @@
 get:
-    tags :
-      - Users
-    summary: Create a Users
-    description: Create a User
-    produces:
-      - application/json
-    parameters:
-      - in: path
-        name: id
-        description: this the uuid of the user in the database.
-        required: true
-        schema:
-          type: string
-          format: uuid
-    responses:
-      200:
-        description: Users fetched successfully
-        schema:
-          type: array
-          items:
-            $ref: ./userDefinition.yml
-      400:
-        description: Error in fetching users
-        schema:
-          $ref: ../global/errorDefinition.yml
+  tags :
+    - Users
+  summary: Create a Users
+  description: Create a User
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: id
+      description: this the uuid of the user in the database.
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    200:
+      description: Users fetched successfully
+      schema:
+        type: array
+        items:
+          $ref: ./userDefinition.yml
+    400:
+      description: Error in fetching users
+      schema:
+        $ref: ../global/errorDefinition.yml
 put:
-    tags :
-      - Users
-    summary: Create a Users
-    description: Create a User
-    produces:
-      - application/json
-    parameters:
-      - in: path
-        name: id
-        description: this the uuid of the user in the database.
-        required: true
+  tags :
+    - Users
+  summary: Create a Users
+  description: Create a User
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: id
+      description: this the uuid of the user in the database.
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
         schema:
-          type: string
-          format: uuid
-    responses:
-      200:
-        description: Users fetched successfully
-        schema:
-          type: array
-          items:
-            $ref: ./userDefinition.yml
-      400:
-        description: Error in fetching users
-        schema:
-          $ref: ../global/errorDefinition.yml
+            type: object
+            properties:
+              username:
+                type: string
+              disabled:
+                type: boolean
+                description: not accessable accounts
+              verified:
+                type: boolean
+                description: not verified accounts are similar to pending account creation request
+  responses:
+    200:
+      description: Users fetched successfully
+      schema:
+        type: array
+        items:
+          $ref: ./userDefinition.yml
+    400:
+      description: Error in fetching users
+      schema:
+        $ref: ../global/errorDefinition.yml
 delete:
-    tags :
-      - Users
-    summary: Create a Users
-    description: Create a User
-    produces:
-      - application/json
-    parameters:
-      - in: path
-        name: id
-        description: this the uuid of the user in the database.
-        required: true
-        schema:
-          type: string
-          format: uuid
-    responses:
-      200:
-        description: Users fetched successfully
-        schema:
-          type: array
-          items:
-            $ref: ./userDefinition.yml
-      400:
-        description: Error in fetching users
-        schema:
-          $ref: ../global/errorDefinition.yml
+  tags :
+    - Users
+  summary: Create a Users
+  description: Create a User
+  produces:
+    - application/json
+  parameters:
+    - in: path
+      name: id
+      description: this the uuid of the user in the database.
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    200:
+      description: Users fetched successfully
+      schema:
+        type: array
+        items:
+          $ref: ./userDefinition.yml
+    400:
+      description: Error in fetching users
+      schema:
+        $ref: ../global/errorDefinition.yml

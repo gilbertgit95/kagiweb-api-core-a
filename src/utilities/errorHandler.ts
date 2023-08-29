@@ -11,8 +11,6 @@ class ErrorHandler {
             result = await process()
             statusCode = 200
         } catch (err) {
-
-            // check error 400
             // Incorrect content in the request
             if (err === 400) {
                 statusCode = err

@@ -23,12 +23,10 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'users', async (req, res) => {
-    const userData = req.body
+    const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        // return = await userController.saveUser(userData)
-        console.log('create user: ', userData)
-        return null
+        return await userController.saveUser(username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
@@ -46,11 +44,11 @@ router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
 
 router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { userId } = req.params
-    const userData = req.body
+    const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        if (userId && userData) {
-            return await userController.updateUser(userId, userData)
+        if (userId) {
+            return await userController.updateUser(userId, username, disabled, verified)
         }
         return null
     })

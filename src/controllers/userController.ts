@@ -3,6 +3,9 @@ import moment from 'moment'
 import DataCache from '../utilities/dataCache'
 import UserModel, { IUser, IUserQuery, IClientDevice, ILimitedTransaction, IAccessToken, IPassword } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
+import roleController from './roleController'
+
+import Encryption from '../utilities/encryption'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -122,18 +125,59 @@ class UserController {
         return result
     }
 
-    public async saveUser(doc:IUser):Promise<IUser | null> {
+    public async saveUser(username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> {
+        // check username if already existing
+        if (await UserModel.findOne({username})) throw(409) // conflict
 
-        const result = await this.cachedData.createItem(doc)
+        const role = await roleController.getLeastRole()
+        const defautPass = '123456'
 
-        return result
+        const doc:any = {
+            username, rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
+            userInfo: [],
+            passwords: [
+                { key: await Encryption.hashText(defautPass), isActive: true }
+            ],
+            contactInfos: [],
+            clientDevices: [],
+            limitedTransactions: [
+                { limit: 5, type: 'signin' },
+                { limit: 5, type: 'otp-signin', disabled: true },
+                { limit: 5, type: 'forgot-pass' },
+                { limit: 5, type: 'reset-pass' },
+                { limit: 5, type: 'verify-contact'}
+            ]
+        }
+
+        if (typeof disabled != 'undefined') {
+            if (typeof disabled === 'boolean') doc.disabled = disabled
+            if (typeof disabled === 'string' && disabled.length) doc.disabled = JSON.parse(disabled)
+        }
+        if (typeof verified != 'undefined') {
+            if (typeof verified === 'boolean') doc.verified = verified
+            if (typeof verified === 'string' && verified.length) doc.verified = JSON.parse(verified)
+        }
+
+        return await this.cachedData.createItem<IUser>(doc)
     }
 
-    public async updateUser(id:string, doc:any):Promise<IUser | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public async updateUser(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
+        const doc:any = {}
+        // check username if already existing
+        if (typeof username === 'string' && username.length) {
+            if (await UserModel.findOne({username})) throw(409) // conflict
+            doc.username = username
+        }
+        if (typeof disabled != 'undefined') {
+            if (typeof disabled === 'boolean') doc.disabled = disabled
+            if (typeof disabled === 'string' && disabled.length) doc.disabled = JSON.parse(disabled)
+        }
+        if (typeof verified != 'undefined') {
+            if (typeof verified === 'boolean') doc.verified = verified
+            if (typeof verified === 'string' && verified.length) doc.verified = JSON.parse(verified)
+        }
 
-        const result = await this.cachedData.updateItem<IUser>(id, doc)
-
-        return result
+        return await this.cachedData.updateItem<IUser>(id, doc)
     }
 
     public async deleteUser(id:string):Promise<IUser | null> {
