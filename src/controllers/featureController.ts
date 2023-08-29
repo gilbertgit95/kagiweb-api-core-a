@@ -43,7 +43,11 @@ class FeatureController {
         return result
     }
 
-    public async updateFeature(id:string, doc:IFeature):Promise<IFeature | null> {
+    public async updateFeature(id:string, type: TFeatureType, value:string, name:string, tags:string, description:string):Promise<IFeature | null> {
+        const doc:IFeature = {value, name, description}
+
+        if (type) doc.type = type
+        if (tags && tags.length) doc.tags = tags.split(',')
 
         const result = await this.cachedData.updateItem<IFeature>(id, doc)
 

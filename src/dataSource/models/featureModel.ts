@@ -20,7 +20,7 @@ interface IFeatureUpdate {
 interface IFeature {
     _id?: string,
     name?: string,
-    type: TFeatureType,
+    type?: TFeatureType,
     tags?: string[],
     value: string,
     description?: string

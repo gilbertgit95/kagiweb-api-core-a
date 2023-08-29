@@ -44,10 +44,12 @@ router.get(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
 
 router.put(env.RootApiEndpoint + 'features/:featureId', async (req, res) => {
     const { featureId } = req.params
-    const featureData = req.body
+    const { type, value, name, tags, description } = req.body
+
+    console.log('type: ', type)
 
     const [result, statusCode] = await ErrorHandler.execute<IFeature>(async () => {
-        return await featureController.updateFeature(featureId, featureData)
+        return await featureController.updateFeature(featureId, type, value, name, tags, description)
     })
 
     return res.status(statusCode).send(result)
