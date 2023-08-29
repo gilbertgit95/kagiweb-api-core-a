@@ -63,9 +63,18 @@ put:
         format: uuid
   requestBody:
     content:
-      application/json:
+      application/x-www-form-urlencoded:
         schema:
-          $ref: ./roleDefinition.yml
+          type: object
+          properties:
+            name:
+              type: string
+              description: the name identifier for the role
+            level:
+              type: string
+              description: this will be the indicator of the highest to lowest access writes of a role
+            description:
+              type: string
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml

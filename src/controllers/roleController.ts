@@ -52,14 +52,19 @@ class RoleController {
         return result
     }
 
-    public async saveRole(doc:IRole):Promise<IRole | null> {
-
+    public async saveRole(name:string, level:number, description:string):Promise<IRole | null> {
+        const doc:IRole = {name, level, description}
         const result = await this.cachedData.createItem(doc)
 
         return result
     }
 
-    public async updateRole(id:string, doc:IRole):Promise<IRole | null> {
+    public async updateRole(id:string, name:string, level:number, description:string):Promise<IRole | null> {
+        const doc:any = {}
+
+        if (name) doc.name = name
+        if (level) doc.level = level
+        if (description) doc.description = description
 
         const result = await this.cachedData.updateItem<IRole>(id, doc)
 

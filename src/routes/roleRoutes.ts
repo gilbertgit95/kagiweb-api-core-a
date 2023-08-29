@@ -23,10 +23,10 @@ router.get(env.RootApiEndpoint + 'roles', async (req, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'roles', async (req, res) => {
-    const roleData = req.body
+    const { name, level, description } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-        return await roleController.saveRole(roleData)
+        return await roleController.saveRole(name, level, description)
     })
 
     return res.status(statusCode).send(result)
@@ -44,10 +44,10 @@ router.get(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
 
 router.put(env.RootApiEndpoint + 'roles/:roleId', async (req, res) => {
     const { roleId } = req.params
-    const roleData = req.body
+    const { name, level, description } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRole>(async () => {
-            return await roleController.updateRole(roleId, roleData)
+            return await roleController.updateRole(roleId, name, level, description)
     })
 
     return res.status(statusCode).send(result)
