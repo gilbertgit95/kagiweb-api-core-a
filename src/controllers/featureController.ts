@@ -14,6 +14,15 @@ class FeatureController {
         this.request = new DataRequest(FeatureModel)
     }
 
+    public async getFeaturesMap():Promise<{[key:string]:IFeature}> {
+        const allFeatures = await this.getAllFeatures()
+
+        return !allFeatures? {}: allFeatures.reduce((acc:{[key:string]:IFeature}, item:IFeature) => {
+            if (item && item._id) acc[item._id] = item
+            return acc
+        }, {})
+    }
+
     public async getFeature(query:IFeatureQuery):Promise<IFeature|null> {
         if (!query._id) return null
         return await this.cachedData.getItem<IFeature>(query._id)
