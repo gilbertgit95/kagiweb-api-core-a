@@ -15,7 +15,7 @@ interface IRoleUpdate {
     name?: string
 }
 
-interface IfeatureRef {
+interface IFeatureRef {
     _id?: string,
     featureId: string
 }
@@ -26,11 +26,11 @@ interface IRole {
     level: number,
     description?: string,
     absoluteAuthority?: boolean,
-    featuresRefs?: Types.DocumentArray<IfeatureRef & Document>
+    featuresRefs?: Types.DocumentArray<IFeatureRef & Document>
 }
 
 // create schemas
-const FeatureRefSchema = new Schema<IfeatureRef>({
+const FeatureRefSchema = new Schema<IFeatureRef>({
     _id: { type: String, default: () => randomUUID() },
     featureId: { type: String, required: true}
 }, { timestamps: true })
@@ -50,7 +50,7 @@ const RoleModel = model<IRole>('Role', RoleSchema)
 export {
     IRoleQuery,
     IRoleUpdate,
-    IfeatureRef,
+    IFeatureRef,
     IRole
 }
 export default RoleModel

@@ -1,4 +1,4 @@
-import RoleModel, { IRole, IfeatureRef } from '../dataSource/models/roleModel'
+import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import featureController from './featureController'
 import roleController from './roleController'
@@ -17,7 +17,18 @@ class RoleFeaturesController {
         return false
     }
 
-    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IfeatureRef|null> {
+    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IFeatureRef|null> {
+
+        if (role && role.featuresRefs) {
+            for (let ref of role.featuresRefs) {
+                if (ref.featureId === featureId) return ref
+            }
+        }
+
+        return null
+    }
+
+    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
         if (!(roleId && featureRefId)) throw(400)
 
         const role = await roleController.getRole({_id: roleId})
@@ -29,18 +40,16 @@ class RoleFeaturesController {
         return featureRef
     }
 
-    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IfeatureRef|null> {
+    public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
+        if (!roleId) throw(400)
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return ref
-            }
-        }
+        const role = await roleController.getRole({_id: roleId})
+        if (!role) throw(404)
 
-        return null
+        return role!.featuresRefs? role!.featuresRefs: []
     }
 
-    public async saveFeatureRef(roleId:string, featureId:string):Promise<IfeatureRef|null> {
+    public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
         if (!(roleId && featureId)) throw(400)
 
         const role = await RoleModel.findOne({_id: roleId})
@@ -54,11 +63,12 @@ class RoleFeaturesController {
 
         role.featuresRefs!.push({featureId})
         await role.save()
+        await roleController.cachedData.removeCacheData(roleId)
 
         return this.getFeatureRefByObj(role, featureId)
     }
 
-    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IfeatureRef|null> {
+    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
         if (!(roleId && featureRefId && featureId)) throw(400)
 
         const role = await RoleModel.findOne({_id: roleId})
@@ -74,11 +84,12 @@ class RoleFeaturesController {
 
         role.featuresRefs!.id(featureRefId)!.featureId = featureId
         await role.save()
+        await roleController.cachedData.removeCacheData(roleId)
 
         return role.featuresRefs!.id(featureRefId)
     }
 
-    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IfeatureRef|null> {
+    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
         if (!(roleId && featureRefId)) throw(400)
 
         const role = await RoleModel.findOne({_id: roleId})
@@ -87,6 +98,7 @@ class RoleFeaturesController {
         if (role!.featuresRefs?.id(featureRefId)) {
             role!.featuresRefs?.id(featureRefId)?.deleteOne()
             await role.save()
+            await roleController.cachedData.removeCacheData(roleId)
         } else {
             throw(404)
         }
