@@ -31,32 +31,32 @@ router.post(env.RootApiEndpoint + 'roles/:roleId/features/', async (req, res) =>
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'roles/:roleId/features/:featureId', async (req, res) => {
-    const { roleId, featureId } = req.params
+router.get(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
+    const { roleId, featureRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.getFeatureRefById(roleId, featureId)
+        return await roleFeatureController.getFeatureRefById(roleId, featureRefId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'roles/:roleId/features/:featureId', async (req, res) => {
-    const { roleId, featureId } = req.params
-    const { newFeatureId } = req.body
+router.put(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
+    const { roleId, featureRefId } = req.params
+    const { featureId } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-            return await roleFeatureController.updateFeatureRef(roleId, featureId, newFeatureId)
+            return await roleFeatureController.updateFeatureRef(roleId, featureRefId, featureId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'roles/:roleId/features/:featureId', async (req, res) => {
-    const { roleId, featureId } = req.params
+router.delete(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
+    const { roleId, featureRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.deleteFeatureRef(roleId, featureId)
+        return await roleFeatureController.deleteFeatureRef(roleId, featureRefId)
     })
 
     return res.status(statusCode).send(result)

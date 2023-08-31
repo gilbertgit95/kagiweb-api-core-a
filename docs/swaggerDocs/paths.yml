@@ -25,7 +25,7 @@
   $ref: ./roles/rolesSpecificPaths.yml
 /roles/{roleId}/features:
   $ref: ./rolesFeatures/rolesFeaturesPaths.yml
-/roles/{roleId}/features/{featureId}:
+/roles/{roleId}/features/{featureRefId}:
   $ref: ./rolesFeatures/rolesFeaturesSpecificPaths.yml
 
 # paths inside /users

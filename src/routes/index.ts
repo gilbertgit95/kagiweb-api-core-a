@@ -14,6 +14,7 @@ import authRoutes from './authRoutes'
 import systemInfo from './systemInfoRoutes'
 import featureRoutes from './featureRoutes'
 import roleRoutes from './roleRoutes'
+import roleFeatureRoutes from './roleFeatureRoutes'
 import userRoutes from './userRoutes'
 import ownerRoutes from './ownerRoutes'
 
@@ -44,6 +45,7 @@ router.use(ownerRoutes)
 router.use(systemInfo)
 router.use(featureRoutes)
 router.use(roleRoutes)
+router.use(roleFeatureRoutes)
 router.use(userRoutes)
 
 

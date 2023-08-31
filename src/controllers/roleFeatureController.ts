@@ -41,12 +41,21 @@ class RoleFeaturesController {
     }
 
     public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
+        let result:IFeatureRef[] = []
         if (!roleId) throw(400)
 
         const role = await roleController.getRole({_id: roleId})
         if (!role) throw(404)
+        result = role!.featuresRefs? role!.featuresRefs: []
+        
+        if (role.absoluteAuthority) {
+            let allFeatures = await featureController.getAllFeatures()
+            result = allFeatures? allFeatures.map(item => ({
+                featureId: item._id!
+            })): []
+        }
 
-        return role!.featuresRefs? role!.featuresRefs: []
+        return result
     }
 
     public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
@@ -57,7 +66,7 @@ class RoleFeaturesController {
 
         const featuresMap = await featureController.getFeaturesMap()
         // check if feature existed on features collection
-        if (featuresMap[featureId]) throw(409)
+        if (!featuresMap[featureId]) throw(404)
         // check if the feature to update is existing on the role features refs
         if (this.hasFeature(role, featureId)) throw(409)
 
@@ -77,10 +86,10 @@ class RoleFeaturesController {
 
         const featuresMap = await featureController.getFeaturesMap()
         // check if feature existed on features collection
-        if (featuresMap[featureId]) throw(409)
+        if (!featuresMap[featureId]) throw(404)
 
         // check if the feature to update is existing on the role features refs
-        if (!this.hasFeature(role, featureRefId)) throw(404)
+        if (this.hasFeature(role, featureId)) throw(409)
 
         role.featuresRefs!.id(featureRefId)!.featureId = featureId
         await role.save()
@@ -95,7 +104,8 @@ class RoleFeaturesController {
         const role = await RoleModel.findOne({_id: roleId})
         if (!role) throw(404)
 
-        if (role!.featuresRefs?.id(featureRefId)) {
+        const featureRefData = role!.featuresRefs?.id(featureRefId)
+        if (featureRefData) {
             role!.featuresRefs?.id(featureRefId)?.deleteOne()
             await role.save()
             await roleController.cachedData.removeCacheData(roleId)
@@ -103,7 +113,7 @@ class RoleFeaturesController {
             throw(404)
         }
 
-        return role!.featuresRefs?.id(featureRefId)
+        return featureRefData? featureRefData: null
     }
 }
 
