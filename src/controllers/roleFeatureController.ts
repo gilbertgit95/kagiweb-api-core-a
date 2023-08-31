@@ -17,7 +17,7 @@ class RoleFeaturesController {
         return false
     }
 
-    public async getFeatureRef(roleId:string, featureRefId:string):Promise<IfeatureRef|null> {
+    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IfeatureRef|null> {
         if (!(roleId && featureRefId)) throw(400)
 
         const role = await roleController.getRole({_id: roleId})
@@ -29,6 +29,17 @@ class RoleFeaturesController {
         return featureRef
     }
 
+    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IfeatureRef|null> {
+
+        if (role && role.featuresRefs) {
+            for (let ref of role.featuresRefs) {
+                if (ref.featureId === featureId) return ref
+            }
+        }
+
+        return null
+    }
+
     public async saveFeatureRef(roleId:string, featureId:string):Promise<IfeatureRef|null> {
         if (!(roleId && featureId)) throw(400)
 
@@ -38,8 +49,13 @@ class RoleFeaturesController {
         const featuresMap = await featureController.getFeaturesMap()
         // check if feature existed on features collection
         if (featuresMap[featureId]) throw(409)
+        // check if the feature to update is existing on the role features refs
+        if (this.hasFeature(role, featureId)) throw(409)
 
-        return null
+        role.featuresRefs!.push({featureId})
+        await role.save()
+
+        return this.getFeatureRefByObj(role, featureId)
     }
 
     public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IfeatureRef|null> {
@@ -54,7 +70,7 @@ class RoleFeaturesController {
         if (featuresMap[featureId]) throw(409)
 
         // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureRefId)) throw(409)
+        if (!this.hasFeature(role, featureRefId)) throw(404)
 
         role.featuresRefs!.id(featureRefId)!.featureId = featureId
         await role.save()
