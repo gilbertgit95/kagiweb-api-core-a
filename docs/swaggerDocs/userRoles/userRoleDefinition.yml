@@ -1,10 +1,13 @@
 type: object
 required:
-  - featureId
+  - roleId
 properties:
-  featureId:
+  roleId:
     type: string
     format: uuid
+  isActive:
+    type: boolean
 
 example:
-  featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  roleId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  isActive: true

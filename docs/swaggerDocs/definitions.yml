@@ -23,10 +23,9 @@ RoleFeatureRef:
 # user related data definitions
 User:
   $ref: ./users/userDefinition.yml
-UsersInfo:
-  $ref: ./users/userInfoDefinition.yml
-UsersContactInfo:
-  $ref: ./users/userContactInfoDefinition.yml
+UserRole:
+  $ref: ./userRoles/userRoleDefinition.yml
+
 
 # owner relate definations
 Owner:
