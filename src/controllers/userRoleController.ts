@@ -1,119 +1,134 @@
-import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import featureController from './featureController'
+import UserModel, { IUser, IRoleRef } from '../dataSource/models/userModel'
+import userController from './userController'
 import roleController from './roleController'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
 class RoleFeaturesController {
-    public hasFeature(role:IRole, featureId:string):boolean {
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return true
+    public hasRole(user:IUser, roleId:string):boolean {
+        if (user && user.rolesRefs) {
+            for (let ref of user.rolesRefs) {
+                if (ref.roleId === roleId) return true
             }
         }
 
         return false
     }
 
-    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IFeatureRef|null> {
+    public getRoleRefByRoleId(user:IUser, roleId:string):IRoleRef|null {
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return ref
+        if (user && user.rolesRefs) {
+            for (let ref of user.rolesRefs) {
+                if (ref.roleId === roleId) return ref
             }
         }
 
         return null
     }
 
-    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public async getRoleRefByRefId(user:IUser, roleRefId:string):Promise<IRoleRef|null> {
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
-
-        const featureRef = role!.featuresRefs?.id(featureRefId)
-        if (!featureRef) throw(404)
-
-        return featureRef
-    }
-
-    public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
-        let result:IFeatureRef[] = []
-        if (!roleId) throw(400)
-
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
-        result = role!.featuresRefs? role!.featuresRefs: []
-        
-        if (role.absoluteAuthority) {
-            let allFeatures = await featureController.getAllFeatures()
-            result = allFeatures? allFeatures.map(item => ({
-                featureId: item._id!
-            })): []
+        if (user && user.rolesRefs) {
+            for (let ref of user.rolesRefs) {
+                if (ref._id === roleRefId) return ref
+            }
         }
 
-        return result
+        return null
     }
 
-    public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureId)) throw(400)
+    public async getRoleRef(userId:string, roleRefId:string):Promise<IRoleRef|null> {
+        if (!(userId && roleRefId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        const roleRef = this.getRoleRefByRefId(user, roleRefId)
+        if (!roleRef) throw(404)
 
-        role.featuresRefs!.push({featureId})
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
-
-        return this.getFeatureRefByObj(role, featureId)
+        return roleRef
     }
 
-    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId && featureId)) throw(400)
+    public async getUserRoleRefs(userId:string):Promise<IRoleRef[]> {
+        if (!userId) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
-        if (!role.featuresRefs?.id(featureRefId)) throw(404)
-
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
-
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
-
-        role.featuresRefs!.id(featureRefId)!.featureId = featureId
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
-
-        return role.featuresRefs!.id(featureRefId)
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+        
+        return user!.rolesRefs? user!.rolesRefs: []
     }
 
-    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public async saveRoleRef(userId:string, roleId:string, isActive:boolean|string):Promise<IRoleRef|null> {
+        if (!(userId && roleId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featureRefData = role!.featuresRefs?.id(featureRefId)
-        if (featureRefData) {
-            role!.featuresRefs?.id(featureRefId)?.deleteOne()
-            await role.save()
-            await roleController.cachedData.removeCacheData(roleId)
+        const rolesMap = await roleController.getRolesMap()
+        // check if role existed on roles collection
+        if (!rolesMap[roleId]) throw(404)
+        // check if the role to update is existing on the user role refs
+        if (this.hasRole(user, roleId)) throw(409)
+        const doc:{roleId:string, isActive?:boolean} = {roleId}
+
+        if (DataCleaner.getBooleanData(isActive).isValid) {
+            doc.isActive = DataCleaner.getBooleanData(isActive).data
+        }
+        user.rolesRefs!.push(doc)
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        return this.getRoleRefByRoleId(user, roleId)
+    }
+
+    public async updateRoleRef(userId:string, roleRefId:string, roleId:string, isActive:boolean|string):Promise<IRoleRef|null> {
+        if (!(userId && roleRefId)) throw(400)
+
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
+        if (!user.rolesRefs?.id(roleRefId)) throw(404)
+
+        if (roleId) {
+            const rolesMap = await roleController.getRolesMap()
+            // check if role existed on roles collection
+            if (!rolesMap[roleId]) throw(404)
+
+            // check if the role to update is existing on the role roles refs
+            if (this.hasRole(user, roleId)) throw(409)
+
+            user.rolesRefs!.id(roleRefId)!.roleId = roleId
+        }
+        if (DataCleaner.getBooleanData(isActive).isValid) {
+            user.rolesRefs!.id(roleRefId)!.isActive = DataCleaner.getBooleanData(isActive).data
+        }
+
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        return user.rolesRefs!.id(roleRefId)
+    }
+
+    public async deleteRoleRef(userId:string, roleRefId:string):Promise<IRoleRef|null> {
+        if (!(userId && roleRefId)) throw(400)
+
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
+
+        // if user has only one role, then do not delete the role
+        if (user.rolesRefs.length <= 1) throw(409)
+
+        const roleRefData = user!.rolesRefs?.id(roleRefId)
+        if (roleRefData) {
+            user!.rolesRefs?.id(roleRefId)?.deleteOne()
+            await user.save()
+            await userController.cachedData.removeCacheData(userId)
         } else {
             throw(404)
         }
 
-        return featureRefData? featureRefData: null
+        return roleRefData? roleRefData: null
     }
 }
 

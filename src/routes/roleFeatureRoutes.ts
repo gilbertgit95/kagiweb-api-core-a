@@ -35,7 +35,7 @@ router.get(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (
     const { roleId, featureRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.getFeatureRefById(roleId, featureRefId)
+        return await roleFeatureController.getFeatureRef(roleId, featureRefId)
     })
 
     return res.status(statusCode).send(result)

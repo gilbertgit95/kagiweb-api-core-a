@@ -6,6 +6,7 @@ import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 
 import Encryption from '../utilities/encryption'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -149,13 +150,11 @@ class UserController {
             ]
         }
 
-        if (typeof disabled != 'undefined') {
-            if (typeof disabled === 'boolean') doc.disabled = disabled
-            if (typeof disabled === 'string' && disabled.length) doc.disabled = JSON.parse(disabled)
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        if (typeof verified != 'undefined') {
-            if (typeof verified === 'boolean') doc.verified = verified
-            if (typeof verified === 'string' && verified.length) doc.verified = JSON.parse(verified)
+        if (DataCleaner.getBooleanData(verified).isValid) {
+            doc.verified = DataCleaner.getBooleanData(verified).data
         }
 
         return await this.cachedData.createItem<IUser>(doc)
@@ -168,13 +167,11 @@ class UserController {
             if (await UserModel.findOne({username})) throw(409) // conflict
             doc.username = username
         }
-        if (typeof disabled != 'undefined') {
-            if (typeof disabled === 'boolean') doc.disabled = disabled
-            if (typeof disabled === 'string' && disabled.length) doc.disabled = JSON.parse(disabled)
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        if (typeof verified != 'undefined') {
-            if (typeof verified === 'boolean') doc.verified = verified
-            if (typeof verified === 'string' && verified.length) doc.verified = JSON.parse(verified)
+        if (DataCleaner.getBooleanData(verified).isValid) {
+            doc.verified = DataCleaner.getBooleanData(verified).data
         }
 
         return await this.cachedData.updateItem<IUser>(id, doc)

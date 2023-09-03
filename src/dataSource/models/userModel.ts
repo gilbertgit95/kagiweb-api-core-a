@@ -211,6 +211,7 @@ export {
     IClientDevice,
     ILimitedTransaction,
     IUserInfo,
+    IRoleRef,
     IUser
 }
 

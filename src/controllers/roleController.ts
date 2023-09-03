@@ -14,6 +14,15 @@ class RoleController {
         this.request = new DataRequest(RoleModel)
     }
 
+    public async getRolesMap():Promise<{[key:string]:IRole}> {
+        const allRoles = await this.getAllRoles()
+
+        return !allRoles? {}: allRoles.reduce((acc:{[key:string]:IRole}, item:IRole) => {
+            if (item && item._id) acc[item._id] = item
+            return acc
+        }, {})
+    }
+
     public async getLeastRole():Promise<IRole|null> {
         let result:IRole|null = null
 

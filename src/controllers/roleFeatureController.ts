@@ -17,7 +17,7 @@ class RoleFeaturesController {
         return false
     }
 
-    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IFeatureRef|null> {
+    public getFeatureRefByFeaturId(role:IRole, featureId:string):IFeatureRef|null {
 
         if (role && role.featuresRefs) {
             for (let ref of role.featuresRefs) {
@@ -28,13 +28,24 @@ class RoleFeaturesController {
         return null
     }
 
-    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
+    public getFeatureRefByRefId(role:IRole, featureRefId:string):IFeatureRef|null {
+
+        if (role && role.featuresRefs) {
+            for (let ref of role.featuresRefs) {
+                if (ref._id === featureRefId) return ref
+            }
+        }
+
+        return null
+    }
+
+    public async getFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
         if (!(roleId && featureRefId)) throw(400)
 
         const role = await roleController.getRole({_id: roleId})
         if (!role) throw(404)
 
-        const featureRef = role!.featuresRefs?.id(featureRefId)
+        const featureRef = this.getFeatureRefByRefId(role, featureRefId)
         if (!featureRef) throw(404)
 
         return featureRef
@@ -74,7 +85,7 @@ class RoleFeaturesController {
         await role.save()
         await roleController.cachedData.removeCacheData(roleId)
 
-        return this.getFeatureRefByObj(role, featureId)
+        return this.getFeatureRefByFeaturId(role, featureId)
     }
 
     public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
