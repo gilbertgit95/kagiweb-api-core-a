@@ -37,6 +37,10 @@
   $ref: ./userRoles/userRolesPaths.yml
 /users/{userId}/roles/{roleRefId}:
   $ref: ./userRoles/userRolesSpecificPaths.yml
+/users/{userId}/userInfos:
+  $ref: ./userUserInfos/userUserInfosPaths.yml
+/users/{userId}/userInfos/{userInfoId}:
+  $ref: ./userUserInfos/userUserInfosSpecificPaths.yml
 
 # paths owner
 /owner:

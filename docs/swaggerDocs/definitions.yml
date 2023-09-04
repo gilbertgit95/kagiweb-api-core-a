@@ -25,6 +25,8 @@ User:
   $ref: ./users/userDefinition.yml
 UserRole:
   $ref: ./userRoles/userRoleDefinition.yml
+UserUserInfo:
+  $ref: ./userUserInfos/userUserInfoDefinition.yml
 
 
 # owner relate definations

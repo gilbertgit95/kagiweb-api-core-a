@@ -1,10 +1,17 @@
 type: object
 required:
-  - featureId
+  - key
+  - value
+  - type
 properties:
-  featureId:
+  key:
     type: string
-    format: uuid
+  value:
+    type: string
+  type:
+    type: string
 
 example:
-  featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  key: fullname
+  value: Gilbert D. Cuerbo
+  type: string
