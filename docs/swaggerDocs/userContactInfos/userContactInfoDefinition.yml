@@ -1,10 +1,20 @@
 type: object
 required:
-  - featureId
+  - type
+  - value
 properties:
-  featureId:
+  type:
     type: string
-    format: uuid
+    enum: [email-address, mobile-number, telephone, app-admin]
+  value:
+    type: string
+  countryCode:
+    type: string
+  verified:
+    type: boolean
 
 example:
-  featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  type: email-address
+  value: gilbert.cuerbo@gmail.com
+  countryCode: PH
+  verified: false

@@ -1,8 +1,8 @@
 get:
   tags:
     - Users
-  summary: Get all the Users user informations
-  description: Get all the Users user informations
+  summary: Get all the user informations
+  description: Get all the user informations
   produces:
     - application/json
   parameters:
@@ -16,7 +16,7 @@ get:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
       - 200:
-          description: array of role user info
+          description: array of user infos
           content:
             application/json:
               schema:

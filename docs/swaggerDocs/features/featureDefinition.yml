@@ -5,6 +5,7 @@ required:
 properties:
   name:
     type: string
+    enum: [api-route, ui-route, ui-module]
     description: just a name use to identify the feature
     example: get feature route
   type:
