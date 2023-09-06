@@ -11,12 +11,13 @@ import accessChecker from '../middlewares/accessCheckerMiddleware'
 
 import documentationRoutes from './documentationRoutes'
 import authRoutes from './authRoutes'
-import systemInfo from './systemInfoRoutes'
+import systemInfoRoutes from './systemInfoRoutes'
 import featureRoutes from './featureRoutes'
 import roleRoutes from './roleRoutes'
 import roleFeatureRoutes from './roleFeatureRoutes'
 import userRoutes from './userRoutes'
 import userRoleRoutes from './userRoleRoutes'
+import userUserInfoRoutes from './userUserInfoRoutes'
 import ownerRoutes from './ownerRoutes'
 
 const router = express.Router()
@@ -43,7 +44,7 @@ router.use(accessChecker)
 
 // routes for data api needs authorization
 router.use(ownerRoutes)
-router.use(systemInfo)
+router.use(systemInfoRoutes)
 router.use(featureRoutes)
 
 router.use(roleRoutes)
@@ -51,6 +52,6 @@ router.use(roleFeatureRoutes)
 
 router.use(userRoutes)
 router.use(userRoleRoutes)
-
+router.use(userUserInfoRoutes)
 
 export default router

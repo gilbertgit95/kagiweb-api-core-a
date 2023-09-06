@@ -6,7 +6,7 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-class RoleFeaturesController {
+class UserRoleController {
     public hasRole(user:IUser, roleId:string):boolean {
         if (user && user.rolesRefs) {
             for (let ref of user.rolesRefs) {
@@ -51,7 +51,7 @@ class RoleFeaturesController {
         return roleRef
     }
 
-    public async getUserRoleRefs(userId:string):Promise<IRoleRef[]> {
+    public async getRoleRefs(userId:string):Promise<IRoleRef[]> {
         if (!userId) throw(400)
 
         const user = await userController.getUser({_id: userId})
@@ -132,4 +132,4 @@ class RoleFeaturesController {
     }
 }
 
-export default new RoleFeaturesController()
+export default new UserRoleController()

@@ -51,7 +51,7 @@ class RoleFeaturesController {
         return featureRef
     }
 
-    public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
+    public async getFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
         let result:IFeatureRef[] = []
         if (!roleId) throw(400)
 

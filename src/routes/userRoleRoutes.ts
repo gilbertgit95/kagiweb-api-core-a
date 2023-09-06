@@ -14,7 +14,7 @@ router.get(env.RootApiEndpoint + 'users/:userId/roles', async (req, res) => {
     const { userId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef[]>(async () => {
-        return await userRoleController.getUserRoleRefs(userId)
+        return await userRoleController.getRoleRefs(userId)
     })
 
     return res.status(statusCode).send(result)
