@@ -46,7 +46,7 @@ router.put(env.RootApiEndpoint + 'users/:userId/userInfos/:userInfoId', async (r
     const { key, value, type } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUserInfo>(async () => {
-            return await userUserInfoController.updateUserInfo(userId, userInfoId, key, value, type)
+        return await userUserInfoController.updateUserInfo(userId, userInfoId, key, value, type)
     })
 
     return res.status(statusCode).send(result)

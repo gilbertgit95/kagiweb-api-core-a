@@ -46,7 +46,7 @@ router.put(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (
     const { featureId } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-            return await roleFeatureController.updateFeatureRef(roleId, featureRefId, featureId)
+        return await roleFeatureController.updateFeatureRef(roleId, featureRefId, featureId)
     })
 
     return res.status(statusCode).send(result)

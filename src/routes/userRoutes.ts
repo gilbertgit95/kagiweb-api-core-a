@@ -47,10 +47,7 @@ router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
     const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        if (userId) {
-            return await userController.updateUser(userId, username, disabled, verified)
-        }
-        return null
+        return await userController.updateUser(userId, username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)

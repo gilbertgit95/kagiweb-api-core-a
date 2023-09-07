@@ -18,6 +18,7 @@ import roleFeatureRoutes from './roleFeatureRoutes'
 import userRoutes from './userRoutes'
 import userRoleRoutes from './userRoleRoutes'
 import userUserInfoRoutes from './userUserInfoRoutes'
+import userContactInfoRoutes from './userContactInfoRoutes'
 import ownerRoutes from './ownerRoutes'
 
 const router = express.Router()
@@ -53,5 +54,6 @@ router.use(roleFeatureRoutes)
 router.use(userRoutes)
 router.use(userRoleRoutes)
 router.use(userUserInfoRoutes)
+router.use(userContactInfoRoutes)
 
 export default router

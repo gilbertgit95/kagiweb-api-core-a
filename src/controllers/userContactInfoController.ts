@@ -1,120 +1,125 @@
-import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import featureController from './featureController'
-import roleController from './roleController'
+import UserModel, { IUser, IContactInfo, TContactInfoType } from '../dataSource/models/userModel'
+import userController from './userController'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class RoleFeaturesController {
-    public hasFeature(role:IRole, featureId:string):boolean {
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return true
+class UserContactInfoController {
+    public hasContactInfoValue(user:IUser, contactInfoVal:string):boolean {
+        if (user && user.contactInfos) {
+            for (let info of user.contactInfos) {
+                if (info.value === contactInfoVal) return true
             }
         }
 
         return false
     }
 
-    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IFeatureRef|null> {
+    public getContactInfoByValue(user:IUser, contactInfoVal:string):IContactInfo|null {
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return ref
+        if (user && user.contactInfos) {
+            for (let info of user.contactInfos) {
+                if (info.value === contactInfoVal) return info
             }
         }
 
         return null
     }
 
-    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public getContactInfoById(user:IUser, contactInfoId:string):IContactInfo|null {
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
+        if (user && user.contactInfos) {
+            for (let info of user.contactInfos) {
+                if (info._id === contactInfoId) return info
+            }
+        }
 
-        const featureRef = role!.featuresRefs?.id(featureRefId)
-        if (!featureRef) throw(404)
-
-        return featureRef
+        return null
     }
 
-    public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
-        let result:IFeatureRef[] = []
-        if (!roleId) throw(400)
+    public async getContactInfo(userId:string, contactInfoId:string):Promise<IContactInfo|null> {
+        if (!(userId && contactInfoId)) throw(400)
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
-        result = role!.featuresRefs? role!.featuresRefs: []
-        
-        if (role.absoluteAuthority) {
-            let allFeatures = await featureController.getAllFeatures()
-            result = allFeatures? allFeatures.map(item => ({
-                featureId: item._id!
-            })): []
-        }
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+
+        const contactInfo = this.getContactInfoById(user, contactInfoId)
+        if (!contactInfo) throw(404)
+
+        return contactInfo
+    }
+
+    public async getContactInfos(userId:string):Promise<IContactInfo[]> {
+        let result:IContactInfo[] = []
+        if (!userId) throw(400)
+
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+        result = user!.contactInfos? user!.contactInfos: []
 
         return result
     }
 
-    public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureId)) throw(400)
+    public async saveContactInfo(userId:string, type:TContactInfoType, value:string, countryCode:string, verified:boolean|string):Promise<IContactInfo|null> {
+        if (!(userId && type && value)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        // check if the contact info to save is existing on the user contact infos
+        if (this.hasContactInfoValue(user, value)) throw(409)
 
-        role.featuresRefs!.push({featureId})
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
+        const doc:any = {type, value}
+        if (countryCode) doc.countryCode = countryCode
+        if (DataCleaner.getBooleanData(verified).isValid) {
+            doc.verified = DataCleaner.getBooleanData(verified).data
+        }
+        user.contactInfos!.push(doc)
 
-        return this.getFeatureRefByObj(role, featureId)
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        return this.getContactInfoByValue(user, value)
     }
 
-    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId && featureId)) throw(400)
+    public async updateContactInfo(userId:string, contactInfoId:string, type:TContactInfoType, value:string, countryCode:string, verified:boolean|string):Promise<IContactInfo|null> {
+        if (!(userId && contactInfoId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
-        if (!role.featuresRefs?.id(featureRefId)) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
+        if (!user.contactInfos?.id(contactInfoId)) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
+        if (type) user.contactInfos!.id(contactInfoId)!.type = type
+        if (value) user.contactInfos!.id(contactInfoId)!.value = value
+        if (countryCode) user.contactInfos!.id(contactInfoId)!.countryCode = countryCode
+        if (DataCleaner.getBooleanData(verified).isValid) {
+            user.contactInfos!.id(contactInfoId)!.verified = DataCleaner.getBooleanData(verified).data
+        }
 
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
 
-        role.featuresRefs!.id(featureRefId)!.featureId = featureId
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
-
-        return role.featuresRefs!.id(featureRefId)
+        return user.contactInfos!.id(contactInfoId)
     }
 
-    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public async deleteContactInfo(userId:string, contactInfoId:string):Promise<IContactInfo|null> {
+        if (!(userId && contactInfoId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featureRefData = role!.featuresRefs?.id(featureRefId)
-        if (featureRefData) {
-            role!.featuresRefs?.id(featureRefId)?.deleteOne()
-            await role.save()
-            await roleController.cachedData.removeCacheData(roleId)
+        const userInfoData = user!.contactInfos?.id(contactInfoId)
+        if (userInfoData) {
+            user!.contactInfos?.id(contactInfoId)?.deleteOne()
+            await user.save()
+            await userController.cachedData.removeCacheData(userId)
         } else {
             throw(404)
         }
 
-        return featureRefData? featureRefData: null
+        return userInfoData? userInfoData: null
     }
 }
 
-export default new RoleFeaturesController()
+export default new UserContactInfoController()

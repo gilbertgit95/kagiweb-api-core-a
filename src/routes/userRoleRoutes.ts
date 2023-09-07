@@ -46,7 +46,7 @@ router.put(env.RootApiEndpoint + 'users/:userId/roles/:roleRefId', async (req, r
     const { roleId, isActive } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-            return await userRoleController.updateRoleRef(userId, roleRefId, roleId, isActive)
+        return await userRoleController.updateRoleRef(userId, roleRefId, roleId, isActive)
     })
 
     return res.status(statusCode).send(result)

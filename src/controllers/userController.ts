@@ -162,6 +162,7 @@ class UserController {
 
     public async updateUser(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const doc:any = {}
+        if (!id) return null
         // check username if already existing
         if (typeof username === 'string' && username.length) {
             if (await UserModel.findOne({username})) throw(409) // conflict

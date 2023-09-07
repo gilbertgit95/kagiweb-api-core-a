@@ -7,8 +7,8 @@ import userController from './userController'
 class UserUserInfoController {
     public hasUserInfoKey(user:IUser, userInfoKey:string):boolean {
         if (user && user.userInfos) {
-            for (let ref of user.userInfos) {
-                if (ref.key === userInfoKey) return true
+            for (let info of user.userInfos) {
+                if (info.key === userInfoKey) return true
             }
         }
 
