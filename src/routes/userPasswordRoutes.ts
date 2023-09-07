@@ -4,59 +4,48 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import roleFeatureController from '../controllers/roleFeatureController'
-import { IFeatureRef } from '../dataSource/models/roleModel'
+import userPasswordController from '../controllers/userPasswordController'
+import { IPassword } from '../dataSource/models/userModel'
 
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'roles/:roleId/features', async (req, res) => {
-    const { roleId } = req.params
+router.get(env.RootApiEndpoint + 'users/:userId/passwords/', async (req, res) => {
+    const { userId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef[]>(async () => {
-        return await roleFeatureController.getRoleFeatureRefs(roleId)
+    const [result, statusCode] = await ErrorHandler.execute<IPassword[]>(async () => {
+        return await userPasswordController.getPasswords(userId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'roles/:roleId/features/', async (req, res) => {
-    const { roleId } = req.params
-    const { featureId } = req.body
+router.post(env.RootApiEndpoint + 'users/:userId/passwords/', async (req, res) => {
+    const { userId } = req.params
+    const { currentPassword, newPassword } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.saveFeatureRef(roleId, featureId)
+    const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
+        return await userPasswordController.savePassword(userId, currentPassword, newPassword)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
-    const { roleId, featureRefId } = req.params
+router.get(env.RootApiEndpoint + 'users/:userId/passwords/:userInfoId', async (req, res) => {
+    const { userId, userInfoId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.getFeatureRefById(roleId, featureRefId)
+    const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
+        return await userPasswordController.getPassword(userId, userInfoId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
-    const { roleId, featureRefId } = req.params
-    const { featureId } = req.body
+router.delete(env.RootApiEndpoint + 'users/:userId/passwords/:userInfoId', async (req, res) => {
+   const { userId, userInfoId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-            return await roleFeatureController.updateFeatureRef(roleId, featureRefId, featureId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.delete(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
-    const { roleId, featureRefId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.deleteFeatureRef(roleId, featureRefId)
+    const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
+        return await userPasswordController.deletePassword( userId, userInfoId )
     })
 
     return res.status(statusCode).send(result)

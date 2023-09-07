@@ -45,6 +45,10 @@
   $ref: ./userContactInfos/userContactInfosPaths.yml
 /users/{userId}/contactInfos/{userInfoId}:
   $ref: ./userContactInfos/userContactInfosSpecificPaths.yml
+/users/{userId}/passwords:
+  $ref: ./userPasswords/userPasswordsPaths.yml
+/users/{userId}/passwords/{passwordId}:
+  $ref: ./userPasswords/userPasswordsSpecificPaths.yml
 
 # paths owner
 /owner:

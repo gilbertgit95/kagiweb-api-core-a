@@ -1,120 +1,134 @@
-import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import featureController from './featureController'
-import roleController from './roleController'
+import UserModel, { IUser, IPassword } from '../dataSource/models/userModel'
+import userController from './userController'
+import Encryption from '../utilities/encryption'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class RoleFeaturesController {
-    public hasFeature(role:IRole, featureId:string):boolean {
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return true
+class UserPasswordController {
+    public async hasPasswordEntry(user:IUser, password:string):Promise<boolean> {
+        if (user && user.passwords) {
+            for (let pass of user.passwords) {
+                if (await Encryption.verifyTextToHash(password, pass.key)) return true
             }
         }
 
         return false
     }
 
-    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IFeatureRef|null> {
+    public async getPasswordEntry(user:IUser, password:string):Promise<IPassword|null> {
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return ref
+        if (user && user.passwords) {
+            for (let pass of user.passwords) {
+                if (await Encryption.verifyTextToHash(password, pass.key)) return pass
             }
         }
 
         return null
     }
 
-    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public async getCurrentPasswordEntry(user:IUser):Promise<IPassword|null> {
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
+        if (user && user.passwords) {
+            for (let pass of user.passwords) {
+                if (pass.isActive) return pass
+            }
+        }
 
-        const featureRef = role!.featuresRefs?.id(featureRefId)
-        if (!featureRef) throw(404)
-
-        return featureRef
+        return null
     }
 
-    public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
-        let result:IFeatureRef[] = []
-        if (!roleId) throw(400)
+    public getPasswordById(user:IUser, passwordId:string):IPassword|null {
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
-        result = role!.featuresRefs? role!.featuresRefs: []
-        
-        if (role.absoluteAuthority) {
-            let allFeatures = await featureController.getAllFeatures()
-            result = allFeatures? allFeatures.map(item => ({
-                featureId: item._id!
-            })): []
+        if (user && user.passwords) {
+            for (let pass of user.passwords) {
+                if (pass._id === passwordId) return pass
+            }
         }
+
+        return null
+    }
+
+    public async getPassword(userId:string, passwordId:string):Promise<IPassword|null> {
+        if (!(userId && passwordId)) throw(400)
+
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+
+        const password = this.getPasswordById(user, passwordId)
+        if (!password) throw(404)
+        password.key = 'NA'
+        return password
+    }
+
+    public async getPasswords(userId:string):Promise<IPassword[]> {
+        let result:IPassword[] = []
+        if (!userId) throw(400)
+
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+        result = user!.passwords? user!.passwords: []
+        // remove key values
+        result = result.map(item => {
+            item.key = 'NA'
+            return item
+        })
 
         return result
     }
 
-    public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureId)) throw(400)
+    public async savePassword(userId:string, currentPassword:string, newPassword:string):Promise<IPassword|null> {
+        if (!(userId && currentPassword && newPassword)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        const currPass = await this.getCurrentPasswordEntry(user)
+        if (!currPass) throw(404)
 
-        role.featuresRefs!.push({featureId})
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
+        // verify if the current password provided is true
+        if (!(currPass.key && await Encryption.verifyTextToHash(currentPassword, currPass.key))) {
+            throw(404)
+        }
 
-        return this.getFeatureRefByObj(role, featureId)
+        // check if the contact info to save is existing on the user contact infos
+        if (await this.hasPasswordEntry(user, newPassword)) throw(409)
+
+        // save the new password with active status
+        user.passwords!.push({isActive: true, key: await Encryption.hashText(newPassword)})
+
+        // deactivate the current password
+        user.passwords.id(currPass._id)!.isActive = false
+
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        const passEntry = await this.getPasswordEntry(user, newPassword)
+        if (passEntry && passEntry.key) passEntry.key = 'NA'
+        return passEntry
     }
 
-    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId && featureId)) throw(400)
+    public async deletePassword(userId:string, passwordId:string):Promise<IPassword|null> {
+        if (!(userId && passwordId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
-        if (!role.featuresRefs?.id(featureRefId)) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
+        const userPasswordData = user!.passwords?.id(passwordId)
+        // check if password is active
+        if (userPasswordData && userPasswordData.isActive) throw(409)
 
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
-
-        role.featuresRefs!.id(featureRefId)!.featureId = featureId
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
-
-        return role.featuresRefs!.id(featureRefId)
-    }
-
-    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
-
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
-
-        const featureRefData = role!.featuresRefs?.id(featureRefId)
-        if (featureRefData) {
-            role!.featuresRefs?.id(featureRefId)?.deleteOne()
-            await role.save()
-            await roleController.cachedData.removeCacheData(roleId)
+        if (userPasswordData) {
+            user!.passwords?.id(passwordId)?.deleteOne()
+            await user.save()
+            await userController.cachedData.removeCacheData(userId)
         } else {
             throw(404)
         }
 
-        return featureRefData? featureRefData: null
+        userPasswordData.key = 'NA'
+        return userPasswordData
     }
 }
 
-export default new RoleFeaturesController()
+export default new UserPasswordController()

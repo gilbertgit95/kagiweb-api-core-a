@@ -28,7 +28,9 @@ UserRole:
 UserUserInfo:
   $ref: ./userUserInfos/userUserInfoDefinition.yml
 UserContactInfo:
-  $ref: ./userContactInfos/userContactInfoDefinition.yml
+  $ref: ./userContactInfos/userContactInfoDefinition.yml\
+UserPasswordInfo:
+  $ref: ./userPasswords/userPasswordDefinition.yml
 
 
 # owner relate definations
