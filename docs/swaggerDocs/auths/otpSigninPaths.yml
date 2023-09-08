@@ -21,7 +21,7 @@ post:
                 type: string
     responses:
       200:
-        description: jwrt response
+        description: jwt response
         content:
           application/json:
             schema:

@@ -49,6 +49,10 @@
   $ref: ./userPasswords/userPasswordsPaths.yml
 /users/{userId}/passwords/{passwordId}:
   $ref: ./userPasswords/userPasswordsSpecificPaths.yml
+/users/{userId}/limitedTransactions:
+  $ref: ./userLimitedTransactions/userLimitedTransactionsPaths.yml
+/users/{userId}/limitedTransactions/{limitedTransactionId}:
+  $ref: ./userLimitedTransactions/userLimitedTransactionsSpecificPaths.yml
 
 # paths owner
 /owner:

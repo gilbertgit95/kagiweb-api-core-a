@@ -80,7 +80,7 @@ interface ILimitedTransaction {
     key?: string,
     value?: string, // optional, can be use to store additional info
     expTime?: string, // optional expiration time, only for timed LT
-    recipient?: TContactInfoType, // optional, only for some LT like: otp, pass reset
+    recipient?: string, // optional, only for some LT like: otp, pass reset
     disabled?: boolean
 }
 
@@ -168,7 +168,7 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     _id: { type: String, default: () => randomUUID()},
     limit: { type: Number, require: true },
     attempts: { type: Number, require: false, default: 0 },
-    type: { type: String, require: false },
+    type: { type: String, require: false, unique: true },
     key: { type: String, require: false, default: '' },
     value: { type: String, require: false, default: '' },
     expTime: { type: String, require: false, default: '' },
@@ -185,7 +185,7 @@ const UserInfoSchema = new Schema<IUserInfo>({
 
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID() },
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     rolesRefs: { type: [RoleRefSchema], required: true, },
     userInfos: { type: [UserInfoSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },
