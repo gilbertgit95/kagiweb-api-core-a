@@ -30,6 +30,14 @@
         $ref: ./errorDefinition.yml
       example:
         message: Resources not found.
+405:
+  description: Not Allowed.
+  content:
+    application/json:
+      schema:
+        $ref: ./errorDefinition.yml
+      example:
+        message: Not Allowed.
 500:
   description: Internal server error
   content:

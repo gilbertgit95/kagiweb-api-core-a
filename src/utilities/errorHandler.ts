@@ -33,6 +33,11 @@ class ErrorHandler {
                 statusCode = err
                 result = { message: 'Resource not found'}
             }
+            // Not Allowed
+            else if (err === 405) {
+                statusCode = err
+                result = { message: 'Not Allowed'}
+            }
             // Conflict
             else if (err === 409) {
                 statusCode = err

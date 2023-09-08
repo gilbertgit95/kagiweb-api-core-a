@@ -20,6 +20,7 @@ import userRoleRoutes from './userRoleRoutes'
 import userUserInfoRoutes from './userUserInfoRoutes'
 import userContactInfoRoutes from './userContactInfoRoutes'
 import userPasswordRoutes from './userPasswordRoutes'
+import userLimitedTransactionRoutes from './userLimitedTransactionRoutes'
 import ownerRoutes from './ownerRoutes'
 
 const router = express.Router()
@@ -45,7 +46,6 @@ router.use(userInfoProvider)
 router.use(accessChecker)
 
 // routes for data api needs authorization
-router.use(ownerRoutes)
 router.use(systemInfoRoutes)
 router.use(featureRoutes)
 
@@ -57,5 +57,8 @@ router.use(userRoleRoutes)
 router.use(userUserInfoRoutes)
 router.use(userContactInfoRoutes)
 router.use(userPasswordRoutes)
+router.use(userLimitedTransactionRoutes)
+
+router.use(ownerRoutes)
 
 export default router
