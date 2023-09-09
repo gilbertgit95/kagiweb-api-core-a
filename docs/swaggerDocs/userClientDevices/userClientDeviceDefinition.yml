@@ -1,10 +1,70 @@
 type: object
 required:
-  - featureId
+  - ua
 properties:
-  featureId:
+  ua:
     type: string
-    format: uuid
+  browser:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+      major:
+        type: string
+  engine:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+  os:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+  device:
+    type: object
+    properties:
+      vendor:
+        type: string
+      model:
+        type: string
+      type:
+        type: string
+  cpu:
+    type: object
+    properties:
+      architecture:
+        type: string
+  disabled:
+    type: boolean
+  accessTokens:
+    type: array
+    item:
+      $ref: ../userClientDeviceAccessTokens/userClientDeviceAccessTokenDefinition.yml
 
 example:
-  featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  ua: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+  browser:
+    name: Chrome
+    version: "116.0.0.0"
+    major: "116"
+  engine:
+    name: Blink
+    version: "116.0.0.0"
+  os:
+    name: Windows
+    version: "10"
+  device:
+    vendor:
+    model:
+    type:
+  cpu:
+    architecture: amd64
+  disabled: false
+  accessTokens: []

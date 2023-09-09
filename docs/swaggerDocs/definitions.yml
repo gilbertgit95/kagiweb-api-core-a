@@ -21,6 +21,10 @@ UserPasswordInfo:
   $ref: ./userPasswords/userPasswordDefinition.yml
 UserLimitedTransaction:
   $ref: ./userLimitedTransactions/userLimitedTransactionDefinition.yml
+UserClientDevice:
+  $ref: ./userClientDevices/userClientDeviceDefinition.yml
+UserClientDeviceAccessToken:
+  $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokenDefinition.yml
 
 # global data definitions
 Error:

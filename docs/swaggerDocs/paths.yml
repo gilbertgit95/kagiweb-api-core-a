@@ -53,6 +53,10 @@
   $ref: ./userLimitedTransactions/userLimitedTransactionsPaths.yml
 /users/{userId}/limitedTransactions/{limitedTransactionId}:
   $ref: ./userLimitedTransactions/userLimitedTransactionsSpecificPaths.yml
+/users/{userId}/clientDevices:
+  $ref: ./userClientDevices/userClientDevicesPaths.yml
+/users/{userId}/clientDevices/{clientDeviceId}:
+  $ref: ./userClientDevices/userClientDevicesSpecificPaths.yml
 
 # paths owner
 /owner:

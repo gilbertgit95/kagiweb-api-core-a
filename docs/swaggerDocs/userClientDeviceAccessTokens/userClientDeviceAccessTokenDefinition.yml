@@ -1,10 +1,15 @@
 type: object
 required:
-  - featureId
+  - jwt
 properties:
-  featureId:
+  jwt:
     type: string
-    format: uuid
+  ipAddress:
+    type: string
+  disabled:
+    type: boolean
 
 example:
-  featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTQyMTg4MTAsImV4cCI6MTY5NDgyMzYxMH0.TRpD4Ia_Z1mLyVebe7xxmwyDjzFGw1LqEHG1d7NDA7A
+  ipAddress: ::1
+  disabled: false
