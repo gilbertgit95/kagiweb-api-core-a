@@ -1,116 +1,134 @@
-import UserModel, { IUser, IUserInfo, TUserInfoType } from '../dataSource/models/userModel'
+import UAParser, {IResult}  from 'ua-parser-js'
+import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
 import userController from './userController'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class UserUserInfoController {
-    public hasUserInfoKey(user:IUser, userInfoKey:string):boolean {
-        if (user && user.userInfos) {
-            for (let info of user.userInfos) {
-                if (info.key === userInfoKey) return true
+class UserClientDeviceController {
+    public hasClientDeviceUA(user:IUser, ua:string):boolean {
+        if (user && user.clientDevices) {
+            for (let clientDevice of user.clientDevices) {
+                if (clientDevice.ua === ua) return true
             }
         }
 
         return false
     }
 
-    public getUserInfoByKey(user:IUser, userInfoKey:string):IUserInfo|null {
+    public getClientDeviceByUA(user:IUser, ua:string):IClientDevice|null {
 
-        if (user && user.userInfos) {
-            for (let info of user.userInfos) {
-                if (info.key === userInfoKey) return info
+        if (user && user.clientDevices) {
+            for (let clientDevice of user.clientDevices) {
+                if (clientDevice.ua === ua) return clientDevice
             }
         }
 
         return null
     }
 
-    public getUserInfoById(user:IUser, userInfoId:string):IUserInfo|null {
+    public getClientDeviceById(user:IUser, clientDeviceId:string):IClientDevice|null {
 
-        if (user && user.userInfos) {
-            for (let info of user.userInfos) {
-                if (info._id === userInfoId) return info
+        if (user && user.clientDevices) {
+            for (let clientDevice of user.clientDevices) {
+                if (clientDevice._id === clientDeviceId) return clientDevice
             }
         }
 
         return null
     }
 
-    public async getUserInfo(userId:string, userInfoId:string):Promise<IUserInfo|null> {
-        if (!(userId && userInfoId)) throw(400)
+    public async getClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+        if (!(userId && clientDeviceId)) throw(400)
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw(404)
 
-        const userInfo = this.getUserInfoById(user, userInfoId)
-        if (!userInfo) throw(404)
+        const clientDevice = this.getClientDeviceById(user, clientDeviceId)
+        if (!clientDevice) throw(404)
 
-        return userInfo
+        return clientDevice
     }
 
-    public async getUserInfos(userId:string):Promise<IUserInfo[]> {
-        let result:IUserInfo[] = []
+    public async getClientDevices(userId:string):Promise<IClientDevice[]> {
+        let result:IClientDevice[] = []
         if (!userId) throw(400)
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw(404)
-        result = user!.userInfos? user!.userInfos: []
+        result = user!.clientDevices? user!.clientDevices: []
 
         return result
     }
 
-    public async saveUserInfo(userId:string, key:string, value:string, type:string):Promise<IUserInfo|null> {
-        if (!(userId && key && value && type)) throw(400)
+    public async saveClientDevice(userId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+        if (!(userId && ua)) throw(400)
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw(404)
 
         // check if the user info to save is existing on the user user infos
-        if (this.hasUserInfoKey(user, key)) throw(409)
-
-        user.userInfos!.push({key, value, type})
-
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
-
-        return this.getUserInfoByKey(user, key)
-    }
-
-    public async updateUserInfo(userId:string, userInfoId:string, key:string, value:string, type:TUserInfoType):Promise<IUserInfo|null> {
-        if (!(userId && userInfoId)) throw(400)
-
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
-        if (!user.userInfos?.id(userInfoId)) throw(404)
-
-        if (key) user.userInfos!.id(userInfoId)!.key = key
-        if (value) user.userInfos!.id(userInfoId)!.value = value
-        if (type) user.userInfos!.id(userInfoId)!.type = type
+        if (this.hasClientDeviceUA(user, ua)) throw(409)
+        const doc:any = (new UAParser(ua)).getResult()
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            doc.disabled = DataCleaner.getBooleanData(disabled).data
+        }
+        user.clientDevices!.push(doc)
 
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
-        return user.userInfos!.id(userInfoId)
+        return this.getClientDeviceByUA(user, ua)
     }
 
-    public async deleteUserInfo(userId:string, userInfoId:string):Promise<IUserInfo|null> {
-        if (!(userId && userInfoId)) throw(400)
+    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+        if (!(userId && clientDeviceId)) throw(400)
+
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
+        if (!user.clientDevices?.id(clientDeviceId)) throw(404)
+
+        // check if client device ua already existed on other entries in this user client devices
+        if (this.hasClientDeviceUA(user, ua)) throw(409)
+
+        if (ua) {
+            const doc = (new UAParser(ua)).getResult()
+
+            user.clientDevices!.id(clientDeviceId)!.ua =      ua
+            user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
+            user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
+            user.clientDevices!.id(clientDeviceId)!.os =      doc.os
+            user.clientDevices!.id(clientDeviceId)!.device =  doc.device
+            user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
+        }
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data
+        }
+
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        return user.clientDevices!.id(clientDeviceId)
+    }
+
+    public async deleteClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+        if (!(userId && clientDeviceId)) throw(400)
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw(404)
 
-        const userInfoData = user!.userInfos?.id(userInfoId)
-        if (userInfoData) {
-            user!.userInfos?.id(userInfoId)?.deleteOne()
+        const clientDeviceData = user!.clientDevices?.id(clientDeviceId)
+        if (clientDeviceData) {
+            user!.clientDevices?.id(clientDeviceId)?.deleteOne()
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
             throw(404)
         }
 
-        return userInfoData? userInfoData: null
+        return clientDeviceData? clientDeviceData: null
     }
 }
 
-export default new UserUserInfoController()
+export default new UserClientDeviceController()

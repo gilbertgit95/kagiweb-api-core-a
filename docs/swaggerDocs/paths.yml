@@ -57,6 +57,10 @@
   $ref: ./userClientDevices/userClientDevicesPaths.yml
 /users/{userId}/clientDevices/{clientDeviceId}:
   $ref: ./userClientDevices/userClientDevicesSpecificPaths.yml
+/users/{userId}/clientDevices/{clientDeviceId}/accessTokens:
+  $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokensPaths.yml
+/users/{userId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
+  $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokensSpecificPaths.yml
 
 # paths owner
 /owner:
