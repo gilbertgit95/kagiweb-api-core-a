@@ -1,120 +1,134 @@
-import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import featureController from './featureController'
-import roleController from './roleController'
+import UAParser, {IResult}  from 'ua-parser-js'
+import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
+import userController from './userController'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class RoleFeaturesController {
-    public hasFeature(role:IRole, featureId:string):boolean {
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return true
+class UserClientDeviceController {
+    public hasClientDeviceUA(user:IUser, ua:string):boolean {
+        if (user && user.clientDevices) {
+            for (let clientDevice of user.clientDevices) {
+                if (clientDevice.ua === ua) return true
             }
         }
 
         return false
     }
 
-    public async getFeatureRefByObj(role:IRole, featureId:string):Promise<IFeatureRef|null> {
+    public getClientDeviceByUA(user:IUser, ua:string):IClientDevice|null {
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return ref
+        if (user && user.clientDevices) {
+            for (let clientDevice of user.clientDevices) {
+                if (clientDevice.ua === ua) return clientDevice
             }
         }
 
         return null
     }
 
-    public async getFeatureRefById(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public getClientDeviceById(user:IUser, clientDeviceId:string):IClientDevice|null {
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
+        if (user && user.clientDevices) {
+            for (let clientDevice of user.clientDevices) {
+                if (clientDevice._id === clientDeviceId) return clientDevice
+            }
+        }
 
-        const featureRef = role!.featuresRefs?.id(featureRefId)
-        if (!featureRef) throw(404)
-
-        return featureRef
+        return null
     }
 
-    public async getRoleFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
-        let result:IFeatureRef[] = []
-        if (!roleId) throw(400)
+    public async getClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+        if (!(userId && clientDeviceId)) throw(400)
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
-        result = role!.featuresRefs? role!.featuresRefs: []
-        
-        if (role.absoluteAuthority) {
-            let allFeatures = await featureController.getAllFeatures()
-            result = allFeatures? allFeatures.map(item => ({
-                featureId: item._id!
-            })): []
-        }
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+
+        const clientDevice = this.getClientDeviceById(user, clientDeviceId)
+        if (!clientDevice) throw(404)
+
+        return clientDevice
+    }
+
+    public async getClientDevices(userId:string):Promise<IClientDevice[]> {
+        let result:IClientDevice[] = []
+        if (!userId) throw(400)
+
+        const user = await userController.getUser({_id: userId})
+        if (!user) throw(404)
+        result = user!.clientDevices? user!.clientDevices: []
 
         return result
     }
 
-    public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureId)) throw(400)
+    public async saveClientDevice(userId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+        if (!(userId && ua)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        // check if the user info to save is existing on the user user infos
+        if (this.hasClientDeviceUA(user, ua)) throw(409)
+        const doc:any = (new UAParser(ua)).getResult()
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            doc.disabled = DataCleaner.getBooleanData(disabled).data
+        }
+        user.clientDevices!.push(doc)
 
-        role.featuresRefs!.push({featureId})
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
 
-        return this.getFeatureRefByObj(role, featureId)
+        return this.getClientDeviceByUA(user, ua)
     }
 
-    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId && featureId)) throw(400)
+    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+        if (!(userId && clientDeviceId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
-        if (!role.featuresRefs?.id(featureRefId)) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
+        if (!user.clientDevices?.id(clientDeviceId)) throw(404)
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
+        // check if client device ua already existed on other entries in this user client devices
+        if (this.hasClientDeviceUA(user, ua)) throw(409)
 
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        if (ua) {
+            const doc = (new UAParser(ua)).getResult()
 
-        role.featuresRefs!.id(featureRefId)!.featureId = featureId
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
+            user.clientDevices!.id(clientDeviceId)!.ua =      ua
+            user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
+            user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
+            user.clientDevices!.id(clientDeviceId)!.os =      doc.os
+            user.clientDevices!.id(clientDeviceId)!.device =  doc.device
+            user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
+        }
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data
+        }
 
-        return role.featuresRefs!.id(featureRefId)
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        return user.clientDevices!.id(clientDeviceId)
     }
 
-    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+    public async deleteClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+        if (!(userId && clientDeviceId)) throw(400)
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw(404)
 
-        const featureRefData = role!.featuresRefs?.id(featureRefId)
-        if (featureRefData) {
-            role!.featuresRefs?.id(featureRefId)?.deleteOne()
-            await role.save()
-            await roleController.cachedData.removeCacheData(roleId)
+        const clientDeviceData = user!.clientDevices?.id(clientDeviceId)
+        if (clientDeviceData) {
+            user!.clientDevices?.id(clientDeviceId)?.deleteOne()
+            await user.save()
+            await userController.cachedData.removeCacheData(userId)
         } else {
             throw(404)
         }
 
-        return featureRefData? featureRefData: null
+        return clientDeviceData? clientDeviceData: null
     }
 }
 
-export default new RoleFeaturesController()
+export default new UserClientDeviceController()

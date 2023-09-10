@@ -1,7 +1,8 @@
 // import { Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
-import userController from '../controllers/userController'
 
+import userController from '../controllers/userController'
+import { errorLogsColl, combinedLogsColl } from '../utilities/logger'
 import ErrorHandler from '../utilities/errorHandler'
 import Encryption from '../utilities/encryption'
 
@@ -23,6 +24,10 @@ class UserInfoProvider {
             } else {
                 throw(401)
             }
+            // console.log('AccessChecker')
+            // console.log('Authorization: ', req.headers.authorization)
+            // combinedLogsColl.log({level: 'info', message: 'access checker'})
+            // errorLogsColl.log({level: 'error', message: 'access checker'})
         })
     
         if (statusCode === 200) return next()

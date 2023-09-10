@@ -9,8 +9,8 @@ class ClientInfoProvider {
 
         req.userAgentInfo = userAgent.getResult()
 
-        // console.log('userAgentInfo: ', req.userAgentInfo)
-        // console.log('clientIPAddress: ', req.clientIp)
+        console.log('userAgentInfo: ', {...req.userAgentInfo})
+        console.log('clientIPAddress: ', req.clientIp)
 
         next()
     }

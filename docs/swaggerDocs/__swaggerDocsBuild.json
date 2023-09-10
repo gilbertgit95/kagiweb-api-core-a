@@ -3928,8 +3928,8 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get all the user client devicermations",
-        "description": "Get all the user client devicermations",
+        "summary": "Get all the user client device",
+        "description": "Get all the user client device",
         "produces": [
           "application/json"
         ],

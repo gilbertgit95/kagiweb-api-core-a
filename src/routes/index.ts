@@ -6,8 +6,7 @@ import cors from 'cors'
 import Config from '../utilities/config'
 
 import clientInfoProvider from '../middlewares/clientInfoProviderMiddleware'
-import userInfoProvider from '../middlewares/userInfoProviderMiddleware'
-import accessChecker from '../middlewares/accessCheckerMiddleware'
+import userInfoAndAccessProvider from '../middlewares/userInfoAndAccessProviderMiddleware'
 
 import documentationRoutes from './documentationRoutes'
 import authRoutes from './authRoutes'
@@ -21,6 +20,7 @@ import userUserInfoRoutes from './userUserInfoRoutes'
 import userContactInfoRoutes from './userContactInfoRoutes'
 import userPasswordRoutes from './userPasswordRoutes'
 import userLimitedTransactionRoutes from './userLimitedTransactionRoutes'
+import userClientDeviceRoutes from './userClientDeviceRoutes'
 import ownerRoutes from './ownerRoutes'
 
 const router = express.Router()
@@ -42,23 +42,19 @@ router.use(clientInfoProvider)
 router.use(authRoutes)
 
 // add middlewares for secured routes
-router.use(userInfoProvider)
-router.use(accessChecker)
-
 // routes for data api needs authorization
+router.use(userInfoAndAccessProvider)
 router.use(systemInfoRoutes)
 router.use(featureRoutes)
-
 router.use(roleRoutes)
 router.use(roleFeatureRoutes)
-
 router.use(userRoutes)
 router.use(userRoleRoutes)
 router.use(userUserInfoRoutes)
 router.use(userContactInfoRoutes)
 router.use(userPasswordRoutes)
 router.use(userLimitedTransactionRoutes)
-
+router.use(userClientDeviceRoutes)
 router.use(ownerRoutes)
 
 export default router
