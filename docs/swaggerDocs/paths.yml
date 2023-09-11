@@ -65,5 +65,3 @@
 # paths owner
 /owner:
   $ref: ./owner/ownerPaths.yml
-/owner/{id}:
-  $ref: ./owner/ownerSpecificPaths.yml
