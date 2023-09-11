@@ -6,7 +6,7 @@ Feature:
 Role:
   $ref: ./roles/roleDefinition.yml
 RoleFeature:
-  $ref: ./rolesFeatures/roleFeatureDefinition.yml
+  $ref: ./roleFeatures/roleFeatureDefinition.yml
 
 # user related data definitions
 User:
