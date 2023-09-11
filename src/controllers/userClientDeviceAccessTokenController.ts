@@ -1,134 +1,144 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
+import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
 import userController from './userController'
+import userClientDeviceController from './userClientDeviceController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class UserClientDeviceController {
-    public hasClientDeviceUA(user:IUser, ua:string):boolean {
-        if (user && user.clientDevices) {
-            for (let clientDevice of user.clientDevices) {
-                if (clientDevice.ua === ua) return true
+class UserClientDeviceAccessTokenController {
+    public hasClientDeviceAccessTokenJWT(user:IUser, clientDeviceId:string, jwt:string):boolean {
+        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+        // check client devices if existed
+        if (clientDevice && clientDevice.accessTokens) {
+            // then loop to all access token of the client device
+            for (let accessToken of clientDevice.accessTokens) {
+                // if the jwt we are looking matches with an entry
+                // in the client device access tokens, just return true
+                if (accessToken.jwt === jwt) return true
             }
         }
 
         return false
     }
 
-    public getClientDeviceByUA(user:IUser, ua:string):IClientDevice|null {
+    public getClientDeviceAccessTokenByJWT(user:IUser, clientDeviceId:string, jwt:string):IAccessToken|null {
 
-        if (user && user.clientDevices) {
-            for (let clientDevice of user.clientDevices) {
-                if (clientDevice.ua === ua) return clientDevice
+        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+        // check client devices if existed
+        if (clientDevice && clientDevice.accessTokens) {
+            // then loop to all access token of the client device
+            for (let accessToken of clientDevice.accessTokens) {
+                // if the jwt we are looking matches with an entry
+                // in the client device access tokens, just return true
+                if (accessToken.jwt === jwt) return accessToken
             }
         }
 
         return null
     }
 
-    public getClientDeviceById(user:IUser, clientDeviceId:string):IClientDevice|null {
+    public getClientDeviceAccessTokenById(user:IUser, clientDeviceId:string, accessTokenId:string):IAccessToken|null {
 
-        if (user && user.clientDevices) {
-            for (let clientDevice of user.clientDevices) {
-                if (clientDevice._id === clientDeviceId) return clientDevice
+        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+        // check client devices if existed
+        if (clientDevice && clientDevice.accessTokens) {
+            // then loop to all access token of the client device
+            for (let accessToken of clientDevice.accessTokens) {
+                // if the jwt we are looking matches with an entry
+                // in the client device access tokens, just return true
+                if (accessToken._id === accessTokenId) return accessToken
             }
         }
 
         return null
     }
 
-    public async getClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw(400)
+    public async getClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
+        if (!(userId && clientDeviceId && accessTokenId)) throw(400)
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw(404)
 
-        const clientDevice = this.getClientDeviceById(user, clientDeviceId)
-        if (!clientDevice) throw(404)
+        const accessToken = this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)
+        if (!accessToken) throw(404)
 
-        return clientDevice
+        return accessToken
     }
 
-    public async getClientDevices(userId:string):Promise<IClientDevice[]> {
-        let result:IClientDevice[] = []
+    public async getClientDeviceAccessTokens(userId:string, clientDeviceId:string):Promise<IAccessToken[]> {
         if (!userId) throw(400)
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw(404)
-        result = user!.clientDevices? user!.clientDevices: []
 
-        return result
+        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+
+        return clientDevice && clientDevice.accessTokens? clientDevice.accessTokens: []
     }
 
-    public async saveClientDevice(userId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && ua)) throw(400)
+    public async saveClientDeviceAccessToken(userId:string, clientDeviceId:string, jwt:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
+        if (!(userId && clientDeviceId && jwt)) throw(400)
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw(404)
 
         // check if the user info to save is existing on the user user infos
-        if (this.hasClientDeviceUA(user, ua)) throw(409)
-        const doc:any = (new UAParser(ua)).getResult()
+        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw(409)
+
+        const doc:any = {jwt}
+        if (ipAddress) doc.ipAddress = ipAddress
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        user.clientDevices!.push(doc)
+        user.clientDevices!.id(clientDeviceId)?.accessTokens?.push(doc)
 
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
-        return this.getClientDeviceByUA(user, ua)
+        return this.getClientDeviceAccessTokenByJWT(user, clientDeviceId, jwt)
     }
 
-    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+    public async updateClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string, jwt:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
         if (!(userId && clientDeviceId)) throw(400)
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw(404)
-        if (!user.clientDevices?.id(clientDeviceId)) throw(404)
+        if (!this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)) throw(404)
 
         // check if client device ua already existed on other entries in this user client devices
-        if (this.hasClientDeviceUA(user, ua)) throw(409)
+        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw(409)
 
-        if (ua) {
-            const doc = (new UAParser(ua)).getResult()
-
-            user.clientDevices!.id(clientDeviceId)!.ua =      ua
-            user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
-            user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
-            user.clientDevices!.id(clientDeviceId)!.os =      doc.os
-            user.clientDevices!.id(clientDeviceId)!.device =  doc.device
-            user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
-        }
+        if (jwt) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.jwt =  jwt
+        if (ipAddress) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.ipAddress = ipAddress
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
-        return user.clientDevices!.id(clientDeviceId)
+        return user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)
     }
 
-    public async deleteClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+    public async deleteClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
         if (!(userId && clientDeviceId)) throw(400)
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw(404)
 
-        const clientDeviceData = user!.clientDevices?.id(clientDeviceId)
-        if (clientDeviceData) {
-            user!.clientDevices?.id(clientDeviceId)?.deleteOne()
+        const accessTokenData = this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)
+        if (accessTokenData) {
+            user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
             throw(404)
         }
 
-        return clientDeviceData? clientDeviceData: null
+        return accessTokenData? accessTokenData: null
     }
 }
 
-export default new UserClientDeviceController()
+export default new UserClientDeviceAccessTokenController()

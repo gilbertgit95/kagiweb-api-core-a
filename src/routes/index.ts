@@ -21,6 +21,7 @@ import userContactInfoRoutes from './userContactInfoRoutes'
 import userPasswordRoutes from './userPasswordRoutes'
 import userLimitedTransactionRoutes from './userLimitedTransactionRoutes'
 import userClientDeviceRoutes from './userClientDeviceRoutes'
+import userClientDeviceAccesstokenRoutes from './userClientDeviceAccesstokenRoutes'
 import ownerRoutes from './ownerRoutes'
 
 const router = express.Router()
@@ -55,6 +56,7 @@ router.use(userContactInfoRoutes)
 router.use(userPasswordRoutes)
 router.use(userLimitedTransactionRoutes)
 router.use(userClientDeviceRoutes)
+router.use(userClientDeviceAccesstokenRoutes)
 router.use(ownerRoutes)
 
 export default router
