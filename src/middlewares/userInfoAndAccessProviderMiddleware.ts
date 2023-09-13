@@ -8,8 +8,7 @@ import Encryption from '../utilities/encryption'
 
 class UserInfoProvider {
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-        req.userInfo = null
-        return next() // temporary
+        req.userData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
@@ -19,8 +18,8 @@ class UserInfoProvider {
                 const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
                 if (!(tokenObj && tokenObj.userId)) throw(401)
 
-                req.userInfo = await userController.getUser({_id: tokenObj.userId})
-                return Boolean(req.userInfo)
+                req.userData = await userController.getUser({_id: tokenObj.userId})
+                return Boolean(req.userData)
             } else {
                 throw(401)
             }

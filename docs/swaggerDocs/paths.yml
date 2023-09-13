@@ -64,4 +64,32 @@
 
 # paths owner
 /owner:
-  $ref: ./owner/ownerPaths.yml
+  $ref: ./owner/ownerSpecificPaths.yml
+/owner/roles:
+  $ref: ./owner/ownerRolesPaths.yml
+/owner/roles/{roleRefId}:
+  $ref: ./owner/ownerRolesSpecificPaths.yml
+/owner/ownerInfos:
+  $ref: ./owner/ownerUserInfosPaths.yml
+/owner/ownerInfos/{userInfoId}:
+  $ref: ./owner/ownerUserInfosSpecificPaths.yml
+/owner/contactInfos:
+  $ref: ./owner/ownerContactInfosPaths.yml
+/owner/contactInfos/{userInfoId}:
+  $ref: ./owner/ownerContactInfosSpecificPaths.yml
+/owner/passwords:
+  $ref: ./owner/ownerPasswordsPaths.yml
+/owner/passwords/{passwordId}:
+  $ref: ./owner/ownerPasswordsSpecificPaths.yml
+/owner/limitedTransactions:
+  $ref: ./owner/ownerLimitedTransactionsPaths.yml
+/owner/limitedTransactions/{limitedTransactionId}:
+  $ref: ./owner/ownerLimitedTransactionsSpecificPaths.yml
+/owner/clientDevices:
+  $ref: ./owner/ownerClientDevicesPaths.yml
+/owner/clientDevices/{clientDeviceId}:
+  $ref: ./owner/ownerClientDevicesSpecificPaths.yml
+/owner/clientDevices/{clientDeviceId}/accessTokens:
+  $ref: ./owner/ownerClientDeviceAccessTokensPaths.yml
+/owner/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
+  $ref: ./owner/ownerClientDeviceAccessTokensSpecificPaths.yml

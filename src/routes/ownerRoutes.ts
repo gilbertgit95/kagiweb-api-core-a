@@ -1,212 +1,43 @@
 import express from 'express'
 
-// import {AppRequest } from '../utilities/globalTypes'
+// import UserModel, { IUser } from '../dataSource/models/userModel'
+import ErrorHandler from '../utilities/errorHandler'
+import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
-// import ErrorHandler from '../utilities/errorHandler'
-// import authController from '../controllers/authController'
+import { AppRequest } from '../utilities/globalTypes'
+
 import userController from '../controllers/userController'
 
-// import { IUser } from '../dataSource/models/userModel'
+import {
+    IUser, IRoleRef, IUserInfo, IContactInfo,
+    IPassword, ILimitedTransaction, IClientDevice, IAccessToken
+} from '../dataSource/models/userModel'
 
-const env = Config.getEnv()
 const router = express.Router()
+const env = Config.getEnv()
 
-// route to fetch the owner data of the current signed in user
-router.get(env.RootApiEndpoint + 'owner', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-    
+router.get(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
+    const { userId } = req?.userData?._id
 
-    return res.json({})
+    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
+        const data = await userController.getUser({_id: userId})
+        console.log('owner data: ', data)
+        return data
+    })
+
+    return res.status(statusCode).send(result)
 })
 
-// routes for owner user info
-router.get(env.RootApiEndpoint + 'owner/userInfo', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
+router.put(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
+    const { userId } = req?.userData?._id
+    const { username, disabled, verified } = req.body
 
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/userInfo', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
+    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
+        return await userController.updateUser(userId, username, disabled, verified)
+    })
 
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/userInfo/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/userInfo/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/userInfo/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-
-// routes for owner contact info
-router.get(env.RootApiEndpoint + 'owner/contactInfo', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/contactInfo', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/contactInfo/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/contactInfo/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/contactInfo/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-
-// routes for owner roles
-router.get(env.RootApiEndpoint + 'owner/roles', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/roles', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/roles/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/roles/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/roles/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-
-// routes for owner passwords
-router.get(env.RootApiEndpoint + 'owner/passwords', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/passwords', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/passwords/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/passwords/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/passwords/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-
-// routes for owner limited transactions
-router.get(env.RootApiEndpoint + 'owner/limitedTransactions', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/limitedTransactions', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/limitedTransactions/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/limitedTransactions/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/limitedTransactions/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-
-// routes for owner devices
-router.get(env.RootApiEndpoint + 'owner/devices', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/devices', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/devices/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/devices/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/devices/:id', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-
-// routes for owner device access token
-router.get(env.RootApiEndpoint + 'owner/devices/:deviceId/tokens', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.post(env.RootApiEndpoint + 'owner/devices/:deviceId/tokens', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.get(env.RootApiEndpoint + 'owner/devices/:deviceId/tokens/:tokenId', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.put(env.RootApiEndpoint + 'owner/devices/:deviceId/tokens/:tokenId', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
-})
-router.delete(env.RootApiEndpoint + 'owner/devices/:deviceId/tokens/:tokenId', async (req:any, res) => {
-    const userId:string|undefined = req?.userInfo?._id
-
-    return res.json({})
+    return res.status(statusCode).send(result)
 })
 
 routerIdentity.addAppRouteObj(router)

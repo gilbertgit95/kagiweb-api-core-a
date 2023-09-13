@@ -11,24 +11,6 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-// querying
-// const doc = order.lineItems.id(`6277ddade65b3236b1eb65d6`)
-
-// create
-// order.lineItems.push({
-//     name: 'T-shirt',
-//     price: 6,
-//     qty: 2,
-//     total: 12
-// })
-
-// update
-// order.lineItems.id(id).qty = 3
-
-// delete
-// order.lineItems.id(`6277ddade65b3236b1eb65d6`).deleteOne()
-// const updated = await order.save()
-
 class UserController {
     public cachedData:DataCache
     public request:DataRequest
@@ -109,7 +91,10 @@ class UserController {
 
     public async getUser(query:IUserQuery):Promise<IUser|null> {
         if (!query._id) return null
-        return await this.cachedData.getItem(query._id)
+        console.log('userId: ', query)
+        const resp = await this.cachedData.getItem<IUser>(query._id)
+        console.log('result in userController.getUser: ', resp)
+        return resp
     }
 
     public async getAllUsers():Promise<IUser[]> {
