@@ -6015,17 +6015,6 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
         "responses": {
           "allOf": [
             {
@@ -6091,17 +6080,6 @@
         "description": "Create a user info into user data",
         "produces": [
           "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
         ],
         "requestBody": {
           "content": {

@@ -5,13 +5,6 @@ get:
   description: Get all the user informations
   produces:
     - application/json
-  parameters:
-    - in: path
-      name: userId
-      required: true
-      schema:
-        type: string
-        format: uuid
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
@@ -48,13 +41,6 @@ post:
   description: Create a user info into user data
   produces:
     - application/json
-  parameters:
-    - in: path
-      name: userId
-      required: true
-      schema:
-        type: string
-        format: uuid
   requestBody:
     content:
       application/x-www-form-urlencoded:
