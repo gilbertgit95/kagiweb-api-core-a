@@ -91,24 +91,15 @@ class UserController {
 
     public async getUser(query:IUserQuery):Promise<IUser|null> {
         if (!query._id) return null
-        console.log('userId: ', query)
-        const resp = await this.cachedData.getItem<IUser>(query._id)
-        console.log('result in userController.getUser: ', resp)
-        return resp
+        return await this.cachedData.getItem<IUser>(query._id)
     }
 
     public async getAllUsers():Promise<IUser[]> {
-
-        const result = await this.cachedData.getAllItems<IUser>()
-
-        return result
+        return await this.cachedData.getAllItems<IUser>()
     }
 
     public async getUsersByPage(query:IUserQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IUser>> {
-
-        const result = await this.request.getItemsByPage<IUser>(query, {}, {}, pageInfo)
-
-        return result
+        return await this.request.getItemsByPage<IUser>(query, {}, {}, pageInfo)
     }
 
     public async saveUser(username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> {
@@ -164,10 +155,7 @@ class UserController {
     }
 
     public async deleteUser(id:string):Promise<IUser | null> {
-
-        const result = await this.cachedData.deleteItem<IUser>(id)
-
-        return result
+        return await this.cachedData.deleteItem<IUser>(id)
     }
 }
 

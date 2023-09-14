@@ -18,19 +18,16 @@ const router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
-    const { userId } = req?.userData?._id
-
+    const userId = req?.userData?._id
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        const data = await userController.getUser({_id: userId})
-        console.log('owner data: ', data)
-        return data
+        return await userController.getUser({_id: userId})
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
-    const { userId } = req?.userData?._id
+    const userId = req?.userData?._id
     const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
