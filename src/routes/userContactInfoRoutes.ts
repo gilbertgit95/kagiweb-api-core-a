@@ -31,32 +31,32 @@ router.post(env.RootApiEndpoint + 'users/:userId/contactInfos/', async (req, res
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'users/:userId/contactInfos/:userInfoId', async (req, res) => {
-    const { userId, userInfoId } = req.params
+router.get(env.RootApiEndpoint + 'users/:userId/contactInfos/:contactInfoId', async (req, res) => {
+    const { userId, contactInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
-        return await userContactInfoController.getContactInfo(userId, userInfoId)
+        return await userContactInfoController.getContactInfo(userId, contactInfoId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'users/:userId/contactInfos/:userInfoId', async (req, res) => {
-    const { userId, userInfoId } = req.params
+router.put(env.RootApiEndpoint + 'users/:userId/contactInfos/:contactInfoId', async (req, res) => {
+    const { userId, contactInfoId } = req.params
     const { type, value, countryCode, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
-        return await userContactInfoController.updateContactInfo(userId, userInfoId, type, value, countryCode, verified)
+        return await userContactInfoController.updateContactInfo(userId, contactInfoId, type, value, countryCode, verified)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'users/:userId/contactInfos/:userInfoId', async (req, res) => {
-   const { userId, userInfoId } = req.params
+router.delete(env.RootApiEndpoint + 'users/:userId/contactInfos/:contactInfoId', async (req, res) => {
+   const { userId, contactInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
-        return await userContactInfoController.deleteContactInfo( userId, userInfoId )
+        return await userContactInfoController.deleteContactInfo( userId, contactInfoId )
     })
 
     return res.status(statusCode).send(result)

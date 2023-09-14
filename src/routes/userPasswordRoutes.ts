@@ -31,21 +31,21 @@ router.post(env.RootApiEndpoint + 'users/:userId/passwords/', async (req, res) =
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'users/:userId/passwords/:userInfoId', async (req, res) => {
-    const { userId, userInfoId } = req.params
+router.get(env.RootApiEndpoint + 'users/:userId/passwords/:passwordId', async (req, res) => {
+    const { userId, passwordId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
-        return await userPasswordController.getPassword(userId, userInfoId)
+        return await userPasswordController.getPassword(userId, passwordId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'users/:userId/passwords/:userInfoId', async (req, res) => {
-   const { userId, userInfoId } = req.params
+router.delete(env.RootApiEndpoint + 'users/:userId/passwords/:passwordId', async (req, res) => {
+   const { userId, passwordId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
-        return await userPasswordController.deletePassword( userId, userInfoId )
+        return await userPasswordController.deletePassword( userId, passwordId )
     })
 
     return res.status(statusCode).send(result)

@@ -13,7 +13,7 @@ get:
         type: string
         format: uuid
     - in: path
-      name: userInfoId
+      name: contactInfoId
       required: true
       schema:
         type: string
@@ -54,7 +54,7 @@ put:
         type: string
         format: uuid
     - in: path
-      name: userInfoId
+      name: contactInfoId
       required: true
       schema:
         type: string
@@ -110,7 +110,7 @@ delete:
         type: string
         format: uuid
     - in: path
-      name: userInfoId
+      name: contactInfoId
       required: true
       schema:
         type: string

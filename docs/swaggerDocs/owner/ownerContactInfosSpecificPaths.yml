@@ -7,7 +7,7 @@ get:
     - application/json
   parameters:
     - in: path
-      name: userInfoId
+      name: contactInfoId
       required: true
       schema:
         type: string
@@ -42,7 +42,7 @@ put:
     - application/json
   parameters:
     - in: path
-      name: userInfoId
+      name: contactInfoId
       required: true
       schema:
         type: string
@@ -92,7 +92,7 @@ delete:
     - application/json
   parameters:
     - in: path
-      name: userInfoId
+      name: contactInfoId
       required: true
       schema:
         type: string

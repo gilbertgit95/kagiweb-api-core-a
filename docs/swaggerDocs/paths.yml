@@ -43,7 +43,7 @@
   $ref: ./userUserInfos/userUserInfosSpecificPaths.yml
 /users/{userId}/contactInfos:
   $ref: ./userContactInfos/userContactInfosPaths.yml
-/users/{userId}/contactInfos/{userInfoId}:
+/users/{userId}/contactInfos/{contactInfoId}:
   $ref: ./userContactInfos/userContactInfosSpecificPaths.yml
 /users/{userId}/passwords:
   $ref: ./userPasswords/userPasswordsPaths.yml
@@ -69,13 +69,13 @@
   $ref: ./owner/ownerRolesPaths.yml
 /owner/roles/{roleRefId}:
   $ref: ./owner/ownerRolesSpecificPaths.yml
-/owner/ownerInfos:
+/owner/userInfos:
   $ref: ./owner/ownerUserInfosPaths.yml
-/owner/ownerInfos/{userInfoId}:
+/owner/userInfos/{userInfoId}:
   $ref: ./owner/ownerUserInfosSpecificPaths.yml
 /owner/contactInfos:
   $ref: ./owner/ownerContactInfosPaths.yml
-/owner/contactInfos/{userInfoId}:
+/owner/contactInfos/{contactInfoId}:
   $ref: ./owner/ownerContactInfosSpecificPaths.yml
 /owner/passwords:
   $ref: ./owner/ownerPasswordsPaths.yml

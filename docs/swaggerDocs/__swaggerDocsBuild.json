@@ -3718,7 +3718,7 @@
         }
       }
     },
-    "/users/{userId}/contactInfos/{userInfoId}": {
+    "/users/{userId}/contactInfos/{contactInfoId}": {
       "get": {
         "tags": [
           "Users"
@@ -3740,7 +3740,7 @@
           },
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "contactInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3806,7 +3806,7 @@
           },
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "contactInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3901,7 +3901,7 @@
           },
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "contactInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6005,7 +6005,7 @@
         }
       }
     },
-    "/owner/ownerInfos": {
+    "/owner/userInfos": {
       "get": {
         "tags": [
           "Owner"
@@ -6171,7 +6171,7 @@
         }
       }
     },
-    "/owner/ownerInfos/{userInfoId}": {
+    "/owner/userInfos/{userInfoId}": {
       "get": {
         "tags": [
           "Owner"
@@ -6515,7 +6515,7 @@
         }
       }
     },
-    "/owner/contactInfos/{userInfoId}": {
+    "/owner/contactInfos/{contactInfoId}": {
       "get": {
         "tags": [
           "Owner"
@@ -6528,7 +6528,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "contactInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6585,7 +6585,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "contactInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6671,7 +6671,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "contactInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6854,7 +6854,7 @@
     "/owner/passwords/{passwordId}": {
       "get": {
         "tags": [
-          "Users"
+          "Owner"
         ],
         "summary": "Get a password",
         "description": "Get a password",
@@ -6909,7 +6909,7 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Owner"
         ],
         "summary": "Delete a password",
         "description": "Delete a password, only be able to delete those password/s that are not active",
