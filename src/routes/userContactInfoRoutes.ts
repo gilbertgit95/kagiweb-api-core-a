@@ -10,7 +10,7 @@ import { IContactInfo } from '../dataSource/models/userModel'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users/:userId/contactInfos/', async (req, res) => {
+router.get(env.RootApiEndpoint + 'users/:userId/contactInfos', async (req, res) => {
     const { userId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo[]>(async () => {
@@ -20,7 +20,7 @@ router.get(env.RootApiEndpoint + 'users/:userId/contactInfos/', async (req, res)
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'users/:userId/contactInfos/', async (req, res) => {
+router.post(env.RootApiEndpoint + 'users/:userId/contactInfos', async (req, res) => {
     const { userId } = req.params
     const { type, value, countryCode, verified } = req.body
 

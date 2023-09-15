@@ -10,7 +10,7 @@ import { IPassword } from '../dataSource/models/userModel'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users/:userId/passwords/', async (req, res) => {
+router.get(env.RootApiEndpoint + 'users/:userId/passwords', async (req, res) => {
     const { userId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword[]>(async () => {
@@ -20,7 +20,7 @@ router.get(env.RootApiEndpoint + 'users/:userId/passwords/', async (req, res) =>
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'users/:userId/passwords/', async (req, res) => {
+router.post(env.RootApiEndpoint + 'users/:userId/passwords', async (req, res) => {
     const { userId } = req.params
     const { currentPassword, newPassword } = req.body
 

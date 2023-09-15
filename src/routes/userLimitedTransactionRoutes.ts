@@ -10,7 +10,7 @@ import { ILimitedTransaction } from '../dataSource/models/userModel'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users/:userId/limitedTransactions/', async (req, res) => {
+router.get(env.RootApiEndpoint + 'users/:userId/limitedTransactions', async (req, res) => {
     const { userId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction[]>(async () => {

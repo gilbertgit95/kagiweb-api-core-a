@@ -147,9 +147,9 @@ const features = [
     },
     {
         '_id': '904e09e2-e360-4531-903f-1a853d52b68f',
-        'value': 'POST - /api/v1/roles/:roleId/features/',
+        'value': 'POST - /api/v1/roles/:roleId/features',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/roles/:roleId/features/',
+        'name': 'POST - /api/v1/roles/:roleId/features',
         'tags': [
             'Server',
             'Api Route',
@@ -315,9 +315,9 @@ const features = [
     },
     {
         '_id': '2652318e-cf5e-490b-8c45-bc5eb1b5b622',
-        'value': 'GET - /api/v1/users/:userId/userInfos/',
+        'value': 'GET - /api/v1/users/:userId/userInfos',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/users/:userId/userInfos/',
+        'name': 'GET - /api/v1/users/:userId/userInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -327,9 +327,9 @@ const features = [
     },
     {
         '_id': 'ba5e85e3-2fe5-4657-9b79-9731889cbd9a',
-        'value': 'POST - /api/v1/users/:userId/userInfos/',
+        'value': 'POST - /api/v1/users/:userId/userInfos',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/users/:userId/userInfos/',
+        'name': 'POST - /api/v1/users/:userId/userInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -375,9 +375,9 @@ const features = [
     },
     {
         '_id': '34ca3a87-22c8-404d-8661-e395ca29a707',
-        'value': 'GET - /api/v1/users/:userId/contactInfos/',
+        'value': 'GET - /api/v1/users/:userId/contactInfos',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/users/:userId/contactInfos/',
+        'name': 'GET - /api/v1/users/:userId/contactInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -387,9 +387,9 @@ const features = [
     },
     {
         '_id': 'eb94f4b2-7c4e-4efe-84fc-5dbaf5de01f7',
-        'value': 'POST - /api/v1/users/:userId/contactInfos/',
+        'value': 'POST - /api/v1/users/:userId/contactInfos',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/users/:userId/contactInfos/',
+        'name': 'POST - /api/v1/users/:userId/contactInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -435,9 +435,9 @@ const features = [
     },
     {
         '_id': '0cad4fdf-d6e1-4aaf-8aed-711425ec69fe',
-        'value': 'GET - /api/v1/users/:userId/passwords/',
+        'value': 'GET - /api/v1/users/:userId/passwords',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/users/:userId/passwords/',
+        'name': 'GET - /api/v1/users/:userId/passwords',
         'tags': [
             'Server',
             'Api Route',
@@ -447,9 +447,9 @@ const features = [
     },
     {
         '_id': '31f10e6d-4b4d-471c-8109-98750f1a2ee5',
-        'value': 'POST - /api/v1/users/:userId/passwords/',
+        'value': 'POST - /api/v1/users/:userId/passwords',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/users/:userId/passwords/',
+        'name': 'POST - /api/v1/users/:userId/passwords',
         'tags': [
             'Server',
             'Api Route',
@@ -483,9 +483,9 @@ const features = [
     },
     {
         '_id': '9c2eda89-436b-4380-a7d5-430f0584d9a8',
-        'value': 'GET - /api/v1/users/:userId/limitedTransactions/',
+        'value': 'GET - /api/v1/users/:userId/limitedTransactions',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/users/:userId/limitedTransactions/',
+        'name': 'GET - /api/v1/users/:userId/limitedTransactions',
         'tags': [
             'Server',
             'Api Route',
@@ -519,9 +519,9 @@ const features = [
     },
     {
         '_id': '169bc403-f779-4338-b1d4-b78b2b992871',
-        'value': 'GET - /api/v1/users/:userId/clientDevices/',
+        'value': 'GET - /api/v1/users/:userId/clientDevices',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/users/:userId/clientDevices/',
+        'name': 'GET - /api/v1/users/:userId/clientDevices',
         'tags': [
             'Server',
             'Api Route',
@@ -531,9 +531,9 @@ const features = [
     },
     {
         '_id': 'c1f4863d-e6f0-456e-88c3-e5a156a8adfb',
-        'value': 'POST - /api/v1/users/:userId/clientDevices/',
+        'value': 'POST - /api/v1/users/:userId/clientDevices',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/users/:userId/clientDevices/',
+        'name': 'POST - /api/v1/users/:userId/clientDevices',
         'tags': [
             'Server',
             'Api Route',
@@ -579,9 +579,9 @@ const features = [
     },
     {
         '_id': '416ede4e-15d2-4a1a-8c87-2b092403d488',
-        'value': 'GET - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens/',
+        'value': 'GET - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens/',
+        'name': 'GET - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens',
         'tags': [
             'Server',
             'Api Route',
@@ -591,9 +591,9 @@ const features = [
     },
     {
         '_id': '906787c7-abf9-4ced-8f43-a1cbff501178',
-        'value': 'POST - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens/',
+        'value': 'POST - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens/',
+        'name': 'POST - /api/v1/users/:userId/clientDevices/:clientDeviceId/accessTokens',
         'tags': [
             'Server',
             'Api Route',
@@ -639,9 +639,9 @@ const features = [
     },
     {
         '_id': '2e90dae2-32ed-4d47-8ff7-dd3c56ec4aa4',
-        'value': 'GET - /api/v1/owner/',
+        'value': 'GET - /api/v1/owner',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/',
+        'name': 'GET - /api/v1/owner',
         'tags': [
             'Server',
             'Api Route',
@@ -651,9 +651,9 @@ const features = [
     },
     {
         '_id': '886f4ba8-ed70-4e79-9638-838a7c45108a',
-        'value': 'PUT - /api/v1/owner/',
+        'value': 'PUT - /api/v1/owner',
         'description': 'One of the server endpoint',
-        'name': 'PUT - /api/v1/owner/',
+        'name': 'PUT - /api/v1/owner',
         'tags': [
             'Server',
             'Api Route',
@@ -723,9 +723,9 @@ const features = [
     },
     {
         '_id': 'd06f83f4-35a4-4ddc-8f84-f4e8d90e2a8d',
-        'value': 'GET - /api/v1/owner/userInfos/',
+        'value': 'GET - /api/v1/owner/userInfos',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/userInfos/',
+        'name': 'GET - /api/v1/owner/userInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -735,9 +735,9 @@ const features = [
     },
     {
         '_id': 'de03656f-1522-48b5-beff-8ff90874c1b2',
-        'value': 'POST - /api/v1/owner/userInfos/',
+        'value': 'POST - /api/v1/owner/userInfos',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/owner/userInfos/',
+        'name': 'POST - /api/v1/owner/userInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -783,9 +783,9 @@ const features = [
     },
     {
         '_id': 'daf025ef-e54e-4fdc-a832-8888928f9a15',
-        'value': 'GET - /api/v1/owner/contactInfos/',
+        'value': 'GET - /api/v1/owner/contactInfos',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/contactInfos/',
+        'name': 'GET - /api/v1/owner/contactInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -795,9 +795,9 @@ const features = [
     },
     {
         '_id': '12cfb96b-d6fc-41fb-9457-a562deb3c20f',
-        'value': 'POST - /api/v1/owner/contactInfos/',
+        'value': 'POST - /api/v1/owner/contactInfos',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/owner/contactInfos/',
+        'name': 'POST - /api/v1/owner/contactInfos',
         'tags': [
             'Server',
             'Api Route',
@@ -843,9 +843,9 @@ const features = [
     },
     {
         '_id': '2d3e49bf-4a49-4c79-a391-53222ae55252',
-        'value': 'GET - /api/v1/owner/passwords/',
+        'value': 'GET - /api/v1/owner/passwords',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/passwords/',
+        'name': 'GET - /api/v1/owner/passwords',
         'tags': [
             'Server',
             'Api Route',
@@ -855,9 +855,9 @@ const features = [
     },
     {
         '_id': 'c8007276-3f8e-4962-a0c2-d8f0c9b5eb98',
-        'value': 'POST - /api/v1/owner/passwords/',
+        'value': 'POST - /api/v1/owner/passwords',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/owner/passwords/',
+        'name': 'POST - /api/v1/owner/passwords',
         'tags': [
             'Server',
             'Api Route',
@@ -891,9 +891,9 @@ const features = [
     },
     {
         '_id': 'a406c62e-36c1-46b2-9ef3-f04c2e04d8ca',
-        'value': 'GET - /api/v1/owner/limitedTransactions/',
+        'value': 'GET - /api/v1/owner/limitedTransactions',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/limitedTransactions/',
+        'name': 'GET - /api/v1/owner/limitedTransactions',
         'tags': [
             'Server',
             'Api Route',
@@ -927,9 +927,9 @@ const features = [
     },
     {
         '_id': 'ee90cf0b-4448-4e11-a264-6c1f4f77516a',
-        'value': 'GET - /api/v1/owner/clientDevices/',
+        'value': 'GET - /api/v1/owner/clientDevices',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/clientDevices/',
+        'name': 'GET - /api/v1/owner/clientDevices',
         'tags': [
             'Server',
             'Api Route',
@@ -939,9 +939,9 @@ const features = [
     },
     {
         '_id': '33c9db06-855d-4d47-8929-ff5b74191ee1',
-        'value': 'POST - /api/v1/owner/clientDevices/',
+        'value': 'POST - /api/v1/owner/clientDevices',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/owner/clientDevices/',
+        'name': 'POST - /api/v1/owner/clientDevices',
         'tags': [
             'Server',
             'Api Route',
@@ -987,9 +987,9 @@ const features = [
     },
     {
         '_id': '6935aabb-e7dc-496c-94c8-92478cfa3072',
-        'value': 'GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/',
+        'value': 'GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens',
         'description': 'One of the server endpoint',
-        'name': 'GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/',
+        'name': 'GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens',
         'tags': [
             'Server',
             'Api Route',
@@ -999,9 +999,9 @@ const features = [
     },
     {
         '_id': 'c8a1fd70-87e2-412c-87d0-57677f775b83',
-        'value': 'POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/',
+        'value': 'POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens',
         'description': 'One of the server endpoint',
-        'name': 'POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/',
+        'name': 'POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens',
         'tags': [
             'Server',
             'Api Route',

@@ -20,7 +20,7 @@ router.get(env.RootApiEndpoint + 'roles/:roleId/features', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'roles/:roleId/features/', async (req, res) => {
+router.post(env.RootApiEndpoint + 'roles/:roleId/features', async (req, res) => {
     const { roleId } = req.params
     const { featureId } = req.body
 

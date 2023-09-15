@@ -26,7 +26,7 @@ const env = Config.getEnv()
 
 
 // root owner paths
-router.get(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner', async (req:any, res) => {
     const userId = req?.userData?._id
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
         return await userController.getUser({_id: userId})
@@ -35,7 +35,7 @@ router.get(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'owner/', async (req:any, res) => {
+router.put(env.RootApiEndpoint + 'owner', async (req:any, res) => {
     const userId = req?.userData?._id
     const { username, disabled, verified } = req.body
 
@@ -105,7 +105,7 @@ router.delete(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:any, re
 
 
 // owner userInfo routes
-router.get(env.RootApiEndpoint + 'owner/userInfos/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner/userInfos', async (req:any, res) => {
     const userId = req?.userData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IUserInfo[]>(async () => {
@@ -115,7 +115,7 @@ router.get(env.RootApiEndpoint + 'owner/userInfos/', async (req:any, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'owner/userInfos/', async (req:any, res) => {
+router.post(env.RootApiEndpoint + 'owner/userInfos', async (req:any, res) => {
     const userId = req?.userData?._id
     const { key, value, type } = req.body
 
@@ -162,7 +162,7 @@ router.delete(env.RootApiEndpoint + 'owner/userInfos/:userInfoId', async (req:an
 
 
 // contact infos routes
-router.get(env.RootApiEndpoint + 'owner/contactInfos/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner/contactInfos', async (req:any, res) => {
     const userId = req?.userData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo[]>(async () => {
@@ -172,7 +172,7 @@ router.get(env.RootApiEndpoint + 'owner/contactInfos/', async (req:any, res) => 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'owner/contactInfos/', async (req:any, res) => {
+router.post(env.RootApiEndpoint + 'owner/contactInfos', async (req:any, res) => {
     const userId = req?.userData?._id
     const { type, value, countryCode, verified } = req.body
 
@@ -219,7 +219,7 @@ router.delete(env.RootApiEndpoint + 'owner/contactInfos/:contactInfoId', async (
 
 
 // passwords routes
-router.get(env.RootApiEndpoint + 'owner/passwords/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner/passwords', async (req:any, res) => {
     const userId = req?.userData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword[]>(async () => {
@@ -229,7 +229,7 @@ router.get(env.RootApiEndpoint + 'owner/passwords/', async (req:any, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'owner/passwords/', async (req:any, res) => {
+router.post(env.RootApiEndpoint + 'owner/passwords', async (req:any, res) => {
     const userId = req?.userData?._id
     const { currentPassword, newPassword } = req.body
 
@@ -264,7 +264,7 @@ router.delete(env.RootApiEndpoint + 'owner/passwords/:passwordId', async (req:an
 
 
 // limited transaction routes
-router.get(env.RootApiEndpoint + 'owner/limitedTransactions/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner/limitedTransactions', async (req:any, res) => {
     const userId = req?.userData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction[]>(async () => {
@@ -310,7 +310,7 @@ router.put(env.RootApiEndpoint + 'owner/limitedTransactions/:limitedTransactionI
 
 
 // client device routes
-router.get(env.RootApiEndpoint + 'owner/clientDevices/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner/clientDevices', async (req:any, res) => {
     const userId = req?.userData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice[]>(async () => {
@@ -320,7 +320,7 @@ router.get(env.RootApiEndpoint + 'owner/clientDevices/', async (req:any, res) =>
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'owner/clientDevices/', async (req:any, res) => {
+router.post(env.RootApiEndpoint + 'owner/clientDevices', async (req:any, res) => {
     const userId = req?.userData?._id
     const { ua, disabled } = req.body
 
@@ -367,7 +367,7 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async
 
 
 // client devices access token
-router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens/', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens', async (req:any, res) => {
     const userId = req?.userData?._id
     const { clientDeviceId } = req.params
 
@@ -378,7 +378,7 @@ router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessToke
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens/', async (req:any, res) => {
+router.post(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens', async (req:any, res) => {
     const userId = req?.userData?._id
     const { clientDeviceId } = req.params
     const { jwt, ipAddress, disabled } = req.body
