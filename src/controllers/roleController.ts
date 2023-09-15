@@ -14,6 +14,14 @@ class RoleController {
         this.request = new DataRequest(RoleModel)
     }
 
+    public async getMappedRole(id:string):Promise<IRole|null> {
+        const rolesMap = await this.getRolesMap()
+
+        if (rolesMap[id]) return rolesMap[id]
+
+        return null
+    }
+
     public async getRolesMap():Promise<{[key:string]:IRole}> {
         const allRoles = await this.getAllRoles()
 

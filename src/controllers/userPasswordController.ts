@@ -27,7 +27,7 @@ class UserPasswordController {
         return null
     }
 
-    public async getCurrentPasswordEntry(user:IUser):Promise<IPassword|null> {
+    public async getActivePassword(user:IUser):Promise<IPassword|null> {
 
         if (user && user.passwords) {
             for (let pass of user.passwords) {
@@ -83,7 +83,7 @@ class UserPasswordController {
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw(404)
 
-        const currPass = await this.getCurrentPasswordEntry(user)
+        const currPass = await this.getActivePassword(user)
         if (!currPass) throw(404)
 
         // verify if the current password provided is true

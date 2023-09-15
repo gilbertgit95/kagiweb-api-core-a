@@ -36,6 +36,11 @@ const users = [
                 _id: 'bd19863e-3479-47a1-8aeb-4b0f75c03da3',
                 roleId: 'f2b124a8-0452-40f3-b053-c6f3b426e656',
                 isActive: false
+            },
+            {
+                _id: 'e04f2911-2258-44fc-8fdf-83357fda03c7',
+                roleId: '350f9050-6b97-497f-8c46-b6bf92ce0a4c',
+                isActive: false
             }
         ],
         contactInfos: [
@@ -69,7 +74,7 @@ const users = [
                 attempts: 0,
                 expTime: '',
                 recipient: 'app-admin',
-                disabled: false
+                disabled: true
             },
             {
                 _id: '33c18b8c-087a-4787-8fd8-350da317098e',

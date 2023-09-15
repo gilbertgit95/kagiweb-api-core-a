@@ -168,7 +168,7 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     _id: { type: String, default: () => randomUUID()},
     limit: { type: Number, require: true },
     attempts: { type: Number, require: false, default: 0 },
-    type: { type: String, require: false, unique: true },
+    type: { type: String, require: false },
     key: { type: String, require: false, default: '' },
     value: { type: String, require: false, default: '' },
     expTime: { type: String, require: false, default: '' },

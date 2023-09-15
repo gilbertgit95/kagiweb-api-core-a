@@ -1,3 +1,4 @@
+import { IFeature } from '../dataSource/models/featureModel'
 import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import featureController from './featureController'
@@ -7,6 +8,19 @@ import roleController from './roleController'
 // const env = Config.getEnv()
 
 class RoleFeaturesController {
+    public async getMappedFeatures(role:IRole):Promise<IFeature[]> {
+        const featuresMap = await featureController.getFeaturesMap()
+        let result:IFeature[] = []
+
+        if (role && role.featuresRefs) {
+            result = role.featuresRefs
+                .map(item => featuresMap[item.featureId])
+                .filter(item => Boolean(item))
+        }
+
+        return result
+    }
+
     public hasFeature(role:IRole, featureId:string):boolean {
         if (role && role.featuresRefs) {
             for (let ref of role.featuresRefs) {

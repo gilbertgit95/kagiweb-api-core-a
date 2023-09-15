@@ -67,6 +67,7 @@
     "swagger-themes": "^1.2.30",
     "swagger-ui-express": "^4.6.3",
     "ua-parser-js": "^1.0.35",
+    "url-pattern": "^1.0.3",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
   }

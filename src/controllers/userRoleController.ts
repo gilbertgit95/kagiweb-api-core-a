@@ -7,6 +7,16 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserRoleController {
+    public getActiveRoleRef(user:IUser):IRoleRef|null {
+        if (user && user.rolesRefs) {
+            for (let ref of user.rolesRefs) {
+                if (ref.isActive) return ref
+            }
+        }
+
+        return null
+    }
+
     public hasRole(user:IUser, roleId:string):boolean {
         if (user && user.rolesRefs) {
             for (let ref of user.rolesRefs) {
