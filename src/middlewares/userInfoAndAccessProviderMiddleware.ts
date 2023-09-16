@@ -21,22 +21,22 @@ class UserInfoProvider {
 
             if (token && type === 'Bearer') {
                 const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
-                if (!(tokenObj && tokenObj.userId)) throw(401)
+                if (!(tokenObj && tokenObj.userId)) throw({code: 401})
 
                 user = await userController.getUser({_id: tokenObj.userId})
                 req.userData = user
             } else {
-                throw(401) // Unauthorize
+                throw({code: 401}) // Unauthorize
             }
 
             // if user has been fetched, proceed to user access regulation process
             if (user) {
                 // get active user roleref
                 const activeRoleRef = userRoleController.getActiveRoleRef(user)
-                if (!(activeRoleRef && activeRoleRef.roleId)) throw(404)
+                if (!(activeRoleRef && activeRoleRef.roleId)) throw({code: 404})
                 // get active role info
                 const activeRole = await roleController.getMappedRole(activeRoleRef.roleId)
-                if (!activeRole) throw(404)
+                if (!activeRole) throw({code: 404})
 
                 // for the super administrator role
                 if (activeRole && activeRole.absoluteAuthority) {
@@ -49,7 +49,7 @@ class UserInfoProvider {
 
                 // check if the role can access the request path
                 if(!RouterIdentity.pathHasMatch(roleFeatures, {path: req.path, method: req.method})) {
-                    throw(401)
+                    throw({code: 401})
                 }
             }
 

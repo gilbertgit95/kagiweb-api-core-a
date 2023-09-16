@@ -10,43 +10,46 @@ class ErrorHandler {
         try {
             result = await process()
             statusCode = 200
-        } catch (err) {
+        } catch (err:any) {
+            const errCode = err?.code
+            const errMessage = err?.message
+
             // Incorrect content in the request
-            if (err === 400) {
-                statusCode = err
-                result = { message: 'Incorrect content in the request.'}
+            if (errCode && errCode === 400) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Incorrect content in the request.'}
             }
             // check error 400
             // Unauthorized.
-            else if (err === 401) {
-                statusCode = err
-                result = { message: 'Unauthorized.'}
+            else if (errCode && errCode === 401) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Unauthorized.'}
             }
             // check error 400
             // Forbidden access to resources.
-            else if (err === 403) {
-                statusCode = err
-                result = { message: 'Forbidden access to resources.'}
+            else if (errCode && errCode === 403) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Forbidden access to resources.'}
             }
             // Resource not found
-            else if (err === 404) {
-                statusCode = err
-                result = { message: 'Resource not found'}
+            else if (errCode && errCode === 404) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Resource not found'}
             }
             // Not Allowed
-            else if (err === 405) {
-                statusCode = err
-                result = { message: 'Not Allowed'}
+            else if (errCode && errCode === 405) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Not Allowed'}
             }
             // Conflict
-            else if (err === 409) {
-                statusCode = err
-                result = { message: 'Conflict'}
+            else if (errCode && errCode === 409) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Conflict'}
             }
             // is locked
-            else if (err === 423) {
-                statusCode = err
-                result = { message: 'Locked.'}
+            else if (errCode && errCode === 423) {
+                statusCode = errCode
+                result = { message: errMessage? errMessage: 'Locked.'}
             }
             // default error status
             else {

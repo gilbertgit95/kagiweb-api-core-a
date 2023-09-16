@@ -40,36 +40,36 @@ class UserClientDeviceController {
     }
 
     public async getClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw(400)
+        if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const clientDevice = this.getClientDeviceById(user, clientDeviceId)
-        if (!clientDevice) throw(404)
+        if (!clientDevice) throw({code: 404})
 
         return clientDevice
     }
 
     public async getClientDevices(userId:string):Promise<IClientDevice[]> {
         let result:IClientDevice[] = []
-        if (!userId) throw(400)
+        if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
         result = user!.clientDevices? user!.clientDevices: []
 
         return result
     }
 
     public async saveClientDevice(userId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && ua)) throw(400)
+        if (!(userId && ua)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         // check if the user info to save is existing on the user user infos
-        if (this.hasClientDeviceUA(user, ua)) throw(409)
+        if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
         const doc:any = (new UAParser(ua)).getResult()
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
@@ -83,14 +83,14 @@ class UserClientDeviceController {
     }
 
     public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw(400)
+        if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
-        if (!user.clientDevices?.id(clientDeviceId)) throw(404)
+        if (!user) throw({code: 404})
+        if (!user.clientDevices?.id(clientDeviceId)) throw({code: 404})
 
         // check if client device ua already existed on other entries in this user client devices
-        if (this.hasClientDeviceUA(user, ua)) throw(409)
+        if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
 
         if (ua) {
             const doc = (new UAParser(ua)).getResult()
@@ -113,10 +113,10 @@ class UserClientDeviceController {
     }
 
     public async deleteClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw(400)
+        if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const clientDeviceData = user!.clientDevices?.id(clientDeviceId)
         if (clientDeviceData) {
@@ -124,7 +124,7 @@ class UserClientDeviceController {
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
-            throw(404)
+            throw({code: 404})
         }
 
         return clientDeviceData? clientDeviceData: null

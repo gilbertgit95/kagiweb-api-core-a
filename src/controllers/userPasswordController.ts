@@ -50,23 +50,23 @@ class UserPasswordController {
     }
 
     public async getPassword(userId:string, passwordId:string):Promise<IPassword|null> {
-        if (!(userId && passwordId)) throw(400)
+        if (!(userId && passwordId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const password = this.getPasswordById(user, passwordId)
-        if (!password) throw(404)
+        if (!password) throw({code: 404})
         password.key = 'NA'
         return password
     }
 
     public async getPasswords(userId:string):Promise<IPassword[]> {
         let result:IPassword[] = []
-        if (!userId) throw(400)
+        if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
         result = user!.passwords? user!.passwords: []
         // remove key values
         result = result.map(item => {
@@ -78,21 +78,21 @@ class UserPasswordController {
     }
 
     public async savePassword(userId:string, currentPassword:string, newPassword:string):Promise<IPassword|null> {
-        if (!(userId && currentPassword && newPassword)) throw(400)
+        if (!(userId && currentPassword && newPassword)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const currPass = await this.getActivePassword(user)
-        if (!currPass) throw(404)
+        if (!currPass) throw({code: 404})
 
         // verify if the current password provided is true
         if (!(currPass.key && await Encryption.verifyTextToHash(currentPassword, currPass.key))) {
-            throw(404)
+            throw({code: 404})
         }
 
         // check if the contact info to save is existing on the user contact infos
-        if (await this.hasPasswordEntry(user, newPassword)) throw(409)
+        if (await this.hasPasswordEntry(user, newPassword)) throw({code: 409})
 
         // save the new password with active status
         user.passwords!.push({isActive: true, key: await Encryption.hashText(newPassword)})
@@ -109,21 +109,21 @@ class UserPasswordController {
     }
 
     public async deletePassword(userId:string, passwordId:string):Promise<IPassword|null> {
-        if (!(userId && passwordId)) throw(400)
+        if (!(userId && passwordId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const userPasswordData = user!.passwords?.id(passwordId)
         // check if password is active
-        if (userPasswordData && userPasswordData.isActive) throw(409)
+        if (userPasswordData && userPasswordData.isActive) throw({code: 409})
 
         if (userPasswordData) {
             user!.passwords?.id(passwordId)?.deleteOne()
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
-            throw(404)
+            throw({code: 404})
         }
 
         userPasswordData.key = 'NA'

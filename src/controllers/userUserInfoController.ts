@@ -38,36 +38,36 @@ class UserUserInfoController {
     }
 
     public async getUserInfo(userId:string, userInfoId:string):Promise<IUserInfo|null> {
-        if (!(userId && userInfoId)) throw(400)
+        if (!(userId && userInfoId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const userInfo = this.getUserInfoById(user, userInfoId)
-        if (!userInfo) throw(404)
+        if (!userInfo) throw({code: 404})
 
         return userInfo
     }
 
     public async getUserInfos(userId:string):Promise<IUserInfo[]> {
         let result:IUserInfo[] = []
-        if (!userId) throw(400)
+        if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
         result = user!.userInfos? user!.userInfos: []
 
         return result
     }
 
     public async saveUserInfo(userId:string, key:string, value:string, type:string):Promise<IUserInfo|null> {
-        if (!(userId && key && value && type)) throw(400)
+        if (!(userId && key && value && type)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         // check if the user info to save is existing on the user user infos
-        if (this.hasUserInfoKey(user, key)) throw(409)
+        if (this.hasUserInfoKey(user, key)) throw({code: 409})
 
         user.userInfos!.push({key, value, type})
 
@@ -78,11 +78,11 @@ class UserUserInfoController {
     }
 
     public async updateUserInfo(userId:string, userInfoId:string, key:string, value:string, type:TUserInfoType):Promise<IUserInfo|null> {
-        if (!(userId && userInfoId)) throw(400)
+        if (!(userId && userInfoId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
-        if (!user.userInfos?.id(userInfoId)) throw(404)
+        if (!user) throw({code: 404})
+        if (!user.userInfos?.id(userInfoId)) throw({code: 404})
 
         if (key) user.userInfos!.id(userInfoId)!.key = key
         if (value) user.userInfos!.id(userInfoId)!.value = value
@@ -95,10 +95,10 @@ class UserUserInfoController {
     }
 
     public async deleteUserInfo(userId:string, userInfoId:string):Promise<IUserInfo|null> {
-        if (!(userId && userInfoId)) throw(400)
+        if (!(userId && userInfoId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const userInfoData = user!.userInfos?.id(userInfoId)
         if (userInfoData) {
@@ -106,7 +106,7 @@ class UserUserInfoController {
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
-            throw(404)
+            throw({code: 404})
         }
 
         return userInfoData? userInfoData: null

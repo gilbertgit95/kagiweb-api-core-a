@@ -39,23 +39,23 @@ class UserLimitedTransactionController {
     }
 
     public async getLimitedTransaction(userId:string, limitedTransactionId:string):Promise<ILimitedTransaction|null> {
-        if (!(userId && limitedTransactionId)) throw(400)
+        if (!(userId && limitedTransactionId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const userInfo = this.getLimitedTransactionById(user, limitedTransactionId)
-        if (!userInfo) throw(404)
+        if (!userInfo) throw({code: 404})
 
         return userInfo
     }
 
     public async getLimitedTransactions(userId:string):Promise<ILimitedTransaction[]> {
         let result:ILimitedTransaction[] = []
-        if (!userId) throw(400)
+        if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
         result = user!.limitedTransactions? user!.limitedTransactions: []
 
         return result
@@ -67,11 +67,11 @@ class UserLimitedTransactionController {
         value:string, expTime:string, recipient:string,
         disabled:boolean|string
     ):Promise<ILimitedTransaction|null> {
-        if (!(userId && limitedTransactionId)) throw(400)
+        if (!(userId && limitedTransactionId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
-        if (!user.limitedTransactions?.id(limitedTransactionId)) throw(404)
+        if (!user) throw({code: 404})
+        if (!user.limitedTransactions?.id(limitedTransactionId)) throw({code: 404})
 
         if (limit) user.limitedTransactions!.id(limitedTransactionId)!.limit = limit
         if (attempts) user.limitedTransactions!.id(limitedTransactionId)!.attempts = attempts

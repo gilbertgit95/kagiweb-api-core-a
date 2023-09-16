@@ -56,22 +56,22 @@ class UserClientDeviceAccessTokenController {
     }
 
     public async getClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId && accessTokenId)) throw(400)
+        if (!(userId && clientDeviceId && accessTokenId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const accessToken = this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)
-        if (!accessToken) throw(404)
+        if (!accessToken) throw({code: 404})
 
         return accessToken
     }
 
     public async getClientDeviceAccessTokens(userId:string, clientDeviceId:string):Promise<IAccessToken[]> {
-        if (!userId) throw(400)
+        if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
 
@@ -79,13 +79,13 @@ class UserClientDeviceAccessTokenController {
     }
 
     public async saveClientDeviceAccessToken(userId:string, clientDeviceId:string, jwt:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId && jwt)) throw(400)
+        if (!(userId && clientDeviceId && jwt)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         // check if the user info to save is existing on the user user infos
-        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw(409)
+        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw({code: 409})
 
         const doc:any = {jwt}
         if (ipAddress) doc.ipAddress = ipAddress
@@ -101,14 +101,14 @@ class UserClientDeviceAccessTokenController {
     }
 
     public async updateClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string, jwt:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId)) throw(400)
+        if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
-        if (!this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)) throw(404)
+        if (!user) throw({code: 404})
+        if (!this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)) throw({code: 404})
 
         // check if client device ua already existed on other entries in this user client devices
-        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw(409)
+        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw({code: 409})
 
         if (jwt) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.jwt =  jwt
         if (ipAddress) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.ipAddress = ipAddress
@@ -123,10 +123,10 @@ class UserClientDeviceAccessTokenController {
     }
 
     public async deleteClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId)) throw(400)
+        if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
-        if (!user) throw(404)
+        if (!user) throw({code: 404})
 
         const accessTokenData = this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)
         if (accessTokenData) {
@@ -134,7 +134,7 @@ class UserClientDeviceAccessTokenController {
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
-            throw(404)
+            throw({code: 404})
         }
 
         return accessTokenData? accessTokenData: null

@@ -104,7 +104,7 @@ class UserController {
 
     public async saveUser(username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> {
         // check username if already existing
-        if (await UserModel.findOne({username})) throw(409) // conflict
+        if (await UserModel.findOne({username})) throw({code: 409}) // conflict
 
         const role = await roleController.getLeastRole()
         const defautPass = '123456'
@@ -141,7 +141,7 @@ class UserController {
         if (!id) return null
         // check username if already existing
         if (typeof username === 'string' && username.length) {
-            if (await UserModel.findOne({username})) throw(409) // conflict
+            if (await UserModel.findOne({username})) throw({code: 409}) // conflict
             doc.username = username
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {

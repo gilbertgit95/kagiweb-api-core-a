@@ -54,23 +54,23 @@ class RoleFeaturesController {
     }
 
     public async getFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+        if (!(roleId && featureRefId)) throw({code: 400})
 
         const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
+        if (!role) throw({code: 404})
 
         const featureRef = this.getFeatureRefByRefId(role, featureRefId)
-        if (!featureRef) throw(404)
+        if (!featureRef) throw({code: 404})
 
         return featureRef
     }
 
     public async getFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
         let result:IFeatureRef[] = []
-        if (!roleId) throw(400)
+        if (!roleId) throw({code: 400})
 
         const role = await roleController.getRole({_id: roleId})
-        if (!role) throw(404)
+        if (!role) throw({code: 404})
         result = role!.featuresRefs? role!.featuresRefs: []
         
         if (role.absoluteAuthority) {
@@ -84,16 +84,16 @@ class RoleFeaturesController {
     }
 
     public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureId)) throw(400)
+        if (!(roleId && featureId)) throw({code: 400})
 
         const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        if (!role) throw({code: 404})
 
         const featuresMap = await featureController.getFeaturesMap()
         // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
+        if (!featuresMap[featureId]) throw({code: 404})
         // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        if (this.hasFeature(role, featureId)) throw({code: 409})
 
         role.featuresRefs!.push({featureId})
         await role.save()
@@ -103,18 +103,18 @@ class RoleFeaturesController {
     }
 
     public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId && featureId)) throw(400)
+        if (!(roleId && featureRefId && featureId)) throw({code: 400})
 
         const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
-        if (!role.featuresRefs?.id(featureRefId)) throw(404)
+        if (!role) throw({code: 404})
+        if (!role.featuresRefs?.id(featureRefId)) throw({code: 404})
 
         const featuresMap = await featureController.getFeaturesMap()
         // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw(404)
+        if (!featuresMap[featureId]) throw({code: 404})
 
         // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw(409)
+        if (this.hasFeature(role, featureId)) throw({code: 409})
 
         role.featuresRefs!.id(featureRefId)!.featureId = featureId
         await role.save()
@@ -124,10 +124,10 @@ class RoleFeaturesController {
     }
 
     public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw(400)
+        if (!(roleId && featureRefId)) throw({code: 400})
 
         const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw(404)
+        if (!role) throw({code: 404})
 
         const featureRefData = role!.featuresRefs?.id(featureRefId)
         if (featureRefData) {
@@ -135,7 +135,7 @@ class RoleFeaturesController {
             await role.save()
             await roleController.cachedData.removeCacheData(roleId)
         } else {
-            throw(404)
+            throw({code: 404})
         }
 
         return featureRefData? featureRefData: null

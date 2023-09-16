@@ -71,10 +71,10 @@ class AuthController {
 
         // if no user found
         if (!user) {
-            throw(404) // resource not found
+            throw({code: 404}) // resource not found
         }
         if (user && user.disabled) {
-            throw(423) // is locked
+            throw({code: 423}) // is locked
         }
 
 
@@ -91,7 +91,7 @@ class AuthController {
             user.disabled = true
             await user.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
-            throw(423) // is locked
+            throw({code: 423}) // is locked
         }
 
 
@@ -150,7 +150,7 @@ class AuthController {
 
         // Throw error when user does not exist or password not match
         } else {
-            throw(404) // Resource not found
+            throw({code: 404}) // Resource not found
         }
 
         return result
@@ -165,10 +165,10 @@ class AuthController {
 
         // if no user found
         if (!user) {
-            throw(403) // Forbidden access to resources.
+            throw({code: 403}) // Forbidden access to resources.
         }
         if (user && user.disabled) {
-            throw(423) // is locked
+            throw({code: 423}) // is locked
         }
 
 
@@ -183,7 +183,7 @@ class AuthController {
         }
         // check if signin is enable and also check for the attmpts compared to the limit
         if (!userController.isLTValid(user, 'otp-signin')) {
-            throw(403) // Forbidden access to resources.
+            throw({code: 403}) // Forbidden access to resources.
         }
 
         if (this.verifyLTKey(user, 'otp-signin', key)) {
@@ -223,7 +223,7 @@ class AuthController {
             await user!.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
         } else {
-            throw(403) // Forbidden access to resources.
+            throw({code: 403}) // Forbidden access to resources.
         }
 
         return result
@@ -232,16 +232,16 @@ class AuthController {
     public async signup(username:string, password:string, email?:string, phone?:string):Promise<{message:string}> {
         let contactinfos:IContactInfo[] = []
         // check username and password exist
-        if (!(username && password)) throw(400) // Incorrect content in the request
+        if (!(username && password)) throw({code: 400}) // Incorrect content in the request
         // check username is unique
-        if (await UserModel.findOne({username})) throw(409) // conflict
+        if (await UserModel.findOne({username})) throw({code: 409}) // conflict
 
         // validate data here ---->>>
 
         // if email exist check if email is unique then generate email contact info
         if (email) {
             if (await UserModel.findOne({'contactInfos.value': email})) {
-                throw(409) // conflict
+                throw({code: 409}) // conflict
             } else {
                 contactinfos.push({
                     type: 'email-address',
@@ -252,7 +252,7 @@ class AuthController {
         // if phone exist check if phone is unique then generate phone contact info
         if (phone) {
             if (await UserModel.findOne({'contactInfos.value': phone})) {
-                throw(409) // conflict
+                throw({code: 409}) // conflict
             } else {
                 contactinfos.push({
                     type: 'mobile-number',
@@ -303,10 +303,10 @@ class AuthController {
 
         // if no user found
         if (!user) {
-            throw(404) // resource not found
+            throw({code: 404}) // resource not found
         }
         if (user && user.disabled) {
-            throw(423) // is locked
+            throw({code: 423}) // is locked
         }
 
 
@@ -324,7 +324,7 @@ class AuthController {
             user.disabled = true
             await user.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
-            throw(423) // is locked
+            throw({code: 423}) // is locked
         }
 
         if (resetPassLT && !resetPassLT.disabled) {
@@ -344,7 +344,7 @@ class AuthController {
             // then return userId
             result = { username: user.username }
         } else {
-            throw(404) // resource not found
+            throw({code: 404}) // resource not found
         }
 
         return result
@@ -358,10 +358,10 @@ class AuthController {
 
         // if no user found
         if (!user) {
-            throw(403) // Forbidden access to resources.
+            throw({code: 403}) // Forbidden access to resources.
         }
         if (user && user.disabled) {
-            throw(423) // is locked
+            throw({code: 423}) // is locked
         }
 
 
@@ -376,16 +376,16 @@ class AuthController {
         }
         // check if signin is enable and also check for the attmpts compared to the limit
         if (!userController.isLTValid(user, 'reset-pass')) {
-            throw(403) // Forbidden access to resources.
+            throw({code: 403}) // Forbidden access to resources.
         }
 
         if (this.verifyLTKey(user, 'reset-pass', key)) {
             // check password exist before
-            if (!await this.verifyPasswordNotYetUsed(user, newPassword)) throw(400) // Incorrect content in the request.
+            if (!await this.verifyPasswordNotYetUsed(user, newPassword)) throw({code: 400}) // Incorrect content in the request.
 
             // get current password
             const currPass = userController.geActivePassword(user)
-            if (!Boolean(currPass)) throw(403) // Forbidden access to resources.
+            if (!Boolean(currPass)) throw({code: 403}) // Forbidden access to resources.
             // deactivate the current used password
             user.passwords.id(currPass!._id)!.isActive = false
             // set the new password with active status
@@ -408,7 +408,7 @@ class AuthController {
             userController.cachedData.removeCacheData(user!._id) // remove cache
             result = { message: 'Password has been changed.' }
         } else {
-            throw(403) // Forbidden access to resources.
+            throw({code: 403}) // Forbidden access to resources.
         }
 
         return result
@@ -417,7 +417,7 @@ class AuthController {
     // jwt:string
     public async signout(client:IClientDevice, authorization:string):Promise<{message:string} | null> {
         let resp:{message:string}|null = null
-        if (!authorization || !client) throw(400)
+        if (!authorization || !client) throw({code: 400})
 
         const type = authorization.split(' ')[0]
         const token = authorization.split(' ')[1]
@@ -425,16 +425,16 @@ class AuthController {
         if (type && type === 'Bearer' && token) {
 
             const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
-            if (!(tokenObj && tokenObj.userId)) throw(400)
+            if (!(tokenObj && tokenObj.userId)) throw({code: 400})
 
             const user = await UserModel.findOne({ _id: tokenObj.userId, verified: true })
-            if (!user) throw(400)
+            if (!user) throw({code: 400})
 
             const deviceId = userController.getDevice(user, client)?._id
-            if (!deviceId) throw(400)
+            if (!deviceId) throw({code: 400})
 
             const tokenId = userController.getToken(user.clientDevices.id(deviceId), token)?._id
-            if (!tokenId) throw(400)
+            if (!tokenId) throw({code: 400})
 
             user.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()
             await user.save()
@@ -442,7 +442,7 @@ class AuthController {
             resp = { message: 'Successfull signout' }
 
         } else {
-            throw(400) // Incorrect content in the request
+            throw({code: 400}) // Incorrect content in the request
         }
 
         // remove cache
