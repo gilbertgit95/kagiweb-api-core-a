@@ -27,6 +27,7 @@ class RouterIdentity {
             }
         }
         return false
+
     }
 
     public addAppRouteObj(appRoute:any):void { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -42,11 +43,12 @@ class RouterIdentity {
 
     public async syncAppRoutes():Promise<void> {
         const query = this.appRoutes.map(item => {
+            const val = `${ item.method } - ${ item.path.replace(/\\/g, '/') }`
             const obj:IFeature = {
-                name: `${ item.method } - ${ item.path }`,
+                name: val,
                 type: 'api-route',
                 tags: ['Server', 'Api Route', item.method],
-                value: `${ item.method } - ${ item.path.replace(/\\/g, '/') }`,
+                value: val,
                 description: 'One of the server endpoint'
             }
 
