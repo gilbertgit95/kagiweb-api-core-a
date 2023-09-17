@@ -1,3 +1,7 @@
+# authentication related definitions
+SigninResponse:
+  $ref: ./auths/signinResponseDefinition.yml
+
 # feature related data definitions
 Feature:
   $ref: ./features/featureDefinition.yml

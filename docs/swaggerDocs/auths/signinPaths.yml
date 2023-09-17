@@ -22,23 +22,27 @@ post:
                 format: password
     responses:
       200:
-        description: jwrt response
+        description: jwt response
         content:
           application/json:
             schema:
               type: object
               properties:
-                username: string
-                token: string
+                username:
+                  type: string
+                token:
+                  type: string
+                message:
+                  type: string
             example:
               username: master
               token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk
+              message: Successful signin
       400:
         description: Incorrect content in the request.
         content:
           application/json:
             schema:
-              type: object
               $ref: ../global/errorDefinition.yml
             example:
               message: Incorrect content in the request.
@@ -47,7 +51,6 @@ post:
         content:
           application/json:
             schema:
-              type: object
               $ref: ../global/errorDefinition.yml
             example:
               message: Resource not found.
@@ -56,7 +59,6 @@ post:
         content:
           application/json:
             schema:
-              type: object
               $ref: ../global/errorDefinition.yml
             example:
               message: locked
@@ -65,7 +67,6 @@ post:
         content:
           application/json:
             schema:
-              type: object
               $ref: ../global/errorDefinition.yml
             example:
               message: Internal server error.

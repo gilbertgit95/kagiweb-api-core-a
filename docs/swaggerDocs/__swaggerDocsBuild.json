@@ -76,19 +76,27 @@
         },
         "responses": {
           "200": {
-            "description": "jwrt response",
+            "description": "jwt response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "username": "string",
-                    "token": "string"
+                    "username": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
                   }
                 },
                 "example": {
                   "username": "master",
-                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk"
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk",
+                  "message": "Successful signin"
                 }
               }
             }
@@ -98,7 +106,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
@@ -112,7 +119,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
@@ -126,7 +132,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
@@ -140,7 +145,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
@@ -7986,6 +7990,14 @@
       }
     },
     "schemas": {
+      "SigninResponse": {
+        "type": "object",
+        "properties": {
+          "username": "string",
+          "token": "string",
+          "message": "string"
+        }
+      },
       "Feature": {
         "type": "object",
         "required": [
