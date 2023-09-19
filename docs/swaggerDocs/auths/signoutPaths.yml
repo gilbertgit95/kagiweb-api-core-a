@@ -13,7 +13,8 @@ delete:
             schema:
               type: object
               properties:
-                message: string
+                message:
+                  type: string
             example:
               message: user has logged out
       400:

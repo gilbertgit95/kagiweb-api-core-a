@@ -33,7 +33,8 @@ post:
             schema:
               type: object
               properties:
-                username: string
+                username:
+                  type: string
             example:
               username: master
       400:
