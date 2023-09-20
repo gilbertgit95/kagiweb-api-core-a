@@ -1,3 +1,4 @@
+import moment from 'moment'
 import UserModel, { IUser, ILimitedTransaction, TLimitedTransactionType } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -6,6 +7,44 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserLimitedTransactionController {
+    public verifyLimitedTransactionKey(user:IUser, lt:string, key:string):boolean {
+        let result = false
+
+        const ltData = this.getLimitedTransactionByType(user, lt)
+
+        if (ltData && !ltData.disabled && ltData.key === key) result = true
+
+        return result
+    }
+
+    public isLimitedTransactionValid(user:IUser, lt:string):boolean {
+        let ltData:ILimitedTransaction|undefined
+
+        // get limited transaction
+        user.limitedTransactions.forEach(item => {
+            if (item.type === lt && !item.disabled) {
+                ltData = item
+            }
+        })
+
+        // checker if no lt exist
+        // checker if lt is disabled
+        if (ltData && !Boolean(ltData.disabled)) {
+            // checker if attempts is higher than the limit
+            if (ltData.limit < ltData.attempts) return false
+            // time expiration checker, current time versus time in expTime
+            if (ltData.expTime) {
+                let currTime = moment()
+                let ltTime = moment(ltData.expTime)
+                // check time is valid
+                // then check if curren time is greater than the ltTime
+                if (ltTime.isValid() && currTime.isAfter(ltTime)) return false
+            }
+        }
+
+        return true
+    }
+
     public hasLimitedTransactionType(user:IUser, limitedTransactionType:string):boolean {
         if (user && user.limitedTransactions) {
             for (let lt of user.limitedTransactions) {

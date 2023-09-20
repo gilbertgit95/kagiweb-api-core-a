@@ -6,6 +6,17 @@ import Encryption from '../utilities/encryption'
 // const env = Config.getEnv()
 
 class UserPasswordController {
+    /**
+     * 
+     * @param {Object} user - is user object
+     * @param {string} password - plain text password
+     * @returns {boolean}
+     */
+    public async verifyActivePassword(user:IUser, password:string):Promise<boolean> {
+        const currPassword = this.getActivePassword(user)
+        return currPassword? await Encryption.verifyTextToHash(password, currPassword.key):false
+    }
+
     public async hasPasswordEntry(user:IUser, password:string):Promise<boolean> {
         if (user && user.passwords) {
             for (let pass of user.passwords) {
@@ -27,7 +38,7 @@ class UserPasswordController {
         return null
     }
 
-    public async getActivePassword(user:IUser):Promise<IPassword|null> {
+    public getActivePassword(user:IUser):IPassword|null {
 
         if (user && user.passwords) {
             for (let pass of user.passwords) {
