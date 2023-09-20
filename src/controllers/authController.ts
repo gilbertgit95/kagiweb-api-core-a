@@ -293,7 +293,7 @@ class AuthController {
             // ---------------->>>>> code here for sending opt key
             console.log(`System is sending password reset otp to ${ forgotPassLT!.recipient } with key ${ otpKey }`)
             // then return userId
-            result = { username: user.username, message: 'Reset Key has been sent' }
+            result = { username: user.username, message: 'Password reset key has been sent' }
         } else {
             throw({code: 404}) // resource not found
         }

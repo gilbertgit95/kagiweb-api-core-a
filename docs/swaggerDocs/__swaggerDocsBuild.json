@@ -425,11 +425,13 @@
                   "properties": {
                     "username": {
                       "type": "string"
-                    }
+                    },
+                    "message": "string"
                   }
                 },
                 "example": {
-                  "username": "master"
+                  "username": "master",
+                  "message": "Password reset key has been sent"
                 }
               }
             }
@@ -531,7 +533,7 @@
         },
         "responses": {
           "200": {
-            "description": "jwrt response",
+            "description": "jwt response",
             "content": {
               "application/json": {
                 "schema": {
