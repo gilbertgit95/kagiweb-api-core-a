@@ -48,7 +48,7 @@
         ],
         "security": [],
         "summary": "Signin to the application to get jwt",
-        "description": "Signin to the application to get jwt",
+        "description": "Signin to the application to get jwt. If signin limited transaction is enabled then after certain\nnumber of signin attempts the user will be disabled, if signin successfull it will return object containing jwt, username and message\nIf otp signin is enabled, generate otp code and send it to a user contact, also it will return username and message.\n",
         "produces": [
           "application/json"
         ],
@@ -163,7 +163,7 @@
         ],
         "security": [],
         "summary": "OTP Signin to the application to get jwt",
-        "description": "OTP Signin to the application to get jwt",
+        "description": "OTP Signin to the application to get jwt. At certain number of otp-signin attempts, the user will be disable for security reason.\nIf otp sign in is successfull then this will return jwt and message.\n",
         "produces": [
           "application/json"
         ],
@@ -275,8 +275,8 @@
           "Auths"
         ],
         "security": [],
-        "summary": "File a forgot request password",
-        "description": "File a forgot request password",
+        "summary": "Create a user account.",
+        "description": "Create a user account. This will register initial user information like username password and user contact.\nHowever the created account is still disabled and not yet verified, You still need to contact administrator\nto enable and verify your account.\n",
         "produces": [
           "application/json"
         ],
@@ -393,8 +393,8 @@
           "Auths"
         ],
         "security": [],
-        "summary": "File a forgot request password",
-        "description": "File a forgot request password",
+        "summary": "File a forgot request password.",
+        "description": "File a forgot request password. If the user have a verified contact, then a passwprd reset key\nwill be sent to the contact address. However no contact are registered or no verified contact, then the reset password key\nwill be sent to the administrator as default contact.\n",
         "produces": [
           "application/json"
         ],
@@ -501,8 +501,8 @@
           "Auths"
         ],
         "security": [],
-        "summary": "Reset the password using otp key",
-        "description": "Reset the password using otp key",
+        "summary": "Reset the password using otp key.",
+        "description": "Reset the password using otp key. To proceed changing the password,\nuse the change password key sent to the user contact, username and the new password you want.\n",
         "produces": [
           "application/json"
         ],
@@ -615,7 +615,7 @@
           "Auths"
         ],
         "summary": "Signout to the application, remove access token from user device",
-        "description": "Signout to the application, remove access token from user device",
+        "description": "Signout to the application. This will remove the access token from the user devices.",
         "produces": [
           "application/json"
         ],

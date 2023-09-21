@@ -2,8 +2,11 @@ post:
     tags :
       - Auths
     security: []
-    summary: File a forgot request password
-    description: File a forgot request password
+    summary: Create a user account.
+    description: |
+      Create a user account. This will register initial user information like username password and user contact.
+      However the created account is still disabled and not yet verified, You still need to contact administrator
+      to enable and verify your account.
     produces:
       - application/json
     requestBody:

@@ -1,9 +1,13 @@
 post:
-    tags :
+    tags:
       - Auths
     security: []
     summary: Signin to the application to get jwt
-    description: Signin to the application to get jwt
+    description: |
+      Signin to the application to get jwt. If signin limited transaction is enabled then after certain
+      number of signin attempts the user will be disabled, if signin successfull it will return object containing jwt, username and message
+      If otp signin is enabled, generate otp code and send it to a user contact, also it will return username and message.
+
     produces:
       - application/json
     requestBody:
