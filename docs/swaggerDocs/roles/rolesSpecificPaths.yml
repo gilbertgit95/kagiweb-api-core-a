@@ -50,7 +50,7 @@ put:
   tags:
     - Roles
   summary: Update a Role
-  description: Update a Role
+  description: Update a Role. If the name or level is beign updated and the values are already existing then this will throw a conflict error
   produces:
     - application/json
   parameters:

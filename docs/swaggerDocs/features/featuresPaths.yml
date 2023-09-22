@@ -1,8 +1,8 @@
 get:
   tags:
     - Features
-  summary: Get all the Features
-  description: Get all the Features
+  summary: Get paginated features
+  description: Get paginated features. The default size of pagination is 100.
   produces:
     - application/json
   parameters:
@@ -18,7 +18,7 @@ get:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
       - 200:
-          description: array of features
+          description: paginated features
           content:
             application/json:
               schema:
@@ -56,7 +56,7 @@ post:
   tags:
     - Features
   summary: Create a Feature
-  description: Create a Feture
+  description: Create a Feature. features are used for access control. If a value is already existing, a conflict status will be thrown.
   produces:
     - application/json
   requestBody:

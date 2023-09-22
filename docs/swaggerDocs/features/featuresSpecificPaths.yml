@@ -17,7 +17,7 @@ get:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
       - 200:
-          description: Successfull feature creation
+          description: Successfull feature fetching
           content:
             application/json:
               schema:
@@ -41,7 +41,7 @@ put:
   tags:
     - Features
   summary: Update a Feature
-  description: Update a Feature
+  description: Update a Feature. If value is being updated and is already existing, a conflict status will be thrown.
   produces:
     - application/json
   parameters:

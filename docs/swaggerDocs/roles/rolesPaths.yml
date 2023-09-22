@@ -1,8 +1,8 @@
 get:
   tags:
     - Roles
-  summary: Get all the Roles
-  description: Get all the Roles
+  summary: Get paginated Roles.
+  description: Get paginated Roles. Defult size for each page is 100.
   produces:
     - application/json
   parameters:
@@ -63,8 +63,8 @@ get:
 post:
   tags:
     - Roles
-  summary: Create a Role
-  description: Create a Role
+  summary: Create a Role.
+  description: Create a Role. If a role is already existing then this will throw a conflict error.
   produces:
     - application/json
   requestBody:
