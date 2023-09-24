@@ -2,7 +2,9 @@ get:
   tags:
     - Users
   summary: Get all the user contact informations
-  description: Get all the user contact informations
+  description: |
+    Get all the user contact informations. User contact information can be many types of user info
+    like firstname, middlename, lastname, nirthdarte, bithplace and more
   produces:
     - application/json
   parameters:
