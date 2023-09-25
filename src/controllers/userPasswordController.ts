@@ -68,7 +68,7 @@ class UserPasswordController {
 
         const password = this.getPasswordById(user, passwordId)
         if (!password) throw({code: 404})
-        password.key = 'NA'
+        // password.key = 'NA'
         return password
     }
 
@@ -80,10 +80,10 @@ class UserPasswordController {
         if (!user) throw({code: 404})
         result = user!.passwords? user!.passwords: []
         // remove key values
-        result = result.map(item => {
-            item.key = 'NA'
-            return item
-        })
+        // result = result.map(item => {
+        //     item.key = 'NA'
+        //     return item
+        // })
 
         return result
     }
@@ -115,7 +115,7 @@ class UserPasswordController {
         await userController.cachedData.removeCacheData(userId)
 
         const passEntry = await this.getPasswordEntry(user, newPassword)
-        if (passEntry && passEntry.key) passEntry.key = 'NA'
+        // if (passEntry && passEntry.key) passEntry.key = 'NA'
         return passEntry
     }
 
@@ -137,7 +137,7 @@ class UserPasswordController {
             throw({code: 404})
         }
 
-        userPasswordData.key = 'NA'
+        // userPasswordData.key = 'NA'
         return userPasswordData
     }
 }
