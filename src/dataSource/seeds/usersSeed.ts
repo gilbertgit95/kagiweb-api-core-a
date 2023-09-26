@@ -74,7 +74,7 @@ const users = [
                 attempts: 0,
                 expTime: '',
                 recipient: 'app-admin',
-                disabled: true
+                disabled: false
             },
             {
                 _id: '33c18b8c-087a-4787-8fd8-350da317098e',
