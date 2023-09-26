@@ -1,3 +1,4 @@
+import express, { Router } from 'express'
 import UrlPattern from 'url-pattern'
 import expressListRoutes from 'express-list-routes'
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
@@ -5,6 +6,30 @@ import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
 interface IRouteInfo {
     method: string,
     path: string
+}
+
+class RouterHandler {
+    private route:Router = express.Router()
+    private publicRoutes:Router[] = []
+    private privateRoutes:Router[] = []
+
+    public addPublicRoute(route:Router) {
+        this.publicRoutes.push(route)
+    }
+
+    public addPrivateRoute(route:Router) {
+        this.privateRoutes.push(route)
+    }
+
+    public consolidateRoutes():Router {
+        this.publicRoutes.forEach(route => {
+            this.route.use(route)
+        })
+        this.privateRoutes.forEach(route => {
+            this.route.use(route)
+        })
+        return this.route
+    }
 }
 
 
@@ -66,6 +91,7 @@ class RouterIdentity {
 }
 
 export {
+    RouterHandler,
     IRouteInfo,
     RouterIdentity
 }
