@@ -10,19 +10,46 @@ interface IRouteInfo {
 
 class RouterHandler {
     private route:Router = express.Router()
+    private publicStaticRoutes:Router[] = []
+
+    private publicMiddlewares:any[] = []
     private publicRoutes:Router[] = []
+
+    private privateMiddlewares:any[] = []
     private privateRoutes:Router[] = []
 
+    public addPublicStaticRoute(route:Router) {
+        this.publicStaticRoutes.push(route)
+    }
+
+    public addPublicMiddleware(route:any) {
+        this.publicMiddlewares.push(route)
+    }
     public addPublicRoute(route:Router) {
         this.publicRoutes.push(route)
+    }
+
+    public addPrivateMiddleware(route:any) {
+        this.privateMiddlewares.push(route)
     }
 
     public addPrivateRoute(route:Router) {
         this.privateRoutes.push(route)
     }
 
-    public consolidateRoutes():Router {
+    public getConsolidatedRoutes():Router {
+        this.publicStaticRoutes.forEach(route => {
+            this.route.use(route)
+        })
+
+        this.publicMiddlewares.forEach(route => {
+            this.route.use(route)
+        })
         this.publicRoutes.forEach(route => {
+            this.route.use(route)
+        })
+
+        this.privateMiddlewares.forEach(route => {
             this.route.use(route)
         })
         this.privateRoutes.forEach(route => {

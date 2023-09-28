@@ -1,10 +1,12 @@
 import mongoose from 'mongoose'
-
-import app from './app'
+import express from 'express'
+import appRouteHandler from './app'
 import Config from './utilities/config'
 import routerIdentity from './utilities/routerIdentity'
 
 const env = Config.getEnv()
+const appRoutes = appRouteHandler.getConsolidatedRoutes()
+const app = express().use(appRoutes)
 
 app.listen(env.AppPort, async () => {
     try {
