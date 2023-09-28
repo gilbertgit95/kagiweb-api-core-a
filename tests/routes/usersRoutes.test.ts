@@ -1,4 +1,5 @@
 import supertest from 'supertest'
+import express from 'express'
 
 import {
     connectDB,
@@ -6,7 +7,10 @@ import {
     clearDatabase
 } from '../dataSource/dataSourceConn'
 import UserModel, { IUser } from '../../src/dataSource/models/userModel'
-import app from '../../src/app'
+import appRouteHandler from '../../src/app'
+
+const appRoutes = appRouteHandler.getConsolidatedRoutes()
+const app = express().use(appRoutes)
 
 const request = supertest(app)
 
