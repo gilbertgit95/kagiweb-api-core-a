@@ -116,10 +116,10 @@ class RouterIdentity {
         await FeatureModel.bulkWrite(query)
     }
 }
-
+const routerIdentity = new RouterIdentity()
 export {
-    RouterHandler,
     IRouteInfo,
-    RouterIdentity
+    RouterIdentity,
+    routerIdentity
 }
-export default new RouterIdentity()
+export default RouterHandler

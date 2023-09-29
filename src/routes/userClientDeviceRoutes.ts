@@ -2,7 +2,7 @@ import express from 'express'
 
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
-import routerIdentity from '../utilities/routerIdentity'
+import { routerIdentity } from '../utilities/routerHandler'
 
 import userClientDeviceController from '../controllers/userClientDeviceController'
 import { IClientDevice } from '../dataSource/models/userModel'

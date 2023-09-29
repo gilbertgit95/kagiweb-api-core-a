@@ -4,7 +4,7 @@ import express from 'express'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
-import routerIdentity from '../utilities/routerIdentity'
+import { routerIdentity } from '../utilities/routerHandler'
 import { AppRequest } from '../utilities/globalTypes'
 
 import userController from '../controllers/userController'

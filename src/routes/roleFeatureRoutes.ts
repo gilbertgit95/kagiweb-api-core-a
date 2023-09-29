@@ -2,7 +2,7 @@ import express from 'express'
 
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
-import routerIdentity from '../utilities/routerIdentity'
+import { routerIdentity } from '../utilities/routerHandler'
 
 import roleFeatureController from '../controllers/roleFeatureController'
 import { IFeatureRef } from '../dataSource/models/roleModel'

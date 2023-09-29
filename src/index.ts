@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import express from 'express'
 import appRouteHandler from './app'
 import Config from './utilities/config'
-import routerIdentity from './utilities/routerIdentity'
+import { routerIdentity } from './utilities/routerHandler'
 
 const env = Config.getEnv()
 const appRoutes = appRouteHandler.getConsolidatedRoutes()
