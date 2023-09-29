@@ -1,5 +1,5 @@
 {
-  "name": "kagiweb-api-core-a",
+  "name": "@kagiweb-tech/api-core-a",
   "version": "1.0.0",
   "description": "Kagiweb api core (type A). The main purpose of this repo is tobe an api base code application, so we dont need to create a new app from scratch everytime we develop a web api",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",

@@ -9,7 +9,7 @@ import {
 import UserModel, { IUser } from '../../src/dataSource/models/userModel'
 import appRouteHandler from '../../src/app'
 
-const appRoutes = appRouteHandler.getConsolidatedRoutes()
+const appRoutes = appRouteHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
 const request = supertest(app)
