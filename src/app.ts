@@ -27,10 +27,15 @@ import ownerRoutes from './routes/ownerRoutes'
 const router = express.Router()
 const env = Config.getEnv()
 
-import RouterHandler from './utilities/routerHandler'
+import RouterHandler, {routerIdentity} from './utilities/routerHandler'
 // export default express().use(routes)
 
 const routerHandler = new RouterHandler()
+
+// register post methods to execute
+routerHandler.addPostDBConnectionProcess(async () => {
+    await routerIdentity.syncAppRoutes()
+})
 
 // public routes for webapp files, api assets and api documentation
 routerHandler.addPublicStaticRoute(router.use(env.RootWebappEndpoint, express.static(env.RootWebappDir)))

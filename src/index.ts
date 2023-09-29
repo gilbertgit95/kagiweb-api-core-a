@@ -2,10 +2,9 @@ import mongoose from 'mongoose'
 import express from 'express'
 import appRouteHandler from './app'
 import Config from './utilities/config'
-import { routerIdentity } from './utilities/routerHandler'
 
 const env = Config.getEnv()
-const appRoutes = appRouteHandler.getConsolidatedRoutes()
+const appRoutes = appRouteHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
 app.listen(env.AppPort, async () => {
@@ -14,8 +13,8 @@ app.listen(env.AppPort, async () => {
             dbName: env.DBName
         })
         console.log(`- Successfully connected to database`)
-        await routerIdentity.syncAppRoutes()
-        console.log(`- Sync the application routes to the database`)
+        await appRouteHandler.executePostDBConnectionProcess()
+        console.log(`- Execute post db conection process`)
     } catch (err) {
         console.log(`!Error, was not able to connect to the mongo database: ${ err }`)
         // throw(err)
