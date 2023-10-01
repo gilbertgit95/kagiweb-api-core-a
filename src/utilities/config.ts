@@ -1,7 +1,3 @@
-import dotenv from 'dotenv'
-
-dotenv.config()
-
 interface Env {
     AppEnv: string,
     AppPort: number,
