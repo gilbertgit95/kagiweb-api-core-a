@@ -27,47 +27,47 @@ import ownerRoutes from './routes/ownerRoutes'
 const router = express.Router()
 const env = Config.getEnv()
 
-import RouterHandler, {routerIdentity} from './utilities/routerHandler'
+import AppHandler, {routerIdentity} from './utilities/appHandler'
 // export default express().use(routes)
 
-const routerHandler = new RouterHandler()
+const appHandler = new AppHandler()
 
 // register post methods to execute
-routerHandler.addPostDBConnectionProcess(async () => {
+appHandler.addPostDBConnectionProcess(async () => {
     await routerIdentity.syncAppRoutes()
 })
 
 // public routes for webapp files, api assets and api documentation
-routerHandler.addPublicStaticRoute(router.use(env.RootWebappEndpoint, express.static(env.RootWebappDir)))
-routerHandler.addPublicStaticRoute(router.use(env.RootAssetsEndpoint, express.static(env.RootAssetsDir)))
-routerHandler.addPublicStaticRoute(documentationRoutes)
+appHandler.addPublicStaticRoute(router.use(env.RootWebappEndpoint, express.static(env.RootWebappDir)))
+appHandler.addPublicStaticRoute(router.use(env.RootAssetsEndpoint, express.static(env.RootAssetsDir)))
+appHandler.addPublicStaticRoute(documentationRoutes)
 
 // middlewares executed when accessing routes including auths
-routerHandler.addPublicMiddleware(cors())
-routerHandler.addPublicMiddleware(bodyParser.json())
-routerHandler.addPublicMiddleware(bodyParser.urlencoded({ extended: true }))
-routerHandler.addPublicMiddleware(requestIP.mw())
-routerHandler.addPublicMiddleware(clientInfoProvider)
+appHandler.addPublicMiddleware(cors())
+appHandler.addPublicMiddleware(bodyParser.json())
+appHandler.addPublicMiddleware(bodyParser.urlencoded({ extended: true }))
+appHandler.addPublicMiddleware(requestIP.mw())
+appHandler.addPublicMiddleware(clientInfoProvider)
 
 // public routes without authorization
-routerHandler.addPublicRoute(authRoutes)
+appHandler.addPublicRoute(authRoutes)
 
 // add middlewares for secured routes
 // routes for data api needs authorization
-routerHandler.addPrivateMiddleware(userInfoAndAccessProvider)
+appHandler.addPrivateMiddleware(userInfoAndAccessProvider)
 // private routes
-routerHandler.addPrivateRoute(systemInfoRoutes)
-routerHandler.addPrivateRoute(featureRoutes)
-routerHandler.addPrivateRoute(roleRoutes)
-routerHandler.addPrivateRoute(roleFeatureRoutes)
-routerHandler.addPrivateRoute(userRoutes)
-routerHandler.addPrivateRoute(userRoleRoutes)
-routerHandler.addPrivateRoute(userUserInfoRoutes)
-routerHandler.addPrivateRoute(userContactInfoRoutes)
-routerHandler.addPrivateRoute(userPasswordRoutes)
-routerHandler.addPrivateRoute(userLimitedTransactionRoutes)
-routerHandler.addPrivateRoute(userClientDeviceRoutes)
-routerHandler.addPrivateRoute(userClientDeviceAccesstokenRoutes)
-routerHandler.addPrivateRoute(ownerRoutes)
+appHandler.addPrivateRoute(systemInfoRoutes)
+appHandler.addPrivateRoute(featureRoutes)
+appHandler.addPrivateRoute(roleRoutes)
+appHandler.addPrivateRoute(roleFeatureRoutes)
+appHandler.addPrivateRoute(userRoutes)
+appHandler.addPrivateRoute(userRoleRoutes)
+appHandler.addPrivateRoute(userUserInfoRoutes)
+appHandler.addPrivateRoute(userContactInfoRoutes)
+appHandler.addPrivateRoute(userPasswordRoutes)
+appHandler.addPrivateRoute(userLimitedTransactionRoutes)
+appHandler.addPrivateRoute(userClientDeviceRoutes)
+appHandler.addPrivateRoute(userClientDeviceAccesstokenRoutes)
+appHandler.addPrivateRoute(ownerRoutes)
 
-export default routerHandler
+export default appHandler

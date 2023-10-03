@@ -1,7 +1,11 @@
 import express, { Router } from 'express'
+import mongoose from 'mongoose'
 import UrlPattern from 'url-pattern'
 import expressListRoutes from 'express-list-routes'
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
+import Config, {Env} from '../utilities/config'
+
+const env = Config.getEnv()
 
 interface IRouteInfo {
     method: string,
@@ -66,7 +70,7 @@ class RouterIdentity {
 }
 const routerIdentity = new RouterIdentity()
 
-class AppRouterHandler {
+class AppHandler {
     private route:Router = express.Router()
     private publicStaticRoutes:Router[] = []
 
@@ -107,6 +111,16 @@ class AppRouterHandler {
         }
     }
 
+    public getEnv():Env {
+        return Config.getEnv()
+    }
+
+    public async dbConnect() {
+        await mongoose.connect(env.MongoURI? env.MongoURI: '', {
+            dbName: env.DBName
+        })
+    }
+
     public getAppRoutes():Router {
         this.publicStaticRoutes.forEach(route => {
             this.route.use(route)
@@ -135,4 +149,4 @@ export {
     RouterIdentity,
     routerIdentity
 }
-export default AppRouterHandler
+export default AppHandler

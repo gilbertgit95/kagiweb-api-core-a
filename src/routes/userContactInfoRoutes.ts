@@ -2,7 +2,7 @@ import express from 'express'
 
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
-import { routerIdentity } from '../utilities/routerHandler'
+import { routerIdentity } from '../utilities/appHandler'
 
 import userContactInfoController from '../controllers/userContactInfoController'
 import { IContactInfo } from '../dataSource/models/userModel'

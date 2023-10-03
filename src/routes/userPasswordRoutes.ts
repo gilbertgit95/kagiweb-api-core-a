@@ -2,7 +2,7 @@ import express from 'express'
 
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
-import { routerIdentity } from '../utilities/routerHandler'
+import { routerIdentity } from '../utilities/appHandler'
 
 import userPasswordController from '../controllers/userPasswordController'
 import { IPassword } from '../dataSource/models/userModel'

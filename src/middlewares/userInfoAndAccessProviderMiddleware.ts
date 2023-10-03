@@ -8,7 +8,7 @@ import roleController from '../controllers/roleController'
 import { errorLogsColl, combinedLogsColl } from '../utilities/logger'
 import ErrorHandler from '../utilities/errorHandler'
 import Encryption from '../utilities/encryption'
-import { RouterIdentity } from '../utilities/routerHandler'
+import { RouterIdentity } from '../utilities/appHandler'
 
 class UserInfoProvider {
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
