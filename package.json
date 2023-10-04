@@ -1,7 +1,7 @@
 {
   "name": "@kagiweb-tech/api-core-a",
-  "version": "1.0.0",
-  "description": "Kagiweb api core (type A). The main purpose of this repo is tobe an api base code application, so we dont need to create a new app from scratch everytime we develop a web api",
+  "version": "1.0.1",
+  "description": "This an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
     "api basecode",
@@ -10,6 +10,69 @@
   ],
   "main": "build/src/app.js",
   "types": "build/src/app.d.ts",
+  "exports": {
+    ".": "./build/src/app.js",
+    "./utils/appHandler": "./build/src/utilities/appHandler.js",
+    "./utils/config": "./build/src/utilities/config.js",
+    "./utils/dataCache": "./build/src/utilities/dataCache.js",
+    "./utils/dataCleaner": "./build/src/utilities/dataCleaner.js",
+    "./utils/dataQuery": "./build/src/utilities/dataQuery.js",
+    "./utils/encryption": "./build/src/utilities/encryption.js",
+    "./utils/errorHandler": "./build/src/utilities/errorHandler.js",
+    "./utils/logger": "./build/src/utilities/logger.js",
+
+    "./models/featureModel": "./build/src/dataSource/models/featureModel.js",
+    "./models/roleModel": "./build/src/dataSource/models/roleModel.js",
+    "./models/userModel": "./build/src/dataSource/models/userModel.js",
+
+    "./controllers/authController": "./build/src/controllers/authController.js",
+    "./controllers/featureController": "./build/src/controllers/featureController.js",
+    "./controllers/roleController": "./build/src/controllers/roleController.js",
+    "./controllers/roleFeatureController": "./build/src/controllers/roleFeatureController.js",
+    "./controllers/systemInfoController": "./build/src/controllers/systemInfoController.js",
+    "./controllers/userClientDeviceAccessTokenController": "./build/src/controllers/userClientDeviceAccessTokenController.js",
+    "./controllers/userClientDeviceController": "./build/src/controllers/userClientDeviceController.js",
+    "./controllers/userContactInfoController": "./build/src/controllers/userContactInfoController.js",
+    "./controllers/userController": "./build/src/controllers/userController.js",
+    "./controllers/userLimitedtransactionController": "./build/src/controllers/userLimitedtransactionController.js",
+    "./controllers/userPasswordController": "./build/src/controllers/userPasswordController.js",
+    "./controllers/userRoleController": "./build/src/controllers/userRoleController.js",
+    "./controllers/userUserInfoController": "./build/src/controllers/userUserInfoController.js",
+
+    "./admin": "./build/src/adminCli/mainCli.js"
+  },
+  "typesVersions": {
+    "*": {
+      "utils/appHandler": ["build/src/utilities/appHandler.d.ts"],
+      "utils/config": ["build/src/utilities/config.d.ts"],
+      "utils/dataCache": ["build/src/utilities/dataCache.d.ts"],
+      "utils/dataCleaner": ["build/src/utilities/dataCleaner.d.ts"],
+      "utils/dataQuery": ["build/src/utilities/dataQuery.d.ts"],
+      "utils/encryption": ["build/src/utilities/encryption.d.ts"],
+      "utils/errorHandler": ["build/src/utilities/errorHandler.d.ts"],
+      "utils/logger": ["build/src/utilities/logger.d.ts"],
+
+      "models/featureModel": ["build/src/dataSource/models/featureModel.d.ts"],
+      "models/roleModel": ["build/src/dataSource/models/roleModel.d.ts"],
+      "models/userModel": ["build/src/dataSource/models/userModel.d.ts"],
+
+      "controllers/authController": ["build/src/controllers/authController.d.ts"],
+      "controllers/featureController": ["build/src/controllers/featureController.d.ts"],
+      "controllers/roleController": ["build/src/controllers/roleController.d.ts"],
+      "controllers/roleFeatureController": ["build/src/controllers/roleFeatureController.d.ts"],
+      "controllers/systemInfoController": ["build/src/controllers/systemInfoController.d.ts"],
+      "controllers/userClientDeviceAccessTokenController": ["build/src/controllers/userClientDeviceAccessTokenController.d.ts"],
+      "controllers/userClientDeviceController": ["build/src/controllers/userClientDeviceController.d.ts"],
+      "controllers/userContactInfoController": ["build/src/controllers/userContactInfoController.d.ts"],
+      "controllers/userController": ["build/src/controllers/userController.d.ts"],
+      "controllers/userLimitedtransactionController": ["build/src/controllers/userLimitedtransactionController.d.ts"],
+      "controllers/userPasswordController": ["build/src/controllers/userPasswordController.d.ts"],
+      "controllers/userRoleController": ["build/src/controllers/userRoleController.d.ts"],
+      "controllers/userUserInfoController": ["build/src/controllers/userUserInfoController.d.ts"],
+
+      "admin": ["build/src/adminCli/mainCli.d.ts"]
+    }
+  },  
   "scripts": {
     "start": "node build/src/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
