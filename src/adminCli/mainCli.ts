@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from '../packages/mongoose'
 import prompts from 'prompts'
 
 import Config from '../utilities/config'

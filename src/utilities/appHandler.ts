@@ -1,5 +1,5 @@
 import express, { Router } from 'express'
-import mongoose from 'mongoose'
+import mongoose from '../packages/mongoose'
 import UrlPattern from 'url-pattern'
 import expressListRoutes from 'express-list-routes'
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'

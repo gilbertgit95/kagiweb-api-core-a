@@ -10,7 +10,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Encryption from '../utilities/encryption'
 import { RouterIdentity } from '../utilities/appHandler'
 
-class UserInfoProvider {
+class UserInfoAndAccessProvider {
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         req.userData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
@@ -55,10 +55,10 @@ class UserInfoProvider {
 
             return true
         })
-    
+
         if (statusCode === 200) return next()
         return res.status(statusCode).send(result)
     }
 }
 
-export default UserInfoProvider.middleware
+export default UserInfoAndAccessProvider.middleware

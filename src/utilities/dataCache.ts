@@ -1,5 +1,5 @@
 import NodeCache, {Options} from 'node-cache'
-import { Model } from 'mongoose'
+import { Model } from '../packages/mongoose'
 
 import DataRequest from '../utilities/dataQuery'
 
