@@ -2,7 +2,7 @@ import express from 'express'
 
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
-import { routerIdentity } from '../utilities/appHandler'
+import routerIdentity from '../utilities/routerIdentity'
 
 import userRoleController from '../controllers/userRoleController'
 import { IRoleRef } from '../dataSource/models/userModel'

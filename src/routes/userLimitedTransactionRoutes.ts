@@ -2,7 +2,7 @@ import express from 'express'
 
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
-import { routerIdentity } from '../utilities/appHandler'
+import routerIdentity from '../utilities/routerIdentity'
 
 import userLimitedTransactionController from '../controllers/userLimitedTransactionController'
 import { ILimitedTransaction } from '../dataSource/models/userModel'

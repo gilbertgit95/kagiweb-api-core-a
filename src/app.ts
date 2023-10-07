@@ -27,7 +27,8 @@ import ownerRoutes from './routes/ownerRoutes'
 const router = express.Router()
 const env = Config.getEnv()
 
-import AppHandler, {routerIdentity} from './utilities/appHandler'
+import routerIdentity from './utilities/routerIdentity'
+import AppHandler from './utilities/appHandler'
 // export default express().use(routes)
 
 const appHandler = new AppHandler()

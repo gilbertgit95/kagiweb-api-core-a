@@ -1,6 +1,6 @@
 import os from 'os'
 import Config from '../utilities/config'
-import { routerIdentity } from '../utilities/appHandler'
+import routerIdentity from '../utilities/routerIdentity'
 
 const env = Config.getEnv()
 
