@@ -5,6 +5,8 @@
 
 ## Contents  
 - [Overview](#overview)
+- [Dependencies](#dependencies)
+- [Quick Setup](#Quicksetup)
 - [Features](#features)
 - [Installation](#installation)
 - [Architecture](#architecture)
@@ -16,25 +18,19 @@ application without having to deal with the core functionality like authenticati
 essential features of an acount base system. Your responsibility will be focus only to the application content.
 
 
-## Features
-Why we should use this boilerplate? below are some of its features
-- easy to setup
-- ready to use utilites, endpoints and data models like:  **features**,  **roles**, **users**, **administration**,
-  **secure login** and more. You dont need to implement most of the core features because its included.
+## Dependencies
+
+| Softwares | Languages              | Packages  |
+|-----------|------------------------|-----------|
+| Node      | Javascript/Typescript  | Mongoose  |
+|           |                        | Express   |
+|
 
 
-## Installation
-To succesfully run the application. please follow the steps below and please take note of the app versions
-and configurations. App configuration resides inside the .env file in the root folder.
+## Quick Setup
+### .env
+You can just copy and paste the configuration below to your applications .env file. This will work for javascript or typescript application.
 
-### Software dependencies
-- make sure a mongodb server is installed. At the time of development mongodb version
-  is `6.0.8`
-- make sure node and npm are installed on you machine. At the time of development node version
-  is `v18.13.0` and npm is `8.17.0`
- 
-### Configuration
-- this section will be updated soon...
 ```
 # this will control environment settings for
 # production, staging, development or other types of execution: PROD, STAGING, DEV
@@ -91,6 +87,38 @@ JWT_SECRET_KEY=6f870c45c861792aee34b705092da91e31b03b72bc352452adbd069007aa3e2ae
 # sms credentials
 
 # email credentials
+```
+
+### Javascript
+
+```
+```
+
+### Typescript
+```
+```
+
+## Features
+Why we should use this boilerplate? below are some of its features
+- easy to setup
+- ready to use utilites, endpoints and data models like:  **features**,  **roles**, **users**, **administration**,
+  **secure login** and more. You dont need to implement most of the core features because its included.
+
+
+## Installation
+To succesfully run the application. please follow the steps below and please take note of the app versions
+and configurations. App configuration resides inside the .env file in the root folder.
+
+### Software dependencies
+- make sure a mongodb server is installed. At the time of development mongodb version
+  is `6.0.8`
+- make sure node and npm are installed on you machine. At the time of development node version
+  is `v18.13.0` and npm is `8.17.0`
+ 
+### Configuration
+- this section will be updated soon...
+```
+
 ```
 - copy a predefined .env format to your .env file of your application.
 - update .env configuration for your on needs, such as mongo connection string and so on.
