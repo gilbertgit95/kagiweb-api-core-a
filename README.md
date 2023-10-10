@@ -2,7 +2,7 @@
 > **Note**
 this app is still on the early stage of development
 
-This an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, user management and other essential features of an acount base system. Your responsibility will be focus only to the application content.
+This is an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, user management and other essential features of an acount base system. Your responsibility will be focus only to the application content.
 
 
 ## Dependencies
