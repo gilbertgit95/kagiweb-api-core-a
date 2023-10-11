@@ -1,7 +1,7 @@
 {
   "name": "@kagiweb-tech/api-core-a",
   "version": "1.0.2",
-  "description": "This an express middleware package containing core features of a rest api.",
+  "description": "This is an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
     "api basecode",
@@ -15,7 +15,6 @@
 
     "./mongoose": "./build/src/packages/mongoose.js",
 
-    "./utils/appHandler": "./build/src/utilities/appHandler.js",
     "./utils/routerIdentity": "./build/src/utilities/routerIdentity.js",
     "./utils/config": "./build/src/utilities/config.js",
     "./utils/dataCache": "./build/src/utilities/dataCache.js",
@@ -49,7 +48,6 @@
     "*": {
       "mongoose": ["build/src/packages/mongoose.d.ts"],
 
-      "utils/appHandler": ["build/src/utilities/appHandler.d.ts"],
       "utils/routerIdentity": ["build/src/utilities/routerIdentity.d.ts"],
       "utils/config": ["build/src/utilities/config.d.ts"],
       "utils/dataCache": ["build/src/utilities/dataCache.d.ts"],

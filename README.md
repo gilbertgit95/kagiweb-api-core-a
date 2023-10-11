@@ -1,8 +1,8 @@
 # api core (type A)
 > **Note**
-this app is still on the early stage of development
+This app is still on its early stage of development
 
-This is an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, user management and other essential features of an acount base system. Your responsibility will be focus only to the application content.
+This is an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, user management and other essential features of an account base system. Your responsibility will be focus only to the application content.
 
 
 ## Dependencies
@@ -17,7 +17,7 @@ Please make sure that you already have software dependencies installed before yo
 
 ## Quick Setup
 ### .env
-You can just copy and paste the configuration below to your applications .env file. This will work for javascript or typescript application. Update the configuration depending on you needs like mongo connection string, application port and so on.
+You can just copy and paste the configuration below to you .env file. This will work for javascript or typescript application. Update the configuration depending on you needs like mongo connection string, application port and so on.
 
 ```
 # this will control environment settings for
@@ -146,18 +146,21 @@ app.listen(env.AppPort, async () => {
 })
 ```
 
-After running the application in your local machine, you can then access the swagger api documentation of the app
-in route `http://localhost:5001/api/v1/apidoc/#/`
+After running the application in your local machine, you can access the swagger api documentation on route `http://localhost:5001/api/v1/apidoc/#/`.
+
+If you had customized the .env configuration, then the route is on `http://localhost:{ APP_PORT }{ ROOT_API_ENDPOINT }apidoc/#/` where **APP_PORT** and **ROOT_API_ENDPOINT** are values from .env file.
+
+> **Note**
+We recommend going into api documentation route after setting up your application, for you to see available routes and detailed documentation provided by this package.
 
 
 ## Tutorials
 > **Warning**
-Please note that the examples are written in typescript, you can just convert the code to javascript if you using plain JS
+Please note that the examples are written in typescript, however you can just convert the code to javascript if you are using plain JS.
 
 ### Custom Routes
-No special syntax for creating routes. You have freedom  to create you own routes as long as it is an express route. In this tutorial, we use ready made utilities from this package,
-however this are optional.
-`ErrorHandler` is just a wrapper to handling errors and `routerIdentity` is just an object will let the application register your custom routes to features collection.
+There are no special syntax for creating routes. You have freedom to create your own as long as it is a valid express route. In this tutorial, we use ready made utilities from this package, but this are optional.
+`ErrorHandler` is just a wrapper for handling errors and `routerIdentity` is just an object that will let the application register your custom routes to features collection.
 
 ```ts
 import express from 'express'
@@ -193,7 +196,7 @@ export default router
 ```
 
 ### Custom Middlewares
-The same as routes, no special syntax is required to create models as long as it is a valid mongoose model. Just `take note` of the mongoose library in the example, it uses mongoose from inside this package.
+The same as routes, no special syntax is required to create models as long as it is a valid mongoose model. But please **take note** of the mongoose library in the example, it uses mongoose from inside this package.
 
 ```ts
 import { Schema, model, Document, Types } from '@kagiweb-tech/api-core-a/mongoose'
@@ -222,42 +225,42 @@ export default NoteModel
 ```
 
 ### Custom Controllers
-You can just create you own controllers or just manage you process inside routes, its up to you.
+You can just create you own controllers, or just manage your data process inside the routes, its up to you to decide.
 
 
 ## References
 ### App Levels
 The entire application Contains 5 main levels. Each level accepts router objects.
-1. `Static level` - static assets such as images, and other types of files
-2. `Public Middleware` - middleware that will be executed before user info and access provider middleware is executed
-3. `Public Routes` - Public routes will be use in express app after public middlewares but before private middlewares and routes
-4. `Private Middleware` -  will be executed after access provider is executed
-5. `Private Routes` - the routes that will be guarded by the user info and access provider middleware. In short, if you want to create secured routes then put it here.
+1. `Static level` - Pubic static assets such as images, and other types of files
+2. `Public Middleware` - Middleware that will be executed before access checking.
+3. `Public Routes` - Routes that are accessable to public
+4. `Private Middleware` - Middleware that will be executed after access checking.
+5. `Private Routes` - This are routes that user needs access rights before being able to use.
 
 ### Main Object
-The processor that will set up the routes and middleware on the right levels.
+The processor that implements the app levels.
 - @kagiweb-tech/api-core-a
 
 ### Models
-This are mongoose models that are the bases of the core application
-- Feature - this contains all features that will be the bases of access provider
+Mongoose models that are the bases of the core application
+- **Feature** - this contains all features that will be the bases of access provider.
   - @kagiweb-tech/api-core-a/models/featureModel
-- Role - This give users access package
+- **Role** - This give users access to features.
   - @kagiweb-tech/api-core-a/models/roleModel
-- User - application user
+- **User** - application user.
   - @kagiweb-tech/api-core-a/models/userModel
-- Workspace - this will let users virtually separate some data
+- **Workspace** - this will let users virtually separate data.
   - @kagiweb-tech/api-core-a/models/workspaceModel
 
 
 ### Controllers
-Each models has one or more controllers depending on the number of sub-documents fields available
-- Feature
+Each models has one or more controllers. This are reusable data processors for the models.
+- **Feature**
   - @kagiweb-tech/api-core-a/controllers/featureController
-- Role
+- **Role**
   - @kagiweb-tech/api-core-a/controllers/roleController
   - @kagiweb-tech/api-core-a/controllers/roleFeatureController
-- User
+- **User**
   - @kagiweb-tech/api-core-a/controllers/userClientDeviceAccessTokenController
   - @kagiweb-tech/api-core-a/controllers/userClientDeviceController
   - @kagiweb-tech/api-core-a/controllers/userContactInfoController
@@ -266,22 +269,30 @@ Each models has one or more controllers depending on the number of sub-documents
   - @kagiweb-tech/api-core-a/controllers/userPasswordController
   - @kagiweb-tech/api-core-a/controllers/userRoleController
   - @kagiweb-tech/api-core-a/controllers/userUserInfoController
-- Workspace
+- **Workspace**
   - @kagiweb-tech/api-core-a/controllers/workspaceController
   - @kagiweb-tech/api-core-a/controllers/workspaceUsersController
-- Authentication
+- **Authentication**
   - @kagiweb-tech/api-core-a/controllers/authController
-- System
+- **System**
   - @kagiweb-tech/api-core-a/controllers/systemInfoController
 
 
 
 ### Utilities
-- @kagiweb-tech/api-core-a/utils/appHandler
-- @kagiweb-tech/api-core-a/utils/config
-- @kagiweb-tech/api-core-a/utils/dataCache
-- @kagiweb-tech/api-core-a/utils/dataCleaner
-- @kagiweb-tech/api-core-a/utils/dataQuery
-- @kagiweb-tech/api-core-a/utils/encryption
-- @kagiweb-tech/api-core-a/utils/errorHandler
-- @kagiweb-tech/api-core-a/utils/logger
+- **config** - handles the .env configuration and default values if empty in .env
+  - @kagiweb-tech/api-core-a/utils/config
+- **dataCache** - handles the server data caching.
+  - @kagiweb-tech/api-core-a/utils/dataCache
+- **dataCleaner** - cleans some types of data.
+  - @kagiweb-tech/api-core-a/utils/dataCleaner
+- **dataQuery** - handles some server to database queries with integrated data caching.
+  - @kagiweb-tech/api-core-a/utils/dataQuery
+- **encryption** - password hashing and checking, base64 encoding and decoding, jwt generation and more.
+  - @kagiweb-tech/api-core-a/utils/encryption
+- **errorHandler** - handles errors and output a specific format for easy usage in the router.
+  - @kagiweb-tech/api-core-a/utils/errorHandler
+- **logger** - saves log messages into a file.
+  - @kagiweb-tech/api-core-a/utils/logger
+- **routerIdentity** - this will identify routes and let the application register it to feature collection.
+  - @kagiweb-tech/api-core-a/utils/routerIdentity
