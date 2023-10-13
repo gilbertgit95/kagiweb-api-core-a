@@ -1,11 +1,13 @@
 {
   "name": "@kagiweb-tech/api-core-a",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
-    "api basecode",
+    "core api app",
+    "rest api",
     "express app",
+    "express middleware",
     "typescript express"
   ],
   "main": "build/src/app.js",

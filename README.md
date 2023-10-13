@@ -17,7 +17,7 @@ Please make sure that you already have software dependencies installed before yo
 
 ## Quick Setup
 ### .env
-You can just copy and paste the configuration below to you .env file. This will work for javascript or typescript application. Update the configuration depending on you needs like mongo connection string, application port and so on.
+You can just copy the configuration below to your .env file. This will work for javascript or typescript application. Update the configuration depending on you needs like mongo connection string, application port and so on.
 
 ```
 # this will control environment settings for
@@ -78,6 +78,7 @@ JWT_SECRET_KEY=6f870c45c861792aee34b705092da91e31b03b72bc352452adbd069007aa3e2ae
 ```
 
 ### Javascript
+Copy the code to your .js file
 
 ```js
 const dotenv = require('dotenv');
@@ -88,7 +89,7 @@ const appHandler = require('@kagiweb-tech/api-core-a').default;
 const noteRoutes = require('./noteRoutes');
 const taskRoutes = require('./taskRoutes');
 
-// register routes
+// register custom routes
 // register public routes
 appHandler.addPublicRoute(noteRoutes)
 // register private routes
@@ -113,6 +114,7 @@ app.listen(env.AppPort, async () => {
 ```
 
 ### Typescript
+Copy the code to you .ts file
 ```ts
 import dotenv from 'dotenv'
 dotenv.config()
@@ -122,7 +124,7 @@ import appHandler from '@kagiweb-tech/api-core-a'
 import noteRoutes from './noteRoutes'
 import taskRoutes from './taskRoutes'
 
-// register routes
+// register custom routes
 // register public routes
 appHandler.addPublicRoute(noteRoutes)
 // register private routes
@@ -147,11 +149,11 @@ app.listen(env.AppPort, async () => {
 ```
 
 ### Seeding
-Included in this package is a cli application, where you can do admin stuffs such as seeding the app with initial data, reseting the application and more. To execute the cli run this on terminal in you root application directory.
+Included in this package is a cli application, where you can do admin stuffs such as seed the app with initial data, reset the application and more. The cli will use the configuration of .env file in the current directory. To execute the cli run this on terminal in you root application directory.
 ```
 > ./node_modules/.bin/kwtech-api-admin
 ```
-At this point, you dont have much to do with the api because most of the essential collection in mongodb are empty. To populate the database with initial data.
+At this point, you dont have much to do with the api because most of the essential collections in mongodb are empty. To populate the database with initial data.
 1. Execute the cli as shown above
 2. Select yes and enter to proceed
 3. Select Seeder and enter
@@ -160,7 +162,7 @@ At this point, you dont have much to do with the api because most of the essenti
 After seeding, you can check you mongodb if it was successfully populated with data.
 
 ### Execution
-Its up to you now how you start the application. Also you can run you code before seeding. 
+This is up to you on how you start the application. Just make sure you have imported and use the library in the right way.
 
 
 ### Swagger API Documentation
@@ -213,7 +215,43 @@ routerIdentity.addAppRouteObj(router)
 export default router
 ```
 
-### Custom Middlewares
+to register the custom route to your express app, refer to the code below.
+
+```ts
+import appHandler from '@kagiweb-tech/api-core-a'
+import noteRoutes from './noteRoutes'
+import taskRoutes from './taskRoutes'
+
+...
+// register routes
+// register public routes
+appHandler.addPublicRoute(noteRoutes)
+// register private routes
+appHandler.addPrivateRoute(taskRoutes)
+...
+```
+
+### Custom Middleware
+As long as it is a valid express middleware it will be good enough.
+Refer to the code below to properly register your custom middleware.
+
+```ts
+import appHandler from '@kagiweb-tech/api-core-a'
+import customMiddleware1 from './customMiddleware1'
+import customMiddleware2 from './customMiddleware2'
+
+...
+// register middlewares
+// register public middlewares
+// this will be executed before access checker
+appHandler.addPublicMiddleware(customMiddleware1)
+// register private middlewares
+// this will be executed after access checker
+appHandler.addPrivateMiddleware(customMiddleware2)
+...
+```
+
+### Custom Model
 The same as routes, no special syntax is required to create models as long as it is a valid mongoose model. But please **take note** of the mongoose library in the example, it uses mongoose from inside this package.
 
 ```ts
@@ -247,17 +285,51 @@ You can just create you own controllers, or just manage your data process inside
 
 
 ## References
-### App Levels
+### App Levels and Main Object
 The entire application Contains 5 main levels. Each level accepts router objects.
-1. `Static level` - Pubic static assets such as images, and other types of files
-2. `Public Middleware` - Middleware that will be executed before access checking.
-3. `Public Routes` - Routes that are accessable to public
-4. `Private Middleware` - Middleware that will be executed after access checking.
-5. `Private Routes` - This are routes that user needs access rights before being able to use.
 
-### Main Object
-The processor that implements the app levels.
-- @kagiweb-tech/api-core-a
+The Main object implements the app levels. It will register the routes and middlewares into the right levels. To access the main object just import the library.
+
+```ts
+import express from 'express'
+// appHandler is the main Object
+import appHandler from '@kagiweb-tech/api-core-a'
+
+const router = express.Router()
+...
+```
+
+Each level has its corresponding implementation in the main object methods.
+
+1. `Static level` - Pubic static assets such as images, and other types of files.
+    ```ts
+      // route is url path,
+      // directory is the folder that contains static files you want to be served
+      appHandler.addPublicStaticRoute(
+        router.use('/route', express.static('directory'))
+      )
+    ```
+2. `Public Middleware` - Middleware that will be executed before access checking.
+    ```ts
+    // customMiddleware is an express middleware
+    appHandler.addPublicMiddleware(customMiddleware)
+    ```
+3. `Public Routes` - Routes that are accessable to public
+    ```ts
+    // customRoute is an express route
+    appHandler.addPublicRoute(customRoute)
+    ```
+4. `Private Middleware` - Middleware that will be executed after access checking.
+    ```ts
+    // customMiddleware is an express middleware
+    appHandler.addPrivateMiddleware(customMiddleware)
+    ```
+5. `Private Routes` - This are routes that user needs access rights before being able to use.
+    ```ts
+    // customRoute is an express route
+    appHandler.addPrivateRoute(customRoute)
+    ```
+
 
 ### Models
 Mongoose models that are the bases of the core application
