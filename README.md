@@ -146,12 +146,30 @@ app.listen(env.AppPort, async () => {
 })
 ```
 
-After running the application in your local machine, you can access the swagger api documentation on route `http://localhost:5001/api/v1/apidoc/#/`.
+### Seeding
+Included in this package is a cli application, where you can do admin stuffs such as seeding the app with initial data, reseting the application and more. To execute the cli run this on terminal in you root application directory.
+```
+> ./node_modules/.bin/kwtech-api-admin
+```
+At this point, you dont have much to do with the api because most of the essential collection in mongodb are empty. To populate the database with initial data.
+1. Execute the cli as shown above
+2. Select yes and enter to proceed
+3. Select Seeder and enter
+4. Select yes and enter
 
-If you had customized the .env configuration, then the route is on `http://localhost:{ APP_PORT }{ ROOT_API_ENDPOINT }apidoc/#/` where **APP_PORT** and **ROOT_API_ENDPOINT** are values from .env file.
+After seeding, you can check you mongodb if it was successfully populated with data.
+
+### Execution
+Its up to you now how you start the application. Also you can run you code before seeding. 
+
+
+### Swagger API Documentation
+After running your app on your local machine, you can access the swagger api documentation on route `http://localhost:5001/api/v1/apidoc/#/`.
+
+If you had customized the .env file, then the route is on `http://localhost:{ APP_PORT }{ ROOT_API_ENDPOINT }apidoc/#/` where **APP_PORT** and **ROOT_API_ENDPOINT** are values from .env file.
 
 > **Note**
-We recommend going into api documentation route after setting up your application, for you to see available routes and detailed documentation provided by this package.
+We recommend going into api documentation route after setting up and running your application. There, you will see the available routes and detailed documentation provided by this package.
 
 
 ## Tutorials

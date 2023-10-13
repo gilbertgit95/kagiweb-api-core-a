@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+import dotenv from 'dotenv'
+dotenv.config()
+
 import mongoose from '../packages/mongoose'
 import prompts from 'prompts'
 
