@@ -6,8 +6,7 @@ interface IUserRef {
     userId: string,
     readAccess: boolean,
     writeAccess: boolean,
-    isActive: boolean,
-    disabled: boolean
+    disabled?: boolean
 }
 
 interface IWorkspace {
@@ -15,8 +14,10 @@ interface IWorkspace {
     name: string,
     description?: string,
     usersRefs?: Types.DocumentArray<IUserRef & Document>,
+    isActive?: boolean,
+    disabled?: boolean,
     createdBy: string,
-    modifiedBy: string
+    modifiedBy: string,
 }
 
 // create schemas
@@ -25,7 +26,6 @@ const UserRefSchema = new Schema<IUserRef>({
     userId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
     writeAccess: { type: Boolean, default: true},
-    isActive: { type: Boolean, default: true},
     disabled: { type: Boolean, default: true}
 }, { timestamps: true })
 
@@ -34,6 +34,8 @@ const workspaceSchema = new Schema<IWorkspace>({
     name: { type: String, required: true },
     description: { type: String, required: false },
     usersRefs: { type: [UserRefSchema], required: false, default: [] },
+    isActive: { type: Boolean, default: true},
+    disabled: { type: Boolean, default: true},
     modifiedBy: { type: String },
     createdBy: { type: String },
 }, { timestamps: true })

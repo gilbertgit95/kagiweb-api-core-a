@@ -34,21 +34,23 @@ class WorkspaceController {
         return result
     }
 
-    public async saveWorkspace(name:string, description:string):Promise<IWorkspace | null> {
-        const doc:IWorkspace = {name, description}
+    public async saveWorkspace(userId:string, name:string, description:string):Promise<IWorkspace | null> {
+        const createdBy = userId
+        const modifiedBy = userId
+        const doc:IWorkspace = {name, description, createdBy, modifiedBy}
         const result = await this.cachedData.createItem<IWorkspace>(doc)
 
         return result
     }
 
-    public async updateWorkspace(id:string, name:string, level:number, description:string):Promise<IWorkspace | null> {
-        const doc:{name?:string, level?:number, description?:string} = {}
+    public async updateWorkspace(userId:string, workspaceId:string, name:string, level:number, description:string):Promise<IWorkspace | null> {
+        const doc:{name?:string, description?:string, modifiedBy?:string} = {}
 
         if (name) doc.name = name
-        if (level) doc.level = level
         if (description) doc.description = description
+        if (userId) doc.modifiedBy = userId
 
-        const result = await this.cachedData.updateItem<IWorkspace>(id, doc)
+        const result = await this.cachedData.updateItem<IWorkspace>(workspaceId, doc)
 
         return result
     }
