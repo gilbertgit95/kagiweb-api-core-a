@@ -101,5 +101,5 @@
   $ref: ./workspaces/workspacesSpecificPaths.yml
 /workspaces/{workspaceId}/users:
   $ref: ./workspaceUsers/workspaceUsersPaths.yml
-/workspaces/{workspaceId}/users/{userId}:
+/workspaces/{workspaceId}/users/{userRefId}:
   $ref: ./workspaceUsers/workspaceUsersSpecificPaths.yml

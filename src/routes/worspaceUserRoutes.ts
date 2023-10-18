@@ -4,59 +4,62 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import roleFeatureController from '../controllers/roleFeatureController'
-import { IFeatureRef } from '../dataSource/models/roleModel'
+import workspaceUserController from '../controllers/workspaceUserController'
+import { IUserRef } from '../dataSource/models/workspaceModel'
 
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'roles/:roleId/features', async (req, res) => {
-    const { roleId } = req.params
+router.get(env.RootApiEndpoint + 'workspaces/:workspaceId/users', async (req, res) => {
+    const { workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef[]>(async () => {
-        return await roleFeatureController.getFeatureRefs(roleId)
+    const [result, statusCode] = await ErrorHandler.execute<IUserRef[]>(async () => {
+        return await workspaceUserController.getFeatureRefs(workspaceId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'roles/:roleId/features', async (req, res) => {
-    const { roleId } = req.params
-    const { featureId } = req.body
+router.post(env.RootApiEndpoint + 'workspaces/:workspaceId/users', async (req:any, res) => {
+    const currUserId = req.user._id
+    const { workspaceId } = req.params
+    const { userId } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.saveFeatureRef(roleId, featureId)
+    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
+        return await workspaceUserController.saveFeatureRef(currUserId, workspaceId, userId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
-    const { roleId, featureRefId } = req.params
+router.get(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', async (req, res) => {
+    const { workspaceId, userRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.getFeatureRef(roleId, featureRefId)
+    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
+        return await workspaceUserController.getFeatureRef(workspaceId, userRefId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
-    const { roleId, featureRefId } = req.params
-    const { featureId } = req.body
+router.put(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', async (req:any, res) => {
+    const currUserId = req.user._id
+    const { workspaceId, userRefId } = req.params
+    const { userId } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.updateFeatureRef(roleId, featureRefId, featureId)
+    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
+        return await workspaceUserController.updateFeatureRef(currUserId, workspaceId, userRefId, userId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', async (req, res) => {
-    const { roleId, featureRefId } = req.params
+router.delete(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', async (req:any, res) => {
+    const currUserId = req.user._id
+    const { workspaceId, userRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef>(async () => {
-        return await roleFeatureController.deleteFeatureRef(roleId, featureRefId)
+    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
+        return await workspaceUserController.deleteFeatureRef(currUserId, workspaceId, userRefId)
     })
 
     return res.status(statusCode).send(result)

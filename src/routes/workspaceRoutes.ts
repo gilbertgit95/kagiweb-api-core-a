@@ -42,22 +42,25 @@ router.get(env.RootApiEndpoint + 'workspaces/:workspaceId', async (req, res) => 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'workspaces/:workspaceId', async (req, res) => {
+router.put(env.RootApiEndpoint + 'workspaces/:workspaceId', async (req:any, res) => {
+    const currUserId = req.user._id
     const { workspaceId } = req.params
     const { name, level, description } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-            return await workspaceController.updateWorkspace(workspaceId, name, level, description)
+
+            return await workspaceController.updateWorkspace(currUserId, workspaceId, name, level, description)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'workspaces/:workspaceId', async (req, res) => {
+router.delete(env.RootApiEndpoint + 'workspaces/:workspaceId', async (req:any, res) => {
+    const currUserId = req.user._id
     const { workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await workspaceController.deleteWorkspace(workspaceId)
+        return await workspaceController.deleteWorkspace(currUserId, workspaceId)
     })
 
     return res.status(statusCode).send(result)

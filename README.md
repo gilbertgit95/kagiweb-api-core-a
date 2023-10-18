@@ -6,7 +6,7 @@ This is an express middleware package containing features of a rest api. The mai
 
 
 ## Dependencies
-Please make sure that you already have software dependencies installed before you proceed: **Node** and **MongoDB**.
+Please make sure that you already have software dependencies installed before you proceed, the versions we use at the time of developement are: **Node v18.13.0** and **MongoDB 6.0.8**.
 
 | Softwares   | Languages                | Packages    |
 |-------------|--------------------------|-------------|
