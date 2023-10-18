@@ -93,3 +93,13 @@
   $ref: ./owner/ownerClientDeviceAccessTokensPaths.yml
 /owner/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
   $ref: ./owner/ownerClientDeviceAccessTokensSpecificPaths.yml
+
+# paths inside /workspaces
+/workspaces:
+  $ref: ./workspaces/workspacesPaths.yml
+/workspaces/{id}:
+  $ref: ./workspaces/workspacesSpecificPaths.yml
+/workspaces/{workspaceId}/users:
+  $ref: ./workspaceUsers/workspaceUsersPaths.yml
+/workspaces/{workspaceId}/users/{userId}:
+  $ref: ./workspaceUsers/workspaceUsersSpecificPaths.yml
