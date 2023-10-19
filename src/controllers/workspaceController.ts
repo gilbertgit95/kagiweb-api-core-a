@@ -2,6 +2,7 @@ import DataCache from '../utilities/dataCache'
 // import RoleModel, { IWorkspace, IWorkspaceQuery } from '../dataSource/models/roleModel'
 import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -34,30 +35,36 @@ class WorkspaceController {
         return result
     }
 
-    public async saveWorkspace(userId:string, name:string, description:string):Promise<IWorkspace | null> {
-        const createdBy = userId
-        const modifiedBy = userId
+    public async saveWorkspace(currUserId:string, name:string, description:string, isActive:string|boolean, disabled:string|boolean):Promise<IWorkspace | null> {
+        const createdBy = currUserId
+        const modifiedBy = currUserId
+
         const doc:IWorkspace = {name, description, createdBy, modifiedBy}
+        if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
+        if (DataCleaner.getBooleanData(disabled).isValid) doc.disabled = DataCleaner.getBooleanData(disabled).data
+
         const result = await this.cachedData.createItem<IWorkspace>(doc)
 
         return result
     }
 
-    public async updateWorkspace(userId:string, workspaceId:string, name:string, level:number, description:string):Promise<IWorkspace | null> {
-        const doc:{name?:string, description?:string, modifiedBy?:string} = {}
+    public async updateWorkspace(currUserId:string, workspaceId:string, name:string, description:string, isActive:string|boolean, disabled:string|boolean):Promise<IWorkspace | null> {
+        const doc:{name?:string, description?:string, modifiedBy?:string, isActive?:boolean, disabled?:boolean} = {}
 
         if (name) doc.name = name
         if (description) doc.description = description
-        if (userId) doc.modifiedBy = userId
+        if (currUserId) doc.modifiedBy = currUserId
+        if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
+        if (DataCleaner.getBooleanData(disabled).isValid) doc.disabled = DataCleaner.getBooleanData(disabled).data
 
         const result = await this.cachedData.updateItem<IWorkspace>(workspaceId, doc)
 
         return result
     }
 
-    public async deleteWorkspace(id:string):Promise<IWorkspace | null> {
+    public async deleteWorkspace(currUserId:string, workspaceId:string):Promise<IWorkspace | null> {
 
-        const result = await this.cachedData.deleteItem<IWorkspace>(id)
+        const result = await this.cachedData.deleteItem<IWorkspace>(workspaceId)
 
         return result
     }

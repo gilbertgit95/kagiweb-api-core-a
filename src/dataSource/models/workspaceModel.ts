@@ -5,8 +5,7 @@ interface IUserRef {
     _id?: string,
     userId: string,
     readAccess: boolean,
-    writeAccess: boolean,
-    disabled?: boolean
+    writeAccess: boolean
 }
 
 interface IWorkspace {
@@ -25,8 +24,7 @@ const UserRefSchema = new Schema<IUserRef>({
     _id: { type: String, default: () => randomUUID() },
     userId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
-    writeAccess: { type: Boolean, default: true},
-    disabled: { type: Boolean, default: true}
+    writeAccess: { type: Boolean, default: false}
 }, { timestamps: true })
 
 const workspaceSchema = new Schema<IWorkspace>({

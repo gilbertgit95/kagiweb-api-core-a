@@ -1,145 +1,141 @@
-import { IFeature } from '../dataSource/models/featureModel'
-import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
+import { IUser } from '../dataSource/models/userModel'
+import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
-import featureController from './featureController'
-import roleController from './roleController'
+import DataCleaner from '../utilities/dataCleaner'
+import userController from './userController'
+import workspaceController from './workspaceController'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class RoleFeaturesController {
-    public async getMappedFeatures(role:IRole):Promise<IFeature[]> {
-        const featuresMap = await featureController.getFeaturesMap()
-        let result:IFeature[] = []
+class WorkspaceUsersController {
 
-        if (role && role.featuresRefs) {
-            result = role.featuresRefs
-                .map(item => featuresMap[item.featureId])
-                .filter(item => Boolean(item))
-        }
-
-        return result
-    }
-
-    public hasFeature(role:IRole, featureId:string):boolean {
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return true
+    public hasUser(workspace:IWorkspace, userId:string):boolean {
+        if (workspace && workspace.usersRefs) {
+            for (let ref of workspace.usersRefs) {
+                if (ref.userId === userId) return true
             }
         }
 
         return false
     }
 
-    public getFeatureRefByFeaturId(role:IRole, featureId:string):IFeatureRef|null {
+    public getUserRefByUserId(workspace:IWorkspace, userId:string):IUserRef|null {
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref.featureId === featureId) return ref
+        if (workspace && workspace.usersRefs) {
+            for (let ref of workspace.usersRefs) {
+                if (ref.userId === userId) return ref
             }
         }
 
         return null
     }
 
-    public getFeatureRefByRefId(role:IRole, featureRefId:string):IFeatureRef|null {
+    public getUserRefByRefId(workspace:IWorkspace, userRefId:string):IUserRef|null {
 
-        if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
-                if (ref._id === featureRefId) return ref
+        if (workspace && workspace.usersRefs) {
+            for (let ref of workspace.usersRefs) {
+                if (ref._id === userRefId) return ref
             }
         }
 
         return null
     }
 
-    public async getFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw({code: 400})
+    public async getUserRef(workspaceId:string, userRefId:string):Promise<IUserRef|null> {
+        if (!(workspaceId && userRefId)) throw({code: 400})
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw({code: 404})
+        const workspace = await workspaceController.getWorkspace({_id: workspaceId})
+        if (!workspace) throw({code: 404})
 
-        const featureRef = this.getFeatureRefByRefId(role, featureRefId)
-        if (!featureRef) throw({code: 404})
+        const userRef = this.getUserRefByRefId(workspace, userRefId)
+        if (!userRef) throw({code: 404})
 
-        return featureRef
+        return userRef
     }
 
-    public async getFeatureRefs(roleId:string):Promise<IFeatureRef[]> {
-        let result:IFeatureRef[] = []
-        if (!roleId) throw({code: 400})
+    public async getUserRefs(workspaceId:string):Promise<IUserRef[]> {
+        let result:IUserRef[] = []
+        if (!workspaceId) throw({code: 400})
 
-        const role = await roleController.getRole({_id: roleId})
-        if (!role) throw({code: 404})
-        result = role!.featuresRefs? role!.featuresRefs: []
-        
-        if (role.absoluteAuthority) {
-            let allFeatures = await featureController.getAllFeatures()
-            result = allFeatures? allFeatures.map(item => ({
-                featureId: item._id!
-            })): []
-        }
+        const workspace = await workspaceController.getWorkspace({_id: workspaceId})
+        if (!workspace) throw({code: 404})
+        result = workspace!.usersRefs? workspace!.usersRefs: []
 
         return result
     }
 
-    public async saveFeatureRef(roleId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureId)) throw({code: 400})
+    public async saveUserRef(currUser:string, workspaceId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean):Promise<IUserRef|null> {
+        if (!(workspaceId && userId)) throw({code: 400})
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw({code: 404})
+        const workspace = await WorkspaceModel.findOne({_id: workspaceId})
+        if (!workspace) throw({code: 404})
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw({code: 404})
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw({code: 409})
+        const user = await userController.getUser({_id: userId})
+        // check if workspace existed on workspaces collection
+        if (!user) throw({code: 404})
 
-        role.featuresRefs!.push({featureId})
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
+        // check if the workspace to update is existing on the workspace workspaces refs
+        if (this.hasUser(workspace, userId)) throw({code: 409})
+        const doc:{userId?:string, readAccess?:boolean, writeAccess?:boolean} = {userId}
+        if (DataCleaner.getBooleanData(readAccess).isValid) doc.readAccess = DataCleaner.getBooleanData(readAccess).data
+        if (DataCleaner.getBooleanData(writeAccess).isValid) doc.writeAccess = DataCleaner.getBooleanData(writeAccess).data
 
-        return this.getFeatureRefByFeaturId(role, featureId)
+        workspace.usersRefs!.push(doc)
+        workspace.modifiedBy = currUser
+
+        await workspace.save()
+        await workspaceController.cachedData.removeCacheData(workspaceId)
+
+        return this.getUserRefByUserId(workspace, userId)
     }
 
-    public async updateFeatureRef(roleId:string, featureRefId:string, featureId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId && featureId)) throw({code: 400})
+    public async updateUserRef(currUser:string, workspaceId:string, userRefId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean):Promise<IUserRef|null> {
+        if (!(workspaceId && userRefId && userId)) throw({code: 400})
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw({code: 404})
-        if (!role.featuresRefs?.id(featureRefId)) throw({code: 404})
+        const workspace = await WorkspaceModel.findOne({_id: workspaceId})
+        if (!workspace) throw({code: 404})
+        if (!workspace.usersRefs?.id(userRefId)) throw({code: 404})
 
-        const featuresMap = await featureController.getFeaturesMap()
-        // check if feature existed on features collection
-        if (!featuresMap[featureId]) throw({code: 404})
+        const user = await userController.getUser({_id: userId})
+        // check if workspace existed on workspaces collection
+        if (!user) throw({code: 404})
 
-        // check if the feature to update is existing on the role features refs
-        if (this.hasFeature(role, featureId)) throw({code: 409})
+        // check if the workspace to update is existing on the workspace workspaces refs
+        if (this.hasUser(workspace, userId)) throw({code: 409})
 
-        role.featuresRefs!.id(featureRefId)!.featureId = featureId
-        await role.save()
-        await roleController.cachedData.removeCacheData(roleId)
+        workspace.usersRefs!.id(userRefId)!.userId = userId
+        if (DataCleaner.getBooleanData(readAccess).isValid) {
+            workspace.usersRefs!.id(userRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
+        }
+        if (DataCleaner.getBooleanData(writeAccess).isValid) {
+            workspace.usersRefs!.id(userRefId)!.writeAccess = DataCleaner.getBooleanData(writeAccess).data
+        }
+        workspace.modifiedBy = currUser
 
-        return role.featuresRefs!.id(featureRefId)
+        await workspace.save()
+        await workspaceController.cachedData.removeCacheData(workspaceId)
+
+        return workspace.usersRefs!.id(userRefId)
     }
 
-    public async deleteFeatureRef(roleId:string, featureRefId:string):Promise<IFeatureRef|null> {
-        if (!(roleId && featureRefId)) throw({code: 400})
+    public async deleteUserRef(currUserId:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
+        if (!(workspaceId && userRefId)) throw({code: 400})
 
-        const role = await RoleModel.findOne({_id: roleId})
-        if (!role) throw({code: 404})
+        const workspace = await WorkspaceModel.findOne({_id: workspaceId})
+        if (!workspace) throw({code: 404})
 
-        const featureRefData = role!.featuresRefs?.id(featureRefId)
-        if (featureRefData) {
-            role!.featuresRefs?.id(featureRefId)?.deleteOne()
-            await role.save()
-            await roleController.cachedData.removeCacheData(roleId)
+        const userRefData = workspace!.usersRefs?.id(userRefId)
+        if (userRefData) {
+            workspace!.usersRefs?.id(userRefId)?.deleteOne()
+            await workspace.save()
+            await workspaceController.cachedData.removeCacheData(workspaceId)
         } else {
             throw({code: 404})
         }
 
-        return featureRefData? featureRefData: null
+        return userRefData? userRefData: null
     }
 }
 
-export default new RoleFeaturesController()
+export default new WorkspaceUsersController()
