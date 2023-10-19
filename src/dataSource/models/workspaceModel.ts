@@ -32,8 +32,8 @@ const workspaceSchema = new Schema<IWorkspace>({
     name: { type: String, required: true },
     description: { type: String, required: false },
     usersRefs: { type: [UserRefSchema], required: false, default: [] },
-    isActive: { type: Boolean, default: true},
-    disabled: { type: Boolean, default: true},
+    isActive: { type: Boolean, default: false},
+    disabled: { type: Boolean, default: false},
     modifiedBy: { type: String },
     createdBy: { type: String },
 }, { timestamps: true })

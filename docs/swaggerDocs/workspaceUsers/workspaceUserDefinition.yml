@@ -1,10 +1,16 @@
 type: object
 required:
-  - featureId
+  - userId
 properties:
-  featureId:
+  userId:
     type: string
     format: uuid
+  readAccess:
+    type: boolean
+  writeAccess:
+    type: boolean
 
 example:
-  featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  userId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+  readAccess: true
+  writeAccess: false

@@ -21,7 +21,7 @@ router.get(env.RootApiEndpoint + 'workspaces/:workspaceId/users', async (req, re
 })
 
 router.post(env.RootApiEndpoint + 'workspaces/:workspaceId/users', async (req:any, res) => {
-    const currUserId = req.user._id
+    const currUserId = req?.userData?._id
     const { workspaceId } = req.params
     const { userId, readAccess, writeAccess } = req.body
 
@@ -43,7 +43,7 @@ router.get(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', asy
 })
 
 router.put(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', async (req:any, res) => {
-    const currUserId = req.user._id
+    const currUserId = req?.userData?._id
     const { workspaceId, userRefId } = req.params
     const { userId, readAccess, writeAccess } = req.body
 
@@ -55,7 +55,7 @@ router.put(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', asy
 })
 
 router.delete(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', async (req:any, res) => {
-    const currUserId = req.user._id
+    const currUserId = req?.userData?._id
     const { workspaceId, userRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {

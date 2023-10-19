@@ -8063,30 +8063,22 @@
                           "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
                           "createdAt": "2023-08-06T18:03:06.290Z",
                           "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "absoluteAuthority": false,
-                          "description": "Have access to most of the resources.",
+                          "name": "Default Workspace",
+                          "description": "test workspace.",
                           "featuresRefs": [
                             {
-                              "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                              "createdAt": "2023-08-06T18:03:06.290Z",
-                              "updatedAt": "2023-08-07T03:10:24.423Z",
-                              "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
-                            },
-                            {
-                              "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
-                              "createdAt": "2023-08-06T18:03:06.290Z",
-                              "updatedAt": "2023-08-07T03:10:24.423Z",
-                              "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
-                            },
-                            {
-                              "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                              "createdAt": "2023-08-06T18:03:06.290Z",
-                              "updatedAt": "2023-08-07T03:10:24.423Z",
-                              "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                              "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                              "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                              "createdAt": "2023-08-27T14:51:58.605Z",
+                              "updatedAt": "2023-08-31T14:34:32.748Z",
+                              "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                              "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                             }
                           ],
-                          "level": 1,
-                          "name": "Manager"
+                          "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "isActive": true,
+                          "disabled": false
                         }
                       ],
                       "page": 1,
@@ -8116,20 +8108,20 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "name",
-                  "level"
+                  "name"
                 ],
                 "properties": {
                   "name": {
-                    "type": "string",
-                    "description": "the name identifier for the Workspace"
-                  },
-                  "level": {
-                    "type": "string",
-                    "description": "this will be the indicator of the highest to lowest access writes of a Workspace"
+                    "type": "string"
                   },
                   "description": {
                     "type": "string"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  },
+                  "disabled": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -8161,30 +8153,22 @@
                       "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "absoluteAuthority": false,
-                      "description": "Have access to most of the resources.",
+                      "name": "Default Workspace",
+                      "description": "test workspace.",
                       "featuresRefs": [
                         {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                          "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                          "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "createdAt": "2023-08-27T14:51:58.605Z",
+                          "updatedAt": "2023-08-31T14:34:32.748Z",
+                          "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                         }
                       ],
-                      "level": 1,
-                      "name": "Manager"
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "isActive": true,
+                      "disabled": false
                     }
                   }
                 }
@@ -8241,30 +8225,22 @@
                       "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "absoluteAuthority": false,
-                      "description": "Have access to most of the resources.",
+                      "name": "Default Workspace",
+                      "description": "test workspace.",
                       "featuresRefs": [
                         {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                          "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                          "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "createdAt": "2023-08-27T14:51:58.605Z",
+                          "updatedAt": "2023-08-31T14:34:32.748Z",
+                          "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                         }
                       ],
-                      "level": 1,
-                      "name": "Manager"
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "isActive": true,
+                      "disabled": false
                     }
                   }
                 }
@@ -8301,15 +8277,16 @@
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string",
-                    "description": "the name identifier for the Workspace"
-                  },
-                  "level": {
-                    "type": "string",
-                    "description": "this will be the indicator of the highest to lowest access writes of a Workspace"
+                    "type": "string"
                   },
                   "description": {
                     "type": "string"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  },
+                  "disabled": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -8341,30 +8318,22 @@
                       "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "absoluteAuthority": false,
-                      "description": "Have access to most of the resources.",
+                      "name": "Default Workspace",
+                      "description": "test workspace.",
                       "featuresRefs": [
                         {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                          "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                          "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "createdAt": "2023-08-27T14:51:58.605Z",
+                          "updatedAt": "2023-08-31T14:34:32.748Z",
+                          "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                         }
                       ],
-                      "level": 1,
-                      "name": "Manager"
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "isActive": true,
+                      "disabled": false
                     }
                   }
                 }
@@ -8419,30 +8388,22 @@
                       "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "absoluteAuthority": false,
-                      "description": "Have access to most of the resources.",
+                      "name": "Default Workspace",
+                      "description": "test workspace.",
                       "featuresRefs": [
                         {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
-                        },
-                        {
-                          "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                          "createdAt": "2023-08-06T18:03:06.290Z",
-                          "updatedAt": "2023-08-07T03:10:24.423Z",
-                          "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                          "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                          "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "createdAt": "2023-08-27T14:51:58.605Z",
+                          "updatedAt": "2023-08-31T14:34:32.748Z",
+                          "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                          "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                         }
                       ],
-                      "level": 1,
-                      "name": "Manager"
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "isActive": true,
+                      "disabled": false
                     }
                   }
                 }
@@ -8515,22 +8476,12 @@
                     },
                     "example": [
                       {
-                        "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                        "createdAt": "2023-08-06T18:03:06.290Z",
-                        "updatedAt": "2023-08-07T03:10:24.423Z",
-                        "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
-                      },
-                      {
-                        "_id": "cbe58c3c-9d86-466c-a8b4-2b26c379f276",
-                        "createdAt": "2023-08-06T18:03:06.290Z",
-                        "updatedAt": "2023-08-07T03:10:24.423Z",
-                        "featureId": "03b2f7f8-119f-4a7b-a9ea-af732a90f56a"
-                      },
-                      {
-                        "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                        "createdAt": "2023-08-06T18:03:06.290Z",
-                        "updatedAt": "2023-08-07T03:10:24.423Z",
-                        "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                        "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                        "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                        "createdAt": "2023-08-27T14:51:58.605Z",
+                        "updatedAt": "2023-08-31T14:34:32.748Z",
+                        "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                        "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                       }
                     ]
                   }
@@ -8566,12 +8517,18 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "workspaceId"
+                  "userId"
                 ],
                 "properties": {
-                  "workspaceId": {
+                  "userId": {
                     "type": "string",
                     "format": "uuid"
+                  },
+                  "readAccess": {
+                    "type": "boolean"
+                  },
+                  "writeAccess": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -8600,10 +8557,12 @@
                       ]
                     },
                     "example": {
-                      "_id": "cbe58c3c-9d86-466c-a8b4-3b26c379f276",
-                      "createdAt": "2023-08-06T18:03:06.290Z",
-                      "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "featureId": "c2b6d920-a101-45e5-bbdb-0f6a07da1f33"
+                      "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                      "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "createdAt": "2023-08-27T14:51:58.605Z",
+                      "updatedAt": "2023-08-31T14:34:32.748Z",
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                     }
                   }
                 }
@@ -8665,10 +8624,12 @@
                       ]
                     },
                     "example": {
-                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                      "createdAt": "2023-08-06T18:03:06.290Z",
-                      "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                      "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                      "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "createdAt": "2023-08-27T14:51:58.605Z",
+                      "updatedAt": "2023-08-31T14:34:32.748Z",
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                     }
                   }
                 }
@@ -8712,12 +8673,18 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "featureId"
+                  "userId"
                 ],
                 "properties": {
-                  "featureId": {
+                  "userId": {
                     "type": "string",
                     "format": "uuid"
+                  },
+                  "readAccess": {
+                    "type": "boolean"
+                  },
+                  "writeAccess": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -8746,10 +8713,12 @@
                       ]
                     },
                     "example": {
-                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                      "createdAt": "2023-08-06T18:03:06.290Z",
-                      "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                      "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                      "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "createdAt": "2023-08-27T14:51:58.605Z",
+                      "updatedAt": "2023-08-31T14:34:32.748Z",
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                     }
                   }
                 }
@@ -8809,10 +8778,12 @@
                       ]
                     },
                     "example": {
-                      "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-                      "createdAt": "2023-08-06T18:03:06.290Z",
-                      "updatedAt": "2023-08-07T03:10:24.423Z",
-                      "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+                      "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
+                      "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "createdAt": "2023-08-27T14:51:58.605Z",
+                      "updatedAt": "2023-08-31T14:34:32.748Z",
+                      "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                      "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                     }
                   }
                 }
@@ -9426,28 +9397,17 @@
       "Workspace": {
         "type": "object",
         "required": [
-          "name",
-          "level"
+          "name"
         ],
         "properties": {
           "name": {
             "type": "string",
-            "description": "a unique human readable identifier for the role",
             "example": "master"
-          },
-          "level": {
-            "type": "string",
-            "description": "a unique number to give role a sense of power. The lower the number the greater the power.",
-            "example": 0
           },
           "description": {
             "type": "string"
           },
-          "absoluteAuthority": {
-            "type": "boolean",
-            "description": "if the value is true, all features are accessable to user with this role."
-          },
-          "featuresRefs": {
+          "usersRefs": {
             "type": "array",
             "items": {
               "type": "object",
@@ -9456,41 +9416,66 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/RoleFeature"
+                  "$ref": "#/components/schemas/WorkspaceUser"
                 }
               ]
-            },
-            "description": "if absoluteAuthority is false then the only accessable feature to user with this role are the features registered here."
+            }
+          },
+          "createdBy": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
           }
         },
         "example": {
-          "absoluteAuthority": false,
-          "description": "Have access to most of the resources.",
+          "name": "Default Workspace",
+          "description": "test workspace.",
           "featuresRefs": [
             {
               "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
-              "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+              "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
               "createdAt": "2023-08-27T14:51:58.605Z",
-              "updatedAt": "2023-08-31T14:34:32.748Z"
+              "updatedAt": "2023-08-31T14:34:32.748Z",
+              "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+              "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
             }
           ],
-          "level": 1,
-          "name": "Manager"
+          "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+          "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+          "isActive": true,
+          "disabled": false
         }
       },
       "WorkspaceUser": {
         "type": "object",
         "required": [
-          "featureId"
+          "userId"
         ],
         "properties": {
-          "featureId": {
+          "userId": {
             "type": "string",
             "format": "uuid"
+          },
+          "readAccess": {
+            "type": "boolean"
+          },
+          "writeAccess": {
+            "type": "boolean"
           }
         },
         "example": {
-          "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
+          "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+          "readAccess": true,
+          "writeAccess": false
         }
       },
       "Error": {

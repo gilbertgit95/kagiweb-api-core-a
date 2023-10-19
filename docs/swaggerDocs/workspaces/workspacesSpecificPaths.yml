@@ -29,23 +29,19 @@ get:
                 _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
                 createdAt: 2023-08-06T18:03:06.290Z
                 updatedAt: 2023-08-07T03:10:24.423Z
-                absoluteAuthority: false
-                description: Have access to most of the resources.
+                name: Default Workspace
+                description: test workspace.
                 featuresRefs:
-                  - _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
-                  - _id: cbe58c3c-9d86-466c-a8b4-2b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: 03b2f7f8-119f-4a7b-a9ea-af732a90f56a
-                  - _id: cbe58c3c-9d86-466c-a8b4-3b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
-                level: 1
-                name: Manager
+                    - _id: bea762cf-aceb-41ce-b6bf-410ad69ffc9d
+                      userId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                      createdAt: 2023-08-27T14:51:58.605+00:00
+                      updatedAt: 2023-08-31T14:34:32.748+00:00
+                      createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                      modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                isActive: true
+                disabled: false
 put:
   tags:
     - Workspace
@@ -69,12 +65,12 @@ put:
           properties:
             name:
               type: string
-              description: the name identifier for the Workspace
-            level:
-              type: string
-              description: this will be the indicator of the highest to lowest access writes of a Workspace
             description:
               type: string
+            isActive:
+              type: boolean
+            disabled:
+              type: boolean
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
@@ -91,23 +87,19 @@ put:
                 _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
                 createdAt: 2023-08-06T18:03:06.290Z
                 updatedAt: 2023-08-07T03:10:24.423Z
-                absoluteAuthority: false
-                description: Have access to most of the resources.
+                name: Default Workspace
+                description: test workspace.
                 featuresRefs:
-                  - _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
-                  - _id: cbe58c3c-9d86-466c-a8b4-2b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: 03b2f7f8-119f-4a7b-a9ea-af732a90f56a
-                  - _id: cbe58c3c-9d86-466c-a8b4-3b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
-                level: 1
-                name: Manager
+                    - _id: bea762cf-aceb-41ce-b6bf-410ad69ffc9d
+                      userId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                      createdAt: 2023-08-27T14:51:58.605+00:00
+                      updatedAt: 2023-08-31T14:34:32.748+00:00
+                      createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                      modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                isActive: true
+                disabled: false
 delete:
   tags:
     - Workspace
@@ -139,20 +131,16 @@ delete:
                 _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
                 createdAt: 2023-08-06T18:03:06.290Z
                 updatedAt: 2023-08-07T03:10:24.423Z
-                absoluteAuthority: false
-                description: Have access to most of the resources.
+                name: Default Workspace
+                description: test workspace.
                 featuresRefs:
-                  - _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
-                  - _id: cbe58c3c-9d86-466c-a8b4-2b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: 03b2f7f8-119f-4a7b-a9ea-af732a90f56a
-                  - _id: cbe58c3c-9d86-466c-a8b4-3b26c379f276
-                    createdAt: 2023-08-06T18:03:06.290Z
-                    updatedAt: 2023-08-07T03:10:24.423Z
-                    featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
-                level: 1
-                name: Manager
+                    - _id: bea762cf-aceb-41ce-b6bf-410ad69ffc9d
+                      userId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                      createdAt: 2023-08-27T14:51:58.605+00:00
+                      updatedAt: 2023-08-31T14:34:32.748+00:00
+                      createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                      modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                isActive: true
+                disabled: false
