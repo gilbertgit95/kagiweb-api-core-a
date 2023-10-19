@@ -1,5 +1,6 @@
 import DataCache from '../utilities/dataCache'
 // import RoleModel, { IWorkspace, IWorkspaceQuery } from '../dataSource/models/roleModel'
+import userController from './userController'
 import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import DataCleaner from '../utilities/dataCleaner'
@@ -35,12 +36,19 @@ class WorkspaceController {
         return result
     }
 
-    public async saveWorkspace(currUserId:string, name:string, description:string, isActive:string|boolean, disabled:string|boolean):Promise<IWorkspace | null> {
+    public async saveWorkspace(currUserId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
         const createdBy = currUserId
         const modifiedBy = currUserId
 
-        const doc:IWorkspace = {name, description, createdBy, modifiedBy}
-        if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
+        const doc:IWorkspace = {owner, name, description, createdBy, modifiedBy}
+
+        const user = await userController.getUser({_id: owner})
+        if (!user) throw({code: 400, message: 'Owner does not exist as a user'})
+
+        const ownerWorkspaces = await WorkspaceModel.find({ owner })
+        if (ownerWorkspaces.length === 0) doc.isActive = true
+
+        // if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
         if (DataCleaner.getBooleanData(disabled).isValid) doc.disabled = DataCleaner.getBooleanData(disabled).data
 
         const result = await this.cachedData.createItem<IWorkspace>(doc)
@@ -48,13 +56,18 @@ class WorkspaceController {
         return result
     }
 
-    public async updateWorkspace(currUserId:string, workspaceId:string, name:string, description:string, isActive:string|boolean, disabled:string|boolean):Promise<IWorkspace | null> {
-        const doc:{name?:string, description?:string, modifiedBy?:string, isActive?:boolean, disabled?:boolean} = {}
+    public async updateWorkspace(currUserId:string, workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
+        
+        const user = await userController.getUser({_id: owner})
+        if (!user) throw({code: 400, message: 'Owner does not exist as a user'})
 
+        const doc:{owner?:string, name?:string, description?:string, modifiedBy?:string, isActive?:boolean, disabled?:boolean} = {}
+
+        if (owner) doc.owner = owner
         if (name) doc.name = name
         if (description) doc.description = description
         if (currUserId) doc.modifiedBy = currUserId
-        if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
+        // if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
         if (DataCleaner.getBooleanData(disabled).isValid) doc.disabled = DataCleaner.getBooleanData(disabled).data
 
         const result = await this.cachedData.updateItem<IWorkspace>(workspaceId, doc)
@@ -62,7 +75,13 @@ class WorkspaceController {
         return result
     }
 
-    public async deleteWorkspace(currUserId:string, workspaceId:string):Promise<IWorkspace | null> {
+    public async deleteWorkspace(workspaceId:string):Promise<IWorkspace | null> {
+        const workspace = await WorkspaceModel.findOne({_id: workspaceId})
+        if (!workspace) throw({code: 404}) // Resource not found
+        if (workspace.isActive) throw({code: 403, message: 'Cannot delete if workspace tobe deleted is active'})
+
+        const ownerWorkspaces = await WorkspaceModel.find({owner: workspace.owner})
+        if (ownerWorkspaces.length === 1) throw({code: 403, message: 'Cannot delete if the owner has only 1 workspace'}) // Forbidden access to resources.
 
         const result = await this.cachedData.deleteItem<IWorkspace>(workspaceId)
 

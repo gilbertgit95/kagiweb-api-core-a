@@ -15,6 +15,7 @@ interface IWorkspace {
     usersRefs?: Types.DocumentArray<IUserRef & Document>,
     isActive?: boolean,
     disabled?: boolean,
+    owner: string,
     createdBy: string,
     modifiedBy: string,
 }
@@ -34,6 +35,7 @@ const workspaceSchema = new Schema<IWorkspace>({
     usersRefs: { type: [UserRefSchema], required: false, default: [] },
     isActive: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false},
+    owner: { type: String, required: true },
     modifiedBy: { type: String },
     createdBy: { type: String },
 }, { timestamps: true })

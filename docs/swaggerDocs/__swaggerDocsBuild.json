@@ -8018,6 +8018,13 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "in": "query",
+            "name": "owner",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -8108,17 +8115,19 @@
               "schema": {
                 "type": "object",
                 "required": [
+                  "owner",
                   "name"
                 ],
                 "properties": {
+                  "owner": {
+                    "format": "uuid",
+                    "type": "string"
+                  },
                   "name": {
                     "type": "string"
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "isActive": {
-                    "type": "boolean"
                   },
                   "disabled": {
                     "type": "boolean"
@@ -8276,14 +8285,15 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "owner": {
+                    "format": "uuid",
+                    "type": "string"
+                  },
                   "name": {
                     "type": "string"
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "isActive": {
-                    "type": "boolean"
                   },
                   "disabled": {
                     "type": "boolean"

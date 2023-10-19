@@ -14,6 +14,10 @@ get:
       name: pageSize
       schema:
         type: integer
+    - in: query
+      name: owner
+      schema:
+        type: string
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
@@ -48,6 +52,7 @@ get:
                           updatedAt: 2023-08-31T14:34:32.748+00:00
                           createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                           modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                    owner: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                     createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                     modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                     isActive: true
@@ -69,14 +74,16 @@ post:
         schema:
           type: object
           required:
+            - owner
             - name
           properties:
+            owner:
+              format: uuid
+              type: string
             name:
               type: string
             description:
               type: string
-            isActive:
-              type: boolean
             disabled:
               type: boolean
 
@@ -105,6 +112,7 @@ post:
                       updatedAt: 2023-08-31T14:34:32.748+00:00
                       createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                       modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
+                owner: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                 createdBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                 modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
                 isActive: true
