@@ -22,13 +22,6 @@ class WorkspaceController {
         return await this.cachedData.getItem(query._id)
     }
 
-    public async getAllWorkspaces():Promise<IWorkspace[]> {
-
-        const result = await this.cachedData.getAllItems<IWorkspace>()
-
-        return result
-    }
-
     public async getWorkspacesByPage(query:any, pageInfo: IPgeInfo):Promise<IListOutput<IWorkspace>> {
 
         const result = await this.request.getItemsByPage<IWorkspace>(query, {}, {}, pageInfo)
@@ -36,9 +29,9 @@ class WorkspaceController {
         return result
     }
 
-    public async saveWorkspace(currUserId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
-        const createdBy = currUserId
-        const modifiedBy = currUserId
+    public async saveWorkspace(currLoggedUser:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
+        const createdBy = currLoggedUser
+        const modifiedBy = currLoggedUser
 
         const doc:IWorkspace = {owner, name, description, createdBy, modifiedBy}
 
@@ -56,7 +49,7 @@ class WorkspaceController {
         return result
     }
 
-    public async updateWorkspace(currUserId:string, workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
+    public async updateWorkspace(currLoggedUser:string, workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
         
         const user = await userController.getUser({_id: owner})
         if (!user) throw({code: 400, message: 'Owner does not exist as a user'})
@@ -66,7 +59,7 @@ class WorkspaceController {
         if (owner) doc.owner = owner
         if (name) doc.name = name
         if (description) doc.description = description
-        if (currUserId) doc.modifiedBy = currUserId
+        if (currLoggedUser) doc.modifiedBy = currLoggedUser
         // if (DataCleaner.getBooleanData(isActive).isValid) doc.isActive = DataCleaner.getBooleanData(isActive).data
         if (DataCleaner.getBooleanData(disabled).isValid) doc.disabled = DataCleaner.getBooleanData(disabled).data
 
@@ -75,7 +68,7 @@ class WorkspaceController {
         return result
     }
 
-    public async deleteWorkspace(workspaceId:string):Promise<IWorkspace | null> {
+    public async deleteWorkspace(currLoggedUser:string, workspaceId:string):Promise<IWorkspace | null> {
         const workspace = await WorkspaceModel.findOne({_id: workspaceId})
         if (!workspace) throw({code: 404}) // Resource not found
         if (workspace.isActive) throw({code: 403, message: 'Cannot delete if workspace tobe deleted is active'})

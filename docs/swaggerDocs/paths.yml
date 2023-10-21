@@ -62,6 +62,16 @@
 /users/{userId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
   $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokensSpecificPaths.yml
 
+# paths inside /workspaces
+/workspaces:
+  $ref: ./workspaces/workspacesPaths.yml
+/workspaces/{id}:
+  $ref: ./workspaces/workspacesSpecificPaths.yml
+/workspaces/{workspaceId}/users:
+  $ref: ./workspaceUsers/workspaceUsersPaths.yml
+/workspaces/{workspaceId}/users/{userRefId}:
+  $ref: ./workspaceUsers/workspaceUsersSpecificPaths.yml
+
 # paths owner
 /owner:
   $ref: ./owner/ownerSpecificPaths.yml
@@ -93,13 +103,3 @@
   $ref: ./owner/ownerClientDeviceAccessTokensPaths.yml
 /owner/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
   $ref: ./owner/ownerClientDeviceAccessTokensSpecificPaths.yml
-
-# paths inside /workspaces
-/workspaces:
-  $ref: ./workspaces/workspacesPaths.yml
-/workspaces/{id}:
-  $ref: ./workspaces/workspacesSpecificPaths.yml
-/workspaces/{workspaceId}/users:
-  $ref: ./workspaceUsers/workspaceUsersPaths.yml
-/workspaces/{workspaceId}/users/{userRefId}:
-  $ref: ./workspaceUsers/workspaceUsersSpecificPaths.yml

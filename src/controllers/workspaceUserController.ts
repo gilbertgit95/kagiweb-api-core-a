@@ -42,7 +42,7 @@ class WorkspaceUsersController {
         return null
     }
 
-    public async getUserRef(workspaceId:string, userRefId:string):Promise<IUserRef|null> {
+    public async getUserRef(currLoggedUser:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
         if (!(workspaceId && userRefId)) throw({code: 400})
 
         const workspace = await workspaceController.getWorkspace({_id: workspaceId})
@@ -119,7 +119,7 @@ class WorkspaceUsersController {
         return workspace.usersRefs!.id(userRefId)
     }
 
-    public async deleteUserRef(currUserId:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
+    public async deleteUserRef(currLoggedUser:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
         if (!(workspaceId && userRefId)) throw({code: 400})
 
         const workspace = await WorkspaceModel.findOne({_id: workspaceId})
