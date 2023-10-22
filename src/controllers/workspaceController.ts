@@ -17,19 +17,19 @@ class WorkspaceController {
         this.request = new DataRequest(WorkspaceModel)
     }
 
-    public async getWorkspace(query:{_id:string}):Promise<IWorkspace|null> {
+    public async getWorkspace(isGlobal:boolean=false, currLoggedUser:string, query:{_id:string}):Promise<IWorkspace|null> {
         if (!query._id) return null
         return await this.cachedData.getItem(query._id)
     }
 
-    public async getWorkspacesByPage(query:any, pageInfo: IPgeInfo):Promise<IListOutput<IWorkspace>> {
+    public async getWorkspacesByPage(isGlobal:boolean=false, currLoggedUser:string, query:any, pageInfo: IPgeInfo):Promise<IListOutput<IWorkspace>> {
 
         const result = await this.request.getItemsByPage<IWorkspace>(query, {}, {}, pageInfo)
 
         return result
     }
 
-    public async saveWorkspace(currLoggedUser:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
+    public async saveWorkspace(isGlobal:boolean=false, currLoggedUser:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
         const createdBy = currLoggedUser
         const modifiedBy = currLoggedUser
 
@@ -49,7 +49,7 @@ class WorkspaceController {
         return result
     }
 
-    public async updateWorkspace(currLoggedUser:string, workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
+    public async updateWorkspace(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
         
         const user = await userController.getUser({_id: owner})
         if (!user) throw({code: 400, message: 'Owner does not exist as a user'})
@@ -68,7 +68,7 @@ class WorkspaceController {
         return result
     }
 
-    public async deleteWorkspace(currLoggedUser:string, workspaceId:string):Promise<IWorkspace | null> {
+    public async deleteWorkspace(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string):Promise<IWorkspace | null> {
         const workspace = await WorkspaceModel.findOne({_id: workspaceId})
         if (!workspace) throw({code: 404}) // Resource not found
         if (workspace.isActive) throw({code: 403, message: 'Cannot delete if workspace tobe deleted is active'})

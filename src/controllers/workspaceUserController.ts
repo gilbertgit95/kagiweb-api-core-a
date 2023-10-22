@@ -42,10 +42,10 @@ class WorkspaceUsersController {
         return null
     }
 
-    public async getUserRef(currLoggedUser:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
+    public async getUserRef(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
         if (!(workspaceId && userRefId)) throw({code: 400})
 
-        const workspace = await workspaceController.getWorkspace({_id: workspaceId})
+        const workspace = await workspaceController.getWorkspace(isGlobal, currLoggedUser, {_id: workspaceId})
         if (!workspace) throw({code: 404})
 
         const userRef = this.getUserRefByRefId(workspace, userRefId)
@@ -54,18 +54,18 @@ class WorkspaceUsersController {
         return userRef
     }
 
-    public async getUserRefs(workspaceId:string):Promise<IUserRef[]> {
+    public async getUserRefs(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string):Promise<IUserRef[]> {
         let result:IUserRef[] = []
         if (!workspaceId) throw({code: 400})
 
-        const workspace = await workspaceController.getWorkspace({_id: workspaceId})
+        const workspace = await workspaceController.getWorkspace(isGlobal, currLoggedUser, {_id: workspaceId})
         if (!workspace) throw({code: 404})
         result = workspace!.usersRefs? workspace!.usersRefs: []
 
         return result
     }
 
-    public async saveUserRef(currUser:string, workspaceId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean):Promise<IUserRef|null> {
+    public async saveUserRef(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean):Promise<IUserRef|null> {
         if (!(workspaceId && userId)) throw({code: 400})
 
         const workspace = await WorkspaceModel.findOne({_id: workspaceId})
@@ -82,7 +82,7 @@ class WorkspaceUsersController {
         if (DataCleaner.getBooleanData(writeAccess).isValid) doc.writeAccess = DataCleaner.getBooleanData(writeAccess).data
 
         workspace.usersRefs!.push(doc)
-        workspace.modifiedBy = currUser
+        workspace.modifiedBy = currLoggedUser
 
         await workspace.save()
         await workspaceController.cachedData.removeCacheData(workspaceId)
@@ -90,7 +90,7 @@ class WorkspaceUsersController {
         return this.getUserRefByUserId(workspace, userId)
     }
 
-    public async updateUserRef(currUser:string, workspaceId:string, userRefId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean):Promise<IUserRef|null> {
+    public async updateUserRef(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string, userRefId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean):Promise<IUserRef|null> {
         if (!(workspaceId && userRefId && userId)) throw({code: 400})
 
         const workspace = await WorkspaceModel.findOne({_id: workspaceId})
@@ -111,7 +111,7 @@ class WorkspaceUsersController {
         if (DataCleaner.getBooleanData(writeAccess).isValid) {
             workspace.usersRefs!.id(userRefId)!.writeAccess = DataCleaner.getBooleanData(writeAccess).data
         }
-        workspace.modifiedBy = currUser
+        workspace.modifiedBy = currLoggedUser
 
         await workspace.save()
         await workspaceController.cachedData.removeCacheData(workspaceId)
@@ -119,7 +119,7 @@ class WorkspaceUsersController {
         return workspace.usersRefs!.id(userRefId)
     }
 
-    public async deleteUserRef(currLoggedUser:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
+    public async deleteUserRef(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string, userRefId:string):Promise<IUserRef|null> {
         if (!(workspaceId && userRefId)) throw({code: 400})
 
         const workspace = await WorkspaceModel.findOne({_id: workspaceId})
