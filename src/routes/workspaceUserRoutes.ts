@@ -9,13 +9,14 @@ import { IUserRef } from '../dataSource/models/workspaceModel'
 
 const router = express.Router()
 const env = Config.getEnv()
+const isGlobal = true
 
 router.get(env.RootApiEndpoint + 'workspaces/:workspaceId/users', async (req:any, res) => {
     const currLoggedUser = req?.userData?._id
     const { workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IUserRef[]>(async () => {
-        return await workspaceUserController.getUserRefs(workspaceId)
+        return await workspaceUserController.getUserRefs(isGlobal, currLoggedUser, workspaceId)
     })
 
     return res.status(statusCode).send(result)
@@ -27,7 +28,7 @@ router.post(env.RootApiEndpoint + 'workspaces/:workspaceId/users', async (req:an
     const { userId, readAccess, writeAccess } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        return await workspaceUserController.saveUserRef(currLoggedUser, workspaceId, userId, readAccess, writeAccess)
+        return await workspaceUserController.saveUserRef(isGlobal, currLoggedUser, workspaceId, userId, readAccess, writeAccess)
     })
 
     return res.status(statusCode).send(result)
@@ -38,7 +39,7 @@ router.get(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', asy
     const { workspaceId, userRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        return await workspaceUserController.getUserRef(currLoggedUser, workspaceId, userRefId)
+        return await workspaceUserController.getUserRef(isGlobal, currLoggedUser, workspaceId, userRefId)
     })
 
     return res.status(statusCode).send(result)
@@ -50,7 +51,7 @@ router.put(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', asy
     const { userId, readAccess, writeAccess } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        return await workspaceUserController.updateUserRef(currLoggedUser, workspaceId, userRefId, userId, readAccess, writeAccess)
+        return await workspaceUserController.updateUserRef(isGlobal, currLoggedUser, workspaceId, userRefId, userId, readAccess, writeAccess)
     })
 
     return res.status(statusCode).send(result)
@@ -61,7 +62,7 @@ router.delete(env.RootApiEndpoint + 'workspaces/:workspaceId/users/:userRefId', 
     const { workspaceId, userRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        return await workspaceUserController.deleteUserRef(currLoggedUser, workspaceId, userRefId)
+        return await workspaceUserController.deleteUserRef(isGlobal, currLoggedUser, workspaceId, userRefId)
     })
 
     return res.status(statusCode).send(result)
