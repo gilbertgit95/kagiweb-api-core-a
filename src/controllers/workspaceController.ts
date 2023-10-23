@@ -19,11 +19,14 @@ class WorkspaceController {
 
     public async getWorkspace(isGlobal:boolean=false, currLoggedUser:string, query:{_id:string}):Promise<IWorkspace|null> {
         if (!query._id) return null
-        return await this.cachedData.getItem(query._id)
+        const resp = await this.cachedData.getItem<IWorkspace>(query._id)
+        // if not global, then check if the owner is the current logged user else throw error
+        return resp
     }
 
     public async getWorkspacesByPage(isGlobal:boolean=false, currLoggedUser:string, query:any, pageInfo: IPgeInfo):Promise<IListOutput<IWorkspace>> {
 
+        // if not global, then modify the query to only fetch current logged user as owner
         const result = await this.request.getItemsByPage<IWorkspace>(query, {}, {}, pageInfo)
 
         return result
@@ -36,6 +39,7 @@ class WorkspaceController {
         const doc:IWorkspace = {owner, name, description, createdBy, modifiedBy}
 
         const user = await userController.getUser({_id: owner})
+        // if not global, then check if the owner is the current logged user else 
         if (!user) throw({code: 400, message: 'Owner does not exist as a user'})
 
         const ownerWorkspaces = await WorkspaceModel.find({ owner })
