@@ -61,9 +61,7 @@ class WorkspaceController {
         if (!isGlobal) {
             // check if the current user is an owner or has read access to the workspace
             let workspace = await this.cachedData.getItem<IWorkspace>(workspaceId)
-            let userRef = workspace? await workspaceUserController.getUserRefByUserId(workspace, currLoggedUser): null
-
-            if (!((workspace && workspace.owner === currLoggedUser) || (userRef && userRef.readAccess))) {
+            if (!workspaceUserController.isCurrUserHasAccess(workspace, currLoggedUser, 'writeAccess')) {
                 throw({code: 403})
             }
         }

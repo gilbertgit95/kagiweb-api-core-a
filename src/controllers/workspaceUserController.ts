@@ -10,6 +10,14 @@ import workspaceController from './workspaceController'
 
 class WorkspaceUsersController {
 
+    public isCurrUserHasAccess(workspace:IWorkspace|null, userId:string, field:'writeAccess' | 'readAccess'):boolean {
+        if (!Boolean(workspace)) return false
+        if (workspace && workspace.owner === userId) return true
+        if (this.hasUser(workspace!, userId) && this.getUserRefByUserId(workspace!, userId)![field]) return true
+
+        return false
+    }
+
     public hasUser(workspace:IWorkspace, userId:string):boolean {
         if (workspace && workspace.usersRefs) {
             for (let ref of workspace.usersRefs) {
