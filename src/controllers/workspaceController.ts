@@ -1,6 +1,7 @@
 import DataCache from '../utilities/dataCache'
 // import RoleModel, { IWorkspace, IWorkspaceQuery } from '../dataSource/models/roleModel'
 import userController from './userController'
+import workspaceUserController from './workspaceUserController'
 import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import DataCleaner from '../utilities/dataCleaner'
@@ -21,11 +22,14 @@ class WorkspaceController {
         if (!query._id) return null
         const resp = await this.cachedData.getItem<IWorkspace>(query._id)
         // if not global, then check if the owner is the current logged user else throw error
+        if (!isGlobal && resp && resp.owner !== currLoggedUser) return null
+
         return resp
     }
 
     public async getWorkspacesByPage(isGlobal:boolean=false, currLoggedUser:string, query:any, pageInfo: IPgeInfo):Promise<IListOutput<IWorkspace>> {
 
+        if (!isGlobal) query.owner = currLoggedUser
         // if not global, then modify the query to only fetch current logged user as owner
         const result = await this.request.getItemsByPage<IWorkspace>(query, {}, {}, pageInfo)
 
@@ -54,7 +58,16 @@ class WorkspaceController {
     }
 
     public async updateWorkspace(isGlobal:boolean=false, currLoggedUser:string, workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean):Promise<IWorkspace | null> {
-        
+        if (!isGlobal) {
+            // check if the current user is an owner or has read access to the workspace
+            let workspace = await this.cachedData.getItem<IWorkspace>(workspaceId)
+            let userRef = workspace? await workspaceUserController.getUserRefByUserId(workspace, currLoggedUser): null
+
+            if (!((workspace && workspace.owner === currLoggedUser) || (userRef && userRef.readAccess))) {
+                throw({code: 403})
+            }
+        }
+
         const user = await userController.getUser({_id: owner})
         if (!user) throw({code: 400, message: 'Owner does not exist as a user'})
 
