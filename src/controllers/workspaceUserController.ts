@@ -50,11 +50,11 @@ class WorkspaceUsersController {
         return null
     }
 
-    public getUserRef(isAdmin:boolean=false, currLoggedUser:string):(workspaceId:string, userRefId:string) => Promise<IUserRef|null> {
+    public getUserRef(isGlobal:boolean=false, currLoggedUser:string):(workspaceId:string, userRefId:string) => Promise<IUserRef|null> {
         return async (workspaceId:string, userRefId:string) => {
             if (!(workspaceId && userRefId)) throw({code: 400})
 
-            const workspace = await workspaceController.getWorkspace(isAdmin, currLoggedUser)({_id: workspaceId})
+            const workspace = await workspaceController.getWorkspace(isGlobal, currLoggedUser)({_id: workspaceId})
             if (!workspace) throw({code: 404})
 
             const userRef = this.getUserRefByRefId(workspace, userRefId)
@@ -64,13 +64,13 @@ class WorkspaceUsersController {
         }
     }
 
-    public getUserRefs(isAdmin:boolean=false, currLoggedUser:string):(workspaceId:string) => Promise<IUserRef[]> {
+    public getUserRefs(isGlobal:boolean=false, currLoggedUser:string):(workspaceId:string) => Promise<IUserRef[]> {
 
         return async (workspaceId:string) => {
             let result:IUserRef[] = []
             if (!workspaceId) throw({code: 400})
 
-            const workspace = await workspaceController.getWorkspace(isAdmin, currLoggedUser)({_id: workspaceId})
+            const workspace = await workspaceController.getWorkspace(isGlobal, currLoggedUser)({_id: workspaceId})
             if (!workspace) throw({code: 404})
             result = workspace!.usersRefs? workspace!.usersRefs: []
 
@@ -78,7 +78,7 @@ class WorkspaceUsersController {
         }
     }
 
-    public saveUserRef(isAdmin:boolean=false, currLoggedUser:string):(workspaceId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean) => Promise<IUserRef|null> {
+    public saveUserRef(isGlobal:boolean=false, currLoggedUser:string):(workspaceId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean) => Promise<IUserRef|null> {
         
         return async (workspaceId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean) => {
             if (!(workspaceId && userId)) throw({code: 400})
@@ -106,7 +106,7 @@ class WorkspaceUsersController {
         }
     }
 
-    public updateUserRef(isAdmin:boolean=false, currLoggedUser:string):(workspaceId:string, userRefId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean) => Promise<IUserRef|null> {
+    public updateUserRef(isGlobal:boolean=false, currLoggedUser:string):(workspaceId:string, userRefId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean) => Promise<IUserRef|null> {
         
         return async (workspaceId:string, userRefId:string, userId:string, readAccess:string|boolean, writeAccess:string|boolean) => {
             if (!(workspaceId && userRefId && userId)) throw({code: 400})
@@ -138,7 +138,7 @@ class WorkspaceUsersController {
         }
     }
 
-    public deleteUserRef(isAdmin:boolean=false, currLoggedUser:string):(workspaceId:string, userRefId:string) => Promise<IUserRef|null> {
+    public deleteUserRef(isGlobal:boolean=false, currLoggedUser:string):(workspaceId:string, userRefId:string) => Promise<IUserRef|null> {
 
         return async (workspaceId:string, userRefId:string) => {
             if (!(workspaceId && userRefId)) throw({code: 400})
