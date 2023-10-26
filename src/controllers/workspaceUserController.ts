@@ -56,6 +56,7 @@ class WorkspaceUsersController {
 
             const workspace = await workspaceController.getWorkspace(isGlobal, currLoggedUser)({_id: workspaceId})
             if (!workspace) throw({code: 404})
+            if (!isGlobal && !this.isCurrUserHasAccess(workspace, currLoggedUser, 'readAccess')) throw({code: 403})
 
             const userRef = this.getUserRefByRefId(workspace, userRefId)
             if (!userRef) throw({code: 404})
@@ -72,6 +73,8 @@ class WorkspaceUsersController {
 
             const workspace = await workspaceController.getWorkspace(isGlobal, currLoggedUser)({_id: workspaceId})
             if (!workspace) throw({code: 404})
+            if (!isGlobal && !this.isCurrUserHasAccess(workspace, currLoggedUser, 'readAccess')) throw({code: 403})
+
             result = workspace!.usersRefs? workspace!.usersRefs: []
 
             return result
@@ -85,6 +88,7 @@ class WorkspaceUsersController {
 
             const workspace = await WorkspaceModel.findOne({_id: workspaceId})
             if (!workspace) throw({code: 404})
+            if (!isGlobal && !this.isCurrUserHasAccess(workspace, currLoggedUser, 'writeAccess')) throw({code: 403})
 
             const user = await userController.getUser({_id: userId})
             // check if workspace existed on workspaces collection
@@ -113,7 +117,8 @@ class WorkspaceUsersController {
 
             const workspace = await WorkspaceModel.findOne({_id: workspaceId})
             if (!workspace) throw({code: 404})
-            if (!workspace.usersRefs?.id(userRefId)) throw({code: 404})
+            if (!this.getUserRefByRefId(workspace, userRefId)) throw({code: 404})
+            if (!isGlobal && !this.isCurrUserHasAccess(workspace, currLoggedUser, 'writeAccess')) throw({code: 403})
 
             const user = await userController.getUser({_id: userId})
             // check if workspace existed on workspaces collection
@@ -145,6 +150,7 @@ class WorkspaceUsersController {
 
             const workspace = await WorkspaceModel.findOne({_id: workspaceId})
             if (!workspace) throw({code: 404})
+            if (!isGlobal && !this.isCurrUserHasAccess(workspace, currLoggedUser, 'writeAccess')) throw({code: 403})
 
             const userRefData = workspace!.usersRefs?.id(userRefId)
             if (userRefData) {
