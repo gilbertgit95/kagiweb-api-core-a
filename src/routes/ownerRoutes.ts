@@ -424,5 +424,8 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessT
     return res.status(statusCode).send(result)
 })
 
+// workspaces
+
+
 routerIdentity.addAppRouteObj(router)
 export default router

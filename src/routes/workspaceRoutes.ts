@@ -73,5 +73,17 @@ router.delete(env.RootApiEndpoint + 'workspaces/:workspaceId', async (req:any, r
     return res.status(statusCode).send(result)
 })
 
+router.post(env.RootApiEndpoint + 'workspaces/:workspaceId/select/owner/:owner', async (req:any, res) => {
+    const currLoggedUser = req?.userData?._id
+    const { workspaceId, owner } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspace[]>(async () => {
+        return await workspaceController.selectOwnerWorkspace(isGlobal, currLoggedUser)(workspaceId, owner)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+
 routerIdentity.addAppRouteObj(router)
 export default router

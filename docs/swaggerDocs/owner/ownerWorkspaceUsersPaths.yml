@@ -1,6 +1,6 @@
 get:
   tags:
-    - Workspace
+    - Owner
   summary: Get all the Workspace users
   description: Get all the Workspaces users
   produces:
@@ -43,7 +43,7 @@ get:
                   modifiedBy: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
 post:
   tags:
-    - Workspace
+    - Owner
   summary: Create a workspace user
   description: Create a workspace user
   produces:

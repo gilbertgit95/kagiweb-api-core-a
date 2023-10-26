@@ -10,6 +10,7 @@
     "express middleware",
     "typescript express"
   ],
+  "type": "commonjs",
   "main": "build/src/app.js",
   "types": "build/src/app.d.ts",
   "bin": {

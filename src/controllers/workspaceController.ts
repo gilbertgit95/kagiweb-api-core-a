@@ -126,6 +126,27 @@ class WorkspaceController {
         }
     }
 
+    public selectOwnerWorkspace(isGlobal:boolean=false, currLoggedUser:string):(workspaceId:string, owner:string) => Promise<IWorkspace[] | null> {
+        return async (workspaceId:string, owner:string) => {
+            if (!(workspaceId && owner)) throw({code: 400})
+            const userId = isGlobal? owner: currLoggedUser
+            const workspaces = await WorkspaceModel.find({owner: userId})
+
+            if (workspaces.some(item => item._id === workspaceId)) {
+                for (let ws of workspaces) {
+                    let status = Boolean(ws._id === workspaceId)
+                    ws.isActive = status
+                    await ws.save()
+                    this.cachedData.removeCacheData(ws._id)
+                }
+
+                return workspaces
+            }
+
+            return null
+        }
+    }
+
 }
 
 export default new WorkspaceController()
