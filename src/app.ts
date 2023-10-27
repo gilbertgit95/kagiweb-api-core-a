@@ -7,6 +7,7 @@ import Config from './utilities/config'
 
 import clientInfoProvider from './middlewares/clientInfoProviderMiddleware'
 import userInfoAndAccessProvider from './middlewares/userInfoAndAccessProviderMiddleware'
+import userActiveWorkspaceProvider from './middlewares/workspaceProviderMiddleware'
 
 import documentationRoutes from './routes/documentationRoutes'
 import authRoutes from './routes/authRoutes'
@@ -58,6 +59,7 @@ appHandler.addPublicRoute(authRoutes)
 // add middlewares for secured routes
 // routes for data api needs authorization
 appHandler.addPrivateMiddleware(userInfoAndAccessProvider)
+appHandler.addPrivateMiddleware(userActiveWorkspaceProvider)
 // private routes
 appHandler.addPrivateRoute(systemInfoRoutes)
 appHandler.addPrivateRoute(featureRoutes)

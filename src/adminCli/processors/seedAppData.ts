@@ -3,10 +3,12 @@ import prompts from 'prompts'
 import FeatureModel from '../../dataSource/models/featureModel'
 import RoleModel from '../../dataSource/models/roleModel'
 import UserModel from '../../dataSource/models/userModel'
+import WorkspaceModel from '../../dataSource/models/workspaceModel'
 
 import features from '../../dataSource/seeds/featuresSeed'
 import roles from '../../dataSource/seeds/rolesSeed'
 import users from '../../dataSource/seeds/usersSeed'
+import workspaces from '../../dataSource/seeds/workspaceSeed'
 
 class Seeder {
     public label = 'Seeder'
@@ -56,6 +58,18 @@ class Seeder {
             console.log(' - seeding users')
             // await UserModel.insertMany(users)
             await UserModel.bulkWrite(users.map(item => {
+                return {
+                    updateOne: {
+                        filter: { _id: item._id },
+                        update: item,
+                        upsert: true
+                    }
+                }
+            }))
+
+            // seed workspaces
+            console.log(' - seeding workspaces')
+            await WorkspaceModel.bulkWrite(workspaces.map(item => {
                 return {
                     updateOne: {
                         filter: { _id: item._id },

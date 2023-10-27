@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-import mongoose from 'mongoose'
 import express from 'express'
 
 import appHandler from './app'

@@ -12,7 +12,7 @@ import { IRole } from '../dataSource/models/roleModel'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'roles', async (req, res) => {
+router.get(env.RootApiEndpoint + 'roles', async (req:any, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     const [result, statusCode] = await ErrorHandler.execute<IListOutput<IRole>>(async () => {
