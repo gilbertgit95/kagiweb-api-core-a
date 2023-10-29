@@ -3,6 +3,12 @@
 import UAParser from 'ua-parser-js'
 
 class ClientInfoProvider {
+    /**
+     * this middleware provides user agent infor or user device info to request object
+     * @param req 
+     * @param res 
+     * @param next 
+     */
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         const userAgentString = req.headers['user-agent']
         const userAgent = new UAParser(userAgentString)

@@ -11,6 +11,14 @@ import Encryption from '../utilities/encryption'
 import { RouterIdentity } from '../utilities/routerIdentity'
 
 class UserInfoAndAccessProvider {
+    /**
+     * this midddleware inserts userdata into request object base on jwt data,
+     * then checks user access
+     * @param req 
+     * @param res 
+     * @param next 
+     * @returns 
+     */
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         req.userData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
