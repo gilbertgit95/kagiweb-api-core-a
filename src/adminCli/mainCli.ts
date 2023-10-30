@@ -31,6 +31,11 @@ interface IProcessor {
     execute: () => void
 }
 
+/**
+ * class that handles administrative processess
+ * use this process if you want to seed new setup application
+ * just be careful using this process because it can be distructive to your application
+ */
 class AdminCli {
     private processors:IProcessor[] = [
         generateKeys,
