@@ -1,6 +1,17 @@
 // import { Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
+import WorkspaceModel, { IWorkspace } from '../dataSource/models/workspaceModel'
+import NodeCache, {Options} from 'node-cache'
 import workspaceController from '../controllers/workspaceController'
+
+// contains the users active cache for faster fetching
+const userActiveWorkspaceCache = new NodeCache({ stdTTL: 30, checkperiod: 15 })
+const getUserActiveWorkspace = (userId:string):IWorkspace|null => {
+    return null
+}
+const setUserActiveWorkspace = (userId:string, workspace:IWorkspace):void => {
+
+}
 
 class ClientInfoProvider {
     /**
@@ -16,4 +27,9 @@ class ClientInfoProvider {
     }
 }
 
+export {
+    userActiveWorkspaceCache,
+    getUserActiveWorkspace,
+    setUserActiveWorkspace
+}
 export default ClientInfoProvider.middleware
