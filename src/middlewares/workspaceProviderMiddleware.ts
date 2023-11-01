@@ -6,11 +6,16 @@ import workspaceController from '../controllers/workspaceController'
 
 // contains the users active cache for faster fetching
 const userActiveWorkspaceCache = new NodeCache({ stdTTL: 30, checkperiod: 15 })
-const getUserActiveWorkspace = (userId:string):IWorkspace|null => {
-    return null
-}
-const setUserActiveWorkspace = (userId:string, workspace:IWorkspace):void => {
 
+const getUserActiveWorkspace = async (userId:string):Promise<IWorkspace|null> => {
+    let workspace:IWorkspace|null = userActiveWorkspaceCache.get(userId) || null
+    if (!workspace) workspace = await workspaceController.request.getItem({owner: userId, isActive: true})
+    // then return workspace
+    return workspace
+}
+
+const setUserActiveWorkspace = (userId:string, workspace:IWorkspace):void => {
+    userActiveWorkspaceCache.set(userId, workspace)
 }
 
 class ClientInfoProvider {
@@ -22,7 +27,7 @@ class ClientInfoProvider {
      */
     public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         const user = req.userData
-        req.userActiveWorkspace = await workspaceController.request.getItem({owner: user._id, isActive: true})
+        req.userActiveWorkspace = await getUserActiveWorkspace(user._id)
         next()
     }
 }
