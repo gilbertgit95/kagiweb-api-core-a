@@ -18,6 +18,10 @@ const setUserActiveWorkspace = (userId:string, workspace:IWorkspace):void => {
     userActiveWorkspaceCache.set(userId, workspace)
 }
 
+const removeUserActiveWorkspace = (userId:string):void => {
+    userActiveWorkspaceCache.del(userId)
+}
+
 class ClientInfoProvider {
     /**
      * this middleware inserts acitve workspace of a user into request object
@@ -35,6 +39,7 @@ class ClientInfoProvider {
 export {
     userActiveWorkspaceCache,
     getUserActiveWorkspace,
-    setUserActiveWorkspace
+    setUserActiveWorkspace,
+    removeUserActiveWorkspace
 }
 export default ClientInfoProvider.middleware
