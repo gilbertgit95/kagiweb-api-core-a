@@ -1,23 +1,42 @@
 // import { Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
-import WorkspaceModel, { IWorkspace } from '../dataSource/models/workspaceModel'
-import NodeCache, {Options} from 'node-cache'
+import { IWorkspace } from '../dataSource/models/workspaceModel'
+import NodeCache from 'node-cache'
 import workspaceController from '../controllers/workspaceController'
+// import { errorLogsColl, combinedLogsColl } from '../utilities/logger'
 
-// contains the users active cache for faster fetching
+// contains the users active workspace cache for faster fetching
 const userActiveWorkspaceCache = new NodeCache({ stdTTL: 30, checkperiod: 15 })
 
+/**
+ * this get workspace from cache or if not available, then it fetches from database
+ * then cached save it in cache
+ * @param userId 
+ * @returns 
+ */
 const getUserActiveWorkspace = async (userId:string):Promise<IWorkspace|null> => {
     let workspace:IWorkspace|null = userActiveWorkspaceCache.get(userId) || null
-    if (!workspace) workspace = await workspaceController.request.getItem({owner: userId, isActive: true})
+    if (!workspace) {
+        workspace = await workspaceController.request.getItem({owner: userId, isActive: true})
+        userActiveWorkspaceCache.set(userId, workspace)
+    }
     // then return workspace
     return workspace
 }
 
+/**
+ * this will save user active workspace to cache
+ * @param userId 
+ * @param workspace 
+ */
 const setUserActiveWorkspace = (userId:string, workspace:IWorkspace):void => {
     userActiveWorkspaceCache.set(userId, workspace)
 }
 
+/**
+ * this will remove user active workspace from cache
+ * @param userId 
+ */
 const removeUserActiveWorkspace = (userId:string):void => {
     userActiveWorkspaceCache.del(userId)
 }

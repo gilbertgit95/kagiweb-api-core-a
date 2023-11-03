@@ -4,7 +4,7 @@ import UAParser from 'ua-parser-js'
 
 class ClientInfoProvider {
     /**
-     * this middleware provides user agent infor or user device info to request object
+     * this middleware provides user agent info or user device info to request object
      * @param req 
      * @param res 
      * @param next 
