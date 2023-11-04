@@ -6,6 +6,10 @@ type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-a
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
+const contactInfoTypes = ['email-address', 'mobile-number', 'telephone', 'app-admin']
+const limitedTransactionTypes = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
+const userInfoTypes = ['string', 'number', 'date', 'boolean']
+
 // queries
 interface IUserQuery {
     _id?: string,
@@ -123,7 +127,11 @@ const PasswordSchema = new Schema<IPassword>({
 
 const ContactInfoSchema = new Schema<IContactInfo>({
     _id: { type: String, default: () => randomUUID()},
-    type: { type: String, require: true },
+    type: {
+        type: String,
+        require: true,
+        enum: contactInfoTypes
+    },
     value: { type: String, require: true },
     countryCode: { type: String, require: false },
     verified: { type: Boolean, require: false, default: false }
@@ -168,7 +176,11 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     _id: { type: String, default: () => randomUUID()},
     limit: { type: Number, require: true },
     attempts: { type: Number, require: false, default: 0 },
-    type: { type: String, require: false },
+    type: {
+        type: String,
+        require: false,
+        enum: limitedTransactionTypes
+    },
     key: { type: String, require: false, default: '' },
     value: { type: String, require: false, default: '' },
     expTime: { type: String, require: false, default: '' },
@@ -180,7 +192,11 @@ const UserInfoSchema = new Schema<IUserInfo>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
     value: { type: String, require: true },
-    type: { type: String, require: true }
+    type: {
+        type: String,
+        require: true,
+        enum: userInfoTypes
+    }
 }, { timestamps: true })
 
 const UserSchema = new Schema<IUser>({

@@ -6,6 +6,7 @@ import { randomUUID } from 'crypto'
 // - ui-route
 // - ui-module
 type TFeatureType = 'api-route' | 'ui-route' | 'ui-module'
+const featureTypes = ['api-route', 'ui-route', 'ui-module']
 
 // queries
 interface IFeatureQuery {
@@ -30,7 +31,11 @@ interface IFeature {
 const FeatureSchema = new Schema<IFeature>({
     _id: { type: String, default: () => randomUUID() },
     name: { type: String, required: false, default: '' },
-    type: { type: String, required: true },
+    type: {
+        type: String,
+        required: true,
+        enum: featureTypes,
+    },
     tags: { type: [String], required: false },
     value: { type: String, required: true },
     description: { type: String, required: false, default: '' }
