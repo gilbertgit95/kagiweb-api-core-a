@@ -176,6 +176,7 @@
     "mongoose": "^7.2.0",
     "multer": "^1.4.5-lts.1",
     "node-cache": "^5.1.2",
+    "phone": "^3.1.41",
     "prompts": "^2.4.2",
     "request-ip": "^3.3.0",
     "swagger-themes": "^1.2.30",
