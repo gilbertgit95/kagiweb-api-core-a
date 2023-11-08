@@ -5,7 +5,7 @@ import workspaceUserController from './workspaceUserController'
 import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import DataCleaner from '../utilities/dataCleaner'
-import { removeUserActiveWorkspace } from '../middlewares/workspaceProviderMiddleware'
+import { userActiveWorkspace } from '../middlewares/workspaceProviderMiddleware'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
