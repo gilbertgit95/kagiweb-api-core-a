@@ -1,5 +1,8 @@
 import { Schema, model, Document, Types } from '../../packages/mongoose'
 import { randomUUID } from 'crypto'
+import TextValidators from '../validators/textValidators'
+import NumberValidators from '../validators/numberValidators'
+import DateValidators from '../validators/dateValidators'
 
 // Roles:
 // - App Admin - has access to all
