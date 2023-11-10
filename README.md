@@ -284,6 +284,21 @@ export default NoteModel
 You can just create you own controllers, or just manage your data process inside the routes, its up to you to decide.
 
 
+### Additional data in Request Object
+On your routers Request Object there are useful data provided by this app.
+Depending on the level your router is, you can access this data on the request object.
+
+#### - userAgentInfo
+contains the information of the device that accessing an endpoint. This data is available from level 2 and above, please section "App Levels and Main Object"
+
+#### - userData
+contains the signed in user or account that accessing an endpoint. This data is available from level 4 and above, please section "App Levels and Main Object"
+
+#### - userActiveWorkspace
+the active workspace of a signed in user or account that accessing an endpoint. This data is available from level 4 and above, please section "App Levels and Main Object"
+
+
+
 ## References
 ### App Levels and Main Object
 The entire application Contains 5 main levels. Each level accepts router objects.
