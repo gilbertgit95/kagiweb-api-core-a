@@ -6,18 +6,14 @@
     "configurations": [
         {
             "type": "node",
-            "name": "Server",
             "request": "launch",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsnd",
-            "program": "src/app.ts",
-            "args": [
-                "--transpile-only",
-                "--respawn",
-                "--project",
-                "tsconfig.json",
-            ],
+            "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\build\\src\\index.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
             ]
         }
     ]

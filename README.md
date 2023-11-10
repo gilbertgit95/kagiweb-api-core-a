@@ -284,18 +284,36 @@ export default NoteModel
 You can just create you own controllers, or just manage your data process inside the routes, its up to you to decide.
 
 
-### Additional data in Request Object
-On your routers Request Object there are useful data provided by this app.
+### Request Object
+On your router Request Object there are useful data provided by this app.
 Depending on the level your router is, you can access this data on the request object.
 
-#### - userAgentInfo
-contains the information of the device that accessing an endpoint. This data is available from level 2 and above, please section "App Levels and Main Object"
+#### req.userAgentInfo
+contains the information of the device that accessing the endpoint. This data is available from level 2 and above, please see section `App Levels and Main Object`
 
-#### - userData
-contains the signed in user or account that accessing an endpoint. This data is available from level 4 and above, please section "App Levels and Main Object"
+#### req.userData
+contains the signed in user or account that accessing the endpoint. This data is available from level 4 and above, please see section `App Levels and Main Object`
 
-#### - userActiveWorkspace
-the active workspace of a signed in user or account that accessing an endpoint. This data is available from level 4 and above, please section "App Levels and Main Object"
+#### req.userActiveWorkspace
+the active workspace of a signed in user or account that accessing the endpoint. This data is available from level 4 and above, please see section `App Levels and Main Object`
+
+#### Example
+```ts
+import express from 'express'
+const router = express.Router()
+
+router.get('custom/route', async (req:any, res) => {
+  // only available if this route is registered in level 2 and above
+  console.log(req.userAgentInfo)
+
+  // only available if this route is registered in level 4 and above
+  console.log(req.userData)
+  console.log(req.userActiveWorkspace)
+
+  return res.send({})
+})
+...
+```
 
 
 
