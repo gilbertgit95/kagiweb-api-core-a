@@ -36,8 +36,7 @@ const FeatureSchema = new Schema<IFeature>({
     name: {
         type: String,
         required: false,
-        default: '',
-        validate: TextValidators.validateObjectName
+        default: ''
     },
     type: {
         type: String,

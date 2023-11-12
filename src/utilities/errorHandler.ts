@@ -53,8 +53,9 @@ class ErrorHandler {
             }
             // default error status
             else {
-                console.log('errorHandler', err)
-                result = { message: 'Internal server error.'}
+                const errMessage = err && err.message? err.message: 'Internal server error.'
+                // console.log('errorHandler', err)
+                result = { message: errMessage}
                 statusCode = 500
             }
         }
