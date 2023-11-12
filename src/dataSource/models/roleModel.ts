@@ -40,10 +40,27 @@ const FeatureRefSchema = new Schema<IFeatureRef>({
 
 const RoleSchema = new Schema<IRole>({
     _id: { type: String, default: () => randomUUID() },
-    name: { type: String, required: true, unique: true },
-    level: { type: Number, required: true, unique: true },
-    description: { type: String, required: false },
-    absoluteAuthority: { type: Boolean, required: false, default: false },
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: TextValidators.validateObjectName
+    },
+    level: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    description: {
+        type: String,
+        required: false,
+        validate: TextValidators.validateDescription
+    },
+    absoluteAuthority: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     featuresRefs: { type: [FeatureRefSchema], required: false, default: [] }
 }, { timestamps: true })
 

@@ -204,7 +204,12 @@ const UserInfoSchema = new Schema<IUserInfo>({
 
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID() },
-    username: { type: String, required: true, unique: true },
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: TextValidators.validateUsername
+    },
     rolesRefs: { type: [RoleRefSchema], required: true, },
     userInfos: { type: [UserInfoSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },

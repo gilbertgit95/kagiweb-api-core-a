@@ -1,5 +1,8 @@
 import { Schema, model, Document, Types } from '../../packages/mongoose'
 import { randomUUID } from 'crypto'
+import TextValidators from '../validators/textValidators'
+import NumberValidators from '../validators/numberValidators'
+import DateValidators from '../validators/dateValidators'
 
 interface IUserRef {
     _id?: string,
@@ -30,8 +33,16 @@ const UserRefSchema = new Schema<IUserRef>({
 
 const workspaceSchema = new Schema<IWorkspace>({
     _id: { type: String, default: () => randomUUID() },
-    name: { type: String, required: true },
-    description: { type: String, required: false },
+    name: {
+        type: String,
+        required: true,
+        validate: TextValidators.validateObjectName
+    },
+    description: {
+        type: String,
+        required: false,
+        validate: TextValidators.validateDescription
+    },
     usersRefs: { type: [UserRefSchema], required: false, default: [] },
     isActive: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false},

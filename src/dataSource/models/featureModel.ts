@@ -33,15 +33,31 @@ interface IFeature {
 // create schemas
 const FeatureSchema = new Schema<IFeature>({
     _id: { type: String, default: () => randomUUID() },
-    name: { type: String, required: false, default: '' },
+    name: {
+        type: String,
+        required: false,
+        default: '',
+        validate: TextValidators.validateObjectName
+    },
     type: {
         type: String,
         required: true,
         enum: featureTypes,
     },
-    tags: { type: [String], required: false },
-    value: { type: String, required: true },
-    description: { type: String, required: false, default: '' }
+    tags: {
+        type: [String],
+        required: false
+    },
+    value: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: false,
+        default: '',
+        validate: TextValidators.validateDescription
+    }
 }, { timestamps: true })
 
 // create model
