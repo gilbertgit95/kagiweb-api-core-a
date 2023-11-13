@@ -40,7 +40,7 @@ class AppHandler {
     }
 
     public async executePostDBConnectionProcess() {
-        for (let proc of this.postDBConnectionProcess) {
+        for (const proc of this.postDBConnectionProcess) {
             await proc()
         }
     }

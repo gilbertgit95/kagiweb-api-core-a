@@ -1,4 +1,4 @@
-import UAParser, {IResult}  from 'ua-parser-js'
+import UAParser  from 'ua-parser-js'
 import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -9,7 +9,7 @@ import DataCleaner from '../utilities/dataCleaner'
 class UserClientDeviceController {
     public hasClientDeviceUA(user:IUser, ua:string):boolean {
         if (user && user.clientDevices) {
-            for (let clientDevice of user.clientDevices) {
+            for (const clientDevice of user.clientDevices) {
                 if (clientDevice.ua === ua) return true
             }
         }
@@ -20,7 +20,7 @@ class UserClientDeviceController {
     public getClientDeviceByUA(user:IUser, ua:string):IClientDevice|null {
 
         if (user && user.clientDevices) {
-            for (let clientDevice of user.clientDevices) {
+            for (const clientDevice of user.clientDevices) {
                 if (clientDevice.ua === ua) return clientDevice
             }
         }
@@ -31,7 +31,7 @@ class UserClientDeviceController {
     public getClientDeviceById(user:IUser, clientDeviceId:string):IClientDevice|null {
 
         if (user && user.clientDevices) {
-            for (let clientDevice of user.clientDevices) {
+            for (const clientDevice of user.clientDevices) {
                 if (clientDevice._id === clientDeviceId) return clientDevice
             }
         }

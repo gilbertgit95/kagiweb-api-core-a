@@ -1,6 +1,5 @@
 import { IFeature } from '../dataSource/models/featureModel'
 import RoleModel, { IRole, IFeatureRef } from '../dataSource/models/roleModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import featureController from './featureController'
 import roleController from './roleController'
 // import Config from '../utilities/config'
@@ -23,7 +22,7 @@ class RoleFeaturesController {
 
     public hasFeature(role:IRole, featureId:string):boolean {
         if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
+            for (const ref of role.featuresRefs) {
                 if (ref.featureId === featureId) return true
             }
         }
@@ -34,7 +33,7 @@ class RoleFeaturesController {
     public getFeatureRefByFeaturId(role:IRole, featureId:string):IFeatureRef|null {
 
         if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
+            for (const ref of role.featuresRefs) {
                 if (ref.featureId === featureId) return ref
             }
         }
@@ -45,7 +44,7 @@ class RoleFeaturesController {
     public getFeatureRefByRefId(role:IRole, featureRefId:string):IFeatureRef|null {
 
         if (role && role.featuresRefs) {
-            for (let ref of role.featuresRefs) {
+            for (const ref of role.featuresRefs) {
                 if (ref._id === featureRefId) return ref
             }
         }
@@ -74,7 +73,7 @@ class RoleFeaturesController {
         result = role!.featuresRefs? role!.featuresRefs: []
         
         if (role.absoluteAuthority) {
-            let allFeatures = await featureController.getAllFeatures()
+            const allFeatures = await featureController.getAllFeatures()
             result = allFeatures? allFeatures.map(item => ({
                 featureId: item._id!
             })): []

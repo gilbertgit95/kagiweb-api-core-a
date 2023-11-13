@@ -21,7 +21,7 @@ class TextValidators {
     // validate description
     public static validateDescription = {
         validator: (value:string):boolean => {
-            return /^[\.\w\s@?$!]+$/.test(value)
+            return /^[.\w\s@?$!]+$/.test(value)
         },
         message: (props:{value:string}):string => `${props.value} is not a valid description!`
     }
@@ -29,7 +29,7 @@ class TextValidators {
     // validate email
     public static validateEmail = {
         validator: (value:string):boolean => {
-            return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)
+            return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)
         },
         message: (props:{value:string}):string => `${props.value} is not a valid email!`
     }

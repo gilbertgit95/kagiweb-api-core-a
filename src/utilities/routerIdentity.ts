@@ -1,11 +1,6 @@
-import express, { Router } from 'express'
-import mongoose from '../packages/mongoose'
 import UrlPattern from 'url-pattern'
 import expressListRoutes from 'express-list-routes'
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
-import Config, {Env} from '../utilities/config'
-
-const env = Config.getEnv()
 
 interface IRouteInfo {
     method: string,
@@ -17,10 +12,10 @@ class RouterIdentity {
 
     public static pathHasMatch(features:IFeature[], reqRoute:IRouteInfo):boolean {
         // loop trough all items in the features
-        for (let feature of features) {
-            let val = feature.value.split(' - ')
-            let method = val[0]
-            let path = val[1]
+        for (const feature of features) {
+            const val = feature.value.split(' - ')
+            const method = val[0]
+            const path = val[1]
 
             // if method does not match skip to the next item
             if (method !== reqRoute.method) continue

@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IUser, IClientDevice, IAccessToken, IContactInfo } from '../dataSource/models/userModel'
+import UserModel, { IClientDevice, IAccessToken, IContactInfo } from '../dataSource/models/userModel'
 import userController from './userController'
 import userLimitedTransactionController from './userLimitedTransactionController'
 import userClientDeviceController from './userClientDeviceController'
@@ -30,7 +30,7 @@ class AuthController {
 
 
         // if user exist then encrement the signin attempt
-        let signinLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'signin')
+        const signinLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'signin')
         // encrement attempt
         if (signinLT) {
             user.limitedTransactions.id(signinLT._id)!.attempts++
@@ -181,7 +181,7 @@ class AuthController {
     }
 
     public async signup(username:string, password:string, email?:string, phone?:string):Promise<{message:string}> {
-        let contactinfos:IContactInfo[] = []
+        const contactinfos:IContactInfo[] = []
         // check username and password exist
         if (!(username && password)) throw({code: 400}) // Incorrect content in the request
         // check username is unique
@@ -248,7 +248,7 @@ class AuthController {
 
     public async forgotPassword(username:string):Promise<{ username:string, message?:string } | null> {
         // fetch user using the username
-        let user = await UserModel.findOne({ username, verified: true })
+        const user = await UserModel.findOne({ username, verified: true })
         let result:{ username: string, message?: string } | null = null
 
 
@@ -303,7 +303,7 @@ class AuthController {
 
     public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
         // fetch user using the username
-        let user = await UserModel.findOne({ username, verified: true })
+        const user = await UserModel.findOne({ username, verified: true })
         let result:{ message: string } | null = null
 
 
@@ -336,7 +336,7 @@ class AuthController {
 
             // get current password
             const currPass = userPasswordController.getActivePassword(user)
-            if (!Boolean(currPass)) throw({code: 403}) // Forbidden access to resources.
+            if (!currPass) throw({code: 403}) // Forbidden access to resources.
             // deactivate the current used password
             user.passwords.id(currPass!._id)!.isActive = false
             // set the new password with active status

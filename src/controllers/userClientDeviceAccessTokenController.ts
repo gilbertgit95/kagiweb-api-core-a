@@ -1,5 +1,4 @@
-import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IUser, IClientDevice, IAccessToken } from '../dataSource/models/userModel'
+import UserModel, { IUser,IAccessToken } from '../dataSource/models/userModel'
 import userController from './userController'
 import userClientDeviceController from './userClientDeviceController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -13,7 +12,7 @@ class UserClientDeviceAccessTokenController {
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
-            for (let accessToken of clientDevice.accessTokens) {
+            for (const accessToken of clientDevice.accessTokens) {
                 // if the jwt we are looking matches with an entry
                 // in the client device access tokens, just return true
                 if (accessToken.jwt === jwt) return true
@@ -29,7 +28,7 @@ class UserClientDeviceAccessTokenController {
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
-            for (let accessToken of clientDevice.accessTokens) {
+            for (const accessToken of clientDevice.accessTokens) {
                 // if the jwt we are looking matches with an entry
                 // in the client device access tokens, just return true
                 if (accessToken.jwt === jwt) return accessToken
@@ -45,7 +44,7 @@ class UserClientDeviceAccessTokenController {
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
-            for (let accessToken of clientDevice.accessTokens) {
+            for (const accessToken of clientDevice.accessTokens) {
                 // if the jwt we are looking matches with an entry
                 // in the client device access tokens, just return true
                 if (accessToken._id === accessTokenId) return accessToken

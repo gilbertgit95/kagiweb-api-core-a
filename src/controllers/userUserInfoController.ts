@@ -7,7 +7,7 @@ import userController from './userController'
 class UserUserInfoController {
     public hasUserInfoKey(user:IUser, userInfoKey:string):boolean {
         if (user && user.userInfos) {
-            for (let info of user.userInfos) {
+            for (const info of user.userInfos) {
                 if (info.key === userInfoKey) return true
             }
         }
@@ -18,7 +18,7 @@ class UserUserInfoController {
     public getUserInfoByKey(user:IUser, userInfoKey:string):IUserInfo|null {
 
         if (user && user.userInfos) {
-            for (let info of user.userInfos) {
+            for (const info of user.userInfos) {
                 if (info.key === userInfoKey) return info
             }
         }
@@ -29,7 +29,7 @@ class UserUserInfoController {
     public getUserInfoById(user:IUser, userInfoId:string):IUserInfo|null {
 
         if (user && user.userInfos) {
-            for (let info of user.userInfos) {
+            for (const info of user.userInfos) {
                 if (info._id === userInfoId) return info
             }
         }

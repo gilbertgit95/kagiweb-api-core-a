@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IUser, ILimitedTransaction, TLimitedTransactionType } from '../dataSource/models/userModel'
+import UserModel, { IUser, ILimitedTransaction } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -29,13 +29,13 @@ class UserLimitedTransactionController {
 
         // checker if no lt exist
         // checker if lt is disabled
-        if (ltData && !Boolean(ltData.disabled)) {
+        if (ltData && ltData.disabled) {
             // checker if attempts is higher than the limit
             if (ltData.limit < ltData.attempts) return false
             // time expiration checker, current time versus time in expTime
             if (ltData.expTime) {
-                let currTime = moment()
-                let ltTime = moment(ltData.expTime)
+                const currTime = moment()
+                const ltTime = moment(ltData.expTime)
                 // check time is valid
                 // then check if curren time is greater than the ltTime
                 if (ltTime.isValid() && currTime.isAfter(ltTime)) return false
@@ -47,7 +47,7 @@ class UserLimitedTransactionController {
 
     public hasLimitedTransactionType(user:IUser, limitedTransactionType:string):boolean {
         if (user && user.limitedTransactions) {
-            for (let lt of user.limitedTransactions) {
+            for (const lt of user.limitedTransactions) {
                 if (lt.type === limitedTransactionType) return true
             }
         }
@@ -58,7 +58,7 @@ class UserLimitedTransactionController {
     public getLimitedTransactionByType(user:IUser, limitedTransactionType:string):ILimitedTransaction|null {
 
         if (user && user.limitedTransactions) {
-            for (let lt of user.limitedTransactions) {
+            for (const lt of user.limitedTransactions) {
                 if (lt.type === limitedTransactionType) return lt
             }
         }
@@ -69,7 +69,7 @@ class UserLimitedTransactionController {
     public getLimitedTransactionById(user:IUser, limitedTransactionId:string):ILimitedTransaction|null {
 
         if (user && user.limitedTransactions) {
-            for (let lt of user.limitedTransactions) {
+            for (const lt of user.limitedTransactions) {
                 if (lt._id === limitedTransactionId) return lt
             }
         }

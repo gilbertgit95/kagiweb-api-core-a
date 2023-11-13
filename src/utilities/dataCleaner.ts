@@ -1,6 +1,6 @@
 class DataCleaner {
     public static getBooleanData(data:boolean|string):{isValid:boolean, data:boolean} {
-        let result = {isValid:false, data:false}
+        const result = {isValid:false, data:false}
 
         if (typeof data != 'undefined') {
             if (typeof data === 'boolean') {

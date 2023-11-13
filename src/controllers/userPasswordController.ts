@@ -19,7 +19,7 @@ class UserPasswordController {
 
     public async hasPasswordEntry(user:IUser, password:string):Promise<boolean> {
         if (user && user.passwords) {
-            for (let pass of user.passwords) {
+            for (const pass of user.passwords) {
                 if (await Encryption.verifyTextToHash(password, pass.key)) return true
             }
         }
@@ -30,7 +30,7 @@ class UserPasswordController {
     public async getPasswordEntry(user:IUser, password:string):Promise<IPassword|null> {
 
         if (user && user.passwords) {
-            for (let pass of user.passwords) {
+            for (const pass of user.passwords) {
                 if (await Encryption.verifyTextToHash(password, pass.key)) return pass
             }
         }
@@ -41,7 +41,7 @@ class UserPasswordController {
     public getActivePassword(user:IUser):IPassword|null {
 
         if (user && user.passwords) {
-            for (let pass of user.passwords) {
+            for (const pass of user.passwords) {
                 if (pass.isActive) return pass
             }
         }
@@ -52,7 +52,7 @@ class UserPasswordController {
     public getPasswordById(user:IUser, passwordId:string):IPassword|null {
 
         if (user && user.passwords) {
-            for (let pass of user.passwords) {
+            for (const pass of user.passwords) {
                 if (pass._id === passwordId) return pass
             }
         }

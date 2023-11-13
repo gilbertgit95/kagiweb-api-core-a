@@ -2,10 +2,10 @@ import DataCache from '../utilities/dataCache'
 // import RoleModel, { IWorkspace, IWorkspaceQuery } from '../dataSource/models/roleModel'
 import userController from './userController'
 import workspaceUserController from './workspaceUserController'
-import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
+import WorkspaceModel, { IWorkspace } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import DataCleaner from '../utilities/dataCleaner'
-import { userActiveWorkspace } from '../middlewares/workspaceProviderMiddleware'
+// import { userActiveWorkspace } from '../middlewares/workspaceProviderMiddleware'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -84,7 +84,7 @@ class WorkspaceController {
         return async (workspaceId:string, owner:string, name:string, description:string, disabled:string|boolean) => {
             if (!isGlobal) {
                 // check if the current user is an owner or has read access to the workspace
-                let workspace = await this.cachedData.getItem<IWorkspace>(workspaceId)
+                const workspace = await this.cachedData.getItem<IWorkspace>(workspaceId)
                 if (!workspaceUserController.isCurrUserHasAccess(workspace, currLoggedUser, 'writeAccess')) {
                     throw({code: 403})
                 }
@@ -134,8 +134,8 @@ class WorkspaceController {
             const workspaces = await WorkspaceModel.find({owner: userId})
 
             if (workspaces.some(item => item._id === workspaceId)) {
-                for (let ws of workspaces) {
-                    let status = Boolean(ws._id === workspaceId)
+                for (const ws of workspaces) {
+                    const status = Boolean(ws._id === workspaceId)
                     ws.isActive = status
                     await ws.save()
                     this.cachedData.removeCacheData(ws._id)

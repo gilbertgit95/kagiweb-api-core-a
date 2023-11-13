@@ -1,7 +1,5 @@
-import moment from 'moment'
-
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser, IUserQuery, IClientDevice, ILimitedTransaction, IAccessToken, IPassword } from '../dataSource/models/userModel'
+import UserModel, { IUser, IUserQuery } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 

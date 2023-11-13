@@ -1,6 +1,4 @@
-import { IUser } from '../dataSource/models/userModel'
 import WorkspaceModel, { IWorkspace, IUserRef } from '../dataSource/models/workspaceModel'
-import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import DataCleaner from '../utilities/dataCleaner'
 import userController from './userController'
 import workspaceController from './workspaceController'
@@ -11,7 +9,7 @@ import workspaceController from './workspaceController'
 class WorkspaceUsersController {
 
     public isCurrUserHasAccess(workspace:IWorkspace|null, userId:string, field:'writeAccess' | 'readAccess'):boolean {
-        if (!Boolean(workspace)) return false
+        if (!workspace) return false
         if (workspace && workspace.owner === userId) return true
         if (this.hasUser(workspace!, userId) && this.getUserRefByUserId(workspace!, userId)![field]) return true
 
@@ -20,7 +18,7 @@ class WorkspaceUsersController {
 
     public hasUser(workspace:IWorkspace, userId:string):boolean {
         if (workspace && workspace.usersRefs) {
-            for (let ref of workspace.usersRefs) {
+            for (const ref of workspace.usersRefs) {
                 if (ref.userId === userId) return true
             }
         }
@@ -31,7 +29,7 @@ class WorkspaceUsersController {
     public getUserRefByUserId(workspace:IWorkspace, userId:string):IUserRef|null {
 
         if (workspace && workspace.usersRefs) {
-            for (let ref of workspace.usersRefs) {
+            for (const ref of workspace.usersRefs) {
                 if (ref.userId === userId) return ref
             }
         }
@@ -42,7 +40,7 @@ class WorkspaceUsersController {
     public getUserRefByRefId(workspace:IWorkspace, userRefId:string):IUserRef|null {
 
         if (workspace && workspace.usersRefs) {
-            for (let ref of workspace.usersRefs) {
+            for (const ref of workspace.usersRefs) {
                 if (ref._id === userRefId) return ref
             }
         }

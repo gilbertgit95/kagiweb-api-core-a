@@ -9,7 +9,7 @@ import DataCleaner from '../utilities/dataCleaner'
 class UserRoleController {
     public getActiveRoleRef(user:IUser):IRoleRef|null {
         if (user && user.rolesRefs) {
-            for (let ref of user.rolesRefs) {
+            for (const ref of user.rolesRefs) {
                 if (ref.isActive) return ref
             }
         }
@@ -19,7 +19,7 @@ class UserRoleController {
 
     public hasRole(user:IUser, roleId:string):boolean {
         if (user && user.rolesRefs) {
-            for (let ref of user.rolesRefs) {
+            for (const ref of user.rolesRefs) {
                 if (ref.roleId === roleId) return true
             }
         }
@@ -30,7 +30,7 @@ class UserRoleController {
     public getRoleRefByRoleId(user:IUser, roleId:string):IRoleRef|null {
 
         if (user && user.rolesRefs) {
-            for (let ref of user.rolesRefs) {
+            for (const ref of user.rolesRefs) {
                 if (ref.roleId === roleId) return ref
             }
         }
@@ -41,7 +41,7 @@ class UserRoleController {
     public async getRoleRefByRefId(user:IUser, roleRefId:string):Promise<IRoleRef|null> {
 
         if (user && user.rolesRefs) {
-            for (let ref of user.rolesRefs) {
+            for (const ref of user.rolesRefs) {
                 if (ref._id === roleRefId) return ref
             }
         }
