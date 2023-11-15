@@ -1,4 +1,4 @@
-import express from 'express'
+import express, {Request} from 'express'
 
 // import RoleModel, { IRole } from '../dataSource/models/roleModel'
 import ErrorHandler from '../utilities/errorHandler'
@@ -12,7 +12,7 @@ import { IRole } from '../dataSource/models/roleModel'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'roles', async (req:any, res) => {
+router.get(env.RootApiEndpoint + 'roles', async (req:Request, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     const [result, statusCode] = await ErrorHandler.execute<IListOutput<IRole>>(async () => {

@@ -1,17 +1,24 @@
-interface ICallbackParams {
-    type: string,
+import { TLimitedTransactionType, IUser}  from '../dataSource/models/userModel'
+import { IWorkspace } from '../dataSource/models/workspaceModel'
+
+interface IUserInfoParams {
+    user: IUser | undefined,
+    workspace: IWorkspace | undefined,
+}
+interface ILTCallbackParams {
+    type: TLimitedTransactionType,
     value: string,
     message: string
 }
 
 class AppCallbacks {
-    private limitedTransactionCallback = () => {}
-    public setLimitedTransactionCallback() {
+    public limitedTransactionCallback() {
 
     }
 }
 
 export {
-    ICallbackParams
+    IUserInfoParams,
+    ILTCallbackParams
 }
 export default new AppCallbacks

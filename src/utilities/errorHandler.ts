@@ -10,7 +10,7 @@ class ErrorHandler {
         try {
             result = await process()
             statusCode = 200
-        } catch (err:any) {
+        } catch (err:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             const errCode = err?.code
             const errMessage = err?.message
 

@@ -62,6 +62,7 @@ class WorkspaceController {
             const createdBy = currLoggedUser
             const modifiedBy = currLoggedUser
 
+            console.log('isGlobal: ', isGlobal)
             const doc:IWorkspace = {owner, name, description, createdBy, modifiedBy}
 
             const user = await userController.getUser({_id: owner})

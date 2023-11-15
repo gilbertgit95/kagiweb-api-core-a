@@ -86,7 +86,7 @@ class UserClientDeviceAccessTokenController {
         // check if the user info to save is existing on the user user infos
         if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw({code: 409})
 
-        const doc:any = {jwt}
+        const doc:{jwt?:string, ipAddress?:string, disabled?:boolean} = {jwt}
         if (ipAddress) doc.ipAddress = ipAddress
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data

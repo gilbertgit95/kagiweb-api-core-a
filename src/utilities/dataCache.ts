@@ -67,7 +67,7 @@ class DataCache {
      * @param {object} doc - is a document object tobe created
      * @returns {Promise<object | null>} the object created or null if it was not able to create the document
      */
-    public async createItem<Type extends {_id?:string}>(doc:any):Promise<Type | null> {
+    public async createItem<Type extends {_id?:string}>(doc:any):Promise<Type | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
         let result = null
 
         if (doc) {
@@ -88,7 +88,7 @@ class DataCache {
      * @param {object} doc - fields tobe updated
      * @returns {Promise<object|null>} the updated document
      */
-    public async updateItem<Type extends {_id?:string}>(id:string, doc:any):Promise<Type | null> {
+    public async updateItem<Type extends {_id?:string}>(id:string, doc:any):Promise<Type | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
         let result = null
 
         if (id) {

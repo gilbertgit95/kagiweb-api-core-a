@@ -1,4 +1,4 @@
-import express from 'express'
+import express, {Request} from 'express'
 
 // import {AppRequest } from '../utilities/globalTypes'
 import Config from '../utilities/config'
@@ -24,7 +24,7 @@ router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // esl
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'signinOTP', async (req:any, res:any) => {
+router.post(env.RootApiEndpoint + 'signinOTP', async (req:any, res) => {
     const ua = req.userAgentInfo? req.userAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username, key } = req.body

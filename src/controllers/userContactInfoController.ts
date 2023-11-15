@@ -70,7 +70,7 @@ class UserContactInfoController {
         // check if the contact info to save is existing on the user contact infos
         if (this.hasContactInfoValue(user, value)) throw({code: 409})
 
-        const doc:any = {type, value}
+        const doc:{type:TContactInfoType, value:string, countryCode?:string, verified?:boolean} = {type, value}
         if (countryCode) doc.countryCode = countryCode
         if (DataCleaner.getBooleanData(verified).isValid) {
             doc.verified = DataCleaner.getBooleanData(verified).data

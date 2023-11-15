@@ -1,4 +1,4 @@
-import UAParser  from 'ua-parser-js'
+import UAParser, {IResult}  from 'ua-parser-js'
 import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -70,7 +70,7 @@ class UserClientDeviceController {
 
         // check if the user info to save is existing on the user user infos
         if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
-        const doc:any = (new UAParser(ua)).getResult()
+        const doc:IResult & {disabled?:boolean} = (new UAParser(ua)).getResult()
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }

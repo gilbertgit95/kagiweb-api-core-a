@@ -224,15 +224,15 @@ UserSchema.methods.toJSON = function() {
     const obj =  this.toObject()
 
     // clean passwords
-    obj.passwords = obj.passwords.map((item:any) => {
+    obj.passwords = obj.passwords.map((item:{key:string}) => {
         item.key = 'NA'
         return item
     })
 
     // clean client devices access tokens
-    obj.clientDevices = obj.clientDevices.map((item:any) => {
+    obj.clientDevices = obj.clientDevices.map((item:{accessTokens:{jwt:string}[]}) => {
         if (item.accessTokens) {
-            item.accessTokens = item.accessTokens?.map((at:any) => {
+            item.accessTokens = item.accessTokens?.map((at:{jwt:string}) => {
                 at.jwt = 'NA'
                 return at
             })

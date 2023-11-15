@@ -39,7 +39,8 @@ class UserController {
         const defautPass = '123456'
 
         const doc:any = {
-            username, rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
+            username,
+            rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             userInfo: [],
             passwords: [
                 { key: await Encryption.hashText(defautPass), isActive: true }
@@ -66,7 +67,7 @@ class UserController {
     }
 
     public async updateUser(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
-        const doc:any = {}
+        const doc:{username?:string, disabled?:boolean, verified?:boolean} = {}
         if (!id) return null
         // check username if already existing
         if (typeof username === 'string' && username.length) {
