@@ -38,7 +38,7 @@ class UserController {
         const role = await roleController.getLeastRole()
         const defautPass = '123456'
 
-        const doc:any = {
+        const doc:any = { // eslint-disable-line @typescript-eslint/no-explicit-any
             username,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             userInfo: [],

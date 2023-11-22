@@ -1,4 +1,4 @@
-// import { Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
 import UAParser from 'ua-parser-js'
 
@@ -9,7 +9,7 @@ class ClientInfoProvider {
      * @param res 
      * @param next 
      */
-    public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public static async middleware(req:Request, res:Response, next:NextFunction) {
         const userAgentString = req.headers['user-agent']
         const userAgent = new UAParser(userAgentString)
 

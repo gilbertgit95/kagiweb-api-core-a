@@ -8,10 +8,11 @@ class AppHandler {
     private route:Router = express.Router()
     private publicStaticRoutes:Router[] = []
 
-    private publicMiddlewares:any[] = []
+    private publicMiddlewares:any[] = [] // eslint-disable-line @typescript-eslint/no-explicit-any
+
     private publicRoutes:Router[] = []
 
-    private privateMiddlewares:any[] = []
+    private privateMiddlewares:any[] = [] // eslint-disable-line @typescript-eslint/no-explicit-any
     private privateRoutes:Router[] = []
 
     private postDBConnectionProcess:(() => void)[] = []
@@ -20,14 +21,14 @@ class AppHandler {
         this.publicStaticRoutes.push(route)
     }
 
-    public addPublicMiddleware(route:any) {
+    public addPublicMiddleware(route:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         this.publicMiddlewares.push(route)
     }
     public addPublicRoute(route:Router) {
         this.publicRoutes.push(route)
     }
 
-    public addPrivateMiddleware(route:any) {
+    public addPrivateMiddleware(route:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         this.privateMiddlewares.push(route)
     }
 

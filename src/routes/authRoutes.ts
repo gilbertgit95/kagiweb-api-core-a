@@ -10,7 +10,7 @@ import authController from '../controllers/authController'
 const env = Config.getEnv()
 const router = express.Router()
 
-router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
     const ua = req.userAgentInfo? req.userAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username, password } = req.body
@@ -18,18 +18,20 @@ router.post(env.RootApiEndpoint + 'signin', async (req:any, res:any) => { // esl
     // console.log(username, password)
 
     const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
+        if (!ua || !ip) return null
         return await authController.signin(username, password, ua, ip)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'signinOTP', async (req:any, res) => {
+router.post(env.RootApiEndpoint + 'signinOTP', async (req:Request, res) => {
     const ua = req.userAgentInfo? req.userAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username, key } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
+        if (!ua || !ip) return null
         return await authController.signinOTP(username, key, ua, ip)
     })
 
@@ -68,11 +70,12 @@ router.put(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'signout', async (req:any, res:any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+router.delete(env.RootApiEndpoint + 'signout', async (req:Request, res) => {
     const authorization = req.headers.authorization
     const ua = req.userAgentInfo? req.userAgentInfo: null
     
     const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
+        if (!ua || !authorization) return null
         return await authController.signout(ua, authorization)
     })
 

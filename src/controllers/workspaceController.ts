@@ -31,9 +31,9 @@ class WorkspaceController {
         }
     }
 
-    public getWorkspacesByPage(isGlobal:boolean=false, currLoggedUser:string):(query:any, pageInfo: IPgeInfo) => Promise<IListOutput<IWorkspace>> {
+    public getWorkspacesByPage(isGlobal:boolean=false, currLoggedUser:string):(query:any, pageInfo: IPgeInfo) => Promise<IListOutput<IWorkspace>> { // eslint-disable-line @typescript-eslint/no-explicit-any
 
-        return async (query:any, pageInfo: IPgeInfo) => {
+        return async (query:any, pageInfo: IPgeInfo) => { // eslint-disable-line @typescript-eslint/no-explicit-any
             if (!isGlobal) {
                 query = {
                     ...query,

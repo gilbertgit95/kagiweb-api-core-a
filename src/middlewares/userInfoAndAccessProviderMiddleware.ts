@@ -1,4 +1,4 @@
-// import { Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
 import { IUser } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
@@ -19,7 +19,7 @@ class UserInfoAndAccessProvider {
      * @param next 
      * @returns 
      */
-    public static async middleware(req:any, res:any, next:any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public static async middleware(req:Request, res:Response, next:NextFunction) {
         req.userData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
             const accessToken = req.headers.authorization
