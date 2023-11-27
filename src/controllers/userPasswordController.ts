@@ -1,4 +1,5 @@
 import UserModel, { IUser, IPassword } from '../dataSource/models/userModel'
+import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import Encryption from '../utilities/encryption'
 // import Config from '../utilities/config'
@@ -68,7 +69,6 @@ class UserPasswordController {
 
         const password = this.getPasswordById(user, passwordId)
         if (!password) throw({code: 404})
-        // password.key = 'NA'
         return password
     }
 
@@ -79,11 +79,6 @@ class UserPasswordController {
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
         result = user!.passwords? user!.passwords: []
-        // remove key values
-        // result = result.map(item => {
-        //     item.key = 'NA'
-        //     return item
-        // })
 
         return result
     }
@@ -97,12 +92,21 @@ class UserPasswordController {
         const currPass = await this.getActivePassword(user)
         if (!currPass) throw({code: 404})
 
-        // verify if the current password provided is true
+        // verify if the current password is provided
         if (!(currPass.key && await Encryption.verifyTextToHash(currentPassword, currPass.key))) {
             throw({code: 404})
         }
 
-        // check if the contact info to save is existing on the user contact infos
+        // check the new password pattern
+        if (!TextValidators.validatePassword.validator(newPassword)) {
+            throw({
+                code: 400,
+                message: TextValidators.validatePassword.message({value: newPassword})
+            })
+        }
+
+
+        // check if the password to save is existing on the user passwords
         if (await this.hasPasswordEntry(user, newPassword)) throw({code: 409})
 
         // save the new password with active status

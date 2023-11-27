@@ -1,5 +1,6 @@
 import moment from 'moment'
 import UserModel, { IClientDevice, IAccessToken, IContactInfo } from '../dataSource/models/userModel'
+import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import userLimitedTransactionController from './userLimitedTransactionController'
 import userClientDeviceController from './userClientDeviceController'
@@ -333,6 +334,14 @@ class AuthController {
         if (userLimitedTransactionController.verifyLimitedTransactionKey(user, 'reset-pass', key)) {
             // check password exist before
             if (await userPasswordController.hasPasswordEntry(user, newPassword)) throw({code: 400}) // Incorrect content in the request.
+
+            // check the new password pattern
+            if (!TextValidators.validatePassword.validator(newPassword)) {
+                throw({
+                    code: 400,
+                    message: TextValidators.validatePassword.message({value: newPassword})
+                })
+            }
 
             // get current password
             const currPass = userPasswordController.getActivePassword(user)

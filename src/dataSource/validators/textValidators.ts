@@ -53,7 +53,7 @@ class TextValidators {
     // validate username
     public static validateUsername = {
         validator: (value:string):boolean => {
-            return /^[A-Za-z][A-Za-z0-9_]{7,29}$/.test(value)
+            return /^[A-Za-z0-9_]{6,29}$/.test(value)
         },
         message: (props:{value:string}):string => `${props.value} is not a valid username.`
     }
