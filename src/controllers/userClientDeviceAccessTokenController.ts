@@ -2,11 +2,37 @@ import UserModel, { IUser,IAccessToken } from '../dataSource/models/userModel'
 import userController from './userController'
 import userClientDeviceController from './userClientDeviceController'
 import DataCleaner from '../utilities/dataCleaner'
+import Encryption from '../utilities/encryption'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
 class UserClientDeviceAccessTokenController {
+    public async removeInvalidTokens(userId:string) {
+        const user = await UserModel.findOne({_id: userId})
+        if (user) {
+            let hasChanges = false
+            // loop to every client devices
+            for (const cDevice of user.clientDevices) {
+                const clientDeviceId = cDevice._id
+                // then loop to all client device token
+                for (const token of cDevice.accessTokens? cDevice.accessTokens: []) {
+                    const accessTokenId = token._id
+                    // check token validity
+                    if (!await Encryption.verifyJWT(token.jwt)) {
+                        hasChanges = true
+                        user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
+                    }
+                }
+            }
+
+            if (hasChanges) {
+                await user.save()
+                await userController.cachedData.removeCacheData(userId)
+            }
+        }
+    }
+
     public hasClientDeviceAccessTokenJWT(user:IUser, clientDeviceId:string, jwt:string):boolean {
         const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
         // check client devices if existed

@@ -100,6 +100,9 @@ class AuthController {
             await user!.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
 
+            // clean invalid access tokens
+            await userClientDeviceAccessTokenController.removeInvalidTokens(user._id)
+
         // Throw error when user does not exist or password not match
         } else {
             throw({code: 404}) // Resource not found
@@ -174,6 +177,9 @@ class AuthController {
 
             await user!.save()
             userController.cachedData.removeCacheData(user!._id) // remove cache
+
+            // clean invalid access tokens
+            await userClientDeviceAccessTokenController.removeInvalidTokens(user!._id)
         } else {
             throw({code: 403}) // Forbidden access to resources.
         }
@@ -399,6 +405,7 @@ class AuthController {
             user.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()
             await user.save()
             userController.cachedData.removeCacheData(user._id)
+
             resp = { message: 'Successfull signout' }
 
         } else {
