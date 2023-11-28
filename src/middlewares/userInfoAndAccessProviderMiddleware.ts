@@ -3,6 +3,8 @@ import { Request, Response, NextFunction } from 'express'
 import { IUser } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
 import userRoleController from '../controllers/userRoleController'
+import userClientDeviceController from '../controllers/userClientDeviceController'
+import userClientDeviceAccessTokenController from '../controllers/userClientDeviceAccessTokenController'
 import roleFeatureController from '../controllers/roleFeatureController'
 import roleController from '../controllers/roleController'
 // import { errorLogsColl, combinedLogsColl } from '../utilities/logger'
@@ -22,6 +24,7 @@ class UserInfoAndAccessProvider {
     public static async middleware(req:Request, res:Response, next:NextFunction) {
         req.userData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
+            const userAgentInfo = req.userAgentInfo
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
             const token = accessToken && accessToken.split(' ')[1]? accessToken.split(' ')[1]: null
@@ -38,7 +41,14 @@ class UserInfoAndAccessProvider {
             }
 
             // if user has been fetched, proceed to user access regulation process
-            if (user) {
+            if (user && userAgentInfo) {
+                // check the user devices if the acces token existed
+                const clientDevice = userClientDeviceController.getClientDeviceByUA(user, userAgentInfo.ua)
+                if ( clientDevice && clientDevice._id &&
+                    !userClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(user, clientDevice._id, token)) {
+                    throw({code: 401})
+                }
+
                 // get active user roleref
                 const activeRoleRef = userRoleController.getActiveRoleRef(user)
                 if (!(activeRoleRef && activeRoleRef.roleId)) throw({code: 404})
