@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import Config from './utilities/config'
+import appEvents from './utilities/appEvents'
 
 import clientInfoProvider from './middlewares/clientInfoProviderMiddleware'
 import userInfoAndAccessProvider from './middlewares/userInfoAndAccessProviderMiddleware'
@@ -77,4 +78,7 @@ appHandler.addPrivateRoute(ownerRoutes)
 appHandler.addPrivateRoute(workspaceRoutes)
 appHandler.addPrivateRoute(workspaceUserRoutes)
 
+export {
+    appEvents
+}
 export default appHandler

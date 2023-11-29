@@ -7,9 +7,9 @@ import userClientDeviceController from './userClientDeviceController'
 import userPasswordController from './userPasswordController'
 import userClientDeviceAccessTokenController from './userClientDeviceAccessTokenController'
 import roleController from './roleController'
-
 import Encryption from '../utilities/encryption'
 import Config from '../utilities/config'
+import appEvents from '../utilities/appEvents'
 
 const env = Config.getEnv()
 
@@ -67,7 +67,8 @@ class AuthController {
                 await user.save()
                 // send otp to the LT recepient
                 // ---------------->>>>> code here for sending opt key
-                console.log(`System is sending signin otp to ${ signinLT!.recipient } with key ${ otpKey }`)
+                // console.log(`System is sending signin otp to ${ signinLT!.recipient } with key ${ otpKey }`)
+                appEvents.emit('send-signin-otp', otpSigninLT)
                 // then return userId
                 return { username: user.username, message: 'OTP has been sent' }
             }
@@ -249,6 +250,7 @@ class AuthController {
         await UserModel.create(user)
 
         // send notification to recepient here ------>>>>
+        appEvents.emit('signup', '')
 
         return { message: 'User successfully created' }
     }
@@ -298,7 +300,9 @@ class AuthController {
             await user.save()
             // send otp to the LT recepient
             // ---------------->>>>> code here for sending opt key
-            console.log(`System is sending password reset otp to ${ forgotPassLT!.recipient } with key ${ otpKey }`)
+            // console.log(`System is sending password reset otp to ${ forgotPassLT!.recipient } with key ${ otpKey }`)
+            appEvents.emit('send-reset-password-otp', forgotPassLT)
+            
             // then return userId
             result = { username: user.username, message: 'Password reset key has been sent' }
         } else {

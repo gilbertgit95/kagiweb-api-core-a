@@ -18,9 +18,6 @@ class AppHandler {
 
     private postDBConnectionProcess:(() => void)[] = []
 
-    // app events
-    public appEvents = appEvents
-
     public addPublicStaticRoute(route:Router) {
         this.publicStaticRoutes.push(route)
     }
