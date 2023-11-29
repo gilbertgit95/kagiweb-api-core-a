@@ -286,37 +286,9 @@ export default NoteModel
 You can just create you own controllers, or just manage your data process inside the routes, its up to you to decide.
 
 
-### Request Object
-On your router Request Object there are useful data provided by this app.
-Depending on the level your router is, you can access this data on the request object.
-
-| Field Name         | Description                                                                                 |
-|--------------------|---------------------------------------------------------------------------------------------|
-| `userAgentInfo`    | the device that accessing the endpoint. This data is available from level 2 and above       |
-| `userData`         | the account that accessing the endpoint. This data is available from level 4 and above      |
-| `userActiveWorkspace` | the active workspace of the account that accessing the endpoint. This data is available from level 4 and above |
-
-#### Example
-```ts
-import express from 'express'
-const router = express.Router()
-
-router.get('custom/route', async (req:any, res) => {
-  // only available if this route is registered in level 2 and above
-  console.log(req.userAgentInfo)
-
-  // only available if this route is registered in level 4 and above
-  console.log(req.userData)
-  console.log(req.userActiveWorkspace)
-
-  return res.send({})
-})
-...
-```
-
 
 ### AppEvents
-The application emits important events that you could listen. Example is when you request to forgot-password endpoint in which the app will generate otp key that will be use to reset the password. This will let do anything you want with the otp like sending it through email or phone.
+The application emits important events that you could listen. Example is when you request to forgot-password endpoint in which the app will generate otp key that will be use to reset the password. This will let you do anything you want with the otp such as sending it through email or phone.
 
 #### This are the events that this apps emits
 
@@ -355,6 +327,36 @@ appEvents.on('otp-reset-pass', (data) => {
 
 // start express application
 app.listen(env.AppPort, async () => {
+...
+```
+
+
+
+### Request Object
+On your router Request Object there are useful data provided by this app.
+Depending on the level your router is, you can access this data on the request object.
+
+| Field Name         | Description                                                                                 |
+|--------------------|---------------------------------------------------------------------------------------------|
+| `userAgentInfo`    | the device that accessing the endpoint. This data is available from level 2 and above       |
+| `userData`         | the account that accessing the endpoint. This data is available from level 4 and above      |
+| `userActiveWorkspace` | the active workspace of the account that accessing the endpoint. This data is available from level 4 and above |
+
+#### Example
+```ts
+import express from 'express'
+const router = express.Router()
+
+router.get('custom/route', async (req:any, res) => {
+  // only available if this route is registered in level 2 and above
+  console.log(req.userAgentInfo)
+
+  // only available if this route is registered in level 4 and above
+  console.log(req.userData)
+  console.log(req.userActiveWorkspace)
+
+  return res.send({})
+})
 ...
 ```
 
