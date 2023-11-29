@@ -66,9 +66,13 @@ class AuthController {
 
                 await user.save()
                 // send otp to the LT recepient
-                // ---------------->>>>> code here for sending opt key
                 // console.log(`System is sending signin otp to ${ signinLT!.recipient } with key ${ otpKey }`)
-                appEvents.emit('send-signin-otp', otpSigninLT)
+                appEvents.emit('otp-signin', {
+                    device: device,
+                    ip: ip,
+                    user: user,
+                    lt: otpSigninLT
+                })
                 // then return userId
                 return { username: user.username, message: 'OTP has been sent' }
             }
@@ -195,8 +199,6 @@ class AuthController {
         // check username is unique
         if (await UserModel.findOne({username})) throw({code: 409}) // conflict
 
-        // validate data here ---->>>
-
         // if email exist check if email is unique then generate email contact info
         if (email) {
             if (await UserModel.findOne({'contactInfos.value': email})) {
@@ -249,13 +251,18 @@ class AuthController {
         // then save the new user to the database
         await UserModel.create(user)
 
-        // send notification to recepient here ------>>>>
-        appEvents.emit('signup', '')
+        // emit event to verify account !soon todo
+        // appEvents.emit('verify-account', {
+        //     device: device,
+        //     ip: ip,
+        //     user: user,
+        //     lt: forgotPassLT
+        // })
 
         return { message: 'User successfully created' }
     }
 
-    public async forgotPassword(username:string):Promise<{ username:string, message?:string } | null> {
+    public async forgotPassword(username:string, device:IClientDevice, ip:string):Promise<{ username:string, message?:string } | null> {
         // fetch user using the username
         const user = await UserModel.findOne({ username, verified: true })
         let result:{ username: string, message?: string } | null = null
@@ -273,7 +280,7 @@ class AuthController {
         // if user exist then encrement the forgot-pass attempt
         const resetPassLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'reset-pass')
         const forgotPassLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'forgot-pass')
-        // encrement attempt
+        // encrement attempts
         if (forgotPassLT) {
             user!.limitedTransactions.id(forgotPassLT._id)!.attempts++
             await user.save()
@@ -299,9 +306,13 @@ class AuthController {
             user.limitedTransactions.id(resetPassLT._id)!.expTime = expTime
             await user.save()
             // send otp to the LT recepient
-            // ---------------->>>>> code here for sending opt key
-            // console.log(`System is sending password reset otp to ${ forgotPassLT!.recipient } with key ${ otpKey }`)
-            appEvents.emit('send-reset-password-otp', forgotPassLT)
+            // console.log(`System is sending password reset otp to ${ resetPassLT!.recipient } with key ${ otpKey }`)
+            appEvents.emit('otp-reset-pass', {
+                device: device,
+                ip: ip,
+                user: user,
+                lt: resetPassLT
+            })
             
             // then return userId
             result = { username: user.username, message: 'Password reset key has been sent' }

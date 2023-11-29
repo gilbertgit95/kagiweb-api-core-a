@@ -8,15 +8,14 @@ const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
-// bind app callbacks
-appEvents.on('send-signin-otp', (data) => {
-    console.log('send-signin-otp has been emited!: ', data)
+// bind app event callbacks
+appEvents.on('otp-signin', (data) => {
+    console.log('otp-signin has been emited!: ', data)
+    console.log(`otp-signin ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
 })
-appEvents.on('send-reset-password-otp', (data) => {
-    console.log('send-reset-password-otp has been emited!: ', data)
-})
-appEvents.on('signup', (data) => {
-    console.log('signup has been emited!: ', data)
+appEvents.on('otp-reset-pass', (data) => {
+    console.log('otp-reset-pass has been emited!: ', data)
+    console.log(`otp-reset-pass ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
 })
 
 // start express application
