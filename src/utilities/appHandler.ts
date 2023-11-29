@@ -1,6 +1,7 @@
 import express, { Router } from 'express'
 import mongoose from '../packages/mongoose'
-import Config, {Env} from '../utilities/config'
+import Config, {Env} from './config'
+import appEvents from './appEvents'
 
 const env = Config.getEnv()
 
@@ -16,6 +17,9 @@ class AppHandler {
     private privateRoutes:Router[] = []
 
     private postDBConnectionProcess:(() => void)[] = []
+
+    // app events
+    public appEvents = appEvents
 
     public addPublicStaticRoute(route:Router) {
         this.publicStaticRoutes.push(route)
