@@ -290,14 +290,11 @@ You can just create you own controllers, or just manage your data process inside
 On your router Request Object there are useful data provided by this app.
 Depending on the level your router is, you can access this data on the request object.
 
-#### req.userAgentInfo
-contains the information of the device that accessing the endpoint. This data is available from level 2 and above, please see section `App Levels and Main Object`
-
-#### req.userData
-contains the signed in user or account that accessing the endpoint. This data is available from level 4 and above, please see section `App Levels and Main Object`
-
-#### req.userActiveWorkspace
-the active workspace of a signed in user or account that accessing the endpoint. This data is available from level 4 and above, please see section `App Levels and Main Object`
+| Field Name         | Description                                                                                 |
+|--------------------|---------------------------------------------------------------------------------------------|
+| `userAgentInfo`    | the device that accessing the endpoint. This data is available from level 2 and above       |
+| `userData`         | the account that accessing the endpoint. This data is available from level 4 and above      |
+| `userActiveWorkspace` | the active workspace of the account that accessing the endpoint. This data is available from level 4 and above |
 
 #### Example
 ```ts
@@ -317,6 +314,49 @@ router.get('custom/route', async (req:any, res) => {
 ...
 ```
 
+
+### AppEvents
+The application emits important events that you could listen. Example is when you request to forgot-password endpoint in which the app will generate otp key that will be use to reset the password. This will let do anything you want with the otp like sending it through email or phone.
+
+#### This are the events that this apps emits
+
+| Event Name      | Data                    |     Description                             |
+|-----------------|-------------------------|---------------------------------------------|
+| `otp-signin`    | device, ip, user, lt    | When signing in and otp signin is enabled   |
+| `otp-reset-pass`| device, ip, user, lt    | When you forgot password                    |
+
+#### This are the data passed to the event listener
+
+| Data            |     Description                             |
+|-----------------|---------------------------------------------|
+| `device`        | Device information or user agent info       |
+| `ip`            | IP address                                  |
+| `user`          | user account info                           |
+| `lt`            | limited transaction info                    |
+
+#### Example
+```ts
+...
+import appHandler, { appEvents } from './app'
+
+const env = appHandler.getEnv()
+const appRoutes = appHandler.getAppRoutes()
+const app = express().use(appRoutes)
+
+// bind app event callbacks
+appEvents.on('otp-signin', (data) => {
+    console.log('otp-signin has been emited!: ', data)
+    console.log(`otp-signin ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+})
+appEvents.on('otp-reset-pass', (data) => {
+    console.log('otp-reset-pass has been emited!: ', data)
+    console.log(`otp-reset-pass ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+})
+
+// start express application
+app.listen(env.AppPort, async () => {
+...
+```
 
 
 ## References
