@@ -309,7 +309,7 @@ The application emits important events that you could listen. Example is when yo
 #### Example
 ```ts
 ...
-import appHandler, { appEvents } from './app'
+import appHandler, { appEvents } from '@kagiweb-tech/api-core-a'
 
 const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
