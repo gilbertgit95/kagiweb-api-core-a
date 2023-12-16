@@ -17,37 +17,38 @@ Please make sure that you already have software dependencies installed before yo
 
 ## Quick Setup
 ### Project creation
-A cli is available for creating and administering kagiweb-tech projects. To create a server using @kagiweb-tech/api-core-a middleware execute the snippet below.
+A cli is available for creating and administering kagiweb-tech projects. To create a server using @kagiweb-tech/api-core-a middleware execute the snippet below on your terminal.
 ```
 > npx @kagiweb-tech/cli
 ```
-1. then select `App Creator`
-2. then select `Create - API Core A`
-3. then enter the project name
+1. select `App Creator`
+2. select `Create - API Core A (Ts)`
+3. enter the project name
+
+This will create a new project folder in the current directory containing the initial codebase. To execute the project, first get inside the project folder and install the packages by executing  `npm i` on the terminal.
 
 ### Seeding
-At this point, you dont have much to do with the api because most of the essential collections in mongodb are empty. To populate the database with initial data.
-goto the project folder where the .env file is located and open the terminal, then execute the snippet below.
+At this point, the application is still not usable because the database is empty. To populate the database with initial data. Goto the project folder where the .env file is located and open the terminal, then execute the snippet below.
 ```
 > npx @kagiweb-tech/cli
 ```
-1. then select `Administrative Tasks`
+1. select `Administrative Tasks`
 2. enter admin confirm key from .env
-3. then select `DB - seed`
+3. select `DB - seed`
 
-After seeding, you can check you mongodb if it was successfully populated with data.
+After seeding, you can check your mongodb if it was successfully populated with data.
 
 ### Execution
-This is up to you on how you start the application. Just make sure you have imported and use the library in the right way.
+This is up to you on how you start the application. Just make sure you have imported and use the library in the right way. However if you use `@kagiweb-tech/cli` to setup your project, you can start the development by excuting `npm run dev` and `npm start` to run the build version.
 
 
 ### Swagger API Documentation
 After running your app on your local machine, you can access the swagger api documentation on route `http://localhost:5001/api/v1/apidoc/#/`.
 
-If you had customized the .env file, then the route is on `http://localhost:{ APP_PORT }{ ROOT_API_ENDPOINT }apidoc/#/` where **APP_PORT** and **ROOT_API_ENDPOINT** are values from .env file.
+If you had customization in .env file, then the route is on `http://localhost:{ APP_PORT }{ ROOT_API_ENDPOINT }apidoc/#/` where **APP_PORT** and **ROOT_API_ENDPOINT** are values from .env file.
 
 > **Note**
-We recommend going into api documentation route after setting up and running your application. There, you will see the available routes and detailed documentation provided by this package.
+We recommend going into api documentation route after setting up and running your application. There, you will see all the available routes and detailed documentation provided by this package.
 
 
 ## Tutorials
