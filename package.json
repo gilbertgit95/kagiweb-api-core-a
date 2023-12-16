@@ -1,6 +1,6 @@
 {
   "name": "@kagiweb-tech/api-core-a",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "This is an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
@@ -78,6 +78,9 @@
       ],
       "models/userModel": [
         "build/src/dataSource/models/userModel.d.ts"
+      ],
+      "models/workspaceModel": [
+        "build/src/dataSource/models/workspaceModel.d.ts"
       ],
       "controllers/authController": [
         "build/src/controllers/authController.d.ts"
