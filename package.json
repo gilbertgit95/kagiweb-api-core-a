@@ -1,6 +1,6 @@
 {
   "name": "@kagiweb-tech/api-core-a",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This is an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
@@ -12,9 +12,6 @@
   ],
   "main": "build/src/app.js",
   "types": "build/src/app.d.ts",
-  "bin": {
-    "kwtech-api-admin": "./build/src/adminCli/mainCli.js"
-  },
   "exports": {
     ".": "./build/src/app.js",
     "./mongoose": "./build/src/packages/mongoose.js",
@@ -29,6 +26,7 @@
     "./models/featureModel": "./build/src/dataSource/models/featureModel.js",
     "./models/roleModel": "./build/src/dataSource/models/roleModel.js",
     "./models/userModel": "./build/src/dataSource/models/userModel.js",
+    "./models/workspaceModel": "./build/src/dataSource/models/workspaceModel.js",
     "./controllers/authController": "./build/src/controllers/authController.js",
     "./controllers/featureController": "./build/src/controllers/featureController.js",
     "./controllers/roleController": "./build/src/controllers/roleController.js",

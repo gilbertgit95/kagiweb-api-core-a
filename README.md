@@ -16,150 +16,24 @@ Please make sure that you already have software dependencies installed before yo
 
 
 ## Quick Setup
-### .env
-You can just copy the configuration below to your .env file. This will work for javascript or typescript application. Update the configuration depending on you needs like mongo connection string, application port and so on.
-
+### Project creation
+A cli is available for creating and administering kagiweb-tech projects. To create a server using @kagiweb-tech/api-core-a middleware execute the snippet below.
 ```
-# this will control environment settings for
-# production, staging, development or other types of execution: PROD, STAGING, DEV
-APP_ENV=PROD
-# the default port this server will ran
-APP_PORT=5000
-
-# administrator confirm key for administrative scripts
-APP_ADMIN_CONFIRM_KEY=MCMXCV
-
-
-# default settings
-# number of items per page for each list request in an endpoint
-DEFAULT_PAGINATION=100
-# lt limit is per number of attempts (LT - limited transaction)
-DEFAULT_USER_LT_LIMIT=5
-# lt exp is in munites
-DEFAULT_USER_LT_EXP=15
-
-
-# mongo connection string
-# Note! mongo connection string should contain the database name
-#       so that moogose can create the database if it not yet created
-PROD_MONGO_URI=mongodb://127.0.0.1:27017
-PROD_MONGO_DB_NAME=kagiweb
-
-STAGING_MONGO_URI=mongodb://127.0.0.1:27017
-STAGING_MONGO_DB_NAME=kagiweb_staging
-
-DEV_MONGO_URI=mongodb://127.0.0.1:27017
-DEV_MONGO_DB_NAME=kagiweb_dev
-
-
-# log options
-ROOT_LOGS_DIR=logs
-# will contain web app application
-ROOT_WEBAPP_DIR=webapp
-# will contain api assets
-ROOT_ASSETS_DIR=assets
-# is the root webapp route
-ROOT_WEBAPP_ENDPOINT=/
-# is the root assets route
-ROOT_ASSETS_ENDPOINT=/api/assets/
-# the api root for core endpoints
-ROOT_API_ENDPOINT=/api/v1/
-
-
-# Auth jwt settings
-# in hours
-JWT_EXPIRATION=168
-JWT_SECRET_KEY=6f870c45c861792aee34b705092da91e31b03b72bc352452adbd069007aa3e2ae8b43900c69fcc5daa0e0ebb704ed7059aed34c565e50efc29cb7ab371548383
-
-
-# sms credentials
-
-# email credentials
+> npx @kagiweb-tech/cli
 ```
-
-### Javascript
-Copy the code to your .js file
-
-```js
-const dotenv = require('dotenv');
-dotenv.config();
-
-const express = require('express');
-const appHandler = require('@kagiweb-tech/api-core-a').default;
-// const noteRoutes = require('./noteRoutes');
-// const taskRoutes = require('./taskRoutes');
-
-// register custom routes
-// register public routes
-// appHandler.addPublicRoute(noteRoutes)
-
-// register private routes
-// appHandler.addPrivateRoute(taskRoutes)
-
-const env = appHandler.getEnv();
-const appRoutes = appHandler.getAppRoutes();
-const app = express().use(appRoutes);
-
-app.listen(env.AppPort, async () => {
-    try {
-        await appHandler.dbConnect()
-        console.log(`- Successfully connected to database`)
-        await appHandler.executePostDBConnectionProcess()
-        console.log(`- Execute post db conection process`)
-    } catch (err) {
-        console.log(`!Error, was not able to connect to the mongo database: ${ err }`)
-        // throw(err)
-    }
-    console.log(`- Server is running on port: ${ env.AppPort }`)
-});
-```
-
-### Typescript
-Copy the code to you .ts file
-```ts
-import dotenv from 'dotenv'
-dotenv.config()
-
-import express from 'express'
-import appHandler from '@kagiweb-tech/api-core-a'
-// import noteRoutes from './noteRoutes'
-// import taskRoutes from './taskRoutes'
-
-// register custom routes
-// register public routes
-// appHandler.addPublicRoute(noteRoutes)
-
-// register private routes
-// appHandler.addPrivateRoute(taskRoutes)
-
-const env = appHandler.getEnv()
-const appRoutes = appHandler.getAppRoutes()
-const app = express().use(appRoutes)
-
-app.listen(env.AppPort, async () => {
-    try {
-        await appHandler.dbConnect()
-        console.log(`- Successfully connected to database`)
-        await appHandler.executePostDBConnectionProcess()
-        console.log(`- Execute post db conection process`)
-    } catch (err) {
-        console.log(`!Error, was not able to connect to the mongo database: ${ err }`)
-        // throw(err)
-    }
-    console.log(`- Server is running on port: ${ env.AppPort }`)
-})
-```
+1. then select `App Creator`
+2. then select `Create - API Core A`
+3. then enter the project name
 
 ### Seeding
-Included in this package is a cli application, where you can do admin stuffs such as seed the app with initial data, reset the application and more. The cli will use the configuration of .env file in the current directory. To execute the cli run this on terminal in you root application directory.
-```
-> ./node_modules/.bin/kwtech-api-admin
-```
 At this point, you dont have much to do with the api because most of the essential collections in mongodb are empty. To populate the database with initial data.
-1. Execute the cli as shown above
-2. Select yes and enter to proceed
-3. Select Seeder and enter
-4. Select yes and enter
+goto the project folder where the .env file is located and open the terminal, then execute the snippet below.
+```
+> npx @kagiweb-tech/cli
+```
+1. then select `Administrative Tasks`
+2. enter admin confirm key from .env
+3. then select `DB - seed`
 
 After seeding, you can check you mongodb if it was successfully populated with data.
 
