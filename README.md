@@ -42,6 +42,15 @@ After seeding, you can check your mongodb if it was successfully populated with 
 This is up to you on how you start the application. Just make sure you have imported and use the library in the right way. However if you use `@kagiweb-tech/cli` to setup your project, you can start the development by excuting `npm run dev` and `npm start` to run the build version.
 
 
+### Initial User
+A user is created during seeding. This user has a `Master` Role and it has absolute access to all endpoints. The default credential for this user is shown below.
+```
+username: master
+password: master
+```
+Please continue on the next section tobe able to signin and explore the available endpoints.
+
+
 ### Swagger API Documentation
 After running your app on your local machine, you can access the swagger api documentation on route `http://localhost:5001/api/v1/apidoc/#/`.
 
