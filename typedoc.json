@@ -1,0 +1,7 @@
+{
+    "entryPoints": [
+        "src/index.ts",
+        "src/utilities/config.ts",
+    ],
+    "out": "docs/typedocDocs"
+}

@@ -5,8 +5,17 @@ import appEvents from './appEvents'
 
 const env = Config.getEnv()
 
+/**
+ * @remarks this class will organize the app routes and middlewares
+ */
 class AppHandler {
+    /**
+     * @remarks this will contain app routes
+     */
     private route:Router = express.Router()
+    /**
+     * 
+     */
     private publicStaticRoutes:Router[] = []
 
     private publicMiddlewares:any[] = [] // eslint-disable-line @typescript-eslint/no-explicit-any

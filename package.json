@@ -130,7 +130,7 @@
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "apidoc": "swagger-cli bundle docs/swaggerDocs/index.yml --outfile docs/swaggerDocs/__swaggerDocsBuild.json",
-    "typedoc": "typedoc --entryPoints src/app.ts --tsconfig tsconfig.json --out docs/typedocDocs",
+    "typedoc": "typedoc",
     "admin": "node build/src/adminCli/mainCli.js"
   },
   "author": {
