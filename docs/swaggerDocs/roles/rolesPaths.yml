@@ -55,6 +55,7 @@ get:
                         updatedAt: 2023-08-07T03:10:24.423Z
                         featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                     level: 1
+                    reqLimitPerSec: 10
                     name: Manager
                 page: 1
                 pageSize: 100
@@ -82,6 +83,8 @@ post:
             level:
               type: string
               description: this will be the indicator of the highest to lowest access writes of a role
+            reqLimitPerSec:
+              type: number
             description:
               type: string
 
@@ -117,4 +120,5 @@ post:
                     updatedAt: 2023-08-07T03:10:24.423Z
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
+                reqLimitPerSec: 10
                 name: Manager

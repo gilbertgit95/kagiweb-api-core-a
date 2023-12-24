@@ -27,6 +27,7 @@ interface IRole {
     _id?: string,
     name: string,
     level: number,
+    reqLimitPerSec: number,
     description?: string,
     absoluteAuthority?: boolean,
     featuresRefs?: Types.DocumentArray<IFeatureRef & Document>
@@ -50,6 +51,11 @@ const RoleSchema = new Schema<IRole>({
         type: Number,
         required: true,
         unique: true
+    },
+    reqLimitPerSec: {
+        type: Number,
+        required: false,
+        default: 10
     },
     description: {
         type: String,

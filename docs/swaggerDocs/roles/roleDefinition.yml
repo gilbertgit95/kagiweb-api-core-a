@@ -11,6 +11,8 @@ properties:
     type: string
     description: a unique number to give role a sense of power. The lower the number the greater the power.
     example: 0
+  reqLimitPerSec:
+    type: number
   description:
     type: string
   absoluteAuthority:

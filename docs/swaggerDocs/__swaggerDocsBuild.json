@@ -1258,6 +1258,7 @@
                             }
                           ],
                           "level": 1,
+                          "reqLimitPerSec": 10,
                           "name": "Manager"
                         }
                       ],
@@ -1299,6 +1300,9 @@
                   "level": {
                     "type": "string",
                     "description": "this will be the indicator of the highest to lowest access writes of a role"
+                  },
+                  "reqLimitPerSec": {
+                    "type": "number"
                   },
                   "description": {
                     "type": "string"
@@ -1356,6 +1360,7 @@
                         }
                       ],
                       "level": 1,
+                      "reqLimitPerSec": 10,
                       "name": "Manager"
                     }
                   }
@@ -1436,6 +1441,7 @@
                         }
                       ],
                       "level": 1,
+                      "reqLimitPerSec": 10,
                       "name": "Manager"
                     }
                   }
@@ -1479,6 +1485,9 @@
                   "level": {
                     "type": "string",
                     "description": "this will be the indicator of the highest to lowest access writes of a role"
+                  },
+                  "reqLimitPerSec": {
+                    "type": "number"
                   },
                   "description": {
                     "type": "string"
@@ -1536,6 +1545,7 @@
                         }
                       ],
                       "level": 1,
+                      "reqLimitPerSec": 10,
                       "name": "Manager"
                     }
                   }
@@ -1614,6 +1624,7 @@
                         }
                       ],
                       "level": 1,
+                      "reqLimitPerSec": 10,
                       "name": "Manager"
                     }
                   }
@@ -9856,6 +9867,9 @@
             "type": "string",
             "description": "a unique number to give role a sense of power. The lower the number the greater the power.",
             "example": 0
+          },
+          "reqLimitPerSec": {
+            "type": "number"
           },
           "description": {
             "type": "string"

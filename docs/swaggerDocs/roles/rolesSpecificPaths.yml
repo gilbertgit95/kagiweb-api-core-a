@@ -45,6 +45,7 @@ get:
                     updatedAt: 2023-08-07T03:10:24.423Z
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
+                reqLimitPerSec: 10
                 name: Manager
 put:
   tags:
@@ -73,6 +74,8 @@ put:
             level:
               type: string
               description: this will be the indicator of the highest to lowest access writes of a role
+            reqLimitPerSec:
+              type: number
             description:
               type: string
   responses:
@@ -107,6 +110,7 @@ put:
                     updatedAt: 2023-08-07T03:10:24.423Z
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
+                reqLimitPerSec: 10
                 name: Manager
 delete:
   tags:
@@ -155,4 +159,5 @@ delete:
                     updatedAt: 2023-08-07T03:10:24.423Z
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
+                reqLimitPerSec: 10
                 name: Manager
