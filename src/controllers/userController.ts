@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser, IUserQuery } from '../dataSource/models/userModel'
+import UserModel, { IUser, IPassword, IAccessToken, IClientDevice, IUserQuery } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 
@@ -18,17 +18,41 @@ class UserController {
         this.request = new DataRequest(UserModel)
     }
 
-    public async getUser(query:IUserQuery):Promise<IUser|null> {
-        if (!query._id) return null
-        return await this.cachedData.getItem<IUser>(query._id)
+    public clearSensitiveInfo(user:IUser):IUser {
+        // clean passwords
+        user.passwords.forEach((item:IPassword) => {
+            item.key = 'NA'
+        })
+    
+        // clean client devices access tokens
+        user.clientDevices.forEach((item:IClientDevice) => {
+            item.accessTokens?.forEach((at:IAccessToken) => {
+                at.jwt = 'NA'
+            })
+        })
+    
+        return user
     }
 
-    public async getAllUsers():Promise<IUser[]> {
-        return await this.cachedData.getAllItems<IUser>()
+    public async getUser(query:IUserQuery, includeSensitiveInfo=false):Promise<IUser|null> {
+        if (!query._id) return null
+        let user = await this.cachedData.getItem<IUser>(query._id)
+        if (user && !includeSensitiveInfo) user = this.clearSensitiveInfo(user)
+        return user
+    }
+
+    public async getAllUsers(includeSensitiveInfo=false):Promise<IUser[]> {
+        let users = await this.cachedData.getAllItems<IUser>()
+        if (users && !includeSensitiveInfo) users.forEach(user => {this.clearSensitiveInfo(user)})
+        return users
     }
 
     public async getUsersByPage(query:IUserQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IUser>> {
-        return await this.request.getItemsByPage<IUser>(query, {}, {}, pageInfo)
+        let paginatedData = await this.request.getItemsByPage<IUser>(query, {}, {}, pageInfo)
+        if (paginatedData.items) {
+            paginatedData.items.forEach(user => {this.clearSensitiveInfo(user)})
+        }
+        return paginatedData
     }
 
     public async saveUser(username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> {
@@ -63,7 +87,9 @@ class UserController {
             doc.verified = DataCleaner.getBooleanData(verified).data
         }
 
-        return await this.cachedData.createItem<IUser>(doc)
+        let user = await this.cachedData.createItem<IUser>(doc)
+        if (user) user = this.clearSensitiveInfo(user)
+        return user
     }
 
     public async updateUser(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IUser | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -81,11 +107,15 @@ class UserController {
             doc.verified = DataCleaner.getBooleanData(verified).data
         }
 
-        return await this.cachedData.updateItem<IUser>(id, doc)
+        let user = await this.cachedData.updateItem<IUser>(id, doc)
+        if (user) user = this.clearSensitiveInfo(user)
+        return user
     }
 
     public async deleteUser(id:string):Promise<IUser | null> {
-        return await this.cachedData.deleteItem<IUser>(id)
+        let user = await this.cachedData.deleteItem<IUser>(id)
+        if (user) user = this.clearSensitiveInfo(user)
+        return user
     }
 }
 

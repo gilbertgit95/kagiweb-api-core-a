@@ -34,7 +34,7 @@ class UserInfoAndAccessProvider {
                 const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
                 if (!(tokenObj && tokenObj.userId)) throw({code: 401})
 
-                user = await userController.getUser({_id: tokenObj.userId})
+                user = await userController.getUser({_id: tokenObj.userId}, true)
                 req.userData = user
             } else {
                 throw({code: 401}) // Unauthorize
