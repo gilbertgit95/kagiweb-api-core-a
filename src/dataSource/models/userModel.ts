@@ -220,28 +220,28 @@ const UserSchema = new Schema<IUser>({
     verified: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
-UserSchema.methods.toJSON = function() {
-    const obj =  this.toObject()
+// UserSchema.methods.toJSON = function() {
+//     const obj =  this.toObject()
 
-    // clean passwords
-    obj.passwords = obj.passwords.map((item:{key:string}) => {
-        item.key = 'NA'
-        return item
-    })
+//     // clean passwords
+//     obj.passwords = obj.passwords.map((item:{key:string}) => {
+//         item.key = 'NA'
+//         return item
+//     })
 
-    // clean client devices access tokens
-    obj.clientDevices = obj.clientDevices.map((item:{accessTokens:{jwt:string}[]}) => {
-        if (item.accessTokens) {
-            item.accessTokens = item.accessTokens?.map((at:{jwt:string}) => {
-                at.jwt = 'NA'
-                return at
-            })
-        }
-        return item
-    })
+//     // clean client devices access tokens
+//     obj.clientDevices = obj.clientDevices.map((item:{accessTokens:{jwt:string}[]}) => {
+//         if (item.accessTokens) {
+//             item.accessTokens = item.accessTokens?.map((at:{jwt:string}) => {
+//                 at.jwt = 'NA'
+//                 return at
+//             })
+//         }
+//         return item
+//     })
 
-    return obj
-}
+//     return obj
+// }
 // create model
 const UserModel = model<IUser>('User', UserSchema)
 
