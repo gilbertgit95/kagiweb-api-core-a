@@ -6,7 +6,7 @@ import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userController from '../controllers/userController'
+import userController, { IUserCompleteInfo } from '../controllers/userController'
 import { IUser } from '../dataSource/models/userModel'
 
 const router = express.Router()
@@ -37,6 +37,16 @@ router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
 
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
         return await userController.getUser({_id: userId})
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'users/:userId/completeInfo', async (req, res) => {
+    const { userId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IUserCompleteInfo>(async () => {
+        return await userController.getUserCompleteInfo({_id: userId})
     })
 
     return res.status(statusCode).send(result)

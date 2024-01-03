@@ -33,6 +33,8 @@
   $ref: ./users/usersPaths.yml
 /users/{id}:
   $ref: ./users/usersSpecificPaths.yml
+/users/{id}/completeInfo:
+  $ref: ./users/usersCompleteInfoSpecificPaths.yml
 /users/{userId}/roles:
   $ref: ./userRoles/userRolesPaths.yml
 /users/{userId}/roles/{roleRefId}:
@@ -77,6 +79,8 @@
 # paths owner
 /owner:
   $ref: ./owner/ownerSpecificPaths.yml
+/owner/completeInfo:
+  $ref: ./owner/ownerCompleteInfoSpecificPaths.yml
 /owner/roles:
   $ref: ./owner/ownerRolesPaths.yml
 /owner/roles/{roleRefId}:

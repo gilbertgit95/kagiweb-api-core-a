@@ -6,7 +6,7 @@ import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 
-import userController from '../controllers/userController'
+import userController, {IUserCompleteInfo  } from '../controllers/userController'
 import userRoleController from '../controllers/userRoleController'
 import userUserInfoController from '../controllers/userUserInfoController'
 import userContactInfoController from '../controllers/userContactInfoController'
@@ -47,6 +47,15 @@ router.put(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
     const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
         if (!userId) return null
         return await userController.updateUser(userId, username, disabled, verified)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/completeInfo', async (req:Request, res:Response) => {
+    const userId = req?.userData?._id
+    const [result, statusCode] = await ErrorHandler.execute<IUserCompleteInfo>(async () => {
+        return await userController.getUserCompleteInfo({_id: userId})
     })
 
     return res.status(statusCode).send(result)

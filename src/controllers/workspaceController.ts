@@ -1,6 +1,8 @@
+import NodeCache from 'node-cache'
 import DataCache from '../utilities/dataCache'
 // import RoleModel, { IWorkspace, IWorkspaceQuery } from '../dataSource/models/roleModel'
 import userController from './userController'
+import userWorkspacesController from './userWorkspacesController'
 import workspaceUserController from './workspaceUserController'
 import WorkspaceModel, { IWorkspace } from '../dataSource/models/workspaceModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
@@ -77,6 +79,9 @@ class WorkspaceController {
 
             const result = await this.cachedData.createItem<IWorkspace>(doc)
 
+            // clear userWorkspace cache
+            userWorkspacesController.removeUserCacheWorkspaces(owner)
+
             return result
         }
     }
@@ -105,6 +110,9 @@ class WorkspaceController {
     
             const result = await this.cachedData.updateItem<IWorkspace>(workspaceId, doc)
 
+            // clear userWorkspace cache
+            userWorkspacesController.removeUserCacheWorkspaces(owner)
+
             return result
         }
     }
@@ -123,6 +131,9 @@ class WorkspaceController {
             if (ownerWorkspaces.length === 1) throw({code: 403, message: 'Cannot delete if the owner has only 1 workspace'}) // Forbidden access to resources.
 
             const result = await this.cachedData.deleteItem<IWorkspace>(workspaceId)
+            
+            // clear userWorkspace cache
+            userWorkspacesController.removeUserCacheWorkspaces(workspace.owner)
 
             return result
         }

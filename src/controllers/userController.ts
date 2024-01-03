@@ -2,12 +2,27 @@ import DataCache from '../utilities/dataCache'
 import UserModel, { IUser, IPassword, IAccessToken, IClientDevice, IUserQuery } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
+import featureController from './featureController'
+// import workspaceController from './workspaceController'
+import userWorkspacesController from './userWorkspacesController'
 
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
+import { IFeature } from '../dataSource/models/featureModel'
+import { IRole } from '../dataSource/models/roleModel'
+import { IWorkspace } from '../dataSource/models/workspaceModel'
+import userRoleController from './userRoleController'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
+interface IUserCompleteInfo {
+    userData: IUser|null,
+    role: IRole|null,
+    roles: IRole[]|null,
+    features: IFeature[]|null,
+    workspace: IWorkspace|null,
+    workspaces: IWorkspace[]|null
+}
 
 class UserController {
     public cachedData:DataCache
@@ -32,6 +47,45 @@ class UserController {
         })
     
         return user
+    }
+
+    public async getUserCompleteInfo(query:IUserQuery, includeSensitiveInfo=false):Promise<IUserCompleteInfo> {
+        const resp:IUserCompleteInfo = {
+            userData: null,
+            role: null,
+            roles: null,
+            features: null,
+            workspace: null,
+            workspaces: null
+        }
+        if (query._id) {
+            let user = await this.cachedData.getItem<IUser>(query._id)
+            if (user && !includeSensitiveInfo) user = this.clearSensitiveInfo(user)
+            if (user) {
+                const rolesMap = await roleController.getRolesMap()
+                const activeRoleRef = userRoleController.getActiveRoleRef(user)
+                const activeRole = activeRoleRef? rolesMap[activeRoleRef.roleId]: null
+                const userRoles = user?.rolesRefs.map(item => rolesMap[item.roleId])
+
+                const featuresMap = await featureController.getFeaturesMap()
+                let roleFeatures = activeRole?.featuresRefs?.map(item => featuresMap[item._id]) || null
+                if (activeRole?.absoluteAuthority) {
+                    roleFeatures = await featureController.getAllFeatures()
+                }
+
+                // get user workspaces
+                const activeWorkspace = user._id? await userWorkspacesController.getUserActiveWorkspace(user._id): null
+                const userWorkspaces = user._id? await userWorkspacesController.getUserWorkspaces(user._id): null
+
+                resp.role = activeRole
+                resp.roles = userRoles
+                resp.features = roleFeatures
+                resp.workspace = activeWorkspace
+                resp.workspaces = userWorkspaces
+                resp.userData = user
+            }
+        }
+        return resp
     }
 
     public async getUser(query:IUserQuery, includeSensitiveInfo=false):Promise<IUser|null> {
@@ -119,4 +173,7 @@ class UserController {
     }
 }
 
+export {
+    IUserCompleteInfo
+}
 export default new UserController()

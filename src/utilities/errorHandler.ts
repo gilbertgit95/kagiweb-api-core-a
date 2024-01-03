@@ -14,6 +14,8 @@ class ErrorHandler {
             const errCode = err?.code
             const errMessage = err?.message
 
+            console.log(err)
+
             // Incorrect content in the request
             if (errCode && errCode === 400) {
                 statusCode = errCode
