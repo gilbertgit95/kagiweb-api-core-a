@@ -93,7 +93,7 @@ class UserRoleController {
         return this.getRoleRefByRoleId(user, roleId)
     }
 
-    public async updateRoleRef(userId:string, roleRefId:string, roleId:string, isActive:boolean|string):Promise<IRoleRef|null> {
+    public async updateRoleRef(userId:string, roleRefId:string, roleId:string|undefined, isActive:boolean|string):Promise<IRoleRef|null> {
         if (!(userId && roleRefId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
