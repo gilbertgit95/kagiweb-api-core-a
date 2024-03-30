@@ -120,6 +120,23 @@ class UserRoleController {
         return user.rolesRefs!.id(roleRefId)
     }
 
+    public async activateUserRole(userId:string, roleRefId:string):Promise<IRoleRef|null> {
+        if (!(userId && roleRefId)) throw({code: 400})
+
+        const user = await UserModel.findOne({_id: userId})
+        if (!user) throw({code: 404})
+        if (!user.rolesRefs?.id(roleRefId)) throw({code: 404})
+
+        for (let rRef of user.rolesRefs) {
+            user.rolesRefs!.id(rRef._id)!.isActive = rRef._id === roleRefId
+        }
+
+        await user.save()
+        await userController.cachedData.removeCacheData(userId)
+
+        return user.rolesRefs!.id(roleRefId)
+    }
+
     public async deleteRoleRef(userId:string, roleRefId:string):Promise<IRoleRef|null> {
         if (!(userId && roleRefId)) throw({code: 400})
 

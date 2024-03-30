@@ -39,6 +39,8 @@
   $ref: ./userRoles/userRolesPaths.yml
 /users/{userId}/roles/{roleRefId}:
   $ref: ./userRoles/userRolesSpecificPaths.yml
+/users/{userId}/roles/{roleRefId}/activate:
+  $ref: ./userRoles/userRolesActivationPaths.yml
 /users/{userId}/userInfos:
   $ref: ./userUserInfos/userUserInfosPaths.yml
 /users/{userId}/userInfos/{userInfoId}:
@@ -85,6 +87,8 @@
   $ref: ./owner/ownerRolesPaths.yml
 /owner/roles/{roleRefId}:
   $ref: ./owner/ownerRolesSpecificPaths.yml
+/owner/roles/{roleRefId}/activate:
+  $ref: ./owner/ownerRolesActivationPaths.yml
 /owner/userInfos:
   $ref: ./owner/ownerUserInfosPaths.yml
 /owner/userInfos/{userInfoId}:

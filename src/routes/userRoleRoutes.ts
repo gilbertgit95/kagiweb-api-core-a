@@ -52,6 +52,16 @@ router.put(env.RootApiEndpoint + 'users/:userId/roles/:roleRefId', async (req, r
     return res.status(statusCode).send(result)
 })
 
+router.put(env.RootApiEndpoint + 'users/:userId/roles/:roleRefId/activate', async (req, res) => {
+    const { userId, roleRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await userRoleController.activateUserRole(userId, roleRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
 router.delete(env.RootApiEndpoint + 'users/:userId/roles/:roleRefId', async (req, res) => {
     const { userId, roleRefId } = req.params
 

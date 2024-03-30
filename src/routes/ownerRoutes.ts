@@ -98,6 +98,17 @@ router.post(env.RootApiEndpoint + 'owner/roles', async (req:Request, res:Respons
     return res.status(statusCode).send(result)
 })
 
+router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId/activate', async (req, res) => {
+    const userId = req?.userData?._id || ''
+    const { roleRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await userRoleController.activateUserRole(userId, roleRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
 router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, res:Response) => {
     const userId = req?.userData?._id
     const { roleRefId } = req.params
