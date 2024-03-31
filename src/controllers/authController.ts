@@ -249,15 +249,17 @@ class AuthController {
         }
 
         // then save the new user to the database
-        await UserModel.create(user)
+        const createdUser = await UserModel.create(user)
 
         // emit event to verify account !soon todo
-        // appEvents.emit('verify-account', {
-        //     device: device,
-        //     ip: ip,
-        //     user: user,
-        //     lt: forgotPassLT
-        // })
+        appEvents.emit('user-created', {
+            device: null,
+            ip: null,
+            user: null,
+            lt: null,
+            module: 'signup',
+            createdUser: createdUser
+        })
 
         return { message: 'User successfully created' }
     }

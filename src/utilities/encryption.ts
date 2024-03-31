@@ -8,6 +8,18 @@ const env = Config.getEnv()
 
 class Encryption {
     /**
+     * this will generate random password, with lowercase,
+     * uppercase, numbers and special characters
+     */
+    public static generateRandPassword():string {
+        return Math.random()
+                .toString(36).slice(2) +
+            Math.random()
+                .toString(36)
+                .toUpperCase().slice(2)
+    }
+
+    /**
      * this will generate random key
      * @returns { string } random series of string
      */

@@ -12,6 +12,7 @@ import { IFeature } from '../dataSource/models/featureModel'
 import { IRole } from '../dataSource/models/roleModel'
 import { IWorkspace } from '../dataSource/models/workspaceModel'
 import userRoleController from './userRoleController'
+import appEvents from '../utilities/appEvents'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -114,7 +115,7 @@ class UserController {
         if (await UserModel.findOne({username})) throw({code: 409}) // conflict
 
         const role = await roleController.getLeastRole()
-        const defautPass = '123456'
+        const defautPass = Encryption.generateRandPassword()
 
         const doc:any = { // eslint-disable-line @typescript-eslint/no-explicit-any
             username,
@@ -142,6 +143,17 @@ class UserController {
         }
 
         let user = await this.cachedData.createItem<IUser>(doc)
+        // callback event, after a user was created with its default password
+        appEvents.emit('user-created', {
+            device: null,
+            ip: null,
+            lt: null,
+            user: null,
+            module: 'admin',
+            createdUser: user,
+            password: defautPass
+        })
+        
         if (user) user = this.clearSensitiveInfo(user)
         return user
     }
@@ -161,6 +173,10 @@ class UserController {
             doc.verified = DataCleaner.getBooleanData(verified).data
         }
 
+        // todo
+        // fetch the current user info
+        // then check for the particular properties would be changed
+        // callback events if there are changes on the properties
         let user = await this.cachedData.updateItem<IUser>(id, doc)
         if (user) user = this.clearSensitiveInfo(user)
         return user
