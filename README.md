@@ -224,7 +224,6 @@ Depending on the level your router is, you can access this data on the request o
 |--------------------|---------------------------------------------------------------------------------------------|
 | `userAgentInfo`    | the device that accessing the endpoint. This data is available from level 2 and above       |
 | `userData`         | the account that accessing the endpoint. This data is available from level 4 and above      |
-| `userActiveWorkspace` | the active workspace of the account that accessing the endpoint. This data is available from level 4 and above |
 
 #### Example
 ```ts

@@ -10,8 +10,7 @@ declare global {
   namespace Express {
     export interface Request {
         userAgentInfo?: IClientDevice | null,
-        userData?: IUser | null,
-        userActiveWorkspace?: IWorkspace | null
+        userData?: IUser | null
     }
   }
 }
