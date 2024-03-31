@@ -54,27 +54,6 @@ interface IAccessToken {
 interface IClientDevice {
     _id?: string,
     ua: string,
-    browser: {
-        name: string | undefined,
-        version: string | undefined,
-        major: string | undefined
-    },
-    engine: {
-        name: string | undefined,
-        version: string | undefined,
-    },
-    os: {
-        name: string | undefined,
-        version: string | undefined,
-    },
-    device: {
-        vendor: string | undefined,
-        model: string | undefined,
-        type: string | undefined,
-    },
-    cpu: {
-        architecture: string | undefined,
-    },
     accessTokens?: Types.DocumentArray<IAccessToken & Document>,
     disabled?: boolean
 }
@@ -150,27 +129,6 @@ const AccessTokenSchema = new Schema<IAccessToken>({
 const ClientDeviceSchema = new Schema<IClientDevice>({
     _id: { type: String, default: () => randomUUID()},
     ua: { type: String, require: true },
-    browser: {
-        name: { type: String, require: false, default: '' },
-        version: { type: String, require: false, default: '' },
-        major: { type: String, require: false, default: '' }
-    },
-    engine: {
-        name: { type: String, require: false, default: '' },
-        version: { type: String, require: false, default: '' },
-    },
-    os: {
-        name: { type: String, require: false, default: '' },
-        version: { type: String, require: false, default: '' },
-    },
-    device: {
-        vendor: { type: String, require: false, default: '' },
-        model: { type: String, require: false, default: '' },
-        type: { type: String, require: false, default: '' },
-    },
-    cpu: {
-        architecture: { type: String, require: false, default: '' },
-    },
     accessTokens: { type: [AccessTokenSchema], require: false },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })

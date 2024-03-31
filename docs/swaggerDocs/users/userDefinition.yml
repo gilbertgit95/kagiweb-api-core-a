@@ -56,22 +56,6 @@ example:
     - ua: >-
         Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
         Gecko) Chrome/116.0.0.0 Safari/537.36
-      browser:
-        name: Chrome
-        version: 116.0.0.0
-        major: '116'
-      engine:
-        name: Blink
-        version: 116.0.0.0
-      os:
-        name: Windows
-        version: '10'
-      device:
-        vendor: ''
-        model: ''
-        type: ''
-      cpu:
-        architecture: amd64
       disabled: false
       _id: ef63156e-c1d8-4547-99be-3ac77fd30d49
       accessTokens:

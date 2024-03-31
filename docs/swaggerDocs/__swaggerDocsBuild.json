@@ -2077,27 +2077,6 @@
                           "clientDevices": [
                             {
                               "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                              "browser": {
-                                "name": "Chrome",
-                                "version": "116.0.0.0",
-                                "major": "116"
-                              },
-                              "engine": {
-                                "name": "Blink",
-                                "version": "116.0.0.0"
-                              },
-                              "os": {
-                                "name": "Windows",
-                                "version": "10"
-                              },
-                              "device": {
-                                "vendor": "",
-                                "model": "",
-                                "type": ""
-                              },
-                              "cpu": {
-                                "architecture": "amd64"
-                              },
                               "disabled": false,
                               "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                               "accessTokens": [
@@ -2247,27 +2226,6 @@
                       "clientDevices": [
                         {
                           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                          "browser": {
-                            "name": "Chrome",
-                            "version": "116.0.0.0",
-                            "major": "116"
-                          },
-                          "engine": {
-                            "name": "Blink",
-                            "version": "116.0.0.0"
-                          },
-                          "os": {
-                            "name": "Windows",
-                            "version": "10"
-                          },
-                          "device": {
-                            "vendor": "",
-                            "model": "",
-                            "type": ""
-                          },
-                          "cpu": {
-                            "architecture": "amd64"
-                          },
                           "disabled": false,
                           "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                           "accessTokens": [
@@ -2400,27 +2358,6 @@
                       "clientDevices": [
                         {
                           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                          "browser": {
-                            "name": "Chrome",
-                            "version": "116.0.0.0",
-                            "major": "116"
-                          },
-                          "engine": {
-                            "name": "Blink",
-                            "version": "116.0.0.0"
-                          },
-                          "os": {
-                            "name": "Windows",
-                            "version": "10"
-                          },
-                          "device": {
-                            "vendor": "",
-                            "model": "",
-                            "type": ""
-                          },
-                          "cpu": {
-                            "architecture": "amd64"
-                          },
                           "disabled": false,
                           "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                           "accessTokens": [
@@ -2573,27 +2510,6 @@
                       "clientDevices": [
                         {
                           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                          "browser": {
-                            "name": "Chrome",
-                            "version": "116.0.0.0",
-                            "major": "116"
-                          },
-                          "engine": {
-                            "name": "Blink",
-                            "version": "116.0.0.0"
-                          },
-                          "os": {
-                            "name": "Windows",
-                            "version": "10"
-                          },
-                          "device": {
-                            "vendor": "",
-                            "model": "",
-                            "type": ""
-                          },
-                          "cpu": {
-                            "architecture": "amd64"
-                          },
                           "disabled": false,
                           "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                           "accessTokens": [
@@ -2724,27 +2640,6 @@
                       "clientDevices": [
                         {
                           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                          "browser": {
-                            "name": "Chrome",
-                            "version": "116.0.0.0",
-                            "major": "116"
-                          },
-                          "engine": {
-                            "name": "Blink",
-                            "version": "116.0.0.0"
-                          },
-                          "os": {
-                            "name": "Windows",
-                            "version": "10"
-                          },
-                          "device": {
-                            "vendor": "",
-                            "model": "",
-                            "type": ""
-                          },
-                          "cpu": {
-                            "architecture": "amd64"
-                          },
                           "disabled": false,
                           "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                           "accessTokens": [
@@ -2944,27 +2839,6 @@
                         "clientDevices": [
                           {
                             "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                            "browser": {
-                              "name": "Chrome",
-                              "version": "116.0.0.0",
-                              "major": "116"
-                            },
-                            "engine": {
-                              "name": "Blink",
-                              "version": "116.0.0.0"
-                            },
-                            "os": {
-                              "name": "Windows",
-                              "version": "10"
-                            },
-                            "device": {
-                              "vendor": "",
-                              "model": "",
-                              "type": ""
-                            },
-                            "cpu": {
-                              "architecture": "amd64"
-                            },
                             "disabled": false,
                             "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                             "accessTokens": [
@@ -5002,27 +4876,6 @@
                       {
                         "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                         "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                        "browser": {
-                          "name": "Chrome",
-                          "version": "116.0.0.0",
-                          "major": "116"
-                        },
-                        "engine": {
-                          "name": "Blink",
-                          "version": "116.0.0.0"
-                        },
-                        "os": {
-                          "name": "Windows",
-                          "version": "10"
-                        },
-                        "device": {
-                          "vendor": null,
-                          "model": null,
-                          "type": null
-                        },
-                        "cpu": {
-                          "architecture": "amd64"
-                        },
                         "disabled": false,
                         "accessTokens": [],
                         "createdAt": "2023-08-27T14:51:58.619Z",
@@ -5100,27 +4953,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -5188,27 +5020,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -5291,27 +5102,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -5377,27 +5167,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -6771,27 +6540,6 @@
                       "clientDevices": [
                         {
                           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                          "browser": {
-                            "name": "Chrome",
-                            "version": "116.0.0.0",
-                            "major": "116"
-                          },
-                          "engine": {
-                            "name": "Blink",
-                            "version": "116.0.0.0"
-                          },
-                          "os": {
-                            "name": "Windows",
-                            "version": "10"
-                          },
-                          "device": {
-                            "vendor": "",
-                            "model": "",
-                            "type": ""
-                          },
-                          "cpu": {
-                            "architecture": "amd64"
-                          },
                           "disabled": false,
                           "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                           "accessTokens": [
@@ -6932,27 +6680,6 @@
                       "clientDevices": [
                         {
                           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                          "browser": {
-                            "name": "Chrome",
-                            "version": "116.0.0.0",
-                            "major": "116"
-                          },
-                          "engine": {
-                            "name": "Blink",
-                            "version": "116.0.0.0"
-                          },
-                          "os": {
-                            "name": "Windows",
-                            "version": "10"
-                          },
-                          "device": {
-                            "vendor": "",
-                            "model": "",
-                            "type": ""
-                          },
-                          "cpu": {
-                            "architecture": "amd64"
-                          },
                           "disabled": false,
                           "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                           "accessTokens": [
@@ -7140,27 +6867,6 @@
                         "clientDevices": [
                           {
                             "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                            "browser": {
-                              "name": "Chrome",
-                              "version": "116.0.0.0",
-                              "major": "116"
-                            },
-                            "engine": {
-                              "name": "Blink",
-                              "version": "116.0.0.0"
-                            },
-                            "os": {
-                              "name": "Windows",
-                              "version": "10"
-                            },
-                            "device": {
-                              "vendor": "",
-                              "model": "",
-                              "type": ""
-                            },
-                            "cpu": {
-                              "architecture": "amd64"
-                            },
                             "disabled": false,
                             "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
                             "accessTokens": [
@@ -8962,27 +8668,6 @@
                       {
                         "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                         "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                        "browser": {
-                          "name": "Chrome",
-                          "version": "116.0.0.0",
-                          "major": "116"
-                        },
-                        "engine": {
-                          "name": "Blink",
-                          "version": "116.0.0.0"
-                        },
-                        "os": {
-                          "name": "Windows",
-                          "version": "10"
-                        },
-                        "device": {
-                          "vendor": null,
-                          "model": null,
-                          "type": null
-                        },
-                        "cpu": {
-                          "architecture": "amd64"
-                        },
                         "disabled": false,
                         "accessTokens": [],
                         "createdAt": "2023-08-27T14:51:58.619Z",
@@ -9049,27 +8734,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -9128,27 +8792,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -9222,27 +8865,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -9299,27 +8921,6 @@
                     "example": {
                       "id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-                      "browser": {
-                        "name": "Chrome",
-                        "version": "116.0.0.0",
-                        "major": "116"
-                      },
-                      "engine": {
-                        "name": "Blink",
-                        "version": "116.0.0.0"
-                      },
-                      "os": {
-                        "name": "Windows",
-                        "version": "10"
-                      },
-                      "device": {
-                        "vendor": null,
-                        "model": null,
-                        "type": null
-                      },
-                      "cpu": {
-                        "architecture": "amd64"
-                      },
                       "disabled": false,
                       "accessTokens": [],
                       "createdAt": "2023-08-27T14:51:58.619Z",
@@ -10829,27 +10430,6 @@
           "clientDevices": [
             {
               "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-              "browser": {
-                "name": "Chrome",
-                "version": "116.0.0.0",
-                "major": "116"
-              },
-              "engine": {
-                "name": "Blink",
-                "version": "116.0.0.0"
-              },
-              "os": {
-                "name": "Windows",
-                "version": "10"
-              },
-              "device": {
-                "vendor": "",
-                "model": "",
-                "type": ""
-              },
-              "cpu": {
-                "architecture": "amd64"
-              },
               "disabled": false,
               "_id": "ef63156e-c1d8-4547-99be-3ac77fd30d49",
               "accessTokens": [
@@ -11080,64 +10660,6 @@
           "ua": {
             "type": "string"
           },
-          "browser": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "version": {
-                "type": "string"
-              },
-              "major": {
-                "type": "string"
-              }
-            }
-          },
-          "engine": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "os": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "version": {
-                "type": "string"
-              }
-            }
-          },
-          "device": {
-            "type": "object",
-            "properties": {
-              "vendor": {
-                "type": "string"
-              },
-              "model": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              }
-            }
-          },
-          "cpu": {
-            "type": "object",
-            "properties": {
-              "architecture": {
-                "type": "string"
-              }
-            }
-          },
           "disabled": {
             "type": "boolean"
           },
@@ -11150,27 +10672,6 @@
         },
         "example": {
           "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-          "browser": {
-            "name": "Chrome",
-            "version": "116.0.0.0",
-            "major": "116"
-          },
-          "engine": {
-            "name": "Blink",
-            "version": "116.0.0.0"
-          },
-          "os": {
-            "name": "Windows",
-            "version": "10"
-          },
-          "device": {
-            "vendor": null,
-            "model": null,
-            "type": null
-          },
-          "cpu": {
-            "architecture": "amd64"
-          },
           "disabled": false,
           "accessTokens": []
         }

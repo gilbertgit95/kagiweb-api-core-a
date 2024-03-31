@@ -96,11 +96,11 @@ class UserClientDeviceController {
             const doc = (new UAParser(ua)).getResult()
 
             user.clientDevices!.id(clientDeviceId)!.ua =      ua
-            user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
-            user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
-            user.clientDevices!.id(clientDeviceId)!.os =      doc.os
-            user.clientDevices!.id(clientDeviceId)!.device =  doc.device
-            user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
+            // user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
+            // user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
+            // user.clientDevices!.id(clientDeviceId)!.os =      doc.os
+            // user.clientDevices!.id(clientDeviceId)!.device =  doc.device
+            // user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data

@@ -30,22 +30,6 @@ get:
               example:
                 - _id: c54a858a-b095-4405-9a1c-8567ec91da5e
                   ua: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
-                  browser:
-                    name: Chrome
-                    version: "116.0.0.0"
-                    major: "116"
-                  engine:
-                    name: Blink
-                    version: "116.0.0.0"
-                  os:
-                    name: Windows
-                    version: "10"
-                  device:
-                    vendor:
-                    model:
-                    type:
-                  cpu:
-                    architecture: amd64
                   disabled: false
                   accessTokens: []
                   createdAt: 2023-08-27T14:51:58.619Z
@@ -84,22 +68,6 @@ post:
               example:
                 id: c54a858a-b095-4405-9a1c-8567ec91da5e
                 ua: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
-                browser:
-                  name: Chrome
-                  version: "116.0.0.0"
-                  major: "116"
-                engine:
-                  name: Blink
-                  version: "116.0.0.0"
-                os:
-                  name: Windows
-                  version: "10"
-                device:
-                  vendor:
-                  model:
-                  type:
-                cpu:
-                  architecture: amd64
                 disabled: false
                 accessTokens: []
                 createdAt: 2023-08-27T14:51:58.619Z
