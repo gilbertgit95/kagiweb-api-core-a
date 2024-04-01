@@ -67,7 +67,8 @@ class AuthController {
                 await user.save()
                 // send otp to the LT recepient
                 // console.log(`System is sending signin otp to ${ signinLT!.recipient } with key ${ otpKey }`)
-                appEvents.emit('otp-signin', {
+                appEvents.emit('otp', {
+                    module: 'signin',
                     device: device,
                     ip: ip,
                     user: user,
@@ -258,7 +259,8 @@ class AuthController {
             user: null,
             lt: null,
             module: 'signup',
-            createdUser: createdUser
+            createdUser: createdUser,
+            password: password
         })
 
         return { message: 'User successfully created' }
@@ -309,7 +311,8 @@ class AuthController {
             await user.save()
             // send otp to the LT recepient
             // console.log(`System is sending password reset otp to ${ resetPassLT!.recipient } with key ${ otpKey }`)
-            appEvents.emit('otp-reset-pass', {
+            appEvents.emit('otp', {
+                module: 'reset-password',
                 device: device,
                 ip: ip,
                 user: user,

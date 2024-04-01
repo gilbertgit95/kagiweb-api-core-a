@@ -173,12 +173,52 @@ class UserController {
             doc.verified = DataCleaner.getBooleanData(verified).data
         }
 
-        // todo
         // fetch the current user info
-        // then check for the particular properties would be changed
-        // callback events if there are changes on the properties
+        const currUserData = await this.cachedData.getItem<IUser>(id)
         let user = await this.cachedData.updateItem<IUser>(id, doc)
         if (user) user = this.clearSensitiveInfo(user)
+
+        // then check for the particular properties would be changed
+        // callback events if there are changes on the properties
+        // changes in username property
+        if (user && currUserData && currUserData.username !== user.username) {
+            appEvents.emit('user-changed', {
+                device: null,
+                ip: null,
+                lt: null,
+                user: null,
+                property: 'username',
+                value: user.username,
+                previousValue: currUserData.username,
+                changedUser: user,
+            })
+        }
+        // changes in verified property
+        if (user && currUserData && currUserData.disabled !== user.disabled) {
+            appEvents.emit('user-changed', {
+                device: null,
+                ip: null,
+                lt: null,
+                user: null,
+                property: 'disabled',
+                value: user.disabled,
+                previousValue: currUserData.disabled,
+                changedUser: user,
+            })
+        }
+        // changes in disabled property
+        if (user && currUserData && currUserData.verified !== user.verified) {
+            appEvents.emit('user-changed', {
+                device: null,
+                ip: null,
+                lt: null,
+                user: null,
+                property: 'verified',
+                value: user.verified,
+                previousValue: currUserData.verified,
+                changedUser: user,
+            })
+        }
         return user
     }
 

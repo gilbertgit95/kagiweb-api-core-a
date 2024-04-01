@@ -9,29 +9,35 @@ const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
 // bind app event callbacks
-appEvents.on('otp-signin', (data) => {
-    // console.log('otp-signin has been emited!: ', data)
-    console.log(`otp-signin, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
-})
-appEvents.on('otp-reset-pass', (data) => {
-    // console.log('otp-reset-pass has been emited!: ', data)
-    console.log(`otp-reset-pass, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+appEvents.on('otp', (data) => {
+    if (data.module === 'signin') {
+        console.log(`otp: signin, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+        //  do something you want
+    } else if (data.module === 'reset-password') {
+        console.log(`otp: reset-password, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+        //  do something you want
+    }
 })
 
 appEvents.on('user-created', (data) => {
     if (data.module === 'signup') {
         console.log(`user-created, module: ${ data.module }, username: ${ data.createdUser?.username }`)
+        //  do something you want
     } else if (data.module === 'admin') {
         console.log(`user-created, module: ${ data.module }, defaut password is: ${ data.password }, username: ${ data.createdUser?.username }`)
+        //  do something you want
     }
 })
 
 appEvents.on('user-changed', (data) => {
-    if (data.property === 'disabled') {
-        console.log(`user-changed: ${ data.property }, value: ${ data.value }, by: ${ data.user?.username }`)
+    if (data.property === 'username') {
+        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
         //  do something you want
-    } else if (data.module === 'verified') {
-        console.log(`user-changed: ${ data.property }, value: ${ data.value }, by: ${ data.user?.username }`)
+    } else if (data.property === 'disabled') {
+        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        //  do something you want
+    } else if (data.property === 'verified') {
+        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
         //  do something you want
     }
 })
