@@ -58,7 +58,7 @@ class UserInfoAndAccessProvider {
 
                 // for the super administrator role
                 if (activeRole && activeRole.absoluteAuthority) {
-                    console.log('absolute authority: ', activeRole.absoluteAuthority)
+                    // console.log('absolute authority: ', activeRole.absoluteAuthority)
                     return true
                 }
 

@@ -176,21 +176,14 @@ The application emits important events that you could listen. Example is when yo
 
 #### This are the events that this apps emits
 
-| Event Name      | Data                    |     Description                             |
-|-----------------|-------------------------|---------------------------------------------|
-| `otp-signin`    | device, ip, user, lt    | When signing in and otp signin is enabled   |
-| `otp-reset-pass`| device, ip, user, lt    | When you forgot password                    |
+| Event Name      | Fields                                        |     Description                                           |
+|-----------------|-----------------------------------------------|-----------------------------------------------------------|
+| `otp`           | module, device, ip, user, lt                  | when, signing in, password reset and more in the future   |
+| `user-created`  | createdUser, module, password                 | When a user is created via signup or by admin             |
+| `user-changed`  | changedUser, property, value, previousValue   | When a users top level properties are changed             |
 
-#### This are the data passed to the event listener
 
-| Data            |     Description                             |
-|-----------------|---------------------------------------------|
-| `device`        | Device information or user agent info       |
-| `ip`            | IP address                                  |
-| `user`          | user account info                           |
-| `lt`            | limited transaction info                    |
-
-#### Example
+#### Complete Example
 ```ts
 ...
 import appHandler, { appEvents } from '@kagiweb-tech/api-core-a'
@@ -200,13 +193,37 @@ const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
 // bind app event callbacks
-appEvents.on('otp-signin', (data) => {
-    console.log('otp-signin has been emited!: ', data)
-    console.log(`otp-signin ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+appEvents.on('otp', (data) => {
+    if (data.module === 'signin') {
+        console.log(`otp: signin, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+        //  do something you want
+    } else if (data.module === 'reset-password') {
+        console.log(`otp: reset-password, ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+        //  do something you want
+    }
 })
-appEvents.on('otp-reset-pass', (data) => {
-    console.log('otp-reset-pass has been emited!: ', data)
-    console.log(`otp-reset-pass ${ data.lt.key } key will be sent to ${ data.lt.recipient }`)
+
+appEvents.on('user-created', (data) => {
+    if (data.module === 'signup') {
+        console.log(`user-created, module: ${ data.module }, username: ${ data.createdUser?.username }`)
+        //  do something you want
+    } else if (data.module === 'admin') {
+        console.log(`user-created, module: ${ data.module }, defaut password is: ${ data.password }, username: ${ data.createdUser?.username }`)
+        //  do something you want
+    }
+})
+
+appEvents.on('user-changed', (data) => {
+    if (data.property === 'username') {
+        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        //  do something you want
+    } else if (data.property === 'disabled') {
+        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        //  do something you want
+    } else if (data.property === 'verified') {
+        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        //  do something you want
+    }
 })
 
 // start express application
