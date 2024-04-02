@@ -62,5 +62,16 @@ router.delete(env.RootApiEndpoint + 'roles/:roleId/features/:featureRefId', asyn
     return res.status(statusCode).send(result)
 })
 
+router.put(env.RootApiEndpoint + 'roles/:roleId/cloneFeatures', async (req, res) => {
+    const { roleId } = req.params
+    const { fromRoleId, overwrite } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IFeatureRef[]>(async () => {
+        return await roleFeatureController.cloneFeatures(roleId, fromRoleId, overwrite)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
 routerIdentity.addAppRouteObj(router)
 export default router
