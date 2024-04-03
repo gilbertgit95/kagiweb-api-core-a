@@ -140,40 +140,42 @@ class RoleFeaturesController {
         return featureRefData? featureRefData: null
     }
 
-    public async cloneFeatures(roleId:string, fromRoleId:string, overwrite:boolean):Promise<IFeatureRef[]|null> {
-        if (!(roleId && fromRoleId && overwrite)) throw({code: 400})
+    public async cloneFeatures(roleId:string, fromRoleId:string, overwrite:boolean = false):Promise<IFeatureRef[]|null> {
+        if (!(roleId && fromRoleId)) throw({code: 400})
 
-        const role = await RoleModel.findOne({_id: roleId})
+        let role = await RoleModel.findOne({_id: roleId})
         const fromRole =  await RoleModel.findOne({_id: fromRoleId})
         if (!role || !fromRole) throw({code: 404, message: 'this role or the role you want to clone from does not exist!'})
 
         // check if overwrite is true
         // then delete all role features
         if (overwrite && role.featuresRefs) {
-            for (let featRef of role.featuresRefs) {
-                role!.featuresRefs.id(featRef._id)!.deleteOne()
+            // role!.featuresRefs = []
+            for (let item of role.featuresRefs) {
+                if (item._id) await this.deleteFeatureRef(roleId, item._id)
             }
         }
 
+        role = await RoleModel.findOne({_id: roleId})
         // create role featuresMap
         // get all fromRole features that are not in role features
-        const featRefsMap = role.featuresRefs?.reduce<{[key:string]:IFeatureRef}>((acc, item:IFeatureRef) => {
-            if (item._id) acc[item._id] = item
+        const featRefsMap = role!.featuresRefs?.reduce<{[key:string]:IFeatureRef}>((acc, item:IFeatureRef) => {
+            if (item.featureId) acc[item.featureId] = item
             return acc
         }, {}) || {}
-        const featToSave = fromRole.featuresRefs?.filter((item:IFeatureRef) => featRefsMap[item._id || '']) || []
+        const featToSave = fromRole.featuresRefs?.filter((item:IFeatureRef) => !featRefsMap[item.featureId]) || []
 
         // then push this to role features
         for (let featRef of featToSave) {
-            role.featuresRefs!.push({featureId: featRef.featureId})
+            await this.saveFeatureRef(roleId, featRef.featureId)
         }
 
         // save the role
         // then clear role cache
-        await role.save()
+        role = await RoleModel.findOne({_id: roleId})
         await roleController.cachedData.removeCacheData(roleId)
 
-        return role.featuresRefs || []
+        return role!.featuresRefs || []
     }
 }
 
