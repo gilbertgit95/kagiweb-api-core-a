@@ -77,6 +77,26 @@ interface IUserInfo {
     type: TUserInfoType
 }
 
+interface IWorkspaceUserRef {
+    _id?: string,
+    userId: string,
+    readAccess: boolean,
+    updateAccess: boolean,
+    createAccess: boolean,
+    deleteAccess: boolean,
+    accepted: boolean,
+    disabled: boolean
+}
+
+interface IWorkspace {
+    _id?: string,
+    name: string,
+    description?: string,
+    userRefs?: Types.DocumentArray<IWorkspaceUserRef & Document>,
+    isActive?: boolean,
+    disabled?: boolean
+}
+
 interface IUser {
     _id?: string,
     username: string,
@@ -89,6 +109,8 @@ interface IUser {
     clientDevices: Types.DocumentArray<IClientDevice & Document>,
 
     limitedTransactions: Types.DocumentArray<ILimitedTransaction & Document>,
+
+    workspaces: Types.DocumentArray<IWorkspace & Document>,
 
     disabled?: boolean,
     verified?: boolean
@@ -160,6 +182,34 @@ const UserInfoSchema = new Schema<IUserInfo>({
     }
 }, { timestamps: true })
 
+const WorkspaceUserRefSchema = new Schema<IWorkspaceUserRef>({
+    _id: { type: String, default: () => randomUUID() },
+    userId: { type: String, required: true},
+    readAccess: { type: Boolean, default: true},
+    updateAccess: { type: Boolean, default: false},
+    createAccess: { type: Boolean, default: true},
+    deleteAccess: { type: Boolean, default: true},
+    accepted: { type: Boolean, default: true},
+    disabled: { type: Boolean, default: true},
+}, { timestamps: true })
+
+const workspaceSchema = new Schema<IWorkspace>({
+    _id: { type: String, default: () => randomUUID() },
+    name: {
+        type: String,
+        required: true,
+        validate: TextValidators.validateObjectName
+    },
+    description: {
+        type: String,
+        required: false,
+        validate: TextValidators.validateDescription
+    },
+    userRefs: { type: [WorkspaceUserRefSchema], required: false, default: [] },
+    isActive: { type: Boolean, default: false},
+    disabled: { type: Boolean, default: false}
+}, { timestamps: true })
+
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID() },
     username: {
@@ -174,6 +224,7 @@ const UserSchema = new Schema<IUser>({
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
     limitedTransactions: { type: [LimitedTransactionSchema], required: false },
+    workspaces: { type: [workspaceSchema], required: false },
     disabled: { type: Boolean, require: false, default: false },
     verified: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
@@ -194,6 +245,8 @@ export {
     ILimitedTransaction,
     IUserInfo,
     IRoleRef,
+    IWorkspaceUserRef,
+    IWorkspace,
     IUser
 }
 

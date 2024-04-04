@@ -27,12 +27,11 @@ UserClientDevice:
   $ref: ./userClientDevices/userClientDeviceDefinition.yml
 UserClientDeviceAccessToken:
   $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokenDefinition.yml
+UserWorkspace:
+  $ref: ./userWorkspaces/userWorkspaceDefinition.yml
+UserWorkspaceUserRef:
+  $ref: ./userWorkspaceUserRefs/userWorkspaceUserRefDefinition.yml
 
-# workspace related data definitions
-Workspace:
-  $ref: ./workspaces/workspaceDefinition.yml
-WorkspaceUser:
-  $ref: ./workspaceUsers/workspaceUserDefinition.yml
 
 # global data definitions
 Error:

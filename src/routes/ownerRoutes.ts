@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express'
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
-import DataRequest, {IListOutput}  from '../utilities/dataQuery'
+// import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 
 import userController, {IUserCompleteInfo  } from '../controllers/userController'
 import userRoleController from '../controllers/userRoleController'
@@ -14,17 +14,12 @@ import userPasswordController from '../controllers/userPasswordController'
 import userLimitedTransactionController from '../controllers/userLimitedTransactionController'
 import userClientDeviceController from '../controllers/userClientDeviceController'
 import userClientDeviceAccessTokenController from '../controllers/userClientDeviceAccessTokenController'
-import workspaceController from '../controllers/workspaceController'
-import workspaceUserController from '../controllers/workspaceUserController'
 
 import {
     IUser, IRoleRef, IUserInfo, IContactInfo,
     IPassword, ILimitedTransaction, IClientDevice, IAccessToken
 } from '../dataSource/models/userModel'
-import {
-    IWorkspace,
-    IUserRef
-} from '../dataSource/models/workspaceModel'
+
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -483,141 +478,6 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessT
 })
 
 // workspaces
-router.get(env.RootApiEndpoint + 'owner/workspaces', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const pageInfo = DataRequest.getPageInfoQuery(req.query)
-    const query:{owner:string} = {owner: userId || ''}
-
-    const [result, statusCode] = await ErrorHandler.execute<IListOutput<IWorkspace>>(async () => {
-        if (!userId) return null
-        return await workspaceController.getWorkspacesByPage(false, userId)(query, pageInfo)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.post(env.RootApiEndpoint + 'owner/workspaces', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { owner, name, description, disabled } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        if (!userId) return null
-        return await workspaceController.saveWorkspace(false, userId)(owner, name, description, disabled)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        if (!userId) return null
-        return await workspaceController.getWorkspace(false, userId)({_id: workspaceId})
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId } = req.params
-    const { owner, name, description,disabled } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        if (!userId) return null
-        return await workspaceController.updateWorkspace(false, userId)(workspaceId, owner, name, description, disabled)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        if (!userId) return null
-        return await workspaceController.deleteWorkspace(false, userId)(workspaceId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/select', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspace[]>(async () => {
-        if (!userId) return null
-        return await workspaceController.selectOwnerWorkspace(false, userId)(workspaceId, userId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/users', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IUserRef[]>(async () => {
-        if (!userId) return null
-        return await workspaceUserController.getUserRefs(false, userId)(workspaceId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/users', async (req:Request, res:Response) => {
-    const loggedUserId = req?.userData?._id
-    const { workspaceId } = req.params
-    const { userId, readAccess, writeAccess } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        if (!loggedUserId) return null
-        return await workspaceUserController.saveUserRef(false, loggedUserId)(workspaceId, userId, readAccess, writeAccess)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/users/:userRefId', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId, userRefId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        if (!userId) return null
-        return await workspaceUserController.getUserRef(false, userId)(workspaceId, userRefId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/users/:userRefId', async (req:Request, res:Response) => {
-    const loggedUserId = req?.userData?._id
-    const { workspaceId, userRefId } = req.params
-    const { userId, readAccess, writeAccess } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        if (!loggedUserId) return null
-        return await workspaceUserController.updateUserRef(false, loggedUserId)(workspaceId, userRefId, userId, readAccess, writeAccess)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/users/:userRefId', async (req:Request, res:Response) => {
-    const userId = req?.userData?._id
-    const { workspaceId, userRefId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IUserRef>(async () => {
-        if (!userId) return null
-        return await workspaceUserController.deleteUserRef(false, userId)(workspaceId, userRefId)
-    })
-
-    return res.status(statusCode).send(result)
-})
 
 
 routerIdentity.addAppRouteObj(router)

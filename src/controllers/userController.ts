@@ -1,16 +1,13 @@
 import DataCache from '../utilities/dataCache'
-import UserModel, { IUser, IPassword, IAccessToken, IClientDevice, IUserQuery } from '../dataSource/models/userModel'
+import UserModel, { IUser, IPassword, IAccessToken, IClientDevice, IWorkspace, IUserQuery } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 import featureController from './featureController'
-// import workspaceController from './workspaceController'
-import userWorkspacesController from './userWorkspacesController'
 
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
 import { IFeature } from '../dataSource/models/featureModel'
 import { IRole } from '../dataSource/models/roleModel'
-import { IWorkspace } from '../dataSource/models/workspaceModel'
 import userRoleController from './userRoleController'
 import appEvents from '../utilities/appEvents'
 // import Config from '../utilities/config'
@@ -75,14 +72,12 @@ class UserController {
                 }
 
                 // get user workspaces
-                const activeWorkspace = user._id? await userWorkspacesController.getUserActiveWorkspace(user._id): null
-                const userWorkspaces = user._id? await userWorkspacesController.getUserWorkspaces(user._id): null
 
                 resp.role = activeRole
                 resp.roles = userRoles
                 resp.features = roleFeatures
-                resp.workspace = activeWorkspace
-                resp.workspaces = userWorkspaces
+                resp.workspace = null
+                resp.workspaces = null
                 resp.userData = user
             }
         }
