@@ -1,134 +1,111 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
+import UserModel, { IUser, IWorkspace } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class UserClientDeviceController {
-    public hasClientDeviceUA(user:IUser, ua:string):boolean {
-        if (user && user.clientDevices) {
-            for (const clientDevice of user.clientDevices) {
-                if (clientDevice.ua === ua) return true
-            }
-        }
+class UserWorkspaceController {
+    public getWorkspaceById(user:IUser, workspaceId:string):IWorkspace|null {
 
-        return false
-    }
-
-    public getClientDeviceByUA(user:IUser, ua:string):IClientDevice|null {
-
-        if (user && user.clientDevices) {
-            for (const clientDevice of user.clientDevices) {
-                if (clientDevice.ua === ua) return clientDevice
+        if (user && user.workspaces) {
+            for (const workspace of user.workspaces) {
+                if (workspace._id === workspaceId) return workspace
             }
         }
 
         return null
     }
 
-    public getClientDeviceById(user:IUser, clientDeviceId:string):IClientDevice|null {
-
-        if (user && user.clientDevices) {
-            for (const clientDevice of user.clientDevices) {
-                if (clientDevice._id === clientDeviceId) return clientDevice
-            }
-        }
-
-        return null
-    }
-
-    public async getClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async getWorkspace(userId:string, workspaceId:string):Promise<IWorkspace|null> {
+        if (!(userId && workspaceId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
 
-        const clientDevice = this.getClientDeviceById(user, clientDeviceId)
-        if (!clientDevice) throw({code: 404})
+        const workspace = this.getWorkspaceById(user, workspaceId)
+        if (!workspace) throw({code: 404})
 
-        return clientDevice
+        return workspace
     }
 
-    public async getClientDevices(userId:string):Promise<IClientDevice[]> {
-        let result:IClientDevice[] = []
+    public async getWorkspaces(userId:string):Promise<IWorkspace[]> {
+        let result:IWorkspace[] = []
         if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
-        result = user!.clientDevices? user!.clientDevices: []
+        result = user!.workspaces? user!.workspaces: []
 
         return result
     }
 
-    public async saveClientDevice(userId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && ua)) throw({code: 400})
+    public async saveWorkspace(userId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
+        if (!(userId && name)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw({code: 404})
 
-        // check if the user info to save is existing on the user user infos
-        if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
-        const doc:IResult & {disabled?:boolean} = (new UAParser(ua)).getResult()
+        const doc:IWorkspace = {
+            name: name,
+            description: description
+        }
+        if (DataCleaner.getBooleanData(isActive).isValid) {
+            doc.isActive = DataCleaner.getBooleanData(isActive).data
+        }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        user.clientDevices!.push(doc)
+
+        user.workspaces!.push(doc)
 
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
-        return this.getClientDeviceByUA(user, ua)
+        return user.workspaces[user.workspaces.length - 1]
     }
 
-    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async updateWorkspace(userId:string, workspaceId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
+        if (!(userId && workspaceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw({code: 404})
-        if (!user.clientDevices?.id(clientDeviceId)) throw({code: 404})
+        if (!user.workspaces?.id(workspaceId)) throw({code: 404})
 
-        // check if client device ua already existed on other entries in this user client devices
-        if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
+        if (name) user.workspaces!.id(workspaceId)!.name = name
+        if (description) user.workspaces!.id(workspaceId)!.description = description
 
-        if (ua) {
-            const doc = (new UAParser(ua)).getResult()
-
-            user.clientDevices!.id(clientDeviceId)!.ua =      ua
-            // user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
-            // user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
-            // user.clientDevices!.id(clientDeviceId)!.os =      doc.os
-            // user.clientDevices!.id(clientDeviceId)!.device =  doc.device
-            // user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
+        if (DataCleaner.getBooleanData(isActive).isValid) {
+            user.workspaces!.id(workspaceId)!.isActive = DataCleaner.getBooleanData(isActive).data
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            user.workspaces!.id(workspaceId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
-        return user.clientDevices!.id(clientDeviceId)
+        return user.workspaces!.id(workspaceId)
     }
 
-    public async deleteClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async deleteWorkspace(userId:string, workspaceId:string):Promise<IWorkspace|null> {
+        if (!(userId && workspaceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw({code: 404})
 
-        const clientDeviceData = user!.clientDevices?.id(clientDeviceId)
-        if (clientDeviceData) {
-            user!.clientDevices?.id(clientDeviceId)?.deleteOne()
+        const workspaceData = user!.workspaces?.id(workspaceId)
+        if (workspaceData) {
+            user!.workspaces?.id(workspaceId)?.deleteOne()
             await user.save()
             await userController.cachedData.removeCacheData(userId)
         } else {
             throw({code: 404})
         }
 
-        return clientDeviceData? clientDeviceData: null
+        return workspaceData? workspaceData: null
     }
 }
 
-export default new UserClientDeviceController()
+export default new UserWorkspaceController()

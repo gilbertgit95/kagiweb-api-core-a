@@ -14,10 +14,13 @@ import userPasswordController from '../controllers/userPasswordController'
 import userLimitedTransactionController from '../controllers/userLimitedTransactionController'
 import userClientDeviceController from '../controllers/userClientDeviceController'
 import userClientDeviceAccessTokenController from '../controllers/userClientDeviceAccessTokenController'
+import userWorkspaceController from '../controllers/userWorkspaceController'
+import userWorkspaceUserRefController from '../controllers/userWorkspaceUserRefController'
 
 import {
     IUser, IRoleRef, IUserInfo, IContactInfo,
-    IPassword, ILimitedTransaction, IClientDevice, IAccessToken
+    IPassword, ILimitedTransaction, IClientDevice, IAccessToken,
+    IWorkspace, IWorkspaceUserRef
 } from '../dataSource/models/userModel'
 
 
@@ -481,8 +484,8 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessT
 router.get(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
     const userId = req?.userData?._id || ''
 
-    const [result, statusCode] = await ErrorHandler.execute<IClientDevice[]>(async () => {
-        return await userClientDeviceController.getClientDevices(userId)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspace[]>(async () => {
+        return await userWorkspaceController.getWorkspaces(userId)
     })
 
     return res.status(statusCode).send(result)
@@ -490,10 +493,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
 
 router.post(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
     const userId = req?.userData?._id || ''
-    const { ua, disabled } = req.body
+    const { name, description, isActive, disabled } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.saveClientDevice(userId, ua, disabled)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
+        return await userWorkspaceController.saveWorkspace(userId, name, description, isActive, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -503,8 +506,8 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, re
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.getClientDevice(userId, workspaceId)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
+        return await userWorkspaceController.getWorkspace(userId, workspaceId)
     })
 
     return res.status(statusCode).send(result)
@@ -513,10 +516,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, re
 router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, res) => {
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
-    const { ua, disabled } = req.body
+    const { name, description, isActive, disabled } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.updateClientDevice(userId, workspaceId, ua, disabled)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
+        return await userWorkspaceController.updateWorkspace(userId, workspaceId, name, description, isActive, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -526,8 +529,8 @@ router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req,
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.deleteClientDevice( userId, workspaceId )
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
+        return await userWorkspaceController.deleteWorkspace( userId, workspaceId )
     })
 
     return res.status(statusCode).send(result)
@@ -538,8 +541,8 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs', async
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccessToken[]>(async () => {
-        return await userClientDeviceAccessTokenController.getClientDeviceAccessTokens(userId, workspaceId)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef[]>(async () => {
+        return await userWorkspaceUserRefController.getWorkspaceUserRefs(userId, workspaceId)
     })
 
     return res.status(statusCode).send(result)
@@ -548,10 +551,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs', async
 router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs', async (req, res) => {
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
-    const { jwt, ipAddress, disabled } = req.body
+    const { userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.saveClientDeviceAccessToken(userId, workspaceId, jwt, ipAddress, disabled)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
+        return await userWorkspaceUserRefController.saveWorkspaceUserRef(userId, workspaceId, userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -561,8 +564,8 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs/:userRe
     const userId = req?.userData?._id || ''
     const { workspaceId, userRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.getClientDeviceAccessToken(userId, workspaceId, userRefId)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
+        return await userWorkspaceUserRefController.getWorkspaceUserRef(userId, workspaceId, userRefId)
     })
 
     return res.status(statusCode).send(result)
@@ -571,10 +574,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs/:userRe
 router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs/:userRefId', async (req, res) => {
     const userId = req?.userData?._id || ''
     const { workspaceId, userRefId } = req.params
-    const { jwt, ipAddress, disabled } = req.body
+    const { userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.updateClientDeviceAccessToken(userId, workspaceId, userRefId, jwt, ipAddress, disabled)
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
+        return await userWorkspaceUserRefController.updateWorkspaceUserRef(userId, workspaceId, userRefId, userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -584,8 +587,8 @@ router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs/:use
     const userId = req?.userData?._id || ''
     const { workspaceId, userRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.deleteClientDeviceAccessToken( userId, workspaceId, userRefId )
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
+        return await userWorkspaceUserRefController.deleteWorkspaceUserRef( userId, workspaceId, userRefId )
     })
 
     return res.status(statusCode).send(result)

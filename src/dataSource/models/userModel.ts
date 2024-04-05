@@ -80,12 +80,12 @@ interface IUserInfo {
 interface IWorkspaceUserRef {
     _id?: string,
     userId: string,
-    readAccess: boolean,
-    updateAccess: boolean,
-    createAccess: boolean,
-    deleteAccess: boolean,
-    accepted: boolean,
-    disabled: boolean
+    readAccess?: boolean,
+    updateAccess?: boolean,
+    createAccess?: boolean,
+    deleteAccess?: boolean,
+    accepted?: boolean,
+    disabled?: boolean
 }
 
 interface IWorkspace {
