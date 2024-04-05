@@ -187,8 +187,8 @@ const WorkspaceUserRefSchema = new Schema<IWorkspaceUserRef>({
     userId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
     updateAccess: { type: Boolean, default: false},
-    createAccess: { type: Boolean, default: true},
-    deleteAccess: { type: Boolean, default: true},
+    createAccess: { type: Boolean, default: false},
+    deleteAccess: { type: Boolean, default: false},
     accepted: { type: Boolean, default: true},
     disabled: { type: Boolean, default: true},
 }, { timestamps: true })
