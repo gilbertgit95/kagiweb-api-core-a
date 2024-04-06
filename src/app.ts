@@ -23,6 +23,8 @@ import userPasswordRoutes from './routes/userPasswordRoutes'
 import userLimitedTransactionRoutes from './routes/userLimitedTransactionRoutes'
 import userClientDeviceRoutes from './routes/userClientDeviceRoutes'
 import userClientDeviceAccesstokenRoutes from './routes/userClientDeviceAccesstokenRoutes'
+import userWorkspaceRoutes from './routes/userWorkspaceRoutes'
+import userWorkspaceUserRefRoutes from './routes/userWorkspaceUserRefRoutes'
 import ownerRoutes from './routes/ownerRoutes'
 
 const router = express.Router()
@@ -70,6 +72,8 @@ appHandler.addPrivateRoute(userPasswordRoutes)
 appHandler.addPrivateRoute(userLimitedTransactionRoutes)
 appHandler.addPrivateRoute(userClientDeviceRoutes)
 appHandler.addPrivateRoute(userClientDeviceAccesstokenRoutes)
+appHandler.addPrivateRoute(userWorkspaceRoutes)
+appHandler.addPrivateRoute(userWorkspaceUserRefRoutes)
 appHandler.addPrivateRoute(ownerRoutes)
 
 export {

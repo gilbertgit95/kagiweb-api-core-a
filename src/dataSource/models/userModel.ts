@@ -198,7 +198,7 @@ const workspaceSchema = new Schema<IWorkspace>({
     name: {
         type: String,
         required: true,
-        validate: TextValidators.validateObjectName
+        validate: TextValidators.validateDescription
     },
     description: {
         type: String,
