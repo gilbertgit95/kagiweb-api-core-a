@@ -21,7 +21,7 @@ class TextValidators {
     // validate description
     public static validateDescription = {
         validator: (value:string):boolean => {
-            return /^[.\w\s@?$!]+$/.test(value)
+            return value.length? /^[.\w\s@?$!]+$/.test(value): true
         },
         message: (props:{value:string}):string => `${props.value} is not a valid description!`
     }
