@@ -42,6 +42,7 @@ get:
                   createAccess: true
                   deleteAccess: true
                   accepted: true
+                  declined: false
                   disabled: false
                   createdAt: '2023-08-27T14:51:58.619Z'
                   updatedAt: '2023-09-09T00:20:10.686Z'
@@ -65,11 +66,10 @@ post:
         schema:
           type: object
           required:
-            - userId
+            - username
           properties:
-            userId:
+            username:
               type: string
-              format: uuid
             readAccess:
               type: boolean
             updateAccess:
@@ -77,8 +77,6 @@ post:
             createAccess:
               type: boolean
             deleteAccess:
-              type: boolean
-            accepted:
               type: boolean
             disabled:
               type: boolean
@@ -102,6 +100,7 @@ post:
                 createAccess: true
                 deleteAccess: true
                 accepted: true
+                declined: false
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'

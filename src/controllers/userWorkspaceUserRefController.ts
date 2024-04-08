@@ -20,6 +20,18 @@ class UserWorkspaceUserRefController {
         return null
     }
 
+    public getWorkspaceUserRefByUserId(user:IUser, workspaceId:string, userId:string):IWorkspaceUserRef|null {
+
+        const workspace = userWorkspaceController.getWorkspaceById(user, workspaceId)
+        if (workspace && workspace.userRefs) {
+            for (const userRef of workspace.userRefs) {
+                if (userRef.userId === userId) return userRef
+            }
+        }
+
+        return null
+    }
+
     public async getWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceUserRef|null> {
         if (!(userId && workspaceId && userRefId)) throw({code: 400})
 
@@ -46,22 +58,25 @@ class UserWorkspaceUserRefController {
     public async saveWorkspaceUserRef(
             userId:string,
             workspaceId:string,
-            userRef:string,
+            username:string,
             readAccess:boolean|string,
             updateAccess:boolean|string,
             createAccess:boolean|string,
             deleteAccess:boolean|string,
-            accepted:boolean|string,
             disabled:boolean|string
         ):Promise<IWorkspaceUserRef|null> {
 
-        if (!(userId && workspaceId && userRef)) throw({code: 400})
+        if (!(userId && workspaceId && username)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
+        const assignedUser = await UserModel.findOne({username})
         if (!user) throw({code: 404})
+        if (!assignedUser) throw({code: 404, message: `${ username } does not exist!`})
+        if (this.getWorkspaceUserRefByUserId(user, workspaceId, assignedUser._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
 
         const doc:IWorkspaceUserRef = {
-            userId: userRef
+            userId: assignedUser._id,
+            username: username
         }
         if (DataCleaner.getBooleanData(readAccess).isValid) {
             doc.readAccess = DataCleaner.getBooleanData(readAccess).data
@@ -74,9 +89,6 @@ class UserWorkspaceUserRefController {
         }
         if (DataCleaner.getBooleanData(deleteAccess).isValid) {
             doc.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
-        }
-        if (DataCleaner.getBooleanData(accepted).isValid) {
-            doc.accepted = DataCleaner.getBooleanData(accepted).data
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
@@ -94,12 +106,10 @@ class UserWorkspaceUserRefController {
             userId:string,
             workspaceId:string,
             userRefId:string,
-            userRef:string|undefined,
             readAccess:boolean|string,
             updateAccess:boolean|string,
             createAccess:boolean|string,
             deleteAccess:boolean|string,
-            accepted:boolean|string,
             disabled:boolean|string
         ):Promise<IWorkspaceUserRef|null> {
 
@@ -109,7 +119,6 @@ class UserWorkspaceUserRefController {
         if (!user) throw({code: 404})
         if (!this.getWorkspaceUserRefById(user, workspaceId, userRefId)) throw({code: 404})
 
-        if (userRef) user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.userId = userRef
         if (DataCleaner.getBooleanData(readAccess).isValid) {
             user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
         }
@@ -121,9 +130,6 @@ class UserWorkspaceUserRefController {
         }
         if (DataCleaner.getBooleanData(deleteAccess).isValid) {
             user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
-        }
-        if (DataCleaner.getBooleanData(accepted).isValid) {
-            user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.accepted = DataCleaner.getBooleanData(accepted).data
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.disabled = DataCleaner.getBooleanData(disabled).data

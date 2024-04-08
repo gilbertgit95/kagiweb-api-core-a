@@ -45,6 +45,7 @@ get:
                 createAccess: true
                 deleteAccess: true
                 accepted: true
+                declined: false
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'
@@ -80,9 +81,6 @@ put:
         schema:
           type: object
           properties:
-            userId:
-              type: string
-              format: uuid
             readAccess:
               type: boolean
             updateAccess:
@@ -90,8 +88,6 @@ put:
             createAccess:
               type: boolean
             deleteAccess:
-              type: boolean
-            accepted:
               type: boolean
             disabled:
               type: boolean
@@ -115,6 +111,7 @@ put:
                 createAccess: true
                 deleteAccess: true
                 accepted: true
+                declined: false
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'
@@ -164,6 +161,7 @@ delete:
                 createAccess: true
                 deleteAccess: true
                 accepted: true
+                declined: false
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'

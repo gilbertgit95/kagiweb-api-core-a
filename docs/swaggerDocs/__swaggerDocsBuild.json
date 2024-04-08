@@ -5765,6 +5765,7 @@
                             "createAccess": true,
                             "deleteAccess": true,
                             "accepted": true,
+                            "declined": false,
                             "disabled": false,
                             "createdAt": "2023-08-27T14:51:58.619Z",
                             "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -5863,6 +5864,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -5945,6 +5947,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6048,6 +6051,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6128,6 +6132,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6225,6 +6230,7 @@
                         "createAccess": true,
                         "deleteAccess": true,
                         "accepted": true,
+                        "declined": false,
                         "disabled": false,
                         "createdAt": "2023-08-27T14:51:58.619Z",
                         "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6272,12 +6278,11 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "userId"
+                  "username"
                 ],
                 "properties": {
-                  "userId": {
-                    "type": "string",
-                    "format": "uuid"
+                  "username": {
+                    "type": "string"
                   },
                   "readAccess": {
                     "type": "boolean"
@@ -6331,6 +6336,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6411,6 +6417,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6466,10 +6473,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "userId": {
-                    "type": "string",
-                    "format": "uuid"
-                  },
                   "readAccess": {
                     "type": "boolean"
                   },
@@ -6480,9 +6483,6 @@
                     "type": "boolean"
                   },
                   "deleteAccess": {
-                    "type": "boolean"
-                  },
-                  "accepted": {
                     "type": "boolean"
                   },
                   "disabled": {
@@ -6522,6 +6522,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -6600,6 +6601,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9483,6 +9485,7 @@
                             "createAccess": true,
                             "deleteAccess": true,
                             "accepted": true,
+                            "declined": false,
                             "disabled": false,
                             "createdAt": "2023-08-27T14:51:58.619Z",
                             "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9570,6 +9573,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9643,6 +9647,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9737,6 +9742,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9808,6 +9814,7 @@
                           "createAccess": true,
                           "deleteAccess": true,
                           "accepted": true,
+                          "declined": false,
                           "disabled": false,
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9896,6 +9903,7 @@
                         "createAccess": true,
                         "deleteAccess": true,
                         "accepted": true,
+                        "declined": false,
                         "disabled": false,
                         "createdAt": "2023-08-27T14:51:58.619Z",
                         "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -9934,12 +9942,11 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "userId"
+                  "username"
                 ],
                 "properties": {
-                  "userId": {
-                    "type": "string",
-                    "format": "uuid"
+                  "username": {
+                    "type": "string"
                   },
                   "readAccess": {
                     "type": "boolean"
@@ -9951,9 +9958,6 @@
                     "type": "boolean"
                   },
                   "deleteAccess": {
-                    "type": "boolean"
-                  },
-                  "accepted": {
                     "type": "boolean"
                   },
                   "disabled": {
@@ -9993,6 +9997,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -10064,6 +10069,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -10110,10 +10116,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "userId": {
-                    "type": "string",
-                    "format": "uuid"
-                  },
                   "readAccess": {
                     "type": "boolean"
                   },
@@ -10124,9 +10126,6 @@
                     "type": "boolean"
                   },
                   "deleteAccess": {
-                    "type": "boolean"
-                  },
-                  "accepted": {
                     "type": "boolean"
                   },
                   "disabled": {
@@ -10166,6 +10165,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -10235,6 +10235,7 @@
                       "createAccess": true,
                       "deleteAccess": true,
                       "accepted": true,
+                      "declined": false,
                       "disabled": false,
                       "createdAt": "2023-08-27T14:51:58.619Z",
                       "updatedAt": "2023-09-09T00:20:10.686Z"
@@ -10815,6 +10816,9 @@
             "type": "string",
             "format": "uuid"
           },
+          "username": {
+            "type": "string"
+          },
           "readAccess": {
             "type": "boolean"
           },
@@ -10830,17 +10834,22 @@
           "accepted": {
             "type": "boolean"
           },
+          "declined": {
+            "type": "boolean"
+          },
           "disabled": {
             "type": "boolean"
           }
         },
         "example": {
           "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+          "username": "gilbert69",
           "readAccess": true,
           "updateAccess": true,
           "createAccess": true,
           "deleteAccess": true,
           "accepted": true,
+          "declined": false,
           "disabled": false
         }
       },

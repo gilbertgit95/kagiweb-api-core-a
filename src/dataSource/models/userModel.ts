@@ -80,10 +80,12 @@ interface IUserInfo {
 interface IWorkspaceUserRef {
     _id?: string,
     userId: string,
+    username: string,
     readAccess?: boolean,
     updateAccess?: boolean,
     createAccess?: boolean,
     deleteAccess?: boolean,
+    declined?: boolean,
     accepted?: boolean,
     disabled?: boolean
 }
@@ -185,12 +187,14 @@ const UserInfoSchema = new Schema<IUserInfo>({
 const WorkspaceUserRefSchema = new Schema<IWorkspaceUserRef>({
     _id: { type: String, default: () => randomUUID() },
     userId: { type: String, required: true},
+    username: { type: String, required: false},
     readAccess: { type: Boolean, default: true},
     updateAccess: { type: Boolean, default: false},
     createAccess: { type: Boolean, default: false},
     deleteAccess: { type: Boolean, default: false},
-    accepted: { type: Boolean, default: true},
-    disabled: { type: Boolean, default: true},
+    declined: { type: Boolean, default: false},
+    accepted: { type: Boolean, default: false},
+    disabled: { type: Boolean, default: false},
 }, { timestamps: true })
 
 const workspaceSchema = new Schema<IWorkspace>({

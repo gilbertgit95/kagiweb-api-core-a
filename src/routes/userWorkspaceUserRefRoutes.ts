@@ -22,10 +22,10 @@ router.get(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRefs
 
 router.post(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRefs', async (req, res) => {
     const { userId, workspaceId } = req.params
-    const { userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled } = req.body
+    const { username, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
-        return await userWorkspaceUserRefController.saveWorkspaceUserRef(userId, workspaceId, userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled)
+        return await userWorkspaceUserRefController.saveWorkspaceUserRef(userId, workspaceId, username, readAccess, updateAccess, createAccess, deleteAccess, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -42,11 +42,11 @@ router.get(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRefs
 })
 
 router.put(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRefs/:userRefId', async (req, res) => {
-   const { userId, workspaceId, userRefId } = req.params
-    const { userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled } = req.body
+    const { userId, workspaceId, userRefId } = req.params
+    const { readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
-        return await userWorkspaceUserRefController.updateWorkspaceUserRef(userId, workspaceId, userRefId, userRef, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled)
+        return await userWorkspaceUserRefController.updateWorkspaceUserRef(userId, workspaceId, userRefId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
     })
 
     return res.status(statusCode).send(result)
