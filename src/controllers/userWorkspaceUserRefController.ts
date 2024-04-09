@@ -72,6 +72,7 @@ class UserWorkspaceUserRefController {
         const assignedUser = await UserModel.findOne({username})
         if (!user) throw({code: 404})
         if (!assignedUser) throw({code: 404, message: `${ username } does not exist!`})
+        if (user._id === assignedUser._id) throw({code: 409, message: 'cannot assign the workspace owner'})
         if (this.getWorkspaceUserRefByUserId(user, workspaceId, assignedUser._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
 
         const doc:IWorkspaceUserRef = {

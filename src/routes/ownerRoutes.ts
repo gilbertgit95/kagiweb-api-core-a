@@ -551,7 +551,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs', async
 router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs', async (req, res) => {
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
-    const { username, readAccess, updateAccess, createAccess, deleteAccess, accepted, disabled } = req.body
+    const { username, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
         return await userWorkspaceUserRefController.saveWorkspaceUserRef(userId, workspaceId, username, readAccess, updateAccess, createAccess, deleteAccess, disabled)
