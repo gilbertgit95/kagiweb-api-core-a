@@ -7,6 +7,17 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserWorkspaceController {
+    public getActiveWorkspace(user:IUser):IWorkspace|null {
+
+        if (user && user.workspaces) {
+            for (const workspace of user.workspaces) {
+                if (workspace.isActive) return workspace
+            }
+        }
+
+        return null
+    }
+
     public getWorkspaceById(user:IUser, workspaceId:string):IWorkspace|null {
 
         if (user && user.workspaces) {
@@ -28,6 +39,55 @@ class UserWorkspaceController {
         if (!workspace) throw({code: 404})
 
         return workspace
+    }
+
+    public async getExternalWorkspaces(userId:string):Promise<(IWorkspace & {ownerId:string, ownerUsername: string})[]> {
+        let result:(IWorkspace & {ownerId:string, ownerUsername: string})[] = []
+        if (!userId) throw({code: 400})
+
+        const extWorkspaces:(IWorkspace & {ownerId:string, ownerUsername: string})[] = await UserModel.aggregate<IWorkspace & {ownerId:string, ownerUsername: string}>([
+            {
+              '$match': {
+                'workspaces.userRefs.userId': userId
+              }
+            }, {
+              '$unwind': {
+                'path': '$workspaces', 
+                'preserveNullAndEmptyArrays': false
+              }
+            }, {
+              '$addFields': {
+                'user': '$workspaces.userRefs'
+              }
+            }, {
+              '$unwind': {
+                'path': '$user', 
+                'preserveNullAndEmptyArrays': false
+              }
+            }, {
+              '$match': {
+                'user.userId': userId
+              }
+            }, {
+              '$project': {
+                '_id': '$workspaces._id',
+                'name': '$workspaces.name',
+                'description': '$workspaces.description',
+                'owner_id': '$_id',
+                'owner_username': '$username',
+                'isActive': '$workspaces.isActive',
+                'userRefs': '$workspaces.userRefs',
+                'createdAt': '$workspaces.createdAt',
+                'updatedAt': '$workspaces.updatedAt',
+                'disabled': '$workspaces.disabled'
+              }
+            }
+        ])
+        
+        if (!extWorkspaces) throw({code: 404})
+        result = extWorkspaces
+
+        return result
     }
 
     public async getWorkspaces(userId:string):Promise<IWorkspace[]> {

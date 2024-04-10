@@ -3,6 +3,7 @@ import UserModel, { IUser, IPassword, IAccessToken, IClientDevice, IWorkspace, I
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 import featureController from './featureController'
+import userWorkspaceController from './userWorkspaceController'
 
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
@@ -19,7 +20,8 @@ interface IUserCompleteInfo {
     roles: IRole[]|null,
     features: IFeature[]|null,
     workspace: IWorkspace|null,
-    workspaces: IWorkspace[]|null
+    workspaces: IWorkspace[]|null,
+    externalWorkspaces: (IWorkspace & {ownerId:string, ownerUsername: string})[]|null
 }
 
 class UserController {
@@ -54,7 +56,8 @@ class UserController {
             roles: null,
             features: null,
             workspace: null,
-            workspaces: null
+            workspaces: null,
+            externalWorkspaces: null
         }
         if (query._id) {
             let user = await this.cachedData.getItem<IUser>(query._id)
@@ -71,13 +74,12 @@ class UserController {
                     roleFeatures = await featureController.getAllFeatures()
                 }
 
-                // get user workspaces
-
                 resp.role = activeRole
                 resp.roles = userRoles
                 resp.features = roleFeatures
-                resp.workspace = null
-                resp.workspaces = null
+                resp.workspace = userWorkspaceController.getActiveWorkspace(user)
+                resp.workspaces = user.workspaces
+                resp.externalWorkspaces = await userWorkspaceController.getExternalWorkspaces(user._id!)
                 resp.userData = user
             }
         }
