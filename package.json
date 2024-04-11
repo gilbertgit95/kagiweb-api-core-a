@@ -39,7 +39,9 @@
     "./controllers/userLimitedtransactionController": "./build/src/controllers/userLimitedtransactionController.js",
     "./controllers/userPasswordController": "./build/src/controllers/userPasswordController.js",
     "./controllers/userRoleController": "./build/src/controllers/userRoleController.js",
-    "./controllers/userUserInfoController": "./build/src/controllers/userUserInfoController.js"
+    "./controllers/userUserInfoController": "./build/src/controllers/userUserInfoController.js",
+    "./controllers/userWorkspaceUserRefController": "./build/src/controllers/userWorkspaceUserRefController.js",
+    "./controllers/userWorkspaceController": "./build/src/controllers/userWorkspaceController.js"
   },
   "typesVersions": {
     "*": {
@@ -120,6 +122,12 @@
       ],
       "controllers/userUserInfoController": [
         "build/src/controllers/userUserInfoController.d.ts"
+      ],
+      "controllers/userWorkspaceUserRefController": [
+        "build/src/controllers/userWorkspaceUserRefController.d.ts"
+      ],
+      "controllers/userWorkspaceController": [
+        "build/src/controllers/userWorkspaceController.d.ts"
       ]
     }
   },

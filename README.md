@@ -176,11 +176,12 @@ The application emits important events that you could listen. Example is when yo
 
 #### This are the events that this apps emits
 
-| Event Name      | Fields                                        |     Description                                           |
-|-----------------|-----------------------------------------------|-----------------------------------------------------------|
-| `otp`           | module, device, ip, user, lt                  | when, signing in, password reset and more in the future   |
-| `user-created`  | createdUser, module, password                 | When a user is created via signup or by admin             |
-| `user-changed`  | changedUser, property, value, previousValue   | When a users top level properties are changed             |
+| Event Name         | Fields                                        |     Description                                           |
+|--------------------|-----------------------------------------------|-----------------------------------------------------------|
+| `otp`              | module, device, ip, user, lt                  | when, signing in, password reset and more in the future   |
+| `user-created`     | createdUser, module, password                 | When a user is created via signup or by admin             |
+| `user-changed`     | changedUser, property, value, previousValue   | When a users top level properties are changed             |
+| `workspace-update` | action, user, assignedUser, workspace         | When a user is added or removed from a workspace          |
 
 
 #### Complete Example
@@ -222,6 +223,16 @@ appEvents.on('user-changed', (data) => {
         //  do something you want
     } else if (data.property === 'verified') {
         console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        //  do something you want
+    }
+})
+
+appEvents.on('workspace-update', (data) => {
+    if (data.action === 'add') {
+        console.log(`workspace-update: ${ data.assignedUser.username } was added to ${ data.user.username } -> ${ data.workspace.name }`)
+        //  do something you want
+    } else if (data.action === 'remove') {
+        console.log(`workspace-update:  ${ data.assignedUser.username } was removed from ${ data.user.username } -> ${ data.workspace.name }`)
         //  do something you want
     }
 })
@@ -316,8 +327,6 @@ Mongoose models that are the bases of the core application
   - @kagiweb-tech/api-core-a/models/roleModel
 - **User** - application user.
   - @kagiweb-tech/api-core-a/models/userModel
-- **Workspace** - this will let users virtually separate data.
-  - @kagiweb-tech/api-core-a/models/workspaceModel
 
 
 ### Controllers
@@ -336,9 +345,10 @@ Each models has one or more controllers. This are reusable data processors for t
   - @kagiweb-tech/api-core-a/controllers/userPasswordController
   - @kagiweb-tech/api-core-a/controllers/userRoleController
   - @kagiweb-tech/api-core-a/controllers/userUserInfoController
-- **Workspace**
   - @kagiweb-tech/api-core-a/controllers/workspaceController
   - @kagiweb-tech/api-core-a/controllers/workspaceUsersController
+  - @kagiweb-tech/api-core-a/controllers/userWorkspaceController
+  - @kagiweb-tech/api-core-a/controllers/userWorkspaceUserRefController
 - **Authentication**
   - @kagiweb-tech/api-core-a/controllers/authController
 - **System**

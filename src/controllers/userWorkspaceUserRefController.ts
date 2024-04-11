@@ -2,6 +2,7 @@ import UserModel, { IUser, IWorkspaceUserRef } from '../dataSource/models/userMo
 import userController from './userController'
 import userWorkspaceController from './userWorkspaceController'
 import DataCleaner from '../utilities/dataCleaner'
+import appEvents from '../utilities/appEvents'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -99,6 +100,14 @@ class UserWorkspaceUserRefController {
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
+        // emit event
+        appEvents.emit('workspace-update', {
+            action: 'add',
+            user: user,
+            assignedUser,
+            workspace: user.workspaces!.id(workspaceId)
+        })
+
         const lastIndex = user.workspaces!.id(workspaceId)!.userRefs!.length - 1
         return user.workspaces!.id(workspaceId)!.userRefs![lastIndex]
     }
@@ -153,6 +162,15 @@ class UserWorkspaceUserRefController {
             user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)?.deleteOne()
             await user.save()
             await userController.cachedData.removeCacheData(userId)
+
+            const assignedUser = await UserModel.findOne({_id: workspaceUserRefData.userId})
+            // emit event
+            appEvents.emit('workspace-update', {
+                action: 'remove',
+                user: user,
+                assignedUser,
+                workspace: user.workspaces!.id(workspaceId)
+            })
         } else {
             throw({code: 404})
         }

@@ -42,6 +42,16 @@ appEvents.on('user-changed', (data) => {
     }
 })
 
+appEvents.on('workspace-update', (data) => {
+    if (data.action === 'add') {
+        console.log(`workspace-update: ${ data.assignedUser.username } was added to ${ data.user.username } -> ${ data.workspace.name }`)
+        //  do something you want
+    } else if (data.action === 'remove') {
+        console.log(`workspace-update:  ${ data.assignedUser.username } was removed from ${ data.user.username } -> ${ data.workspace.name }`)
+        //  do something you want
+    }
+})
+
 // start express application
 app.listen(env.AppPort, async () => {
     try {
