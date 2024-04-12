@@ -234,7 +234,11 @@ class AuthController {
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             userInfo: [],
             passwords: [
-                { key: await Encryption.hashText(password), isActive: true }
+                {
+                    key: await Encryption.hashText(password),
+                    expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate(),
+                    isActive: true
+                }
             ],
             contactInfos: contactinfos,
             clientDevices: [],

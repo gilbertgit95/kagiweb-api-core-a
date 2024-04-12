@@ -1,3 +1,4 @@
+import moment from 'moment'
 import DataCache from '../utilities/dataCache'
 import UserModel, { IUser, IPassword, IAccessToken, IClientDevice, IWorkspace, IUserQuery } from '../dataSource/models/userModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
@@ -11,9 +12,10 @@ import { IFeature } from '../dataSource/models/featureModel'
 import { IRole } from '../dataSource/models/roleModel'
 import userRoleController from './userRoleController'
 import appEvents from '../utilities/appEvents'
-// import Config from '../utilities/config'
+import Config from '../utilities/config'
 
-// const env = Config.getEnv()
+const env = Config.getEnv()
+
 interface IUserCompleteInfo {
     userData: IUser|null,
     role: IRole|null,
@@ -119,7 +121,11 @@ class UserController {
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             userInfo: [],
             passwords: [
-                { key: await Encryption.hashText(defautPass), isActive: true }
+                {
+                    key: await Encryption.hashText(defautPass),
+                    expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate(),
+                    isActive: true
+                }
             ],
             contactInfos: [],
             clientDevices: [],

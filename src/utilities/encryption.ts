@@ -12,11 +12,14 @@ class Encryption {
      * uppercase, numbers and special characters
      */
     public static generateRandPassword():string {
+        const specialChars = '@$!%*?&'
+
         return Math.random()
-                .toString(36).slice(2) +
-            Math.random()
-                .toString(36)
-                .toUpperCase().slice(2)
+                    .toString(36).slice(2) +
+                Math.random()
+                    .toString(36)
+                    .toUpperCase().slice(2) +
+                specialChars[Math.floor(Math.random() * specialChars.length)]
     }
 
     /**
