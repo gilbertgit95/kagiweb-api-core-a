@@ -33,6 +33,7 @@ interface IRoleRef {
 interface IPassword {
     _id?: string,
     key: string,
+    expTime?: Date,
     isActive?: boolean
 }
 
@@ -128,6 +129,7 @@ const RoleRefSchema = new Schema<IRoleRef>({
 const PasswordSchema = new Schema<IPassword>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
+    expTime: { type: Date, require: false },
     isActive: { type: Boolean, require: false, default: true },
 }, { timestamps: true })
 

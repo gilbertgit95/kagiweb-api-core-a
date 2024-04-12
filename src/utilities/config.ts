@@ -7,6 +7,8 @@ interface Env {
     DafaultUserLTLimit: number,
     DafaultUserLTExpiration: number,
 
+    DefaultPasswordExpiration: number,
+
     MongoURI: string | undefined,
     DBName: string | undefined,
 
@@ -33,6 +35,8 @@ class Config {
             DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
             DafaultUserLTLimit: Number(process.env.DEFAULT_USER_LT_LIMIT),
             DafaultUserLTExpiration: Number(process.env.DEFAULT_USER_LT_EXP),
+
+            DefaultPasswordExpiration: Number(process.env.DEFAULT_PASSWORD_EXP),
 
             MongoURI: process.env[`${ appEnv }_MONGO_URI`]? process.env[`${ appEnv }_MONGO_URI`]: '',
             DBName: process.env[`${ appEnv }_MONGO_DB_NAME`]? process.env[`${ appEnv }_MONGO_DB_NAME`]: '',

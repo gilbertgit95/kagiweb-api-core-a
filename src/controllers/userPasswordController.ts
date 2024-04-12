@@ -1,10 +1,11 @@
+import moment from 'moment'
 import UserModel, { IUser, IPassword } from '../dataSource/models/userModel'
 import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import Encryption from '../utilities/encryption'
-// import Config from '../utilities/config'
+import Config from '../utilities/config'
 
-// const env = Config.getEnv()
+const env = Config.getEnv()
 
 class UserPasswordController {
     /**
@@ -110,7 +111,11 @@ class UserPasswordController {
         if (await this.hasPasswordEntry(user, newPassword)) throw({code: 409})
 
         // save the new password with active status
-        user.passwords!.push({isActive: true, key: await Encryption.hashText(newPassword)})
+        user.passwords!.push({
+            isActive: true,
+            key: await Encryption.hashText(newPassword),
+            expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate()
+        })
 
         // deactivate the current password
         user.passwords.id(currPass._id)!.isActive = false
