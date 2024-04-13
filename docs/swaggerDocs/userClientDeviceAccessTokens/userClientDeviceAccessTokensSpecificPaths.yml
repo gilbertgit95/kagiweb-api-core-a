@@ -41,6 +41,8 @@ get:
                 id: c54a858a-b095-4405-9a1c-8567ec91da5e
                 jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTQyMTg4MTAsImV4cCI6MTY5NDgyMzYxMH0.TRpD4Ia_Z1mLyVebe7xxmwyDjzFGw1LqEHG1d7NDA7A
                 ipAddress: ::1
+                description: 'created when signing in'
+                expTime: 2023-08-07T03:10:24.423Z
                 disabled: false
                 createdAt: 2023-08-27T14:51:58.619Z
                 updatedAt: 2023-08-27T14:51:58.619Z
@@ -76,7 +78,7 @@ put:
         schema:
           type: object
           properties:
-            jwt:
+            description:
               type: string
             ipAddress:
               type: string
@@ -99,6 +101,8 @@ put:
                 id: c54a858a-b095-4405-9a1c-8567ec91da5e
                 jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTQyMTg4MTAsImV4cCI6MTY5NDgyMzYxMH0.TRpD4Ia_Z1mLyVebe7xxmwyDjzFGw1LqEHG1d7NDA7A
                 ipAddress: ::1
+                description: 'created when signing in'
+                expTime: 2023-08-07T03:10:24.423Z
                 disabled: false
                 createdAt: 2023-08-27T14:51:58.619Z
                 updatedAt: 2023-08-27T14:51:58.619Z
@@ -144,6 +148,8 @@ delete:
                 id: c54a858a-b095-4405-9a1c-8567ec91da5e
                 jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTQyMTg4MTAsImV4cCI6MTY5NDgyMzYxMH0.TRpD4Ia_Z1mLyVebe7xxmwyDjzFGw1LqEHG1d7NDA7A
                 ipAddress: ::1
+                description: 'created when signing in'
+                expTime: 2023-08-07T03:10:24.423Z
                 disabled: false
                 createdAt: 2023-08-27T14:51:58.619Z
                 updatedAt: 2023-08-27T14:51:58.619Z

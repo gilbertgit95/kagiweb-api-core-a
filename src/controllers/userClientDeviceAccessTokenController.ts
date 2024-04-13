@@ -103,17 +103,19 @@ class UserClientDeviceAccessTokenController {
         return clientDevice && clientDevice.accessTokens? clientDevice.accessTokens: []
     }
 
-    public async saveClientDeviceAccessToken(userId:string, clientDeviceId:string, jwt:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId && jwt)) throw({code: 400})
+    public async saveClientDeviceAccessToken(userId:string, clientDeviceId:string, expiration:number|undefined, description:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
+        if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw({code: 404})
+        const jwtStr = Encryption.generateJWT({userId}, expiration)
+        const exp = (await Encryption.verifyJWT<{userId:string}>(jwtStr))?.exp
+        const expTime = exp? new Date(exp * 1e3): undefined
 
-        // check if the user info to save is existing on the user user infos
-        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw({code: 409})
-
-        const doc:{jwt?:string, ipAddress?:string, disabled?:boolean} = {jwt}
+        const doc:{jwt:string, expTime?:Date, ipAddress?:string, description?:string, disabled?:boolean} = {jwt:jwtStr}
+        if (description) doc.description = description
         if (ipAddress) doc.ipAddress = ipAddress
+        if (expTime) doc.expTime = expTime
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
@@ -122,20 +124,17 @@ class UserClientDeviceAccessTokenController {
         await user.save()
         await userController.cachedData.removeCacheData(userId)
 
-        return this.getClientDeviceAccessTokenByJWT(user, clientDeviceId, jwt)
+        return this.getClientDeviceAccessTokenByJWT(user, clientDeviceId, jwtStr)
     }
 
-    public async updateClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string, jwt:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
+    public async updateClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string, description:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
         if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
         if (!user) throw({code: 404})
         if (!this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)) throw({code: 404})
 
-        // check if client device ua already existed on other entries in this user client devices
-        if (this.hasClientDeviceAccessTokenJWT(user, clientDeviceId, jwt)) throw({code: 409})
-
-        if (jwt) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.jwt =  jwt
+        if (description) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.description =  description
         if (ipAddress) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.ipAddress = ipAddress
         if (DataCleaner.getBooleanData(disabled).isValid) {
             user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.disabled = DataCleaner.getBooleanData(disabled).data

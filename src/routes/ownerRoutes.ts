@@ -433,11 +433,11 @@ router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessToke
 router.post(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens', async (req:Request, res:Response) => {
     const userId = req?.userData?._id
     const { clientDeviceId } = req.params
-    const { jwt, ipAddress, disabled } = req.body
+    const { expiration, description, ipAddress, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!userId) return null
-        return await userClientDeviceAccessTokenController.saveClientDeviceAccessToken(userId, clientDeviceId, jwt, ipAddress, disabled)
+        return await userClientDeviceAccessTokenController.saveClientDeviceAccessToken(userId, clientDeviceId, expiration, description, ipAddress, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -458,11 +458,11 @@ router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessToke
 router.put(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req:Request, res:Response) => {
     const userId = req?.userData?._id
     const { clientDeviceId, accessTokenId } = req.params
-    const { jwt, ipAddress, disabled } = req.body
+    const { description, ipAddress, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!userId) return null
-        return await userClientDeviceAccessTokenController.updateClientDeviceAccessToken(userId, clientDeviceId, accessTokenId, jwt, ipAddress, disabled)
+        return await userClientDeviceAccessTokenController.updateClientDeviceAccessToken(userId, clientDeviceId, accessTokenId, description, ipAddress, disabled)
     })
 
     return res.status(statusCode).send(result)

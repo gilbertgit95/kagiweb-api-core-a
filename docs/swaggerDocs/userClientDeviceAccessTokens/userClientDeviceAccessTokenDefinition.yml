@@ -6,10 +6,14 @@ properties:
     type: string
   ipAddress:
     type: string
+  expTime:
+    type: date
   disabled:
     type: boolean
 
 example:
   jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTQyMTg4MTAsImV4cCI6MTY5NDgyMzYxMH0.TRpD4Ia_Z1mLyVebe7xxmwyDjzFGw1LqEHG1d7NDA7A
   ipAddress: ::1
+  description: 'created when signing in'
+  expTime: 2023-08-07T03:10:24.423Z
   disabled: false

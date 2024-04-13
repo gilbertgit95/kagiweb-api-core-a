@@ -48,6 +48,8 @@ interface IContactInfo {
 interface IAccessToken {
     _id?: string,
     jwt: string,
+    description?: string,
+    expTime?: Date,
     ipAddress?: string,
     disabled?: boolean
 }
@@ -149,6 +151,8 @@ const AccessTokenSchema = new Schema<IAccessToken>({
     _id: { type: String, default: () => randomUUID()},
     jwt: { type: String, require: true },
     ipAddress: { type: String, require: false },
+    description: { type: String, require: false },
+    expTime: { type: Date, require: false },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 

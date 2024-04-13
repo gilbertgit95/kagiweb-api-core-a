@@ -81,10 +81,14 @@ class AuthController {
             }
 
             // normal signin
-            const jwtStr = await Encryption.generateJWT({userId: user!._id})
+            const jwtStr = Encryption.generateJWT({userId: user!._id})
+            const exp = (await Encryption.verifyJWT<{userId:string}>(jwtStr))?.exp
+            const expTime = exp? new Date(exp * 1e3): undefined
+
             const accessToken:IAccessToken = {
                 jwt: jwtStr,
                 ipAddress: ip,
+                expTime,
                 disabled: false
             }
 
@@ -153,9 +157,13 @@ class AuthController {
             // then return user info and the generated jwt
             // normal signin
             const jwtStr = await Encryption.generateJWT({userId: user!._id})
+            const exp = (await Encryption.verifyJWT<{userId:string}>(jwtStr))?.exp
+            const expTime = exp? new Date(exp * 1e3): undefined
+
             const accessToken:IAccessToken = {
                 jwt: jwtStr,
                 ipAddress: ip,
+                expTime,
                 disabled: false
             }
 

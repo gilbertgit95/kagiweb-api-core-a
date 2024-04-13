@@ -81,12 +81,13 @@ class Encryption {
     /**
      * This will generate jwt token
      * @param { Object } data - object that will be encrypted into jwt
+     * @param { Number } expiration - optional, this will custom set expiration of jwt
      * @returns { string } a JWT token
      */
-    public static  generateJWT<Type>(data: Type):string {
+    public static  generateJWT<Type>(data: Type, expiration?:number):string {
         return jwt.sign(
             data as Buffer, env.JwtSecretKey,
-            { expiresIn: env.JwtExp * 3600 }
+            { expiresIn: (expiration? expiration: env.JwtExp) * 3600 }
         )
     }
 
