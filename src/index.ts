@@ -3,6 +3,7 @@ dotenv.config()
 import express from 'express'
 
 import appHandler, { appEvents } from './app'
+// import Encryption from './utilities/encryption'
 
 const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
@@ -54,6 +55,10 @@ appEvents.on('workspace-update', (data) => {
 
 // start express application
 app.listen(env.AppPort, async () => {
+    // const jwtDoc = await Encryption.generateJWT({userId: 'test'})
+    // const exp = (await Encryption.verifyJWT<{userId:string}>(jwtDoc))?.exp
+    // console.log(jwtDoc, exp? new Date(exp * 1e3): undefined)
+
     try {
         await appHandler.dbConnect()
         console.log(`- Successfully connected to database`)

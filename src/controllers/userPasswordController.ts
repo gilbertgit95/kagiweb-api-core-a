@@ -19,6 +19,16 @@ class UserPasswordController {
         return currPassword? await Encryption.verifyTextToHash(password, currPassword.key):false
     }
 
+    public isActivePasswordExpired(user:IUser):boolean {
+        const currPassword = this.getActivePassword(user)
+
+        const currTime = moment()
+        if (currPassword?.expTime && currTime.isAfter(moment(currPassword.expTime))) {
+            return true
+        }
+        return false
+    }
+
     public async hasPasswordEntry(user:IUser, password:string):Promise<boolean> {
         if (user && user.passwords) {
             for (const pass of user.passwords) {

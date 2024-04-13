@@ -20,7 +20,6 @@ class AuthController {
         let user = await UserModel.findOne({ username, verified: true })
         let result:{token?: string, username?: string, message?: string} | null
 
-
         // if no user found
         if (!user) {
             throw({code: 404}) // resource not found
@@ -50,6 +49,9 @@ class AuthController {
         // if a match, set user authentication related data
         // credential match
         if (await userPasswordController.verifyActivePassword(user, password)) {
+            // check if is expired
+            if (userPasswordController.isActivePasswordExpired(user)) throw({code: 403, message: 'Password is expired'}) // Forbidden access to resources.
+
             // check LT of otp-signin
             const otpSigninLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'otp-signin')
             if (otpSigninLT && !otpSigninLT.disabled) {
@@ -123,7 +125,6 @@ class AuthController {
         let user = await UserModel.findOne({ username, verified: true })
         let result:{ token: string, message?: string } | null
 
-
         // if no user found
         if (!user) {
             throw({code: 403}) // Forbidden access to resources.
@@ -131,7 +132,6 @@ class AuthController {
         if (user && user.disabled) {
             throw({code: 423}) // is locked
         }
-
 
         // if user exist then encrement the signin attempt
         const signinLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'signin')

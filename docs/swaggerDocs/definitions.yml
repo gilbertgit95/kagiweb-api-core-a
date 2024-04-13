@@ -19,7 +19,7 @@ UserUserInfo:
   $ref: ./userUserInfos/userUserInfoDefinition.yml
 UserContactInfo:
   $ref: ./userContactInfos/userContactInfoDefinition.yml
-UserPasswordInfo:
+UserPassword:
   $ref: ./userPasswords/userPasswordDefinition.yml
 UserLimitedTransaction:
   $ref: ./userLimitedTransactions/userLimitedTransactionDefinition.yml

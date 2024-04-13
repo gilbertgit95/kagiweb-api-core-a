@@ -96,11 +96,11 @@ class Encryption {
      * @param { string } token - jwt token
      * @returns { Promise<Object> } the encrypted object
      */
-    public static async verifyJWT<Type>(token: string):Promise<Type | null> {
+    public static async verifyJWT<Type>(token: string):Promise<Type & {iat:number,exp:number} | null> {
         return new Promise((resolve) => {
             jwt.verify(token, env.JwtSecretKey, (err, decoded) => {
                 if (!err) {
-                    resolve(decoded as Type)
+                    resolve(decoded as Type & {iat:number,exp:number})
                 } else {
                     resolve(null)
                 }
