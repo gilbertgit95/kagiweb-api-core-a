@@ -541,7 +541,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs', async
     const userId = req?.userData?._id || ''
     const { workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef[]>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceUserRef & {username?:string})[]>(async () => {
         return await userWorkspaceUserRefController.getWorkspaceUserRefs(userId, workspaceId)
     })
 
@@ -564,7 +564,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/userRefs/:userRe
     const userId = req?.userData?._id || ''
     const { workspaceId, userRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef & {username?:string}>(async () => {
         return await userWorkspaceUserRefController.getWorkspaceUserRef(userId, workspaceId, userRefId)
     })
 

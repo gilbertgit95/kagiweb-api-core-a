@@ -33,27 +33,40 @@ class UserWorkspaceUserRefController {
         return null
     }
 
-    public async getWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceUserRef|null> {
+    public async getWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceUserRef & {username?:string}|null> {
         if (!(userId && workspaceId && userRefId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
 
-        const userRef = this.getWorkspaceUserRefById(user, workspaceId, userRefId)
+        const userRef:IWorkspaceUserRef & {username?:string}|null = this.getWorkspaceUserRefById(user, workspaceId, userRefId)
         if (!userRef) throw({code: 404})
+
+        const userData = await userController.getUser({_id: userRef.userId})
+        userRef.username = userData?.username
 
         return userRef
     }
 
-    public async getWorkspaceUserRefs(userId:string, workspaceId:string):Promise<IWorkspaceUserRef[]> {
+    public async getWorkspaceUserRefs(userId:string, workspaceId:string):Promise<(IWorkspaceUserRef & {username?:string})[]> {
         if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
 
         const workspace = userWorkspaceController.getWorkspaceById(user, workspaceId)
+        let userRefs:(IWorkspaceUserRef & {username?:string})[] = workspace?.userRefs? workspace.userRefs: []
 
-        return workspace && workspace.userRefs? workspace.userRefs: []
+        const usersData = await UserModel.find({_id: {$in: userRefs.map(item => item.userId)}})
+        const userDataMap = usersData.reduce((acc:{[key:string]:IUser}, item) => {
+            acc[item._id] = item
+            return acc
+        }, {})
+
+        return userRefs.map(item => {
+            item.username = userDataMap[item.userId].username
+            return item
+        })
     }
 
     public async saveWorkspaceUserRef(
@@ -77,8 +90,7 @@ class UserWorkspaceUserRefController {
         if (this.getWorkspaceUserRefByUserId(user, workspaceId, assignedUser._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
 
         const doc:IWorkspaceUserRef = {
-            userId: assignedUser._id,
-            username: username
+            userId: assignedUser._id
         }
         if (DataCleaner.getBooleanData(readAccess).isValid) {
             doc.readAccess = DataCleaner.getBooleanData(readAccess).data

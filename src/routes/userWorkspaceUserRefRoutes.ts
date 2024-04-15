@@ -13,7 +13,7 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRefs', async (req, res) => {
     const { userId, workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef[]>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceUserRef & {username?:string})[]>(async () => {
         return await userWorkspaceUserRefController.getWorkspaceUserRefs(userId, workspaceId)
     })
 
@@ -34,7 +34,7 @@ router.post(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRef
 router.get(env.RootApiEndpoint + 'users/:userId/workspaces/:workspaceId/userRefs/:userRefId', async (req, res) => {
     const { userId, workspaceId, userRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceUserRef & {username?:string}>(async () => {
         return await userWorkspaceUserRefController.getWorkspaceUserRef(userId, workspaceId, userRefId)
     })
 
