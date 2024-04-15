@@ -57,9 +57,9 @@ class AuthController {
             if (otpSigninLT && !otpSigninLT.disabled) {
                 // create randnom key and expiration time
                 const otpKey:string = Encryption.generateRandNumber().toString()
-                const expTime:string = moment()
+                const expTime:Date = moment()
                     .add(env.DafaultUserLTExpiration, 'minutes')
-                    .toDate().toISOString()
+                    .toDate()
 
                 // reset otp-signin with the random key
                 user.limitedTransactions.id(otpSigninLT._id)!.attempts = 0
@@ -186,7 +186,7 @@ class AuthController {
             if (otpSigninLT) {
                 user.limitedTransactions.id(otpSigninLT._id)!.attempts = 0
                 user.limitedTransactions.id(otpSigninLT._id)!.key = ''
-                user.limitedTransactions.id(otpSigninLT._id)!.expTime = ''
+                user.limitedTransactions.id(otpSigninLT._id)!.expTime = undefined
             }
 
             await user!.save()
@@ -312,9 +312,9 @@ class AuthController {
 
         if (resetPassLT && !resetPassLT.disabled) {
             const otpKey:string = Encryption.generateRandNumber().toString()
-            const expTime:string = moment()
+            const expTime:Date = moment()
                 .add(env.DafaultUserLTExpiration, 'minutes')
-                .toDate().toISOString()
+                .toDate()
 
             // reset otp-signin with the random key
             user.limitedTransactions.id(resetPassLT._id)!.attempts = 0
@@ -399,7 +399,7 @@ class AuthController {
             if (resetPassLT) {
                 user.limitedTransactions.id(resetPassLT._id)!.attempts = 0
                 user.limitedTransactions.id(resetPassLT._id)!.key = ''
-                user.limitedTransactions.id(resetPassLT._id)!.expTime = ''
+                user.limitedTransactions.id(resetPassLT._id)!.expTime = undefined
             }
 
             await user!.save()

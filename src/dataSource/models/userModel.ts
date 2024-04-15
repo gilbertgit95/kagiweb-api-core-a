@@ -68,7 +68,7 @@ interface ILimitedTransaction {
     type: TLimitedTransactionType,
     key?: string,
     value?: string, // optional, can be use to store additional info
-    expTime?: string, // optional expiration time, only for timed LT
+    expTime?: Date, // optional expiration time, only for timed LT
     recipient?: string, // optional, only for some LT like: otp, pass reset
     disabled?: boolean
 }
@@ -174,7 +174,7 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     },
     key: { type: String, require: false, default: '' },
     value: { type: String, require: false, default: '' },
-    expTime: { type: String, require: false, default: '' },
+    expTime: { type: Date, require: false },
     recipient: { type: String, require: false, default: 'app-admin' },
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })

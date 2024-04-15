@@ -4866,10 +4866,6 @@
                   "value": {
                     "type": "string"
                   },
-                  "expTime": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
                   "recipient": {
                     "type": "string"
                   },
@@ -10799,8 +10795,7 @@
             "type": "string"
           },
           "expTime": {
-            "type": "string",
-            "format": "date-time"
+            "type": "date"
           },
           "recipient": {
             "type": "string"

@@ -77,9 +77,6 @@ put:
               type: string
             value:
               type: string
-            expTime:
-              type: string
-              format: date-time
             recipient:
               type: string
             disabled:

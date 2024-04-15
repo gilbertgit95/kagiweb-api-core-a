@@ -36,7 +36,7 @@ router.put(env.RootApiEndpoint + 'users/:userId/limitedTransactions/:limitedTran
     const { userId, limitedTransactionId } = req.params
     const {
         limit, attempts, key,
-        value, expTime, recipient,
+        value, recipient,
         disabled
     } = req.body
 
@@ -44,7 +44,7 @@ router.put(env.RootApiEndpoint + 'users/:userId/limitedTransactions/:limitedTran
         return await userLimitedTransactionController.updateLimitedTransaction(
             userId, limitedTransactionId,
             limit, attempts, key,
-            value, expTime, recipient,
+            value, recipient,
             disabled
         )
     })

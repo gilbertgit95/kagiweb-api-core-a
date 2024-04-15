@@ -103,7 +103,7 @@ class UserLimitedTransactionController {
     public async updateLimitedTransaction(
         userId:string, limitedTransactionId:string,
         limit:number, attempts:number, key:string,
-        value:string, expTime:string, recipient:string,
+        value:string, recipient:string,
         disabled:boolean|string
     ):Promise<ILimitedTransaction|null> {
         if (!(userId && limitedTransactionId)) throw({code: 400})
@@ -116,7 +116,6 @@ class UserLimitedTransactionController {
         if (attempts) user.limitedTransactions!.id(limitedTransactionId)!.attempts = attempts
         if (key) user.limitedTransactions!.id(limitedTransactionId)!.key = key
         if (value) user.limitedTransactions!.id(limitedTransactionId)!.value = value
-        if (expTime) user.limitedTransactions!.id(limitedTransactionId)!.expTime = expTime
         if (recipient) user.limitedTransactions!.id(limitedTransactionId)!.recipient = recipient
         if (DataCleaner.getBooleanData(disabled).isValid) {
             user.limitedTransactions!.id(limitedTransactionId)!.disabled = DataCleaner.getBooleanData(disabled).data

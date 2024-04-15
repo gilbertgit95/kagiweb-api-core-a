@@ -16,8 +16,7 @@ properties:
   value:
     type: string
   expTime:
-    type: string
-    format: date-time
+    type: date
   recipient:
     type: string
   disabled:
