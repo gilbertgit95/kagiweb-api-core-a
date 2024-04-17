@@ -44,7 +44,9 @@ class UserController {
         // clean client devices access tokens
         user.clientDevices.forEach((item:IClientDevice) => {
             item.accessTokens?.forEach((at:IAccessToken) => {
-                at.jwt = 'NA'
+                const tkn = at.jwt
+                const size = 5
+                at.jwt = tkn? tkn.substring(0, size) + '***' + tkn.substring(tkn.length - size, tkn.length): 'NA'
             })
         })
     
