@@ -22,10 +22,10 @@ router.get(env.RootApiEndpoint + 'users/:userId/clientDevices', async (req, res)
 
 router.post(env.RootApiEndpoint + 'users/:userId/clientDevices', async (req, res) => {
     const { userId } = req.params
-    const { ua, disabled } = req.body
+    const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.saveClientDevice(userId, ua, disabled)
+        return await userClientDeviceController.saveClientDevice(userId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -43,10 +43,10 @@ router.get(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId', 
 
 router.put(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId', async (req, res) => {
    const { userId, clientDeviceId } = req.params
-    const { ua, disabled } = req.body
+    const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.updateClientDevice(userId, clientDeviceId, ua, disabled)
+        return await userClientDeviceController.updateClientDevice(userId, clientDeviceId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)

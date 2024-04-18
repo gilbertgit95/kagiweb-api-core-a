@@ -369,11 +369,11 @@ router.get(env.RootApiEndpoint + 'owner/clientDevices', async (req:Request, res:
 
 router.post(env.RootApiEndpoint + 'owner/clientDevices', async (req:Request, res:Response) => {
     const userId = req?.userData?._id
-    const { ua, disabled } = req.body
+    const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
         if (!userId) return null
-        return await userClientDeviceController.saveClientDevice(userId, ua, disabled)
+        return await userClientDeviceController.saveClientDevice(userId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -394,11 +394,11 @@ router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async (r
 router.put(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async (req:Request, res:Response) => {
     const userId = req?.userData?._id
     const { clientDeviceId } = req.params
-    const { ua, disabled } = req.body
+    const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
         if (!userId) return null
-        return await userClientDeviceController.updateClientDevice(userId, clientDeviceId, ua, disabled)
+        return await userClientDeviceController.updateClientDevice(userId, clientDeviceId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)

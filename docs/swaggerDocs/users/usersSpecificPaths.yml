@@ -33,6 +33,7 @@ get:
                   - ua: >-
                       Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
                       Gecko) Chrome/116.0.0.0 Safari/537.36
+                    description: Test Client Device
                     disabled: false
                     _id: ef63156e-c1d8-4547-99be-3ac77fd30d49
                     accessTokens:
@@ -144,6 +145,7 @@ put:
                   - ua: >-
                       Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
                       Gecko) Chrome/116.0.0.0 Safari/537.36
+                    description: Test Client Device
                     disabled: false
                     _id: ef63156e-c1d8-4547-99be-3ac77fd30d49
                     accessTokens:
@@ -242,6 +244,7 @@ delete:
                   - ua: >-
                       Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
                       Gecko) Chrome/116.0.0.0 Safari/537.36
+                    description: Test Client Device
                     disabled: false
                     _id: ef63156e-c1d8-4547-99be-3ac77fd30d49
                     accessTokens:

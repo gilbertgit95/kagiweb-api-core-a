@@ -62,7 +62,7 @@ class UserClientDeviceController {
         return result
     }
 
-    public async saveClientDevice(userId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+    public async saveClientDevice(userId:string, ua:string, description:string|undefined, disabled:boolean|string):Promise<IClientDevice|null> {
         if (!(userId && ua)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
@@ -70,7 +70,10 @@ class UserClientDeviceController {
 
         // check if the user info to save is existing on the user user infos
         if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
-        const doc:IResult & {disabled?:boolean} = (new UAParser(ua)).getResult()
+        const doc:IResult & {disabled?:boolean, description?:string} = (new UAParser(ua)).getResult()
+        if (description) {
+            doc.description = description
+        }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
@@ -82,7 +85,7 @@ class UserClientDeviceController {
         return this.getClientDeviceByUA(user, ua)
     }
 
-    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, disabled:boolean|string):Promise<IClientDevice|null> {
+    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, description:string|undefined, disabled:boolean|string):Promise<IClientDevice|null> {
         if (!(userId && clientDeviceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
@@ -93,14 +96,10 @@ class UserClientDeviceController {
         if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
 
         if (ua) {
-            const doc = (new UAParser(ua)).getResult()
-
-            user.clientDevices!.id(clientDeviceId)!.ua =      ua
-            // user.clientDevices!.id(clientDeviceId)!.browser = doc.browser
-            // user.clientDevices!.id(clientDeviceId)!.engine =  doc.engine
-            // user.clientDevices!.id(clientDeviceId)!.os =      doc.os
-            // user.clientDevices!.id(clientDeviceId)!.device =  doc.device
-            // user.clientDevices!.id(clientDeviceId)!.cpu =     doc.cpu
+            user.clientDevices!.id(clientDeviceId)!.ua = ua
+        }
+        if (description) {
+            user.clientDevices!.id(clientDeviceId)!.description = description
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data

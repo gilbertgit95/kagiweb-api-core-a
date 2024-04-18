@@ -30,6 +30,7 @@ get:
               example:
                 - _id: c54a858a-b095-4405-9a1c-8567ec91da5e
                   ua: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+                  description: Test Client Device
                   disabled: false
                   accessTokens: []
                   createdAt: 2023-08-27T14:51:58.619Z
@@ -51,6 +52,8 @@ post:
           properties:
             ua:
               type: string
+            description:
+              type: string
             disabled:
               type: boolean
   responses:
@@ -68,6 +71,7 @@ post:
               example:
                 id: c54a858a-b095-4405-9a1c-8567ec91da5e
                 ua: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+                description: Test Client Device
                 disabled: false
                 accessTokens: []
                 createdAt: 2023-08-27T14:51:58.619Z
