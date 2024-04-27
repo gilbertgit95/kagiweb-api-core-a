@@ -7300,8 +7300,8 @@
                           ],
                           "isActive": true,
                           "disabled": false,
-                          "owner_id": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
-                          "owner_username": "master101",
+                          "ownerId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
+                          "ownerUsername": "master101",
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
