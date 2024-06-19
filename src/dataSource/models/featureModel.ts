@@ -10,7 +10,7 @@ import TextValidators from '../validators/textValidators'
 // - ui-main-drawer
 // - ui-user-drawer
 type TFeatureType = 'api-route' | 'ui-route' | 'ui-main-drawer' | 'ui-user-drawer'
-const featureTypes = ['api-route', 'ui-route', 'ui-main-drawer', 'ui-user-drawer']
+const featureTypes:TFeatureType[] = ['api-route', 'ui-route', 'ui-main-drawer', 'ui-user-drawer']
 
 // queries
 interface IFeatureQuery {
