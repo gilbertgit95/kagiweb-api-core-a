@@ -9,9 +9,9 @@ type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-a
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
-const contactInfoTypes = ['email-address', 'mobile-number', 'telephone', 'app-admin']
-const limitedTransactionTypes = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
-const userInfoTypes = ['string', 'number', 'date', 'boolean']
+const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
+const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
+const userInfoTypes:TUserInfoType[] = ['string', 'number', 'date', 'boolean']
 
 // queries
 interface IUserQuery {
