@@ -73,7 +73,7 @@ class UserController {
                 const userRoles = user?.rolesRefs.map(item => rolesMap[item.roleId])
 
                 const featuresMap = await featureController.getFeaturesMap()
-                let roleFeatures = activeRole?.featuresRefs?.map(item => featuresMap[item._id]) || null
+                let roleFeatures = activeRole?.featuresRefs?.map(item => featuresMap[item.featureId]) || null
                 if (activeRole?.absoluteAuthority) {
                     roleFeatures = await featureController.getAllFeatures()
                 }
