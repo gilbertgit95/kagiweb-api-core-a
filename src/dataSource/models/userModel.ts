@@ -5,10 +5,12 @@ import TextValidators from '../validators/textValidators'
 // import DateValidators from '../validators/dateValidators'
 
 // types
+type TAccountType = 'user' | 'organization'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
 
+const acountTypes:TAccountType[] = ['user', 'organization']
 const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
 const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
 const userInfoTypes:TUserInfoType[] = ['string', 'number', 'date', 'boolean']
@@ -104,6 +106,7 @@ interface IWorkspace {
 
 interface IUser {
     _id?: string,
+    accountType?: TAccountType,
     username: string,
     rolesRefs: Types.DocumentArray<IRoleRef & Document>,
     userInfos: Types.DocumentArray<IUserInfo & Document>,
@@ -230,6 +233,13 @@ const workspaceSchema = new Schema<IWorkspace>({
 
 const UserSchema = new Schema<IUser>({
     _id: { type: String, default: () => randomUUID() },
+    accountType: {
+        type: String,
+        require: true,
+        enum: acountTypes,
+        required: false,
+        default: acountTypes[0]
+    },
     username: {
         type: String,
         required: true,
@@ -253,6 +263,7 @@ const UserModel = model<IUser>('User', UserSchema)
 export {
     IUserQuery,
     IUserUpdate,
+    TAccountType,
     TContactInfoType,
     TLimitedTransactionType,
     TUserInfoType,
