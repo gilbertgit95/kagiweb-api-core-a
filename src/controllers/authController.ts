@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IClientDevice, IAccessToken, IContactInfo } from '../dataSource/models/userModel'
+import UserModel, { IClientDevice, IAccessToken, IContactInfo, acountTypes } from '../dataSource/models/userModel'
 import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import userLimitedTransactionController from './userLimitedTransactionController'
@@ -17,7 +17,7 @@ class AuthController {
     public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, username?: string, message?: string} | null> {
 
         // fetch user using the username
-        let user = await UserModel.findOne({ username, verified: true })
+        let user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{token?: string, username?: string, message?: string} | null
 
         // if no user found
@@ -126,7 +126,7 @@ class AuthController {
     // userId:string, code:string
     public async signinOTP(username:string, key:string, device:IClientDevice, ip:string):Promise<{token: string, message?: string } | null> {
         // fetch user using the username
-        let user = await UserModel.findOne({ username, verified: true })
+        let user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{ token: string, message?: string } | null
 
         // if no user found
@@ -238,6 +238,7 @@ class AuthController {
         // set the contact informations
         // set the password
         const user = {
+            accountType: acountTypes[0],
             username,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             userInfo: [],
@@ -280,7 +281,7 @@ class AuthController {
 
     public async forgotPassword(username:string, device:IClientDevice, ip:string):Promise<{ username:string, message?:string } | null> {
         // fetch user using the username
-        const user = await UserModel.findOne({ username, verified: true })
+        const user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{ username: string, message?: string } | null = null
 
 
@@ -342,7 +343,7 @@ class AuthController {
 
     public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
         // fetch user using the username
-        const user = await UserModel.findOne({ username, verified: true })
+        const user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{ message: string } | null = null
 
 

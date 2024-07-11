@@ -261,6 +261,10 @@ const UserSchema = new Schema<IUser>({
 const UserModel = model<IUser>('User', UserSchema)
 
 export {
+    acountTypes,
+    contactInfoTypes,
+    limitedTransactionTypes,
+    userInfoTypes,
     IUserQuery,
     IUserUpdate,
     TAccountType,
