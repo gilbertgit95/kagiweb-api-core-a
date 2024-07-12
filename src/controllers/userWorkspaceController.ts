@@ -41,11 +41,11 @@ class UserWorkspaceController {
         return workspace
     }
 
-    public async getExternalWorkspaces(userId:string):Promise<(IWorkspace & {ownerId:string, ownerUsername: string})[]> {
-        let result:(IWorkspace & {ownerId:string, ownerUsername: string})[] = []
+    public async getExternalWorkspaces(userId:string):Promise<(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[]> {
+        let result:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = []
         if (!userId) throw({code: 400})
 
-        const extWorkspaces:(IWorkspace & {ownerId:string, ownerUsername: string})[] = await UserModel.aggregate<IWorkspace & {ownerId:string, ownerUsername: string}>([
+        const extWorkspaces:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = await UserModel.aggregate<IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string}>([
             {
               '$match': {
                 'workspaces.userRefs.userId': userId
@@ -75,6 +75,7 @@ class UserWorkspaceController {
                 'description': '$workspaces.description',
                 'ownerId': '$_id',
                 'ownerUsername': '$username',
+                'ownerAccountType': '$accountType',
                 'isActive': '$workspaces.isActive',
                 'userRefs': '$workspaces.userRefs',
                 'createdAt': '$workspaces.createdAt',
