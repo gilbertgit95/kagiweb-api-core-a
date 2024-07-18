@@ -10,53 +10,53 @@ import { IAccessToken } from '../dataSource/models/userModel'
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId/accessTokens', async (req, res) => {
-    const { userId, clientDeviceId } = req.params
+router.get(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDeviceId/accessTokens', async (req, res) => {
+    const { accountId, clientDeviceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken[]>(async () => {
-        return await userClientDeviceAccessTokenController.getClientDeviceAccessTokens(userId, clientDeviceId)
+        return await userClientDeviceAccessTokenController.getClientDeviceAccessTokens(accountId, clientDeviceId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId/accessTokens', async (req, res) => {
-    const { userId, clientDeviceId } = req.params
+router.post(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDeviceId/accessTokens', async (req, res) => {
+    const { accountId, clientDeviceId } = req.params
     const { expiration, description, ipAddress, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.saveClientDeviceAccessToken(userId, clientDeviceId, expiration, description, ipAddress, disabled)
+        return await userClientDeviceAccessTokenController.saveClientDeviceAccessToken(accountId, clientDeviceId, expiration, description, ipAddress, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req, res) => {
-    const { userId, clientDeviceId, accessTokenId } = req.params
+router.get(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req, res) => {
+    const { accountId, clientDeviceId, accessTokenId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.getClientDeviceAccessToken(userId, clientDeviceId, accessTokenId)
+        return await userClientDeviceAccessTokenController.getClientDeviceAccessToken(accountId, clientDeviceId, accessTokenId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req, res) => {
-   const { userId, clientDeviceId, accessTokenId } = req.params
+router.put(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req, res) => {
+   const { accountId, clientDeviceId, accessTokenId } = req.params
     const { description, ipAddress, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.updateClientDeviceAccessToken(userId, clientDeviceId, accessTokenId, description, ipAddress, disabled)
+        return await userClientDeviceAccessTokenController.updateClientDeviceAccessToken(accountId, clientDeviceId, accessTokenId, description, ipAddress, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'users/:userId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req, res) => {
-   const { userId, clientDeviceId, accessTokenId } = req.params
+router.delete(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req, res) => {
+   const { accountId, clientDeviceId, accessTokenId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
-        return await userClientDeviceAccessTokenController.deleteClientDeviceAccessToken( userId, clientDeviceId, accessTokenId )
+        return await userClientDeviceAccessTokenController.deleteClientDeviceAccessToken( accountId, clientDeviceId, accessTokenId )
     })
 
     return res.status(statusCode).send(result)

@@ -1,4 +1,4 @@
-import UserModel, { IUser, IWorkspaceUserRef } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IWorkspaceAccountRef } from '../dataSource/models/userModel'
 import userController from './userController'
 import userWorkspaceController from './userWorkspaceController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -9,7 +9,7 @@ import appEvents from '../utilities/appEvents'
 
 class UserWorkspaceUserRefController {
 
-    public getWorkspaceUserRefById(user:IUser, workspaceId:string, userRefId:string):IWorkspaceUserRef|null {
+    public getWorkspaceUserRefById(user:IAccount, workspaceId:string, userRefId:string):IWorkspaceAccountRef|null {
 
         const workspace = userWorkspaceController.getWorkspaceById(user, workspaceId)
         if (workspace && workspace.userRefs) {
@@ -21,7 +21,7 @@ class UserWorkspaceUserRefController {
         return null
     }
 
-    public getWorkspaceUserRefByUserId(user:IUser, workspaceId:string, userId:string):IWorkspaceUserRef|null {
+    public getWorkspaceUserRefByUserId(user:IAccount, workspaceId:string, userId:string):IWorkspaceAccountRef|null {
 
         const workspace = userWorkspaceController.getWorkspaceById(user, workspaceId)
         if (workspace && workspace.userRefs) {
@@ -33,13 +33,13 @@ class UserWorkspaceUserRefController {
         return null
     }
 
-    public async getWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceUserRef & {username?:string}|null> {
+    public async getWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceAccountRef & {username?:string}|null> {
         if (!(userId && workspaceId && userRefId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
 
-        const userRef:IWorkspaceUserRef & {username?:string}|null = this.getWorkspaceUserRefById(user, workspaceId, userRefId)
+        const userRef:IWorkspaceAccountRef & {username?:string}|null = this.getWorkspaceUserRefById(user, workspaceId, userRefId)
         if (!userRef) throw({code: 404})
 
         const userData = await userController.getUser({_id: userRef.userId})
@@ -48,17 +48,17 @@ class UserWorkspaceUserRefController {
         return userRef
     }
 
-    public async getWorkspaceUserRefs(userId:string, workspaceId:string):Promise<(IWorkspaceUserRef & {username?:string})[]> {
+    public async getWorkspaceUserRefs(userId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {username?:string})[]> {
         if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
         if (!user) throw({code: 404})
 
         const workspace = userWorkspaceController.getWorkspaceById(user, workspaceId)
-        let userRefs:(IWorkspaceUserRef & {username?:string})[] = workspace?.userRefs? workspace.userRefs: []
+        let userRefs:(IWorkspaceAccountRef & {username?:string})[] = workspace?.userRefs? workspace.userRefs: []
 
         const usersData = await UserModel.find({_id: {$in: userRefs.map(item => item.userId)}})
-        const userDataMap = usersData.reduce((acc:{[key:string]:IUser}, item) => {
+        const userDataMap = usersData.reduce((acc:{[key:string]:IAccount}, item) => {
             acc[item._id] = item
             return acc
         }, {})
@@ -78,7 +78,7 @@ class UserWorkspaceUserRefController {
             createAccess:boolean|string,
             deleteAccess:boolean|string,
             disabled:boolean|string
-        ):Promise<IWorkspaceUserRef|null> {
+        ):Promise<IWorkspaceAccountRef|null> {
 
         if (!(userId && workspaceId && username)) throw({code: 400})
 
@@ -89,7 +89,7 @@ class UserWorkspaceUserRefController {
         if (user._id === assignedUser._id) throw({code: 409, message: 'cannot assign the workspace owner'})
         if (this.getWorkspaceUserRefByUserId(user, workspaceId, assignedUser._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
 
-        const doc:IWorkspaceUserRef = {
+        const doc:IWorkspaceAccountRef = {
             userId: assignedUser._id
         }
         if (DataCleaner.getBooleanData(readAccess).isValid) {
@@ -133,7 +133,7 @@ class UserWorkspaceUserRefController {
             createAccess:boolean|string,
             deleteAccess:boolean|string,
             disabled:boolean|string
-        ):Promise<IWorkspaceUserRef|null> {
+        ):Promise<IWorkspaceAccountRef|null> {
 
         if (!(userId && workspaceId && userRefId)) throw({code: 400})
 
@@ -163,7 +163,7 @@ class UserWorkspaceUserRefController {
         return user.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)
     }
 
-    public async deleteWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceUserRef|null> {
+    public async deleteWorkspaceUserRef(userId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceAccountRef|null> {
         if (!(userId && workspaceId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})

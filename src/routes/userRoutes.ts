@@ -1,13 +1,13 @@
 import express from 'express'
 
-// import UserModel, { IUser } from '../dataSource/models/userModel'
+// import UserModel, { IAccount } from '../dataSource/models/userModel'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
 import userController, { IUserCompleteInfo } from '../controllers/userController'
-import { IUser } from '../dataSource/models/userModel'
+import { IAccount } from '../dataSource/models/userModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -15,7 +15,7 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
-    const [result, statusCode] = await ErrorHandler.execute<IListOutput<IUser>>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IListOutput<IAccount>>(async () => {
         return await userController.getUsersByPage({}, pageInfo)
     })
 
@@ -25,49 +25,49 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
 router.post(env.RootApiEndpoint + 'users', async (req, res) => {
     const { username, disabled, verified } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
         return await userController.saveUser(username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
-    const { userId } = req.params
+router.get(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
+    const { accountId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        return await userController.getUser({_id: userId})
+    const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
+        return await userController.getUser({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'users/:userId/completeInfo', async (req, res) => {
-    const { userId } = req.params
+router.get(env.RootApiEndpoint + 'accounts/:accountId/completeInfo', async (req, res) => {
+    const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IUserCompleteInfo>(async () => {
-        return await userController.getUserCompleteInfo({_id: userId})
+        return await userController.getUserCompleteInfo({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
-    const { userId } = req.params
+router.put(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
+    const { accountId } = req.params
     const { username, disabled, verified } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        return await userController.updateUser(userId, username, disabled, verified)
+    const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
+        return await userController.updateUser(accountId, username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'users/:userId', async (req, res) => {
-    const { userId } = req.params
+router.delete(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
+    const { accountId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IUser>(async () => {
-        return await userController.deleteUser(userId)
+    const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
+        return await userController.deleteUser(accountId)
     })
 
     return res.status(statusCode).send(result)

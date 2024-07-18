@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IUser, ILimitedTransaction } from '../dataSource/models/userModel'
+import UserModel, { IAccount, ILimitedTransaction } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -7,7 +7,7 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserLimitedTransactionController {
-    public verifyLimitedTransactionKey(user:IUser, lt:string, key:string):boolean {
+    public verifyLimitedTransactionKey(user:IAccount, lt:string, key:string):boolean {
         let result = false
 
         const ltData = this.getLimitedTransactionByType(user, lt)
@@ -17,7 +17,7 @@ class UserLimitedTransactionController {
         return result
     }
 
-    public isLimitedTransactionValid(user:IUser, lt:string):boolean {
+    public isLimitedTransactionValid(user:IAccount, lt:string):boolean {
         let ltData:ILimitedTransaction|undefined
 
         // get limited transaction
@@ -45,7 +45,7 @@ class UserLimitedTransactionController {
         return true
     }
 
-    public hasLimitedTransactionType(user:IUser, limitedTransactionType:string):boolean {
+    public hasLimitedTransactionType(user:IAccount, limitedTransactionType:string):boolean {
         if (user && user.limitedTransactions) {
             for (const lt of user.limitedTransactions) {
                 if (lt.type === limitedTransactionType) return true
@@ -55,7 +55,7 @@ class UserLimitedTransactionController {
         return false
     }
 
-    public getLimitedTransactionByType(user:IUser, limitedTransactionType:string):ILimitedTransaction|null {
+    public getLimitedTransactionByType(user:IAccount, limitedTransactionType:string):ILimitedTransaction|null {
 
         if (user && user.limitedTransactions) {
             for (const lt of user.limitedTransactions) {
@@ -66,7 +66,7 @@ class UserLimitedTransactionController {
         return null
     }
 
-    public getLimitedTransactionById(user:IUser, limitedTransactionId:string):ILimitedTransaction|null {
+    public getLimitedTransactionById(user:IAccount, limitedTransactionId:string):ILimitedTransaction|null {
 
         if (user && user.limitedTransactions) {
             for (const lt of user.limitedTransactions) {

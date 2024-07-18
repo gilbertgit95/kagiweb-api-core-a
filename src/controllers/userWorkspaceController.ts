@@ -1,5 +1,5 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IUser, IWorkspace } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IWorkspace } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -7,7 +7,7 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserWorkspaceController {
-    public getActiveWorkspace(user:IUser):IWorkspace|null {
+    public getActiveWorkspace(user:IAccount):IWorkspace|null {
 
         if (user && user.workspaces) {
             for (const workspace of user.workspaces) {
@@ -18,7 +18,7 @@ class UserWorkspaceController {
         return null
     }
 
-    public getWorkspaceById(user:IUser, workspaceId:string):IWorkspace|null {
+    public getWorkspaceById(user:IAccount, workspaceId:string):IWorkspace|null {
 
         if (user && user.workspaces) {
             for (const workspace of user.workspaces) {

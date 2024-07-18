@@ -1,4 +1,4 @@
-import UserModel, { IUser, IContactInfo, TContactInfoType } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IContactInfo, TContactInfoType } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -6,7 +6,7 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserContactInfoController {
-    public hasContactInfoValue(user:IUser, contactInfoVal:string):boolean {
+    public hasContactInfoValue(user:IAccount, contactInfoVal:string):boolean {
         if (user && user.contactInfos) {
             for (const info of user.contactInfos) {
                 if (info.value === contactInfoVal) return true
@@ -16,7 +16,7 @@ class UserContactInfoController {
         return false
     }
 
-    public getContactInfoByValue(user:IUser, contactInfoVal:string):IContactInfo|null {
+    public getContactInfoByValue(user:IAccount, contactInfoVal:string):IContactInfo|null {
 
         if (user && user.contactInfos) {
             for (const info of user.contactInfos) {
@@ -27,7 +27,7 @@ class UserContactInfoController {
         return null
     }
 
-    public getContactInfoById(user:IUser, contactInfoId:string):IContactInfo|null {
+    public getContactInfoById(user:IAccount, contactInfoId:string):IContactInfo|null {
 
         if (user && user.contactInfos) {
             for (const info of user.contactInfos) {

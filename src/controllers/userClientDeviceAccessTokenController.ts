@@ -1,4 +1,4 @@
-import UserModel, { IUser,IAccessToken } from '../dataSource/models/userModel'
+import UserModel, { IAccount,IAccessToken } from '../dataSource/models/userModel'
 import userController from './userController'
 import userClientDeviceController from './userClientDeviceController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -33,7 +33,7 @@ class UserClientDeviceAccessTokenController {
         }
     }
 
-    public hasClientDeviceAccessTokenJWT(user:IUser, clientDeviceId:string, jwt:string):boolean {
+    public hasClientDeviceAccessTokenJWT(user:IAccount, clientDeviceId:string, jwt:string):boolean {
         const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
@@ -48,7 +48,7 @@ class UserClientDeviceAccessTokenController {
         return false
     }
 
-    public getClientDeviceAccessTokenByJWT(user:IUser, clientDeviceId:string, jwt:string):IAccessToken|null {
+    public getClientDeviceAccessTokenByJWT(user:IAccount, clientDeviceId:string, jwt:string):IAccessToken|null {
 
         const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
         // check client devices if existed
@@ -64,7 +64,7 @@ class UserClientDeviceAccessTokenController {
         return null
     }
 
-    public getClientDeviceAccessTokenById(user:IUser, clientDeviceId:string, accessTokenId:string):IAccessToken|null {
+    public getClientDeviceAccessTokenById(user:IAccount, clientDeviceId:string, accessTokenId:string):IAccessToken|null {
 
         const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
         // check client devices if existed

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
-import { IUser } from '../dataSource/models/userModel'
+import { IAccount } from '../dataSource/models/userModel'
 import userController from '../controllers/userController'
 import userRoleController from '../controllers/userRoleController'
 import userClientDeviceController from '../controllers/userClientDeviceController'
@@ -28,7 +28,7 @@ class UserInfoAndAccessProvider {
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
             const token = accessToken && accessToken.split(' ')[1]? accessToken.split(' ')[1]: null
-            let user:IUser|null = null
+            let user:IAccount|null = null
 
             if (token && type === 'Bearer') {
                 const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)

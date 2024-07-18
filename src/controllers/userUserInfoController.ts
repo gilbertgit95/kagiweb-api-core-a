@@ -1,11 +1,11 @@
-import UserModel, { IUser, IUserInfo, TUserInfoType } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IAccountInfo, TAccountInfoType } from '../dataSource/models/userModel'
 import userController from './userController'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
 class UserUserInfoController {
-    public hasUserInfoKey(user:IUser, userInfoKey:string):boolean {
+    public hasUserInfoKey(user:IAccount, userInfoKey:string):boolean {
         if (user && user.userInfos) {
             for (const info of user.userInfos) {
                 if (info.key === userInfoKey) return true
@@ -15,7 +15,7 @@ class UserUserInfoController {
         return false
     }
 
-    public getUserInfoByKey(user:IUser, userInfoKey:string):IUserInfo|null {
+    public getUserInfoByKey(user:IAccount, userInfoKey:string):IAccountInfo|null {
 
         if (user && user.userInfos) {
             for (const info of user.userInfos) {
@@ -26,7 +26,7 @@ class UserUserInfoController {
         return null
     }
 
-    public getUserInfoById(user:IUser, userInfoId:string):IUserInfo|null {
+    public getUserInfoById(user:IAccount, userInfoId:string):IAccountInfo|null {
 
         if (user && user.userInfos) {
             for (const info of user.userInfos) {
@@ -37,7 +37,7 @@ class UserUserInfoController {
         return null
     }
 
-    public async getUserInfo(userId:string, userInfoId:string):Promise<IUserInfo|null> {
+    public async getUserInfo(userId:string, userInfoId:string):Promise<IAccountInfo|null> {
         if (!(userId && userInfoId)) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
@@ -49,8 +49,8 @@ class UserUserInfoController {
         return userInfo
     }
 
-    public async getUserInfos(userId:string):Promise<IUserInfo[]> {
-        let result:IUserInfo[] = []
+    public async getUserInfos(userId:string):Promise<IAccountInfo[]> {
+        let result:IAccountInfo[] = []
         if (!userId) throw({code: 400})
 
         const user = await userController.getUser({_id: userId})
@@ -60,7 +60,7 @@ class UserUserInfoController {
         return result
     }
 
-    public async saveUserInfo(userId:string, key:string, value:string, type:string):Promise<IUserInfo|null> {
+    public async saveUserInfo(userId:string, key:string, value:string, type:string):Promise<IAccountInfo|null> {
         if (!(userId && key && value && type)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
@@ -77,7 +77,7 @@ class UserUserInfoController {
         return this.getUserInfoByKey(user, key)
     }
 
-    public async updateUserInfo(userId:string, userInfoId:string, key:string, value:string, type:TUserInfoType):Promise<IUserInfo|null> {
+    public async updateUserInfo(userId:string, userInfoId:string, key:string, value:string, type:TAccountInfoType):Promise<IAccountInfo|null> {
         if (!(userId && userInfoId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})
@@ -94,7 +94,7 @@ class UserUserInfoController {
         return user.userInfos!.id(userInfoId)
     }
 
-    public async deleteUserInfo(userId:string, userInfoId:string):Promise<IUserInfo|null> {
+    public async deleteUserInfo(userId:string, userInfoId:string):Promise<IAccountInfo|null> {
         if (!(userId && userInfoId)) throw({code: 400})
 
         const user = await UserModel.findOne({_id: userId})

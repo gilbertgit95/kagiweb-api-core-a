@@ -8,20 +8,20 @@ import TextValidators from '../validators/textValidators'
 type TAccountType = 'user' | 'organization'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
-type TUserInfoType = 'string' | 'number' | 'date' | 'boolean'
+type TAccountInfoType = 'string' | 'number' | 'date' | 'boolean'
 
 const acountTypes:TAccountType[] = ['user', 'organization']
 const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
 const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
-const userInfoTypes:TUserInfoType[] = ['string', 'number', 'date', 'boolean']
+const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'boolean']
 
 // queries
-interface IUserQuery {
+interface IAccountQuery {
     _id?: string,
     username?: string
 }
 
-interface IUserUpdate {
+interface IAccountUpdate {
     name?: string
 }
 
@@ -76,14 +76,14 @@ interface ILimitedTransaction {
     disabled?: boolean
 }
 
-interface IUserInfo {
+interface IAccountInfo {
     _id?: string,
     key: string,
     value: string,
-    type: TUserInfoType
+    type: TAccountInfoType
 }
 
-interface IWorkspaceUserRef {
+interface IWorkspaceAccountRef {
     _id?: string,
     userId: string,
     readAccess?: boolean,
@@ -99,17 +99,17 @@ interface IWorkspace {
     _id?: string,
     name: string,
     description?: string,
-    userRefs?: Types.DocumentArray<IWorkspaceUserRef & Document>,
+    userRefs?: Types.DocumentArray<IWorkspaceAccountRef & Document>,
     isActive?: boolean,
     disabled?: boolean
 }
 
-interface IUser {
+interface IAccount {
     _id?: string,
     accountType?: TAccountType,
     username: string,
     rolesRefs: Types.DocumentArray<IRoleRef & Document>,
-    userInfos: Types.DocumentArray<IUserInfo & Document>,
+    userInfos: Types.DocumentArray<IAccountInfo & Document>,
 
     passwords: Types.DocumentArray<IPassword & Document>,
 
@@ -191,18 +191,18 @@ const LimitedTransactionSchema = new Schema<ILimitedTransaction>({
     disabled: { type: Boolean, require: false, default: false }
 }, { timestamps: true })
 
-const UserInfoSchema = new Schema<IUserInfo>({
+const AccountInfoSchema = new Schema<IAccountInfo>({
     _id: { type: String, default: () => randomUUID()},
     key: { type: String, require: true },
     value: { type: String, require: true },
     type: {
         type: String,
         require: true,
-        enum: userInfoTypes
+        enum: accountInfoTypes
     }
 }, { timestamps: true })
 
-const WorkspaceUserRefSchema = new Schema<IWorkspaceUserRef>({
+const WorkspaceUserRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
     userId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
@@ -231,7 +231,7 @@ const workspaceSchema = new Schema<IWorkspace>({
     disabled: { type: Boolean, default: false}
 }, { timestamps: true })
 
-const UserSchema = new Schema<IUser>({
+const AccountSchema = new Schema<IAccount>({
     _id: { type: String, default: () => randomUUID() },
     accountType: {
         type: String,
@@ -247,7 +247,7 @@ const UserSchema = new Schema<IUser>({
         validate: TextValidators.validateUsername
     },
     rolesRefs: { type: [RoleRefSchema], required: true, },
-    userInfos: { type: [UserInfoSchema], required: false },
+    userInfos: { type: [AccountInfoSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
@@ -258,29 +258,29 @@ const UserSchema = new Schema<IUser>({
 }, { timestamps: true })
 
 // create model
-const UserModel = model<IUser>('User', UserSchema)
+const AccountModel = model<IAccount>('User', AccountSchema)
 
 export {
     acountTypes,
     contactInfoTypes,
     limitedTransactionTypes,
-    userInfoTypes,
-    IUserQuery,
-    IUserUpdate,
+    accountInfoTypes,
+    IAccountQuery,
+    IAccountUpdate,
     TAccountType,
     TContactInfoType,
     TLimitedTransactionType,
-    TUserInfoType,
+    TAccountInfoType,
     IPassword,
     IContactInfo,
     IAccessToken,
     IClientDevice,
     ILimitedTransaction,
-    IUserInfo,
+    IAccountInfo,
     IRoleRef,
-    IWorkspaceUserRef,
+    IWorkspaceAccountRef,
     IWorkspace,
-    IUser
+    IAccount
 }
 
-export default UserModel
+export default AccountModel

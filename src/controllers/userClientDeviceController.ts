@@ -1,5 +1,5 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IUser, IClientDevice } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IClientDevice } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -7,7 +7,7 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserClientDeviceController {
-    public hasClientDeviceUA(user:IUser, ua:string):boolean {
+    public hasClientDeviceUA(user:IAccount, ua:string):boolean {
         if (user && user.clientDevices) {
             for (const clientDevice of user.clientDevices) {
                 if (clientDevice.ua === ua) return true
@@ -17,7 +17,7 @@ class UserClientDeviceController {
         return false
     }
 
-    public getClientDeviceByUA(user:IUser, ua:string):IClientDevice|null {
+    public getClientDeviceByUA(user:IAccount, ua:string):IClientDevice|null {
 
         if (user && user.clientDevices) {
             for (const clientDevice of user.clientDevices) {
@@ -28,7 +28,7 @@ class UserClientDeviceController {
         return null
     }
 
-    public getClientDeviceById(user:IUser, clientDeviceId:string):IClientDevice|null {
+    public getClientDeviceById(user:IAccount, clientDeviceId:string):IClientDevice|null {
 
         if (user && user.clientDevices) {
             for (const clientDevice of user.clientDevices) {

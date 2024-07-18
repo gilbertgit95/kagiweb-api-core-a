@@ -1,4 +1,4 @@
-import UserModel, { IUser, IRoleRef } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IRoleRef } from '../dataSource/models/userModel'
 import userController from './userController'
 import roleController from './roleController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -7,7 +7,7 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserRoleController {
-    public getActiveRoleRef(user:IUser):IRoleRef|null {
+    public getActiveRoleRef(user:IAccount):IRoleRef|null {
         if (user && user.rolesRefs) {
             for (const ref of user.rolesRefs) {
                 if (ref.isActive) return ref
@@ -17,7 +17,7 @@ class UserRoleController {
         return null
     }
 
-    public hasRole(user:IUser, roleId:string):boolean {
+    public hasRole(user:IAccount, roleId:string):boolean {
         if (user && user.rolesRefs) {
             for (const ref of user.rolesRefs) {
                 if (ref.roleId === roleId) return true
@@ -27,7 +27,7 @@ class UserRoleController {
         return false
     }
 
-    public getRoleRefByRoleId(user:IUser, roleId:string):IRoleRef|null {
+    public getRoleRefByRoleId(user:IAccount, roleId:string):IRoleRef|null {
 
         if (user && user.rolesRefs) {
             for (const ref of user.rolesRefs) {
@@ -38,7 +38,7 @@ class UserRoleController {
         return null
     }
 
-    public async getRoleRefByRefId(user:IUser, roleRefId:string):Promise<IRoleRef|null> {
+    public async getRoleRefByRefId(user:IAccount, roleRefId:string):Promise<IRoleRef|null> {
 
         if (user && user.rolesRefs) {
             for (const ref of user.rolesRefs) {

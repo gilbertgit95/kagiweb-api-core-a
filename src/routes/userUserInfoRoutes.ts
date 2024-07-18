@@ -5,58 +5,58 @@ import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
 import userUserInfoController from '../controllers/userUserInfoController'
-import { IUserInfo } from '../dataSource/models/userModel'
+import { IAccountInfo } from '../dataSource/models/userModel'
 
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users/:userId/userInfos', async (req, res) => {
-    const { userId } = req.params
+router.get(env.RootApiEndpoint + 'accounts/:accountId/accountInfos', async (req, res) => {
+    const { accountId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IUserInfo[]>(async () => {
-        return await userUserInfoController.getUserInfos(userId)
+    const [result, statusCode] = await ErrorHandler.execute<IAccountInfo[]>(async () => {
+        return await userUserInfoController.getUserInfos(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'users/:userId/userInfos', async (req, res) => {
-    const { userId } = req.params
+router.post(env.RootApiEndpoint + 'accounts/:accountId/accountInfos', async (req, res) => {
+    const { accountId } = req.params
     const { key, value, type } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IUserInfo>(async () => {
-        return await userUserInfoController.saveUserInfo(userId, key, value, type)
+    const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
+        return await userUserInfoController.saveUserInfo(accountId, key, value, type)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'users/:userId/userInfos/:userInfoId', async (req, res) => {
-    const { userId, userInfoId } = req.params
+router.get(env.RootApiEndpoint + 'accounts/:accountId/accountInfos/:accountInfoId', async (req, res) => {
+    const { accountId, accountInfoId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IUserInfo>(async () => {
-        return await userUserInfoController.getUserInfo(userId, userInfoId)
+    const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
+        return await userUserInfoController.getUserInfo(accountId, accountInfoId)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'users/:userId/userInfos/:userInfoId', async (req, res) => {
-   const { userId, userInfoId } = req.params
+router.put(env.RootApiEndpoint + 'accounts/:accountId/accountInfos/:accountInfoId', async (req, res) => {
+   const { accountId, accountInfoId } = req.params
     const { key, value, type } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<IUserInfo>(async () => {
-        return await userUserInfoController.updateUserInfo(userId, userInfoId, key, value, type)
+    const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
+        return await userUserInfoController.updateUserInfo(accountId, accountInfoId, key, value, type)
     })
 
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'users/:userId/userInfos/:userInfoId', async (req, res) => {
-   const { userId, userInfoId } = req.params
+router.delete(env.RootApiEndpoint + 'accounts/:accountId/accountInfos/:accountInfoId', async (req, res) => {
+   const { accountId, accountInfoId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IUserInfo>(async () => {
-        return await userUserInfoController.deleteUserInfo( userId, userInfoId )
+    const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
+        return await userUserInfoController.deleteUserInfo( accountId, accountInfoId )
     })
 
     return res.status(statusCode).send(result)

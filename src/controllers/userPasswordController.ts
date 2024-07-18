@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IUser, IPassword } from '../dataSource/models/userModel'
+import UserModel, { IAccount, IPassword } from '../dataSource/models/userModel'
 import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import Encryption from '../utilities/encryption'
@@ -14,12 +14,12 @@ class UserPasswordController {
      * @param {string} password - plain text password
      * @returns {boolean}
      */
-    public async verifyActivePassword(user:IUser, password:string):Promise<boolean> {
+    public async verifyActivePassword(user:IAccount, password:string):Promise<boolean> {
         const currPassword = this.getActivePassword(user)
         return currPassword? await Encryption.verifyTextToHash(password, currPassword.key):false
     }
 
-    public isActivePasswordExpired(user:IUser):boolean {
+    public isActivePasswordExpired(user:IAccount):boolean {
         const currPassword = this.getActivePassword(user)
 
         const currTime = moment()
@@ -29,7 +29,7 @@ class UserPasswordController {
         return false
     }
 
-    public async hasPasswordEntry(user:IUser, password:string):Promise<boolean> {
+    public async hasPasswordEntry(user:IAccount, password:string):Promise<boolean> {
         if (user && user.passwords) {
             for (const pass of user.passwords) {
                 if (await Encryption.verifyTextToHash(password, pass.key)) return true
@@ -39,7 +39,7 @@ class UserPasswordController {
         return false
     }
 
-    public async getPasswordEntry(user:IUser, password:string):Promise<IPassword|null> {
+    public async getPasswordEntry(user:IAccount, password:string):Promise<IPassword|null> {
 
         if (user && user.passwords) {
             for (const pass of user.passwords) {
@@ -50,7 +50,7 @@ class UserPasswordController {
         return null
     }
 
-    public getActivePassword(user:IUser):IPassword|null {
+    public getActivePassword(user:IAccount):IPassword|null {
 
         if (user && user.passwords) {
             for (const pass of user.passwords) {
@@ -61,7 +61,7 @@ class UserPasswordController {
         return null
     }
 
-    public getPasswordById(user:IUser, passwordId:string):IPassword|null {
+    public getPasswordById(user:IAccount, passwordId:string):IPassword|null {
 
         if (user && user.passwords) {
             for (const pass of user.passwords) {
