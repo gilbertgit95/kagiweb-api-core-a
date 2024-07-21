@@ -6,7 +6,7 @@ import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 // import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 
-import userController, {IUserCompleteInfo  } from '../controllers/userController'
+import userController, {IAccountCompleteInfo  } from '../controllers/userController'
 import userRoleController from '../controllers/userRoleController'
 import userUserInfoController from '../controllers/userUserInfoController'
 import userContactInfoController from '../controllers/userContactInfoController'
@@ -52,8 +52,8 @@ router.put(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
 
 router.get(env.RootApiEndpoint + 'owner/completeInfo', async (req:Request, res:Response) => {
     const accountId = req?.userData?._id
-    const [result, statusCode] = await ErrorHandler.execute<IUserCompleteInfo>(async () => {
-        return await userController.getUserCompleteInfo({_id: accountId})
+    const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
+        return await userController.getAccountCompleteInfo({_id: accountId})
     })
 
     return res.status(statusCode).send(result)

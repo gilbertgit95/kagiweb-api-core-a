@@ -16,8 +16,8 @@ import Config from '../utilities/config'
 
 const env = Config.getEnv()
 
-interface IUserCompleteInfo {
-    userData: IAccount|null,
+interface IAccountCompleteInfo {
+    accountData: IAccount|null,
     role: IRole|null,
     roles: IRole[]|null,
     features: IFeature[]|null,
@@ -53,9 +53,9 @@ class UserController {
         return user
     }
 
-    public async getUserCompleteInfo(query:IAccountQuery, includeSensitiveInfo=false):Promise<IUserCompleteInfo> {
-        const resp:IUserCompleteInfo = {
-            userData: null,
+    public async getAccountCompleteInfo(query:IAccountQuery, includeSensitiveInfo=false):Promise<IAccountCompleteInfo> {
+        const resp:IAccountCompleteInfo = {
+            accountData: null,
             role: null,
             roles: null,
             features: null,
@@ -84,7 +84,7 @@ class UserController {
                 resp.workspace = userWorkspaceController.getActiveWorkspace(user)
                 resp.workspaces = user.workspaces
                 resp.externalWorkspaces = await userWorkspaceController.getExternalWorkspaces(user._id!)
-                resp.userData = user
+                resp.accountData = user
             }
         }
         return resp
@@ -235,6 +235,6 @@ class UserController {
 }
 
 export {
-    IUserCompleteInfo
+    IAccountCompleteInfo
 }
 export default new UserController()

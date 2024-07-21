@@ -6,13 +6,13 @@ import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userController, { IUserCompleteInfo } from '../controllers/userController'
+import userController, { IAccountCompleteInfo } from '../controllers/userController'
 import { IAccount } from '../dataSource/models/userModel'
 
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'users', async (req, res) => {
+router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     const [result, statusCode] = await ErrorHandler.execute<IListOutput<IAccount>>(async () => {
@@ -22,7 +22,7 @@ router.get(env.RootApiEndpoint + 'users', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'users', async (req, res) => {
+router.post(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
@@ -45,8 +45,8 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
 router.get(env.RootApiEndpoint + 'accounts/:accountId/completeInfo', async (req, res) => {
     const { accountId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IUserCompleteInfo>(async () => {
-        return await userController.getUserCompleteInfo({_id: accountId})
+    const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
+        return await userController.getAccountCompleteInfo({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
