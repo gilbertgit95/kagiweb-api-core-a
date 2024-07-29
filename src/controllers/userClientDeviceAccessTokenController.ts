@@ -1,4 +1,4 @@
-import UserModel, { IAccount,IAccessToken } from '../dataSource/models/userModel'
+import accountModel, { IAccount,IAccessToken } from '../dataSource/models/userModel'
 import userController from './userController'
 import userClientDeviceController from './userClientDeviceController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -8,12 +8,12 @@ import Encryption from '../utilities/encryption'
 // const env = Config.getEnv()
 
 class UserClientDeviceAccessTokenController {
-    public async removeInvalidTokens(userId:string) {
-        const user = await UserModel.findOne({_id: userId})
-        if (user) {
+    public async removeInvalidTokens(accountId:string) {
+        const account = await accountModel.findOne({_id: accountId})
+        if (account) {
             let hasChanges = false
             // loop to every client devices
-            for (const cDevice of user.clientDevices) {
+            for (const cDevice of account.clientDevices) {
                 const clientDeviceId = cDevice._id
                 // then loop to all client device token
                 for (const token of cDevice.accessTokens? cDevice.accessTokens: []) {
@@ -21,20 +21,20 @@ class UserClientDeviceAccessTokenController {
                     // check token validity
                     if (!await Encryption.verifyJWT(token.jwt)) {
                         hasChanges = true
-                        user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
+                        account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
                     }
                 }
             }
 
             if (hasChanges) {
-                await user.save()
-                await userController.cachedData.removeCacheData(userId)
+                await account.save()
+                await userController.cachedData.removeCacheData(accountId)
             }
         }
     }
 
-    public hasClientDeviceAccessTokenJWT(user:IAccount, clientDeviceId:string, jwt:string):boolean {
-        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+    public hasClientDeviceAccessTokenJWT(account:IAccount, clientDeviceId:string, jwt:string):boolean {
+        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
@@ -48,9 +48,9 @@ class UserClientDeviceAccessTokenController {
         return false
     }
 
-    public getClientDeviceAccessTokenByJWT(user:IAccount, clientDeviceId:string, jwt:string):IAccessToken|null {
+    public getClientDeviceAccessTokenByJWT(account:IAccount, clientDeviceId:string, jwt:string):IAccessToken|null {
 
-        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
@@ -64,9 +64,9 @@ class UserClientDeviceAccessTokenController {
         return null
     }
 
-    public getClientDeviceAccessTokenById(user:IAccount, clientDeviceId:string, accessTokenId:string):IAccessToken|null {
+    public getClientDeviceAccessTokenById(account:IAccount, clientDeviceId:string, accessTokenId:string):IAccessToken|null {
 
-        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
@@ -80,36 +80,36 @@ class UserClientDeviceAccessTokenController {
         return null
     }
 
-    public async getClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId && accessTokenId)) throw({code: 400})
+    public async getClientDeviceAccessToken(accountId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
+        if (!(accountId && clientDeviceId && accessTokenId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const accessToken = this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)
+        const accessToken = this.getClientDeviceAccessTokenById(account, clientDeviceId, accessTokenId)
         if (!accessToken) throw({code: 404})
 
         return accessToken
     }
 
-    public async getClientDeviceAccessTokens(userId:string, clientDeviceId:string):Promise<IAccessToken[]> {
-        if (!userId) throw({code: 400})
+    public async getClientDeviceAccessTokens(accountId:string, clientDeviceId:string):Promise<IAccessToken[]> {
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const clientDevice = userClientDeviceController.getClientDeviceById(user, clientDeviceId)
+        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
 
         return clientDevice && clientDevice.accessTokens? clientDevice.accessTokens: []
     }
 
-    public async saveClientDeviceAccessToken(userId:string, clientDeviceId:string, expiration:number|undefined, description:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async saveClientDeviceAccessToken(accountId:string, clientDeviceId:string, expiration:number|undefined, description:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
+        if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        const jwtStr = Encryption.generateJWT({userId}, expiration)
-        const exp = (await Encryption.verifyJWT<{userId:string}>(jwtStr))?.exp
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        const jwtStr = Encryption.generateJWT({accountId}, expiration)
+        const exp = (await Encryption.verifyJWT<{accountId:string}>(jwtStr))?.exp
         const expTime = exp? new Date(exp * 1e3): undefined
 
         const doc:{jwt:string, expTime?:Date, ipAddress?:string, description?:string, disabled?:boolean} = {jwt:jwtStr}
@@ -119,44 +119,44 @@ class UserClientDeviceAccessTokenController {
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        user.clientDevices!.id(clientDeviceId)?.accessTokens?.push(doc)
+        account.clientDevices!.id(clientDeviceId)?.accessTokens?.push(doc)
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return this.getClientDeviceAccessTokenByJWT(user, clientDeviceId, jwtStr)
+        return this.getClientDeviceAccessTokenByJWT(account, clientDeviceId, jwtStr)
     }
 
-    public async updateClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string, description:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async updateClientDeviceAccessToken(accountId:string, clientDeviceId:string, accessTokenId:string, description:string, ipAddress:string, disabled:boolean|string):Promise<IAccessToken|null> {
+        if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!this.getClientDeviceAccessTokenById(account, clientDeviceId, accessTokenId)) throw({code: 404})
 
-        if (description) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.description =  description
-        if (ipAddress) user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.ipAddress = ipAddress
+        if (description) account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.description =  description
+        if (ipAddress) account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.ipAddress = ipAddress
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)
+        return account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)
     }
 
-    public async deleteClientDeviceAccessToken(userId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async deleteClientDeviceAccessToken(accountId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
+        if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const accessTokenData = this.getClientDeviceAccessTokenById(user, clientDeviceId, accessTokenId)
+        const accessTokenData = this.getClientDeviceAccessTokenById(account, clientDeviceId, accessTokenId)
         if (accessTokenData) {
-            user.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
-            await user.save()
-            await userController.cachedData.removeCacheData(userId)
+            account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
+            await account.save()
+            await userController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

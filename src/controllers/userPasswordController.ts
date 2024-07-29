@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IAccount, IPassword } from '../dataSource/models/userModel'
+import accountModel, { IAccount, IPassword } from '../dataSource/models/userModel'
 import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import Encryption from '../utilities/encryption'
@@ -10,17 +10,17 @@ const env = Config.getEnv()
 class UserPasswordController {
     /**
      * 
-     * @param {Object} user - is user object
+     * @param {Object} account - is account object
      * @param {string} password - plain text password
      * @returns {boolean}
      */
-    public async verifyActivePassword(user:IAccount, password:string):Promise<boolean> {
-        const currPassword = this.getActivePassword(user)
+    public async verifyActivePassword(account:IAccount, password:string):Promise<boolean> {
+        const currPassword = this.getActivePassword(account)
         return currPassword? await Encryption.verifyTextToHash(password, currPassword.key):false
     }
 
-    public isActivePasswordExpired(user:IAccount):boolean {
-        const currPassword = this.getActivePassword(user)
+    public isActivePasswordExpired(account:IAccount):boolean {
+        const currPassword = this.getActivePassword(account)
 
         const currTime = moment()
         if (currPassword?.expTime && currTime.isAfter(moment(currPassword.expTime))) {
@@ -29,9 +29,9 @@ class UserPasswordController {
         return false
     }
 
-    public async hasPasswordEntry(user:IAccount, password:string):Promise<boolean> {
-        if (user && user.passwords) {
-            for (const pass of user.passwords) {
+    public async hasPasswordEntry(account:IAccount, password:string):Promise<boolean> {
+        if (account && account.passwords) {
+            for (const pass of account.passwords) {
                 if (await Encryption.verifyTextToHash(password, pass.key)) return true
             }
         }
@@ -39,10 +39,10 @@ class UserPasswordController {
         return false
     }
 
-    public async getPasswordEntry(user:IAccount, password:string):Promise<IPassword|null> {
+    public async getPasswordEntry(account:IAccount, password:string):Promise<IPassword|null> {
 
-        if (user && user.passwords) {
-            for (const pass of user.passwords) {
+        if (account && account.passwords) {
+            for (const pass of account.passwords) {
                 if (await Encryption.verifyTextToHash(password, pass.key)) return pass
             }
         }
@@ -50,10 +50,10 @@ class UserPasswordController {
         return null
     }
 
-    public getActivePassword(user:IAccount):IPassword|null {
+    public getActivePassword(account:IAccount):IPassword|null {
 
-        if (user && user.passwords) {
-            for (const pass of user.passwords) {
+        if (account && account.passwords) {
+            for (const pass of account.passwords) {
                 if (pass.isActive) return pass
             }
         }
@@ -61,10 +61,10 @@ class UserPasswordController {
         return null
     }
 
-    public getPasswordById(user:IAccount, passwordId:string):IPassword|null {
+    public getPasswordById(account:IAccount, passwordId:string):IPassword|null {
 
-        if (user && user.passwords) {
-            for (const pass of user.passwords) {
+        if (account && account.passwords) {
+            for (const pass of account.passwords) {
                 if (pass._id === passwordId) return pass
             }
         }
@@ -72,35 +72,35 @@ class UserPasswordController {
         return null
     }
 
-    public async getPassword(userId:string, passwordId:string):Promise<IPassword|null> {
-        if (!(userId && passwordId)) throw({code: 400})
+    public async getPassword(accountId:string, passwordId:string):Promise<IPassword|null> {
+        if (!(accountId && passwordId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const password = this.getPasswordById(user, passwordId)
+        const password = this.getPasswordById(account, passwordId)
         if (!password) throw({code: 404})
         return password
     }
 
-    public async getPasswords(userId:string):Promise<IPassword[]> {
+    public async getPasswords(accountId:string):Promise<IPassword[]> {
         let result:IPassword[] = []
-        if (!userId) throw({code: 400})
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
-        result = user!.passwords? user!.passwords: []
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
+        result = account!.passwords? account!.passwords: []
 
         return result
     }
 
-    public async savePassword(userId:string, currentPassword:string, newPassword:string):Promise<IPassword|null> {
-        if (!(userId && currentPassword && newPassword)) throw({code: 400})
+    public async savePassword(accountId:string, currentPassword:string, newPassword:string):Promise<IPassword|null> {
+        if (!(accountId && currentPassword && newPassword)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const currPass = await this.getActivePassword(user)
+        const currPass = await this.getActivePassword(account)
         if (!currPass) throw({code: 404})
 
         // verify if the current password is provided
@@ -117,47 +117,47 @@ class UserPasswordController {
         }
 
 
-        // check if the password to save is existing on the user passwords
-        if (await this.hasPasswordEntry(user, newPassword)) throw({code: 409})
+        // check if the password to save is existing on the account passwords
+        if (await this.hasPasswordEntry(account, newPassword)) throw({code: 409})
 
         // save the new password with active status
-        user.passwords!.push({
+        account.passwords!.push({
             isActive: true,
             key: await Encryption.hashText(newPassword),
             expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate()
         })
 
         // deactivate the current password
-        user.passwords.id(currPass._id)!.isActive = false
+        account.passwords.id(currPass._id)!.isActive = false
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        const passEntry = await this.getPasswordEntry(user, newPassword)
+        const passEntry = await this.getPasswordEntry(account, newPassword)
         // if (passEntry && passEntry.key) passEntry.key = 'NA'
         return passEntry
     }
 
-    public async deletePassword(userId:string, passwordId:string):Promise<IPassword|null> {
-        if (!(userId && passwordId)) throw({code: 400})
+    public async deletePassword(accountId:string, passwordId:string):Promise<IPassword|null> {
+        if (!(accountId && passwordId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const userPasswordData = user!.passwords?.id(passwordId)
+        const accountPasswordData = account!.passwords?.id(passwordId)
         // check if password is active
-        if (userPasswordData && userPasswordData.isActive) throw({code: 409})
+        if (accountPasswordData && accountPasswordData.isActive) throw({code: 409})
 
-        if (userPasswordData) {
-            user!.passwords?.id(passwordId)?.deleteOne()
-            await user.save()
-            await userController.cachedData.removeCacheData(userId)
+        if (accountPasswordData) {
+            account!.passwords?.id(passwordId)?.deleteOne()
+            await account.save()
+            await userController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }
 
-        // userPasswordData.key = 'NA'
-        return userPasswordData
+        // accountPasswordData.key = 'NA'
+        return accountPasswordData
     }
 }
 

@@ -1,5 +1,5 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IAccount, IClientDevice } from '../dataSource/models/userModel'
+import accountModel, { IAccount, IClientDevice } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -7,9 +7,9 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserClientDeviceController {
-    public hasClientDeviceUA(user:IAccount, ua:string):boolean {
-        if (user && user.clientDevices) {
-            for (const clientDevice of user.clientDevices) {
+    public hasClientDeviceUA(account:IAccount, ua:string):boolean {
+        if (account && account.clientDevices) {
+            for (const clientDevice of account.clientDevices) {
                 if (clientDevice.ua === ua) return true
             }
         }
@@ -17,10 +17,10 @@ class UserClientDeviceController {
         return false
     }
 
-    public getClientDeviceByUA(user:IAccount, ua:string):IClientDevice|null {
+    public getClientDeviceByUA(account:IAccount, ua:string):IClientDevice|null {
 
-        if (user && user.clientDevices) {
-            for (const clientDevice of user.clientDevices) {
+        if (account && account.clientDevices) {
+            for (const clientDevice of account.clientDevices) {
                 if (clientDevice.ua === ua) return clientDevice
             }
         }
@@ -28,10 +28,10 @@ class UserClientDeviceController {
         return null
     }
 
-    public getClientDeviceById(user:IAccount, clientDeviceId:string):IClientDevice|null {
+    public getClientDeviceById(account:IAccount, clientDeviceId:string):IClientDevice|null {
 
-        if (user && user.clientDevices) {
-            for (const clientDevice of user.clientDevices) {
+        if (account && account.clientDevices) {
+            for (const clientDevice of account.clientDevices) {
                 if (clientDevice._id === clientDeviceId) return clientDevice
             }
         }
@@ -39,37 +39,37 @@ class UserClientDeviceController {
         return null
     }
 
-    public async getClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async getClientDevice(accountId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+        if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const clientDevice = this.getClientDeviceById(user, clientDeviceId)
+        const clientDevice = this.getClientDeviceById(account, clientDeviceId)
         if (!clientDevice) throw({code: 404})
 
         return clientDevice
     }
 
-    public async getClientDevices(userId:string):Promise<IClientDevice[]> {
+    public async getClientDevices(accountId:string):Promise<IClientDevice[]> {
         let result:IClientDevice[] = []
-        if (!userId) throw({code: 400})
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
-        result = user!.clientDevices? user!.clientDevices: []
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
+        result = account!.clientDevices? account!.clientDevices: []
 
         return result
     }
 
-    public async saveClientDevice(userId:string, ua:string, description:string|undefined, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && ua)) throw({code: 400})
+    public async saveClientDevice(accountId:string, ua:string, description:string|undefined, disabled:boolean|string):Promise<IClientDevice|null> {
+        if (!(accountId && ua)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        // check if the user info to save is existing on the user user infos
-        if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
+        // check if the account info to save is existing on the account account infos
+        if (this.hasClientDeviceUA(account, ua)) throw({code: 409})
         const doc:IResult & {disabled?:boolean, description?:string} = (new UAParser(ua)).getResult()
         if (description) {
             doc.description = description
@@ -77,51 +77,51 @@ class UserClientDeviceController {
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        user.clientDevices!.push(doc)
+        account.clientDevices!.push(doc)
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return this.getClientDeviceByUA(user, ua)
+        return this.getClientDeviceByUA(account, ua)
     }
 
-    public async updateClientDevice(userId:string, clientDeviceId:string, ua:string, description:string|undefined, disabled:boolean|string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async updateClientDevice(accountId:string, clientDeviceId:string, ua:string, description:string|undefined, disabled:boolean|string):Promise<IClientDevice|null> {
+        if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!user.clientDevices?.id(clientDeviceId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.clientDevices?.id(clientDeviceId)) throw({code: 404})
 
-        // check if client device ua already existed on other entries in this user client devices
-        if (this.hasClientDeviceUA(user, ua)) throw({code: 409})
+        // check if client device ua already existed on other entries in this account client devices
+        if (this.hasClientDeviceUA(account, ua)) throw({code: 409})
 
         if (ua) {
-            user.clientDevices!.id(clientDeviceId)!.ua = ua
+            account.clientDevices!.id(clientDeviceId)!.ua = ua
         }
         if (description) {
-            user.clientDevices!.id(clientDeviceId)!.description = description
+            account.clientDevices!.id(clientDeviceId)!.description = description
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            user.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            account.clientDevices!.id(clientDeviceId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.clientDevices!.id(clientDeviceId)
+        return account.clientDevices!.id(clientDeviceId)
     }
 
-    public async deleteClientDevice(userId:string, clientDeviceId:string):Promise<IClientDevice|null> {
-        if (!(userId && clientDeviceId)) throw({code: 400})
+    public async deleteClientDevice(accountId:string, clientDeviceId:string):Promise<IClientDevice|null> {
+        if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const clientDeviceData = user!.clientDevices?.id(clientDeviceId)
+        const clientDeviceData = account!.clientDevices?.id(clientDeviceId)
         if (clientDeviceData) {
-            user!.clientDevices?.id(clientDeviceId)?.deleteOne()
-            await user.save()
-            await userController.cachedData.removeCacheData(userId)
+            account!.clientDevices?.id(clientDeviceId)?.deleteOne()
+            await account.save()
+            await userController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

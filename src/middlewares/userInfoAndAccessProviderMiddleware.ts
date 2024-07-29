@@ -15,7 +15,7 @@ import { RouterIdentity } from '../utilities/routerIdentity'
 class UserInfoAndAccessProvider {
     /**
      * this midddleware inserts userdata into request object base on jwt data,
-     * then checks user access
+     * then checks account access
      * @param req 
      * @param res 
      * @param next 
@@ -28,29 +28,29 @@ class UserInfoAndAccessProvider {
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
             const token = accessToken && accessToken.split(' ')[1]? accessToken.split(' ')[1]: null
-            let user:IAccount|null = null
+            let account:IAccount|null = null
 
             if (token && type === 'Bearer') {
-                const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
-                if (!(tokenObj && tokenObj.userId)) throw({code: 401})
+                const tokenObj = await Encryption.verifyJWT<{accountId:string}>(token)
+                if (!(tokenObj && tokenObj.accountId)) throw({code: 401})
 
-                user = await userController.getUser({_id: tokenObj.userId}, true)
-                req.userData = user
+                account = await userController.getUser({_id: tokenObj.accountId}, true)
+                req.userData = account
             } else {
                 throw({code: 401}) // Unauthorize
             }
 
-            // if user has been fetched, proceed to user access regulation process
-            if (user && userAgentInfo) {
-                // check the user devices if the acces token existed
-                const clientDevice = userClientDeviceController.getClientDeviceByUA(user, userAgentInfo.ua)
+            // if account has been fetched, proceed to account access regulation process
+            if (account && userAgentInfo) {
+                // check the account devices if the acces token existed
+                const clientDevice = userClientDeviceController.getClientDeviceByUA(account, userAgentInfo.ua)
                 if ( clientDevice && clientDevice._id &&
-                    !userClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(user, clientDevice._id, token)) {
+                    !userClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(account, clientDevice._id, token)) {
                     throw({code: 401})
                 }
 
-                // get active user roleref
-                const activeRoleRef = userRoleController.getActiveRoleRef(user)
+                // get active account roleref
+                const activeRoleRef = userRoleController.getActiveRoleRef(account)
                 if (!(activeRoleRef && activeRoleRef.roleId)) throw({code: 404})
                 // get active role info
                 const activeRole = await roleController.getMappedRole(activeRoleRef.roleId)

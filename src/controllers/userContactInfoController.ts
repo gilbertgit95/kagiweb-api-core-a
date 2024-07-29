@@ -1,4 +1,4 @@
-import UserModel, { IAccount, IContactInfo, TContactInfoType } from '../dataSource/models/userModel'
+import accountModel, { IAccount, IContactInfo, TContactInfoType } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -6,9 +6,9 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserContactInfoController {
-    public hasContactInfoValue(user:IAccount, contactInfoVal:string):boolean {
-        if (user && user.contactInfos) {
-            for (const info of user.contactInfos) {
+    public hasContactInfoValue(account:IAccount, contactInfoVal:string):boolean {
+        if (account && account.contactInfos) {
+            for (const info of account.contactInfos) {
                 if (info.value === contactInfoVal) return true
             }
         }
@@ -16,10 +16,10 @@ class UserContactInfoController {
         return false
     }
 
-    public getContactInfoByValue(user:IAccount, contactInfoVal:string):IContactInfo|null {
+    public getContactInfoByValue(account:IAccount, contactInfoVal:string):IContactInfo|null {
 
-        if (user && user.contactInfos) {
-            for (const info of user.contactInfos) {
+        if (account && account.contactInfos) {
+            for (const info of account.contactInfos) {
                 if (info.value === contactInfoVal) return info
             }
         }
@@ -27,10 +27,10 @@ class UserContactInfoController {
         return null
     }
 
-    public getContactInfoById(user:IAccount, contactInfoId:string):IContactInfo|null {
+    public getContactInfoById(account:IAccount, contactInfoId:string):IContactInfo|null {
 
-        if (user && user.contactInfos) {
-            for (const info of user.contactInfos) {
+        if (account && account.contactInfos) {
+            for (const info of account.contactInfos) {
                 if (info._id === contactInfoId) return info
             }
         }
@@ -38,87 +38,87 @@ class UserContactInfoController {
         return null
     }
 
-    public async getContactInfo(userId:string, contactInfoId:string):Promise<IContactInfo|null> {
-        if (!(userId && contactInfoId)) throw({code: 400})
+    public async getContactInfo(accountId:string, contactInfoId:string):Promise<IContactInfo|null> {
+        if (!(accountId && contactInfoId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const contactInfo = this.getContactInfoById(user, contactInfoId)
+        const contactInfo = this.getContactInfoById(account, contactInfoId)
         if (!contactInfo) throw({code: 404})
 
         return contactInfo
     }
 
-    public async getContactInfos(userId:string):Promise<IContactInfo[]> {
+    public async getContactInfos(accountId:string):Promise<IContactInfo[]> {
         let result:IContactInfo[] = []
-        if (!userId) throw({code: 400})
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
-        result = user!.contactInfos? user!.contactInfos: []
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
+        result = account!.contactInfos? account!.contactInfos: []
 
         return result
     }
 
-    public async saveContactInfo(userId:string, type:TContactInfoType, value:string, countryCode:string, verified:boolean|string):Promise<IContactInfo|null> {
-        if (!(userId && type && value)) throw({code: 400})
+    public async saveContactInfo(accountId:string, type:TContactInfoType, value:string, countryCode:string, verified:boolean|string):Promise<IContactInfo|null> {
+        if (!(accountId && type && value)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        // check if the contact info to save is existing on the user contact infos
-        if (this.hasContactInfoValue(user, value)) throw({code: 409})
+        // check if the contact info to save is existing on the account contact infos
+        if (this.hasContactInfoValue(account, value)) throw({code: 409})
 
         const doc:{type:TContactInfoType, value:string, countryCode?:string, verified?:boolean} = {type, value}
         if (countryCode) doc.countryCode = countryCode
         if (DataCleaner.getBooleanData(verified).isValid) {
             doc.verified = DataCleaner.getBooleanData(verified).data
         }
-        user.contactInfos!.push(doc)
+        account.contactInfos!.push(doc)
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return this.getContactInfoByValue(user, value)
+        return this.getContactInfoByValue(account, value)
     }
 
-    public async updateContactInfo(userId:string, contactInfoId:string, type:TContactInfoType, value:string, countryCode:string, verified:boolean|string):Promise<IContactInfo|null> {
-        if (!(userId && contactInfoId)) throw({code: 400})
+    public async updateContactInfo(accountId:string, contactInfoId:string, type:TContactInfoType, value:string, countryCode:string, verified:boolean|string):Promise<IContactInfo|null> {
+        if (!(accountId && contactInfoId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!user.contactInfos?.id(contactInfoId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.contactInfos?.id(contactInfoId)) throw({code: 404})
 
-        if (type) user.contactInfos!.id(contactInfoId)!.type = type
-        if (value) user.contactInfos!.id(contactInfoId)!.value = value
-        if (countryCode) user.contactInfos!.id(contactInfoId)!.countryCode = countryCode
+        if (type) account.contactInfos!.id(contactInfoId)!.type = type
+        if (value) account.contactInfos!.id(contactInfoId)!.value = value
+        if (countryCode) account.contactInfos!.id(contactInfoId)!.countryCode = countryCode
         if (DataCleaner.getBooleanData(verified).isValid) {
-            user.contactInfos!.id(contactInfoId)!.verified = DataCleaner.getBooleanData(verified).data
+            account.contactInfos!.id(contactInfoId)!.verified = DataCleaner.getBooleanData(verified).data
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.contactInfos!.id(contactInfoId)
+        return account.contactInfos!.id(contactInfoId)
     }
 
-    public async deleteContactInfo(userId:string, contactInfoId:string):Promise<IContactInfo|null> {
-        if (!(userId && contactInfoId)) throw({code: 400})
+    public async deleteContactInfo(accountId:string, contactInfoId:string):Promise<IContactInfo|null> {
+        if (!(accountId && contactInfoId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const userInfoData = user!.contactInfos?.id(contactInfoId)
-        if (userInfoData) {
-            user!.contactInfos?.id(contactInfoId)?.deleteOne()
-            await user.save()
-            await userController.cachedData.removeCacheData(userId)
+        const accountInfoData = account!.contactInfos?.id(contactInfoId)
+        if (accountInfoData) {
+            account!.contactInfos?.id(contactInfoId)?.deleteOne()
+            await account.save()
+            await userController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }
 
-        return userInfoData? userInfoData: null
+        return accountInfoData? accountInfoData: null
     }
 }
 

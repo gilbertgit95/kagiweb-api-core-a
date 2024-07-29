@@ -1,5 +1,5 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import UserModel, { IAccount, IWorkspace } from '../dataSource/models/userModel'
+import accountModel, { IAccount, IWorkspace } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -7,10 +7,10 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserWorkspaceController {
-    public getActiveWorkspace(user:IAccount):IWorkspace|null {
+    public getActiveWorkspace(account:IAccount):IWorkspace|null {
 
-        if (user && user.workspaces) {
-            for (const workspace of user.workspaces) {
+        if (account && account.workspaces) {
+            for (const workspace of account.workspaces) {
                 if (workspace.isActive) return workspace
             }
         }
@@ -18,10 +18,10 @@ class UserWorkspaceController {
         return null
     }
 
-    public getWorkspaceById(user:IAccount, workspaceId:string):IWorkspace|null {
+    public getWorkspaceById(account:IAccount, workspaceId:string):IWorkspace|null {
 
-        if (user && user.workspaces) {
-            for (const workspace of user.workspaces) {
+        if (account && account.workspaces) {
+            for (const workspace of account.workspaces) {
                 if (workspace._id === workspaceId) return workspace
             }
         }
@@ -29,26 +29,26 @@ class UserWorkspaceController {
         return null
     }
 
-    public async getWorkspace(userId:string, workspaceId:string):Promise<IWorkspace|null> {
-        if (!(userId && workspaceId)) throw({code: 400})
+    public async getWorkspace(accountId:string, workspaceId:string):Promise<IWorkspace|null> {
+        if (!(accountId && workspaceId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const workspace = this.getWorkspaceById(user, workspaceId)
+        const workspace = this.getWorkspaceById(account, workspaceId)
         if (!workspace) throw({code: 404})
 
         return workspace
     }
 
-    public async getExternalWorkspaces(userId:string):Promise<(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[]> {
+    public async getExternalWorkspaces(accountId:string):Promise<(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[]> {
         let result:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = []
-        if (!userId) throw({code: 400})
+        if (!accountId) throw({code: 400})
 
-        const extWorkspaces:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = await UserModel.aggregate<IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string}>([
+        const extWorkspaces:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string}>([
             {
               '$match': {
-                'workspaces.userRefs.userId': userId
+                'workspaces.userRefs.accountId': accountId
               }
             }, {
               '$unwind': {
@@ -57,16 +57,16 @@ class UserWorkspaceController {
               }
             }, {
               '$addFields': {
-                'user': '$workspaces.userRefs'
+                'account': '$workspaces.userRefs'
               }
             }, {
               '$unwind': {
-                'path': '$user', 
+                'path': '$account', 
                 'preserveNullAndEmptyArrays': false
               }
             }, {
               '$match': {
-                'user.userId': userId
+                'account.accountId': accountId
               }
             }, {
               '$project': {
@@ -91,22 +91,22 @@ class UserWorkspaceController {
         return result
     }
 
-    public async getWorkspaces(userId:string):Promise<IWorkspace[]> {
+    public async getWorkspaces(accountId:string):Promise<IWorkspace[]> {
         let result:IWorkspace[] = []
-        if (!userId) throw({code: 400})
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
-        result = user!.workspaces? user!.workspaces: []
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
+        result = account!.workspaces? account!.workspaces: []
 
         return result
     }
 
-    public async saveWorkspace(userId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
-        if (!(userId && name)) throw({code: 400})
+    public async saveWorkspace(accountId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
+        if (!(accountId && name)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
         const doc:IWorkspace = {
             name: name,
@@ -119,48 +119,48 @@ class UserWorkspaceController {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
-        user.workspaces!.push(doc)
+        account.workspaces!.push(doc)
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.workspaces[user.workspaces.length - 1]
+        return account.workspaces[account.workspaces.length - 1]
     }
 
-    public async updateWorkspace(userId:string, workspaceId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
-        if (!(userId && workspaceId)) throw({code: 400})
+    public async updateWorkspace(accountId:string, workspaceId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
+        if (!(accountId && workspaceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!user.workspaces?.id(workspaceId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.workspaces?.id(workspaceId)) throw({code: 404})
 
-        if (name) user.workspaces!.id(workspaceId)!.name = name
-        if (description) user.workspaces!.id(workspaceId)!.description = description
+        if (name) account.workspaces!.id(workspaceId)!.name = name
+        if (description) account.workspaces!.id(workspaceId)!.description = description
 
         if (DataCleaner.getBooleanData(isActive).isValid) {
-            user.workspaces!.id(workspaceId)!.isActive = DataCleaner.getBooleanData(isActive).data
+            account.workspaces!.id(workspaceId)!.isActive = DataCleaner.getBooleanData(isActive).data
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            user.workspaces!.id(workspaceId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            account.workspaces!.id(workspaceId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.workspaces!.id(workspaceId)
+        return account.workspaces!.id(workspaceId)
     }
 
-    public async deleteWorkspace(userId:string, workspaceId:string):Promise<IWorkspace|null> {
-        if (!(userId && workspaceId)) throw({code: 400})
+    public async deleteWorkspace(accountId:string, workspaceId:string):Promise<IWorkspace|null> {
+        if (!(accountId && workspaceId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const workspaceData = user!.workspaces?.id(workspaceId)
+        const workspaceData = account!.workspaces?.id(workspaceId)
         if (workspaceData) {
-            user!.workspaces?.id(workspaceId)?.deleteOne()
-            await user.save()
-            await userController.cachedData.removeCacheData(userId)
+            account!.workspaces?.id(workspaceId)?.deleteOne()
+            await account.save()
+            await userController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

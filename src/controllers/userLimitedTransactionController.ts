@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IAccount, ILimitedTransaction } from '../dataSource/models/userModel'
+import accountModel, { IAccount, ILimitedTransaction } from '../dataSource/models/userModel'
 import userController from './userController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -7,21 +7,21 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserLimitedTransactionController {
-    public verifyLimitedTransactionKey(user:IAccount, lt:string, key:string):boolean {
+    public verifyLimitedTransactionKey(account:IAccount, lt:string, key:string):boolean {
         let result = false
 
-        const ltData = this.getLimitedTransactionByType(user, lt)
+        const ltData = this.getLimitedTransactionByType(account, lt)
 
         if (ltData && !ltData.disabled && ltData.key === key) result = true
 
         return result
     }
 
-    public isLimitedTransactionValid(user:IAccount, lt:string):boolean {
+    public isLimitedTransactionValid(account:IAccount, lt:string):boolean {
         let ltData:ILimitedTransaction|undefined
 
         // get limited transaction
-        user.limitedTransactions.forEach(item => {
+        account.limitedTransactions.forEach(item => {
             if (item.type === lt && !item.disabled) {
                 ltData = item
             }
@@ -45,9 +45,9 @@ class UserLimitedTransactionController {
         return true
     }
 
-    public hasLimitedTransactionType(user:IAccount, limitedTransactionType:string):boolean {
-        if (user && user.limitedTransactions) {
-            for (const lt of user.limitedTransactions) {
+    public hasLimitedTransactionType(account:IAccount, limitedTransactionType:string):boolean {
+        if (account && account.limitedTransactions) {
+            for (const lt of account.limitedTransactions) {
                 if (lt.type === limitedTransactionType) return true
             }
         }
@@ -55,10 +55,10 @@ class UserLimitedTransactionController {
         return false
     }
 
-    public getLimitedTransactionByType(user:IAccount, limitedTransactionType:string):ILimitedTransaction|null {
+    public getLimitedTransactionByType(account:IAccount, limitedTransactionType:string):ILimitedTransaction|null {
 
-        if (user && user.limitedTransactions) {
-            for (const lt of user.limitedTransactions) {
+        if (account && account.limitedTransactions) {
+            for (const lt of account.limitedTransactions) {
                 if (lt.type === limitedTransactionType) return lt
             }
         }
@@ -66,10 +66,10 @@ class UserLimitedTransactionController {
         return null
     }
 
-    public getLimitedTransactionById(user:IAccount, limitedTransactionId:string):ILimitedTransaction|null {
+    public getLimitedTransactionById(account:IAccount, limitedTransactionId:string):ILimitedTransaction|null {
 
-        if (user && user.limitedTransactions) {
-            for (const lt of user.limitedTransactions) {
+        if (account && account.limitedTransactions) {
+            for (const lt of account.limitedTransactions) {
                 if (lt._id === limitedTransactionId) return lt
             }
         }
@@ -77,54 +77,54 @@ class UserLimitedTransactionController {
         return null
     }
 
-    public async getLimitedTransaction(userId:string, limitedTransactionId:string):Promise<ILimitedTransaction|null> {
-        if (!(userId && limitedTransactionId)) throw({code: 400})
+    public async getLimitedTransaction(accountId:string, limitedTransactionId:string):Promise<ILimitedTransaction|null> {
+        if (!(accountId && limitedTransactionId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const userInfo = this.getLimitedTransactionById(user, limitedTransactionId)
-        if (!userInfo) throw({code: 404})
+        const accountInfo = this.getLimitedTransactionById(account, limitedTransactionId)
+        if (!accountInfo) throw({code: 404})
 
-        return userInfo
+        return accountInfo
     }
 
-    public async getLimitedTransactions(userId:string):Promise<ILimitedTransaction[]> {
+    public async getLimitedTransactions(accountId:string):Promise<ILimitedTransaction[]> {
         let result:ILimitedTransaction[] = []
-        if (!userId) throw({code: 400})
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
-        result = user!.limitedTransactions? user!.limitedTransactions: []
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
+        result = account!.limitedTransactions? account!.limitedTransactions: []
 
         return result
     }
 
     public async updateLimitedTransaction(
-        userId:string, limitedTransactionId:string,
+        accountId:string, limitedTransactionId:string,
         limit:number, attempts:number, key:string,
         value:string, recipient:string,
         disabled:boolean|string
     ):Promise<ILimitedTransaction|null> {
-        if (!(userId && limitedTransactionId)) throw({code: 400})
+        if (!(accountId && limitedTransactionId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!user.limitedTransactions?.id(limitedTransactionId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.limitedTransactions?.id(limitedTransactionId)) throw({code: 404})
 
-        if (limit) user.limitedTransactions!.id(limitedTransactionId)!.limit = limit
-        if (attempts) user.limitedTransactions!.id(limitedTransactionId)!.attempts = attempts
-        if (key) user.limitedTransactions!.id(limitedTransactionId)!.key = key
-        if (value) user.limitedTransactions!.id(limitedTransactionId)!.value = value
-        if (recipient) user.limitedTransactions!.id(limitedTransactionId)!.recipient = recipient
+        if (limit) account.limitedTransactions!.id(limitedTransactionId)!.limit = limit
+        if (attempts) account.limitedTransactions!.id(limitedTransactionId)!.attempts = attempts
+        if (key) account.limitedTransactions!.id(limitedTransactionId)!.key = key
+        if (value) account.limitedTransactions!.id(limitedTransactionId)!.value = value
+        if (recipient) account.limitedTransactions!.id(limitedTransactionId)!.recipient = recipient
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            user.limitedTransactions!.id(limitedTransactionId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            account.limitedTransactions!.id(limitedTransactionId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.limitedTransactions!.id(limitedTransactionId)
+        return account.limitedTransactions!.id(limitedTransactionId)
     }
 }
 

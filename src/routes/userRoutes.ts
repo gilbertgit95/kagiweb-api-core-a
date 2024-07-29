@@ -1,6 +1,6 @@
 import express from 'express'
 
-// import UserModel, { IAccount } from '../dataSource/models/userModel'
+// import accountModel, { IAccount } from '../dataSource/models/userModel'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'

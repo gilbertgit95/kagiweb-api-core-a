@@ -6,8 +6,8 @@ import TextValidators from '../validators/textValidators'
 
 // Roles:
 // - App Admin - has access to all
-// - User Admin - has access to some Adminitrative features
-// - Normal User - has access to some features
+// - Account Admin - has access to some Adminitrative features
+// - Normal Account - has access to some features
 
 // queries
 interface IRoleQuery {

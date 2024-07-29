@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 
-// import UserModel, { IAccount } from '../dataSource/models/userModel'
+// import accountModel, { IAccount } from '../dataSource/models/userModel'
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
@@ -536,7 +536,7 @@ router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req,
     return res.status(statusCode).send(result)
 })
 
-// workspace user refs
+// workspace account refs
 router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', async (req, res) => {
     const accountId = req?.userData?._id || ''
     const { workspaceId } = req.params

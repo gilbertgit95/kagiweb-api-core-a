@@ -16,7 +16,7 @@
       "description": "will be testing a random company here"
     },
     {
-      "ua": "test  user agent",
+      "ua": "test  account agent",
       "description": "test description",
       "disabled": false,
       "_id": "1c54d12b-2be8-438f-8b57-6c5070e499cf",
@@ -438,7 +438,7 @@
       "_id": "39635615-70bc-4fad-84cf-ef9d672eed52",
       "userRefs": [
         {
-          "userId": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
+          "accountId": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
           "username": "Berting",
           "readAccess": true,
           "updateAccess": false,
@@ -456,7 +456,7 @@
           }
         },
         {
-          "userId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
+          "accountId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
           "readAccess": true,
           "updateAccess": false,
           "createAccess": false,
@@ -488,7 +488,7 @@
       "_id": "4145ae8a-304a-45e2-a890-4e57223913b1",
       "userRefs": [
         {
-          "userId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
+          "accountId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
           "readAccess": true,
           "updateAccess": false,
           "createAccess": false,
@@ -838,7 +838,7 @@
       "_id": "035c4e14-a120-44d2-a70d-c481ce1cfbfe",
       "userRefs": [
         {
-          "userId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
           "username": "gilbertgit95",
           "readAccess": true,
           "updateAccess": true,
@@ -1039,7 +1039,7 @@
       "_id": "6cf90820-2d55-409e-ab9c-d1d7cca9b376",
       "userRefs": [
         {
-          "userId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
           "readAccess": true,
           "updateAccess": true,
           "createAccess": true,

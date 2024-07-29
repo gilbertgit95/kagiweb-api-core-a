@@ -1,5 +1,5 @@
 import moment from 'moment'
-import UserModel, { IClientDevice, IAccessToken, IContactInfo, acountTypes } from '../dataSource/models/userModel'
+import accountModel, { IClientDevice, IAccessToken, IContactInfo, acountTypes } from '../dataSource/models/userModel'
 import TextValidators from '../dataSource/validators/textValidators'
 import userController from './userController'
 import userLimitedTransactionController from './userLimitedTransactionController'
@@ -16,44 +16,44 @@ const env = Config.getEnv()
 class AuthController {
     public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, username?: string, message?: string} | null> {
 
-        // fetch user using the username
-        let user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
+        // fetch account using the username
+        let account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
         let result:{token?: string, username?: string, message?: string} | null
 
-        // if no user found
-        if (!user) {
+        // if no account found
+        if (!account) {
             throw({code: 404}) // resource not found
         }
-        if (user && user.disabled) {
+        if (account && account.disabled) {
             throw({code: 423}) // is locked
         }
 
 
-        // if user exist then encrement the signin attempt
-        const signinLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'signin')
+        // if account exist then encrement the signin attempt
+        const signinLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'signin')
         // encrement attempt
         if (signinLT) {
-            user.limitedTransactions.id(signinLT._id)!.attempts++
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            account.limitedTransactions.id(signinLT._id)!.attempts++
+            await account.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
         }
         // check if signin is enable and also check for the attmpts compared to the limit
-        if (!userLimitedTransactionController.isLimitedTransactionValid(user, 'signin')) {
-            user.disabled = true
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+        if (!userLimitedTransactionController.isLimitedTransactionValid(account, 'signin')) {
+            account.disabled = true
+            await account.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
             throw({code: 423}) // is locked
         }
 
 
-        // if a match, set user authentication related data
+        // if a match, set account authentication related data
         // credential match
-        if (await userPasswordController.verifyActivePassword(user, password)) {
+        if (await userPasswordController.verifyActivePassword(account, password)) {
             // check if is expired
-            if (userPasswordController.isActivePasswordExpired(user)) throw({code: 403, message: 'Password is expired'}) // Forbidden access to resources.
+            if (userPasswordController.isActivePasswordExpired(account)) throw({code: 403, message: 'Password is expired'}) // Forbidden access to resources.
 
             // check LT of otp-signin
-            const otpSigninLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'otp-signin')
+            const otpSigninLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'otp-signin')
             if (otpSigninLT && !otpSigninLT.disabled) {
                 // create randnom key and expiration time
                 const otpKey:string = Encryption.generateRandNumber().toString()
@@ -62,27 +62,27 @@ class AuthController {
                     .toDate()
 
                 // reset otp-signin with the random key
-                user.limitedTransactions.id(otpSigninLT._id)!.attempts = 0
-                user.limitedTransactions.id(otpSigninLT._id)!.key = otpKey
-                user.limitedTransactions.id(otpSigninLT._id)!.expTime = expTime
+                account.limitedTransactions.id(otpSigninLT._id)!.attempts = 0
+                account.limitedTransactions.id(otpSigninLT._id)!.key = otpKey
+                account.limitedTransactions.id(otpSigninLT._id)!.expTime = expTime
 
-                await user.save()
+                await account.save()
                 // send otp to the LT recepient
                 // console.log(`System is sending signin otp to ${ signinLT!.recipient } with key ${ otpKey }`)
                 appEvents.emit('otp', {
                     module: 'signin',
                     device: device,
                     ip: ip,
-                    user: user,
+                    account: account,
                     lt: otpSigninLT
                 })
-                // then return userId
-                return { username: user.username, message: 'OTP has been sent' }
+                // then return accountId
+                return { username: account.username, message: 'OTP has been sent' }
             }
 
             // normal signin
-            const jwtStr = Encryption.generateJWT({userId: user!._id})
-            const exp = (await Encryption.verifyJWT<{userId:string}>(jwtStr))?.exp
+            const jwtStr = Encryption.generateJWT({accountId: account!._id})
+            const exp = (await Encryption.verifyJWT<{accountId:string}>(jwtStr))?.exp
             const expTime = exp? new Date(exp * 1e3): undefined
 
             const accessToken:IAccessToken = {
@@ -94,28 +94,28 @@ class AuthController {
 
             // assign access token to device
             // get device 
-            let deviceId = userClientDeviceController.getClientDeviceByUA(user!, device?.ua)?._id
+            let deviceId = userClientDeviceController.getClientDeviceByUA(account!, device?.ua)?._id
             // if device exist, push the new token to the existing device
             if (!deviceId) {
-                user!.clientDevices.push(device)
-                user = await user!.save()
-                deviceId = userClientDeviceController.getClientDeviceByUA(user, device?.ua)?._id
+                account!.clientDevices.push(device)
+                account = await account!.save()
+                deviceId = userClientDeviceController.getClientDeviceByUA(account, device?.ua)?._id
             }
-            user!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
+            account!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
             result = {token: jwtStr, message: 'Successfull signin'}
 
             // reset signinLT
             if (signinLT) {
-                user.limitedTransactions.id(signinLT._id)!.attempts = 0
+                account.limitedTransactions.id(signinLT._id)!.attempts = 0
             }
 
-            await user!.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            await account!.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
 
             // clean invalid access tokens
-            await userClientDeviceAccessTokenController.removeInvalidTokens(user._id)
+            await userClientDeviceAccessTokenController.removeInvalidTokens(account._id)
 
-        // Throw error when user does not exist or password not match
+        // Throw error when account does not exist or password not match
         } else {
             throw({code: 404}) // Resource not found
         }
@@ -123,41 +123,41 @@ class AuthController {
         return result
     }
 
-    // userId:string, code:string
+    // accountId:string, code:string
     public async signinOTP(username:string, key:string, device:IClientDevice, ip:string):Promise<{token: string, message?: string } | null> {
-        // fetch user using the username
-        let user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
+        // fetch account using the username
+        let account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
         let result:{ token: string, message?: string } | null
 
-        // if no user found
-        if (!user) {
+        // if no account found
+        if (!account) {
             throw({code: 403}) // Forbidden access to resources.
         }
-        if (user && user.disabled) {
+        if (account && account.disabled) {
             throw({code: 423}) // is locked
         }
 
-        // if user exist then encrement the signin attempt
-        const signinLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'signin')
-        const otpSigninLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'otp-signin')
+        // if account exist then encrement the signin attempt
+        const signinLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'signin')
+        const otpSigninLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'otp-signin')
         // encrement attempt
         if (otpSigninLT) {
-            user!.limitedTransactions.id(otpSigninLT._id)!.attempts++
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            account!.limitedTransactions.id(otpSigninLT._id)!.attempts++
+            await account.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
         }
         // check if signin is enable and also check for the attmpts compared to the limit
-        if (!userLimitedTransactionController.isLimitedTransactionValid(user, 'otp-signin')) {
+        if (!userLimitedTransactionController.isLimitedTransactionValid(account, 'otp-signin')) {
             throw({code: 403}) // Forbidden access to resources.
         }
 
-        if (userLimitedTransactionController.verifyLimitedTransactionKey(user, 'otp-signin', key)) {
+        if (userLimitedTransactionController.verifyLimitedTransactionKey(account, 'otp-signin', key)) {
             // then if the device is not yet registered, then register the device
             // then generate jwt for the device with ip address info
-            // then return user info and the generated jwt
+            // then return account info and the generated jwt
             // normal signin
-            const jwtStr = await Encryption.generateJWT({userId: user!._id})
-            const exp = (await Encryption.verifyJWT<{userId:string}>(jwtStr))?.exp
+            const jwtStr = await Encryption.generateJWT({accountId: account!._id})
+            const exp = (await Encryption.verifyJWT<{accountId:string}>(jwtStr))?.exp
             const expTime = exp? new Date(exp * 1e3): undefined
 
             const accessToken:IAccessToken = {
@@ -169,31 +169,31 @@ class AuthController {
 
             // assign access token to device
             // get device 
-            let deviceId = userClientDeviceController.getClientDeviceByUA(user!, device?.ua)?._id
+            let deviceId = userClientDeviceController.getClientDeviceByUA(account!, device?.ua)?._id
             // if device exist, push the new token to the existing device
             if (!deviceId) {
-                user!.clientDevices.push(device)
-                user = await user!.save()
-                deviceId = userClientDeviceController.getClientDeviceByUA(user, device?.ua)?._id
+                account!.clientDevices.push(device)
+                account = await account!.save()
+                deviceId = userClientDeviceController.getClientDeviceByUA(account, device?.ua)?._id
             }
-            user!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
+            account!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
             result = {token: jwtStr, message: 'Successfull signin'}
 
             // reset signinLT
             if (signinLT) {
-                user.limitedTransactions.id(signinLT._id)!.attempts = 0
+                account.limitedTransactions.id(signinLT._id)!.attempts = 0
             }
             if (otpSigninLT) {
-                user.limitedTransactions.id(otpSigninLT._id)!.attempts = 0
-                user.limitedTransactions.id(otpSigninLT._id)!.key = ''
-                user.limitedTransactions.id(otpSigninLT._id)!.expTime = undefined
+                account.limitedTransactions.id(otpSigninLT._id)!.attempts = 0
+                account.limitedTransactions.id(otpSigninLT._id)!.key = ''
+                account.limitedTransactions.id(otpSigninLT._id)!.expTime = undefined
             }
 
-            await user!.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            await account!.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
 
             // clean invalid access tokens
-            await userClientDeviceAccessTokenController.removeInvalidTokens(user!._id)
+            await userClientDeviceAccessTokenController.removeInvalidTokens(account!._id)
         } else {
             throw({code: 403}) // Forbidden access to resources.
         }
@@ -206,11 +206,11 @@ class AuthController {
         // check username and password exist
         if (!(username && password)) throw({code: 400}) // Incorrect content in the request
         // check username is unique
-        if (await UserModel.findOne({username})) throw({code: 409}) // conflict
+        if (await accountModel.findOne({username})) throw({code: 409}) // conflict
 
         // if email exist check if email is unique then generate email contact info
         if (email) {
-            if (await UserModel.findOne({'contactInfos.value': email})) {
+            if (await accountModel.findOne({'contactInfos.value': email})) {
                 throw({code: 409}) // conflict
             } else {
                 contactinfos.push({
@@ -221,7 +221,7 @@ class AuthController {
         }
         // if phone exist check if phone is unique then generate phone contact info
         if (phone) {
-            if (await UserModel.findOne({'contactInfos.value': phone})) {
+            if (await accountModel.findOne({'contactInfos.value': phone})) {
                 throw({code: 409}) // conflict
             } else {
                 contactinfos.push({
@@ -234,10 +234,10 @@ class AuthController {
         // get the least role available
         const role = await roleController.getLeastRole()
 
-        // create new user entry data with default data
+        // create new account entry data with default data
         // set the contact informations
         // set the password
-        const user = {
+        const account = {
             accountType: acountTypes[0],
             username,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
@@ -262,52 +262,52 @@ class AuthController {
             verified: false
         }
 
-        // then save the new user to the database
-        const createdUser = await UserModel.create(user)
+        // then save the new account to the database
+        const createdUser = await accountModel.create(account)
 
         // emit event to verify account !soon todo
-        appEvents.emit('user-created', {
+        appEvents.emit('account-created', {
             device: null,
             ip: null,
-            user: null,
+            account: null,
             lt: null,
             module: 'signup',
             createdUser: createdUser,
             password: password
         })
 
-        return { message: 'User successfully created' }
+        return { message: 'Account successfully created' }
     }
 
     public async forgotPassword(username:string, device:IClientDevice, ip:string):Promise<{ username:string, message?:string } | null> {
-        // fetch user using the username
-        const user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
+        // fetch account using the username
+        const account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
         let result:{ username: string, message?: string } | null = null
 
 
-        // if no user found
-        if (!user) {
+        // if no account found
+        if (!account) {
             throw({code: 404}) // resource not found
         }
-        if (user && user.disabled) {
+        if (account && account.disabled) {
             throw({code: 423}) // is locked
         }
 
 
-        // if user exist then encrement the forgot-pass attempt
-        const resetPassLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'reset-pass')
-        const forgotPassLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'forgot-pass')
+        // if account exist then encrement the forgot-pass attempt
+        const resetPassLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'reset-pass')
+        const forgotPassLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'forgot-pass')
         // encrement attempts
         if (forgotPassLT) {
-            user!.limitedTransactions.id(forgotPassLT._id)!.attempts++
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            account!.limitedTransactions.id(forgotPassLT._id)!.attempts++
+            await account.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
         }
         // check if forgot-pass is enable and also check for the attmpts compared to the limit
-        if (!userLimitedTransactionController.isLimitedTransactionValid(user, 'forgot-pass')) {
-            user.disabled = true
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+        if (!userLimitedTransactionController.isLimitedTransactionValid(account, 'forgot-pass')) {
+            account.disabled = true
+            await account.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
             throw({code: 423}) // is locked
         }
 
@@ -318,22 +318,22 @@ class AuthController {
                 .toDate()
 
             // reset otp-signin with the random key
-            user.limitedTransactions.id(resetPassLT._id)!.attempts = 0
-            user.limitedTransactions.id(resetPassLT._id)!.key = otpKey
-            user.limitedTransactions.id(resetPassLT._id)!.expTime = expTime
-            await user.save()
+            account.limitedTransactions.id(resetPassLT._id)!.attempts = 0
+            account.limitedTransactions.id(resetPassLT._id)!.key = otpKey
+            account.limitedTransactions.id(resetPassLT._id)!.expTime = expTime
+            await account.save()
             // send otp to the LT recepient
             // console.log(`System is sending password reset otp to ${ resetPassLT!.recipient } with key ${ otpKey }`)
             appEvents.emit('otp', {
                 module: 'reset-password',
                 device: device,
                 ip: ip,
-                user: user,
+                account: account,
                 lt: resetPassLT
             })
             
-            // then return userId
-            result = { username: user.username, message: 'Password reset key has been sent' }
+            // then return accountId
+            result = { username: account.username, message: 'Password reset key has been sent' }
         } else {
             throw({code: 404}) // resource not found
         }
@@ -342,37 +342,37 @@ class AuthController {
     }
 
     public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
-        // fetch user using the username
-        const user = await UserModel.findOne({ username, verified: true, accountType: 'user' })
+        // fetch account using the username
+        const account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
         let result:{ message: string } | null = null
 
 
-        // if no user found
-        if (!user) {
+        // if no account found
+        if (!account) {
             throw({code: 403}) // Forbidden access to resources.
         }
-        if (user && user.disabled) {
+        if (account && account.disabled) {
             throw({code: 423}) // is locked
         }
 
 
-        // if user exist then encrement the signin attempt
-        const forgotPassLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'forgot-pass')
-        const resetPassLT = userLimitedTransactionController.getLimitedTransactionByType(user, 'reset-pass')
+        // if account exist then encrement the signin attempt
+        const forgotPassLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'forgot-pass')
+        const resetPassLT = userLimitedTransactionController.getLimitedTransactionByType(account, 'reset-pass')
         // encrement attempt
         if (resetPassLT) {
-            user!.limitedTransactions.id(resetPassLT._id)!.attempts++
-            await user.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            account!.limitedTransactions.id(resetPassLT._id)!.attempts++
+            await account.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
         }
         // check if signin is enable and also check for the attmpts compared to the limit
-        if (!userLimitedTransactionController.isLimitedTransactionValid(user, 'reset-pass')) {
+        if (!userLimitedTransactionController.isLimitedTransactionValid(account, 'reset-pass')) {
             throw({code: 403}) // Forbidden access to resources.
         }
 
-        if (userLimitedTransactionController.verifyLimitedTransactionKey(user, 'reset-pass', key)) {
+        if (userLimitedTransactionController.verifyLimitedTransactionKey(account, 'reset-pass', key)) {
             // check password exist before
-            if (await userPasswordController.hasPasswordEntry(user, newPassword)) throw({code: 400}) // Incorrect content in the request.
+            if (await userPasswordController.hasPasswordEntry(account, newPassword)) throw({code: 400}) // Incorrect content in the request.
 
             // check the new password pattern
             if (!TextValidators.validatePassword.validator(newPassword)) {
@@ -383,28 +383,28 @@ class AuthController {
             }
 
             // get current password
-            const currPass = userPasswordController.getActivePassword(user)
+            const currPass = userPasswordController.getActivePassword(account)
             if (!currPass) throw({code: 403}) // Forbidden access to resources.
             // deactivate the current used password
-            user.passwords.id(currPass!._id)!.isActive = false
+            account.passwords.id(currPass!._id)!.isActive = false
             // set the new password with active status
-            user.passwords.push({
+            account.passwords.push({
                 key: await Encryption.hashText(newPassword),
                 isActive: true
             })
 
             // reset forgotPassLT
             if (forgotPassLT) {
-                user.limitedTransactions.id(forgotPassLT._id)!.attempts = 0
+                account.limitedTransactions.id(forgotPassLT._id)!.attempts = 0
             }
             if (resetPassLT) {
-                user.limitedTransactions.id(resetPassLT._id)!.attempts = 0
-                user.limitedTransactions.id(resetPassLT._id)!.key = ''
-                user.limitedTransactions.id(resetPassLT._id)!.expTime = undefined
+                account.limitedTransactions.id(resetPassLT._id)!.attempts = 0
+                account.limitedTransactions.id(resetPassLT._id)!.key = ''
+                account.limitedTransactions.id(resetPassLT._id)!.expTime = undefined
             }
 
-            await user!.save()
-            userController.cachedData.removeCacheData(user!._id) // remove cache
+            await account!.save()
+            userController.cachedData.removeCacheData(account!._id) // remove cache
             result = { message: 'Password has been changed.' }
         } else {
             throw({code: 403}) // Forbidden access to resources.
@@ -423,21 +423,21 @@ class AuthController {
 
         if (type && type === 'Bearer' && token) {
 
-            const tokenObj = await Encryption.verifyJWT<{userId:string}>(token)
-            if (!(tokenObj && tokenObj.userId)) throw({code: 400})
+            const tokenObj = await Encryption.verifyJWT<{accountId:string}>(token)
+            if (!(tokenObj && tokenObj.accountId)) throw({code: 400})
 
-            const user = await UserModel.findOne({ _id: tokenObj.userId, verified: true })
-            if (!user) throw({code: 400})
+            const account = await accountModel.findOne({ _id: tokenObj.accountId, verified: true })
+            if (!account) throw({code: 400})
 
-            const deviceId = userClientDeviceController.getClientDeviceByUA(user, client?.ua)?._id
+            const deviceId = userClientDeviceController.getClientDeviceByUA(account, client?.ua)?._id
             if (!deviceId) throw({code: 400})
 
-            const tokenId = userClientDeviceAccessTokenController.getClientDeviceAccessTokenByJWT(user, deviceId, token)?._id
+            const tokenId = userClientDeviceAccessTokenController.getClientDeviceAccessTokenByJWT(account, deviceId, token)?._id
             if (!tokenId) throw({code: 400})
 
-            user.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()
-            await user.save()
-            userController.cachedData.removeCacheData(user._id)
+            account.clientDevices.id(deviceId)?.accessTokens?.id(tokenId)?.deleteOne()
+            await account.save()
+            userController.cachedData.removeCacheData(account._id)
 
             resp = { message: 'Successfull signout' }
 
@@ -446,7 +446,7 @@ class AuthController {
         }
 
         // remove cache
-        // userController.cachedData.removeCacheData(user._id)
+        // userController.cachedData.removeCacheData(account._id)
         return resp
     }
 }

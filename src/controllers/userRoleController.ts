@@ -1,4 +1,4 @@
-import UserModel, { IAccount, IRoleRef } from '../dataSource/models/userModel'
+import accountModel, { IAccount, IRoleRef } from '../dataSource/models/userModel'
 import userController from './userController'
 import roleController from './roleController'
 import DataCleaner from '../utilities/dataCleaner'
@@ -7,9 +7,9 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class UserRoleController {
-    public getActiveRoleRef(user:IAccount):IRoleRef|null {
-        if (user && user.rolesRefs) {
-            for (const ref of user.rolesRefs) {
+    public getActiveRoleRef(account:IAccount):IRoleRef|null {
+        if (account && account.rolesRefs) {
+            for (const ref of account.rolesRefs) {
                 if (ref.isActive) return ref
             }
         }
@@ -17,9 +17,9 @@ class UserRoleController {
         return null
     }
 
-    public hasRole(user:IAccount, roleId:string):boolean {
-        if (user && user.rolesRefs) {
-            for (const ref of user.rolesRefs) {
+    public hasRole(account:IAccount, roleId:string):boolean {
+        if (account && account.rolesRefs) {
+            for (const ref of account.rolesRefs) {
                 if (ref.roleId === roleId) return true
             }
         }
@@ -27,10 +27,10 @@ class UserRoleController {
         return false
     }
 
-    public getRoleRefByRoleId(user:IAccount, roleId:string):IRoleRef|null {
+    public getRoleRefByRoleId(account:IAccount, roleId:string):IRoleRef|null {
 
-        if (user && user.rolesRefs) {
-            for (const ref of user.rolesRefs) {
+        if (account && account.rolesRefs) {
+            for (const ref of account.rolesRefs) {
                 if (ref.roleId === roleId) return ref
             }
         }
@@ -38,10 +38,10 @@ class UserRoleController {
         return null
     }
 
-    public async getRoleRefByRefId(user:IAccount, roleRefId:string):Promise<IRoleRef|null> {
+    public async getRoleRefByRefId(account:IAccount, roleRefId:string):Promise<IRoleRef|null> {
 
-        if (user && user.rolesRefs) {
-            for (const ref of user.rolesRefs) {
+        if (account && account.rolesRefs) {
+            for (const ref of account.rolesRefs) {
                 if (ref._id === roleRefId) return ref
             }
         }
@@ -49,56 +49,56 @@ class UserRoleController {
         return null
     }
 
-    public async getRoleRef(userId:string, roleRefId:string):Promise<IRoleRef|null> {
-        if (!(userId && roleRefId)) throw({code: 400})
+    public async getRoleRef(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
+        if (!(accountId && roleRefId)) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
 
-        const roleRef = this.getRoleRefByRefId(user, roleRefId)
+        const roleRef = this.getRoleRefByRefId(account, roleRefId)
         if (!roleRef) throw({code: 404})
 
         return roleRef
     }
 
-    public async getRoleRefs(userId:string):Promise<IRoleRef[]> {
-        if (!userId) throw({code: 400})
+    public async getRoleRefs(accountId:string):Promise<IRoleRef[]> {
+        if (!accountId) throw({code: 400})
 
-        const user = await userController.getUser({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await userController.getUser({_id: accountId})
+        if (!account) throw({code: 404})
         
-        return user!.rolesRefs? user!.rolesRefs: []
+        return account!.rolesRefs? account!.rolesRefs: []
     }
 
-    public async saveRoleRef(userId:string, roleId:string, isActive:boolean|string):Promise<IRoleRef|null> {
-        if (!(userId && roleId)) throw({code: 400})
+    public async saveRoleRef(accountId:string, roleId:string, isActive:boolean|string):Promise<IRoleRef|null> {
+        if (!(accountId && roleId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
         const rolesMap = await roleController.getRolesMap()
         // check if role existed on roles collection
         if (!rolesMap[roleId]) throw({code: 404})
-        // check if the role to update is existing on the user role refs
-        if (this.hasRole(user, roleId)) throw({code: 409})
+        // check if the role to update is existing on the account role refs
+        if (this.hasRole(account, roleId)) throw({code: 409})
         const doc:{roleId:string, isActive?:boolean} = {roleId}
 
         if (DataCleaner.getBooleanData(isActive).isValid) {
             doc.isActive = DataCleaner.getBooleanData(isActive).data
         }
-        user.rolesRefs!.push(doc)
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        account.rolesRefs!.push(doc)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return this.getRoleRefByRoleId(user, roleId)
+        return this.getRoleRefByRoleId(account, roleId)
     }
 
-    public async updateRoleRef(userId:string, roleRefId:string, roleId:string|undefined, isActive:boolean|string):Promise<IRoleRef|null> {
-        if (!(userId && roleRefId)) throw({code: 400})
+    public async updateRoleRef(accountId:string, roleRefId:string, roleId:string|undefined, isActive:boolean|string):Promise<IRoleRef|null> {
+        if (!(accountId && roleRefId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!user.rolesRefs?.id(roleRefId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.rolesRefs?.id(roleRefId)) throw({code: 404})
 
         if (roleId) {
             const rolesMap = await roleController.getRolesMap()
@@ -106,51 +106,51 @@ class UserRoleController {
             if (!rolesMap[roleId]) throw({code: 404})
 
             // check if the role to update is existing on the role roles refs
-            if (this.hasRole(user, roleId)) throw({code: 409})
+            if (this.hasRole(account, roleId)) throw({code: 409})
 
-            user.rolesRefs!.id(roleRefId)!.roleId = roleId
+            account.rolesRefs!.id(roleRefId)!.roleId = roleId
         }
         if (DataCleaner.getBooleanData(isActive).isValid) {
-            user.rolesRefs!.id(roleRefId)!.isActive = DataCleaner.getBooleanData(isActive).data
+            account.rolesRefs!.id(roleRefId)!.isActive = DataCleaner.getBooleanData(isActive).data
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.rolesRefs!.id(roleRefId)
+        return account.rolesRefs!.id(roleRefId)
     }
 
-    public async activateUserRole(userId:string, roleRefId:string):Promise<IRoleRef|null> {
-        if (!(userId && roleRefId)) throw({code: 400})
+    public async activateUserRole(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
+        if (!(accountId && roleRefId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
-        if (!user.rolesRefs?.id(roleRefId)) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.rolesRefs?.id(roleRefId)) throw({code: 404})
 
-        for (let rRef of user.rolesRefs) {
-            user.rolesRefs!.id(rRef._id)!.isActive = rRef._id === roleRefId
+        for (let rRef of account.rolesRefs) {
+            account.rolesRefs!.id(rRef._id)!.isActive = rRef._id === roleRefId
         }
 
-        await user.save()
-        await userController.cachedData.removeCacheData(userId)
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
 
-        return user.rolesRefs!.id(roleRefId)
+        return account.rolesRefs!.id(roleRefId)
     }
 
-    public async deleteRoleRef(userId:string, roleRefId:string):Promise<IRoleRef|null> {
-        if (!(userId && roleRefId)) throw({code: 400})
+    public async deleteRoleRef(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
+        if (!(accountId && roleRefId)) throw({code: 400})
 
-        const user = await UserModel.findOne({_id: userId})
-        if (!user) throw({code: 404})
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
 
-        // if user has only one role, then do not delete the role
-        if (user.rolesRefs.length <= 1) throw({code: 409})
+        // if account has only one role, then do not delete the role
+        if (account.rolesRefs.length <= 1) throw({code: 409})
 
-        const roleRefData = user!.rolesRefs?.id(roleRefId)
+        const roleRefData = account!.rolesRefs?.id(roleRefId)
         if (roleRefData) {
-            user!.rolesRefs?.id(roleRefId)?.deleteOne()
-            await user.save()
-            await userController.cachedData.removeCacheData(userId)
+            account!.rolesRefs?.id(roleRefId)?.deleteOne()
+            await account.save()
+            await userController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }
