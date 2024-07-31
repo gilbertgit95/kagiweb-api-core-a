@@ -1,5 +1,5 @@
-import accountModel, { IAccount, IContactInfo, TContactInfoType } from '../dataSource/models/userModel'
-import userController from './userController'
+import accountModel, { IAccount, IContactInfo, TContactInfoType } from '../dataSource/models/accountModel'
+import userController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 

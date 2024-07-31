@@ -1,6 +1,6 @@
 import UAParser, {IResult}  from 'ua-parser-js'
-import accountModel, { IAccount, IWorkspace } from '../dataSource/models/userModel'
-import userController from './userController'
+import accountModel, { IAccount, IWorkspace } from '../dataSource/models/accountModel'
+import userController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 

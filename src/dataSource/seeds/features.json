@@ -282,7 +282,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users",
+  "name": "GET - /api/v1/accounts",
   "tags": [
     "Users"
   ],
@@ -290,7 +290,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users"
+  "value": "GET - /api/v1/accounts"
 },
 {
   "_id": "87d76cf2-1ed8-4f46-a22f-552145420f92",
@@ -299,7 +299,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users",
+  "name": "POST - /api/v1/accounts",
   "tags": [
     "Users"
   ],
@@ -307,7 +307,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users"
+  "value": "POST - /api/v1/accounts"
 },
 {
   "_id": "1608b4c7-e076-4cd4-8781-23e41a0e3d5d",
@@ -316,7 +316,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId",
+  "name": "GET - /api/v1/accounts/:accountId",
   "tags": [
     "Users"
   ],
@@ -324,7 +324,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId"
+  "value": "GET - /api/v1/accounts/:accountId"
 },
 {
   "_id": "c143b10b-ff38-4099-b2f3-71a69ffa6a3f",
@@ -333,7 +333,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId",
+  "name": "PUT - /api/v1/accounts/:accountId",
   "tags": [
     "Users"
   ],
@@ -341,7 +341,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId"
+  "value": "PUT - /api/v1/accounts/:accountId"
 },
 {
   "_id": "e17fc847-f06f-4557-977b-14d5f9e80f5f",
@@ -350,7 +350,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId",
+  "name": "DELETE - /api/v1/accounts/:accountId",
   "tags": [
     "Users"
   ],
@@ -358,7 +358,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId"
+  "value": "DELETE - /api/v1/accounts/:accountId"
 },
 {
   "_id": "7f15d512-83af-46b6-b0c0-940e2e566a4d",
@@ -367,7 +367,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/roles",
+  "name": "GET - /api/v1/accounts/:accountId/roles",
   "tags": [
     "Users",
     "Roles"
@@ -376,7 +376,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/roles"
+  "value": "GET - /api/v1/accounts/:accountId/roles"
 },
 {
   "_id": "e7bf4233-d225-4496-be8b-86f8121631ca",
@@ -385,7 +385,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/roles/:roleRefId",
+  "name": "GET - /api/v1/accounts/:accountId/roles/:roleRefId",
   "tags": [
     "Users",
     "Roles"
@@ -394,7 +394,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/roles/:roleRefId"
+  "value": "GET - /api/v1/accounts/:accountId/roles/:roleRefId"
 },
 {
   "_id": "a4e020b1-0c8f-48f2-9872-974d2e936801",
@@ -403,7 +403,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/roles",
+  "name": "POST - /api/v1/accounts/:accountId/roles",
   "tags": [
     "Users",
     "Roles"
@@ -412,7 +412,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users/:accountId/roles"
+  "value": "POST - /api/v1/accounts/:accountId/roles"
 },
 {
   "_id": "ada2ba4a-ee69-4b15-a40f-694a0e040743",
@@ -421,7 +421,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/roles/:roleRefId",
+  "name": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId",
   "tags": [
     "Users",
     "Roles"
@@ -430,7 +430,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId/roles/:roleRefId"
+  "value": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId"
 },
 {
   "_id": "1a923823-9cf3-4845-8a54-0f55e9a2751a",
@@ -439,7 +439,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/roles/:roleRefId",
+  "name": "DELETE - /api/v1/accounts/:accountId/roles/:roleRefId",
   "tags": [
     "Users",
     "Roles"
@@ -448,7 +448,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId/roles/:roleRefId"
+  "value": "DELETE - /api/v1/accounts/:accountId/roles/:roleRefId"
 },
 {
   "_id": "2652318e-cf5e-490b-8c45-bc5eb1b5b622",
@@ -457,7 +457,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/userInfos",
+  "name": "GET - /api/v1/accounts/:accountId/accountInfos",
   "tags": [
     "Users",
     "Account Infos"
@@ -466,7 +466,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/userInfos"
+  "value": "GET - /api/v1/accounts/:accountId/accountInfos"
 },
 {
   "_id": "ba5e85e3-2fe5-4657-9b79-9731889cbd9a",
@@ -475,7 +475,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/userInfos",
+  "name": "POST - /api/v1/accounts/:accountId/accountInfos",
   "tags": [
     "Users",
     "Account Infos"
@@ -484,7 +484,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users/:accountId/userInfos"
+  "value": "POST - /api/v1/accounts/:accountId/accountInfos"
 },
 {
   "_id": "5a0d526a-e78b-4055-b452-b5180cc2d260",
@@ -493,7 +493,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/userInfos/:accountInfoId",
+  "name": "GET - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
   "tags": [
     "Users",
     "Account Infos"
@@ -502,7 +502,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/userInfos/:accountInfoId"
+  "value": "GET - /api/v1/accounts/:accountId/accountInfos/:accountInfoId"
 },
 {
   "_id": "4bb63448-f53f-4e08-9584-0a0cf67404ed",
@@ -511,7 +511,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/userInfos/:accountInfoId",
+  "name": "PUT - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
   "tags": [
     "Users",
     "Account Infos"
@@ -520,7 +520,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId/userInfos/:accountInfoId"
+  "value": "PUT - /api/v1/accounts/:accountId/accountInfos/:accountInfoId"
 },
 {
   "_id": "77cbbf55-128e-49ec-9d3d-5cdafd70b0cd",
@@ -529,7 +529,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/userInfos/:accountInfoId",
+  "name": "DELETE - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
   "tags": [
     "Users",
     "Account Infos"
@@ -538,7 +538,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId/userInfos/:accountInfoId"
+  "value": "DELETE - /api/v1/accounts/:accountId/accountInfos/:accountInfoId"
 },
 {
   "_id": "34ca3a87-22c8-404d-8661-e395ca29a707",
@@ -547,7 +547,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/contactInfos",
+  "name": "GET - /api/v1/accounts/:accountId/contactInfos",
   "tags": [
     "Users",
     "Contact Infos"
@@ -556,7 +556,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/contactInfos"
+  "value": "GET - /api/v1/accounts/:accountId/contactInfos"
 },
 {
   "_id": "eb94f4b2-7c4e-4efe-84fc-5dbaf5de01f7",
@@ -565,7 +565,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/contactInfos",
+  "name": "POST - /api/v1/accounts/:accountId/contactInfos",
   "tags": [
     "Users",
     "Contact Infos"
@@ -574,7 +574,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users/:accountId/contactInfos"
+  "value": "POST - /api/v1/accounts/:accountId/contactInfos"
 },
 {
   "_id": "c5e7fb9f-54cf-443a-b74b-dcdbf4c4407e",
@@ -583,7 +583,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/contactInfos/:contactInfoId",
+  "name": "GET - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
   "tags": [
     "Users",
     "Contact Infos"
@@ -592,7 +592,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/contactInfos/:contactInfoId"
+  "value": "GET - /api/v1/accounts/:accountId/contactInfos/:contactInfoId"
 },
 {
   "_id": "a4a85703-3252-4c3e-abfe-86cb9f701505",
@@ -601,7 +601,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/contactInfos/:contactInfoId",
+  "name": "PUT - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
   "tags": [
     "Users",
     "Contact Infos"
@@ -610,7 +610,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId/contactInfos/:contactInfoId"
+  "value": "PUT - /api/v1/accounts/:accountId/contactInfos/:contactInfoId"
 },
 {
   "_id": "5b3ce0b8-f307-48c4-a7cf-305bbff602f7",
@@ -619,7 +619,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/contactInfos/:contactInfoId",
+  "name": "DELETE - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
   "tags": [
     "Users",
     "Contact Infos"
@@ -628,7 +628,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId/contactInfos/:contactInfoId"
+  "value": "DELETE - /api/v1/accounts/:accountId/contactInfos/:contactInfoId"
 },
 {
   "_id": "0cad4fdf-d6e1-4aaf-8aed-711425ec69fe",
@@ -637,7 +637,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/passwords",
+  "name": "GET - /api/v1/accounts/:accountId/passwords",
   "tags": [
     "Users",
     "Passwords"
@@ -646,7 +646,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/passwords"
+  "value": "GET - /api/v1/accounts/:accountId/passwords"
 },
 {
   "_id": "31f10e6d-4b4d-471c-8109-98750f1a2ee5",
@@ -655,7 +655,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/passwords",
+  "name": "POST - /api/v1/accounts/:accountId/passwords",
   "tags": [
     "Users",
     "Passwords"
@@ -664,7 +664,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users/:accountId/passwords"
+  "value": "POST - /api/v1/accounts/:accountId/passwords"
 },
 {
   "_id": "b7a23794-7f2f-4e59-a270-0f03be073aa2",
@@ -673,7 +673,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/passwords/:passwordId",
+  "name": "GET - /api/v1/accounts/:accountId/passwords/:passwordId",
   "tags": [
     "Users",
     "Passwords"
@@ -682,7 +682,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/passwords/:passwordId"
+  "value": "GET - /api/v1/accounts/:accountId/passwords/:passwordId"
 },
 {
   "_id": "4a4194a9-5370-4c34-9160-77a533320765",
@@ -691,7 +691,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/passwords/:passwordId",
+  "name": "DELETE - /api/v1/accounts/:accountId/passwords/:passwordId",
   "tags": [
     "Users",
     "Passwords"
@@ -700,7 +700,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId/passwords/:passwordId"
+  "value": "DELETE - /api/v1/accounts/:accountId/passwords/:passwordId"
 },
 {
   "_id": "9c2eda89-436b-4380-a7d5-430f0584d9a8",
@@ -709,7 +709,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/limitedTransactions",
+  "name": "GET - /api/v1/accounts/:accountId/limitedTransactions",
   "tags": [
     "Users",
     "Limited Transactions"
@@ -718,7 +718,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/limitedTransactions"
+  "value": "GET - /api/v1/accounts/:accountId/limitedTransactions"
 },
 {
   "_id": "75e20db6-218e-4104-97fe-b7acb4631f60",
@@ -727,7 +727,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/limitedTransactions/:limitedTransactionId",
+  "name": "GET - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
   "tags": [
     "Users",
     "Limited Transactions"
@@ -736,7 +736,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/limitedTransactions/:limitedTransactionId"
+  "value": "GET - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId"
 },
 {
   "_id": "ed803a0c-9e16-4adb-91f6-511c6a5f26a4",
@@ -745,7 +745,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/limitedTransactions/:limitedTransactionId",
+  "name": "PUT - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
   "tags": [
     "Users",
     "Limited Transactions"
@@ -754,7 +754,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId/limitedTransactions/:limitedTransactionId"
+  "value": "PUT - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId"
 },
 {
   "_id": "169bc403-f779-4338-b1d4-b78b2b992871",
@@ -763,7 +763,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/clientDevices",
+  "name": "GET - /api/v1/accounts/:accountId/clientDevices",
   "tags": [
     "Users",
     "Client Devices"
@@ -772,7 +772,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/clientDevices"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices"
 },
 {
   "_id": "c1f4863d-e6f0-456e-88c3-e5a156a8adfb",
@@ -781,7 +781,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/clientDevices",
+  "name": "POST - /api/v1/accounts/:accountId/clientDevices",
   "tags": [
     "Users",
     "Client Devices"
@@ -790,7 +790,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users/:accountId/clientDevices"
+  "value": "POST - /api/v1/accounts/:accountId/clientDevices"
 },
 {
   "_id": "ee226dff-55e8-4850-8063-9c0d45292258",
@@ -799,7 +799,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/clientDevices/:clientDeviceId",
+  "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
   "tags": [
     "Users",
     "Client Devices"
@@ -808,7 +808,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/clientDevices/:clientDeviceId"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId"
 },
 {
   "_id": "42004dde-532b-468a-a59b-fd103bf26226",
@@ -817,7 +817,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/clientDevices/:clientDeviceId",
+  "name": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
   "tags": [
     "Users",
     "Client Devices"
@@ -826,7 +826,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId/clientDevices/:clientDeviceId"
+  "value": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId"
 },
 {
   "_id": "561eb501-c0a0-4b79-a6da-f78d0ece9267",
@@ -835,7 +835,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/clientDevices/:clientDeviceId",
+  "name": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
   "tags": [
     "Users",
     "Client Devices"
@@ -844,7 +844,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId/clientDevices/:clientDeviceId"
+  "value": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId"
 },
 {
   "_id": "416ede4e-15d2-4a1a-8c87-2b092403d488",
@@ -853,7 +853,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens",
+  "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
   "tags": [
     "Users",
     "Client Devices",
@@ -863,7 +863,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens"
 },
 {
   "_id": "906787c7-abf9-4ced-8f43-a1cbff501178",
@@ -872,7 +872,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens",
+  "name": "POST - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
   "tags": [
     "Users",
     "Client Devices",
@@ -882,7 +882,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens"
+  "value": "POST - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens"
 },
 {
   "_id": "21d540c3-9309-44c8-b144-500f3922c0e8",
@@ -891,7 +891,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
   "tags": [
     "Users",
     "Client Devices",
@@ -901,7 +901,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
 },
 {
   "_id": "b03607ad-982f-4cd1-9c14-c51a984c2e1e",
@@ -910,7 +910,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "name": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
   "tags": [
     "Users",
     "Client Devices",
@@ -920,7 +920,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
 },
 {
   "_id": "b57a0c39-e31f-4f27-b46e-e715c6d41a02",
@@ -929,7 +929,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "name": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
   "tags": [
     "Users",
     "Client Devices",
@@ -939,7 +939,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/users/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
 },
 {
   "_id": "2e90dae2-32ed-4d47-8ff7-dd3c56ec4aa4",
@@ -1072,7 +1072,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/userInfos",
+  "name": "GET - /api/v1/owner/accountInfos",
   "tags": [
     "Owner",
     "Account Infos"
@@ -1081,7 +1081,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/owner/userInfos"
+  "value": "GET - /api/v1/owner/accountInfos"
 },
 {
   "_id": "de03656f-1522-48b5-beff-8ff90874c1b2",
@@ -1090,7 +1090,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/owner/userInfos",
+  "name": "POST - /api/v1/owner/accountInfos",
   "tags": [
     "Owner",
     "Account Infos"
@@ -1099,7 +1099,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "POST - /api/v1/owner/userInfos"
+  "value": "POST - /api/v1/owner/accountInfos"
 },
 {
   "_id": "e59d3de7-39cd-46d2-b780-389e6c763944",
@@ -1108,7 +1108,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/userInfos/:accountInfoId",
+  "name": "GET - /api/v1/owner/accountInfos/:accountInfoId",
   "tags": [
     "Owner",
     "Account Infos"
@@ -1117,7 +1117,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "GET - /api/v1/owner/userInfos/:accountInfoId"
+  "value": "GET - /api/v1/owner/accountInfos/:accountInfoId"
 },
 {
   "_id": "e5c60129-9267-4ccb-a79b-97d941e1fc98",
@@ -1126,7 +1126,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/userInfos/:accountInfoId",
+  "name": "PUT - /api/v1/owner/accountInfos/:accountInfoId",
   "tags": [
     "Owner",
     "Account Infos"
@@ -1135,7 +1135,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "PUT - /api/v1/owner/userInfos/:accountInfoId"
+  "value": "PUT - /api/v1/owner/accountInfos/:accountInfoId"
 },
 {
   "_id": "6cb961f3-1ea3-4f6b-b930-8b088a15be95",
@@ -1144,7 +1144,7 @@
     "$date": "2023-12-24T04:04:50.093Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/userInfos/:accountInfoId",
+  "name": "DELETE - /api/v1/owner/accountInfos/:accountInfoId",
   "tags": [
     "Owner",
     "Account Infos"
@@ -1153,7 +1153,7 @@
   "updatedAt": {
     "$date": "2024-05-06T12:24:58.396Z"
   },
-  "value": "DELETE - /api/v1/owner/userInfos/:accountInfoId"
+  "value": "DELETE - /api/v1/owner/accountInfos/:accountInfoId"
 },
 {
   "_id": "daf025ef-e54e-4fdc-a832-8888928f9a15",
@@ -1660,12 +1660,12 @@
 },
 {
   "_id": "99cd716d-f87d-4df9-bf0d-d7daf940e8c9",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/users",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accounts",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/users",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accounts",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1677,12 +1677,12 @@
 },
 {
   "_id": "f051edc1-ab38-4b26-b8c6-ee2b30bebd9f",
-  "value": "POST - /api/v1/owner/workspaces/:workspaceId/users",
+  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accounts",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/owner/workspaces/:workspaceId/users",
+  "name": "POST - /api/v1/owner/workspaces/:workspaceId/accounts",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1694,12 +1694,12 @@
 },
 {
   "_id": "88f16fd9-ed25-4ec3-b13d-56b1c5792bed",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/users/:userRefId",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/users/:userRefId",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1711,12 +1711,12 @@
 },
 {
   "_id": "8076174f-0d4f-412c-beb6-0afe5b91cd6f",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/users/:userRefId",
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/users/:userRefId",
+  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1728,12 +1728,12 @@
 },
 {
   "_id": "5c87717f-d085-40ea-a385-d269a3a7f0f8",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/users/:userRefId",
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/users/:userRefId",
+  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1745,12 +1745,12 @@
 },
 {
   "_id": "639944d7-e2b9-4e8b-98ce-d4736805e19e",
-  "value": "GET - /api/v1/users/:accountId/completeInfo",
+  "value": "GET - /api/v1/accounts/:accountId/completeInfo",
   "createdAt": {
     "$date": "2024-01-03T06:24:37.552Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/completeInfo",
+  "name": "GET - /api/v1/accounts/:accountId/completeInfo",
   "tags": [
     "Users"
   ],
@@ -1777,12 +1777,12 @@
 },
 {
   "_id": "6dbcad65-6078-4947-b086-76b8faae58a1",
-  "value": "PUT - /api/v1/users/:accountId/roles/:roleRefId/activate",
+  "value": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId/activate",
   "createdAt": {
     "$date": "2024-03-29T06:08:56.389Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/roles/:roleRefId/activate",
+  "name": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId/activate",
   "tags": [
     "Users",
     "Roles"
@@ -1827,12 +1827,12 @@
 },
 {
   "_id": "c1133a83-6216-4e81-87b0-6abd10274c30",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/userRefs",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/userRefs",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1845,12 +1845,12 @@
 },
 {
   "_id": "976b98e7-5991-4882-872a-9761f01e31ac",
-  "value": "POST - /api/v1/owner/workspaces/:workspaceId/userRefs",
+  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/owner/workspaces/:workspaceId/userRefs",
+  "name": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1863,12 +1863,12 @@
 },
 {
   "_id": "30cbe593-e6e4-4215-bf18-286066be9c2c",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1881,12 +1881,12 @@
 },
 {
   "_id": "8b2cee7f-dbe5-44e4-b47d-c04091ab4e99",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1899,12 +1899,12 @@
 },
 {
   "_id": "1968e844-b968-4cb9-9c4b-e0b916998e12",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1917,12 +1917,12 @@
 },
 {
   "_id": "5269593f-b41c-4575-ba66-fdf6fd31b1b5",
-  "value": "GET - /api/v1/users/:accountId/workspaces",
+  "value": "GET - /api/v1/accounts/:accountId/workspaces",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/workspaces",
+  "name": "GET - /api/v1/accounts/:accountId/workspaces",
   "tags": [
     "Users",
     "Workspaces"
@@ -1934,12 +1934,12 @@
 },
 {
   "_id": "12a87eba-f81d-49cf-a682-c5cb5d273be6",
-  "value": "POST - /api/v1/users/:accountId/workspaces",
+  "value": "POST - /api/v1/accounts/:accountId/workspaces",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/workspaces",
+  "name": "POST - /api/v1/accounts/:accountId/workspaces",
   "tags": [
     "Users",
     "Workspaces"
@@ -1951,12 +1951,12 @@
 },
 {
   "_id": "de783b93-f9cb-43c8-abeb-ffb9551f74d0",
-  "value": "GET - /api/v1/users/:accountId/workspaces/:workspaceId",
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/workspaces/:workspaceId",
+  "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "tags": [
     "Users",
     "Workspaces"
@@ -1968,12 +1968,12 @@
 },
 {
   "_id": "09b4be12-6908-4a37-ae78-1f4539f485b4",
-  "value": "PUT - /api/v1/users/:accountId/workspaces/:workspaceId",
+  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/workspaces/:workspaceId",
+  "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "tags": [
     "Users",
     "Workspaces"
@@ -1985,12 +1985,12 @@
 },
 {
   "_id": "e08b5ee2-2c7c-438a-b058-1e0defc16f25",
-  "value": "DELETE - /api/v1/users/:accountId/workspaces/:workspaceId",
+  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/workspaces/:workspaceId",
+  "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "tags": [
     "Users",
     "Workspaces"
@@ -2002,12 +2002,12 @@
 },
 {
   "_id": "1bd14996-220d-4104-8805-aec12f387e3e",
-  "value": "GET - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs",
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs",
+  "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
   "tags": [
     "Users",
     "Workspaces",
@@ -2020,12 +2020,12 @@
 },
 {
   "_id": "91575245-bd4e-45a0-8961-8aa202fa131b",
-  "value": "POST - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs",
+  "value": "POST - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs",
+  "name": "POST - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
   "tags": [
     "Users",
     "Workspaces",
@@ -2038,12 +2038,12 @@
 },
 {
   "_id": "8ecee4d8-f9d7-454b-9397-9edb79d9cebc",
-  "value": "GET - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "tags": [
     "Users",
     "Workspaces",
@@ -2056,12 +2056,12 @@
 },
 {
   "_id": "a91352ed-9e68-4e53-ae9b-c059017c00ad",
-  "value": "PUT - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "tags": [
     "Users",
     "Workspaces",
@@ -2074,12 +2074,12 @@
 },
 {
   "_id": "4fad9daf-3e7c-476a-8e56-26b8e3d06027",
-  "value": "DELETE - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/users/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "tags": [
     "Users",
     "Workspaces",
@@ -2695,13 +2695,13 @@
 },
 {
   "_id": "cef3fdb0-9604-4a4a-8ecd-8c35352b56ce",
-  "name": "PRIVATE ROUTE - users/view/:accountId/userInfos",
+  "name": "PRIVATE ROUTE - users/view/:accountId/accountInfos",
   "type": "ui-route",
   "tags": [
     "Users",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/userInfos",
+  "value": "PRIVATE ROUTE - users/view/:accountId/accountInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.224Z"
@@ -2713,13 +2713,13 @@
 },
 {
   "_id": "8a32e32f-1751-4049-abd7-2808fb1d1976",
-  "name": "PRIVATE ROUTE - users/view/:accountId/userInfos/:accountInfoId",
+  "name": "PRIVATE ROUTE - users/view/:accountId/accountInfos/:accountInfoId",
   "type": "ui-route",
   "tags": [
     "Users",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/userInfos/:accountInfoId",
+  "value": "PRIVATE ROUTE - users/view/:accountId/accountInfos/:accountInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.231Z"
@@ -2731,13 +2731,13 @@
 },
 {
   "_id": "433901b6-2cb7-44de-bf28-2b75ac47b72f",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/userInfos/:accountInfoId",
+  "name": "PRIVATE ROUTE - users/edit/:accountId/accountInfos/:accountInfoId",
   "type": "ui-route",
   "tags": [
     "Users",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/userInfos/:accountInfoId",
+  "value": "PRIVATE ROUTE - users/edit/:accountId/accountInfos/:accountInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.241Z"
@@ -2749,13 +2749,13 @@
 },
 {
   "_id": "5172f854-55de-4f2a-9340-65519a205433",
-  "name": "PRIVATE ROUTE - users/create/:accountId/userInfos",
+  "name": "PRIVATE ROUTE - users/create/:accountId/accountInfos",
   "type": "ui-route",
   "tags": [
     "Users",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/userInfos",
+  "value": "PRIVATE ROUTE - users/create/:accountId/accountInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.249Z"
@@ -2839,14 +2839,14 @@
 },
 {
   "_id": "df2155fd-d1bb-4e4e-bd40-72c0606c80a8",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/userRefs",
+  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs",
   "type": "ui-route",
   "tags": [
     "Users",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/userRefs",
+  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.287Z"
@@ -2858,14 +2858,14 @@
 },
 {
   "_id": "ed33c10f-6931-4601-a921-dfab0d6da938",
-  "name": "PRIVATE ROUTE - users/create/:accountId/workspaces/:workspaceId/userRefs",
+  "name": "PRIVATE ROUTE - users/create/:accountId/workspaces/:workspaceId/accountRefs",
   "type": "ui-route",
   "tags": [
     "Users",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/workspaces/:workspaceId/userRefs",
+  "value": "PRIVATE ROUTE - users/create/:accountId/workspaces/:workspaceId/accountRefs",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.294Z"
@@ -2877,14 +2877,14 @@
 },
 {
   "_id": "878c9621-dfdf-4637-9d8d-4a11798dfde2",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "type": "ui-route",
   "tags": [
     "Users",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.303Z"
@@ -2896,14 +2896,14 @@
 },
 {
   "_id": "d22eaecf-d609-4014-82ae-46544e3a9a2c",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "type": "ui-route",
   "tags": [
     "Users",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.310Z"
@@ -2949,13 +2949,13 @@
 },
 {
   "_id": "4d8e3c9d-c586-4fa6-9b74-9fb1bc2260ff",
-  "name": "PRIVATE ROUTE - owner/view/userInfos",
+  "name": "PRIVATE ROUTE - owner/view/accountInfos",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/view/userInfos",
+  "value": "PRIVATE ROUTE - owner/view/accountInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.333Z"
@@ -2967,13 +2967,13 @@
 },
 {
   "_id": "408a8cce-0106-4c12-9c35-f88d8954e940",
-  "name": "PRIVATE ROUTE - owner/create/userInfos",
+  "name": "PRIVATE ROUTE - owner/create/accountInfos",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/create/userInfos",
+  "value": "PRIVATE ROUTE - owner/create/accountInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.342Z"
@@ -2985,13 +2985,13 @@
 },
 {
   "_id": "e04dc7eb-511c-4ad8-8a38-a9f25c939657",
-  "name": "PRIVATE ROUTE - owner/view/userInfos/:accountInfoId",
+  "name": "PRIVATE ROUTE - owner/view/accountInfos/:accountInfoId",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/view/userInfos/:accountInfoId",
+  "value": "PRIVATE ROUTE - owner/view/accountInfos/:accountInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.349Z"
@@ -3003,13 +3003,13 @@
 },
 {
   "_id": "db8369ca-ae32-4c21-9383-49e11aced460",
-  "name": "PRIVATE ROUTE - owner/edit/userInfos/:accountInfoId",
+  "name": "PRIVATE ROUTE - owner/edit/accountInfos/:accountInfoId",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/userInfos/:accountInfoId",
+  "value": "PRIVATE ROUTE - owner/edit/accountInfos/:accountInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.357Z"
@@ -3439,14 +3439,14 @@
 },
 {
   "_id": "11cdfeb4-25d2-49d6-a7b3-3a8d3802eb66",
-  "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/userRefs",
+  "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/userRefs",
+  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.585Z"
@@ -3458,14 +3458,14 @@
 },
 {
   "_id": "800ce6b9-31c8-4862-bc1c-3f4dd977656e",
-  "name": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/userRefs",
+  "name": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/accountRefs",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/userRefs",
+  "value": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/accountRefs",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.592Z"
@@ -3477,14 +3477,14 @@
 },
 {
   "_id": "8fb757ef-a411-4bcc-a5a8-5bf16ed7323f",
-  "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:userRefId",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:userRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.599Z"
@@ -3496,14 +3496,14 @@
 },
 {
   "_id": "f4595ee3-bf7e-42a0-8ad0-f5511c2bf34b",
-  "name": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/userRefs/:userRefId",
+  "name": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:userRefId",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/userRefs/:userRefId",
+  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:userRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.609Z"

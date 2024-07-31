@@ -1,27 +1,27 @@
 import express, { Request, Response } from 'express'
 
-// import accountModel, { IAccount } from '../dataSource/models/userModel'
+// import accountModel, { IAccount } from '../dataSource/models/accountModel'
 import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 // import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 
-import userController, {IAccountCompleteInfo  } from '../controllers/userController'
-import userRoleController from '../controllers/userRoleController'
-import userUserInfoController from '../controllers/userUserInfoController'
-import userContactInfoController from '../controllers/userContactInfoController'
-import userPasswordController from '../controllers/userPasswordController'
-import userLimitedTransactionController from '../controllers/userLimitedTransactionController'
-import userClientDeviceController from '../controllers/userClientDeviceController'
-import userClientDeviceAccessTokenController from '../controllers/userClientDeviceAccessTokenController'
-import userWorkspaceController from '../controllers/userWorkspaceController'
-import userWorkspaceUserRefController from '../controllers/userWorkspaceUserRefController'
+import userController, {IAccountCompleteInfo  } from '../controllers/accountController'
+import userRoleController from '../controllers/accountRoleController'
+import userUserInfoController from '../controllers/accountAccountInfoController'
+import userContactInfoController from '../controllers/accountContactInfoController'
+import userPasswordController from '../controllers/accountPasswordController'
+import userLimitedTransactionController from '../controllers/accountLimitedTransactionController'
+import userClientDeviceController from '../controllers/accountClientDeviceController'
+import userClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
+import userWorkspaceController from '../controllers/accountWorkspaceController'
+import userWorkspaceUserRefController from '../controllers/accountWorkspaceAccountRefController'
 
 import {
     IAccount, IRoleRef, IAccountInfo, IContactInfo,
     IPassword, ILimitedTransaction, IClientDevice, IAccessToken,
     IWorkspace, IWorkspaceAccountRef
-} from '../dataSource/models/userModel'
+} from '../dataSource/models/accountModel'
 
 
 const router = express.Router()

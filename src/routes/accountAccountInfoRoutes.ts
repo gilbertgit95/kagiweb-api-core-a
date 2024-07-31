@@ -4,8 +4,8 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userUserInfoController from '../controllers/userUserInfoController'
-import { IAccountInfo } from '../dataSource/models/userModel'
+import userUserInfoController from '../controllers/accountAccountInfoController'
+import { IAccountInfo } from '../dataSource/models/accountModel'
 
 const router = express.Router()
 const env = Config.getEnv()

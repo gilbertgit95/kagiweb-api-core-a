@@ -1,5 +1,5 @@
-import accountModel, { IAccount, IRoleRef } from '../dataSource/models/userModel'
-import userController from './userController'
+import accountModel, { IAccount, IRoleRef } from '../dataSource/models/accountModel'
+import userController from './accountController'
 import roleController from './roleController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'

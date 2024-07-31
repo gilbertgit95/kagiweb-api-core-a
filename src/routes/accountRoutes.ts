@@ -1,13 +1,13 @@
 import express from 'express'
 
-// import accountModel, { IAccount } from '../dataSource/models/userModel'
+// import accountModel, { IAccount } from '../dataSource/models/accountModel'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userController, { IAccountCompleteInfo } from '../controllers/userController'
-import { IAccount } from '../dataSource/models/userModel'
+import userController, { IAccountCompleteInfo } from '../controllers/accountController'
+import { IAccount } from '../dataSource/models/accountModel'
 
 const router = express.Router()
 const env = Config.getEnv()

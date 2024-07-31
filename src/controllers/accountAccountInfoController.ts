@@ -1,5 +1,5 @@
-import accountModel, { IAccount, IAccountInfo, TAccountInfoType } from '../dataSource/models/userModel'
-import userController from './userController'
+import accountModel, { IAccount, IAccountInfo, TAccountInfoType } from '../dataSource/models/accountModel'
+import userController from './accountController'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()

@@ -4,8 +4,8 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userContactInfoController from '../controllers/userContactInfoController'
-import { IContactInfo } from '../dataSource/models/userModel'
+import userContactInfoController from '../controllers/accountContactInfoController'
+import { IContactInfo } from '../dataSource/models/accountModel'
 
 const router = express.Router()
 const env = Config.getEnv()

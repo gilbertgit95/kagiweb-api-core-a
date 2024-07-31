@@ -4,8 +4,8 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userWorkspaceController from '../controllers/userWorkspaceController'
-import { IWorkspace } from '../dataSource/models/userModel'
+import userWorkspaceController from '../controllers/accountWorkspaceController'
+import { IWorkspace } from '../dataSource/models/accountModel'
 
 const router = express.Router()
 const env = Config.getEnv()

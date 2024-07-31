@@ -5,7 +5,7 @@ import Config from '../utilities/config'
 import ErrorHandler from '../utilities/errorHandler'
 import authController from '../controllers/authController'
 
-// import { IAccount } from '../dataSource/models/userModel'
+// import { IAccount } from '../dataSource/models/accountModel'
 
 const env = Config.getEnv()
 const router = express.Router()

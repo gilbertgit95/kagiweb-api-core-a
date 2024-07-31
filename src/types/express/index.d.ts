@@ -1,4 +1,4 @@
-import {IAccount, IClientDevice} from '../../dataSource/models/userModel'
+import {IAccount, IClientDevice} from '../../dataSource/models/accountModel'
 
 // to make the file a module and avoid the TypeScript error
 export {}

@@ -1,6 +1,6 @@
 import moment from 'moment'
-import accountModel, { IAccount, ILimitedTransaction } from '../dataSource/models/userModel'
-import userController from './userController'
+import accountModel, { IAccount, ILimitedTransaction } from '../dataSource/models/accountModel'
+import userController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 

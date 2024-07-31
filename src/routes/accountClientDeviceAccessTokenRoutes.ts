@@ -4,8 +4,8 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userClientDeviceAccessTokenController from '../controllers/userClientDeviceAccessTokenController'
-import { IAccessToken } from '../dataSource/models/userModel'
+import userClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
+import { IAccessToken } from '../dataSource/models/accountModel'
 
 const router = express.Router()
 const env = Config.getEnv()

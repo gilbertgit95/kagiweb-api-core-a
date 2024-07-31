@@ -1,7 +1,7 @@
 import moment from 'moment'
-import accountModel, { IAccount, IPassword } from '../dataSource/models/userModel'
+import accountModel, { IAccount, IPassword } from '../dataSource/models/accountModel'
 import TextValidators from '../dataSource/validators/textValidators'
-import userController from './userController'
+import userController from './accountController'
 import Encryption from '../utilities/encryption'
 import Config from '../utilities/config'
 
