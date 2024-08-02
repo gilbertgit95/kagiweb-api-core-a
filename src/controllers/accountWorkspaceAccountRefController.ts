@@ -26,7 +26,7 @@ class UserWorkspaceUserRefController {
         const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
         if (workspace && workspace.userRefs) {
             for (const accountRef of workspace.userRefs) {
-                if (accountRef.accountId === accountId) return accountRef
+                if (accountRef.userId === accountId) return accountRef
             }
         }
 
@@ -42,7 +42,7 @@ class UserWorkspaceUserRefController {
         const accountRef:IWorkspaceAccountRef & {username?:string}|null = this.getWorkspaceUserRefById(account, workspaceId, userRefId)
         if (!accountRef) throw({code: 404})
 
-        const userData = await userController.getUser({_id: accountRef.accountId})
+        const userData = await userController.getUser({_id: accountRef.userId})
         accountRef.username = userData?.username
 
         return accountRef
@@ -57,14 +57,14 @@ class UserWorkspaceUserRefController {
         const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
         let accountRefs:(IWorkspaceAccountRef & {username?:string})[] = workspace?.userRefs? workspace.userRefs: []
 
-        const accountsData = await accountModel.find({_id: {$in: accountRefs.map(item => item.accountId)}})
+        const accountsData = await accountModel.find({_id: {$in: accountRefs.map(item => item.userId)}})
         const accountDataMap = accountsData.reduce((acc:{[key:string]:IAccount}, item) => {
             acc[item._id] = item
             return acc
         }, {})
 
         return accountRefs.map(item => {
-            item.username = accountDataMap[item.accountId].username
+            item.username = accountDataMap[item.userId].username
             return item
         })
     }
@@ -90,7 +90,7 @@ class UserWorkspaceUserRefController {
         if (this.getWorkspaceUserRefByUserId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
 
         const doc:IWorkspaceAccountRef = {
-            accountId: assignedAccount._id
+            userId: assignedAccount._id
         }
         if (DataCleaner.getBooleanData(readAccess).isValid) {
             doc.readAccess = DataCleaner.getBooleanData(readAccess).data
@@ -175,7 +175,7 @@ class UserWorkspaceUserRefController {
             await account.save()
             await userController.cachedData.removeCacheData(accountId)
 
-            const assignedAccount = await accountModel.findOne({_id: workspaceUserRefData.accountId})
+            const assignedAccount = await accountModel.findOne({_id: workspaceUserRefData.userId})
             // emit event
             appEvents.emit('workspace-update', {
                 action: 'remove',

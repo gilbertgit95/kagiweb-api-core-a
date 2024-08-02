@@ -17,7 +17,7 @@ class AuthController {
     public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, username?: string, message?: string} | null> {
 
         // fetch account using the username
-        let account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
+        let account = await accountModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{token?: string, username?: string, message?: string} | null
 
         // if no account found
@@ -126,7 +126,7 @@ class AuthController {
     // accountId:string, code:string
     public async signinOTP(username:string, key:string, device:IClientDevice, ip:string):Promise<{token: string, message?: string } | null> {
         // fetch account using the username
-        let account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
+        let account = await accountModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{ token: string, message?: string } | null
 
         // if no account found
@@ -281,7 +281,7 @@ class AuthController {
 
     public async forgotPassword(username:string, device:IClientDevice, ip:string):Promise<{ username:string, message?:string } | null> {
         // fetch account using the username
-        const account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
+        const account = await accountModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{ username: string, message?: string } | null = null
 
 
@@ -343,7 +343,7 @@ class AuthController {
 
     public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
         // fetch account using the username
-        const account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
+        const account = await accountModel.findOne({ username, verified: true, accountType: 'user' })
         let result:{ message: string } | null = null
 
 

@@ -5,12 +5,12 @@ import TextValidators from '../validators/textValidators'
 // import DateValidators from '../validators/dateValidators'
 
 // types
-type TAccountType = 'account' | 'organization'
+type TAccountType = 'user' | 'organization'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TAccountInfoType = 'string' | 'number' | 'date' | 'boolean'
 
-const acountTypes:TAccountType[] = ['account', 'organization']
+const acountTypes:TAccountType[] = ['user', 'organization']
 const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
 const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
 const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'boolean']
@@ -85,7 +85,7 @@ interface IAccountInfo {
 
 interface IWorkspaceAccountRef {
     _id?: string,
-    accountId: string,
+    userId: string,
     readAccess?: boolean,
     updateAccess?: boolean,
     createAccess?: boolean,
@@ -204,7 +204,7 @@ const AccountInfoSchema = new Schema<IAccountInfo>({
 
 const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
-    accountId: { type: String, required: true},
+    userId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
     updateAccess: { type: Boolean, default: false},
     createAccess: { type: Boolean, default: false},

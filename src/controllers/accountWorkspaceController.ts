@@ -57,7 +57,7 @@ class UserWorkspaceController {
               }
             }, {
               '$addFields': {
-                'account': '$workspaces.userRefs'
+                'user': '$workspaces.userRefs'
               }
             }, {
               '$unwind': {
