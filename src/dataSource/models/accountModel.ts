@@ -202,7 +202,7 @@ const AccountInfoSchema = new Schema<IAccountInfo>({
     }
 }, { timestamps: true })
 
-const WorkspaceUserRefSchema = new Schema<IWorkspaceAccountRef>({
+const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
     accountId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
@@ -226,7 +226,7 @@ const workspaceSchema = new Schema<IWorkspace>({
         required: false,
         validate: TextValidators.validateDescription
     },
-    userRefs: { type: [WorkspaceUserRefSchema], required: false, default: [] },
+    userRefs: { type: [WorkspaceAccountRefSchema], required: false, default: [] },
     isActive: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false}
 }, { timestamps: true })
