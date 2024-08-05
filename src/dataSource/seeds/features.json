@@ -1694,12 +1694,12 @@
 },
 {
   "_id": "88f16fd9-ed25-4ec3-b13d-56b1c5792bed",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1711,12 +1711,12 @@
 },
 {
   "_id": "8076174f-0d4f-412c-beb6-0afe5b91cd6f",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
+  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1728,12 +1728,12 @@
 },
 {
   "_id": "5c87717f-d085-40ea-a385-d269a3a7f0f8",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:userRefId",
+  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1863,12 +1863,12 @@
 },
 {
   "_id": "30cbe593-e6e4-4215-bf18-286066be9c2c",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1881,12 +1881,12 @@
 },
 {
   "_id": "8b2cee7f-dbe5-44e4-b47d-c04091ab4e99",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces",
@@ -1899,12 +1899,12 @@
 },
 {
   "_id": "1968e844-b968-4cb9-9c4b-e0b916998e12",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2024-04-05T01:44:28.047Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces",
@@ -2038,12 +2038,12 @@
 },
 {
   "_id": "8ecee4d8-f9d7-454b-9397-9edb79d9cebc",
-  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Users",
     "Workspaces",
@@ -2056,12 +2056,12 @@
 },
 {
   "_id": "a91352ed-9e68-4e53-ae9b-c059017c00ad",
-  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Users",
     "Workspaces",
@@ -2074,12 +2074,12 @@
 },
 {
   "_id": "4fad9daf-3e7c-476a-8e56-26b8e3d06027",
-  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2024-04-06T04:36:33.407Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Users",
     "Workspaces",
@@ -2877,14 +2877,14 @@
 },
 {
   "_id": "878c9621-dfdf-4637-9d8d-4a11798dfde2",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "type": "ui-route",
   "tags": [
     "Users",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.303Z"
@@ -2896,14 +2896,14 @@
 },
 {
   "_id": "d22eaecf-d609-4014-82ae-46544e3a9a2c",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "type": "ui-route",
   "tags": [
     "Users",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.310Z"
@@ -3477,14 +3477,14 @@
 },
 {
   "_id": "8fb757ef-a411-4bcc-a5a8-5bf16ed7323f",
-  "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:accountRefId",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:accountRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.599Z"
@@ -3496,14 +3496,14 @@
 },
 {
   "_id": "f4595ee3-bf7e-42a0-8ad0-f5511c2bf34b",
-  "name": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:userRefId",
+  "name": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:accountRefId",
   "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:userRefId",
+  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:accountRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.609Z"

@@ -7,21 +7,21 @@ import appEvents from '../utilities/appEvents'
 
 // const env = Config.getEnv()
 
-class UserWorkspaceUserRefController {
+class AccountWorkspaceAccountRefController {
 
-    public getWorkspaceUserRefById(account:IAccount, workspaceId:string, userRefId:string):IWorkspaceAccountRef|null {
+    public getWorkspaceAccountRefById(account:IAccount, workspaceId:string, accountRefId:string):IWorkspaceAccountRef|null {
 
         const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
         if (workspace && workspace.userRefs) {
             for (const accountRef of workspace.userRefs) {
-                if (accountRef._id === userRefId) return accountRef
+                if (accountRef._id === accountRefId) return accountRef
             }
         }
 
         return null
     }
 
-    public getWorkspaceUserRefByUserId(account:IAccount, workspaceId:string, accountId:string):IWorkspaceAccountRef|null {
+    public getWorkspaceAccountRefByAccountId(account:IAccount, workspaceId:string, accountId:string):IWorkspaceAccountRef|null {
 
         const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
         if (workspace && workspace.userRefs) {
@@ -33,13 +33,13 @@ class UserWorkspaceUserRefController {
         return null
     }
 
-    public async getWorkspaceUserRef(accountId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceAccountRef & {username?:string}|null> {
-        if (!(accountId && workspaceId && userRefId)) throw({code: 400})
+    public async getWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef & {username?:string}|null> {
+        if (!(accountId && workspaceId && accountRefId)) throw({code: 400})
 
         const account = await userController.getUser({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountRef:IWorkspaceAccountRef & {username?:string}|null = this.getWorkspaceUserRefById(account, workspaceId, userRefId)
+        const accountRef:IWorkspaceAccountRef & {username?:string}|null = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
         if (!accountRef) throw({code: 404})
 
         const userData = await userController.getUser({_id: accountRef.userId})
@@ -48,7 +48,7 @@ class UserWorkspaceUserRefController {
         return accountRef
     }
 
-    public async getWorkspaceUserRefs(accountId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {username?:string})[]> {
+    public async getWorkspaceAccountRefs(accountId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {username?:string})[]> {
         if (!accountId) throw({code: 400})
 
         const account = await userController.getUser({_id: accountId})
@@ -69,7 +69,7 @@ class UserWorkspaceUserRefController {
         })
     }
 
-    public async saveWorkspaceUserRef(
+    public async saveWorkspaceAccountRef(
             accountId:string,
             workspaceId:string,
             username:string,
@@ -87,7 +87,7 @@ class UserWorkspaceUserRefController {
         if (!account) throw({code: 404})
         if (!assignedAccount) throw({code: 404, message: `${ username } does not exist!`})
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the workspace owner'})
-        if (this.getWorkspaceUserRefByUserId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
+        if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
 
         const doc:IWorkspaceAccountRef = {
             userId: assignedAccount._id
@@ -124,10 +124,10 @@ class UserWorkspaceUserRefController {
         return account.workspaces!.id(workspaceId)!.userRefs![lastIndex]
     }
 
-    public async updateWorkspaceUserRef(
+    public async updateWorkspaceAccountRef(
             accountId:string,
             workspaceId:string,
-            userRefId:string,
+            accountRefId:string,
             readAccess:boolean|string,
             updateAccess:boolean|string,
             createAccess:boolean|string,
@@ -135,43 +135,43 @@ class UserWorkspaceUserRefController {
             disabled:boolean|string
         ):Promise<IWorkspaceAccountRef|null> {
 
-        if (!(accountId && workspaceId && userRefId)) throw({code: 400})
+        if (!(accountId && workspaceId && accountRefId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
-        if (!this.getWorkspaceUserRefById(account, workspaceId, userRefId)) throw({code: 404})
+        if (!this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)) throw({code: 404})
 
         if (DataCleaner.getBooleanData(readAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
+            account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
         }
         if (DataCleaner.getBooleanData(updateAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.updateAccess = DataCleaner.getBooleanData(updateAccess).data
+            account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)!.updateAccess = DataCleaner.getBooleanData(updateAccess).data
         }
         if (DataCleaner.getBooleanData(createAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.createAccess = DataCleaner.getBooleanData(createAccess).data
+            account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)!.createAccess = DataCleaner.getBooleanData(createAccess).data
         }
         if (DataCleaner.getBooleanData(deleteAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
+            account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)!.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
-            account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)!.disabled = DataCleaner.getBooleanData(disabled).data
+            account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }
 
         await account.save()
         await userController.cachedData.removeCacheData(accountId)
 
-        return account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)
+        return account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)
     }
 
-    public async deleteWorkspaceUserRef(accountId:string, workspaceId:string, userRefId:string):Promise<IWorkspaceAccountRef|null> {
+    public async deleteWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef|null> {
         if (!(accountId && workspaceId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
 
-        const workspaceUserRefData = this.getWorkspaceUserRefById(account, workspaceId, userRefId)
+        const workspaceUserRefData = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
         if (workspaceUserRefData) {
-            account.workspaces!.id(workspaceId)!.userRefs!.id(userRefId)?.deleteOne()
+            account.workspaces!.id(workspaceId)!.userRefs!.id(accountRefId)?.deleteOne()
             await account.save()
             await userController.cachedData.removeCacheData(accountId)
 
@@ -191,4 +191,4 @@ class UserWorkspaceUserRefController {
     }
 }
 
-export default new UserWorkspaceUserRefController()
+export default new AccountWorkspaceAccountRefController()

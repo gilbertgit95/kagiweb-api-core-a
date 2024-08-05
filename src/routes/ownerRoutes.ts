@@ -15,7 +15,7 @@ import userLimitedTransactionController from '../controllers/accountLimitedTrans
 import userClientDeviceController from '../controllers/accountClientDeviceController'
 import userClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
 import userWorkspaceController from '../controllers/accountWorkspaceController'
-import userWorkspaceUserRefController from '../controllers/accountWorkspaceAccountRefController'
+import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
 
 import {
     IAccount, IRoleRef, IAccountInfo, IContactInfo,
@@ -542,7 +542,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', as
     const { workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceAccountRef & {username?:string})[]>(async () => {
-        return await userWorkspaceUserRefController.getWorkspaceUserRefs(accountId, workspaceId)
+        return await accountWorkspaceAccountRefController.getWorkspaceAccountRefs(accountId, workspaceId)
     })
 
     return res.status(statusCode).send(result)
@@ -554,7 +554,7 @@ router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', a
     const { username, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await userWorkspaceUserRefController.saveWorkspaceUserRef(accountId, workspaceId, username, readAccess, updateAccess, createAccess, deleteAccess, disabled)
+        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, username, readAccess, updateAccess, createAccess, deleteAccess, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -565,7 +565,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:acc
     const { workspaceId, accountRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef & {username?:string}>(async () => {
-        return await userWorkspaceUserRefController.getWorkspaceUserRef(accountId, workspaceId, accountRefId)
+        return await accountWorkspaceAccountRefController.getWorkspaceAccountRef(accountId, workspaceId, accountRefId)
     })
 
     return res.status(statusCode).send(result)
@@ -577,7 +577,7 @@ router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:acc
     const { readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await userWorkspaceUserRefController.updateWorkspaceUserRef(accountId, workspaceId, accountRefId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
+        return await accountWorkspaceAccountRefController.updateWorkspaceAccountRef(accountId, workspaceId, accountRefId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -588,7 +588,7 @@ router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:
     const { workspaceId, accountRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await userWorkspaceUserRefController.deleteWorkspaceUserRef( accountId, workspaceId, accountRefId )
+        return await accountWorkspaceAccountRefController.deleteWorkspaceAccountRef( accountId, workspaceId, accountRefId )
     })
 
     return res.status(statusCode).send(result)
