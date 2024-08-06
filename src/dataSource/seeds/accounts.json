@@ -1,6 +1,7 @@
 [{
   "_id": "37410e75-1760-4bb6-85e0-d0a138d374bc",
   "__v": 249,
+  "accountType": "user",
   "clientDevices": [
     {
       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
@@ -516,6 +517,7 @@
 },
 {
   "_id": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
+  "accountType": "user",
   "username": "master101",
   "rolesRefs": [
     {
@@ -867,6 +869,7 @@
 },
 {
   "_id": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
+  "accountType": "user",
   "username": "Berting89",
   "rolesRefs": [
     {
