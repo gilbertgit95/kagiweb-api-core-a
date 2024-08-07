@@ -85,7 +85,7 @@ interface IAccountInfo {
 
 interface IWorkspaceAccountRef {
     _id?: string,
-    userId: string,
+    accountId: string,
     readAccess?: boolean,
     updateAccess?: boolean,
     createAccess?: boolean,
@@ -204,7 +204,7 @@ const AccountInfoSchema = new Schema<IAccountInfo>({
 
 const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
-    userId: { type: String, required: true},
+    accountId: { type: String, required: true},
     readAccess: { type: Boolean, default: true},
     updateAccess: { type: Boolean, default: false},
     createAccess: { type: Boolean, default: false},
