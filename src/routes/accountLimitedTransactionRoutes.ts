@@ -4,7 +4,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userLimitedTransactionController from '../controllers/accountLimitedTransactionController'
+import accountLimitedTransactionController from '../controllers/accountLimitedTransactionController'
 import { ILimitedTransaction } from '../dataSource/models/accountModel'
 
 const router = express.Router()
@@ -14,7 +14,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/limitedTransactions', asyn
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction[]>(async () => {
-        return await userLimitedTransactionController.getLimitedTransactions(accountId)
+        return await accountLimitedTransactionController.getLimitedTransactions(accountId)
     })
 
     return res.status(statusCode).send(result)
@@ -26,7 +26,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/limitedTransactions/:limit
     console.log(limitedTransactionId)
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction>(async () => {
-        return await userLimitedTransactionController.getLimitedTransaction(accountId, limitedTransactionId)
+        return await accountLimitedTransactionController.getLimitedTransaction(accountId, limitedTransactionId)
     })
 
     return res.status(statusCode).send(result)
@@ -41,7 +41,7 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId/limitedTransactions/:limit
     } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction>(async () => {
-        return await userLimitedTransactionController.updateLimitedTransaction(
+        return await accountLimitedTransactionController.updateLimitedTransaction(
             accountId, limitedTransactionId,
             limit, attempts, key,
             value, recipient,

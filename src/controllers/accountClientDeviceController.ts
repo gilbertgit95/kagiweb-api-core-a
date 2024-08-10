@@ -1,6 +1,6 @@
 import UAParser, {IResult}  from 'ua-parser-js'
 import accountModel, { IAccount, IClientDevice } from '../dataSource/models/accountModel'
-import userController from './accountController'
+import accountController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
@@ -42,7 +42,7 @@ class AccountClientDeviceController {
     public async getClientDevice(accountId:string, clientDeviceId:string):Promise<IClientDevice|null> {
         if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const clientDevice = this.getClientDeviceById(account, clientDeviceId)
@@ -55,7 +55,7 @@ class AccountClientDeviceController {
         let result:IClientDevice[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.clientDevices? account!.clientDevices: []
 
@@ -80,7 +80,7 @@ class AccountClientDeviceController {
         account.clientDevices!.push(doc)
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return this.getClientDeviceByUA(account, ua)
     }
@@ -106,7 +106,7 @@ class AccountClientDeviceController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.clientDevices!.id(clientDeviceId)
     }
@@ -121,7 +121,7 @@ class AccountClientDeviceController {
         if (clientDeviceData) {
             account!.clientDevices?.id(clientDeviceId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

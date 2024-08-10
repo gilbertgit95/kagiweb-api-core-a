@@ -4,13 +4,13 @@ import accountModel, { IAccount, IPassword, IAccessToken, IClientDevice, IWorksp
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 import featureController from './featureController'
-import userWorkspaceController from './accountWorkspaceController'
+import accountWorkspaceController from './accountWorkspaceController'
 
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
 import { IFeature } from '../dataSource/models/featureModel'
 import { IRole } from '../dataSource/models/roleModel'
-import userRoleController from './accountRoleController'
+import accountRoleController from './accountRoleController'
 import appEvents from '../utilities/appEvents'
 import Config from '../utilities/config'
 
@@ -68,7 +68,7 @@ class AccountController {
             if (account && !includeSensitiveInfo) account = this.clearSensitiveInfo(account)
             if (account) {
                 const rolesMap = await roleController.getRolesMap()
-                const activeRoleRef = userRoleController.getActiveRoleRef(account)
+                const activeRoleRef = accountRoleController.getActiveRoleRef(account)
                 const activeRole = activeRoleRef? rolesMap[activeRoleRef.roleId]: null
                 const accountRoles = account?.rolesRefs.map(item => rolesMap[item.roleId])
 
@@ -81,9 +81,9 @@ class AccountController {
                 resp.role = activeRole
                 resp.roles = accountRoles
                 resp.features = roleFeatures
-                resp.workspace = userWorkspaceController.getActiveWorkspace(account)
+                resp.workspace = accountWorkspaceController.getActiveWorkspace(account)
                 resp.workspaces = account.workspaces
-                resp.externalWorkspaces = await userWorkspaceController.getExternalWorkspaces(account._id!)
+                resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
                 resp.accountData = account
             }
         }

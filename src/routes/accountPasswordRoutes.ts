@@ -4,7 +4,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userPasswordController from '../controllers/accountPasswordController'
+import accountPasswordController from '../controllers/accountPasswordController'
 import { IPassword } from '../dataSource/models/accountModel'
 
 const router = express.Router()
@@ -14,7 +14,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/passwords', async (req, re
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword[]>(async () => {
-        return await userPasswordController.getPasswords(accountId)
+        return await accountPasswordController.getPasswords(accountId)
     })
 
     return res.status(statusCode).send(result)
@@ -25,7 +25,7 @@ router.post(env.RootApiEndpoint + 'accounts/:accountId/passwords', async (req, r
     const { currentPassword, newPassword } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
-        return await userPasswordController.savePassword(accountId, currentPassword, newPassword)
+        return await accountPasswordController.savePassword(accountId, currentPassword, newPassword)
     })
 
     return res.status(statusCode).send(result)
@@ -35,7 +35,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/passwords/:passwordId', as
     const { accountId, passwordId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
-        return await userPasswordController.getPassword(accountId, passwordId)
+        return await accountPasswordController.getPassword(accountId, passwordId)
     })
 
     return res.status(statusCode).send(result)
@@ -45,7 +45,7 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/passwords/:passwordId',
    const { accountId, passwordId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
-        return await userPasswordController.deletePassword( accountId, passwordId )
+        return await accountPasswordController.deletePassword( accountId, passwordId )
     })
 
     return res.status(statusCode).send(result)

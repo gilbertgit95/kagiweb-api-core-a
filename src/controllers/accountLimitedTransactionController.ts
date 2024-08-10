@@ -1,6 +1,6 @@
 import moment from 'moment'
 import accountModel, { IAccount, ILimitedTransaction } from '../dataSource/models/accountModel'
-import userController from './accountController'
+import accountController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
@@ -80,7 +80,7 @@ class AccountLimitedTransactionController {
     public async getLimitedTransaction(accountId:string, limitedTransactionId:string):Promise<ILimitedTransaction|null> {
         if (!(accountId && limitedTransactionId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const accountInfo = this.getLimitedTransactionById(account, limitedTransactionId)
@@ -93,7 +93,7 @@ class AccountLimitedTransactionController {
         let result:ILimitedTransaction[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.limitedTransactions? account!.limitedTransactions: []
 
@@ -122,7 +122,7 @@ class AccountLimitedTransactionController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.limitedTransactions!.id(limitedTransactionId)
     }

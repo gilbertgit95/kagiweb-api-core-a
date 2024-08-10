@@ -1,5 +1,5 @@
 import accountModel, { IAccount, IContactInfo, TContactInfoType } from '../dataSource/models/accountModel'
-import userController from './accountController'
+import accountController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
@@ -41,7 +41,7 @@ class AccountContactInfoController {
     public async getContactInfo(accountId:string, contactInfoId:string):Promise<IContactInfo|null> {
         if (!(accountId && contactInfoId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const contactInfo = this.getContactInfoById(account, contactInfoId)
@@ -54,7 +54,7 @@ class AccountContactInfoController {
         let result:IContactInfo[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.contactInfos? account!.contactInfos: []
 
@@ -78,7 +78,7 @@ class AccountContactInfoController {
         account.contactInfos!.push(doc)
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return this.getContactInfoByValue(account, value)
     }
@@ -98,7 +98,7 @@ class AccountContactInfoController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.contactInfos!.id(contactInfoId)
     }
@@ -113,7 +113,7 @@ class AccountContactInfoController {
         if (accountInfoData) {
             account!.contactInfos?.id(contactInfoId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

@@ -15,15 +15,15 @@ import systemInfoRoutes from './routes/systemInfoRoutes'
 import featureRoutes from './routes/featureRoutes'
 import roleRoutes from './routes/roleRoutes'
 import roleFeatureRoutes from './routes/roleFeatureRoutes'
-import userRoutes from './routes/accountRoutes'
-import userRoleRoutes from './routes/accountRoleRoutes'
-import userAccountInfoRoutes from './routes/accountAccountInfoRoutes'
-import userContactInfoRoutes from './routes/accountContactInfoRoutes'
-import userPasswordRoutes from './routes/accountPasswordRoutes'
-import userLimitedTransactionRoutes from './routes/accountLimitedTransactionRoutes'
-import userClientDeviceRoutes from './routes/accountClientDeviceRoutes'
-import userClientDeviceAccesstokenRoutes from './routes/accountClientDeviceAccesstokenRoutes'
-import userWorkspaceRoutes from './routes/accountWorkspaceRoutes'
+import accountRoutes from './routes/accountRoutes'
+import accountRoleRoutes from './routes/accountRoleRoutes'
+import accountAccountInfoRoutes from './routes/accountAccountInfoRoutes'
+import accountContactInfoRoutes from './routes/accountContactInfoRoutes'
+import accountPasswordRoutes from './routes/accountPasswordRoutes'
+import accountLimitedTransactionRoutes from './routes/accountLimitedTransactionRoutes'
+import accountClientDeviceRoutes from './routes/accountClientDeviceRoutes'
+import accountClientDeviceAccesstokenRoutes from './routes/accountClientDeviceAccesstokenRoutes'
+import accountWorkspaceRoutes from './routes/accountWorkspaceRoutes'
 import accountWorkspaceAccountRefRoutes from './routes/accountWorkspaceAccountRefRoutes'
 import ownerRoutes from './routes/ownerRoutes'
 
@@ -64,15 +64,15 @@ appHandler.addPrivateRoute(systemInfoRoutes)
 appHandler.addPrivateRoute(featureRoutes)
 appHandler.addPrivateRoute(roleRoutes)
 appHandler.addPrivateRoute(roleFeatureRoutes)
-appHandler.addPrivateRoute(userRoutes)
-appHandler.addPrivateRoute(userRoleRoutes)
-appHandler.addPrivateRoute(userAccountInfoRoutes)
-appHandler.addPrivateRoute(userContactInfoRoutes)
-appHandler.addPrivateRoute(userPasswordRoutes)
-appHandler.addPrivateRoute(userLimitedTransactionRoutes)
-appHandler.addPrivateRoute(userClientDeviceRoutes)
-appHandler.addPrivateRoute(userClientDeviceAccesstokenRoutes)
-appHandler.addPrivateRoute(userWorkspaceRoutes)
+appHandler.addPrivateRoute(accountRoutes)
+appHandler.addPrivateRoute(accountRoleRoutes)
+appHandler.addPrivateRoute(accountAccountInfoRoutes)
+appHandler.addPrivateRoute(accountContactInfoRoutes)
+appHandler.addPrivateRoute(accountPasswordRoutes)
+appHandler.addPrivateRoute(accountLimitedTransactionRoutes)
+appHandler.addPrivateRoute(accountClientDeviceRoutes)
+appHandler.addPrivateRoute(accountClientDeviceAccesstokenRoutes)
+appHandler.addPrivateRoute(accountWorkspaceRoutes)
 appHandler.addPrivateRoute(accountWorkspaceAccountRefRoutes)
 appHandler.addPrivateRoute(ownerRoutes)
 

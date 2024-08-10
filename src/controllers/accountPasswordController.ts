@@ -1,7 +1,7 @@
 import moment from 'moment'
 import accountModel, { IAccount, IPassword } from '../dataSource/models/accountModel'
 import TextValidators from '../dataSource/validators/textValidators'
-import userController from './accountController'
+import accountController from './accountController'
 import Encryption from '../utilities/encryption'
 import Config from '../utilities/config'
 
@@ -75,7 +75,7 @@ class AccountPasswordController {
     public async getPassword(accountId:string, passwordId:string):Promise<IPassword|null> {
         if (!(accountId && passwordId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const password = this.getPasswordById(account, passwordId)
@@ -87,7 +87,7 @@ class AccountPasswordController {
         let result:IPassword[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.passwords? account!.passwords: []
 
@@ -131,7 +131,7 @@ class AccountPasswordController {
         account.passwords.id(currPass._id)!.isActive = false
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         const passEntry = await this.getPasswordEntry(account, newPassword)
         // if (passEntry && passEntry.key) passEntry.key = 'NA'
@@ -151,7 +151,7 @@ class AccountPasswordController {
         if (accountPasswordData) {
             account!.passwords?.id(passwordId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

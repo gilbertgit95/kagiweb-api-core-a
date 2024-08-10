@@ -5,12 +5,12 @@ import TextValidators from '../validators/textValidators'
 // import DateValidators from '../validators/dateValidators'
 
 // types
-type TAccountType = 'user' | 'organization'
+type TAccountType = 'account' | 'organization'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TAccountInfoType = 'string' | 'number' | 'date' | 'boolean'
 
-const acountTypes:TAccountType[] = ['user', 'organization']
+const acountTypes:TAccountType[] = ['account', 'organization']
 const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
 const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
 const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'boolean']

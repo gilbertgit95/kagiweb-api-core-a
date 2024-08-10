@@ -11,7 +11,7 @@ const env = Config.getEnv()
 const router = express.Router()
 
 router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
-    const ua = req.userAgentInfo? req.userAgentInfo: null
+    const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username, password } = req.body
 
@@ -26,7 +26,7 @@ router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'signinOTP', async (req:Request, res) => {
-    const ua = req.userAgentInfo? req.userAgentInfo: null
+    const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username, key } = req.body
 
@@ -39,7 +39,7 @@ router.post(env.RootApiEndpoint + 'signinOTP', async (req:Request, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
-    const ua = req.userAgentInfo? req.userAgentInfo: null
+    const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username, password, email, phone } = req.body
 
@@ -52,7 +52,7 @@ router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
-    const ua = req.userAgentInfo? req.userAgentInfo: null
+    const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
     const { username } = req.body
 
@@ -77,7 +77,7 @@ router.put(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
 
 router.delete(env.RootApiEndpoint + 'signout', async (req:Request, res) => {
     const authorization = req.headers.authorization
-    const ua = req.userAgentInfo? req.userAgentInfo: null
+    const ua = req.accountAgentInfo? req.accountAgentInfo: null
     
     const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
         if (!ua || !authorization) return null

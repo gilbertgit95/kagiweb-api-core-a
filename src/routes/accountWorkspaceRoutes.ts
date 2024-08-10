@@ -4,7 +4,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userWorkspaceController from '../controllers/accountWorkspaceController'
+import accountWorkspaceController from '../controllers/accountWorkspaceController'
 import { IWorkspace } from '../dataSource/models/accountModel'
 
 const router = express.Router()
@@ -14,7 +14,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces', async (req, r
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace[]>(async () => {
-        return await userWorkspaceController.getWorkspaces(accountId)
+        return await accountWorkspaceController.getWorkspaces(accountId)
     })
 
     return res.status(statusCode).send(result)
@@ -25,7 +25,7 @@ router.post(env.RootApiEndpoint + 'accounts/:accountId/workspaces', async (req, 
     const { name, description, isActive, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.saveWorkspace(accountId, name, description, isActive, disabled)
+        return await accountWorkspaceController.saveWorkspace(accountId, name, description, isActive, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -35,7 +35,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId', 
     const { accountId, workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.getWorkspace(accountId, workspaceId)
+        return await accountWorkspaceController.getWorkspace(accountId, workspaceId)
     })
 
     return res.status(statusCode).send(result)
@@ -46,7 +46,7 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId', 
     const { name, description, isActive, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, isActive, disabled)
+        return await accountWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, isActive, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -56,7 +56,7 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId
    const { accountId, workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.deleteWorkspace( accountId, workspaceId )
+        return await accountWorkspaceController.deleteWorkspace( accountId, workspaceId )
     })
 
     return res.status(statusCode).send(result)

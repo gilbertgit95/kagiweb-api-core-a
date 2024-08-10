@@ -10,12 +10,12 @@ class ClientInfoProvider {
      * @param next 
      */
     public static async middleware(req:Request, res:Response, next:NextFunction) {
-        const userAgentString = req.headers['user-agent']
-        const userAgent = new UAParser(userAgentString)
+        const accountAgentString = req.headers['account-agent']
+        const accountAgent = new UAParser(accountAgentString)
 
-        req.userAgentInfo = userAgent.getResult()
+        req.accountAgentInfo = accountAgent.getResult()
 
-        // console.log('userAgentInfo: ', {...req.userAgentInfo})
+        // console.log('accountAgentInfo: ', {...req.accountAgentInfo})
         // console.log('clientIPAddress: ', req.clientIp)
 
         next()

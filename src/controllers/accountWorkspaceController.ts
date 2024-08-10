@@ -1,6 +1,6 @@
 import UAParser, {IResult}  from 'ua-parser-js'
 import accountModel, { IAccount, IWorkspace } from '../dataSource/models/accountModel'
-import userController from './accountController'
+import accountController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
@@ -32,7 +32,7 @@ class AccountWorkspaceController {
     public async getWorkspace(accountId:string, workspaceId:string):Promise<IWorkspace|null> {
         if (!(accountId && workspaceId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const workspace = this.getWorkspaceById(account, workspaceId)
@@ -95,7 +95,7 @@ class AccountWorkspaceController {
         let result:IWorkspace[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.workspaces? account!.workspaces: []
 
@@ -122,7 +122,7 @@ class AccountWorkspaceController {
         account.workspaces!.push(doc)
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.workspaces[account.workspaces.length - 1]
     }
@@ -145,7 +145,7 @@ class AccountWorkspaceController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.workspaces!.id(workspaceId)
     }
@@ -160,7 +160,7 @@ class AccountWorkspaceController {
         if (workspaceData) {
             account!.workspaces?.id(workspaceId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

@@ -1,6 +1,6 @@
 import accountModel, { IAccount, IWorkspaceAccountRef } from '../dataSource/models/accountModel'
-import userController from './accountController'
-import userWorkspaceController from './accountWorkspaceController'
+import accountController from './accountController'
+import accountWorkspaceController from './accountWorkspaceController'
 import DataCleaner from '../utilities/dataCleaner'
 import appEvents from '../utilities/appEvents'
 // import Config from '../utilities/config'
@@ -11,7 +11,7 @@ class AccountWorkspaceAccountRefController {
 
     public getWorkspaceAccountRefById(account:IAccount, workspaceId:string, accountRefId:string):IWorkspaceAccountRef|null {
 
-        const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
+        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
         if (workspace && workspace.accountRefs) {
             for (const accountRef of workspace.accountRefs) {
                 if (accountRef._id === accountRefId) return accountRef
@@ -23,7 +23,7 @@ class AccountWorkspaceAccountRefController {
 
     public getWorkspaceAccountRefByAccountId(account:IAccount, workspaceId:string, accountId:string):IWorkspaceAccountRef|null {
 
-        const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
+        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
         if (workspace && workspace.accountRefs) {
             for (const accountRef of workspace.accountRefs) {
                 if (accountRef.accountId === accountId) return accountRef
@@ -36,14 +36,14 @@ class AccountWorkspaceAccountRefController {
     public async getWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef & {username?:string}|null> {
         if (!(accountId && workspaceId && accountRefId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const accountRef:IWorkspaceAccountRef & {username?:string}|null = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
         if (!accountRef) throw({code: 404})
 
-        const userData = await userController.getAccount({_id: accountRef.accountId})
-        accountRef.username = userData?.username
+        const accountData = await accountController.getAccount({_id: accountRef.accountId})
+        accountRef.username = accountData?.username
 
         return accountRef
     }
@@ -51,10 +51,10 @@ class AccountWorkspaceAccountRefController {
     public async getWorkspaceAccountRefs(accountId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {username?:string})[]> {
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
-        const workspace = userWorkspaceController.getWorkspaceById(account, workspaceId)
+        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
         let accountRefs:(IWorkspaceAccountRef & {username?:string})[] = workspace?.accountRefs? workspace.accountRefs: []
 
         const accountsData = await accountModel.find({_id: {$in: accountRefs.map(item => item.accountId)}})
@@ -110,7 +110,7 @@ class AccountWorkspaceAccountRefController {
         account.workspaces!.id(workspaceId)?.accountRefs?.push(doc)
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         // emit event
         appEvents.emit('workspace-update', {
@@ -158,7 +158,7 @@ class AccountWorkspaceAccountRefController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)
     }
@@ -173,7 +173,7 @@ class AccountWorkspaceAccountRefController {
         if (workspaceAccountRefData) {
             account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
 
             const assignedAccount = await accountModel.findOne({_id: workspaceAccountRefData.accountId})
             // emit event

@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
 import { IAccount } from '../dataSource/models/accountModel'
-import userController from '../controllers/accountController'
-import userRoleController from '../controllers/accountRoleController'
-import userClientDeviceController from '../controllers/accountClientDeviceController'
-import userClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
+import accountController from '../controllers/accountController'
+import accountRoleController from '../controllers/accountRoleController'
+import accountClientDeviceController from '../controllers/accountClientDeviceController'
+import accountClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
 import roleFeatureController from '../controllers/roleFeatureController'
 import roleController from '../controllers/roleController'
 // import { errorLogsColl, combinedLogsColl } from '../utilities/logger'
@@ -14,7 +14,7 @@ import { RouterIdentity } from '../utilities/routerIdentity'
 
 class AccountInfoAndAccessProvider {
     /**
-     * this midddleware inserts userdata into request object base on jwt data,
+     * this midddleware inserts accountdata into request object base on jwt data,
      * then checks account access
      * @param req 
      * @param res 
@@ -22,9 +22,9 @@ class AccountInfoAndAccessProvider {
      * @returns 
      */
     public static async middleware(req:Request, res:Response, next:NextFunction) {
-        req.userData = null
+        req.accountData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
-            const userAgentInfo = req.userAgentInfo
+            const accountAgentInfo = req.accountAgentInfo
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
             const token = accessToken && accessToken.split(' ')[1]? accessToken.split(' ')[1]: null
@@ -34,23 +34,23 @@ class AccountInfoAndAccessProvider {
                 const tokenObj = await Encryption.verifyJWT<{accountId:string}>(token)
                 if (!(tokenObj && tokenObj.accountId)) throw({code: 401})
 
-                account = await userController.getAccount({_id: tokenObj.accountId}, true)
-                req.userData = account
+                account = await accountController.getAccount({_id: tokenObj.accountId}, true)
+                req.accountData = account
             } else {
                 throw({code: 401}) // Unauthorize
             }
 
             // if account has been fetched, proceed to account access regulation process
-            if (account && userAgentInfo) {
+            if (account && accountAgentInfo) {
                 // check the account devices if the acces token existed
-                const clientDevice = userClientDeviceController.getClientDeviceByUA(account, userAgentInfo.ua)
+                const clientDevice = accountClientDeviceController.getClientDeviceByUA(account, accountAgentInfo.ua)
                 if ( clientDevice && clientDevice._id &&
-                    !userClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(account, clientDevice._id, token)) {
+                    !accountClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(account, clientDevice._id, token)) {
                     throw({code: 401})
                 }
 
                 // get active account roleref
-                const activeRoleRef = userRoleController.getActiveRoleRef(account)
+                const activeRoleRef = accountRoleController.getActiveRoleRef(account)
                 if (!(activeRoleRef && activeRoleRef.roleId)) throw({code: 404})
                 // get active role info
                 const activeRole = await roleController.getMappedRole(activeRoleRef.roleId)

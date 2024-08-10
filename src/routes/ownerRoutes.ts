@@ -6,15 +6,15 @@ import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 // import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 
-import userController, {IAccountCompleteInfo  } from '../controllers/accountController'
-import userRoleController from '../controllers/accountRoleController'
-import userAccountInfoController from '../controllers/accountAccountInfoController'
-import userContactInfoController from '../controllers/accountContactInfoController'
-import userPasswordController from '../controllers/accountPasswordController'
-import userLimitedTransactionController from '../controllers/accountLimitedTransactionController'
-import userClientDeviceController from '../controllers/accountClientDeviceController'
-import userClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
-import userWorkspaceController from '../controllers/accountWorkspaceController'
+import accountController, {IAccountCompleteInfo  } from '../controllers/accountController'
+import accountRoleController from '../controllers/accountRoleController'
+import accountAccountInfoController from '../controllers/accountAccountInfoController'
+import accountContactInfoController from '../controllers/accountContactInfoController'
+import accountPasswordController from '../controllers/accountPasswordController'
+import accountLimitedTransactionController from '../controllers/accountLimitedTransactionController'
+import accountClientDeviceController from '../controllers/accountClientDeviceController'
+import accountClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
+import accountWorkspaceController from '../controllers/accountWorkspaceController'
 import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
 
 import {
@@ -30,30 +30,30 @@ const env = Config.getEnv()
 
 // root owner paths
 router.get(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await userController.getAccount({_id: accountId})
+        return await accountController.getAccount({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
         if (!accountId) return null
-        return await userController.updateAccount(accountId, username, disabled, verified)
+        return await accountController.updateAccount(accountId, username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/completeInfo', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
-        return await userController.getAccountCompleteInfo({_id: accountId})
+        return await accountController.getAccountCompleteInfo({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
@@ -62,71 +62,71 @@ router.get(env.RootApiEndpoint + 'owner/completeInfo', async (req:Request, res:R
 
 // owner roles routes
 router.get(env.RootApiEndpoint + 'owner/roles', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef[]>(async () => {
         if (!accountId) return null
-        return await userRoleController.getRoleRefs(accountId)
+        return await accountRoleController.getRoleRefs(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { roleRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
         if (!accountId) return null
-        return await userRoleController.getRoleRef(accountId, roleRefId)
+        return await accountRoleController.getRoleRef(accountId, roleRefId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/roles', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { roleId, isActive } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
         if (!accountId) return null
-        return await userRoleController.saveRoleRef(accountId, roleId, isActive)
+        return await accountRoleController.saveRoleRef(accountId, roleId, isActive)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId/activate', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { roleRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await userRoleController.activateAccountRole(accountId, roleRefId)
+        return await accountRoleController.activateAccountRole(accountId, roleRefId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { roleRefId } = req.params
     const { roleId, isActive } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
         if (!accountId) return null
-        return await userRoleController.updateRoleRef(accountId, roleRefId, roleId, isActive)
+        return await accountRoleController.updateRoleRef(accountId, roleRefId, roleId, isActive)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { roleRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
         if (!accountId) return null
-        return await userRoleController.deleteRoleRef(accountId, roleRefId)
+        return await accountRoleController.deleteRoleRef(accountId, roleRefId)
     })
 
     return res.status(statusCode).send(result)
@@ -135,60 +135,60 @@ router.delete(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request
 
 // owner accountInfo routes
 router.get(env.RootApiEndpoint + 'owner/accountInfos', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo[]>(async () => {
         if (!accountId) return null
-        return await userAccountInfoController.getAccountInfos(accountId)
+        return await accountAccountInfoController.getAccountInfos(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/accountInfos', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { key, value, type } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
         if (!accountId) return null
-        return await userAccountInfoController.saveAccountInfo(accountId, key, value, type)
+        return await accountAccountInfoController.saveAccountInfo(accountId, key, value, type)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/accountInfos/:accountInfoId', async (req:Request, res:Response) => {
-     const accountId = req?.userData?._id
+     const accountId = req?.accountData?._id
     const { accountInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
         if (!accountId) return null
-        return await userAccountInfoController.getAccountInfo(accountId, accountInfoId)
+        return await accountAccountInfoController.getAccountInfo(accountId, accountInfoId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/accountInfos/:accountInfoId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { accountInfoId } = req.params
     const { key, value, type } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
         if (!accountId) return null
-        return await userAccountInfoController.updateAccountInfo(accountId, accountInfoId, key, value, type)
+        return await accountAccountInfoController.updateAccountInfo(accountId, accountInfoId, key, value, type)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/accountInfos/:accountInfoId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { accountInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
         if (!accountId) return null
-        return await userAccountInfoController.deleteAccountInfo( accountId, accountInfoId )
+        return await accountAccountInfoController.deleteAccountInfo( accountId, accountInfoId )
     })
 
     return res.status(statusCode).send(result)
@@ -197,60 +197,60 @@ router.delete(env.RootApiEndpoint + 'owner/accountInfos/:accountInfoId', async (
 
 // contact infos routes
 router.get(env.RootApiEndpoint + 'owner/contactInfos', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo[]>(async () => {
         if (!accountId) return null
-        return await userContactInfoController.getContactInfos(accountId)
+        return await accountContactInfoController.getContactInfos(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/contactInfos', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { type, value, countryCode, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
         if (!accountId) return null
-        return await userContactInfoController.saveContactInfo(accountId, type, value, countryCode, verified)
+        return await accountContactInfoController.saveContactInfo(accountId, type, value, countryCode, verified)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/contactInfos/:contactInfoId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { contactInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
         if (!accountId) return null
-        return await userContactInfoController.getContactInfo(accountId, contactInfoId)
+        return await accountContactInfoController.getContactInfo(accountId, contactInfoId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/contactInfos/:contactInfoId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { contactInfoId } = req.params
     const { type, value, countryCode, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
         if (!accountId) return null
-        return await userContactInfoController.updateContactInfo(accountId, contactInfoId, type, value, countryCode, verified)
+        return await accountContactInfoController.updateContactInfo(accountId, contactInfoId, type, value, countryCode, verified)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/contactInfos/:contactInfoId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { contactInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IContactInfo>(async () => {
         if (!accountId) return null
-        return await userContactInfoController.deleteContactInfo( accountId, contactInfoId )
+        return await accountContactInfoController.deleteContactInfo( accountId, contactInfoId )
     })
 
     return res.status(statusCode).send(result)
@@ -259,47 +259,47 @@ router.delete(env.RootApiEndpoint + 'owner/contactInfos/:contactInfoId', async (
 
 // passwords routes
 router.get(env.RootApiEndpoint + 'owner/passwords', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword[]>(async () => {
         if (!accountId) return null
-        return await userPasswordController.getPasswords(accountId)
+        return await accountPasswordController.getPasswords(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/passwords', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { currentPassword, newPassword } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
         if (!accountId) return null
-        return await userPasswordController.savePassword(accountId, currentPassword, newPassword)
+        return await accountPasswordController.savePassword(accountId, currentPassword, newPassword)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/passwords/:passwordId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { passwordId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
         if (!accountId) return null
-        return await userPasswordController.getPassword(accountId, passwordId)
+        return await accountPasswordController.getPassword(accountId, passwordId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/passwords/:passwordId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { passwordId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IPassword>(async () => {
         if (!accountId) return null
-        return await userPasswordController.deletePassword( accountId, passwordId )
+        return await accountPasswordController.deletePassword( accountId, passwordId )
     })
 
     return res.status(statusCode).send(result)
@@ -308,32 +308,32 @@ router.delete(env.RootApiEndpoint + 'owner/passwords/:passwordId', async (req:Re
 
 // limited transaction routes
 router.get(env.RootApiEndpoint + 'owner/limitedTransactions', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction[]>(async () => {
         if (!accountId) return null
-        return await userLimitedTransactionController.getLimitedTransactions(accountId)
+        return await accountLimitedTransactionController.getLimitedTransactions(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/limitedTransactions/:limitedTransactionId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { limitedTransactionId } = req.params
 
     console.log(limitedTransactionId)
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction>(async () => {
         if (!accountId) return null
-        return await userLimitedTransactionController.getLimitedTransaction(accountId, limitedTransactionId)
+        return await accountLimitedTransactionController.getLimitedTransaction(accountId, limitedTransactionId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/limitedTransactions/:limitedTransactionId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { limitedTransactionId } = req.params
     const {
         limit, attempts, key,
@@ -343,7 +343,7 @@ router.put(env.RootApiEndpoint + 'owner/limitedTransactions/:limitedTransactionI
 
     const [result, statusCode] = await ErrorHandler.execute<ILimitedTransaction>(async () => {
         if (!accountId) return null
-        return await userLimitedTransactionController.updateLimitedTransaction(
+        return await accountLimitedTransactionController.updateLimitedTransaction(
             accountId, limitedTransactionId,
             limit, attempts, key,
             value, recipient,
@@ -357,60 +357,60 @@ router.put(env.RootApiEndpoint + 'owner/limitedTransactions/:limitedTransactionI
 
 // client device routes
 router.get(env.RootApiEndpoint + 'owner/clientDevices', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice[]>(async () => {
         if (!accountId) return null
-        return await userClientDeviceController.getClientDevices(accountId)
+        return await accountClientDeviceController.getClientDevices(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/clientDevices', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
         if (!accountId) return null
-        return await userClientDeviceController.saveClientDevice(accountId, ua, description, disabled)
+        return await accountClientDeviceController.saveClientDevice(accountId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
         if (!accountId) return null
-        return await userClientDeviceController.getClientDevice(accountId, clientDeviceId)
+        return await accountClientDeviceController.getClientDevice(accountId, clientDeviceId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId } = req.params
     const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
         if (!accountId) return null
-        return await userClientDeviceController.updateClientDevice(accountId, clientDeviceId, ua, description, disabled)
+        return await accountClientDeviceController.updateClientDevice(accountId, clientDeviceId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
         if (!accountId) return null
-        return await userClientDeviceController.deleteClientDevice( accountId, clientDeviceId )
+        return await accountClientDeviceController.deleteClientDevice( accountId, clientDeviceId )
     })
 
     return res.status(statusCode).send(result)
@@ -419,62 +419,62 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId', async
 
 // client devices access token
 router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken[]>(async () => {
         if (!accountId) return null
-        return await userClientDeviceAccessTokenController.getClientDeviceAccessTokens(accountId, clientDeviceId)
+        return await accountClientDeviceAccessTokenController.getClientDeviceAccessTokens(accountId, clientDeviceId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId } = req.params
     const { expiration, description, ipAddress, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!accountId) return null
-        return await userClientDeviceAccessTokenController.saveClientDeviceAccessToken(accountId, clientDeviceId, expiration, description, ipAddress, disabled)
+        return await accountClientDeviceAccessTokenController.saveClientDeviceAccessToken(accountId, clientDeviceId, expiration, description, ipAddress, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId, accessTokenId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!accountId) return null
-        return await userClientDeviceAccessTokenController.getClientDeviceAccessToken(accountId, clientDeviceId, accessTokenId)
+        return await accountClientDeviceAccessTokenController.getClientDeviceAccessToken(accountId, clientDeviceId, accessTokenId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId, accessTokenId } = req.params
     const { description, ipAddress, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!accountId) return null
-        return await userClientDeviceAccessTokenController.updateClientDeviceAccessToken(accountId, clientDeviceId, accessTokenId, description, ipAddress, disabled)
+        return await accountClientDeviceAccessTokenController.updateClientDeviceAccessToken(accountId, clientDeviceId, accessTokenId, description, ipAddress, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId', async (req:Request, res:Response) => {
-    const accountId = req?.userData?._id
+    const accountId = req?.accountData?._id
     const { clientDeviceId, accessTokenId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!accountId) return null
-        return await userClientDeviceAccessTokenController.deleteClientDeviceAccessToken( accountId, clientDeviceId, accessTokenId )
+        return await accountClientDeviceAccessTokenController.deleteClientDeviceAccessToken( accountId, clientDeviceId, accessTokenId )
     })
 
     return res.status(statusCode).send(result)
@@ -482,55 +482,55 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessT
 
 // workspaces
 router.get(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace[]>(async () => {
-        return await userWorkspaceController.getWorkspaces(accountId)
+        return await accountWorkspaceController.getWorkspaces(accountId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.post(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { name, description, isActive, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.saveWorkspace(accountId, name, description, isActive, disabled)
+        return await accountWorkspaceController.saveWorkspace(accountId, name, description, isActive, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.getWorkspace(accountId, workspaceId)
+        return await accountWorkspaceController.getWorkspace(accountId, workspaceId)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
     const { name, description, isActive, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, isActive, disabled)
+        return await accountWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, isActive, disabled)
     })
 
     return res.status(statusCode).send(result)
 })
 
 router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await userWorkspaceController.deleteWorkspace( accountId, workspaceId )
+        return await accountWorkspaceController.deleteWorkspace( accountId, workspaceId )
     })
 
     return res.status(statusCode).send(result)
@@ -538,7 +538,7 @@ router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req,
 
 // workspace account refs
 router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceAccountRef & {username?:string})[]>(async () => {
@@ -549,7 +549,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', as
 })
 
 router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
     const { username, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
@@ -561,7 +561,7 @@ router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', a
 })
 
 router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId, accountRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef & {username?:string}>(async () => {
@@ -572,7 +572,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:acc
 })
 
 router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId, accountRefId } = req.params
     const { readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
@@ -584,7 +584,7 @@ router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:acc
 })
 
 router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId', async (req, res) => {
-    const accountId = req?.userData?._id || ''
+    const accountId = req?.accountData?._id || ''
     const { workspaceId, accountRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {

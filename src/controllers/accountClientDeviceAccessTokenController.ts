@@ -1,6 +1,6 @@
 import accountModel, { IAccount,IAccessToken } from '../dataSource/models/accountModel'
-import userController from './accountController'
-import userClientDeviceController from './accountClientDeviceController'
+import accountController from './accountController'
+import accountClientDeviceController from './accountClientDeviceController'
 import DataCleaner from '../utilities/dataCleaner'
 import Encryption from '../utilities/encryption'
 // import Config from '../utilities/config'
@@ -28,13 +28,13 @@ class AccountClientDeviceAccessTokenController {
 
             if (hasChanges) {
                 await account.save()
-                await userController.cachedData.removeCacheData(accountId)
+                await accountController.cachedData.removeCacheData(accountId)
             }
         }
     }
 
     public hasClientDeviceAccessTokenJWT(account:IAccount, clientDeviceId:string, jwt:string):boolean {
-        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
+        const clientDevice = accountClientDeviceController.getClientDeviceById(account, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
@@ -50,7 +50,7 @@ class AccountClientDeviceAccessTokenController {
 
     public getClientDeviceAccessTokenByJWT(account:IAccount, clientDeviceId:string, jwt:string):IAccessToken|null {
 
-        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
+        const clientDevice = accountClientDeviceController.getClientDeviceById(account, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
@@ -66,7 +66,7 @@ class AccountClientDeviceAccessTokenController {
 
     public getClientDeviceAccessTokenById(account:IAccount, clientDeviceId:string, accessTokenId:string):IAccessToken|null {
 
-        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
+        const clientDevice = accountClientDeviceController.getClientDeviceById(account, clientDeviceId)
         // check client devices if existed
         if (clientDevice && clientDevice.accessTokens) {
             // then loop to all access token of the client device
@@ -83,7 +83,7 @@ class AccountClientDeviceAccessTokenController {
     public async getClientDeviceAccessToken(accountId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
         if (!(accountId && clientDeviceId && accessTokenId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const accessToken = this.getClientDeviceAccessTokenById(account, clientDeviceId, accessTokenId)
@@ -95,10 +95,10 @@ class AccountClientDeviceAccessTokenController {
     public async getClientDeviceAccessTokens(accountId:string, clientDeviceId:string):Promise<IAccessToken[]> {
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
-        const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
+        const clientDevice = accountClientDeviceController.getClientDeviceById(account, clientDeviceId)
 
         return clientDevice && clientDevice.accessTokens? clientDevice.accessTokens: []
     }
@@ -122,7 +122,7 @@ class AccountClientDeviceAccessTokenController {
         account.clientDevices!.id(clientDeviceId)?.accessTokens?.push(doc)
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return this.getClientDeviceAccessTokenByJWT(account, clientDeviceId, jwtStr)
     }
@@ -141,7 +141,7 @@ class AccountClientDeviceAccessTokenController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)
     }
@@ -156,7 +156,7 @@ class AccountClientDeviceAccessTokenController {
         if (accessTokenData) {
             account.clientDevices!.id(clientDeviceId)!.accessTokens!.id(accessTokenId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

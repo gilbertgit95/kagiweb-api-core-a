@@ -2499,7 +2499,7 @@
   "name": "Intern",
   "level": 3,
   "reqLimitPerSec": 120,
-  "description": "for first time internal users",
+  "description": "for first time internal accounts",
   "absoluteAuthority": false,
   "featuresRefs": [
     {

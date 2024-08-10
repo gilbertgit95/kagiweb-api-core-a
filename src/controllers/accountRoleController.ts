@@ -1,5 +1,5 @@
 import accountModel, { IAccount, IRoleRef } from '../dataSource/models/accountModel'
-import userController from './accountController'
+import accountController from './accountController'
 import roleController from './roleController'
 import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -52,7 +52,7 @@ class AccountRoleController {
     public async getRoleRef(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
         if (!(accountId && roleRefId)) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const roleRef = this.getRoleRefByRefId(account, roleRefId)
@@ -64,7 +64,7 @@ class AccountRoleController {
     public async getRoleRefs(accountId:string):Promise<IRoleRef[]> {
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getAccount({_id: accountId})
+        const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         
         return account!.rolesRefs? account!.rolesRefs: []
@@ -88,7 +88,7 @@ class AccountRoleController {
         }
         account.rolesRefs!.push(doc)
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return this.getRoleRefByRoleId(account, roleId)
     }
@@ -115,7 +115,7 @@ class AccountRoleController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.rolesRefs!.id(roleRefId)
     }
@@ -132,7 +132,7 @@ class AccountRoleController {
         }
 
         await account.save()
-        await userController.cachedData.removeCacheData(accountId)
+        await accountController.cachedData.removeCacheData(accountId)
 
         return account.rolesRefs!.id(roleRefId)
     }
@@ -150,7 +150,7 @@ class AccountRoleController {
         if (roleRefData) {
             account!.rolesRefs?.id(roleRefId)?.deleteOne()
             await account.save()
-            await userController.cachedData.removeCacheData(accountId)
+            await accountController.cachedData.removeCacheData(accountId)
         } else {
             throw({code: 404})
         }

@@ -3697,7 +3697,7 @@
     "Accounts"
   ],
   "value": "PRIVATE USER NAV - Signin",
-  "description": "One of the ui private user drawer nav",
+  "description": "One of the ui private account drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.697Z"
   },
@@ -3714,7 +3714,7 @@
     "Accounts"
   ],
   "value": "PRIVATE USER NAV - Signin OTP",
-  "description": "One of the ui private user drawer nav",
+  "description": "One of the ui private account drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.709Z"
   },
@@ -3731,7 +3731,7 @@
     "Accounts"
   ],
   "value": "PRIVATE USER NAV - Test Action",
-  "description": "One of the ui private user drawer nav",
+  "description": "One of the ui private account drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.721Z"
   },

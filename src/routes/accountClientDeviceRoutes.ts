@@ -4,7 +4,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userClientDeviceController from '../controllers/accountClientDeviceController'
+import accountClientDeviceController from '../controllers/accountClientDeviceController'
 import { IClientDevice } from '../dataSource/models/accountModel'
 
 const router = express.Router()
@@ -14,7 +14,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/clientDevices', async (req
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice[]>(async () => {
-        return await userClientDeviceController.getClientDevices(accountId)
+        return await accountClientDeviceController.getClientDevices(accountId)
     })
 
     return res.status(statusCode).send(result)
@@ -25,7 +25,7 @@ router.post(env.RootApiEndpoint + 'accounts/:accountId/clientDevices', async (re
     const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.saveClientDevice(accountId, ua, description, disabled)
+        return await accountClientDeviceController.saveClientDevice(accountId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -35,7 +35,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDevic
     const { accountId, clientDeviceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.getClientDevice(accountId, clientDeviceId)
+        return await accountClientDeviceController.getClientDevice(accountId, clientDeviceId)
     })
 
     return res.status(statusCode).send(result)
@@ -46,7 +46,7 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDevic
     const { ua, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.updateClientDevice(accountId, clientDeviceId, ua, description, disabled)
+        return await accountClientDeviceController.updateClientDevice(accountId, clientDeviceId, ua, description, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -56,7 +56,7 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDe
    const { accountId, clientDeviceId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IClientDevice>(async () => {
-        return await userClientDeviceController.deleteClientDevice( accountId, clientDeviceId )
+        return await accountClientDeviceController.deleteClientDevice( accountId, clientDeviceId )
     })
 
     return res.status(statusCode).send(result)
