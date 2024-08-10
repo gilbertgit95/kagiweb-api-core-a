@@ -284,7 +284,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "type": "api-route",
   "updatedAt": {
@@ -301,7 +301,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "type": "api-route",
   "updatedAt": {
@@ -318,7 +318,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "type": "api-route",
   "updatedAt": {
@@ -335,7 +335,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "type": "api-route",
   "updatedAt": {
@@ -352,7 +352,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "type": "api-route",
   "updatedAt": {
@@ -369,7 +369,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/roles",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
   "type": "api-route",
@@ -387,7 +387,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/roles/:roleRefId",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
   "type": "api-route",
@@ -405,7 +405,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/roles",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
   "type": "api-route",
@@ -423,7 +423,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
   "type": "api-route",
@@ -441,7 +441,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/roles/:roleRefId",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
   "type": "api-route",
@@ -459,7 +459,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/accountInfos",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
   "type": "api-route",
@@ -477,7 +477,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/accountInfos",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
   "type": "api-route",
@@ -495,7 +495,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
   "type": "api-route",
@@ -513,7 +513,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
   "type": "api-route",
@@ -531,7 +531,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
   "type": "api-route",
@@ -549,7 +549,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/contactInfos",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
   "type": "api-route",
@@ -567,7 +567,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/contactInfos",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
   "type": "api-route",
@@ -585,7 +585,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
   "type": "api-route",
@@ -603,7 +603,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
   "type": "api-route",
@@ -621,7 +621,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
   "type": "api-route",
@@ -639,7 +639,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/passwords",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
   "type": "api-route",
@@ -657,7 +657,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/passwords",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
   "type": "api-route",
@@ -675,7 +675,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/passwords/:passwordId",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
   "type": "api-route",
@@ -693,7 +693,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/passwords/:passwordId",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
   "type": "api-route",
@@ -711,7 +711,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/limitedTransactions",
   "tags": [
-    "Users",
+    "Accounts",
     "Limited Transactions"
   ],
   "type": "api-route",
@@ -729,7 +729,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
   "tags": [
-    "Users",
+    "Accounts",
     "Limited Transactions"
   ],
   "type": "api-route",
@@ -747,7 +747,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
   "tags": [
-    "Users",
+    "Accounts",
     "Limited Transactions"
   ],
   "type": "api-route",
@@ -765,7 +765,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
   "type": "api-route",
@@ -783,7 +783,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/clientDevices",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
   "type": "api-route",
@@ -801,7 +801,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
   "type": "api-route",
@@ -819,7 +819,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
   "type": "api-route",
@@ -837,7 +837,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
   "type": "api-route",
@@ -855,7 +855,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
@@ -874,7 +874,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
@@ -893,7 +893,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
@@ -912,7 +912,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
@@ -931,7 +931,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
@@ -1660,12 +1660,12 @@
 },
 {
   "_id": "99cd716d-f87d-4df9-bf0d-d7daf940e8c9",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accounts",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accounts",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1677,12 +1677,12 @@
 },
 {
   "_id": "f051edc1-ab38-4b26-b8c6-ee2b30bebd9f",
-  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accounts",
+  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "POST - /api/v1/owner/workspaces/:workspaceId/accounts",
+  "name": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1694,12 +1694,12 @@
 },
 {
   "_id": "88f16fd9-ed25-4ec3-b13d-56b1c5792bed",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
+  "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1711,12 +1711,12 @@
 },
 {
   "_id": "8076174f-0d4f-412c-beb6-0afe5b91cd6f",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
+  "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1728,12 +1728,12 @@
 },
 {
   "_id": "5c87717f-d085-40ea-a385-d269a3a7f0f8",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "createdAt": {
     "$date": "2023-12-24T04:05:14.319Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accounts/:accountRefId",
+  "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
     "Owner",
     "Workspaces"
@@ -1752,7 +1752,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/completeInfo",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "type": "api-route",
   "updatedAt": {
@@ -1784,7 +1784,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId/activate",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
   "type": "api-route",
@@ -1924,7 +1924,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "type": "api-route",
@@ -1941,7 +1941,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/workspaces",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "type": "api-route",
@@ -1958,7 +1958,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "type": "api-route",
@@ -1975,7 +1975,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "type": "api-route",
@@ -1992,7 +1992,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "type": "api-route",
@@ -2009,7 +2009,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
@@ -2027,7 +2027,7 @@
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
@@ -2045,7 +2045,7 @@
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
@@ -2063,7 +2063,7 @@
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
@@ -2081,7 +2081,7 @@
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
@@ -2281,12 +2281,12 @@
 },
 {
   "_id": "463c5f3c-7dc3-4143-ad28-1bebe5be61b8",
-  "name": "PRIVATE ROUTE - users",
+  "name": "PRIVATE ROUTE - accounts",
   "type": "ui-route",
   "tags": [
-    "Users"
+    "Accounts"
   ],
-  "value": "PRIVATE ROUTE - users",
+  "value": "PRIVATE ROUTE - accounts",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.048Z"
@@ -2298,12 +2298,12 @@
 },
 {
   "_id": "521c6863-ddda-45f9-b575-4c7130c3afc5",
-  "name": "PRIVATE ROUTE - users/create",
+  "name": "PRIVATE ROUTE - accounts/create",
   "type": "ui-route",
   "tags": [
-    "Users"
+    "Accounts"
   ],
-  "value": "PRIVATE ROUTE - users/create",
+  "value": "PRIVATE ROUTE - accounts/create",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.055Z"
@@ -2315,12 +2315,12 @@
 },
 {
   "_id": "c8fb0bef-a032-466a-87ac-a41aa25fd015",
-  "name": "PRIVATE ROUTE - users/view/:accountId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId",
   "type": "ui-route",
   "tags": [
-    "Users"
+    "Accounts"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.063Z"
@@ -2332,12 +2332,12 @@
 },
 {
   "_id": "8870ba3e-4127-44b2-a8db-0cd6971475e2",
-  "name": "PRIVATE ROUTE - users/edit/:accountId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId",
   "type": "ui-route",
   "tags": [
-    "Users"
+    "Accounts"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.070Z"
@@ -2349,13 +2349,13 @@
 },
 {
   "_id": "9503aaf5-33cf-4660-8b88-19dadc03a831",
-  "name": "PRIVATE ROUTE - users/view/:accountId/roles",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/roles",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/roles",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/roles",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.077Z"
@@ -2367,13 +2367,13 @@
 },
 {
   "_id": "7d973fe9-9895-4d7e-aa7c-fb560879dfb9",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/roles",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/roles",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/roles",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/roles",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.086Z"
@@ -2385,13 +2385,13 @@
 },
 {
   "_id": "2dca6744-dcc2-488a-8518-f2ef937dcd26",
-  "name": "PRIVATE ROUTE - users/view/:accountId/passwords",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/passwords",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/passwords",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/passwords",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.093Z"
@@ -2403,13 +2403,13 @@
 },
 {
   "_id": "cd0412f7-6fa6-41d5-abc4-a16bed42e2be",
-  "name": "PRIVATE ROUTE - users/create/:accountId/passwords",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/passwords",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/passwords",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/passwords",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.101Z"
@@ -2421,13 +2421,13 @@
 },
 {
   "_id": "245f47a6-365e-4154-a037-f45d5614feb4",
-  "name": "PRIVATE ROUTE - users/view/:accountId/limitedTransactions",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/limitedTransactions",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.109Z"
@@ -2439,13 +2439,13 @@
 },
 {
   "_id": "9dd4605a-d915-4c66-8795-e817804a6a42",
-  "name": "PRIVATE ROUTE - users/view/:accountId/limitedTransactions/:limitedTransactionId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions/:limitedTransactionId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/limitedTransactions/:limitedTransactionId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions/:limitedTransactionId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.117Z"
@@ -2457,13 +2457,13 @@
 },
 {
   "_id": "226ca68b-79b7-4481-bc65-7df612340c2c",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/limitedTransactions/:limitedTransactionId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/limitedTransactions/:limitedTransactionId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/limitedTransactions/:limitedTransactionId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/limitedTransactions/:limitedTransactionId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.124Z"
@@ -2475,13 +2475,13 @@
 },
 {
   "_id": "24e85d3c-8886-4ec5-91e7-21846a2f8c4e",
-  "name": "PRIVATE ROUTE - users/view/:accountId/clientDevices",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/clientDevices",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.131Z"
@@ -2493,13 +2493,13 @@
 },
 {
   "_id": "c99042c3-39b1-4ecd-ad01-5d81f8bf0fdb",
-  "name": "PRIVATE ROUTE - users/create/:accountId/clientDevices",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/clientDevices",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.138Z"
@@ -2511,13 +2511,13 @@
 },
 {
   "_id": "d0067d4d-b6f6-4c77-8d2e-815976e52ab3",
-  "name": "PRIVATE ROUTE - users/view/:accountId/clientDevices/:clientDeviceId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/clientDevices/:clientDeviceId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.145Z"
@@ -2529,13 +2529,13 @@
 },
 {
   "_id": "c01b1874-ee5d-4e52-9a83-2a09ab224b0a",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/clientDevices/:clientDeviceId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/clientDevices/:clientDeviceId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.153Z"
@@ -2547,14 +2547,14 @@
 },
 {
   "_id": "7af92d4d-bc40-4663-bb07-65ac7167fcad",
-  "name": "PRIVATE ROUTE - users/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.160Z"
@@ -2566,14 +2566,14 @@
 },
 {
   "_id": "9801cb07-315f-42c8-a996-0ac0e2771263",
-  "name": "PRIVATE ROUTE - users/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.168Z"
@@ -2585,14 +2585,14 @@
 },
 {
   "_id": "a9d5c483-963d-47e6-b762-3e3596a5e273",
-  "name": "PRIVATE ROUTE - users/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.175Z"
@@ -2604,14 +2604,14 @@
 },
 {
   "_id": "0e2cbd12-10ae-436d-a381-348b17cf0b51",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.183Z"
@@ -2623,13 +2623,13 @@
 },
 {
   "_id": "ae489ee7-5aab-4de6-9684-f5f1250b4879",
-  "name": "PRIVATE ROUTE - users/view/:accountId/contactInfos",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/contactInfos",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.192Z"
@@ -2641,13 +2641,13 @@
 },
 {
   "_id": "cc6a0ad9-f554-48cb-9b01-ed59b634ad65",
-  "name": "PRIVATE ROUTE - users/view/:accountId/contactInfos/:contactInfoId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos/:contactInfoId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/contactInfos/:contactInfoId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos/:contactInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.200Z"
@@ -2659,13 +2659,13 @@
 },
 {
   "_id": "fe2f393b-ada6-4ca3-aaa0-88a88f79c46c",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/contactInfos/:contactInfoId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/contactInfos/:contactInfoId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/contactInfos/:contactInfoId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/contactInfos/:contactInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.208Z"
@@ -2677,13 +2677,13 @@
 },
 {
   "_id": "ffd07045-31ec-4842-a0ee-e68677e53bae",
-  "name": "PRIVATE ROUTE - users/create/:accountId/contactInfos",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/contactInfos",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/contactInfos",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/contactInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.216Z"
@@ -2695,13 +2695,13 @@
 },
 {
   "_id": "cef3fdb0-9604-4a4a-8ecd-8c35352b56ce",
-  "name": "PRIVATE ROUTE - users/view/:accountId/accountInfos",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/accountInfos",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.224Z"
@@ -2713,13 +2713,13 @@
 },
 {
   "_id": "8a32e32f-1751-4049-abd7-2808fb1d1976",
-  "name": "PRIVATE ROUTE - users/view/:accountId/accountInfos/:accountInfoId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos/:accountInfoId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/accountInfos/:accountInfoId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos/:accountInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.231Z"
@@ -2731,13 +2731,13 @@
 },
 {
   "_id": "433901b6-2cb7-44de-bf28-2b75ac47b72f",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/accountInfos/:accountInfoId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/accountInfos/:accountInfoId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/accountInfos/:accountInfoId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/accountInfos/:accountInfoId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.241Z"
@@ -2749,13 +2749,13 @@
 },
 {
   "_id": "5172f854-55de-4f2a-9340-65519a205433",
-  "name": "PRIVATE ROUTE - users/create/:accountId/accountInfos",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/accountInfos",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/accountInfos",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/accountInfos",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.249Z"
@@ -2767,13 +2767,13 @@
 },
 {
   "_id": "80e21351-0630-4477-8e35-a5b62216cc34",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.256Z"
@@ -2785,13 +2785,13 @@
 },
 {
   "_id": "ecec0665-c59f-4faa-946e-4909e5089534",
-  "name": "PRIVATE ROUTE - users/create/:accountId/workspaces",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/workspaces",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/workspaces",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/workspaces",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.263Z"
@@ -2803,13 +2803,13 @@
 },
 {
   "_id": "5ac5c51b-c167-4bc1-9a74-2e5119479690",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.272Z"
@@ -2821,13 +2821,13 @@
 },
 {
   "_id": "50b2e3bf-3052-440e-aa50-d093760a0cb9",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.279Z"
@@ -2839,14 +2839,14 @@
 },
 {
   "_id": "df2155fd-d1bb-4e4e-bd40-72c0606c80a8",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.287Z"
@@ -2858,14 +2858,14 @@
 },
 {
   "_id": "ed33c10f-6931-4601-a921-dfab0d6da938",
-  "name": "PRIVATE ROUTE - users/create/:accountId/workspaces/:workspaceId/accountRefs",
+  "name": "PRIVATE ROUTE - accounts/create/:accountId/workspaces/:workspaceId/accountRefs",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/create/:accountId/workspaces/:workspaceId/accountRefs",
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/workspaces/:workspaceId/accountRefs",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.294Z"
@@ -2877,14 +2877,14 @@
 },
 {
   "_id": "878c9621-dfdf-4637-9d8d-4a11798dfde2",
-  "name": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.303Z"
@@ -2896,14 +2896,14 @@
 },
 {
   "_id": "d22eaecf-d609-4014-82ae-46544e3a9a2c",
-  "name": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "name": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - users/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.310Z"
@@ -3518,7 +3518,7 @@
   "name": "PRIVATE ROUTE - workspaces/view/:workspaceId",
   "type": "ui-route",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "value": "PRIVATE ROUTE - workspaces/view/:workspaceId",
@@ -3536,7 +3536,7 @@
   "name": "PRIVATE MAIN NAV - Workspace Dash*",
   "type": "ui-main-drawer",
   "tags": [
-    "Users",
+    "Accounts",
     "Workspaces"
   ],
   "value": "PRIVATE MAIN NAV - Workspace Dash*",
@@ -3554,7 +3554,7 @@
   "name": "PRIVATE MAIN NAV - Products*",
   "type": "ui-main-drawer",
   "tags": [
-    "Users",
+    "Accounts",
     "Products"
   ],
   "value": "PRIVATE MAIN NAV - Products*",
@@ -3572,7 +3572,7 @@
   "name": "PRIVATE MAIN NAV - Home",
   "type": "ui-main-drawer",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "value": "PRIVATE MAIN NAV - Home",
   "description": "One of the ui main drawer nav",
@@ -3589,7 +3589,7 @@
   "name": "PRIVATE MAIN NAV - Notes*",
   "type": "ui-main-drawer",
   "tags": [
-    "Users",
+    "Accounts",
     "Notes"
   ],
   "value": "PRIVATE MAIN NAV - Notes*",
@@ -3607,7 +3607,7 @@
   "name": "PRIVATE MAIN NAV - Tasks*",
   "type": "ui-main-drawer",
   "tags": [
-    "Users",
+    "Accounts",
     "Tasks"
   ],
   "value": "PRIVATE MAIN NAV - Tasks*",
@@ -3625,7 +3625,7 @@
   "name": "PRIVATE MAIN NAV - Notifications*",
   "type": "ui-main-drawer",
   "tags": [
-    "Users",
+    "Accounts",
     "Notifications"
   ],
   "value": "PRIVATE MAIN NAV - Notifications*",
@@ -3674,18 +3674,18 @@
 },
 {
   "_id": "2e2000bb-4ff2-46f4-aede-e71fde170bb2",
-  "name": "PRIVATE MAIN NAV - Users",
+  "name": "PRIVATE MAIN NAV - Accounts",
   "type": "ui-main-drawer",
   "tags": [
-    "Users"
+    "Accounts"
   ],
-  "value": "PRIVATE MAIN NAV - Users",
+  "value": "PRIVATE MAIN NAV - Accounts",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.689Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.689Z"
+    "$date": "2024-07-16T00:46:42.988Z"
   },
   "__v": 0
 },
@@ -3694,10 +3694,10 @@
   "name": "PRIVATE USER NAV - Signin",
   "type": "ui-account-drawer",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "value": "PRIVATE USER NAV - Signin",
-  "description": "One of the ui private account drawer nav",
+  "description": "One of the ui private user drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.697Z"
   },
@@ -3711,10 +3711,10 @@
   "name": "PRIVATE USER NAV - Signin OTP",
   "type": "ui-account-drawer",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "value": "PRIVATE USER NAV - Signin OTP",
-  "description": "One of the ui private account drawer nav",
+  "description": "One of the ui private user drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.709Z"
   },
@@ -3728,10 +3728,10 @@
   "name": "PRIVATE USER NAV - Test Action",
   "type": "ui-account-drawer",
   "tags": [
-    "Users"
+    "Accounts"
   ],
   "value": "PRIVATE USER NAV - Test Action",
-  "description": "One of the ui private account drawer nav",
+  "description": "One of the ui private user drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.721Z"
   },
