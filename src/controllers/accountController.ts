@@ -23,10 +23,10 @@ interface IAccountCompleteInfo {
     features: IFeature[]|null,
     workspace: IWorkspace|null,
     workspaces: IWorkspace[]|null,
-    externalWorkspaces: (IWorkspace & {ownerId:string, ownerUsername: string})[]|null
+    externalWorkspaces: (IWorkspace & {ownerId:string, ownerAccountname: string})[]|null
 }
 
-class UserController {
+class AccountController {
     public cachedData:DataCache
     public request:DataRequest
 
@@ -70,7 +70,7 @@ class UserController {
                 const rolesMap = await roleController.getRolesMap()
                 const activeRoleRef = userRoleController.getActiveRoleRef(account)
                 const activeRole = activeRoleRef? rolesMap[activeRoleRef.roleId]: null
-                const userRoles = account?.rolesRefs.map(item => rolesMap[item.roleId])
+                const accountRoles = account?.rolesRefs.map(item => rolesMap[item.roleId])
 
                 const featuresMap = await featureController.getFeaturesMap()
                 let roleFeatures = activeRole?.featuresRefs?.map(item => featuresMap[item.featureId]) || null
@@ -79,7 +79,7 @@ class UserController {
                 }
 
                 resp.role = activeRole
-                resp.roles = userRoles
+                resp.roles = accountRoles
                 resp.features = roleFeatures
                 resp.workspace = userWorkspaceController.getActiveWorkspace(account)
                 resp.workspaces = account.workspaces
@@ -90,20 +90,20 @@ class UserController {
         return resp
     }
 
-    public async getUser(query:IAccountQuery, includeSensitiveInfo=false):Promise<IAccount|null> {
+    public async getAccount(query:IAccountQuery, includeSensitiveInfo=false):Promise<IAccount|null> {
         if (!query._id) return null
         let account = await this.cachedData.getItem<IAccount>(query._id)
         if (account && !includeSensitiveInfo) account = this.clearSensitiveInfo(account)
         return account
     }
 
-    public async getAllUsers(includeSensitiveInfo=false):Promise<IAccount[]> {
+    public async getAllAccounts(includeSensitiveInfo=false):Promise<IAccount[]> {
         let accounts = await this.cachedData.getAllItems<IAccount>()
         if (accounts && !includeSensitiveInfo) accounts.forEach(account => {this.clearSensitiveInfo(account)})
         return accounts
     }
 
-    public async getUsersByPage(query:IAccountQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IAccount>> {
+    public async getAccountsByPage(query:IAccountQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IAccount>> {
         let paginatedData = await this.request.getItemsByPage<IAccount>(query, {}, {}, pageInfo)
         if (paginatedData.items) {
             paginatedData.items.forEach(account => {this.clearSensitiveInfo(account)})
@@ -111,7 +111,7 @@ class UserController {
         return paginatedData
     }
 
-    public async saveUser(username:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> {
+    public async saveAccount(username:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> {
         // check username if already existing
         if (await accountModel.findOne({username})) throw({code: 409}) // conflict
 
@@ -163,7 +163,7 @@ class UserController {
         return account
     }
 
-    public async updateUser(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
+    public async updateAccount(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
         const doc:{username?:string, disabled?:boolean, verified?:boolean} = {}
         if (!id) return null
         // check username if already existing
@@ -227,7 +227,7 @@ class UserController {
         return account
     }
 
-    public async deleteUser(id:string):Promise<IAccount | null> {
+    public async deleteAccount(id:string):Promise<IAccount | null> {
         let account = await this.cachedData.deleteItem<IAccount>(id)
         if (account) account = this.clearSensitiveInfo(account)
         return account
@@ -237,4 +237,4 @@ class UserController {
 export {
     IAccountCompleteInfo
 }
-export default new UserController()
+export default new AccountController()

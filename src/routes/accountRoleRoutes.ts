@@ -56,7 +56,7 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId/roles/:roleRefId/activate'
     const { accountId, roleRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await userRoleController.activateUserRole(accountId, roleRefId)
+        return await userRoleController.activateAccountRole(accountId, roleRefId)
     })
 
     return res.status(statusCode).send(result)

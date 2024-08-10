@@ -4,8 +4,8 @@ interface Env {
     AppAdminConfirmKey: string,
 
     DafaultPagination: number,
-    DafaultUserLTLimit: number,
-    DafaultUserLTExpiration: number,
+    DafaultAccountLTLimit: number,
+    DafaultAccountLTExpiration: number,
 
     DefaultPasswordExpiration: number,
 
@@ -33,8 +33,8 @@ class Config {
             AppAdminConfirmKey: process.env.APP_ADMIN_CONFIRM_KEY? process.env.APP_ADMIN_CONFIRM_KEY: '',
 
             DafaultPagination: Number(process.env.DEFAULT_PAGINATION),
-            DafaultUserLTLimit: Number(process.env.DEFAULT_USER_LT_LIMIT),
-            DafaultUserLTExpiration: Number(process.env.DEFAULT_USER_LT_EXP),
+            DafaultAccountLTLimit: Number(process.env.DEFAULT_USER_LT_LIMIT),
+            DafaultAccountLTExpiration: Number(process.env.DEFAULT_USER_LT_EXP),
 
             DefaultPasswordExpiration: Number(process.env.DEFAULT_PASSWORD_EXP),
 

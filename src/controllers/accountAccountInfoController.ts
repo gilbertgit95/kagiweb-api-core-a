@@ -4,7 +4,7 @@ import userController from './accountController'
 
 // const env = Config.getEnv()
 
-class UserAccountInfoController {
+class AccountAccountInfoController {
     public hasAccountInfoKey(account:IAccount, accountInfoKey:string):boolean {
         if (account && account.accountInfos) {
             for (const info of account.accountInfos) {
@@ -40,7 +40,7 @@ class UserAccountInfoController {
     public async getAccountInfo(accountId:string, accountInfoId:string):Promise<IAccountInfo|null> {
         if (!(accountId && accountInfoId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const accountInfo = this.getAccountInfoById(account, accountInfoId)
@@ -53,7 +53,7 @@ class UserAccountInfoController {
         let result:IAccountInfo[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.accountInfos? account!.accountInfos: []
 
@@ -113,4 +113,4 @@ class UserAccountInfoController {
     }
 }
 
-export default new UserAccountInfoController()
+export default new AccountAccountInfoController()

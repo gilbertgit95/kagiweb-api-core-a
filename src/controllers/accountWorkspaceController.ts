@@ -6,7 +6,7 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-class UserWorkspaceController {
+class AccountWorkspaceController {
     public getActiveWorkspace(account:IAccount):IWorkspace|null {
 
         if (account && account.workspaces) {
@@ -32,7 +32,7 @@ class UserWorkspaceController {
     public async getWorkspace(accountId:string, workspaceId:string):Promise<IWorkspace|null> {
         if (!(accountId && workspaceId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const workspace = this.getWorkspaceById(account, workspaceId)
@@ -41,14 +41,14 @@ class UserWorkspaceController {
         return workspace
     }
 
-    public async getExternalWorkspaces(accountId:string):Promise<(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[]> {
-        let result:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = []
+    public async getExternalWorkspaces(accountId:string):Promise<(IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string})[]> {
+        let result:(IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string})[] = []
         if (!accountId) throw({code: 400})
 
-        const extWorkspaces:(IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerUsername: string, ownerAccountType: string}>([
+        const extWorkspaces:(IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string}>([
             {
               '$match': {
-                'workspaces.userRefs.accountId': accountId
+                'workspaces.accountRefs.accountId': accountId
               }
             }, {
               '$unwind': {
@@ -57,7 +57,7 @@ class UserWorkspaceController {
               }
             }, {
               '$addFields': {
-                'user': '$workspaces.userRefs'
+                'account': '$workspaces.accountRefs'
               }
             }, {
               '$unwind': {
@@ -74,10 +74,10 @@ class UserWorkspaceController {
                 'name': '$workspaces.name',
                 'description': '$workspaces.description',
                 'ownerId': '$_id',
-                'ownerUsername': '$username',
+                'ownerAccountname': '$username',
                 'ownerAccountType': '$accountType',
                 'isActive': '$workspaces.isActive',
-                'userRefs': '$workspaces.userRefs',
+                'accountRefs': '$workspaces.accountRefs',
                 'createdAt': '$workspaces.createdAt',
                 'updatedAt': '$workspaces.updatedAt',
                 'disabled': '$workspaces.disabled'
@@ -95,7 +95,7 @@ class UserWorkspaceController {
         let result:IWorkspace[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.workspaces? account!.workspaces: []
 
@@ -169,4 +169,4 @@ class UserWorkspaceController {
     }
 }
 
-export default new UserWorkspaceController()
+export default new AccountWorkspaceController()

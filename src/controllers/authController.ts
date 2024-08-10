@@ -58,7 +58,7 @@ class AuthController {
                 // create randnom key and expiration time
                 const otpKey:string = Encryption.generateRandNumber().toString()
                 const expTime:Date = moment()
-                    .add(env.DafaultUserLTExpiration, 'minutes')
+                    .add(env.DafaultAccountLTExpiration, 'minutes')
                     .toDate()
 
                 // reset otp-signin with the random key
@@ -263,7 +263,7 @@ class AuthController {
         }
 
         // then save the new account to the database
-        const createdUser = await accountModel.create(account)
+        const createdAccount = await accountModel.create(account)
 
         // emit event to verify account !soon todo
         appEvents.emit('account-created', {
@@ -272,7 +272,7 @@ class AuthController {
             account: null,
             lt: null,
             module: 'signup',
-            createdUser: createdUser,
+            createdAccount: createdAccount,
             password: password
         })
 
@@ -314,7 +314,7 @@ class AuthController {
         if (resetPassLT && !resetPassLT.disabled) {
             const otpKey:string = Encryption.generateRandNumber().toString()
             const expTime:Date = moment()
-                .add(env.DafaultUserLTExpiration, 'minutes')
+                .add(env.DafaultAccountLTExpiration, 'minutes')
                 .toDate()
 
             // reset otp-signin with the random key

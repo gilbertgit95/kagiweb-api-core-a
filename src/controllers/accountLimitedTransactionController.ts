@@ -6,7 +6,7 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-class UserLimitedTransactionController {
+class AccountLimitedTransactionController {
     public verifyLimitedTransactionKey(account:IAccount, lt:string, key:string):boolean {
         let result = false
 
@@ -80,7 +80,7 @@ class UserLimitedTransactionController {
     public async getLimitedTransaction(accountId:string, limitedTransactionId:string):Promise<ILimitedTransaction|null> {
         if (!(accountId && limitedTransactionId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const accountInfo = this.getLimitedTransactionById(account, limitedTransactionId)
@@ -93,7 +93,7 @@ class UserLimitedTransactionController {
         let result:ILimitedTransaction[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.limitedTransactions? account!.limitedTransactions: []
 
@@ -128,4 +128,4 @@ class UserLimitedTransactionController {
     }
 }
 
-export default new UserLimitedTransactionController()
+export default new AccountLimitedTransactionController()

@@ -7,7 +7,7 @@ import Config from '../utilities/config'
 
 const env = Config.getEnv()
 
-class UserPasswordController {
+class AccountPasswordController {
     /**
      * 
      * @param {Object} account - is account object
@@ -75,7 +75,7 @@ class UserPasswordController {
     public async getPassword(accountId:string, passwordId:string):Promise<IPassword|null> {
         if (!(accountId && passwordId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const password = this.getPasswordById(account, passwordId)
@@ -87,7 +87,7 @@ class UserPasswordController {
         let result:IPassword[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.passwords? account!.passwords: []
 
@@ -161,4 +161,4 @@ class UserPasswordController {
     }
 }
 
-export default new UserPasswordController()
+export default new AccountPasswordController()

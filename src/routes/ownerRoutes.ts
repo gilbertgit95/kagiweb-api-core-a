@@ -32,7 +32,7 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
     const accountId = req?.userData?._id
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await userController.getUser({_id: accountId})
+        return await userController.getAccount({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
@@ -44,7 +44,7 @@ router.put(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
         if (!accountId) return null
-        return await userController.updateUser(accountId, username, disabled, verified)
+        return await userController.updateAccount(accountId, username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
@@ -101,7 +101,7 @@ router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId/activate', async (req, 
     const { roleRefId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await userRoleController.activateUserRole(accountId, roleRefId)
+        return await userRoleController.activateAccountRole(accountId, roleRefId)
     })
 
     return res.status(statusCode).send(result)

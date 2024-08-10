@@ -6,7 +6,7 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-class UserClientDeviceController {
+class AccountClientDeviceController {
     public hasClientDeviceUA(account:IAccount, ua:string):boolean {
         if (account && account.clientDevices) {
             for (const clientDevice of account.clientDevices) {
@@ -42,7 +42,7 @@ class UserClientDeviceController {
     public async getClientDevice(accountId:string, clientDeviceId:string):Promise<IClientDevice|null> {
         if (!(accountId && clientDeviceId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const clientDevice = this.getClientDeviceById(account, clientDeviceId)
@@ -55,7 +55,7 @@ class UserClientDeviceController {
         let result:IClientDevice[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.clientDevices? account!.clientDevices: []
 
@@ -130,4 +130,4 @@ class UserClientDeviceController {
     }
 }
 
-export default new UserClientDeviceController()
+export default new AccountClientDeviceController()

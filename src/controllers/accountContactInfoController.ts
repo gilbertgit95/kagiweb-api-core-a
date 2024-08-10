@@ -5,7 +5,7 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-class UserContactInfoController {
+class AccountContactInfoController {
     public hasContactInfoValue(account:IAccount, contactInfoVal:string):boolean {
         if (account && account.contactInfos) {
             for (const info of account.contactInfos) {
@@ -41,7 +41,7 @@ class UserContactInfoController {
     public async getContactInfo(accountId:string, contactInfoId:string):Promise<IContactInfo|null> {
         if (!(accountId && contactInfoId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const contactInfo = this.getContactInfoById(account, contactInfoId)
@@ -54,7 +54,7 @@ class UserContactInfoController {
         let result:IContactInfo[] = []
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         result = account!.contactInfos? account!.contactInfos: []
 
@@ -122,4 +122,4 @@ class UserContactInfoController {
     }
 }
 
-export default new UserContactInfoController()
+export default new AccountContactInfoController()

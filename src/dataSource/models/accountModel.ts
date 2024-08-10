@@ -99,7 +99,7 @@ interface IWorkspace {
     _id?: string,
     name: string,
     description?: string,
-    userRefs?: Types.DocumentArray<IWorkspaceAccountRef & Document>,
+    accountRefs?: Types.DocumentArray<IWorkspaceAccountRef & Document>,
     isActive?: boolean,
     disabled?: boolean
 }
@@ -226,7 +226,7 @@ const workspaceSchema = new Schema<IWorkspace>({
         required: false,
         validate: TextValidators.validateDescription
     },
-    userRefs: { type: [WorkspaceAccountRefSchema], required: false, default: [] },
+    accountRefs: { type: [WorkspaceAccountRefSchema], required: false, default: [] },
     isActive: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false}
 }, { timestamps: true })
@@ -244,7 +244,7 @@ const AccountSchema = new Schema<IAccount>({
         type: String,
         required: true,
         unique: true,
-        validate: TextValidators.validateUsername
+        validate: TextValidators.validateAccountname
     },
     rolesRefs: { type: [RoleRefSchema], required: true, },
     accountInfos: { type: [AccountInfoSchema], required: false },

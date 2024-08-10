@@ -51,7 +51,7 @@ class TextValidators {
     }
 
     // validate username
-    public static validateUsername = {
+    public static validateAccountname = {
         validator: (value:string):boolean => {
             return /^[A-Za-z0-9_]{6,29}$/.test(value)
         },

@@ -16,7 +16,7 @@ router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
 
     const [result, statusCode] = await ErrorHandler.execute<IListOutput<IAccount>>(async () => {
-        return await userController.getUsersByPage({}, pageInfo)
+        return await userController.getAccountsByPage({}, pageInfo)
     })
 
     return res.status(statusCode).send(result)
@@ -26,7 +26,7 @@ router.post(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await userController.saveUser(username, disabled, verified)
+        return await userController.saveAccount(username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
@@ -36,7 +36,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await userController.getUser({_id: accountId})
+        return await userController.getAccount({_id: accountId})
     })
 
     return res.status(statusCode).send(result)
@@ -57,7 +57,7 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
     const { username, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await userController.updateUser(accountId, username, disabled, verified)
+        return await userController.updateAccount(accountId, username, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
@@ -67,7 +67,7 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await userController.deleteUser(accountId)
+        return await userController.deleteAccount(accountId)
     })
 
     return res.status(statusCode).send(result)

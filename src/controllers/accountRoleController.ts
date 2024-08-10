@@ -6,7 +6,7 @@ import DataCleaner from '../utilities/dataCleaner'
 
 // const env = Config.getEnv()
 
-class UserRoleController {
+class AccountRoleController {
     public getActiveRoleRef(account:IAccount):IRoleRef|null {
         if (account && account.rolesRefs) {
             for (const ref of account.rolesRefs) {
@@ -52,7 +52,7 @@ class UserRoleController {
     public async getRoleRef(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
         if (!(accountId && roleRefId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const roleRef = this.getRoleRefByRefId(account, roleRefId)
@@ -64,7 +64,7 @@ class UserRoleController {
     public async getRoleRefs(accountId:string):Promise<IRoleRef[]> {
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
         
         return account!.rolesRefs? account!.rolesRefs: []
@@ -120,7 +120,7 @@ class UserRoleController {
         return account.rolesRefs!.id(roleRefId)
     }
 
-    public async activateUserRole(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
+    public async activateAccountRole(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
         if (!(accountId && roleRefId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
@@ -159,4 +159,4 @@ class UserRoleController {
     }
 }
 
-export default new UserRoleController()
+export default new AccountRoleController()

@@ -7,7 +7,7 @@ import Encryption from '../utilities/encryption'
 
 // const env = Config.getEnv()
 
-class UserClientDeviceAccessTokenController {
+class AccountClientDeviceAccessTokenController {
     public async removeInvalidTokens(accountId:string) {
         const account = await accountModel.findOne({_id: accountId})
         if (account) {
@@ -83,7 +83,7 @@ class UserClientDeviceAccessTokenController {
     public async getClientDeviceAccessToken(accountId:string, clientDeviceId:string, accessTokenId:string):Promise<IAccessToken|null> {
         if (!(accountId && clientDeviceId && accessTokenId)) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const accessToken = this.getClientDeviceAccessTokenById(account, clientDeviceId, accessTokenId)
@@ -95,7 +95,7 @@ class UserClientDeviceAccessTokenController {
     public async getClientDeviceAccessTokens(accountId:string, clientDeviceId:string):Promise<IAccessToken[]> {
         if (!accountId) throw({code: 400})
 
-        const account = await userController.getUser({_id: accountId})
+        const account = await userController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const clientDevice = userClientDeviceController.getClientDeviceById(account, clientDeviceId)
@@ -165,4 +165,4 @@ class UserClientDeviceAccessTokenController {
     }
 }
 
-export default new UserClientDeviceAccessTokenController()
+export default new AccountClientDeviceAccessTokenController()

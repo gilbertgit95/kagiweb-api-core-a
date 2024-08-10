@@ -34,7 +34,7 @@ class AccountInfoAndAccessProvider {
                 const tokenObj = await Encryption.verifyJWT<{accountId:string}>(token)
                 if (!(tokenObj && tokenObj.accountId)) throw({code: 401})
 
-                account = await userController.getUser({_id: tokenObj.accountId}, true)
+                account = await userController.getAccount({_id: tokenObj.accountId}, true)
                 req.userData = account
             } else {
                 throw({code: 401}) // Unauthorize

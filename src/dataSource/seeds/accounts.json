@@ -388,7 +388,7 @@
   "updatedAt": {
     "$date": "2024-08-02T23:25:21.216Z"
   },
-  "userInfos": [
+  "accountInfos": [
     {
       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
       "key": "Fullname",
@@ -459,9 +459,9 @@
       "isActive": false,
       "disabled": false,
       "_id": "39635615-70bc-4fad-84cf-ef9d672eed52",
-      "userRefs": [
+      "accountRefs": [
         {
-          "userId": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
+          "accountId": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
           "username": "Berting",
           "readAccess": true,
           "updateAccess": false,
@@ -479,7 +479,7 @@
           }
         },
         {
-          "userId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
+          "accountId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
           "readAccess": true,
           "updateAccess": false,
           "createAccess": false,
@@ -789,7 +789,7 @@
   ],
   "disabled": false,
   "verified": true,
-  "userInfos": [
+  "accountInfos": [
     {
       "key": "Fullname",
       "value": "Robert Lustiva",
@@ -969,7 +969,7 @@
   ],
   "disabled": false,
   "verified": true,
-  "userInfos": [
+  "accountInfos": [
     {
       "key": "Fullname",
       "value": "Roberto",
@@ -997,7 +997,7 @@
       "isActive": false,
       "disabled": false,
       "_id": "6cf90820-2d55-409e-ab9c-d1d7cca9b376",
-      "userRefs": [],
+      "accountRefs": [],
       "createdAt": {
         "$date": "2024-04-27T06:08:34.310Z"
       },
@@ -1139,7 +1139,7 @@
   ],
   "disabled": false,
   "verified": true,
-  "userInfos": [],
+  "accountInfos": [],
   "workspaces": [
     {
       "name": "Agua de Luna",
@@ -1147,9 +1147,9 @@
       "isActive": false,
       "disabled": false,
       "_id": "96d47cb8-3e6d-4ced-a367-94c8a2efaffb",
-      "userRefs": [
+      "accountRefs": [
         {
-          "userId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
           "readAccess": true,
           "updateAccess": true,
           "createAccess": false,
@@ -1179,9 +1179,9 @@
       "isActive": false,
       "disabled": false,
       "_id": "b6fa7ceb-71d0-4e49-bd86-422849727811",
-      "userRefs": [
+      "accountRefs": [
         {
-          "userId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
           "readAccess": true,
           "updateAccess": false,
           "createAccess": false,
