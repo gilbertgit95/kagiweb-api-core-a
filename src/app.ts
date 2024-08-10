@@ -7,7 +7,7 @@ import Config from './utilities/config'
 import appEvents from './utilities/appEvents'
 
 import clientInfoProvider from './middlewares/clientInfoProviderMiddleware'
-import userInfoAndAccessProvider from './middlewares/accountInfoAndAccessProviderMiddleware'
+import accountInfoAndAccessProvider from './middlewares/accountInfoAndAccessProviderMiddleware'
 
 import documentationRoutes from './routes/documentationRoutes'
 import authRoutes from './routes/authRoutes'
@@ -17,7 +17,7 @@ import roleRoutes from './routes/roleRoutes'
 import roleFeatureRoutes from './routes/roleFeatureRoutes'
 import userRoutes from './routes/accountRoutes'
 import userRoleRoutes from './routes/accountRoleRoutes'
-import userUserInfoRoutes from './routes/accountAccountInfoRoutes'
+import userAccountInfoRoutes from './routes/accountAccountInfoRoutes'
 import userContactInfoRoutes from './routes/accountContactInfoRoutes'
 import userPasswordRoutes from './routes/accountPasswordRoutes'
 import userLimitedTransactionRoutes from './routes/accountLimitedTransactionRoutes'
@@ -58,7 +58,7 @@ appHandler.addPublicRoute(authRoutes)
 
 // add middlewares for secured routes
 // routes for data api needs authorization
-appHandler.addPrivateMiddleware(userInfoAndAccessProvider)
+appHandler.addPrivateMiddleware(accountInfoAndAccessProvider)
 // private routes
 appHandler.addPrivateRoute(systemInfoRoutes)
 appHandler.addPrivateRoute(featureRoutes)
@@ -66,7 +66,7 @@ appHandler.addPrivateRoute(roleRoutes)
 appHandler.addPrivateRoute(roleFeatureRoutes)
 appHandler.addPrivateRoute(userRoutes)
 appHandler.addPrivateRoute(userRoleRoutes)
-appHandler.addPrivateRoute(userUserInfoRoutes)
+appHandler.addPrivateRoute(userAccountInfoRoutes)
 appHandler.addPrivateRoute(userContactInfoRoutes)
 appHandler.addPrivateRoute(userPasswordRoutes)
 appHandler.addPrivateRoute(userLimitedTransactionRoutes)

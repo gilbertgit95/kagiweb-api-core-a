@@ -4,7 +4,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import userUserInfoController from '../controllers/accountAccountInfoController'
+import userAccountInfoController from '../controllers/accountAccountInfoController'
 import { IAccountInfo } from '../dataSource/models/accountModel'
 
 const router = express.Router()
@@ -14,7 +14,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/accountInfos', async (req,
     const { accountId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo[]>(async () => {
-        return await userUserInfoController.getUserInfos(accountId)
+        return await userAccountInfoController.getAccountInfos(accountId)
     })
 
     return res.status(statusCode).send(result)
@@ -25,7 +25,7 @@ router.post(env.RootApiEndpoint + 'accounts/:accountId/accountInfos', async (req
     const { key, value, type } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
-        return await userUserInfoController.saveUserInfo(accountId, key, value, type)
+        return await userAccountInfoController.saveAccountInfo(accountId, key, value, type)
     })
 
     return res.status(statusCode).send(result)
@@ -35,7 +35,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/accountInfos/:accountInfoI
     const { accountId, accountInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
-        return await userUserInfoController.getUserInfo(accountId, accountInfoId)
+        return await userAccountInfoController.getAccountInfo(accountId, accountInfoId)
     })
 
     return res.status(statusCode).send(result)
@@ -46,7 +46,7 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId/accountInfos/:accountInfoI
     const { key, value, type } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
-        return await userUserInfoController.updateUserInfo(accountId, accountInfoId, key, value, type)
+        return await userAccountInfoController.updateAccountInfo(accountId, accountInfoId, key, value, type)
     })
 
     return res.status(statusCode).send(result)
@@ -56,7 +56,7 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/accountInfos/:accountIn
    const { accountId, accountInfoId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
-        return await userUserInfoController.deleteUserInfo( accountId, accountInfoId )
+        return await userAccountInfoController.deleteAccountInfo( accountId, accountInfoId )
     })
 
     return res.status(statusCode).send(result)

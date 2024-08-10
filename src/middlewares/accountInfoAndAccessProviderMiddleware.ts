@@ -12,7 +12,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import Encryption from '../utilities/encryption'
 import { RouterIdentity } from '../utilities/routerIdentity'
 
-class UserInfoAndAccessProvider {
+class AccountInfoAndAccessProvider {
     /**
      * this midddleware inserts userdata into request object base on jwt data,
      * then checks account access
@@ -79,4 +79,4 @@ class UserInfoAndAccessProvider {
     }
 }
 
-export default UserInfoAndAccessProvider.middleware
+export default AccountInfoAndAccessProvider.middleware

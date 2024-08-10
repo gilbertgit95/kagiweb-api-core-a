@@ -241,7 +241,7 @@ class AuthController {
             accountType: acountTypes[0],
             username,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
-            userInfo: [],
+            accountInfo: [],
             passwords: [
                 {
                     key: await Encryption.hashText(password),

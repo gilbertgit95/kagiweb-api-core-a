@@ -121,7 +121,7 @@ class UserController {
         const doc:any = { // eslint-disable-line @typescript-eslint/no-explicit-any
             username,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
-            userInfo: [],
+            accountInfo: [],
             passwords: [
                 {
                     key: await Encryption.hashText(defautPass),

@@ -4,32 +4,32 @@ import userController from './accountController'
 
 // const env = Config.getEnv()
 
-class UserUserInfoController {
-    public hasUserInfoKey(account:IAccount, userInfoKey:string):boolean {
-        if (account && account.userInfos) {
-            for (const info of account.userInfos) {
-                if (info.key === userInfoKey) return true
+class UserAccountInfoController {
+    public hasAccountInfoKey(account:IAccount, accountInfoKey:string):boolean {
+        if (account && account.accountInfos) {
+            for (const info of account.accountInfos) {
+                if (info.key === accountInfoKey) return true
             }
         }
 
         return false
     }
 
-    public getUserInfoByKey(account:IAccount, userInfoKey:string):IAccountInfo|null {
+    public getAccountInfoByKey(account:IAccount, accountInfoKey:string):IAccountInfo|null {
 
-        if (account && account.userInfos) {
-            for (const info of account.userInfos) {
-                if (info.key === userInfoKey) return info
+        if (account && account.accountInfos) {
+            for (const info of account.accountInfos) {
+                if (info.key === accountInfoKey) return info
             }
         }
 
         return null
     }
 
-    public getUserInfoById(account:IAccount, accountInfoId:string):IAccountInfo|null {
+    public getAccountInfoById(account:IAccount, accountInfoId:string):IAccountInfo|null {
 
-        if (account && account.userInfos) {
-            for (const info of account.userInfos) {
+        if (account && account.accountInfos) {
+            for (const info of account.accountInfos) {
                 if (info._id === accountInfoId) return info
             }
         }
@@ -37,72 +37,72 @@ class UserUserInfoController {
         return null
     }
 
-    public async getUserInfo(accountId:string, accountInfoId:string):Promise<IAccountInfo|null> {
+    public async getAccountInfo(accountId:string, accountInfoId:string):Promise<IAccountInfo|null> {
         if (!(accountId && accountInfoId)) throw({code: 400})
 
         const account = await userController.getUser({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountInfo = this.getUserInfoById(account, accountInfoId)
+        const accountInfo = this.getAccountInfoById(account, accountInfoId)
         if (!accountInfo) throw({code: 404})
 
         return accountInfo
     }
 
-    public async getUserInfos(accountId:string):Promise<IAccountInfo[]> {
+    public async getAccountInfos(accountId:string):Promise<IAccountInfo[]> {
         let result:IAccountInfo[] = []
         if (!accountId) throw({code: 400})
 
         const account = await userController.getUser({_id: accountId})
         if (!account) throw({code: 404})
-        result = account!.userInfos? account!.userInfos: []
+        result = account!.accountInfos? account!.accountInfos: []
 
         return result
     }
 
-    public async saveUserInfo(accountId:string, key:string, value:string, type:string):Promise<IAccountInfo|null> {
+    public async saveAccountInfo(accountId:string, key:string, value:string, type:string):Promise<IAccountInfo|null> {
         if (!(accountId && key && value && type)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
 
         // check if the account info to save is existing on the account account infos
-        if (this.hasUserInfoKey(account, key)) throw({code: 409})
+        if (this.hasAccountInfoKey(account, key)) throw({code: 409})
 
-        account.userInfos!.push({key, value, type})
-
-        await account.save()
-        await userController.cachedData.removeCacheData(accountId)
-
-        return this.getUserInfoByKey(account, key)
-    }
-
-    public async updateUserInfo(accountId:string, accountInfoId:string, key:string, value:string, type:TAccountInfoType):Promise<IAccountInfo|null> {
-        if (!(accountId && accountInfoId)) throw({code: 400})
-
-        const account = await accountModel.findOne({_id: accountId})
-        if (!account) throw({code: 404})
-        if (!account.userInfos?.id(accountInfoId)) throw({code: 404})
-
-        if (key) account.userInfos!.id(accountInfoId)!.key = key
-        if (value) account.userInfos!.id(accountInfoId)!.value = value
-        if (type) account.userInfos!.id(accountInfoId)!.type = type
+        account.accountInfos!.push({key, value, type})
 
         await account.save()
         await userController.cachedData.removeCacheData(accountId)
 
-        return account.userInfos!.id(accountInfoId)
+        return this.getAccountInfoByKey(account, key)
     }
 
-    public async deleteUserInfo(accountId:string, accountInfoId:string):Promise<IAccountInfo|null> {
+    public async updateAccountInfo(accountId:string, accountInfoId:string, key:string, value:string, type:TAccountInfoType):Promise<IAccountInfo|null> {
+        if (!(accountId && accountInfoId)) throw({code: 400})
+
+        const account = await accountModel.findOne({_id: accountId})
+        if (!account) throw({code: 404})
+        if (!account.accountInfos?.id(accountInfoId)) throw({code: 404})
+
+        if (key) account.accountInfos!.id(accountInfoId)!.key = key
+        if (value) account.accountInfos!.id(accountInfoId)!.value = value
+        if (type) account.accountInfos!.id(accountInfoId)!.type = type
+
+        await account.save()
+        await userController.cachedData.removeCacheData(accountId)
+
+        return account.accountInfos!.id(accountInfoId)
+    }
+
+    public async deleteAccountInfo(accountId:string, accountInfoId:string):Promise<IAccountInfo|null> {
         if (!(accountId && accountInfoId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountInfoData = account!.userInfos?.id(accountInfoId)
+        const accountInfoData = account!.accountInfos?.id(accountInfoId)
         if (accountInfoData) {
-            account!.userInfos?.id(accountInfoId)?.deleteOne()
+            account!.accountInfos?.id(accountInfoId)?.deleteOne()
             await account.save()
             await userController.cachedData.removeCacheData(accountId)
         } else {
@@ -113,4 +113,4 @@ class UserUserInfoController {
     }
 }
 
-export default new UserUserInfoController()
+export default new UserAccountInfoController()

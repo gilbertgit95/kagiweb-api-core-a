@@ -109,7 +109,7 @@ interface IAccount {
     accountType?: TAccountType,
     username: string,
     rolesRefs: Types.DocumentArray<IRoleRef & Document>,
-    userInfos: Types.DocumentArray<IAccountInfo & Document>,
+    accountInfos: Types.DocumentArray<IAccountInfo & Document>,
 
     passwords: Types.DocumentArray<IPassword & Document>,
 
@@ -247,7 +247,7 @@ const AccountSchema = new Schema<IAccount>({
         validate: TextValidators.validateUsername
     },
     rolesRefs: { type: [RoleRefSchema], required: true, },
-    userInfos: { type: [AccountInfoSchema], required: false },
+    accountInfos: { type: [AccountInfoSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
