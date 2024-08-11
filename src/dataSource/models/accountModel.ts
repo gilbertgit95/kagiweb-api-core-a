@@ -5,12 +5,12 @@ import TextValidators from '../validators/textValidators'
 // import DateValidators from '../validators/dateValidators'
 
 // types
-type TAccountType = 'account' | 'organization'
+type TAccountType = 'user' | 'organization'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
 type TAccountInfoType = 'string' | 'number' | 'date' | 'boolean'
 
-const acountTypes:TAccountType[] = ['account', 'organization']
+const acountTypes:TAccountType[] = ['user', 'organization']
 const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
 const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
 const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'boolean']
@@ -18,7 +18,7 @@ const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'boolea
 // queries
 interface IAccountQuery {
     _id?: string,
-    username?: string
+    nameId?: string
 }
 
 interface IAccountUpdate {
@@ -107,7 +107,7 @@ interface IWorkspace {
 interface IAccount {
     _id?: string,
     accountType?: TAccountType,
-    username: string,
+    nameId: string,
     rolesRefs: Types.DocumentArray<IRoleRef & Document>,
     accountInfos: Types.DocumentArray<IAccountInfo & Document>,
 
@@ -240,7 +240,7 @@ const AccountSchema = new Schema<IAccount>({
         required: false,
         default: acountTypes[0]
     },
-    username: {
+    nameId: {
         type: String,
         required: true,
         unique: true,

@@ -22,33 +22,33 @@ appEvents.on('otp', (data) => {
 
 appEvents.on('account-created', (data) => {
     if (data.module === 'signup') {
-        console.log(`account-created, module: ${ data.module }, username: ${ data.createdAccount?.username }`)
+        console.log(`account-created, module: ${ data.module }, nameId: ${ data.createdAccount?.nameId }`)
         //  do something you want
     } else if (data.module === 'admin') {
-        console.log(`account-created, module: ${ data.module }, defaut password is: ${ data.password }, username: ${ data.createdAccount?.username }`)
+        console.log(`account-created, module: ${ data.module }, defaut password is: ${ data.password }, nameId: ${ data.createdAccount?.nameId }`)
         //  do something you want
     }
 })
 
 appEvents.on('account-changed', (data) => {
-    if (data.property === 'username') {
-        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedAccount?.username }`)
+    if (data.property === 'nameId') {
+        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, nameId: ${ data.changedAccount?.nameId }`)
         //  do something you want
     } else if (data.property === 'disabled') {
-        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedAccount?.username }`)
+        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, nameId: ${ data.changedAccount?.nameId }`)
         //  do something you want
     } else if (data.property === 'verified') {
-        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedAccount?.username }`)
+        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, nameId: ${ data.changedAccount?.nameId }`)
         //  do something you want
     }
 })
 
 appEvents.on('workspace-update', (data) => {
     if (data.action === 'add') {
-        console.log(`workspace-update: ${ data.assignedAccount.username } was added to ${ data.account.username } -> ${ data.workspace.name }`)
+        console.log(`workspace-update: ${ data.assignedAccount.nameId } was added to ${ data.account.nameId } -> ${ data.workspace.name }`)
         //  do something you want
     } else if (data.action === 'remove') {
-        console.log(`workspace-update:  ${ data.assignedAccount.username } was removed from ${ data.account.username } -> ${ data.workspace.name }`)
+        console.log(`workspace-update:  ${ data.assignedAccount.nameId } was removed from ${ data.account.nameId } -> ${ data.workspace.name }`)
         //  do something you want
     }
 })

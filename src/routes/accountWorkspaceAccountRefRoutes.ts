@@ -13,7 +13,7 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/accountRefs', async (req, res) => {
     const { accountId, workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceAccountRef & {username?:string})[]>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceAccountRef & {nameId?:string})[]>(async () => {
         return await accountWorkspaceAccountRefController.getWorkspaceAccountRefs(accountId, workspaceId)
     })
 
@@ -22,10 +22,10 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/ac
 
 router.post(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/accountRefs', async (req, res) => {
     const { accountId, workspaceId } = req.params
-    const { username, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
+    const { nameId, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, username, readAccess, updateAccess, createAccess, deleteAccess, disabled)
+        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, nameId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -34,7 +34,7 @@ router.post(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/a
 router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId', async (req, res) => {
     const { accountId, workspaceId, accountRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef & {username?:string}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef & {nameId?:string}>(async () => {
         return await accountWorkspaceAccountRefController.getWorkspaceAccountRef(accountId, workspaceId, accountRefId)
     })
 

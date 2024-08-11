@@ -10,7 +10,7 @@ class ClientInfoProvider {
      * @param next 
      */
     public static async middleware(req:Request, res:Response, next:NextFunction) {
-        const accountAgentString = req.headers['account-agent']
+        const accountAgentString = req.headers['user-agent']
         const accountAgent = new UAParser(accountAgentString)
 
         req.accountAgentInfo = accountAgent.getResult()

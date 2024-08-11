@@ -33,29 +33,29 @@ class AccountWorkspaceAccountRefController {
         return null
     }
 
-    public async getWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef & {username?:string}|null> {
+    public async getWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef & {nameId?:string}|null> {
         if (!(accountId && workspaceId && accountRefId)) throw({code: 400})
 
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountRef:IWorkspaceAccountRef & {username?:string}|null = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
+        const accountRef:IWorkspaceAccountRef & {nameId?:string}|null = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
         if (!accountRef) throw({code: 404})
 
         const accountData = await accountController.getAccount({_id: accountRef.accountId})
-        accountRef.username = accountData?.username
+        accountRef.nameId = accountData?.nameId
 
         return accountRef
     }
 
-    public async getWorkspaceAccountRefs(accountId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {username?:string})[]> {
+    public async getWorkspaceAccountRefs(accountId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {nameId?:string})[]> {
         if (!accountId) throw({code: 400})
 
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
         const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
-        let accountRefs:(IWorkspaceAccountRef & {username?:string})[] = workspace?.accountRefs? workspace.accountRefs: []
+        let accountRefs:(IWorkspaceAccountRef & {nameId?:string})[] = workspace?.accountRefs? workspace.accountRefs: []
 
         const accountsData = await accountModel.find({_id: {$in: accountRefs.map(item => item.accountId)}})
         const accountDataMap = accountsData.reduce((acc:{[key:string]:IAccount}, item) => {
@@ -64,7 +64,7 @@ class AccountWorkspaceAccountRefController {
         }, {})
 
         return accountRefs.map(item => {
-            item.username = accountDataMap[item.accountId].username
+            item.nameId = accountDataMap[item.accountId].nameId
             return item
         })
     }
@@ -72,7 +72,7 @@ class AccountWorkspaceAccountRefController {
     public async saveWorkspaceAccountRef(
             accountId:string,
             workspaceId:string,
-            username:string,
+            nameId:string,
             readAccess:boolean|string,
             updateAccess:boolean|string,
             createAccess:boolean|string,
@@ -80,14 +80,14 @@ class AccountWorkspaceAccountRefController {
             disabled:boolean|string
         ):Promise<IWorkspaceAccountRef|null> {
 
-        if (!(accountId && workspaceId && username)) throw({code: 400})
+        if (!(accountId && workspaceId && nameId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
-        const assignedAccount = await accountModel.findOne({username})
+        const assignedAccount = await accountModel.findOne({nameId})
         if (!account) throw({code: 404})
-        if (!assignedAccount) throw({code: 404, message: `${ username } does not exist!`})
+        if (!assignedAccount) throw({code: 404, message: `${ nameId } does not exist!`})
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the workspace owner'})
-        if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ username } was already assigned to this workspace!`})
+        if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this workspace!`})
 
         const doc:IWorkspaceAccountRef = {
             accountId: assignedAccount._id

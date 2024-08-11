@@ -23,10 +23,10 @@ router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
 })
 
 router.post(env.RootApiEndpoint + 'accounts', async (req, res) => {
-    const { username, disabled, verified } = req.body
+    const { nameId, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await accountController.saveAccount(username, disabled, verified)
+        return await accountController.saveAccount(nameId, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
@@ -54,10 +54,10 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/completeInfo', async (req,
 
 router.put(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
     const { accountId } = req.params
-    const { username, disabled, verified } = req.body
+    const { nameId, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
-        return await accountController.updateAccount(accountId, username, disabled, verified)
+        return await accountController.updateAccount(accountId, nameId, disabled, verified)
     })
 
     return res.status(statusCode).send(result)

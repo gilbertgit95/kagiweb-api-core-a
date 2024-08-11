@@ -50,12 +50,12 @@ class TextValidators {
         message: (props:{value:string}):string => `${props.value} is not a valid password. Should have atleast a small and big letters, has number, has special character and atleast 8 characters in length.`
     }
 
-    // validate username
+    // validate nameId
     public static validateAccountname = {
         validator: (value:string):boolean => {
             return /^[A-Za-z0-9_]{6,29}$/.test(value)
         },
-        message: (props:{value:string}):string => `${props.value} is not a valid username.`
+        message: (props:{value:string}):string => `${props.value} is not a valid nameId.`
     }
 }
 

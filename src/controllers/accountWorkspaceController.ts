@@ -74,7 +74,7 @@ class AccountWorkspaceController {
                 'name': '$workspaces.name',
                 'description': '$workspaces.description',
                 'ownerId': '$_id',
-                'ownerAccountname': '$username',
+                'ownerAccountname': '$nameId',
                 'ownerAccountType': '$accountType',
                 'isActive': '$workspaces.isActive',
                 'accountRefs': '$workspaces.accountRefs',

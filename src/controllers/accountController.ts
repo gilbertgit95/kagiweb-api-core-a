@@ -111,15 +111,15 @@ class AccountController {
         return paginatedData
     }
 
-    public async saveAccount(username:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> {
-        // check username if already existing
-        if (await accountModel.findOne({username})) throw({code: 409}) // conflict
+    public async saveAccount(nameId:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> {
+        // check nameId if already existing
+        if (await accountModel.findOne({nameId})) throw({code: 409}) // conflict
 
         const role = await roleController.getLeastRole()
         const defautPass = Encryption.generateRandPassword()
 
         const doc:any = { // eslint-disable-line @typescript-eslint/no-explicit-any
-            username,
+            nameId,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             accountInfo: [],
             passwords: [
@@ -163,13 +163,13 @@ class AccountController {
         return account
     }
 
-    public async updateAccount(id:string, username:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
-        const doc:{username?:string, disabled?:boolean, verified?:boolean} = {}
+    public async updateAccount(id:string, nameId:string, disabled:boolean|string, verified:boolean|string):Promise<IAccount | null> { // eslint-disable-line @typescript-eslint/no-explicit-any
+        const doc:{nameId?:string, disabled?:boolean, verified?:boolean} = {}
         if (!id) return null
-        // check username if already existing
-        if (typeof username === 'string' && username.length) {
-            if (await accountModel.findOne({username})) throw({code: 409}) // conflict
-            doc.username = username
+        // check nameId if already existing
+        if (typeof nameId === 'string' && nameId.length) {
+            if (await accountModel.findOne({nameId})) throw({code: 409}) // conflict
+            doc.nameId = nameId
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
@@ -185,16 +185,16 @@ class AccountController {
 
         // then check for the particular properties would be changed
         // callback events if there are changes on the properties
-        // changes in username property
-        if (account && currAccountData && currAccountData.username !== account.username) {
+        // changes in nameId property
+        if (account && currAccountData && currAccountData.nameId !== account.nameId) {
             appEvents.emit('account-changed', {
                 device: null,
                 ip: null,
                 lt: null,
                 account: null,
-                property: 'username',
-                value: account.username,
-                previousValue: currAccountData.username,
+                property: 'nameId',
+                value: account.nameId,
+                previousValue: currAccountData.nameId,
                 changedAccount: account,
             })
         }

@@ -40,11 +40,11 @@ router.get(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
 
 router.put(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
     const accountId = req?.accountData?._id
-    const { username, disabled, verified } = req.body
+    const { nameId, disabled, verified } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccount>(async () => {
         if (!accountId) return null
-        return await accountController.updateAccount(accountId, username, disabled, verified)
+        return await accountController.updateAccount(accountId, nameId, disabled, verified)
     })
 
     return res.status(statusCode).send(result)
@@ -541,7 +541,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', as
     const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceAccountRef & {username?:string})[]>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<(IWorkspaceAccountRef & {nameId?:string})[]>(async () => {
         return await accountWorkspaceAccountRefController.getWorkspaceAccountRefs(accountId, workspaceId)
     })
 
@@ -551,10 +551,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', as
 router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', async (req, res) => {
     const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
-    const { username, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
+    const { nameId, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, username, readAccess, updateAccess, createAccess, deleteAccess, disabled)
+        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, nameId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -564,7 +564,7 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:acc
     const accountId = req?.accountData?._id || ''
     const { workspaceId, accountRefId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef & {username?:string}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef & {nameId?:string}>(async () => {
         return await accountWorkspaceAccountRefController.getWorkspaceAccountRef(accountId, workspaceId, accountRefId)
     })
 

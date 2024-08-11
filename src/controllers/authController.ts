@@ -14,11 +14,11 @@ import appEvents from '../utilities/appEvents'
 const env = Config.getEnv()
 
 class AuthController {
-    public async signin(username:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, username?: string, message?: string} | null> {
+    public async signin(nameId:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, nameId?: string, message?: string} | null> {
 
-        // fetch account using the username
-        let account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
-        let result:{token?: string, username?: string, message?: string} | null
+        // fetch account using the nameId
+        let account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
+        let result:{token?: string, nameId?: string, message?: string} | null
 
         // if no account found
         if (!account) {
@@ -77,7 +77,7 @@ class AuthController {
                     lt: otpSigninLT
                 })
                 // then return accountId
-                return { username: account.username, message: 'OTP has been sent' }
+                return { nameId: account.nameId, message: 'OTP has been sent' }
             }
 
             // normal signin
@@ -124,9 +124,9 @@ class AuthController {
     }
 
     // accountId:string, code:string
-    public async signinOTP(username:string, key:string, device:IClientDevice, ip:string):Promise<{token: string, message?: string } | null> {
-        // fetch account using the username
-        let account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
+    public async signinOTP(nameId:string, key:string, device:IClientDevice, ip:string):Promise<{token: string, message?: string } | null> {
+        // fetch account using the nameId
+        let account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
         let result:{ token: string, message?: string } | null
 
         // if no account found
@@ -201,12 +201,12 @@ class AuthController {
         return result
     }
 
-    public async signup(username:string, password:string, email?:string, phone?:string):Promise<{message:string}> {
+    public async signup(nameId:string, password:string, email?:string, phone?:string):Promise<{message:string}> {
         const contactinfos:IContactInfo[] = []
-        // check username and password exist
-        if (!(username && password)) throw({code: 400}) // Incorrect content in the request
-        // check username is unique
-        if (await accountModel.findOne({username})) throw({code: 409}) // conflict
+        // check nameId and password exist
+        if (!(nameId && password)) throw({code: 400}) // Incorrect content in the request
+        // check nameId is unique
+        if (await accountModel.findOne({nameId})) throw({code: 409}) // conflict
 
         // if email exist check if email is unique then generate email contact info
         if (email) {
@@ -239,7 +239,7 @@ class AuthController {
         // set the password
         const account = {
             accountType: acountTypes[0],
-            username,
+            nameId,
             rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
             accountInfo: [],
             passwords: [
@@ -279,10 +279,10 @@ class AuthController {
         return { message: 'Account successfully created' }
     }
 
-    public async forgotPassword(username:string, device:IClientDevice, ip:string):Promise<{ username:string, message?:string } | null> {
-        // fetch account using the username
-        const account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
-        let result:{ username: string, message?: string } | null = null
+    public async forgotPassword(nameId:string, device:IClientDevice, ip:string):Promise<{ nameId:string, message?:string } | null> {
+        // fetch account using the nameId
+        const account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
+        let result:{ nameId: string, message?: string } | null = null
 
 
         // if no account found
@@ -333,7 +333,7 @@ class AuthController {
             })
             
             // then return accountId
-            result = { username: account.username, message: 'Password reset key has been sent' }
+            result = { nameId: account.nameId, message: 'Password reset key has been sent' }
         } else {
             throw({code: 404}) // resource not found
         }
@@ -341,9 +341,9 @@ class AuthController {
         return result
     }
 
-    public async resetPassword(username:string, key:string, newPassword:string):Promise<{ message: string } | null> {
-        // fetch account using the username
-        const account = await accountModel.findOne({ username, verified: true, accountType: 'account' })
+    public async resetPassword(nameId:string, key:string, newPassword:string):Promise<{ message: string } | null> {
+        // fetch account using the nameId
+        const account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
         let result:{ message: string } | null = null
 
 

@@ -13,13 +13,13 @@ const router = express.Router()
 router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
     const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
-    const { username, password } = req.body
+    const { nameId, password } = req.body
 
-    // console.log(username, password)
+    // console.log(nameId, password)
 
     const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
         if (!ua || !ip) return null
-        return await authController.signin(username, password, ua, ip)
+        return await authController.signin(nameId, password, ua, ip)
     })
 
     return res.status(statusCode).send(result)
@@ -28,11 +28,11 @@ router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
 router.post(env.RootApiEndpoint + 'signinOTP', async (req:Request, res) => {
     const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
-    const { username, key } = req.body
+    const { nameId, key } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
         if (!ua || !ip) return null
-        return await authController.signinOTP(username, key, ua, ip)
+        return await authController.signinOTP(nameId, key, ua, ip)
     })
 
     return res.status(statusCode).send(result)
@@ -41,11 +41,11 @@ router.post(env.RootApiEndpoint + 'signinOTP', async (req:Request, res) => {
 router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
     const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
-    const { username, password, email, phone } = req.body
+    const { nameId, password, email, phone } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
         if (!ua || !ip) return null
-        return await authController.signup(username, password, email, phone)
+        return await authController.signup(nameId, password, email, phone)
     })
 
     return res.status(statusCode).send(result)
@@ -54,11 +54,11 @@ router.post(env.RootApiEndpoint + 'signup', async (req, res) => {
 router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
     const ua = req.accountAgentInfo? req.accountAgentInfo: null
     const ip = req.clientIp? req.clientIp: null
-    const { username } = req.body
+    const { nameId } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<{username:string}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<{nameId:string}>(async () => {
         if (!ua || !ip) return null
-        return await authController.forgotPassword(username, ua, ip)
+        return await authController.forgotPassword(nameId, ua, ip)
     })
 
     return res.status(statusCode).send(result)
@@ -66,10 +66,10 @@ router.post(env.RootApiEndpoint + 'forgotPassword', async (req, res) => {
 
 router.put(env.RootApiEndpoint + 'resetPassword', async (req, res) => {
 
-    const { username, key, newPassword } = req.body
+    const { nameId, key, newPassword } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<{message:string}>(async () => {
-        return await authController.resetPassword(username, key, newPassword)
+        return await authController.resetPassword(nameId, key, newPassword)
     })
 
     return res.status(statusCode).send(result)

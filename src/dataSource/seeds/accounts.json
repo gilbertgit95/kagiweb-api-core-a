@@ -450,7 +450,7 @@
       }
     }
   ],
-  "username": "gilbertgit95",
+  "nameId": "gilbertgit95",
   "verified": true,
   "workspaces": [
     {
@@ -462,7 +462,7 @@
       "accountRefs": [
         {
           "accountId": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
-          "username": "Berting",
+          "nameId": "Berting",
           "readAccess": true,
           "updateAccess": false,
           "createAccess": false,
@@ -504,12 +504,12 @@
       }
     }
   ],
-  "accountType": "account"
+  "accountType": "user"
 },
 {
   "_id": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
-  "accountType": "account",
-  "username": "master101",
+  "accountType": "user",
+  "nameId": "master101",
   "rolesRefs": [
     {
       "roleId": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
@@ -826,8 +826,8 @@
 },
 {
   "_id": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
-  "accountType": "account",
-  "username": "Berting89",
+  "accountType": "user",
+  "nameId": "Berting89",
   "rolesRefs": [
     {
       "roleId": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
@@ -1010,7 +1010,7 @@
 {
   "_id": "d5c52e70-a40a-421a-8b14-cc0cfa595c24",
   "accountType": "organization",
-  "username": "lunaCoop",
+  "nameId": "lunaCoop",
   "rolesRefs": [
     {
       "roleId": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",

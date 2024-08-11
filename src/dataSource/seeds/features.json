@@ -3536,7 +3536,7 @@
   "name": "PRIVATE MAIN NAV - Workspace Dash*",
   "type": "ui-main-drawer",
   "tags": [
-    "Accounts",
+    "Owner",
     "Workspaces"
   ],
   "value": "PRIVATE MAIN NAV - Workspace Dash*",
@@ -3545,96 +3545,97 @@
     "$date": "2024-06-20T00:55:58.626Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.626Z"
+    "$date": "2024-08-10T17:22:59.357Z"
   },
   "__v": 0
 },
 {
   "_id": "0abd73e3-65de-4af7-b3af-80c1b097503e",
-  "name": "PRIVATE MAIN NAV - Products*",
+  "name": "PRIVATE MAIN NAV - Workspace Notes*",
   "type": "ui-main-drawer",
   "tags": [
-    "Accounts",
-    "Products"
+    "Owner",
+    "Workspaces",
+    "Notes"
   ],
-  "value": "PRIVATE MAIN NAV - Products*",
+  "value": "PRIVATE MAIN NAV - Workspace Notes*",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.636Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.636Z"
+    "$date": "2024-08-10T17:22:46.460Z"
   },
   "__v": 0
 },
 {
   "_id": "8cbc586c-9021-4e1e-af33-5bdf705dc5fa",
-  "name": "PRIVATE MAIN NAV - Home",
+  "name": "PRIVATE MAIN NAV - Account Dashboard",
   "type": "ui-main-drawer",
   "tags": [
-    "Accounts"
+    "Owner"
   ],
-  "value": "PRIVATE MAIN NAV - Home",
+  "value": "PRIVATE MAIN NAV - Account Dashboard",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.645Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.645Z"
+    "$date": "2024-08-10T17:22:33.149Z"
   },
   "__v": 0
 },
 {
   "_id": "a728589f-b8d0-41bf-9355-a35e082cdea6",
-  "name": "PRIVATE MAIN NAV - Notes*",
+  "name": "PRIVATE MAIN NAV - Account Notes*",
   "type": "ui-main-drawer",
   "tags": [
-    "Accounts",
+    "Owner",
     "Notes"
   ],
-  "value": "PRIVATE MAIN NAV - Notes*",
+  "value": "PRIVATE MAIN NAV - Account Notes*",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.653Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.653Z"
+    "$date": "2024-08-10T17:21:57.117Z"
   },
   "__v": 0
 },
 {
   "_id": "3900f5ae-9b98-4772-b5d2-2a8b49e3649e",
-  "name": "PRIVATE MAIN NAV - Tasks*",
+  "name": "PRIVATE MAIN NAV - Account Tasks*",
   "type": "ui-main-drawer",
   "tags": [
-    "Accounts",
+    "Owner",
     "Tasks"
   ],
-  "value": "PRIVATE MAIN NAV - Tasks*",
+  "value": "PRIVATE MAIN NAV - Account Tasks*",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.660Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.660Z"
+    "$date": "2024-08-10T17:21:11.931Z"
   },
   "__v": 0
 },
 {
   "_id": "33da2a17-2b32-4ed0-bc84-61ab70afa64d",
-  "name": "PRIVATE MAIN NAV - Notifications*",
+  "name": "PRIVATE MAIN NAV - Workspace Dashboard*",
   "type": "ui-main-drawer",
   "tags": [
-    "Accounts",
-    "Notifications"
+    "Owner",
+    "Workspaces"
   ],
-  "value": "PRIVATE MAIN NAV - Notifications*",
+  "value": "PRIVATE MAIN NAV - Workspace Dashboard*",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.667Z"
   },
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.667Z"
+    "$date": "2024-08-10T17:20:54.892Z"
   },
   "__v": 0
 },
@@ -3691,35 +3692,18 @@
 },
 {
   "_id": "7c6ba371-eefb-49a2-920d-0bcd2a95d5bd",
-  "name": "PRIVATE USER NAV - Signin",
+  "name": "PRIVATE USER NAV - Test Link",
   "type": "ui-account-drawer",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE USER NAV - Signin",
-  "description": "One of the ui private account drawer nav",
+  "value": "PRIVATE USER NAV - Test Link",
+  "description": "One of the ui private user drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.697Z"
   },
   "updatedAt": {
-    "$date": "2024-06-22T10:58:10.355Z"
-  },
-  "__v": 0
-},
-{
-  "_id": "e411afa9-0d8e-488a-92f3-b752353cd4eb",
-  "name": "PRIVATE USER NAV - Signin OTP",
-  "type": "ui-account-drawer",
-  "tags": [
-    "Accounts"
-  ],
-  "value": "PRIVATE USER NAV - Signin OTP",
-  "description": "One of the ui private account drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.709Z"
-  },
-  "updatedAt": {
-    "$date": "2024-06-22T10:58:30.370Z"
+    "$date": "2024-08-10T16:44:38.878Z"
   },
   "__v": 0
 },
@@ -3731,12 +3715,31 @@
     "Accounts"
   ],
   "value": "PRIVATE USER NAV - Test Action",
-  "description": "One of the ui private account drawer nav",
+  "description": "One of the ui private user drawer nav",
   "createdAt": {
     "$date": "2024-06-20T00:55:58.721Z"
   },
   "updatedAt": {
     "$date": "2024-06-22T10:58:47.461Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "3ef7ec4b-4760-4b62-b7a7-52bcc03d134c",
+  "name": "PRIVATE MAIN NAV - Workspace Tasks*",
+  "type": "ui-main-drawer",
+  "tags": [
+    "Owner",
+    "Workspaces",
+    "Tasks"
+  ],
+  "value": "PRIVATE MAIN NAV - Workspace Tasks*",
+  "description": "One of the ui main drawer nav",
+  "createdAt": {
+    "$date": "2024-08-10T17:13:37.884Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-10T17:21:36.332Z"
   },
   "__v": 0
 }]
