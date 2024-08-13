@@ -12,6 +12,13 @@
   ],
   "main": "build/src/app.js",
   "types": "build/src/app.d.ts",
+  "publishConfig": {
+    "ignore": [
+        "!build/",
+        "src/",
+        "tests/"
+    ]
+  },
   "exports": {
     ".": "./build/src/app.js",
     "./mongoose": "./build/src/packages/mongoose.js",
@@ -25,23 +32,23 @@
     "./utils/logger": "./build/src/utilities/logger.js",
     "./models/featureModel": "./build/src/dataSource/models/featureModel.js",
     "./models/roleModel": "./build/src/dataSource/models/roleModel.js",
-    "./models/userModel": "./build/src/dataSource/models/userModel.js",
+    "./models/accountModel": "./build/src/dataSource/models/accountModel.js",
     "./models/workspaceModel": "./build/src/dataSource/models/workspaceModel.js",
     "./controllers/authController": "./build/src/controllers/authController.js",
     "./controllers/featureController": "./build/src/controllers/featureController.js",
     "./controllers/roleController": "./build/src/controllers/roleController.js",
     "./controllers/roleFeatureController": "./build/src/controllers/roleFeatureController.js",
     "./controllers/systemInfoController": "./build/src/controllers/systemInfoController.js",
-    "./controllers/userClientDeviceAccessTokenController": "./build/src/controllers/userClientDeviceAccessTokenController.js",
-    "./controllers/userClientDeviceController": "./build/src/controllers/userClientDeviceController.js",
-    "./controllers/userContactInfoController": "./build/src/controllers/userContactInfoController.js",
-    "./controllers/userController": "./build/src/controllers/userController.js",
-    "./controllers/userLimitedtransactionController": "./build/src/controllers/userLimitedtransactionController.js",
-    "./controllers/userPasswordController": "./build/src/controllers/userPasswordController.js",
-    "./controllers/userRoleController": "./build/src/controllers/userRoleController.js",
-    "./controllers/userUserInfoController": "./build/src/controllers/userUserInfoController.js",
-    "./controllers/userWorkspaceUserRefController": "./build/src/controllers/userWorkspaceUserRefController.js",
-    "./controllers/userWorkspaceController": "./build/src/controllers/userWorkspaceController.js"
+    "./controllers/accountClientDeviceAccessTokenController": "./build/src/controllers/accountClientDeviceAccessTokenController.js",
+    "./controllers/accountClientDeviceController": "./build/src/controllers/accountClientDeviceController.js",
+    "./controllers/accountContactInfoController": "./build/src/controllers/accountContactInfoController.js",
+    "./controllers/accountController": "./build/src/controllers/accountController.js",
+    "./controllers/accountLimitedtransactionController": "./build/src/controllers/accountLimitedtransactionController.js",
+    "./controllers/accountPasswordController": "./build/src/controllers/accountPasswordController.js",
+    "./controllers/accountRoleController": "./build/src/controllers/accountRoleController.js",
+    "./controllers/accountAccountInfoController": "./build/src/controllers/accountAccountInfoController.js",
+    "./controllers/accountWorkspaceAccountRefController": "./build/src/controllers/accountWorkspaceAccountRefController.js",
+    "./controllers/accountWorkspaceController": "./build/src/controllers/accountWorkspaceController.js"
   },
   "typesVersions": {
     "*": {
@@ -78,8 +85,8 @@
       "models/roleModel": [
         "build/src/dataSource/models/roleModel.d.ts"
       ],
-      "models/userModel": [
-        "build/src/dataSource/models/userModel.d.ts"
+      "models/accountModel": [
+        "build/src/dataSource/models/accountModel.d.ts"
       ],
       "models/workspaceModel": [
         "build/src/dataSource/models/workspaceModel.d.ts"
@@ -99,39 +106,40 @@
       "controllers/systemInfoController": [
         "build/src/controllers/systemInfoController.d.ts"
       ],
-      "controllers/userClientDeviceAccessTokenController": [
-        "build/src/controllers/userClientDeviceAccessTokenController.d.ts"
+      "controllers/accountClientDeviceAccessTokenController": [
+        "build/src/controllers/accountClientDeviceAccessTokenController.d.ts"
       ],
-      "controllers/userClientDeviceController": [
-        "build/src/controllers/userClientDeviceController.d.ts"
+      "controllers/accountClientDeviceController": [
+        "build/src/controllers/accountClientDeviceController.d.ts"
       ],
-      "controllers/userContactInfoController": [
-        "build/src/controllers/userContactInfoController.d.ts"
+      "controllers/accountContactInfoController": [
+        "build/src/controllers/accountContactInfoController.d.ts"
       ],
-      "controllers/userController": [
-        "build/src/controllers/userController.d.ts"
+      "controllers/accountController": [
+        "build/src/controllers/accountController.d.ts"
       ],
-      "controllers/userLimitedtransactionController": [
-        "build/src/controllers/userLimitedtransactionController.d.ts"
+      "controllers/accountLimitedtransactionController": [
+        "build/src/controllers/accountLimitedtransactionController.d.ts"
       ],
-      "controllers/userPasswordController": [
-        "build/src/controllers/userPasswordController.d.ts"
+      "controllers/accountPasswordController": [
+        "build/src/controllers/accountPasswordController.d.ts"
       ],
-      "controllers/userRoleController": [
-        "build/src/controllers/userRoleController.d.ts"
+      "controllers/accountRoleController": [
+        "build/src/controllers/accountRoleController.d.ts"
       ],
-      "controllers/userUserInfoController": [
-        "build/src/controllers/userUserInfoController.d.ts"
+      "controllers/accountAccountInfoController": [
+        "build/src/controllers/accountAccountInfoController.d.ts"
       ],
-      "controllers/userWorkspaceUserRefController": [
-        "build/src/controllers/userWorkspaceUserRefController.d.ts"
+      "controllers/accountWorkspaceAccountRefController": [
+        "build/src/controllers/accountWorkspaceAccountRefController.d.ts"
       ],
-      "controllers/userWorkspaceController": [
-        "build/src/controllers/userWorkspaceController.d.ts"
+      "controllers/accountWorkspaceController": [
+        "build/src/controllers/accountWorkspaceController.d.ts"
       ]
     }
   },
   "scripts": {
+    "prepack": "npmignore --auto",
     "start": "node build/src/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc -p ./tsconfig.json",
@@ -166,6 +174,7 @@
     "eslint": "^8.45.0",
     "jest": "^29.5.0",
     "mongodb-memory-server": "^8.13.0",
+    "npmignore": "^0.3.1",
     "supertest": "^6.3.3",
     "swagger-cli": "^4.0.4",
     "ts-jest": "^29.1.0",
