@@ -6,7 +6,7 @@ export {}
 declare global {
   namespace Express {
     export interface Request {
-        accountAgentInfo?: IClientDevice | null,
+        userAgentInfo?: IClientDevice | null,
         accountData?: IAccount | null
     }
   }

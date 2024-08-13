@@ -24,7 +24,7 @@ class AccountInfoAndAccessProvider {
     public static async middleware(req:Request, res:Response, next:NextFunction) {
         req.accountData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
-            const accountAgentInfo = req.accountAgentInfo
+            const userAgentInfo = req.userAgentInfo
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
             const token = accessToken && accessToken.split(' ')[1]? accessToken.split(' ')[1]: null
@@ -41,9 +41,9 @@ class AccountInfoAndAccessProvider {
             }
 
             // if account has been fetched, proceed to account access regulation process
-            if (account && accountAgentInfo) {
+            if (account && userAgentInfo) {
                 // check the account devices if the acces token existed
-                const clientDevice = accountClientDeviceController.getClientDeviceByUA(account, accountAgentInfo.ua)
+                const clientDevice = accountClientDeviceController.getClientDeviceByUA(account, userAgentInfo.ua)
                 if ( clientDevice && clientDevice._id &&
                     !accountClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(account, clientDevice._id, token)) {
                     throw({code: 401})

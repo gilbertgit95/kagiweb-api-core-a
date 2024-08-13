@@ -2,7 +2,7 @@
 > **Note**
 This app is still on its early stage of development
 
-This is an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, user management and other essential features of an account base system. Your responsibility will be focus only to the application content.
+This is an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, account management and other essential features of an account base system. Your responsibility will be focus only to the application content.
 
 
 ## Dependencies
@@ -42,10 +42,10 @@ After seeding, you can check your mongodb if it was successfully populated with 
 This is up to you on how you start the application. Just make sure you have imported and use the library in the right way. However if you use `@kagiweb-tech/cli` to setup your project, you can start the development by excuting `npm run dev` and `npm start` to run the build version.
 
 
-### Initial User
-A user is created during seeding. This user has a `Master` Role and it has absolute access to all endpoints. The default credential for this user is shown below.
+### Initial Account
+A account is created during seeding. This account has a `Master` Role and it has absolute access to all endpoints. The default credential for this account is shown below.
 ```
-username: master
+nameId: master
 password: master
 ```
 Please continue on the next section tobe able to signin and explore the available endpoints.
@@ -178,10 +178,10 @@ The application emits important events that you could listen. Example is when yo
 
 | Event Name         | Fields                                        |     Description                                           |
 |--------------------|-----------------------------------------------|-----------------------------------------------------------|
-| `otp`              | module, device, ip, user, lt                  | when, signing in, password reset and more in the future   |
-| `user-created`     | createdUser, module, password                 | When a user is created via signup or by admin             |
-| `user-changed`     | changedUser, property, value, previousValue   | When a users top level properties are changed             |
-| `workspace-update` | action, user, assignedUser, workspace         | When a user is added or removed from a workspace          |
+| `otp`              | module, device, ip, account, lt                  | when, signing in, password reset and more in the future   |
+| `account-created`     | createdAccount, module, password                 | When a account is created via signup or by admin             |
+| `account-changed`     | changedAccount, property, value, previousValue   | When a accounts top level properties are changed             |
+| `workspace-update` | action, account, assignedAccount, workspace         | When a account is added or removed from a workspace          |
 
 
 #### Complete Example
@@ -204,35 +204,35 @@ appEvents.on('otp', (data) => {
     }
 })
 
-appEvents.on('user-created', (data) => {
+appEvents.on('account-created', (data) => {
     if (data.module === 'signup') {
-        console.log(`user-created, module: ${ data.module }, username: ${ data.createdUser?.username }`)
+        console.log(`account-created, module: ${ data.module }, nameId: ${ data.createdAccount?.nameId }`)
         //  do something you want
     } else if (data.module === 'admin') {
-        console.log(`user-created, module: ${ data.module }, defaut password is: ${ data.password }, username: ${ data.createdUser?.username }`)
+        console.log(`account-created, module: ${ data.module }, defaut password is: ${ data.password }, nameId: ${ data.createdAccount?.nameId }`)
         //  do something you want
     }
 })
 
-appEvents.on('user-changed', (data) => {
-    if (data.property === 'username') {
-        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+appEvents.on('account-changed', (data) => {
+    if (data.property === 'nameId') {
+        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, nameId: ${ data.changedAccount?.nameId }`)
         //  do something you want
     } else if (data.property === 'disabled') {
-        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, nameId: ${ data.changedAccount?.nameId }`)
         //  do something you want
     } else if (data.property === 'verified') {
-        console.log(`user-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, username: ${ data.changedUser?.username }`)
+        console.log(`account-changed: ${ data.property }, value: ${ data.value }, previousValue: ${ data.previousValue }, nameId: ${ data.changedAccount?.nameId }`)
         //  do something you want
     }
 })
 
 appEvents.on('workspace-update', (data) => {
     if (data.action === 'add') {
-        console.log(`workspace-update: ${ data.assignedUser.username } was added to ${ data.user.username } -> ${ data.workspace.name }`)
+        console.log(`workspace-update: ${ data.assignedAccount.nameId } was added to ${ data.account.nameId } -> ${ data.workspace.name }`)
         //  do something you want
     } else if (data.action === 'remove') {
-        console.log(`workspace-update:  ${ data.assignedUser.username } was removed from ${ data.user.username } -> ${ data.workspace.name }`)
+        console.log(`workspace-update:  ${ data.assignedAccount.nameId } was removed from ${ data.account.nameId } -> ${ data.workspace.name }`)
         //  do something you want
     }
 })
@@ -251,7 +251,7 @@ Depending on the level your router is, you can access this data on the request o
 | Field Name         | Description                                                                                 |
 |--------------------|---------------------------------------------------------------------------------------------|
 | `userAgentInfo`    | the device that accessing the endpoint. This data is available from level 2 and above       |
-| `userData`         | the account that accessing the endpoint. This data is available from level 4 and above      |
+| `accountData`         | the account that accessing the endpoint. This data is available from level 4 and above      |
 
 #### Example
 ```ts
@@ -263,8 +263,8 @@ router.get('custom/route', async (req:any, res) => {
   console.log(req.userAgentInfo)
 
   // only available if this route is registered in level 4 and above
-  console.log(req.userData)
-  console.log(req.userActiveWorkspace)
+  console.log(req.accountData)
+  console.log(req.accountActiveWorkspace)
 
   return res.send({})
 })
@@ -312,7 +312,7 @@ Each level has its corresponding implementation in the main object methods.
     // customMiddleware is an express middleware
     appHandler.addPrivateMiddleware(customMiddleware)
     ```
-5. `Private Routes` - This are routes that user needs access rights before being able to use.
+5. `Private Routes` - This are routes that account needs access rights before being able to use.
     ```ts
     // customRoute is an express route
     appHandler.addPrivateRoute(customRoute)
@@ -323,10 +323,10 @@ Each level has its corresponding implementation in the main object methods.
 Mongoose models that are the bases of the core application
 - **Feature** - this contains all features that will be the bases of access provider.
   - @kagiweb-tech/api-core-a/models/featureModel
-- **Role** - This give users access to features.
+- **Role** - This give accounts access to features.
   - @kagiweb-tech/api-core-a/models/roleModel
-- **User** - application user.
-  - @kagiweb-tech/api-core-a/models/userModel
+- **Account** - application account.
+  - @kagiweb-tech/api-core-a/models/accountModel
 
 
 ### Controllers
@@ -336,19 +336,19 @@ Each models has one or more controllers. This are reusable data processors for t
 - **Role**
   - @kagiweb-tech/api-core-a/controllers/roleController
   - @kagiweb-tech/api-core-a/controllers/roleFeatureController
-- **User**
-  - @kagiweb-tech/api-core-a/controllers/userClientDeviceAccessTokenController
-  - @kagiweb-tech/api-core-a/controllers/userClientDeviceController
-  - @kagiweb-tech/api-core-a/controllers/userContactInfoController
-  - @kagiweb-tech/api-core-a/controllers/userController
-  - @kagiweb-tech/api-core-a/controllers/userLimitedtransactionController
-  - @kagiweb-tech/api-core-a/controllers/userPasswordController
-  - @kagiweb-tech/api-core-a/controllers/userRoleController
-  - @kagiweb-tech/api-core-a/controllers/userUserInfoController
+- **Account**
+  - @kagiweb-tech/api-core-a/controllers/accountClientDeviceAccessTokenController
+  - @kagiweb-tech/api-core-a/controllers/accountClientDeviceController
+  - @kagiweb-tech/api-core-a/controllers/accountContactInfoController
+  - @kagiweb-tech/api-core-a/controllers/accountController
+  - @kagiweb-tech/api-core-a/controllers/accountLimitedtransactionController
+  - @kagiweb-tech/api-core-a/controllers/accountPasswordController
+  - @kagiweb-tech/api-core-a/controllers/accountRoleController
+  - @kagiweb-tech/api-core-a/controllers/accountAccountInfoController
   - @kagiweb-tech/api-core-a/controllers/workspaceController
-  - @kagiweb-tech/api-core-a/controllers/workspaceUsersController
-  - @kagiweb-tech/api-core-a/controllers/userWorkspaceController
-  - @kagiweb-tech/api-core-a/controllers/userWorkspaceUserRefController
+  - @kagiweb-tech/api-core-a/controllers/workspaceAccountsController
+  - @kagiweb-tech/api-core-a/controllers/accountWorkspaceController
+  - @kagiweb-tech/api-core-a/controllers/accountWorkspaceAccountRefController
 - **Authentication**
   - @kagiweb-tech/api-core-a/controllers/authController
 - **System**
