@@ -10,27 +10,27 @@ Role:
 RoleFeature:
   $ref: ./roleFeatures/roleFeatureDefinition.yml
 
-# user related data definitions
-User:
-  $ref: ./users/userDefinition.yml
-UserRole:
-  $ref: ./userRoles/userRoleDefinition.yml
-UserUserInfo:
-  $ref: ./userUserInfos/userUserInfoDefinition.yml
-UserContactInfo:
-  $ref: ./userContactInfos/userContactInfoDefinition.yml
-UserPassword:
-  $ref: ./userPasswords/userPasswordDefinition.yml
-UserLimitedTransaction:
-  $ref: ./userLimitedTransactions/userLimitedTransactionDefinition.yml
-UserClientDevice:
-  $ref: ./userClientDevices/userClientDeviceDefinition.yml
-UserClientDeviceAccessToken:
-  $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokenDefinition.yml
-UserWorkspace:
-  $ref: ./userWorkspaces/userWorkspaceDefinition.yml
-UserWorkspaceUserRef:
-  $ref: ./userWorkspaceUserRefs/userWorkspaceUserRefDefinition.yml
+# account related data definitions
+Account:
+  $ref: ./accounts/accountDefinition.yml
+AccountRole:
+  $ref: ./accountRoles/accountRoleDefinition.yml
+AccountAccountInfo:
+  $ref: ./accountAccountInfos/accountAccountInfoDefinition.yml
+AccountContactInfo:
+  $ref: ./accountContactInfos/accountContactInfoDefinition.yml
+AccountPassword:
+  $ref: ./accountPasswords/accountPasswordDefinition.yml
+AccountLimitedTransaction:
+  $ref: ./accountLimitedTransactions/accountLimitedTransactionDefinition.yml
+AccountClientDevice:
+  $ref: ./accountClientDevices/accountClientDeviceDefinition.yml
+AccountClientDeviceAccessToken:
+  $ref: ./accountClientDeviceAccessTokens/accountClientDeviceAccessTokenDefinition.yml
+AccountWorkspace:
+  $ref: ./accountWorkspaces/accountWorkspaceDefinition.yml
+AccountWorkspaceAccountRef:
+  $ref: ./accountWorkspaceAccountRefs/accountWorkspaceAccountRefDefinition.yml
 
 
 # global data definitions

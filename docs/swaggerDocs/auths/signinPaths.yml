@@ -5,8 +5,8 @@ post:
     summary: Signin to the application to get jwt
     description: |
       Signin to the application to get jwt. If signin limited transaction is enabled then after certain
-      number of signin attempts the user will be disabled, if signin successfull it will return object containing jwt, username and message
-      If otp signin is enabled, generate otp code and send it to a user contact, also it will return username and message.
+      number of signin attempts the account will be disabled, if signin successfull it will return object containing jwt, nameId and message
+      If otp signin is enabled, generate otp code and send it to a account contact, also it will return nameId and message.
 
     produces:
       - application/json
@@ -16,10 +16,10 @@ post:
           schema:
             type: object
             required:
-              - username
+              - nameId
               - password
             properties:
-              username:
+              nameId:
                 type: string
               password:
                 type: string
@@ -32,14 +32,14 @@ post:
             schema:
               type: object
               properties:
-                username:
+                nameId:
                   type: string
                 token:
                   type: string
                 message:
                   type: string
             example:
-              username: master
+              nameId: master
               token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk
               message: Successful signin
       400:

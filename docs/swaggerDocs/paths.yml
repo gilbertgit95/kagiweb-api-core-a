@@ -30,51 +30,51 @@
 /roles/{roleId}/cloneFeatures:
   $ref: ./roleFeatures/rolesCloneFeaturesPaths.yml
 
-# paths inside /users
-/users:
-  $ref: ./users/usersPaths.yml
-/users/{id}:
-  $ref: ./users/usersSpecificPaths.yml
-/users/{id}/completeInfo:
-  $ref: ./users/usersCompleteInfoSpecificPaths.yml
-/users/{userId}/roles:
-  $ref: ./userRoles/userRolesPaths.yml
-/users/{userId}/roles/{roleRefId}:
-  $ref: ./userRoles/userRolesSpecificPaths.yml
-/users/{userId}/roles/{roleRefId}/activate:
-  $ref: ./userRoles/userRolesActivationPaths.yml
-/users/{userId}/userInfos:
-  $ref: ./userUserInfos/userUserInfosPaths.yml
-/users/{userId}/userInfos/{userInfoId}:
-  $ref: ./userUserInfos/userUserInfosSpecificPaths.yml
-/users/{userId}/contactInfos:
-  $ref: ./userContactInfos/userContactInfosPaths.yml
-/users/{userId}/contactInfos/{contactInfoId}:
-  $ref: ./userContactInfos/userContactInfosSpecificPaths.yml
-/users/{userId}/passwords:
-  $ref: ./userPasswords/userPasswordsPaths.yml
-/users/{userId}/passwords/{passwordId}:
-  $ref: ./userPasswords/userPasswordsSpecificPaths.yml
-/users/{userId}/limitedTransactions:
-  $ref: ./userLimitedTransactions/userLimitedTransactionsPaths.yml
-/users/{userId}/limitedTransactions/{limitedTransactionId}:
-  $ref: ./userLimitedTransactions/userLimitedTransactionsSpecificPaths.yml
-/users/{userId}/clientDevices:
-  $ref: ./userClientDevices/userClientDevicesPaths.yml
-/users/{userId}/clientDevices/{clientDeviceId}:
-  $ref: ./userClientDevices/userClientDevicesSpecificPaths.yml
-/users/{userId}/clientDevices/{clientDeviceId}/accessTokens:
-  $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokensPaths.yml
-/users/{userId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
-  $ref: ./userClientDeviceAccessTokens/userClientDeviceAccessTokensSpecificPaths.yml
-/users/{userId}/workspaces:
-  $ref: ./userWorkspaces/userWorkspacesPaths.yml
-/users/{userId}/workspaces/{workspaceId}:
-  $ref: ./userWorkspaces/userWorkspacesSpecificPaths.yml
-/users/{userId}/workspaces/{workspaceId}/userRefs:
-  $ref: ./userWorkspaceUserRefs/userWorkspaceUserRefsPaths.yml
-/users/{userId}/workspaces/{workspaceId}/userRefs/{userRefId}:
-  $ref: ./userWorkspaceUserRefs/userWorkspaceUserRefsSpecificPaths.yml
+# paths inside /accounts
+/accounts:
+  $ref: ./accounts/accountsPaths.yml
+/accounts/{id}:
+  $ref: ./accounts/accountsSpecificPaths.yml
+/accounts/{id}/completeInfo:
+  $ref: ./accounts/accountsCompleteInfoSpecificPaths.yml
+/accounts/{accountId}/roles:
+  $ref: ./accountRoles/accountRolesPaths.yml
+/accounts/{accountId}/roles/{roleRefId}:
+  $ref: ./accountRoles/accountRolesSpecificPaths.yml
+/accounts/{accountId}/roles/{roleRefId}/activate:
+  $ref: ./accountRoles/accountRolesActivationPaths.yml
+/accounts/{accountId}/accountInfos:
+  $ref: ./accountAccountInfos/accountAccountInfosPaths.yml
+/accounts/{accountId}/accountInfos/{accountInfoId}:
+  $ref: ./accountAccountInfos/accountAccountInfosSpecificPaths.yml
+/accounts/{accountId}/contactInfos:
+  $ref: ./accountContactInfos/accountContactInfosPaths.yml
+/accounts/{accountId}/contactInfos/{contactInfoId}:
+  $ref: ./accountContactInfos/accountContactInfosSpecificPaths.yml
+/accounts/{accountId}/passwords:
+  $ref: ./accountPasswords/accountPasswordsPaths.yml
+/accounts/{accountId}/passwords/{passwordId}:
+  $ref: ./accountPasswords/accountPasswordsSpecificPaths.yml
+/accounts/{accountId}/limitedTransactions:
+  $ref: ./accountLimitedTransactions/accountLimitedTransactionsPaths.yml
+/accounts/{accountId}/limitedTransactions/{limitedTransactionId}:
+  $ref: ./accountLimitedTransactions/accountLimitedTransactionsSpecificPaths.yml
+/accounts/{accountId}/clientDevices:
+  $ref: ./accountClientDevices/accountClientDevicesPaths.yml
+/accounts/{accountId}/clientDevices/{clientDeviceId}:
+  $ref: ./accountClientDevices/accountClientDevicesSpecificPaths.yml
+/accounts/{accountId}/clientDevices/{clientDeviceId}/accessTokens:
+  $ref: ./accountClientDeviceAccessTokens/accountClientDeviceAccessTokensPaths.yml
+/accounts/{accountId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
+  $ref: ./accountClientDeviceAccessTokens/accountClientDeviceAccessTokensSpecificPaths.yml
+/accounts/{accountId}/workspaces:
+  $ref: ./accountWorkspaces/accountWorkspacesPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}:
+  $ref: ./accountWorkspaces/accountWorkspacesSpecificPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}/accountRefs:
+  $ref: ./accountWorkspaceAccountRefs/accountWorkspaceAccountRefsPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}:
+  $ref: ./accountWorkspaceAccountRefs/accountWorkspaceAccountRefsSpecificPaths.yml
 
 # paths inside /workspaces
 
@@ -89,10 +89,10 @@
   $ref: ./owner/ownerRolesSpecificPaths.yml
 /owner/roles/{roleRefId}/activate:
   $ref: ./owner/ownerRolesActivationPaths.yml
-/owner/userInfos:
-  $ref: ./owner/ownerUserInfosPaths.yml
-/owner/userInfos/{userInfoId}:
-  $ref: ./owner/ownerUserInfosSpecificPaths.yml
+/owner/accountInfos:
+  $ref: ./owner/ownerAccountInfosPaths.yml
+/owner/accountInfos/{accountInfoId}:
+  $ref: ./owner/ownerAccountInfosSpecificPaths.yml
 /owner/contactInfos:
   $ref: ./owner/ownerContactInfosPaths.yml
 /owner/contactInfos/{contactInfoId}:
@@ -117,7 +117,7 @@
   $ref: ./owner/ownerWorkspacesPaths.yml
 /owner/workspaces/{workspaceId}:
   $ref: ./owner/ownerWorkspacesSpecificPaths.yml
-/owner/workspaces/{workspaceId}/userRefs:
-  $ref: ./owner/ownerWorkspaceUserRefsPaths.yml
-/owner/workspaces/{workspaceId}/userRefs/{userRefId}:
-  $ref: ./owner/ownerWorkspaceUserRefsSpecificPaths.yml
+/owner/workspaces/{workspaceId}/accountRefs:
+  $ref: ./owner/ownerWorkspaceAccountRefsPaths.yml
+/owner/workspaces/{workspaceId}/accountRefs/{accountRefId}:
+  $ref: ./owner/ownerWorkspaceAccountRefsSpecificPaths.yml

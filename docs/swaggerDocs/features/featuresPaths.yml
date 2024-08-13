@@ -77,7 +77,7 @@ post:
               description: this is the value that the access middleware will check.
             name:
               type: string
-              description: to make a user friendly identifier
+              description: to make a account friendly identifier
             tags:
               type: array
               item:

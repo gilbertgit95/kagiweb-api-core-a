@@ -1,0 +1,20 @@
+type: object
+required:
+  - ua
+properties:
+  ua:
+    type: string
+  description:
+    type: string
+  disabled:
+    type: boolean
+  accessTokens:
+    type: array
+    item:
+      $ref: ../accountClientDeviceAccessTokens/accountClientDeviceAccessTokenDefinition.yml
+
+example:
+  ua: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+  description: Test Client Device
+  disabled: false
+  accessTokens: []

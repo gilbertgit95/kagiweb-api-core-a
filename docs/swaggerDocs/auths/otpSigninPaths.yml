@@ -4,7 +4,7 @@ post:
     security: []
     summary: OTP Signin to the application to get jwt
     description: |
-      OTP Signin to the application to get jwt. At certain number of otp-signin attempts, the user will be disable for security reason.
+      OTP Signin to the application to get jwt. At certain number of otp-signin attempts, the account will be disable for security reason.
       If otp sign in is successfull then this will return jwt and message.
     produces:
       - application/json
@@ -14,10 +14,10 @@ post:
           schema:
             type: object
             required:
-              - username
+              - nameId
               - key
             properties:
-              username:
+              nameId:
                 type: string
               key:
                 type: string

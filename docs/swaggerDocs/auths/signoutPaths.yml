@@ -1,8 +1,8 @@
 delete:
     tags :
       - Auths
-    summary: Signout to the application, remove access token from user device
-    description: Signout to the application. This will remove the access token from the user devices.
+    summary: Signout to the application, remove access token from account device
+    description: Signout to the application. This will remove the access token from the account devices.
     produces:
       - application/json
     responses:
@@ -16,7 +16,7 @@ delete:
                 message:
                   type: string
             example:
-              message: user has logged out
+              message: account has logged out
       400:
         description: Incorrect content in the request.
         content:

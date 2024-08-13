@@ -21,23 +21,23 @@
   "tags": [
     {
       "name": "Auths",
-      "description": "Contains all endpoints related to roles. This will give a package access to users"
+      "description": "Contains all endpoints related to roles. This will give a package access to accounts"
     },
     {
       "name": "Features",
-      "description": "Contains all endpoints related to features. This will be the bases for user access in the roles"
+      "description": "Contains all endpoints related to features. This will be the bases for account access in the roles"
     },
     {
       "name": "Roles",
-      "description": "Contains all endpoints related to roles. This will give a package access to users"
+      "description": "Contains all endpoints related to roles. This will give a package access to accounts"
     },
     {
-      "name": "Users",
-      "description": "Contains all endpoints related to users."
+      "name": "Accounts",
+      "description": "Contains all endpoints related to accounts."
     },
     {
       "name": "Owner",
-      "description": "Contains all endpoints related to the current signedin user."
+      "description": "Contains all endpoints related to the current signedin account."
     }
   ],
   "paths": {
@@ -48,7 +48,7 @@
         ],
         "security": [],
         "summary": "Signin to the application to get jwt",
-        "description": "Signin to the application to get jwt. If signin limited transaction is enabled then after certain\nnumber of signin attempts the user will be disabled, if signin successfull it will return object containing jwt, username and message\nIf otp signin is enabled, generate otp code and send it to a user contact, also it will return username and message.\n",
+        "description": "Signin to the application to get jwt. If signin limited transaction is enabled then after certain\nnumber of signin attempts the account will be disabled, if signin successfull it will return object containing jwt, nameId and message\nIf otp signin is enabled, generate otp code and send it to a account contact, also it will return nameId and message.\n",
         "produces": [
           "application/json"
         ],
@@ -58,11 +58,11 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username",
+                  "nameId",
                   "password"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "password": {
@@ -82,7 +82,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "username": {
+                    "nameId": {
                       "type": "string"
                     },
                     "token": {
@@ -94,7 +94,7 @@
                   }
                 },
                 "example": {
-                  "username": "master",
+                  "nameId": "master",
                   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk",
                   "message": "Successful signin"
                 }
@@ -163,7 +163,7 @@
         ],
         "security": [],
         "summary": "OTP Signin to the application to get jwt",
-        "description": "OTP Signin to the application to get jwt. At certain number of otp-signin attempts, the user will be disable for security reason.\nIf otp sign in is successfull then this will return jwt and message.\n",
+        "description": "OTP Signin to the application to get jwt. At certain number of otp-signin attempts, the account will be disable for security reason.\nIf otp sign in is successfull then this will return jwt and message.\n",
         "produces": [
           "application/json"
         ],
@@ -173,11 +173,11 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username",
+                  "nameId",
                   "key"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "key": {
@@ -275,8 +275,8 @@
           "Auths"
         ],
         "security": [],
-        "summary": "Create a user account.",
-        "description": "Create a user account. This will register initial user information like username password and user contact.\nHowever the created account is still disabled and not yet verified, You still need to contact administrator\nto enable and verify your account.\n",
+        "summary": "Create a account account.",
+        "description": "Create a account account. This will register initial account information like nameId password and account contact.\nHowever the created account is still disabled and not yet verified, You still need to contact administrator\nto enable and verify your account.\n",
         "produces": [
           "application/json"
         ],
@@ -286,11 +286,11 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username",
+                  "nameId",
                   "password"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "password": {
@@ -317,13 +317,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "username": {
+                    "nameId": {
                       "type": "string"
                     }
                   }
                 },
                 "example": {
-                  "username": "master"
+                  "nameId": "master"
                 }
               }
             }
@@ -394,7 +394,7 @@
         ],
         "security": [],
         "summary": "File a forgot request password.",
-        "description": "File a forgot request password. If the user have a verified contact, then a passwprd reset key\nwill be sent to the contact address. However no contact are registered or no verified contact, then the reset password key\nwill be sent to the administrator as default contact.\n",
+        "description": "File a forgot request password. If the account have a verified contact, then a passwprd reset key\nwill be sent to the contact address. However no contact are registered or no verified contact, then the reset password key\nwill be sent to the administrator as default contact.\n",
         "produces": [
           "application/json"
         ],
@@ -404,10 +404,10 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username"
+                  "nameId"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   }
                 }
@@ -423,14 +423,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "username": {
+                    "nameId": {
                       "type": "string"
                     },
                     "message": "string"
                   }
                 },
                 "example": {
-                  "username": "master",
+                  "nameId": "master",
                   "message": "Password reset key has been sent"
                 }
               }
@@ -502,7 +502,7 @@
         ],
         "security": [],
         "summary": "Reset the password using otp key.",
-        "description": "Reset the password using otp key. To proceed changing the password,\nuse the change password key sent to the user contact, username and the new password you want.\n",
+        "description": "Reset the password using otp key. To proceed changing the password,\nuse the change password key sent to the account contact, nameId and the new password you want.\n",
         "produces": [
           "application/json"
         ],
@@ -512,12 +512,12 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username",
+                  "nameId",
                   "key",
                   "newPassword"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "key": {
@@ -614,8 +614,8 @@
         "tags": [
           "Auths"
         ],
-        "summary": "Signout to the application, remove access token from user device",
-        "description": "Signout to the application. This will remove the access token from the user devices.",
+        "summary": "Signout to the application, remove access token from account device",
+        "description": "Signout to the application. This will remove the access token from the account devices.",
         "produces": [
           "application/json"
         ],
@@ -633,7 +633,7 @@
                   }
                 },
                 "example": {
-                  "message": "user has logged out"
+                  "message": "account has logged out"
                 }
               }
             }
@@ -796,7 +796,7 @@
                   },
                   "name": {
                     "type": "string",
-                    "description": "to make a user friendly identifier"
+                    "description": "to make a account friendly identifier"
                   },
                   "tags": {
                     "type": "array",
@@ -962,7 +962,7 @@
                   },
                   "name": {
                     "type": "string",
-                    "description": "to make a user friendly identifier"
+                    "description": "to make a account friendly identifier"
                   },
                   "tags": {
                     "type": "array",
@@ -2095,13 +2095,13 @@
         }
       }
     },
-    "/users": {
+    "/accounts": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the Users",
-        "description": "Get all the Users",
+        "summary": "Get all the Accounts",
+        "description": "Get all the Accounts",
         "produces": [
           "application/json"
         ],
@@ -2128,7 +2128,7 @@
             },
             {
               "200": {
-                "description": "paginated users",
+                "description": "paginated accounts",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -2149,7 +2149,7 @@
                                     "$ref": "#/components/schemas/AutoGeneratedData"
                                   },
                                   {
-                                    "$ref": "#/components/schemas/User"
+                                    "$ref": "#/components/schemas/Account"
                                   }
                                 ]
                               }
@@ -2231,7 +2231,7 @@
                               "updatedAt": "2023-09-09T00:20:10.686Z"
                             }
                           ],
-                          "userInfos": [
+                          "accountInfos": [
                             {
                               "key": "firstname",
                               "value": "gilbert",
@@ -2241,7 +2241,7 @@
                               "updatedAt": "2023-09-09T00:20:10.686Z"
                             }
                           ],
-                          "username": "master",
+                          "nameId": "master",
                           "verified": true,
                           "disabled": false
                         }
@@ -2260,10 +2260,10 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a Users",
-        "description": "Create a User",
+        "summary": "Create a Accounts",
+        "description": "Create a Account",
         "produces": [
           "application/json"
         ],
@@ -2273,10 +2273,10 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username"
+                  "nameId"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "disabled": {
@@ -2299,7 +2299,7 @@
             },
             {
               "200": {
-                "description": "Successfull user creation",
+                "description": "Successfull account creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -2309,7 +2309,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/Account"
                         }
                       ]
                     },
@@ -2384,7 +2384,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "userInfos": [
+                      "accountInfos": [
                         {
                           "key": "firstname",
                           "value": "gilbert",
@@ -2394,7 +2394,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "username": "master",
+                      "nameId": "master",
                       "verified": true,
                       "disabled": false
                     }
@@ -2406,13 +2406,13 @@
         }
       }
     },
-    "/users/{id}": {
+    "/accounts/{id}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "fetch a user",
-        "description": "fetch a user",
+        "summary": "fetch a account",
+        "description": "fetch a account",
         "produces": [
           "application/json"
         ],
@@ -2420,7 +2420,7 @@
           {
             "in": "path",
             "name": "id",
-            "description": "this the uuid of the user in the database.",
+            "description": "this the uuid of the account in the database.",
             "required": true,
             "schema": {
               "type": "string",
@@ -2435,7 +2435,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetch a user",
+                "description": "Successfull fetch a account",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -2445,7 +2445,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/Account"
                         }
                       ]
                     },
@@ -2520,7 +2520,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "userInfos": [
+                      "accountInfos": [
                         {
                           "key": "firstname",
                           "value": "gilbert",
@@ -2530,7 +2530,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "username": "master",
+                      "nameId": "master",
                       "verified": true,
                       "disabled": false
                     }
@@ -2543,10 +2543,10 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user",
-        "description": "Update a user",
+        "summary": "Update a account",
+        "description": "Update a account",
         "produces": [
           "application/json"
         ],
@@ -2554,7 +2554,7 @@
           {
             "in": "path",
             "name": "id",
-            "description": "this the uuid of the user in the database.",
+            "description": "this the uuid of the account in the database.",
             "required": true,
             "schema": {
               "type": "string",
@@ -2568,7 +2568,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "disabled": {
@@ -2591,7 +2591,7 @@
             },
             {
               "200": {
-                "description": "Successfull user update",
+                "description": "Successfull account update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -2601,7 +2601,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/Account"
                         }
                       ]
                     },
@@ -2676,7 +2676,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "userInfos": [
+                      "accountInfos": [
                         {
                           "key": "firstname",
                           "value": "gilbert",
@@ -2686,7 +2686,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "username": "master",
+                      "nameId": "master",
                       "verified": true,
                       "disabled": false
                     }
@@ -2699,10 +2699,10 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a Users",
-        "description": "Create a User",
+        "summary": "Create a Accounts",
+        "description": "Create a Account",
         "produces": [
           "application/json"
         ],
@@ -2710,7 +2710,7 @@
           {
             "in": "path",
             "name": "id",
-            "description": "this the uuid of the user in the database.",
+            "description": "this the uuid of the account in the database.",
             "required": true,
             "schema": {
               "type": "string",
@@ -2725,7 +2725,7 @@
             },
             {
               "200": {
-                "description": "Successfull user deletion",
+                "description": "Successfull account deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -2735,7 +2735,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/Account"
                         }
                       ]
                     },
@@ -2810,7 +2810,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "userInfos": [
+                      "accountInfos": [
                         {
                           "key": "firstname",
                           "value": "gilbert",
@@ -2820,7 +2820,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "username": "master",
+                      "nameId": "master",
                       "verified": true,
                       "disabled": false
                     }
@@ -2832,13 +2832,13 @@
         }
       }
     },
-    "/users/{id}/completeInfo": {
+    "/accounts/{id}/completeInfo": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "fetch a user and its complete info",
-        "description": "fetch a user and its complete info",
+        "summary": "fetch a account and its complete info",
+        "description": "fetch a account and its complete info",
         "produces": [
           "application/json"
         ],
@@ -2846,7 +2846,7 @@
           {
             "in": "path",
             "name": "id",
-            "description": "this the uuid of the user in the database.",
+            "description": "this the uuid of the account in the database.",
             "required": true,
             "schema": {
               "type": "string",
@@ -2861,20 +2861,20 @@
             },
             {
               "200": {
-                "description": "Successfull fetch a user complete info",
+                "description": "Successfull fetch a account complete info",
                 "content": {
                   "application/json": {
                     "schema": {
                       "type": "object",
                       "properties": {
-                        "userData": {
+                        "accountData": {
                           "type": "object",
                           "allOf": [
                             {
                               "$ref": "#/components/schemas/AutoGeneratedData"
                             },
                             {
-                              "$ref": "#/components/schemas/User"
+                              "$ref": "#/components/schemas/Account"
                             }
                           ]
                         },
@@ -2924,7 +2924,7 @@
                               "$ref": "#/components/schemas/AutoGeneratedData"
                             },
                             {
-                              "$ref": "#/components/schemas/UserWorkspace"
+                              "$ref": "#/components/schemas/AccountWorkspace"
                             }
                           ]
                         },
@@ -2937,7 +2937,7 @@
                                 "$ref": "#/components/schemas/AutoGeneratedData"
                               },
                               {
-                                "$ref": "#/components/schemas/UserWorkspace"
+                                "$ref": "#/components/schemas/AccountWorkspace"
                               }
                             ]
                           }
@@ -2945,7 +2945,7 @@
                       }
                     },
                     "example": {
-                      "userData": {
+                      "accountData": {
                         "clientDevices": [
                           {
                             "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
@@ -3013,7 +3013,7 @@
                             "updatedAt": "2023-09-09T00:20:10.686Z"
                           }
                         ],
-                        "userInfos": [
+                        "accountInfos": [
                           {
                             "key": "firstname",
                             "value": "gilbert",
@@ -3023,7 +3023,7 @@
                             "updatedAt": "2023-09-09T00:20:10.686Z"
                           }
                         ],
-                        "username": "master",
+                        "nameId": "master",
                         "verified": true,
                         "disabled": false
                       },
@@ -3114,7 +3114,7 @@
                         "featuresRefs": [
                           {
                             "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
-                            "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                            "accountId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
                             "createdAt": "2023-08-27T14:51:58.605Z",
                             "updatedAt": "2023-08-31T14:34:32.748Z",
                             "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
@@ -3137,7 +3137,7 @@
                           "featuresRefs": [
                             {
                               "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
-                              "userId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
+                              "accountId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
                               "createdAt": "2023-08-27T14:51:58.605Z",
                               "updatedAt": "2023-08-31T14:34:32.748Z",
                               "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
@@ -3160,20 +3160,20 @@
         }
       }
     },
-    "/users/{userId}/roles": {
+    "/accounts/{accountId}/roles": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the User Roles",
-        "description": "Get all the User Roles",
+        "summary": "Get all the Account Roles",
+        "description": "Get all the Account Roles",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3188,7 +3188,7 @@
             },
             {
               "200": {
-                "description": "array of user role",
+                "description": "array of account role",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3211,7 +3211,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserRole"
+                                      "$ref": "#/components/schemas/AccountRole"
                                     }
                                   ]
                                 }
@@ -3239,17 +3239,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a User Role",
-        "description": "Create a User Role",
+        "summary": "Create a Account Role",
+        "description": "Create a Account Role",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3285,7 +3285,7 @@
             },
             {
               "200": {
-                "description": "Successfull user role creation",
+                "description": "Successfull account role creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3295,7 +3295,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -3314,20 +3314,20 @@
         }
       }
     },
-    "/users/{userId}/roles/{roleRefId}": {
+    "/accounts/{accountId}/roles/{roleRefId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a User Role",
-        "description": "Get a User Role",
+        "summary": "Get a Account Role",
+        "description": "Get a Account Role",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3351,7 +3351,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user role",
+                "description": "Successfull fetching account role",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3361,7 +3361,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -3381,17 +3381,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a User Role",
-        "description": "Update a User Role",
+        "summary": "Update a Account Role",
+        "description": "Update a Account Role",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3433,7 +3433,7 @@
             },
             {
               "200": {
-                "description": "Successfull user role update",
+                "description": "Successfull account role update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3443,7 +3443,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -3463,17 +3463,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a User Role",
-        "description": "Delete a User Role",
+        "summary": "Delete a Account Role",
+        "description": "Delete a Account Role",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3497,7 +3497,7 @@
             },
             {
               "200": {
-                "description": "Successfull user role deletion",
+                "description": "Successfull account role deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3507,7 +3507,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -3526,20 +3526,20 @@
         }
       }
     },
-    "/users/{userId}/roles/{roleRefId}/activate": {
+    "/accounts/{accountId}/roles/{roleRefId}/activate": {
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Activate a User Role",
-        "description": "Activate a User Role",
+        "summary": "Activate a Account Role",
+        "description": "Activate a Account Role",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3563,7 +3563,7 @@
             },
             {
               "200": {
-                "description": "Successfull user role activation",
+                "description": "Successfull account role activation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3573,7 +3573,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -3592,20 +3592,20 @@
         }
       }
     },
-    "/users/{userId}/userInfos": {
+    "/accounts/{accountId}/accountInfos": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user informations",
-        "description": "Get all the user informations",
+        "summary": "Get all the account informations",
+        "description": "Get all the account informations",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3620,7 +3620,7 @@
             },
             {
               "200": {
-                "description": "array of user infos",
+                "description": "array of account infos",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3643,7 +3643,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserUserInfo"
+                                      "$ref": "#/components/schemas/AccountAccountInfo"
                                     }
                                   ]
                                 }
@@ -3672,17 +3672,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user info into user data",
-        "description": "Create a user info into user data",
+        "summary": "Create a account info into account data",
+        "description": "Create a account info into account data",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3728,7 +3728,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info creation",
+                "description": "Successfull account info creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3738,7 +3738,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -3758,20 +3758,20 @@
         }
       }
     },
-    "/users/{userId}/userInfos/{userInfoId}": {
+    "/accounts/{accountId}/accountInfos/{accountInfoId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user info",
-        "description": "Get a user info",
+        "summary": "Get a account info",
+        "description": "Get a account info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3780,7 +3780,7 @@
           },
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "accountInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3795,7 +3795,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user info",
+                "description": "Successfull fetching account info",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3805,7 +3805,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -3826,17 +3826,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user info",
-        "description": "Update a user info",
+        "summary": "Update a account info",
+        "description": "Update a account info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3845,7 +3845,7 @@
           },
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "accountInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3886,7 +3886,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info update",
+                "description": "Successfull account info update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3896,7 +3896,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -3917,17 +3917,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a user info",
-        "description": "Delete a user info",
+        "summary": "Delete a account info",
+        "description": "Delete a account info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3936,7 +3936,7 @@
           },
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "accountInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -3951,7 +3951,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info deletion",
+                "description": "Successfull account info deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -3961,7 +3961,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -3981,20 +3981,20 @@
         }
       }
     },
-    "/users/{userId}/contactInfos": {
+    "/accounts/{accountId}/contactInfos": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user contact informations",
-        "description": "Get all the user contact informations. User contact information can be many types of user info\nlike firstname, middlename, lastname, nirthdarte, bithplace and more\n",
+        "summary": "Get all the account contact informations",
+        "description": "Get all the account contact informations. Account contact information can be many types of account info\nlike firstname, middlename, lastname, nirthdarte, bithplace and more\n",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4009,7 +4009,7 @@
             },
             {
               "200": {
-                "description": "array of user contact infos",
+                "description": "array of account contact infos",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4032,7 +4032,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserContactInfo"
+                                      "$ref": "#/components/schemas/AccountContactInfo"
                                     }
                                   ]
                                 }
@@ -4062,17 +4062,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user contact info into user data",
-        "description": "Create a user contact info into user data",
+        "summary": "Create a account contact info into account data",
+        "description": "Create a account contact info into account data",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4120,7 +4120,7 @@
             },
             {
               "200": {
-                "description": "Successfull user contact info creation",
+                "description": "Successfull account contact info creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4130,7 +4130,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -4151,20 +4151,20 @@
         }
       }
     },
-    "/users/{userId}/contactInfos/{contactInfoId}": {
+    "/accounts/{accountId}/contactInfos/{contactInfoId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user contact info",
-        "description": "Get a user contact info",
+        "summary": "Get a account contact info",
+        "description": "Get a account contact info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4188,7 +4188,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user contact info",
+                "description": "Successfull fetching account contact info",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4198,7 +4198,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -4220,17 +4220,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user contact info",
-        "description": "Update a user contact info",
+        "summary": "Update a account contact info",
+        "description": "Update a account contact info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4283,7 +4283,7 @@
             },
             {
               "200": {
-                "description": "Successfull user contact info update",
+                "description": "Successfull account contact info update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4293,7 +4293,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -4315,17 +4315,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a user contact info",
-        "description": "Delete a user contact info",
+        "summary": "Delete a account contact info",
+        "description": "Delete a account contact info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4349,7 +4349,7 @@
             },
             {
               "200": {
-                "description": "Successfull user contact info deletion",
+                "description": "Successfull account contact info deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4359,7 +4359,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -4380,20 +4380,20 @@
         }
       }
     },
-    "/users/{userId}/passwords": {
+    "/accounts/{accountId}/passwords": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the passwords history of a user",
-        "description": "Get all the passwords history of a user",
+        "summary": "Get all the passwords history of a account",
+        "description": "Get all the passwords history of a account",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4408,7 +4408,7 @@
             },
             {
               "200": {
-                "description": "array of user infos",
+                "description": "array of account infos",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4431,7 +4431,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserPassword"
+                                      "$ref": "#/components/schemas/AccountPassword"
                                     }
                                   ]
                                 }
@@ -4460,17 +4460,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user info into user data",
-        "description": "Create a user info into user data, recieves the new password and also the current password to validate the user, also check that the new password is not equal to any password in the history, disable the current password, and insert the new password with active status",
+        "summary": "Create a account info into account data",
+        "description": "Create a account info into account data, recieves the new password and also the current password to validate the account, also check that the new password is not equal to any password in the history, disable the current password, and insert the new password with active status",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4508,7 +4508,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info creation",
+                "description": "Successfull account info creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4518,7 +4518,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserPassword"
+                          "$ref": "#/components/schemas/AccountPassword"
                         }
                       ]
                     },
@@ -4538,10 +4538,10 @@
         }
       }
     },
-    "/users/{userId}/passwords/{passwordId}": {
+    "/accounts/{accountId}/passwords/{passwordId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
         "summary": "Get a password",
         "description": "Get a password",
@@ -4551,7 +4551,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4585,7 +4585,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserPassword"
+                          "$ref": "#/components/schemas/AccountPassword"
                         }
                       ]
                     },
@@ -4606,7 +4606,7 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
         "summary": "Delete a password",
         "description": "Delete a password, only be able to delete those password/s that are not active",
@@ -4616,7 +4616,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4650,7 +4650,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserPassword"
+                          "$ref": "#/components/schemas/AccountPassword"
                         }
                       ]
                     },
@@ -4670,20 +4670,20 @@
         }
       }
     },
-    "/users/{userId}/limitedTransactions": {
+    "/accounts/{accountId}/limitedTransactions": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user limited transactions",
-        "description": "Get all the user limited transactions",
+        "summary": "Get all the account limited transactions",
+        "description": "Get all the account limited transactions",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4698,7 +4698,7 @@
             },
             {
               "200": {
-                "description": "array of user limited transaction",
+                "description": "array of account limited transaction",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4721,7 +4721,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserLimitedTransaction"
+                                      "$ref": "#/components/schemas/AccountLimitedTransaction"
                                     }
                                   ]
                                 }
@@ -4754,20 +4754,20 @@
         }
       }
     },
-    "/users/{userId}/limitedTransactions/{limitedTransactionId}": {
+    "/accounts/{accountId}/limitedTransactions/{limitedTransactionId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user limited transaction",
-        "description": "Get a user limited transaction",
+        "summary": "Get a account limited transaction",
+        "description": "Get a account limited transaction",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4791,7 +4791,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user limited transaction",
+                "description": "Successfull fetching account limited transaction",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4801,7 +4801,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserLimitedTransaction"
+                          "$ref": "#/components/schemas/AccountLimitedTransaction"
                         }
                       ]
                     },
@@ -4827,17 +4827,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user limited transaction",
-        "description": "Update a user limited transaction",
+        "summary": "Update a account limited transaction",
+        "description": "Update a account limited transaction",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4890,7 +4890,7 @@
             },
             {
               "200": {
-                "description": "Successfull user limited transaction update",
+                "description": "Successfull account limited transaction update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4900,7 +4900,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserLimitedTransaction"
+                          "$ref": "#/components/schemas/AccountLimitedTransaction"
                         }
                       ]
                     },
@@ -4925,20 +4925,20 @@
         }
       }
     },
-    "/users/{userId}/clientDevices": {
+    "/accounts/{accountId}/clientDevices": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user client device",
-        "description": "Get all the user client device",
+        "summary": "Get all the account client device",
+        "description": "Get all the account client device",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -4953,7 +4953,7 @@
             },
             {
               "200": {
-                "description": "array of user client devices",
+                "description": "array of account client devices",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -4976,7 +4976,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserClientDevice"
+                                      "$ref": "#/components/schemas/AccountClientDevice"
                                     }
                                   ]
                                 }
@@ -5006,17 +5006,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user client device into user data",
-        "description": "Create a user client device into user data",
+        "summary": "Create a account client device into account data",
+        "description": "Create a account client device into account data",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5054,7 +5054,7 @@
             },
             {
               "200": {
-                "description": "Successfull user client device creation",
+                "description": "Successfull account client device creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5064,7 +5064,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -5085,20 +5085,20 @@
         }
       }
     },
-    "/users/{userId}/clientDevices/{clientDeviceId}": {
+    "/accounts/{accountId}/clientDevices/{clientDeviceId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user client device",
-        "description": "Get a user client device",
+        "summary": "Get a account client device",
+        "description": "Get a account client device",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5122,7 +5122,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user client device",
+                "description": "Successfull fetching account client device",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5132,7 +5132,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -5154,17 +5154,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user client device",
-        "description": "Update a user client device",
+        "summary": "Update a account client device",
+        "description": "Update a account client device",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5208,7 +5208,7 @@
             },
             {
               "200": {
-                "description": "Successfull user client device update",
+                "description": "Successfull account client device update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5218,7 +5218,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -5240,17 +5240,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a user client device",
-        "description": "Delete a user client device",
+        "summary": "Delete a account client device",
+        "description": "Delete a account client device",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5274,7 +5274,7 @@
             },
             {
               "200": {
-                "description": "Successfull user client device deletion",
+                "description": "Successfull account client device deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5284,7 +5284,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -5305,20 +5305,20 @@
         }
       }
     },
-    "/users/{userId}/clientDevices/{clientDeviceId}/accessTokens": {
+    "/accounts/{accountId}/clientDevices/{clientDeviceId}/accessTokens": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user client device access token",
-        "description": "Get all the user client device access token",
+        "summary": "Get all the account client device access token",
+        "description": "Get all the account client device access token",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5342,7 +5342,7 @@
             },
             {
               "200": {
-                "description": "array of user client device access tokens",
+                "description": "array of account client device access tokens",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5365,7 +5365,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                                      "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                                     }
                                   ]
                                 }
@@ -5396,17 +5396,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user client device access token into user data",
-        "description": "Create a user client device access token into user data",
+        "summary": "Create a account client device access token into account data",
+        "description": "Create a account client device access token into account data",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5453,7 +5453,7 @@
             },
             {
               "200": {
-                "description": "Successfull user client device access token creation",
+                "description": "Successfull account client device access token creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5463,7 +5463,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -5485,20 +5485,20 @@
         }
       }
     },
-    "/users/{userId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}": {
+    "/accounts/{accountId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user client device access token",
-        "description": "Get a user client device access token",
+        "summary": "Get a account client device access token",
+        "description": "Get a account client device access token",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5531,7 +5531,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user client device access token",
+                "description": "Successfull fetching account client device access token",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5541,7 +5541,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -5564,17 +5564,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user client device access token",
-        "description": "Update a user client device access token",
+        "summary": "Update a account client device access token",
+        "description": "Update a account client device access token",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5627,7 +5627,7 @@
             },
             {
               "200": {
-                "description": "Successfull user client device access token update",
+                "description": "Successfull account client device access token update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5637,7 +5637,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -5660,17 +5660,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a user client device access token",
-        "description": "Delete a user client device access token",
+        "summary": "Delete a account client device access token",
+        "description": "Delete a account client device access token",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5703,7 +5703,7 @@
             },
             {
               "200": {
-                "description": "Successfull user client device access token deletion",
+                "description": "Successfull account client device access token deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5713,7 +5713,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -5735,20 +5735,20 @@
         }
       }
     },
-    "/users/{userId}/workspaces": {
+    "/accounts/{accountId}/workspaces": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user workspaces",
-        "description": "Get all the user workspaces",
+        "summary": "Get all the account workspaces",
+        "description": "Get all the account workspaces",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5763,7 +5763,7 @@
             },
             {
               "200": {
-                "description": "array of user workspaces",
+                "description": "array of account workspaces",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5786,7 +5786,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserWorkspace"
+                                      "$ref": "#/components/schemas/AccountWorkspace"
                                     }
                                   ]
                                 }
@@ -5801,10 +5801,10 @@
                         "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                         "name": "Test Workspace",
                         "description": "this is just a testing workspace for my personal business",
-                        "userRefs": [
+                        "accountRefs": [
                           {
                             "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                            "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                            "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                             "readAccess": true,
                             "updateAccess": true,
                             "createAccess": true,
@@ -5831,17 +5831,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user workspace into user data",
-        "description": "Create a user workspace into user data",
+        "summary": "Create a account workspace into account data",
+        "description": "Create a account workspace into account data",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5882,7 +5882,7 @@
             },
             {
               "200": {
-                "description": "Successfull user workspace creation",
+                "description": "Successfull account workspace creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5892,7 +5892,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -5900,10 +5900,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -5928,20 +5928,20 @@
         }
       }
     },
-    "/users/{userId}/workspaces/{workspaceId}": {
+    "/accounts/{accountId}/workspaces/{workspaceId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user workspace",
-        "description": "Get a user workspace",
+        "summary": "Get a account workspace",
+        "description": "Get a account workspace",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -5965,7 +5965,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user workspace",
+                "description": "Successfull fetching account workspace",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -5975,7 +5975,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -5983,10 +5983,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -6012,17 +6012,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user workspace",
-        "description": "Update a user workspace",
+        "summary": "Update a account workspace",
+        "description": "Update a account workspace",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6069,7 +6069,7 @@
             },
             {
               "200": {
-                "description": "Successfull user workspace update",
+                "description": "Successfull account workspace update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6079,7 +6079,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -6087,10 +6087,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -6116,17 +6116,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a user workspace",
-        "description": "Delete a user workspace",
+        "summary": "Delete a account workspace",
+        "description": "Delete a account workspace",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6150,7 +6150,7 @@
             },
             {
               "200": {
-                "description": "Successfull user workspace deletion",
+                "description": "Successfull account workspace deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6160,7 +6160,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -6168,10 +6168,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -6196,20 +6196,20 @@
         }
       }
     },
-    "/users/{userId}/workspaces/{workspaceId}/userRefs": {
+    "/accounts/{accountId}/workspaces/{workspaceId}/accountRefs": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get all the user workspace user references",
-        "description": "Get all the user workspace user references",
+        "summary": "Get all the account workspace account references",
+        "description": "Get all the account workspace account references",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6233,7 +6233,7 @@
             },
             {
               "200": {
-                "description": "array of user workspace user references",
+                "description": "array of account workspace account references",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6255,7 +6255,7 @@
                                     {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
+                                        "nameId": {
                                           "type": "string"
                                         }
                                       }
@@ -6264,7 +6264,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                                      "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                                     }
                                   ]
                                 }
@@ -6277,8 +6277,8 @@
                     "example": [
                       {
                         "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                        "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
-                        "username": "Bertwo",
+                        "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                        "nameId": "Bertwo",
                         "readAccess": true,
                         "updateAccess": true,
                         "createAccess": true,
@@ -6299,17 +6299,17 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Create a user workspace user reference into user data",
-        "description": "Create a user workspace user reference into user data",
+        "summary": "Create a account workspace account reference into account data",
+        "description": "Create a account workspace account reference into account data",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6332,10 +6332,10 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username"
+                  "nameId"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "readAccess": {
@@ -6368,7 +6368,7 @@
             },
             {
               "200": {
-                "description": "Successfull user workspace user reference creation",
+                "description": "Successfull account workspace account reference creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6378,13 +6378,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -6403,20 +6403,20 @@
         }
       }
     },
-    "/users/{userId}/workspaces/{workspaceId}/userRefs/{userRefId}": {
+    "/accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}": {
       "get": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Get a user workspace user reference",
-        "description": "Get a user workspace user reference",
+        "summary": "Get a account workspace account reference",
+        "description": "Get a account workspace account reference",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6434,7 +6434,7 @@
           },
           {
             "in": "path",
-            "name": "userRefId",
+            "name": "accountRefId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6449,7 +6449,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user workspace user reference",
+                "description": "Successfull fetching account workspace account reference",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6458,7 +6458,7 @@
                         {
                           "type": "object",
                           "properties": {
-                            "username": {
+                            "nameId": {
                               "type": "string"
                             }
                           }
@@ -6467,14 +6467,14 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
-                      "username": "Bertwo",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "nameId": "Bertwo",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -6494,17 +6494,17 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Update a user workspace user reference",
-        "description": "Update a user workspace user reference",
+        "summary": "Update a account workspace account reference",
+        "description": "Update a account workspace account reference",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6522,7 +6522,7 @@
           },
           {
             "in": "path",
-            "name": "userRefId",
+            "name": "accountRefId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6563,7 +6563,7 @@
             },
             {
               "200": {
-                "description": "Successfull user workspace user reference update",
+                "description": "Successfull account workspace account reference update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6573,13 +6573,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -6599,17 +6599,17 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Accounts"
         ],
-        "summary": "Delete a user workspace user reference",
-        "description": "Delete a user workspace user reference",
+        "summary": "Delete a account workspace account reference",
+        "description": "Delete a account workspace account reference",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userId",
+            "name": "accountId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6627,7 +6627,7 @@
           },
           {
             "in": "path",
-            "name": "userRefId",
+            "name": "accountRefId",
             "required": true,
             "schema": {
               "type": "string",
@@ -6642,7 +6642,7 @@
             },
             {
               "200": {
-                "description": "Successfull user workspace user reference deletion",
+                "description": "Successfull account workspace account reference deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -6652,13 +6652,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -6704,7 +6704,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/Account"
                         }
                       ]
                     },
@@ -6778,7 +6778,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "userInfos": [
+                      "accountInfos": [
                         {
                           "key": "firstname",
                           "value": "gilbert",
@@ -6788,7 +6788,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "username": "master",
+                      "nameId": "master",
                       "verified": true,
                       "disabled": false
                     }
@@ -6814,7 +6814,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "disabled": {
@@ -6847,7 +6847,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/Account"
                         }
                       ]
                     },
@@ -6921,7 +6921,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "userInfos": [
+                      "accountInfos": [
                         {
                           "key": "firstname",
                           "value": "gilbert",
@@ -6931,7 +6931,7 @@
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
                       ],
-                      "username": "master",
+                      "nameId": "master",
                       "verified": true,
                       "disabled": false
                     }
@@ -6966,14 +6966,14 @@
                     "schema": {
                       "type": "object",
                       "properties": {
-                        "userData": {
+                        "accountData": {
                           "type": "object",
                           "allOf": [
                             {
                               "$ref": "#/components/schemas/AutoGeneratedData"
                             },
                             {
-                              "$ref": "#/components/schemas/User"
+                              "$ref": "#/components/schemas/Account"
                             }
                           ]
                         },
@@ -7023,7 +7023,7 @@
                               "$ref": "#/components/schemas/AutoGeneratedData"
                             },
                             {
-                              "$ref": "#/components/schemas/UserWorkspace"
+                              "$ref": "#/components/schemas/AccountWorkspace"
                             }
                           ]
                         },
@@ -7036,7 +7036,7 @@
                                 "$ref": "#/components/schemas/AutoGeneratedData"
                               },
                               {
-                                "$ref": "#/components/schemas/UserWorkspace"
+                                "$ref": "#/components/schemas/AccountWorkspace"
                               }
                             ]
                           }
@@ -7052,7 +7052,7 @@
                                   "ownerId": {
                                     "type": "string"
                                   },
-                                  "ownerUsername": {
+                                  "ownerAccountname": {
                                     "type": "string"
                                   }
                                 }
@@ -7061,7 +7061,7 @@
                                 "$ref": "#/components/schemas/AutoGeneratedData"
                               },
                               {
-                                "$ref": "#/components/schemas/UserWorkspace"
+                                "$ref": "#/components/schemas/AccountWorkspace"
                               }
                             ]
                           }
@@ -7069,7 +7069,7 @@
                       }
                     },
                     "example": {
-                      "userData": {
+                      "accountData": {
                         "clientDevices": [
                           {
                             "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
@@ -7136,7 +7136,7 @@
                             "updatedAt": "2023-09-09T00:20:10.686Z"
                           }
                         ],
-                        "userInfos": [
+                        "accountInfos": [
                           {
                             "key": "firstname",
                             "value": "gilbert",
@@ -7146,7 +7146,7 @@
                             "updatedAt": "2023-09-09T00:20:10.686Z"
                           }
                         ],
-                        "username": "master",
+                        "nameId": "master",
                         "verified": true,
                         "disabled": false
                       },
@@ -7232,10 +7232,10 @@
                         "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                         "name": "Test Workspace",
                         "description": "this is just a testing workspace for my personal business",
-                        "userRefs": [
+                        "accountRefs": [
                           {
                             "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                            "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                            "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                             "readAccess": true,
                             "updateAccess": true,
                             "createAccess": true,
@@ -7257,10 +7257,10 @@
                           "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "name": "Test Workspace",
                           "description": "this is just a testing workspace for my personal business",
-                          "userRefs": [
+                          "accountRefs": [
                             {
                               "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                              "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                              "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                               "readAccess": true,
                               "updateAccess": true,
                               "createAccess": true,
@@ -7283,10 +7283,10 @@
                           "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "name": "Test Workspace",
                           "description": "this is just a testing workspace for my personal business",
-                          "userRefs": [
+                          "accountRefs": [
                             {
                               "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                              "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                              "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                               "readAccess": true,
                               "updateAccess": true,
                               "createAccess": true,
@@ -7301,7 +7301,7 @@
                           "isActive": true,
                           "disabled": false,
                           "ownerId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
-                          "ownerUsername": "master101",
+                          "ownerAccountname": "master101",
                           "createdAt": "2023-08-27T14:51:58.619Z",
                           "updatedAt": "2023-09-09T00:20:10.686Z"
                         }
@@ -7355,7 +7355,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserRole"
+                                      "$ref": "#/components/schemas/AccountRole"
                                     }
                                   ]
                                 }
@@ -7428,7 +7428,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -7485,7 +7485,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -7558,7 +7558,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -7613,7 +7613,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -7670,7 +7670,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserRole"
+                          "$ref": "#/components/schemas/AccountRole"
                         }
                       ]
                     },
@@ -7689,13 +7689,13 @@
         }
       }
     },
-    "/owner/userInfos": {
+    "/owner/accountInfos": {
       "get": {
         "tags": [
           "Owner"
         ],
-        "summary": "Get all the user informations",
-        "description": "Get all the user informations",
+        "summary": "Get all the account informations",
+        "description": "Get all the account informations",
         "produces": [
           "application/json"
         ],
@@ -7706,7 +7706,7 @@
             },
             {
               "200": {
-                "description": "array of user infos",
+                "description": "array of account infos",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -7729,7 +7729,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserUserInfo"
+                                      "$ref": "#/components/schemas/AccountAccountInfo"
                                     }
                                   ]
                                 }
@@ -7760,8 +7760,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create a user info into user data",
-        "description": "Create a user info into user data",
+        "summary": "Create a account info into account data",
+        "description": "Create a account info into account data",
         "produces": [
           "application/json"
         ],
@@ -7803,7 +7803,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info creation",
+                "description": "Successfull account info creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -7813,7 +7813,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -7833,20 +7833,20 @@
         }
       }
     },
-    "/owner/userInfos/{userInfoId}": {
+    "/owner/accountInfos/{accountInfoId}": {
       "get": {
         "tags": [
           "Owner"
         ],
-        "summary": "Get a user info",
-        "description": "Get a user info",
+        "summary": "Get a account info",
+        "description": "Get a account info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "accountInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -7861,7 +7861,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user info",
+                "description": "Successfull fetching account info",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -7871,7 +7871,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -7894,15 +7894,15 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Update a user info",
-        "description": "Update a user info",
+        "summary": "Update a account info",
+        "description": "Update a account info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "accountInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -7943,7 +7943,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info update",
+                "description": "Successfull account info update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -7953,7 +7953,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -7976,15 +7976,15 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Delete a user info",
-        "description": "Delete a user info",
+        "summary": "Delete a account info",
+        "description": "Delete a account info",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
             "in": "path",
-            "name": "userInfoId",
+            "name": "accountInfoId",
             "required": true,
             "schema": {
               "type": "string",
@@ -7999,7 +7999,7 @@
             },
             {
               "200": {
-                "description": "Successfull user info deletion",
+                "description": "Successfull account info deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -8009,7 +8009,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserUserInfo"
+                          "$ref": "#/components/schemas/AccountAccountInfo"
                         }
                       ]
                     },
@@ -8069,7 +8069,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserContactInfo"
+                                      "$ref": "#/components/schemas/AccountContactInfo"
                                     }
                                   ]
                                 }
@@ -8101,8 +8101,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create owner contact info into user data",
-        "description": "Create owner contact info into user data",
+        "summary": "Create owner contact info into account data",
+        "description": "Create owner contact info into account data",
         "produces": [
           "application/json"
         ],
@@ -8156,7 +8156,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -8215,7 +8215,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -8301,7 +8301,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -8358,7 +8358,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserContactInfo"
+                          "$ref": "#/components/schemas/AccountContactInfo"
                         }
                       ]
                     },
@@ -8396,7 +8396,7 @@
             },
             {
               "200": {
-                "description": "array of user passwords",
+                "description": "array of account passwords",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -8419,7 +8419,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserPassword"
+                                      "$ref": "#/components/schemas/AccountPassword"
                                     }
                                   ]
                                 }
@@ -8450,8 +8450,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create a user password into owner data",
-        "description": "Create a user password into owner data, recieves the new password and also the current password to validate the user, also check that the new password is not equal to any password in the history, disable the current password, and insert the new password with active status",
+        "summary": "Create a account password into owner data",
+        "description": "Create a account password into owner data, recieves the new password and also the current password to validate the account, also check that the new password is not equal to any password in the history, disable the current password, and insert the new password with active status",
         "produces": [
           "application/json"
         ],
@@ -8485,7 +8485,7 @@
             },
             {
               "200": {
-                "description": "Successfull user password creation",
+                "description": "Successfull account password creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -8495,7 +8495,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserPassword"
+                          "$ref": "#/components/schemas/AccountPassword"
                         }
                       ]
                     },
@@ -8553,7 +8553,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserPassword"
+                          "$ref": "#/components/schemas/AccountPassword"
                         }
                       ]
                     },
@@ -8609,7 +8609,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserPassword"
+                          "$ref": "#/components/schemas/AccountPassword"
                         }
                       ]
                     },
@@ -8669,7 +8669,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserLimitedTransaction"
+                                      "$ref": "#/components/schemas/AccountLimitedTransaction"
                                     }
                                   ]
                                 }
@@ -8730,7 +8730,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching user limited transaction",
+                "description": "Successfull fetching account limited transaction",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -8740,7 +8740,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserLimitedTransaction"
+                          "$ref": "#/components/schemas/AccountLimitedTransaction"
                         }
                       ]
                     },
@@ -8820,7 +8820,7 @@
             },
             {
               "200": {
-                "description": "Successfull user limited transaction update",
+                "description": "Successfull account limited transaction update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -8830,7 +8830,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserLimitedTransaction"
+                          "$ref": "#/components/schemas/AccountLimitedTransaction"
                         }
                       ]
                     },
@@ -8895,7 +8895,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserClientDevice"
+                                      "$ref": "#/components/schemas/AccountClientDevice"
                                     }
                                   ]
                                 }
@@ -8972,7 +8972,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -9031,7 +9031,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -9108,7 +9108,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -9165,7 +9165,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDevice"
+                          "$ref": "#/components/schemas/AccountClientDevice"
                         }
                       ]
                     },
@@ -9237,7 +9237,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                                      "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                                     }
                                   ]
                                 }
@@ -9326,7 +9326,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -9395,7 +9395,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -9482,7 +9482,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -9549,7 +9549,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+                          "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
                         }
                       ]
                     },
@@ -9611,7 +9611,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserWorkspace"
+                                      "$ref": "#/components/schemas/AccountWorkspace"
                                     }
                                   ]
                                 }
@@ -9626,10 +9626,10 @@
                         "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                         "name": "Test Workspace",
                         "description": "this is just a testing workspace for my personal business",
-                        "userRefs": [
+                        "accountRefs": [
                           {
                             "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                            "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                            "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                             "readAccess": true,
                             "updateAccess": true,
                             "createAccess": true,
@@ -9658,8 +9658,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create owner workspace into user data",
-        "description": "Create owner workspace into user data",
+        "summary": "Create owner workspace into account data",
+        "description": "Create owner workspace into account data",
         "produces": [
           "application/json"
         ],
@@ -9706,7 +9706,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -9714,10 +9714,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -9780,7 +9780,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -9788,10 +9788,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -9875,7 +9875,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -9883,10 +9883,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -9947,7 +9947,7 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspace"
+                          "$ref": "#/components/schemas/AccountWorkspace"
                         }
                       ]
                     },
@@ -9955,10 +9955,10 @@
                       "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "name": "Test Workspace",
                       "description": "this is just a testing workspace for my personal business",
-                      "userRefs": [
+                      "accountRefs": [
                         {
                           "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                           "readAccess": true,
                           "updateAccess": true,
                           "createAccess": true,
@@ -9983,13 +9983,13 @@
         }
       }
     },
-    "/owner/workspaces/{workspaceId}/userRefs": {
+    "/owner/workspaces/{workspaceId}/accountRefs": {
       "get": {
         "tags": [
           "Owner"
         ],
-        "summary": "Get all the owner workspace user references",
-        "description": "Get all the owner workspace user references",
+        "summary": "Get all the owner workspace account references",
+        "description": "Get all the owner workspace account references",
         "produces": [
           "application/json"
         ],
@@ -10011,7 +10011,7 @@
             },
             {
               "200": {
-                "description": "array of owner workspace user references",
+                "description": "array of owner workspace account references",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -10034,7 +10034,7 @@
                                       "$ref": "#/components/schemas/AutoGeneratedData"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                                      "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                                     }
                                   ]
                                 }
@@ -10047,7 +10047,7 @@
                     "example": [
                       {
                         "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                        "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                        "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                         "readAccess": true,
                         "updateAccess": true,
                         "createAccess": true,
@@ -10070,8 +10070,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create owner workspace user reference into user data",
-        "description": "Create owner workspace user reference into user data",
+        "summary": "Create owner workspace account reference into account data",
+        "description": "Create owner workspace account reference into account data",
         "produces": [
           "application/json"
         ],
@@ -10092,10 +10092,10 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "username"
+                  "nameId"
                 ],
                 "properties": {
-                  "username": {
+                  "nameId": {
                     "type": "string"
                   },
                   "readAccess": {
@@ -10125,7 +10125,7 @@
             },
             {
               "200": {
-                "description": "Successfull owner workspace user reference creation",
+                "description": "Successfull owner workspace account reference creation",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -10135,13 +10135,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -10160,13 +10160,13 @@
         }
       }
     },
-    "/owner/workspaces/{workspaceId}/userRefs/{userRefId}": {
+    "/owner/workspaces/{workspaceId}/accountRefs/{accountRefId}": {
       "get": {
         "tags": [
           "Owner"
         ],
-        "summary": "Get owner workspace user reference",
-        "description": "Get owner workspace user reference",
+        "summary": "Get owner workspace account reference",
+        "description": "Get owner workspace account reference",
         "produces": [
           "application/json"
         ],
@@ -10182,7 +10182,7 @@
           },
           {
             "in": "path",
-            "name": "userRefId",
+            "name": "accountRefId",
             "required": true,
             "schema": {
               "type": "string",
@@ -10197,7 +10197,7 @@
             },
             {
               "200": {
-                "description": "Successfull fetching owner workspace user reference",
+                "description": "Successfull fetching owner workspace account reference",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -10207,13 +10207,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -10235,8 +10235,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Update owner workspace user reference",
-        "description": "Update owner workspace user reference",
+        "summary": "Update owner workspace account reference",
+        "description": "Update owner workspace account reference",
         "produces": [
           "application/json"
         ],
@@ -10252,7 +10252,7 @@
           },
           {
             "in": "path",
-            "name": "userRefId",
+            "name": "accountRefId",
             "required": true,
             "schema": {
               "type": "string",
@@ -10293,7 +10293,7 @@
             },
             {
               "200": {
-                "description": "Successfull owner workspace user reference update",
+                "description": "Successfull owner workspace account reference update",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -10303,13 +10303,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -10331,8 +10331,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Delete owner workspace user reference",
-        "description": "Delete owner workspace user reference",
+        "summary": "Delete owner workspace account reference",
+        "description": "Delete owner workspace account reference",
         "produces": [
           "application/json"
         ],
@@ -10348,7 +10348,7 @@
           },
           {
             "in": "path",
-            "name": "userRefId",
+            "name": "accountRefId",
             "required": true,
             "schema": {
               "type": "string",
@@ -10363,7 +10363,7 @@
             },
             {
               "200": {
-                "description": "Successfull owner workspace user reference deletion",
+                "description": "Successfull owner workspace account reference deletion",
                 "content": {
                   "application/json": {
                     "schema": {
@@ -10373,13 +10373,13 @@
                           "$ref": "#/components/schemas/AutoGeneratedData"
                         },
                         {
-                          "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                          "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                         }
                       ]
                     },
                     "example": {
                       "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-                      "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+                      "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
                       "readAccess": true,
                       "updateAccess": true,
                       "createAccess": true,
@@ -10482,7 +10482,7 @@
           },
           "absoluteAuthority": {
             "type": "boolean",
-            "description": "if the value is true, all features are accessable to user with this role."
+            "description": "if the value is true, all features are accessable to account with this role."
           },
           "featuresRefs": {
             "type": "array",
@@ -10497,7 +10497,7 @@
                 }
               ]
             },
-            "description": "if absoluteAuthority is false then the only accessable feature to user with this role are the features registered here."
+            "description": "if absoluteAuthority is false then the only accessable feature to account with this role are the features registered here."
           }
         },
         "example": {
@@ -10530,10 +10530,10 @@
           "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
         }
       },
-      "User": {
+      "Account": {
         "type": "object",
         "required": [
-          "username"
+          "nameId"
         ],
         "properties": {
           "name": {
@@ -10548,12 +10548,12 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserRole"
+                  "$ref": "#/components/schemas/AccountRole"
                 }
               ]
             }
           },
-          "userInfos": {
+          "accountInfos": {
             "type": "array",
             "items": {
               "type": "object",
@@ -10562,7 +10562,7 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserUserInfo"
+                  "$ref": "#/components/schemas/AccountAccountInfo"
                 }
               ]
             }
@@ -10576,7 +10576,7 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserPassword"
+                  "$ref": "#/components/schemas/AccountPassword"
                 }
               ]
             }
@@ -10590,7 +10590,7 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserContactInfo"
+                  "$ref": "#/components/schemas/AccountContactInfo"
                 }
               ]
             }
@@ -10604,7 +10604,7 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserClientDevice"
+                  "$ref": "#/components/schemas/AccountClientDevice"
                 }
               ]
             }
@@ -10618,7 +10618,7 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserLimitedTransaction"
+                  "$ref": "#/components/schemas/AccountLimitedTransaction"
                 }
               ]
             }
@@ -10697,7 +10697,7 @@
               "updatedAt": "2023-09-09T00:20:10.686Z"
             }
           ],
-          "userInfos": [
+          "accountInfos": [
             {
               "key": "firstname",
               "value": "gilbert",
@@ -10707,12 +10707,12 @@
               "updatedAt": "2023-09-09T00:20:10.686Z"
             }
           ],
-          "username": "master",
+          "nameId": "master",
           "verified": true,
           "disabled": false
         }
       },
-      "UserRole": {
+      "AccountRole": {
         "type": "object",
         "required": [
           "roleId"
@@ -10731,7 +10731,7 @@
           "isActive": true
         }
       },
-      "UserUserInfo": {
+      "AccountAccountInfo": {
         "type": "object",
         "required": [
           "key",
@@ -10755,7 +10755,7 @@
           "type": "string"
         }
       },
-      "UserContactInfo": {
+      "AccountContactInfo": {
         "type": "object",
         "required": [
           "type",
@@ -10788,7 +10788,7 @@
           "verified": false
         }
       },
-      "UserPassword": {
+      "AccountPassword": {
         "type": "object",
         "required": [
           "key"
@@ -10810,7 +10810,7 @@
           "isActive": true
         }
       },
-      "UserLimitedTransaction": {
+      "AccountLimitedTransaction": {
         "type": "object",
         "required": [
           "limit",
@@ -10861,7 +10861,7 @@
           "disabled": false
         }
       },
-      "UserClientDevice": {
+      "AccountClientDevice": {
         "type": "object",
         "required": [
           "ua"
@@ -10879,7 +10879,7 @@
           "accessTokens": {
             "type": "array",
             "item": {
-              "$ref": "#/components/schemas/UserClientDeviceAccessToken"
+              "$ref": "#/components/schemas/AccountClientDeviceAccessToken"
             }
           }
         },
@@ -10890,7 +10890,7 @@
           "accessTokens": []
         }
       },
-      "UserClientDeviceAccessToken": {
+      "AccountClientDeviceAccessToken": {
         "type": "object",
         "required": [
           "jwt"
@@ -10917,7 +10917,7 @@
           "disabled": false
         }
       },
-      "UserWorkspace": {
+      "AccountWorkspace": {
         "type": "object",
         "required": [
           "name"
@@ -10929,7 +10929,7 @@
           "description": {
             "type": "string"
           },
-          "userRefs": {
+          "accountRefs": {
             "type": "array",
             "items": {
               "type": "object",
@@ -10938,7 +10938,7 @@
                   "$ref": "#/components/schemas/AutoGeneratedData"
                 },
                 {
-                  "$ref": "#/components/schemas/UserWorkspaceUserRef"
+                  "$ref": "#/components/schemas/AccountWorkspaceAccountRef"
                 }
               ]
             }
@@ -10953,10 +10953,10 @@
         "example": {
           "name": "Test Workspace",
           "description": "this is just a testing workspace for my personal business",
-          "userRefs": [
+          "accountRefs": [
             {
               "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-              "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+              "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
               "readAccess": true,
               "updateAccess": true,
               "createAccess": true,
@@ -10971,13 +10971,13 @@
           "disabled": false
         }
       },
-      "UserWorkspaceUserRef": {
+      "AccountWorkspaceAccountRef": {
         "type": "object",
         "required": [
-          "userId"
+          "accountId"
         ],
         "properties": {
-          "userId": {
+          "accountId": {
             "type": "string",
             "format": "uuid"
           },
@@ -11004,7 +11004,7 @@
           }
         },
         "example": {
-          "userId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
+          "accountId": "c54a858a-b095-4405-9a1c-8567ec91da5e",
           "readAccess": true,
           "updateAccess": true,
           "createAccess": true,

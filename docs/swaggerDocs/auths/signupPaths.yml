@@ -2,9 +2,9 @@ post:
     tags :
       - Auths
     security: []
-    summary: Create a user account.
+    summary: Create a account account.
     description: |
-      Create a user account. This will register initial user information like username password and user contact.
+      Create a account account. This will register initial account information like nameId password and account contact.
       However the created account is still disabled and not yet verified, You still need to contact administrator
       to enable and verify your account.
     produces:
@@ -15,10 +15,10 @@ post:
           schema:
             type: object
             required:
-              - username
+              - nameId
               - password
             properties:
-              username:
+              nameId:
                 type: string
               password:
                 type: string
@@ -36,10 +36,10 @@ post:
             schema:
               type: object
               properties:
-                username:
+                nameId:
                   type: string
             example:
-              username: master
+              nameId: master
       400:
         description: Incorrect content in the request.
         content:
