@@ -8,12 +8,14 @@ import TextValidators from '../validators/textValidators'
 type TAccountType = 'user' | 'organization'
 type TContactInfoType = 'email-address' | 'mobile-number' | 'telephone' | 'app-admin'
 type TLimitedTransactionType = 'signin' | 'otp-signin' | 'forgot-pass'| 'reset-pass' | 'verify-contact'
-type TAccountInfoType = 'string' | 'number' | 'date' | 'boolean'
+type TAccountInfoType = 'string' | 'number' | 'date' | 'datetime' | 'boolean'
+type TAccountConfigType = 'string' | 'number' | 'date' | 'datetime' | 'boolean'
 
 const acountTypes:TAccountType[] = ['user', 'organization']
 const contactInfoTypes:TContactInfoType[] = ['email-address', 'mobile-number', 'telephone', 'app-admin']
 const limitedTransactionTypes:TLimitedTransactionType[] = ['signin', 'otp-signin', 'forgot-pass', 'reset-pass', 'verify-contact']
-const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'boolean']
+const accountInfoTypes:TAccountInfoType[] = ['string', 'number', 'date', 'datetime', 'boolean']
+const accountConfigTypes:TAccountConfigType[] = ['string', 'number', 'date', 'datetime', 'boolean']
 
 // queries
 interface IAccountQuery {
@@ -83,6 +85,13 @@ interface IAccountInfo {
     type: TAccountInfoType
 }
 
+interface IAccountConfig {
+    _id?: string,
+    key: string,
+    value: string,
+    type: TAccountInfoType
+}
+
 interface IWorkspaceAccountRef {
     _id?: string,
     accountId: string,
@@ -110,6 +119,7 @@ interface IAccount {
     nameId: string,
     rolesRefs: Types.DocumentArray<IRoleRef & Document>,
     accountInfos: Types.DocumentArray<IAccountInfo & Document>,
+    accountConfigs: Types.DocumentArray<IAccountConfig & Document>,
 
     passwords: Types.DocumentArray<IPassword & Document>,
 
@@ -202,6 +212,17 @@ const AccountInfoSchema = new Schema<IAccountInfo>({
     }
 }, { timestamps: true })
 
+const AccountConfigSchema = new Schema<IAccountConfig>({
+    _id: { type: String, default: () => randomUUID()},
+    key: { type: String, require: true },
+    value: { type: String, require: true },
+    type: {
+        type: String,
+        require: true,
+        enum: accountConfigTypes
+    }
+}, { timestamps: true })
+
 const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
     accountId: { type: String, required: true},
@@ -248,6 +269,7 @@ const AccountSchema = new Schema<IAccount>({
     },
     rolesRefs: { type: [RoleRefSchema], required: true, },
     accountInfos: { type: [AccountInfoSchema], required: false },
+    accountConfigs: { type: [AccountConfigSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
@@ -265,18 +287,21 @@ export {
     contactInfoTypes,
     limitedTransactionTypes,
     accountInfoTypes,
+    accountConfigTypes,
     IAccountQuery,
     IAccountUpdate,
     TAccountType,
     TContactInfoType,
     TLimitedTransactionType,
     TAccountInfoType,
+    TAccountConfigType,
     IPassword,
     IContactInfo,
     IAccessToken,
     IClientDevice,
     ILimitedTransaction,
     IAccountInfo,
+    IAccountConfig,
     IRoleRef,
     IWorkspaceAccountRef,
     IWorkspace,
