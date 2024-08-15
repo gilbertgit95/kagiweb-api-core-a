@@ -18,6 +18,7 @@ import roleFeatureRoutes from './routes/roleFeatureRoutes'
 import accountRoutes from './routes/accountRoutes'
 import accountRoleRoutes from './routes/accountRoleRoutes'
 import accountAccountInfoRoutes from './routes/accountAccountInfoRoutes'
+import accountAccountConfigRoutes from './routes/accountAccountInfoRoutes'
 import accountContactInfoRoutes from './routes/accountContactInfoRoutes'
 import accountPasswordRoutes from './routes/accountPasswordRoutes'
 import accountLimitedTransactionRoutes from './routes/accountLimitedTransactionRoutes'
@@ -67,6 +68,7 @@ appHandler.addPrivateRoute(roleFeatureRoutes)
 appHandler.addPrivateRoute(accountRoutes)
 appHandler.addPrivateRoute(accountRoleRoutes)
 appHandler.addPrivateRoute(accountAccountInfoRoutes)
+appHandler.addPrivateRoute(accountAccountConfigRoutes)
 appHandler.addPrivateRoute(accountContactInfoRoutes)
 appHandler.addPrivateRoute(accountPasswordRoutes)
 appHandler.addPrivateRoute(accountLimitedTransactionRoutes)
