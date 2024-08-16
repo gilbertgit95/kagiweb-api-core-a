@@ -46,7 +46,11 @@
 /accounts/{accountId}/accountInfos:
   $ref: ./accountAccountInfos/accountAccountInfosPaths.yml
 /accounts/{accountId}/accountInfos/{accountInfoId}:
-  $ref: ./accountAccountInfos/accountAccountInfosSpecificPaths.yml
+  $ref: ./accountAccountInfos/accountAccountInfosPaths.yml
+/accounts/{accountId}/accountConfigs:
+  $ref: ./accountAccountConfigs/accountAccountConfigsPaths.yml
+/accounts/{accountId}/accountConfigs/{accountConfigId}:
+  $ref: ./accountAccountConfigs/accountAccountConfigsSpecificPaths.yml
 /accounts/{accountId}/contactInfos:
   $ref: ./accountContactInfos/accountContactInfosPaths.yml
 /accounts/{accountId}/contactInfos/{contactInfoId}:
@@ -92,6 +96,9 @@
 /owner/accountInfos:
   $ref: ./owner/ownerAccountInfosPaths.yml
 /owner/accountInfos/{accountInfoId}:
+/owner/accountConfigs:
+  $ref: ./owner/ownerAccountConfigsPaths.yml
+/owner/accountConfigs/{accountConfigId}:
   $ref: ./owner/ownerAccountInfosSpecificPaths.yml
 /owner/contactInfos:
   $ref: ./owner/ownerContactInfosPaths.yml

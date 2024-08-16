@@ -17,6 +17,8 @@ AccountRole:
   $ref: ./accountRoles/accountRoleDefinition.yml
 AccountAccountInfo:
   $ref: ./accountAccountInfos/accountAccountInfoDefinition.yml
+AccountAccountConfig:
+  $ref: ./accountAccountConfigs/accountAccountConfigDefinition.yml
 AccountContactInfo:
   $ref: ./accountContactInfos/accountContactInfoDefinition.yml
 AccountPassword:
