@@ -9,6 +9,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import accountController, {IAccountCompleteInfo  } from '../controllers/accountController'
 import accountRoleController from '../controllers/accountRoleController'
 import accountAccountInfoController from '../controllers/accountAccountInfoController'
+import accountAccountConfigController from '../controllers/accountAccountConfigController'
 import accountContactInfoController from '../controllers/accountContactInfoController'
 import accountPasswordController from '../controllers/accountPasswordController'
 import accountLimitedTransactionController from '../controllers/accountLimitedTransactionController'
@@ -18,7 +19,7 @@ import accountWorkspaceController from '../controllers/accountWorkspaceControlle
 import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
 
 import {
-    IAccount, IRoleRef, IAccountInfo, IContactInfo,
+    IAccount, IRoleRef, IAccountInfo, IAccountConfig, IContactInfo,
     IPassword, ILimitedTransaction, IClientDevice, IAccessToken,
     IWorkspace, IWorkspaceAccountRef
 } from '../dataSource/models/accountModel'
@@ -189,6 +190,67 @@ router.delete(env.RootApiEndpoint + 'owner/accountInfos/:accountInfoId', async (
     const [result, statusCode] = await ErrorHandler.execute<IAccountInfo>(async () => {
         if (!accountId) return null
         return await accountAccountInfoController.deleteAccountInfo( accountId, accountInfoId )
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+// account config
+router.get(env.RootApiEndpoint + 'owner/accountConfigs', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig[]>(async () => {
+        if (!accountId) return null
+        return await accountAccountConfigController.getAccountConfigs(accountId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.post(env.RootApiEndpoint + 'owner/accountConfigs', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id
+    const { key, value, type } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        if (!accountId) return null
+        return await accountAccountConfigController.saveAccountConfig(accountId, key, value, type)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/accountConfigs/:accountConfigId', async (req:Request, res:Response) => {
+     const accountId = req?.accountData?._id
+    const { accountConfigId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        if (!accountId) return null
+        return await accountAccountConfigController.getAccountConfig(accountId, accountConfigId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/accountConfigs/:accountConfigId', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id
+    const { accountConfigId } = req.params
+    const { key, value, type } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        if (!accountId) return null
+        return await accountAccountConfigController.updateAccountConfig(accountId, accountConfigId, key, value, type)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.delete(env.RootApiEndpoint + 'owner/accountConfigs/:accountConfigId', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id
+    const { accountConfigId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        if (!accountId) return null
+        return await accountAccountConfigController.deleteAccountConfig( accountId, accountConfigId )
     })
 
     return res.status(statusCode).send(result)
