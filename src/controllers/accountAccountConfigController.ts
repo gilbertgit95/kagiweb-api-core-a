@@ -60,23 +60,6 @@ class AccountAccountConfigController {
         return result
     }
 
-    public async saveAccountConfig(accountId:string, key:string, value:string, type:string):Promise<IAccountConfig|null> {
-        if (!(accountId && key && value && type)) throw({code: 400})
-
-        const account = await accountModel.findOne({_id: accountId})
-        if (!account) throw({code: 404})
-
-        // check if the account info to save is existing on the account account infos
-        if (this.hasAccountConfigKey(account, key)) throw({code: 409})
-
-        account.accountConfigs!.push({key, value, type})
-
-        await account.save()
-        await accountController.cachedData.removeCacheData(accountId)
-
-        return this.getAccountConfigByKey(account, key)
-    }
-
     public async updateAccountConfig(accountId:string, accountConfigId:string, key:string, value:string, type:TAccountConfigType):Promise<IAccountConfig|null> {
         if (!(accountId && accountConfigId)) throw({code: 400})
 
@@ -94,23 +77,6 @@ class AccountAccountConfigController {
         return account.accountConfigs!.id(accountConfigId)
     }
 
-    public async deleteAccountConfig(accountId:string, accountConfigId:string):Promise<IAccountConfig|null> {
-        if (!(accountId && accountConfigId)) throw({code: 400})
-
-        const account = await accountModel.findOne({_id: accountId})
-        if (!account) throw({code: 404})
-
-        const accountConfigData = account!.accountConfigs?.id(accountConfigId)
-        if (accountConfigData) {
-            account!.accountConfigs?.id(accountConfigId)?.deleteOne()
-            await account.save()
-            await accountController.cachedData.removeCacheData(accountId)
-        } else {
-            throw({code: 404})
-        }
-
-        return accountConfigData? accountConfigData: null
-    }
 }
 
 export default new AccountAccountConfigController()

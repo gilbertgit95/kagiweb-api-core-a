@@ -20,17 +20,6 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs', async (re
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs', async (req, res) => {
-    const { accountId } = req.params
-    const { key, value, type } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
-        return await accountAccountConfigController.saveAccountConfig(accountId, key, value, type)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
 router.get(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs/:accountConfigId', async (req, res) => {
     const { accountId, accountConfigId } = req.params
 
@@ -47,16 +36,6 @@ router.put(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs/:accountCon
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
         return await accountAccountConfigController.updateAccountConfig(accountId, accountConfigId, key, value, type)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.delete(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs/:accountConfigId', async (req, res) => {
-   const { accountId, accountConfigId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
-        return await accountAccountConfigController.deleteAccountConfig( accountId, accountConfigId )
     })
 
     return res.status(statusCode).send(result)
