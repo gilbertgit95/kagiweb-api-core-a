@@ -23,7 +23,7 @@ interface IAccountCompleteInfo {
     features: IFeature[]|null,
     workspace: IWorkspace|null,
     workspaces: IWorkspace[]|null,
-    externalWorkspaces: (IWorkspace & {ownerId:string, ownerAccountname: string})[]|null
+    externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null
 }
 
 class AccountController {

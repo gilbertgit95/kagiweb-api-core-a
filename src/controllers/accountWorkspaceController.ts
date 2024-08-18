@@ -41,11 +41,11 @@ class AccountWorkspaceController {
         return workspace
     }
 
-    public async getExternalWorkspaces(accountId:string):Promise<(IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string})[]> {
-        let result:(IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string})[] = []
+    public async getExternalWorkspaces(accountId:string):Promise<(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[]> {
+        let result:(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[] = []
         if (!accountId) throw({code: 400})
 
-        const extWorkspaces:(IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerAccountname: string, ownerAccountType: string}>([
+        const extWorkspaces:(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string}>([
             {
               '$match': {
                 'workspaces.accountRefs.accountId': accountId
@@ -74,7 +74,7 @@ class AccountWorkspaceController {
                 'name': '$workspaces.name',
                 'description': '$workspaces.description',
                 'ownerId': '$_id',
-                'ownerAccountname': '$nameId',
+                'ownerNameId': '$nameId',
                 'ownerAccountType': '$accountType',
                 'isActive': '$workspaces.isActive',
                 'accountRefs': '$workspaces.accountRefs',
