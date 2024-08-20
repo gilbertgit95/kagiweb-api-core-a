@@ -7,8 +7,8 @@ import accountController from './accountController'
 class AccountAccountConfigController {
     public hasAccountConfigKey(account:IAccount, accountConfigKey:string):boolean {
         if (account && account.accountConfigs) {
-            for (const info of account.accountConfigs) {
-                if (info.key === accountConfigKey) return true
+            for (const config of account.accountConfigs) {
+                if (config.key === accountConfigKey) return true
             }
         }
 
@@ -18,8 +18,8 @@ class AccountAccountConfigController {
     public getAccountConfigByKey(account:IAccount, accountConfigKey:string):IAccountConfig|null {
 
         if (account && account.accountConfigs) {
-            for (const info of account.accountConfigs) {
-                if (info.key === accountConfigKey) return info
+            for (const config of account.accountConfigs) {
+                if (config.key === accountConfigKey) return config
             }
         }
 
@@ -29,8 +29,8 @@ class AccountAccountConfigController {
     public getAccountConfigById(account:IAccount, accountConfigId:string):IAccountConfig|null {
 
         if (account && account.accountConfigs) {
-            for (const info of account.accountConfigs) {
-                if (info._id === accountConfigId) return info
+            for (const config of account.accountConfigs) {
+                if (config._id === accountConfigId) return config
             }
         }
 

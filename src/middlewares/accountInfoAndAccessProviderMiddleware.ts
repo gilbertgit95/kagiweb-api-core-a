@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
 import { IAccount } from '../dataSource/models/accountModel'
+import accountAccountConfigController from '../controllers/accountAccountConfigController'
 import accountController from '../controllers/accountController'
-import accountRoleController from '../controllers/accountRoleController'
+// import accountRoleController from '../controllers/accountRoleController'
 import accountClientDeviceController from '../controllers/accountClientDeviceController'
 import accountClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
 import roleFeatureController from '../controllers/roleFeatureController'
@@ -50,20 +51,20 @@ class AccountInfoAndAccessProvider {
                 }
 
                 // get active account roleref
-                const activeRoleRef = accountRoleController.getActiveRoleRef(account)
-                if (!(activeRoleRef && activeRoleRef.roleId)) throw({code: 404})
+                const defaultConfigRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
+                if (!(defaultConfigRole && defaultConfigRole.value)) throw({code: 404})
                 // get active role info
-                const activeRole = await roleController.getMappedRole(activeRoleRef.roleId)
-                if (!activeRole) throw({code: 404})
+                const defaultRole = await roleController.getMappedRole(defaultConfigRole.value)
+                if (!defaultRole) throw({code: 404})
 
                 // for the super administrator role
-                if (activeRole && activeRole.absoluteAuthority) {
-                    // console.log('absolute authority: ', activeRole.absoluteAuthority)
+                if (defaultRole && defaultRole.absoluteAuthority) {
+                    // console.log('absolute authority: ', defaultRole.absoluteAuthority)
                     return true
                 }
 
                 // for roles that has specific accessable features
-                const roleFeatures = await roleFeatureController.getMappedFeatures(activeRole)
+                const roleFeatures = await roleFeatureController.getMappedFeatures(defaultRole)
 
                 // check if the role can access the request path
                 if(!RouterIdentity.pathHasMatch(roleFeatures, {path: req.path, method: req.method})) {

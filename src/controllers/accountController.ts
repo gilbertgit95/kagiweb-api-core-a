@@ -5,12 +5,13 @@ import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import roleController from './roleController'
 import featureController from './featureController'
 import accountWorkspaceController from './accountWorkspaceController'
+import accountAccountConfigController from '../controllers/accountAccountConfigController'
 
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
 import { IFeature } from '../dataSource/models/featureModel'
 import { IRole } from '../dataSource/models/roleModel'
-import accountRoleController from './accountRoleController'
+// import accountRoleController from './accountRoleController'
 import appEvents from '../utilities/appEvents'
 import Config from '../utilities/config'
 
@@ -68,21 +69,31 @@ class AccountController {
             if (account && !includeSensitiveInfo) account = this.clearSensitiveInfo(account)
             if (account) {
                 const rolesMap = await roleController.getRolesMap()
-                const activeRoleRef = accountRoleController.getActiveRoleRef(account)
-                const activeRole = activeRoleRef? rolesMap[activeRoleRef.roleId]: null
+                const defaultConfigRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
+                const defaultRole = defaultConfigRole? rolesMap[defaultConfigRole.value]: null
                 const accountRoles = account?.rolesRefs.map(item => rolesMap[item.roleId])
 
                 const featuresMap = await featureController.getFeaturesMap()
-                let roleFeatures = activeRole?.featuresRefs?.map(item => featuresMap[item.featureId]) || null
-                if (activeRole?.absoluteAuthority) {
+                let roleFeatures = defaultRole?.featuresRefs?.map(item => featuresMap[item.featureId]) || null
+                if (defaultRole?.absoluteAuthority) {
                     roleFeatures = await featureController.getAllFeatures()
                 }
 
-                resp.role = activeRole
+                const accountWorkspaces = account.workspaces
+                const accountExtWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
+                const allAccountWorkspaces = [...accountWorkspaces, ...accountExtWorkspaces]
+                const allWorkspaceMap = allAccountWorkspaces.reduce<{[key:string]:IWorkspace}>((acc, item) => {
+                    acc[item._id] = item
+                    return acc
+                }, {})
+                const defaultConfigWorkspace = accountAccountConfigController.getAccountConfigByKey(account, 'default-workspace')
+                const defaultWorkspace = allWorkspaceMap[defaultConfigWorkspace?.value || ''] || null
+
+                resp.role = defaultRole
                 resp.roles = accountRoles
                 resp.features = roleFeatures
-                resp.workspace = accountWorkspaceController.getActiveWorkspace(account)
-                resp.workspaces = account.workspaces
+                resp.workspace = defaultWorkspace
+                resp.workspaces = accountWorkspaces
                 resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
                 resp.accountData = account
             }
