@@ -60,16 +60,14 @@ class AccountAccountConfigController {
         return result
     }
 
-    public async updateAccountConfig(accountId:string, accountConfigId:string, key:string, value:string, type:TAccountConfigType):Promise<IAccountConfig|null> {
+    public async updateAccountConfig(accountId:string, accountConfigId:string, value:string):Promise<IAccountConfig|null> {
         if (!(accountId && accountConfigId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
         if (!account.accountConfigs?.id(accountConfigId)) throw({code: 404})
 
-        if (key) account.accountConfigs!.id(accountConfigId)!.key = key
         if (value) account.accountConfigs!.id(accountConfigId)!.value = value
-        if (type) account.accountConfigs!.id(accountConfigId)!.type = type
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)

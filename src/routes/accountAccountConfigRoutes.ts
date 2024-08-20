@@ -32,10 +32,10 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs/:accountCon
 
 router.put(env.RootApiEndpoint + 'accounts/:accountId/accountConfigs/:accountConfigId', async (req, res) => {
    const { accountId, accountConfigId } = req.params
-    const { key, value, type } = req.body
+    const { value } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
-        return await accountAccountConfigController.updateAccountConfig(accountId, accountConfigId, key, value, type)
+        return await accountAccountConfigController.updateAccountConfig(accountId, accountConfigId, value)
     })
 
     return res.status(statusCode).send(result)

@@ -64,13 +64,8 @@ put:
         schema:
           type: object
           properties:
-            key:
-              type: string
             value:
               type: string
-            type:
-              type: string
-              enum: [string, number, date, boolean]
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
