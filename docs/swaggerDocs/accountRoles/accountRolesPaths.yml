@@ -37,7 +37,6 @@ get:
               example:
                 - _id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
                   roleId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
-                  isActive: true
                   createdAt: 2023-08-06T18:03:06.290Z
                   updatedAt: 2023-08-07T03:10:24.423Z
 post:
@@ -65,8 +64,6 @@ post:
             roleId:
               type: string
               format: uuid
-            isActive:
-              type: boolean
   responses:
     allOf:
       - $ref: ../global/defaultResponsesDefinition.yml
@@ -82,6 +79,5 @@ post:
               example:
                 id: cbe58c3c-9d86-466c-a8b4-1b26c379f276
                 roleId: 3f74c3a5-3200-4c9f-a5c7-077515e1e45b
-                isActive: true
                 createdAt: 2023-08-06T18:03:06.290Z
                 updatedAt: 2023-08-07T03:10:24.423Z

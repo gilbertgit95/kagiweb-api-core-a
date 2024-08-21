@@ -32,10 +32,10 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/roles/:roleRefId', async (
 
 router.post(env.RootApiEndpoint + 'accounts/:accountId/roles', async (req, res) => {
     const { accountId } = req.params
-    const { roleId, isActive } = req.body
+    const { roleId } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await accountRoleController.saveRoleRef(accountId, roleId, isActive)
+        return await accountRoleController.saveRoleRef(accountId, roleId)
     })
 
     return res.status(statusCode).send(result)
@@ -43,20 +43,10 @@ router.post(env.RootApiEndpoint + 'accounts/:accountId/roles', async (req, res) 
 
 router.put(env.RootApiEndpoint + 'accounts/:accountId/roles/:roleRefId', async (req, res) => {
     const { accountId, roleRefId } = req.params
-    const { roleId, isActive } = req.body
+    const { roleId } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await accountRoleController.updateRoleRef(accountId, roleRefId, roleId, isActive)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.put(env.RootApiEndpoint + 'accounts/:accountId/roles/:roleRefId/activate', async (req, res) => {
-    const { accountId, roleRefId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await accountRoleController.activateAccountRole(accountId, roleRefId)
+        return await accountRoleController.updateRoleRef(accountId, roleRefId, roleId)
     })
 
     return res.status(statusCode).send(result)

@@ -43,7 +43,6 @@ get:
                       disabled: false
                       createdAt: '2023-08-27T14:51:58.619Z'
                       updatedAt: '2023-09-09T00:20:10.686Z'
-                  isActive: true
                   disabled: false
                   createdAt: '2023-08-27T14:51:58.619Z'
                   updatedAt: '2023-08-27T14:51:58.619Z'
@@ -66,8 +65,6 @@ post:
               type: string
             description:
               type: string
-            isActive:
-              type: boolean
             disbled:
               type: boolean
   responses:
@@ -98,7 +95,6 @@ post:
                     disabled: false
                     createdAt: '2023-08-27T14:51:58.619Z'
                     updatedAt: '2023-09-09T00:20:10.686Z'
-                isActive: true
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-08-27T14:51:58.619Z'

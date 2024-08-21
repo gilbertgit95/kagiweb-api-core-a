@@ -85,42 +85,6 @@ router.get(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, r
     return res.status(statusCode).send(result)
 })
 
-router.post(env.RootApiEndpoint + 'owner/roles', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id
-    const { roleId, isActive } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        if (!accountId) return null
-        return await accountRoleController.saveRoleRef(accountId, roleId, isActive)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId/activate', async (req, res) => {
-    const accountId = req?.accountData?._id || ''
-    const { roleRefId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        return await accountRoleController.activateAccountRole(accountId, roleRefId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
-router.put(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id
-    const { roleRefId } = req.params
-    const { roleId, isActive } = req.body
-
-    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
-        if (!accountId) return null
-        return await accountRoleController.updateRoleRef(accountId, roleRefId, roleId, isActive)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
 router.delete(env.RootApiEndpoint + 'owner/roles/:roleRefId', async (req:Request, res:Response) => {
     const accountId = req?.accountData?._id
     const { roleRefId } = req.params
@@ -531,10 +495,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
 
 router.post(env.RootApiEndpoint + 'owner/workspaces', async (req, res) => {
     const accountId = req?.accountData?._id || ''
-    const { name, description, isActive, disabled } = req.body
+    const { name, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await accountWorkspaceController.saveWorkspace(accountId, name, description, isActive, disabled)
+        return await accountWorkspaceController.saveWorkspace(accountId, name, description, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -554,10 +518,10 @@ router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, re
 router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId', async (req, res) => {
     const accountId = req?.accountData?._id || ''
     const { workspaceId } = req.params
-    const { name, description, isActive, disabled } = req.body
+    const { name, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await accountWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, isActive, disabled)
+        return await accountWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, disabled)
     })
 
     return res.status(statusCode).send(result)

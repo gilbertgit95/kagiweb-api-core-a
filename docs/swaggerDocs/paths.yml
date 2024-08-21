@@ -41,8 +41,6 @@
   $ref: ./accountRoles/accountRolesPaths.yml
 /accounts/{accountId}/roles/{roleRefId}:
   $ref: ./accountRoles/accountRolesSpecificPaths.yml
-/accounts/{accountId}/roles/{roleRefId}/activate:
-  $ref: ./accountRoles/accountRolesActivationPaths.yml
 /accounts/{accountId}/accountInfos:
   $ref: ./accountAccountInfos/accountAccountInfosPaths.yml
 /accounts/{accountId}/accountInfos/{accountInfoId}:
@@ -91,8 +89,6 @@
   $ref: ./owner/ownerRolesPaths.yml
 /owner/roles/{roleRefId}:
   $ref: ./owner/ownerRolesSpecificPaths.yml
-/owner/roles/{roleRefId}/activate:
-  $ref: ./owner/ownerRolesActivationPaths.yml
 /owner/accountInfos:
   $ref: ./owner/ownerAccountInfosPaths.yml
 /owner/accountInfos/{accountInfoId}:

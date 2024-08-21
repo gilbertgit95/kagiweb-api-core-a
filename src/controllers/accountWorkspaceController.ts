@@ -7,17 +7,6 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class AccountWorkspaceController {
-    public getActiveWorkspace(account:IAccount):IWorkspace|null {
-
-        if (account && account.workspaces) {
-            for (const workspace of account.workspaces) {
-                if (workspace.isActive) return workspace
-            }
-        }
-
-        return null
-    }
-
     public getWorkspaceById(account:IAccount, workspaceId:string):IWorkspace|null {
 
         if (account && account.workspaces) {
@@ -102,7 +91,7 @@ class AccountWorkspaceController {
         return result
     }
 
-    public async saveWorkspace(accountId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
+    public async saveWorkspace(accountId:string, name:string, description:string|undefined, disabled:boolean|string):Promise<IWorkspace|null> {
         if (!(accountId && name)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
@@ -111,9 +100,6 @@ class AccountWorkspaceController {
         const doc:IWorkspace = {
             name: name,
             description: description
-        }
-        if (DataCleaner.getBooleanData(isActive).isValid) {
-            doc.isActive = DataCleaner.getBooleanData(isActive).data
         }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
@@ -127,7 +113,7 @@ class AccountWorkspaceController {
         return account.workspaces[account.workspaces.length - 1]
     }
 
-    public async updateWorkspace(accountId:string, workspaceId:string, name:string, description:string|undefined, isActive:boolean|string, disabled:boolean|string):Promise<IWorkspace|null> {
+    public async updateWorkspace(accountId:string, workspaceId:string, name:string, description:string|undefined, disabled:boolean|string):Promise<IWorkspace|null> {
         if (!(accountId && workspaceId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
@@ -137,9 +123,6 @@ class AccountWorkspaceController {
         if (name) account.workspaces!.id(workspaceId)!.name = name
         if (description) account.workspaces!.id(workspaceId)!.description = description
 
-        if (DataCleaner.getBooleanData(isActive).isValid) {
-            account.workspaces!.id(workspaceId)!.isActive = DataCleaner.getBooleanData(isActive).data
-        }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             account.workspaces!.id(workspaceId)!.disabled = DataCleaner.getBooleanData(disabled).data
         }

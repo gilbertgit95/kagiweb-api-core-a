@@ -22,10 +22,10 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces', async (req, r
 
 router.post(env.RootApiEndpoint + 'accounts/:accountId/workspaces', async (req, res) => {
     const { accountId } = req.params
-    const { name, description, isActive, disabled } = req.body
+    const { name, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await accountWorkspaceController.saveWorkspace(accountId, name, description, isActive, disabled)
+        return await accountWorkspaceController.saveWorkspace(accountId, name, description, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -43,10 +43,10 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId', 
 
 router.put(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId', async (req, res) => {
    const { accountId, workspaceId } = req.params
-    const { name, description, isActive, disabled } = req.body
+    const { name, description, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspace>(async () => {
-        return await accountWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, isActive, disabled)
+        return await accountWorkspaceController.updateWorkspace(accountId, workspaceId, name, description, disabled)
     })
 
     return res.status(statusCode).send(result)

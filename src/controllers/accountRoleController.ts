@@ -7,16 +7,6 @@ import DataCleaner from '../utilities/dataCleaner'
 // const env = Config.getEnv()
 
 class AccountRoleController {
-    public getActiveRoleRef(account:IAccount):IRoleRef|null {
-        if (account && account.rolesRefs) {
-            for (const ref of account.rolesRefs) {
-                if (ref.isActive) return ref
-            }
-        }
-
-        return null
-    }
-
     public hasRole(account:IAccount, roleId:string):boolean {
         if (account && account.rolesRefs) {
             for (const ref of account.rolesRefs) {
@@ -70,7 +60,7 @@ class AccountRoleController {
         return account!.rolesRefs? account!.rolesRefs: []
     }
 
-    public async saveRoleRef(accountId:string, roleId:string, isActive:boolean|string):Promise<IRoleRef|null> {
+    public async saveRoleRef(accountId:string, roleId:string):Promise<IRoleRef|null> {
         if (!(accountId && roleId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
@@ -83,9 +73,6 @@ class AccountRoleController {
         if (this.hasRole(account, roleId)) throw({code: 409})
         const doc:{roleId:string, isActive?:boolean} = {roleId}
 
-        if (DataCleaner.getBooleanData(isActive).isValid) {
-            doc.isActive = DataCleaner.getBooleanData(isActive).data
-        }
         account.rolesRefs!.push(doc)
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
@@ -93,7 +80,7 @@ class AccountRoleController {
         return this.getRoleRefByRoleId(account, roleId)
     }
 
-    public async updateRoleRef(accountId:string, roleRefId:string, roleId:string|undefined, isActive:boolean|string):Promise<IRoleRef|null> {
+    public async updateRoleRef(accountId:string, roleRefId:string, roleId:string|undefined):Promise<IRoleRef|null> {
         if (!(accountId && roleRefId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
@@ -109,26 +96,6 @@ class AccountRoleController {
             if (this.hasRole(account, roleId)) throw({code: 409})
 
             account.rolesRefs!.id(roleRefId)!.roleId = roleId
-        }
-        if (DataCleaner.getBooleanData(isActive).isValid) {
-            account.rolesRefs!.id(roleRefId)!.isActive = DataCleaner.getBooleanData(isActive).data
-        }
-
-        await account.save()
-        await accountController.cachedData.removeCacheData(accountId)
-
-        return account.rolesRefs!.id(roleRefId)
-    }
-
-    public async activateAccountRole(accountId:string, roleRefId:string):Promise<IRoleRef|null> {
-        if (!(accountId && roleRefId)) throw({code: 400})
-
-        const account = await accountModel.findOne({_id: accountId})
-        if (!account) throw({code: 404})
-        if (!account.rolesRefs?.id(roleRefId)) throw({code: 404})
-
-        for (let rRef of account.rolesRefs) {
-            account.rolesRefs!.id(rRef._id)!.isActive = rRef._id === roleRefId
         }
 
         await account.save()

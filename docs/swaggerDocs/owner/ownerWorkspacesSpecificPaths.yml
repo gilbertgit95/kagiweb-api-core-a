@@ -41,7 +41,6 @@ get:
                     disabled: false
                     createdAt: '2023-08-27T14:51:58.619Z'
                     updatedAt: '2023-09-09T00:20:10.686Z'
-                isActive: true
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'
@@ -69,8 +68,6 @@ put:
               type: string
             description:
               type: string
-            isActive:
-              type: boolean
             disbled:
               type: boolean
   responses:
@@ -101,7 +98,6 @@ put:
                     disabled: false
                     createdAt: '2023-08-27T14:51:58.619Z'
                     updatedAt: '2023-09-09T00:20:10.686Z'
-                isActive: true
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'
@@ -147,7 +143,6 @@ delete:
                     disabled: false
                     createdAt: '2023-08-27T14:51:58.619Z'
                     updatedAt: '2023-09-09T00:20:10.686Z'
-                isActive: true
                 disabled: false
                 createdAt: '2023-08-27T14:51:58.619Z'
                 updatedAt: '2023-09-09T00:20:10.686Z'

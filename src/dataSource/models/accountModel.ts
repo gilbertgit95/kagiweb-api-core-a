@@ -30,8 +30,7 @@ interface IAccountUpdate {
 // create interfaces
 interface IRoleRef {
     _id?: string,
-    roleId: string,
-    isActive?: boolean
+    roleId: string
 }
 
 interface IPassword {
@@ -109,7 +108,6 @@ interface IWorkspace {
     name: string,
     description?: string,
     accountRefs?: Types.DocumentArray<IWorkspaceAccountRef & Document>,
-    isActive?: boolean,
     disabled?: boolean
 }
 
@@ -138,7 +136,6 @@ interface IAccount {
 const RoleRefSchema = new Schema<IRoleRef>({
     _id: { type: String, default: () => randomUUID()},
     roleId: { type: String, require: true },
-    isActive: { type: Boolean, requires: false, default: false }
 }, { timestamps: true })
 
 const PasswordSchema = new Schema<IPassword>({
@@ -248,7 +245,6 @@ const workspaceSchema = new Schema<IWorkspace>({
         validate: TextValidators.validateDescription
     },
     accountRefs: { type: [WorkspaceAccountRefSchema], required: false, default: [] },
-    isActive: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false}
 }, { timestamps: true })
 
