@@ -14,11 +14,11 @@ import appEvents from '../utilities/appEvents'
 const env = Config.getEnv()
 
 class AuthController {
-    public async signin(nameId:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, nameId?: string, message?: string} | null> {
+    public async signin(nameId:string, password:string, device:IClientDevice, ip:string):Promise<{token?: string, nameId?: string, message?: string, expiration?: Date, createdAt?: Date} | null> {
 
         // fetch account using the nameId
         let account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
-        let result:{token?: string, nameId?: string, message?: string} | null
+        let result:{token?: string, nameId?: string, message?: string, expiration?: Date, createdAt?: Date} | null
 
         // if no account found
         if (!account) {
@@ -102,7 +102,7 @@ class AuthController {
                 deviceId = accountClientDeviceController.getClientDeviceByUA(account, device?.ua)?._id
             }
             account!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
-            result = {token: jwtStr, message: 'Successfull signin'}
+            result = {token: jwtStr, message: 'Successfull signin', expiration: expTime, createdAt: new Date()}
 
             // reset signinLT
             if (signinLT) {
@@ -124,10 +124,10 @@ class AuthController {
     }
 
     // accountId:string, code:string
-    public async signinOTP(nameId:string, key:string, device:IClientDevice, ip:string):Promise<{token: string, message?: string } | null> {
+    public async signinOTP(nameId:string, key:string, device:IClientDevice, ip:string):Promise<{nameId: string, token: string, message?: string, expiration?: Date, createdAt?: Date} | null> {
         // fetch account using the nameId
         let account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
-        let result:{ token: string, message?: string } | null
+        let result:{nameId: string, token: string, message?: string, expiration?: Date, createdAt?: Date} | null
 
         // if no account found
         if (!account) {
@@ -177,7 +177,7 @@ class AuthController {
                 deviceId = accountClientDeviceController.getClientDeviceByUA(account, device?.ua)?._id
             }
             account!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
-            result = {token: jwtStr, message: 'Successfull signin'}
+            result = {nameId, token: jwtStr, message: 'Successfull signin', expiration: expTime, createdAt: new Date()}
 
             // reset signinLT
             if (signinLT) {

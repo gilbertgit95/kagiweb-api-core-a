@@ -17,7 +17,7 @@ router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
 
     // console.log(nameId, password)
 
-    const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<{token?: string, nameId?: string, message?: string, expiration?: Date, createdAt?: Date}>(async () => {
         if (!ua || !ip) return null
         return await authController.signin(nameId, password, ua, ip)
     })
@@ -30,7 +30,7 @@ router.post(env.RootApiEndpoint + 'signinOTP', async (req:Request, res) => {
     const ip = req.clientIp? req.clientIp: null
     const { nameId, key } = req.body
 
-    const [result, statusCode] = await ErrorHandler.execute<{token?:string}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<{nameId: string, token: string, message?: string, expiration?: Date, createdAt?: Date}>(async () => {
         if (!ua || !ip) return null
         return await authController.signinOTP(nameId, key, ua, ip)
     })

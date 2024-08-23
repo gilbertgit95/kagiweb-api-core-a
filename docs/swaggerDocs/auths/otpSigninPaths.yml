@@ -29,12 +29,22 @@ post:
             schema:
               type: object
               properties:
+                nameId:
+                  type: string
                 token:
                   type: string
                 message:
                   type: string
+                expiration:
+                  type: date
+                createdAt:
+                  type: date
             example:
+              nameId: master
               token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE2OTIyNzU3MjEsImV4cCI6MTY5MjM2MjEyMX0.S1fexk-lZlEjzJsmV2nY8Gk_2nY_Cy8mGuRT-Nx8nmk
+              message: Successful signin
+              expiration: 2023-08-07T03:10:24.423Z
+              createdAt: 2023-08-07T03:10:24.423Z
       400:
         description: Incorrect content in the request.
         content:
