@@ -102,7 +102,7 @@ class AuthController {
                 deviceId = accountClientDeviceController.getClientDeviceByUA(account, device?.ua)?._id
             }
             account!.clientDevices.id(deviceId)?.accessTokens?.push(accessToken)
-            result = {token: jwtStr, message: 'Successfull signin', expiration: expTime, createdAt: new Date()}
+            result = {nameId, token: jwtStr, message: 'Successfull signin', expiration: expTime, createdAt: new Date()}
 
             // reset signinLT
             if (signinLT) {
