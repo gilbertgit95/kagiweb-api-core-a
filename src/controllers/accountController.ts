@@ -24,7 +24,9 @@ interface IAccountCompleteInfo {
     features: IFeature[]|null,
     workspace: IWorkspace|null,
     workspaces: IWorkspace[]|null,
-    externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null
+    externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null,
+    clientDevice: IClientDevice|null,
+    accessToken: IAccessToken|null
 }
 
 class AccountController {
@@ -62,7 +64,9 @@ class AccountController {
             features: null,
             workspace: null,
             workspaces: null,
-            externalWorkspaces: null
+            externalWorkspaces: null,
+            clientDevice: null,
+            accessToken: null
         }
         if (query._id) {
             let account = await this.cachedData.getItem<IAccount>(query._id)
