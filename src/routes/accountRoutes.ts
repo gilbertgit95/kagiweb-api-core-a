@@ -44,9 +44,11 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/completeInfo', async (req, res) => {
     const { accountId } = req.params
+    const ua = req.userAgentInfo?.ua
+    const token = req.accessToken || undefined
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
-        return await accountController.getAccountCompleteInfo({_id: accountId})
+        return await accountController.getAccountCompleteInfo({_id: accountId, ua, token})
     })
 
     return res.status(statusCode).send(result)

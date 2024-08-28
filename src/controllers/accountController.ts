@@ -6,6 +6,8 @@ import roleController from './roleController'
 import featureController from './featureController'
 import accountWorkspaceController from './accountWorkspaceController'
 import accountAccountConfigController from '../controllers/accountAccountConfigController'
+import accountClientDeviceController from './accountClientDeviceController'
+import accountClientDeviceAccessTokenController from './accountClientDeviceAccessTokenController'
 
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
@@ -56,7 +58,7 @@ class AccountController {
         return account
     }
 
-    public async getAccountCompleteInfo(query:IAccountQuery, includeSensitiveInfo=false):Promise<IAccountCompleteInfo> {
+    public async getAccountCompleteInfo(query:{_id: string, ua?:string, token?:string}, includeSensitiveInfo=false):Promise<IAccountCompleteInfo> {
         const resp:IAccountCompleteInfo = {
             accountData: null,
             role: null,
@@ -70,7 +72,6 @@ class AccountController {
         }
         if (query._id) {
             let account = await this.cachedData.getItem<IAccount>(query._id)
-            if (account && !includeSensitiveInfo) account = this.clearSensitiveInfo(account)
             if (account) {
                 const rolesMap = await roleController.getRolesMap()
                 const defaultConfigRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
@@ -82,6 +83,13 @@ class AccountController {
                 if (defaultRole?.absoluteAuthority) {
                     roleFeatures = await featureController.getAllFeatures()
                 }
+
+                let usedClientDevice = query.ua? accountClientDeviceController.getClientDeviceByUA(account, query.ua): null
+                let usedToken = query.token && usedClientDevice?._id? accountClientDeviceAccessTokenController.getClientDeviceAccessTokenByJWT(account, usedClientDevice._id, query.token): null
+                // clear sensitive data
+                if (usedClientDevice) usedClientDevice.accessTokens = undefined
+                if (usedToken) usedToken.jwt = ''
+                if (!includeSensitiveInfo) account = this.clearSensitiveInfo(account)
 
                 const accountWorkspaces = account.workspaces
                 const accountExtWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
@@ -100,6 +108,8 @@ class AccountController {
                 resp.workspaces = accountWorkspaces
                 resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
                 resp.accountData = account
+                resp.clientDevice = usedClientDevice
+                resp.accessToken = usedToken
             }
         }
         return resp

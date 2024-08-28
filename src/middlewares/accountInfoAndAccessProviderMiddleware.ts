@@ -31,6 +31,9 @@ class AccountInfoAndAccessProvider {
             const token = accessToken && accessToken.split(' ')[1]? accessToken.split(' ')[1]: null
             let account:IAccount|null = null
 
+            // assign access token to request
+            req.accessToken = token
+
             if (token && type === 'Bearer') {
                 const tokenObj = await Encryption.verifyJWT<{accountId:string}>(token)
                 if (!(tokenObj && tokenObj.accountId)) throw({code: 401})

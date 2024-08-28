@@ -6,6 +6,7 @@ export {}
 declare global {
   namespace Express {
     export interface Request {
+        accessToken?: string | null,
         userAgentInfo?: IClientDevice | null,
         accountData?: IAccount | null
     }
