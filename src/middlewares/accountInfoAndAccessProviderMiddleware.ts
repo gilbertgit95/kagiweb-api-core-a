@@ -48,6 +48,9 @@ class AccountInfoAndAccessProvider {
             if (account && userAgentInfo) {
                 // check the account devices if the acces token existed
                 const clientDevice = accountClientDeviceController.getClientDeviceByUA(account, userAgentInfo.ua)
+                if (!clientDevice) {
+                    throw({code: 401, message: 'No access due to unrecognized user agent.'})
+                }
                 if ( clientDevice && clientDevice._id &&
                     !accountClientDeviceAccessTokenController.hasClientDeviceAccessTokenJWT(account, clientDevice._id, token)) {
                     throw({code: 401})
