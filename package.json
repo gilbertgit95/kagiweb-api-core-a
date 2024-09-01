@@ -14,9 +14,9 @@
   "types": "build/src/app.d.ts",
   "publishConfig": {
     "ignore": [
-        "!build/",
-        "src/",
-        "tests/"
+      "!build/",
+      "src/",
+      "tests/"
     ]
   },
   "exports": {
@@ -139,7 +139,6 @@
     }
   },
   "scripts": {
-    "prepack": "npmignore --auto",
     "start": "node build/src/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc -p ./tsconfig.json",
@@ -174,7 +173,6 @@
     "eslint": "^8.45.0",
     "jest": "^29.5.0",
     "mongodb-memory-server": "^8.13.0",
-    "npmignore": "^0.3.1",
     "supertest": "^6.3.3",
     "swagger-cli": "^4.0.4",
     "ts-jest": "^29.1.0",
