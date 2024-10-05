@@ -1,6 +1,6 @@
 {
   "name": "@kagiweb-tech/api-core-a",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "This is an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
@@ -12,13 +12,6 @@
   ],
   "main": "build/src/app.js",
   "types": "build/src/app.d.ts",
-  "publishConfig": {
-    "ignore": [
-      "!build/",
-      "src/",
-      "tests/"
-    ]
-  },
   "exports": {
     ".": "./build/src/app.js",
     "./mongoose": "./build/src/packages/mongoose.js",
