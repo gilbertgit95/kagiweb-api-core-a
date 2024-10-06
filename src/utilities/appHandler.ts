@@ -1,7 +1,7 @@
 import express, { Router } from 'express'
-import mongoose from '../packages/mongoose'
+// import mongoose from 'mongoose'
 import Config, {Env} from './config'
-import appEvents from './appEvents'
+// import appEvents from './appEvents'
 
 const env = Config.getEnv()
 
@@ -60,11 +60,11 @@ class AppHandler {
         return Config.getEnv()
     }
 
-    public async dbConnect() {
-        await mongoose.connect(env.MongoURI? env.MongoURI: '', {
-            dbName: env.DBName
-        })
-    }
+    // public async dbConnect() {
+    //     await mongoose.connect(env.MongoURI? env.MongoURI: '', {
+    //         dbName: env.DBName
+    //     })
+    // }
 
     public getAppRoutes():Router {
         this.publicStaticRoutes.forEach(route => {

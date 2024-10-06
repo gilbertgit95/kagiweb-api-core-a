@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from '../../packages/mongoose'
+import { Schema, model, Document, Types } from 'mongoose'
 import { randomUUID } from 'crypto'
 import TextValidators from '../validators/textValidators'
 // import NumberValidators from '../validators/numberValidators'

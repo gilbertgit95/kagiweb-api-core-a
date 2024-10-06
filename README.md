@@ -138,10 +138,10 @@ appHandler.addPrivateMiddleware(customMiddleware2)
 ```
 
 ### Custom Model
-The same as routes, no special syntax is required to create models as long as it is a valid mongoose model. But please **take note** of the mongoose library in the example, it uses mongoose from inside this package.
+The same as routes, no special syntax is required to create models as long as it is a valid mongoose model.
 
 ```ts
-import { Schema, model, Document, Types } from '@kagiweb-tech/api-core-a/mongoose'
+import { Schema, model, Document, Types } from 'mongoose'
 import { randomUUID } from 'crypto'
 
 interface INote {
@@ -187,6 +187,7 @@ The application emits important events that you could listen. Example is when yo
 #### Complete Example
 ```ts
 ...
+import mongoose from 'mongoose'
 import appHandler, { appEvents } from '@kagiweb-tech/api-core-a'
 
 const env = appHandler.getEnv()
@@ -239,6 +240,9 @@ appEvents.on('workspace-update', (data) => {
 
 // start express application
 app.listen(env.AppPort, async () => {
+    await mongoose.connect(env.MongoURI? env.MongoURI: '', {
+        dbName: env.DBName
+    })
 ...
 ```
 

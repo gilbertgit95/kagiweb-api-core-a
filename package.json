@@ -1,6 +1,6 @@
 {
   "name": "@kagiweb-tech/api-core-a",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "This is an express middleware package containing core features of a rest api.",
   "homepage": "https://github.com/gilbertgit95/kagiweb-api-core-a#readme",
   "keywords": [
@@ -12,9 +12,12 @@
   ],
   "main": "build/src/app.js",
   "types": "build/src/app.d.ts",
+  "files": [
+    "build",
+    "src"
+  ],
   "exports": {
     ".": "./build/src/app.js",
-    "./mongoose": "./build/src/packages/mongoose.js",
     "./utils/routerIdentity": "./build/src/utilities/routerIdentity.js",
     "./utils/config": "./build/src/utilities/config.js",
     "./utils/dataCache": "./build/src/utilities/dataCache.js",
@@ -45,9 +48,6 @@
   },
   "typesVersions": {
     "*": {
-      "mongoose": [
-        "build/src/packages/mongoose.d.ts"
-      ],
       "utils/routerIdentity": [
         "build/src/utilities/routerIdentity.d.ts"
       ],
@@ -179,11 +179,9 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
     "express-list-routes": "^1.1.5",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
-    "mongoose": "^7.2.0",
     "multer": "^1.4.5-lts.1",
     "node-cache": "^5.1.2",
     "phone": "^3.1.41",
@@ -195,5 +193,9 @@
     "url-pattern": "^1.0.3",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
+  },
+  "peerDependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.2.0"
   }
 }

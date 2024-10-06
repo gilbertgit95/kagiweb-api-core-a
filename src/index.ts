@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
+import mongoose from 'mongoose'
 
 import appHandler, { appEvents } from './app'
 // import Encryption from './utilities/encryption'
@@ -60,7 +61,9 @@ app.listen(env.AppPort, async () => {
     // console.log(jwtDoc, exp? new Date(exp * 1e3): undefined)
 
     try {
-        await appHandler.dbConnect()
+        await mongoose.connect(env.MongoURI? env.MongoURI: '', {
+            dbName: env.DBName
+        })
         console.log(`- Successfully connected to database`)
         await appHandler.executePostDBConnectionProcess()
         console.log(`- Execute post db conection process`)
