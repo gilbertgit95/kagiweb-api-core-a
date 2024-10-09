@@ -19,7 +19,8 @@ Please make sure that you already have software dependencies installed before yo
 ### Project creation
 A cli is available for creating and administering kagiweb-tech projects. To create a server using @kagiweb-tech/api-core-a middleware execute the snippet below on your terminal.
 ```
-> npx @kagiweb-tech/cli
+> npm i -g @kagiweb-tech/cli
+> kwtech
 ```
 1. select `App Creator`
 2. select `Create - API Core A (Ts)`
@@ -30,7 +31,8 @@ This will create a new project folder in the current directory containing the in
 ### Seeding
 At this point, the application is still not usable because the database is empty. To populate the database with initial data. Goto the project folder where the .env file is located and open the terminal, then execute the snippet below.
 ```
-> npx @kagiweb-tech/cli
+// if @kagiweb-tech/cli not yet installed just execute: npm i -g @kagiweb-tech/cli
+> kwtech
 ```
 1. select `Administrative Tasks`
 2. enter admin confirm key from .env
