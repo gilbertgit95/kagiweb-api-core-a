@@ -1,1397 +1,154 @@
-[{
-  "_id": "37410e75-1760-4bb6-85e0-d0a138d374bc",
-  "__v": 283,
-  "clientDevices": [
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "cb4718ac-e426-43bc-8a5d-53811f30bef3",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-04-17T00:48:16.409Z"
-      },
-      "updatedAt": {
-        "$date": "2024-05-12T04:02:46.232Z"
-      },
-      "description": "will be testing a random company here"
-    },
-    {
-      "ua": "test  user agent",
-      "description": "test description",
-      "disabled": false,
-      "_id": "1c54d12b-2be8-438f-8b57-6c5070e499cf",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-04-17T14:29:33.063Z"
-      },
-      "updatedAt": {
-        "$date": "2024-05-22T00:57:21.800Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36",
-      "disabled": false,
-      "_id": "317f73ac-981c-48b6-b52f-3bc3b65f8c5a",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MTM1ODAxNTksImV4cCI6MTc0NTExNjE1OX0.k2iGRgbxcqoJ2ftiUiLRPiIwZ__RREghog3l84atfuw",
-          "ipAddress": "192.168.1.2",
-          "description": "this is used by the data sync integration",
-          "expTime": {
-            "$date": "2025-04-20T02:29:19.000Z"
-          },
-          "disabled": false,
-          "_id": "338a2344-9b7b-4f56-955d-5d731eddd2da",
-          "createdAt": {
-            "$date": "2024-04-20T02:29:19.315Z"
-          },
-          "updatedAt": {
-            "$date": "2024-04-20T02:29:19.315Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-04-19T12:04:00.171Z"
-      },
-      "updatedAt": {
-        "$date": "2024-05-04T08:34:33.049Z"
-      },
-      "description": "Chrome browser on Gilbert huawie phone"
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "06340b39-5178-4af6-a316-f580856ff286",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-04-26T01:48:25.715Z"
-      },
-      "updatedAt": {
-        "$date": "2024-06-09T12:38:42.786Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "e9a30125-691a-4cee-af55-4234be9fd600",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-06-01T15:42:45.189Z"
-      },
-      "updatedAt": {
-        "$date": "2024-06-25T00:10:43.951Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "718e1ab0-3fb5-44f9-a1dd-5a7409e998b1",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-06-25T00:10:43.924Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-10T08:21:57.065Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "d0ed1294-8f34-4698-a12a-19b0369870d2",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MjQ0NjU5OTEsImV4cCI6MTcyNTA3MDc5MX0.ZkGlUvD9IZT4SpyaWMbaOA_QR_ihz-z2-9CNoDigzBA",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:19:51.000Z"
-          },
-          "disabled": false,
-          "_id": "4b158683-6129-42c2-bcc2-a1e72ba969eb",
-          "createdAt": {
-            "$date": "2024-08-24T02:19:51.834Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:19:51.834Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MjQ0NjY3OTgsImV4cCI6MTcyNTA3MTU5OH0.-J27_vqN0QNpctNrbacuVBDQnC3pTfebzbIARswH2XM",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:33:18.000Z"
-          },
-          "disabled": false,
-          "_id": "20dbc301-18f0-4fa6-ad75-a6476e9265f6",
-          "createdAt": {
-            "$date": "2024-08-24T02:33:18.155Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:33:18.155Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MjQ1Njc4MDksImV4cCI6MTcyNTE3MjYwOX0.W4iOHXdANjT08WJNrla_ZZagBHznc3qkDZgAdeGMHm0",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T06:36:49.000Z"
-          },
-          "disabled": false,
-          "_id": "b7181d70-c2b1-40db-a5b3-07313266e0ed",
-          "createdAt": {
-            "$date": "2024-08-25T06:36:49.188Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T06:36:49.188Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-08-02T23:25:21.203Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T06:36:49.189Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "95f24a08-7f0d-4d2d-aa29-a7a4e3be0acc",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MjQ5ODMyNDYsImV4cCI6MTcyNTU4ODA0Nn0.HdjsNKKuhCrDV4rhdOmkIG-7UFIyBtA3DkQ0Z_YH0Ww",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-06T02:00:46.000Z"
-          },
-          "disabled": false,
-          "_id": "517a3bba-cc56-4984-94cf-a8eeaae7c827",
-          "createdAt": {
-            "$date": "2024-08-30T02:00:46.680Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-30T02:00:46.680Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-08-30T02:00:46.663Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-30T02:00:46.680Z"
-      }
-    }
-  ],
-  "contactInfos": [
-    {
-      "_id": "62986e97-cdc0-4454-897a-bd34a8071b1c",
-      "type": "email-address",
-      "value": "gilbert.cuerbo@gmail.com",
-      "countryCode": "PH",
-      "verified": false,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-07T06:13:09.327Z"
-      }
-    },
-    {
-      "type": "mobile-number",
-      "value": "+639273854605",
-      "verified": false,
-      "_id": "72f96ca9-b1f4-47ad-a9da-3b5741c1e040",
-      "createdAt": {
-        "$date": "2024-03-07T06:25:25.902Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-07T06:26:14.915Z"
-      }
-    },
-    {
-      "type": "telephone",
-      "value": "0908-818-4444",
-      "verified": false,
-      "_id": "ae505419-57da-451a-ac02-028cd22c04b8",
-      "createdAt": {
-        "$date": "2024-03-07T06:29:18.086Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-26T13:41:28.772Z"
-      }
-    },
-    {
-      "type": "app-admin",
-      "value": "master101",
-      "verified": false,
-      "_id": "4a7c79a2-0c6a-4172-86f4-96c0a8423c6b",
-      "createdAt": {
-        "$date": "2024-03-07T06:29:34.303Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-17T01:46:36.177Z"
-      }
-    }
-  ],
-  "createdAt": {
-    "$date": "2023-12-24T04:04:50.147Z"
-  },
-  "disabled": false,
-  "limitedTransactions": [
-    {
-      "_id": "5efafc09-a05b-4acd-825d-689675298ae3",
-      "limit": 5,
-      "attempts": 0,
-      "type": "signin",
-      "key": "",
-      "value": "xxx",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": true,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-30T02:00:46.680Z"
-      }
-    },
-    {
-      "_id": "94e5e5f1-3314-4d79-96e3-9080efad667d",
-      "limit": 5,
-      "attempts": 0,
-      "type": "otp-signin",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-30T02:00:46.681Z"
-      }
-    },
-    {
-      "_id": "33c18b8c-087a-4787-8fd8-350da317098e",
-      "limit": 5,
-      "attempts": 0,
-      "type": "forgot-pass",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:10:00.829Z"
-      }
-    },
-    {
-      "_id": "c81694f1-e54f-48a4-b3b1-a5fd4dc3ad08",
-      "limit": 5,
-      "attempts": 0,
-      "type": "reset-pass",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:10:00.829Z"
-      }
-    },
-    {
-      "_id": "328d8474-978b-4a97-8230-418559e7449c",
-      "limit": 5,
-      "attempts": 0,
-      "type": "verify-contact",
-      "key": "hsdg324dsa",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-15T01:06:25.437Z"
-      }
-    }
-  ],
-  "passwords": [
-    {
-      "_id": "a8490a11-6d18-41b1-b0fb-f78ce73cd4b1",
-      "key": "$2b$10$RK2aY/N7IGG6PeCGEH03puFW8w5AWem3KftDDTyMOx5C0Mqpe9QqG",
-      "isActive": false,
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-01-10T13:06:41.817Z"
-      }
-    },
-    {
-      "key": "$2b$10$.scuEMOIe1LCwNCJGnolEuzM1BAhn9qnTD8ZDtcMpRIHvPLyztQhG",
-      "isActive": false,
-      "_id": "ecc2f7d2-47c1-45f7-8bea-cf64d900f905",
-      "createdAt": {
-        "$date": "2024-01-10T13:06:41.817Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-21T13:38:42.466Z"
-      }
-    },
-    {
-      "key": "$2b$10$fZ5vbL9QOmw9QFaLay2aV.g5qyL1NXfWZQBC/cXppmEOgmCP1k2JC",
-      "isActive": false,
-      "_id": "3d503fbf-a4a0-4d12-9c16-81677c043673",
-      "createdAt": {
-        "$date": "2024-03-21T13:38:42.466Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-28T12:53:05.161Z"
-      }
-    },
-    {
-      "key": "$2b$10$UWO1GoWWaApYU7P6NcB6UuojEZieyG8t95QmcfQtu8vMMk9cJ7x5e",
-      "isActive": false,
-      "_id": "01f04ad5-37b9-451c-9079-73758f74ade4",
-      "createdAt": {
-        "$date": "2024-03-28T12:53:05.161Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-12T07:19:19.867Z"
-      }
-    },
-    {
-      "key": "$2b$10$e2KmBCIpwCoOnGVfEE7hq.NmDeftYE2pJUEsNn/HCmaFoWyAXJqIS",
-      "isActive": false,
-      "_id": "8a12bb54-8c24-4a8b-9375-6315c90ba012",
-      "createdAt": {
-        "$date": "2024-04-12T07:19:19.868Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-12T07:21:30.137Z"
-      }
-    },
-    {
-      "key": "$2b$10$pcFOogl5wwkm15eyKLQBMeXdxi6U/hReN/YERrNiOCKO2qatH4REe",
-      "expTime": {
-        "$date": "2024-07-11T11:15:44.620Z"
-      },
-      "isActive": false,
-      "_id": "05e8d418-8c18-488a-9dde-819558790595",
-      "createdAt": {
-        "$date": "2024-04-12T07:21:30.137Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:10:00.829Z"
-      }
-    },
-    {
-      "key": "$2b$10$CS8.sIaQJcRJFmQV1LI9V.C5iatad.lEcE6tPbnZ1wJHbhfXV/jSS",
-      "isActive": true,
-      "_id": "e0f34e27-7fc2-4f56-85b1-37e8b455fbad",
-      "createdAt": {
-        "$date": "2024-07-12T00:10:00.829Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:10:00.829Z"
-      }
-    }
-  ],
+[
+{
+  "_id": "2357d6bd-a86c-45be-9eae-22012e92a6ec",
+  "accountType": "user",
+  "nameId": "master",
   "rolesRefs": [
     {
-      "_id": "211654be-80bf-4ca4-9a76-0febabc872c2",
       "roleId": "798c16ff-d75c-41b6-b9f5-69e21b08879a",
+      "_id": "85f441eb-971b-428f-8757-c06577260ea8",
       "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
+        "$date": "2024-10-10T08:35:37.932Z"
       },
       "updatedAt": {
-        "$date": "2024-08-17T12:24:42.666Z"
-      }
-    },
-    {
-      "_id": "0ae3fe7a-d1f2-4eb5-9dd7-945726505b3a",
-      "roleId": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-17T12:24:42.666Z"
+        "$date": "2024-10-10T08:35:37.932Z"
       }
     }
   ],
-  "updatedAt": {
-    "$date": "2024-08-30T02:38:33.248Z"
-  },
   "accountInfos": [
     {
-      "_id": "c54a858a-b095-4405-9a1c-8567ec91da5e",
-      "key": "Fullname",
-      "value": "Gilbert Defante Cuerbo",
+      "key": "firstname",
+      "value": "",
       "type": "string",
+      "_id": "541dab60-52a7-4c6d-bf10-b0037ae433c3",
       "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       },
       "updatedAt": {
-        "$date": "2024-03-07T00:36:57.253Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       }
     },
     {
-      "key": "Gender",
-      "value": "Male",
+      "key": "middlename",
+      "value": "",
       "type": "string",
-      "_id": "2638a0e9-e908-4345-b656-907d2903580b",
+      "_id": "ad2efb35-ee8d-439d-80fd-69b407b72f09",
       "createdAt": {
-        "$date": "2024-03-07T00:36:22.230Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       },
       "updatedAt": {
-        "$date": "2024-03-07T00:36:22.230Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       }
     },
     {
-      "key": "Birthday",
-      "value": "April 27, 1995",
+      "key": "lastname",
+      "value": "",
+      "type": "string",
+      "_id": "561e55c3-bc68-4032-a975-3f293e31ba40",
+      "createdAt": {
+        "$date": "2024-10-10T08:34:30.125Z"
+      },
+      "updatedAt": {
+        "$date": "2024-10-10T08:34:30.125Z"
+      }
+    },
+    {
+      "key": "birthday",
+      "value": "",
       "type": "date",
-      "_id": "6324a848-5245-46c4-9a84-dabd81e32427",
+      "_id": "27fdac69-0a54-485a-a402-6092710e4891",
       "createdAt": {
-        "$date": "2024-03-07T01:25:42.372Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       },
       "updatedAt": {
-        "$date": "2024-03-07T01:25:42.372Z"
-      }
-    },
-    {
-      "key": "Religion",
-      "value": "Roman Catholic",
-      "type": "string",
-      "_id": "ab4afc45-bfff-4bdc-8860-c937de379f7c",
-      "createdAt": {
-        "$date": "2024-03-07T01:28:40.116Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-07T01:28:40.116Z"
-      }
-    },
-    {
-      "key": "Professional Skill",
-      "value": "Fullstack Javascript developer",
-      "type": "string",
-      "_id": "39fcde33-e817-4bd9-863d-943cf01b00a9",
-      "createdAt": {
-        "$date": "2024-03-07T01:31:56.105Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-23T01:15:04.737Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       }
     }
   ],
-  "verified": true,
-  "workspaces": [
-    {
-      "name": "Test workspace",
-      "description": "will be testing a random company here",
-      "disabled": false,
-      "_id": "39635615-70bc-4fad-84cf-ef9d672eed52",
-      "accountRefs": [
-        {
-          "accountId": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
-          "username": "Berting",
-          "readAccess": true,
-          "updateAccess": false,
-          "createAccess": false,
-          "deleteAccess": false,
-          "declined": false,
-          "accepted": false,
-          "disabled": false,
-          "_id": "8168e081-8862-452c-8560-422833fdd750",
-          "createdAt": {
-            "$date": "2024-04-11T01:00:03.551Z"
-          },
-          "updatedAt": {
-            "$date": "2024-04-19T12:07:41.199Z"
-          }
-        },
-        {
-          "accountId": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
-          "readAccess": true,
-          "updateAccess": false,
-          "createAccess": false,
-          "deleteAccess": false,
-          "declined": false,
-          "accepted": false,
-          "disabled": false,
-          "_id": "5a45c6dc-2824-4197-b6ad-4f0559beb864",
-          "createdAt": {
-            "$date": "2024-04-19T12:07:11.566Z"
-          },
-          "updatedAt": {
-            "$date": "2024-04-19T12:07:11.566Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-04-06T04:37:43.916Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-19T12:07:41.200Z"
-      }
-    }
-  ],
-  "accountType": "user",
-  "nameId": "gilbertgit95",
   "accountConfigs": [
     {
-      "_id": "a27b7a66-eeef-4269-8e0b-0d2d0118185f",
       "key": "default-role",
       "value": "798c16ff-d75c-41b6-b9f5-69e21b08879a",
       "type": "string",
+      "_id": "4c9127b3-898a-474e-8348-4432926ad093",
       "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       },
       "updatedAt": {
-        "$date": "2024-08-30T02:38:33.248Z"
+        "$date": "2024-10-10T08:36:28.333Z"
       }
     },
     {
-      "_id": "5f1dd305-20c1-45d1-a02c-8a877e78ff1e",
       "key": "default-workspace",
-      "value": "96d47cb8-3e6d-4ced-a367-94c8a2efaffb",
+      "value": "69b858d2-3ebc-418c-a0b5-691ff4c53684",
       "type": "string",
+      "_id": "05244ab9-c19c-4c2e-8cff-9bcc0c0e79b4",
       "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       },
       "updatedAt": {
-        "$date": "2024-08-30T02:38:20.866Z"
-      }
-    }
-  ]
-},
-{
-  "_id": "7e4ad416-4a8e-48d7-ae8b-740b1dade87f",
-  "accountType": "user",
-  "rolesRefs": [
-    {
-      "roleId": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-      "_id": "8023f47d-00df-4ccb-a8aa-5c96da28e866",
-      "createdAt": {
-        "$date": "2024-06-12T15:59:47.689Z"
-      },
-      "updatedAt": {
-        "$date": "2024-06-12T15:59:53.667Z"
+        "$date": "2024-10-10T08:37:21.659Z"
       }
     }
   ],
   "passwords": [
     {
-      "key": "$2b$10$RTvA5NvgbpyPIDH85TalG.QMh/15EmXT6qRybZ/ANEi6J7m95rZIu",
-      "isActive": false,
-      "_id": "31a1f190-397d-4268-8892-1c8dd936d543",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-24T01:59:00.015Z"
-      }
-    },
-    {
-      "key": "$2b$10$BItVTx91wM3rzxi7ZwLWrul8NHJFNFge4HRY3yULJxUDIRj1en0he",
-      "isActive": true,
-      "_id": "eb5333d4-ec82-41d0-bea6-b436bbe67e5b",
-      "createdAt": {
-        "$date": "2024-08-24T01:59:00.015Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-24T01:59:00.015Z"
-      }
-    }
-  ],
-  "contactInfos": [
-    {
-      "type": "email-address",
-      "value": "gilbert@sensorbee.com",
-      "verified": false,
-      "_id": "2708ca91-7520-42b3-8b0f-216a7e07836b",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      }
-    },
-    {
-      "type": "mobile-number",
-      "value": "+639273854605",
-      "verified": false,
-      "_id": "aba1fe11-3462-4a4b-9b3f-f429f8b2fd60",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      }
-    }
-  ],
-  "clientDevices": [
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "browser": {
-        "name": "Chrome",
-        "version": "120.0.0.0",
-        "major": "120"
-      },
-      "engine": {
-        "name": "Blink",
-        "version": "120.0.0.0"
-      },
-      "os": {
-        "name": "Windows",
-        "version": "10"
-      },
-      "device": {
-        "vendor": "",
-        "model": "",
-        "type": ""
-      },
-      "cpu": {
-        "architecture": "amd64"
-      },
-      "disabled": false,
-      "_id": "71a2fea9-3d90-409e-946a-82911ff1302d",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-01-10T13:08:54.649Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-21T05:36:10.980Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-      "browser": {
-        "name": "Chrome",
-        "version": "121.0.0.0",
-        "major": "121"
-      },
-      "engine": {
-        "name": "Blink",
-        "version": "121.0.0.0"
-      },
-      "os": {
-        "name": "Windows",
-        "version": "10"
-      },
-      "device": {
-        "vendor": "",
-        "model": "",
-        "type": ""
-      },
-      "cpu": {
-        "architecture": "amd64"
-      },
-      "disabled": false,
-      "_id": "c8ec7fa7-ba11-4132-aad8-345f814e6c41",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-02-23T08:51:03.192Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-21T05:43:20.347Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-      "browser": {
-        "name": "Chrome",
-        "version": "122.0.0.0",
-        "major": "122"
-      },
-      "engine": {
-        "name": "Blink",
-        "version": "122.0.0.0"
-      },
-      "os": {
-        "name": "Windows",
-        "version": "10"
-      },
-      "device": {
-        "vendor": "",
-        "model": "",
-        "type": ""
-      },
-      "cpu": {
-        "architecture": "amd64"
-      },
-      "disabled": false,
-      "_id": "2ef53142-cc43-4cb8-b0a7-cd618adab086",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-03-21T05:43:20.328Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-24T01:59:22.577Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "a40829fa-3589-4f60-a035-8659a140f61c",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-04-26T01:47:56.033Z"
-      },
-      "updatedAt": {
-        "$date": "2024-06-11T00:57:41.375Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "5b802642-2542-4091-80a0-f7e10e3a1d50",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-06-11T00:57:41.341Z"
-      },
-      "updatedAt": {
-        "$date": "2024-06-11T00:58:46.108Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "18d889a0-2d99-4d5f-be05-064d13fcd512",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjQ3NjIsImV4cCI6MTcyNTA2OTU2Mn0.pnmwiMEU7g2PiI5G_TePw-qPQpDESjxBiGPJ40tl32k",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T01:59:22.000Z"
-          },
-          "disabled": false,
-          "_id": "bd171099-d796-4f47-bc20-f55a7a2e6b56",
-          "createdAt": {
-            "$date": "2024-08-24T01:59:22.562Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T01:59:22.562Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjUwMjMsImV4cCI6MTcyNTA2OTgyM30.c-89cZey1qfoxuZyw5Y_DwTXTLFRy5RaWLifvt8EdYY",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:03:43.000Z"
-          },
-          "disabled": false,
-          "_id": "3bce4578-0169-40f4-9c0d-0dd3666a6f08",
-          "createdAt": {
-            "$date": "2024-08-24T02:03:43.350Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:03:43.350Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjUxMzgsImV4cCI6MTcyNTA2OTkzOH0.1famNXzEMjD7rEVcs0HwnU7UwklTHbsrUJVrZQeqsXQ",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:05:38.000Z"
-          },
-          "disabled": false,
-          "_id": "6ee0e377-9ba8-4b93-ad7c-932eec5f4145",
-          "createdAt": {
-            "$date": "2024-08-24T02:05:38.465Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:05:38.465Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjU4NzYsImV4cCI6MTcyNTA3MDY3Nn0.NtrsyoeBbm30FNyvyVcmxa3UUodkUic9OtWb1OReMEA",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:17:56.000Z"
-          },
-          "disabled": false,
-          "_id": "3fe1800b-9952-4464-a5db-5f6626e6e185",
-          "createdAt": {
-            "$date": "2024-08-24T02:17:56.346Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:17:56.346Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjU4NzgsImV4cCI6MTcyNTA3MDY3OH0.P6nt56w-EGLNu3W8acmYUUl1hPzgXLIN6iI3YMHpm-A",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:17:58.000Z"
-          },
-          "disabled": false,
-          "_id": "81d41fa0-8bae-4736-8fdd-f6788bd1782c",
-          "createdAt": {
-            "$date": "2024-08-24T02:17:58.619Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:17:58.619Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjU4ODUsImV4cCI6MTcyNTA3MDY4NX0.koBibjv6ISIsMyirKKON0Z1WHwyZcCj_bX2FKQw_EME",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:18:05.000Z"
-          },
-          "disabled": false,
-          "_id": "5c9e8276-a5fb-4ad5-9de4-942e693ad23e",
-          "createdAt": {
-            "$date": "2024-08-24T02:18:05.965Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:18:05.965Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ0NjU5MDksImV4cCI6MTcyNTA3MDcwOX0.DvkWQ_1uBbEf9tQcwDhk5rgLS1ahHh_5lD2_Jii3BqY",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-08-31T02:18:29.000Z"
-          },
-          "disabled": false,
-          "_id": "9d3faacb-9c21-44dc-aa60-5a0bc43b4708",
-          "createdAt": {
-            "$date": "2024-08-24T02:18:29.360Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-24T02:18:29.360Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ1NjczNjQsImV4cCI6MTcyNTE3MjE2NH0.XaWjCEXE-6FPqrMJbVw6OcqtMvH0a2ZcC6ZOepUQdXc",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T06:29:24.000Z"
-          },
-          "disabled": false,
-          "_id": "510a0651-4bfc-45a4-8e85-a48d64e4f5d8",
-          "createdAt": {
-            "$date": "2024-08-25T06:29:24.895Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T06:29:24.895Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ1Njc4MzYsImV4cCI6MTcyNTE3MjYzNn0.izzSfO0LEUIpWiGg4NNAKPaV2sZNRrZFeqMyZoMxMt8",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T06:37:16.000Z"
-          },
-          "disabled": false,
-          "_id": "c8898edc-cb5e-432d-bf35-cd9879b127c4",
-          "createdAt": {
-            "$date": "2024-08-25T06:37:16.493Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T06:37:16.493Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI3ZTRhZDQxNi00YThlLTQ4ZDctYWU4Yi03NDBiMWRhZGU4N2YiLCJpYXQiOjE3MjQ2NTgxMjEsImV4cCI6MTcyNTI2MjkyMX0.Q0eH7bbhjyuroBkI5JMUcstQj_c9ORPkzBLJmpFNUkU",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-02T07:42:01.000Z"
-          },
-          "disabled": false,
-          "_id": "947ba2b1-596c-4acd-9947-a6032c66373c",
-          "createdAt": {
-            "$date": "2024-08-26T07:42:01.467Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-26T07:42:01.467Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-08-24T01:59:22.555Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-26T07:42:01.468Z"
-      }
-    }
-  ],
-  "limitedTransactions": [
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "signin",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "0327d91f-3a9b-4c55-8111-5f3dc36055e6",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-26T07:42:01.468Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "otp-signin",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": true,
-      "_id": "69ba306e-8563-4119-954b-71b609ad6f29",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "forgot-pass",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "1558b1a6-7065-45da-b8e3-b3b9988ad5eb",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-24T01:59:00.016Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "reset-pass",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "edf6a2fe-a183-4adf-9899-146211ece18f",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.313Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-24T01:59:00.016Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "verify-contact",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "16e0d9df-2cad-49f3-b12c-5c5a4ac7cddb",
-      "createdAt": {
-        "$date": "2024-01-10T13:07:57.314Z"
-      },
-      "updatedAt": {
-        "$date": "2024-01-10T13:07:57.314Z"
-      }
-    }
-  ],
-  "disabled": false,
-  "verified": true,
-  "accountInfos": [
-    {
-      "key": "Fullname",
-      "value": "Robert Lustiva",
-      "type": "string",
-      "_id": "19c8ea81-3a07-4b40-ba6d-109b91f226ea",
-      "createdAt": {
-        "$date": "2024-03-07T10:51:30.186Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-07T10:51:30.186Z"
-      }
-    },
-    {
-      "key": "Job Title",
-      "value": "Mid. Software Developer",
-      "type": "string",
-      "_id": "b0913410-a5ca-472e-bf6f-914042d217cc",
-      "createdAt": {
-        "$date": "2024-04-13T01:36:46.605Z"
-      },
-      "updatedAt": {
-        "$date": "2024-04-13T01:37:09.254Z"
-      }
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-01-10T13:07:57.314Z"
-  },
-  "updatedAt": {
-    "$date": "2024-08-26T07:42:01.468Z"
-  },
-  "__v": 64,
-  "workspaces": [],
-  "accountConfigs": [
-    {
-      "_id": "c43ae69c-099a-48e3-bad0-5f848bec3b9c",
-      "key": "default-role",
-      "value": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-20T02:24:31.147Z"
-      }
-    },
-    {
-      "_id": "090ddeb2-cbf4-48ad-beb7-99b08dcf37de",
-      "key": "default-workspace",
-      "value": "39635615-70bc-4fad-84cf-ef9d672eed52",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-07T00:36:57.253Z"
-      }
-    }
-  ],
-  "nameId": "master101"
-},
-{
-  "_id": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
-  "accountType": "user",
-  "rolesRefs": [
-    {
-      "roleId": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
-      "_id": "3b018ce1-e407-44cf-8cfa-8cd86f4a2c26",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.953Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T01:53:12.576Z"
-      }
-    },
-    {
-      "roleId": "f2b124a8-0452-40f3-b053-c6f3b426e656",
-      "_id": "76e36f94-3fd9-41b3-aebb-c77815deb540",
-      "createdAt": {
-        "$date": "2024-03-08T01:53:24.270Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T01:53:24.270Z"
-      }
-    }
-  ],
-  "passwords": [
-    {
-      "key": "$2b$10$ATGX2/2QUQZpU3PnOZxUlu7YkKSkuw9FGcUv9VBd7K/vARynunXAa",
-      "isActive": false,
-      "_id": "c4c1acf6-3418-4a4f-b4e2-20a1c81766d0",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    },
-    {
-      "key": "$2b$10$H0yWLIKKmKTRWIzFAX8YFuS5lgFmbemlWOwea4QZDhNZ4mF.LQR7.",
-      "isActive": true,
-      "_id": "5136e1f4-0c25-49c6-8966-474efdeee82e",
-      "createdAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    }
-  ],
-  "contactInfos": [
-    {
-      "type": "email-address",
-      "value": "robertothree@gmail.com",
-      "verified": false,
-      "_id": "50c8e5e8-af27-4a9a-a3c0-c4f3fa9ee211",
-      "createdAt": {
-        "$date": "2024-03-08T07:25:30.634Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T07:25:30.634Z"
-      }
-    }
-  ],
-  "clientDevices": [
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "c242b6fa-269a-4c45-9253-f2a7647f3649",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI0ODJmYWRhMy0xYmY3LTQ2YWUtYTRjNC1iNGY3NjM2YTAyOGMiLCJpYXQiOjE3MjQ1Njk0MDksImV4cCI6MTcyNTE3NDIwOX0.9-GwquctlXeCtWy9eeXBZcQ4vFTRo_wwtiSdp6lpD9k",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T07:03:29.000Z"
-          },
-          "disabled": false,
-          "_id": "779dd556-552f-452a-a070-4b1212d861f9",
-          "createdAt": {
-            "$date": "2024-08-25T07:03:29.075Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T07:03:29.075Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI0ODJmYWRhMy0xYmY3LTQ2YWUtYTRjNC1iNGY3NjM2YTAyOGMiLCJpYXQiOjE3MjQ1Njk2MDAsImV4cCI6MTcyNTE3NDQwMH0.E1P_CLv_8YSE1SKikeApA3bj8G74_p3CVufMo8vLpRk",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T07:06:40.000Z"
-          },
-          "disabled": false,
-          "_id": "644b3c31-548d-4460-8588-c46b644b2d0e",
-          "createdAt": {
-            "$date": "2024-08-25T07:06:40.401Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T07:06:40.401Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI0ODJmYWRhMy0xYmY3LTQ2YWUtYTRjNC1iNGY3NjM2YTAyOGMiLCJpYXQiOjE3MjQ2NTgxNTksImV4cCI6MTcyNTI2Mjk1OX0.zeah1dGrEPjty6Jqiml6AR9jrX6MwJz5i0sXwtC0FnY",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-02T07:42:39.000Z"
-          },
-          "disabled": false,
-          "_id": "f3c7a520-07a3-4ca8-a141-7f5280718500",
-          "createdAt": {
-            "$date": "2024-08-26T07:42:39.718Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-26T07:42:39.718Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-08-25T07:03:29.063Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-26T07:42:39.719Z"
-      }
-    }
-  ],
-  "limitedTransactions": [
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "signin",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "f08882c1-f9fe-4bc2-b339-f3159b6e53f0",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-26T07:42:39.720Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 1,
-      "type": "otp-signin",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": true,
-      "_id": "90479859-7568-4dc9-a084-54ebf4563b6a",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:03:05.579Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "forgot-pass",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "9ab15735-2077-4996-a3a0-3d02c662124c",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "reset-pass",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "52587dc0-cfde-45a5-83a0-5aab052b4585",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "verify-contact",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "378a270d-d2eb-4383-8ad3-f5d148b1936a",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      }
-    }
-  ],
-  "disabled": false,
-  "verified": true,
-  "accountInfos": [
-    {
-      "key": "Fullname",
-      "value": "Roberto",
-      "type": "string",
-      "_id": "a31e00f2-828a-4c69-bfad-a35fef510f96",
-      "createdAt": {
-        "$date": "2024-03-08T07:25:07.540Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T07:25:07.540Z"
-      }
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-02-08T00:47:28.955Z"
-  },
-  "updatedAt": {
-    "$date": "2024-08-26T07:42:39.720Z"
-  },
-  "__v": 19,
-  "workspaces": [
-    {
-      "name": "Berting Default Workspace",
-      "description": "use for personal and some shared projects",
-      "disabled": false,
-      "_id": "6cf90820-2d55-409e-ab9c-d1d7cca9b376",
-      "accountRefs": [],
-      "createdAt": {
-        "$date": "2024-04-27T06:08:34.310Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:44:50.711Z"
-      }
-    }
-  ],
-  "accountConfigs": [
-    {
-      "_id": "f160d9b1-a2d5-4801-80a7-1b2dcd22f882",
-      "key": "default-role",
-      "value": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-20T02:24:52.742Z"
-      }
-    },
-    {
-      "_id": "97af7332-387d-4ece-936b-b28cc399b66e",
-      "key": "default-workspace",
-      "value": "39635615-70bc-4fad-84cf-ef9d672eed52",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T10:16:52.701Z"
-      }
-    }
-  ],
-  "nameId": "Berting89"
-},
-{
-  "_id": "d5c52e70-a40a-421a-8b14-cc0cfa595c24",
-  "accountType": "organization",
-  "rolesRefs": [
-    {
-      "roleId": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
-      "_id": "cf68509b-82be-45f4-80e2-5c639d91aec9",
-      "createdAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
-      }
-    }
-  ],
-  "passwords": [
-    {
-      "key": "$2b$10$riijAyeXBnv6K6Nq8UVadOLVrR19GO8CZn1PYDM3Rjh9k/.VN7L46",
+      "key": "$2b$10$ThDznsdwsm7EIzol7KpcIeOFRPTsrZIr3dWwtdQaYCnZaCzTZyzwG",
       "expTime": {
-        "$date": "2024-10-08T15:01:20.995Z"
+        "$date": "2025-01-08T08:34:30.103Z"
       },
-      "isActive": true,
-      "_id": "57de157b-10e9-4514-ba92-bf8c6b69639a",
+      "isActive": false,
+      "_id": "9d48c53a-88f5-4fda-9b87-925526c1eb67",
       "createdAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.125Z"
       },
       "updatedAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:39:03.375Z"
+      }
+    },
+    {
+      "key": "$2b$10$sStBXdqJfHTYQsxLnwgHU.S.YIbmmnyoU216DIde8wap733ik54qu",
+      "expTime": {
+        "$date": "2025-01-08T08:39:03.371Z"
+      },
+      "isActive": true,
+      "_id": "0f49514d-91e9-4959-9a61-1f8a589d2e76",
+      "createdAt": {
+        "$date": "2024-10-10T08:39:03.375Z"
+      },
+      "updatedAt": {
+        "$date": "2024-10-10T08:39:03.375Z"
       }
     }
   ],
   "contactInfos": [],
   "clientDevices": [
     {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
       "disabled": false,
-      "_id": "df8dc583-0dd9-43b8-8fff-600d3cf93985",
-      "accessTokens": [],
+      "_id": "2c6e3b37-c6d9-4cd5-a619-52a7e76ce98c",
+      "accessTokens": [
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIyMzU3ZDZiZC1hODZjLTQ1YmUtOWVhZS0yMjAxMmU5MmE2ZWMiLCJpYXQiOjE3Mjg1NTI1NTAsImV4cCI6MTcyOTE1NzM1MH0.rSlAg5sIaaQUFnDuwMCt978vLHySXD_WZ2dHmFmP6z8",
+          "ipAddress": "::ffff:127.0.0.1",
+          "expTime": {
+            "$date": "2024-10-17T09:29:10.000Z"
+          },
+          "disabled": false,
+          "_id": "aaa7d3fd-8230-49c3-8996-acdbb988984f",
+          "createdAt": {
+            "$date": "2024-10-10T09:29:10.976Z"
+          },
+          "updatedAt": {
+            "$date": "2024-10-10T09:29:10.976Z"
+          }
+        }
+      ],
       "createdAt": {
-        "$date": "2024-07-10T23:59:02.911Z"
+        "$date": "2024-10-10T09:29:10.966Z"
       },
       "updatedAt": {
-        "$date": "2024-07-11T00:00:41.894Z"
+        "$date": "2024-10-10T09:29:10.976Z"
       }
     }
   ],
@@ -1404,12 +161,12 @@
       "value": "",
       "recipient": "app-admin",
       "disabled": false,
-      "_id": "f138841a-588c-4b42-a425-421e1cf8dc95",
+      "_id": "c7a63179-83f7-416b-9e37-da6783006ddc",
       "createdAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       },
       "updatedAt": {
-        "$date": "2024-07-10T23:59:47.168Z"
+        "$date": "2024-10-10T09:29:10.976Z"
       }
     },
     {
@@ -1420,12 +177,12 @@
       "value": "",
       "recipient": "app-admin",
       "disabled": true,
-      "_id": "b44e2429-8ec9-46da-a539-7477123f60e4",
+      "_id": "6b2326ec-4607-4775-b74c-5e62ffb225bd",
       "createdAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       },
       "updatedAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       }
     },
     {
@@ -1436,12 +193,12 @@
       "value": "",
       "recipient": "app-admin",
       "disabled": false,
-      "_id": "14853b69-508f-46b3-86da-a2f634b4a411",
+      "_id": "0a5eded7-c04c-43ab-ba27-d0429a8bc7e7",
       "createdAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       },
       "updatedAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       }
     },
     {
@@ -1452,12 +209,12 @@
       "value": "",
       "recipient": "app-admin",
       "disabled": false,
-      "_id": "4cd688bf-b70c-4434-9440-d58462f65d6e",
+      "_id": "8d2f2dea-2871-4d61-b0ae-fe9da9ce67ff",
       "createdAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       },
       "updatedAt": {
-        "$date": "2024-07-10T15:01:21.006Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       }
     },
     {
@@ -1468,114 +225,38 @@
       "value": "",
       "recipient": "app-admin",
       "disabled": false,
-      "_id": "16fdb148-83c7-4692-ac1e-1d02ef906d3a",
+      "_id": "330a0ec8-5037-4ea9-8aa1-f094bd7d0a2c",
       "createdAt": {
-        "$date": "2024-07-10T15:01:21.007Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       },
       "updatedAt": {
-        "$date": "2024-07-10T15:01:21.007Z"
+        "$date": "2024-10-10T08:34:30.126Z"
       }
     }
   ],
   "disabled": false,
   "verified": true,
-  "accountInfos": [],
   "workspaces": [
     {
-      "name": "Agua de Luna",
-      "description": "Drinking water seller",
+      "name": "master workspace",
+      "description": "just a default workspace",
       "disabled": false,
-      "_id": "96d47cb8-3e6d-4ced-a367-94c8a2efaffb",
-      "accountRefs": [
-        {
-          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
-          "readAccess": true,
-          "updateAccess": true,
-          "createAccess": false,
-          "deleteAccess": false,
-          "declined": false,
-          "accepted": false,
-          "disabled": false,
-          "_id": "1ad5b194-fe24-444b-bb8c-dc10424cc8eb",
-          "createdAt": {
-            "$date": "2024-07-12T00:41:06.614Z"
-          },
-          "updatedAt": {
-            "$date": "2024-07-12T00:41:06.614Z"
-          }
-        }
-      ],
+      "_id": "69b858d2-3ebc-418c-a0b5-691ff4c53684",
+      "accountRefs": [],
       "createdAt": {
-        "$date": "2024-07-12T00:40:41.491Z"
+        "$date": "2024-10-10T08:37:10.483Z"
       },
       "updatedAt": {
-        "$date": "2024-07-12T00:41:06.614Z"
-      }
-    },
-    {
-      "name": "Kagiweb Tech",
-      "description": "Software Development Company",
-      "disabled": false,
-      "_id": "b6fa7ceb-71d0-4e49-bd86-422849727811",
-      "accountRefs": [
-        {
-          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
-          "readAccess": true,
-          "updateAccess": false,
-          "createAccess": false,
-          "deleteAccess": false,
-          "declined": false,
-          "accepted": false,
-          "disabled": false,
-          "_id": "7f820f22-88e7-470d-be85-db759332ea77",
-          "createdAt": {
-            "$date": "2024-07-12T00:43:56.878Z"
-          },
-          "updatedAt": {
-            "$date": "2024-07-12T00:43:56.878Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-07-12T00:43:38.587Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:43:56.878Z"
-      }
-    }
-  ],
-  "accountConfigs": [
-    {
-      "_id": "1ed7bae6-b045-4859-9cd1-c7ef4d25e6ae",
-      "key": "default-role",
-      "value": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-20T02:25:15.235Z"
-      }
-    },
-    {
-      "_id": "70d2e080-1c6f-43cd-931e-3c508153bcea",
-      "key": "default-workspace",
-      "value": "39635615-70bc-4fad-84cf-ef9d672eed52",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-07T00:36:57.253Z"
+        "$date": "2024-10-10T08:37:10.483Z"
       }
     }
   ],
   "createdAt": {
-    "$date": "2024-07-10T15:01:21.007Z"
+    "$date": "2024-10-10T08:34:30.127Z"
   },
   "updatedAt": {
-    "$date": "2024-08-20T02:25:15.235Z"
+    "$date": "2024-10-10T09:29:10.976Z"
   },
-  "__v": 9,
-  "nameId": "lunaOrg"
-}]
+  "__v": 6
+}
+]

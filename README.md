@@ -31,7 +31,9 @@ This will create a new project folder in the current directory containing the in
 ### Seeding
 At this point, the application is still not usable because the database is empty. To populate the database with initial data. Goto the project folder where the .env file is located and open the terminal, then execute the snippet below.
 ```
-// if @kagiweb-tech/cli not yet installed just execute: npm i -g @kagiweb-tech/cli
+// if @kagiweb-tech/cli not yet installed
+// just execute: npm i -g @kagiweb-tech/cli
+
 > kwtech
 ```
 1. select `Administrative Tasks`
@@ -48,7 +50,7 @@ This is up to you on how you start the application. Just make sure you have impo
 A account is created during seeding. This account has a `Master` Role and it has absolute access to all endpoints. The default credential for this account is shown below.
 ```
 nameId: master
-password: master
+password: Master101!
 ```
 Please continue on the next section tobe able to signin and explore the available endpoints.
 
