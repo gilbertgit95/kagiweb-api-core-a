@@ -1,6 +1,6 @@
 # api core (type A)
 > **Note**
-This app is still on its early stage of development
+This app is still in the early stages of development.
 
 This is an express middleware package containing features of a rest api. The main purpose is to create application without having to deal with the core functionality like authentication, account management and other essential features of an account base system. Your responsibility will be focus only to the application content.
 
