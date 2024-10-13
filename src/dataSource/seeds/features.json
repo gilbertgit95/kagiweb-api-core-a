@@ -3426,25 +3426,6 @@
   "__v": 0
 },
 {
-  "_id": "0abd73e3-65de-4af7-b3af-80c1b097503e",
-  "name": "PRIVATE MAIN NAV - Notes",
-  "type": "ui-main-drawer",
-  "tags": [
-    "Owner",
-    "Workspaces",
-    "Notes"
-  ],
-  "value": "PRIVATE MAIN NAV - Notes",
-  "description": "One of the ui main drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.636Z"
-  },
-  "updatedAt": {
-    "$date": "2024-08-18T13:33:56.144Z"
-  },
-  "__v": 0
-},
-{
   "_id": "33da2a17-2b32-4ed0-bc84-61ab70afa64d",
   "name": "PRIVATE MAIN NAV - Dashboard",
   "type": "ui-main-drawer",
@@ -3544,25 +3525,6 @@
   },
   "updatedAt": {
     "$date": "2024-06-22T10:58:47.461Z"
-  },
-  "__v": 0
-},
-{
-  "_id": "3ef7ec4b-4760-4b62-b7a7-52bcc03d134c",
-  "name": "PRIVATE MAIN NAV - Tasks",
-  "type": "ui-main-drawer",
-  "tags": [
-    "Owner",
-    "Workspaces",
-    "Tasks"
-  ],
-  "value": "PRIVATE MAIN NAV - Tasks",
-  "description": "One of the ui main drawer nav",
-  "createdAt": {
-    "$date": "2024-08-10T17:13:37.884Z"
-  },
-  "updatedAt": {
-    "$date": "2024-08-18T13:34:57.435Z"
   },
   "__v": 0
 },
