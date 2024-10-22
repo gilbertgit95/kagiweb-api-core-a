@@ -10,7 +10,10 @@ import TextValidators from '../validators/textValidators'
 // - ui-main-drawer
 // - ui-account-drawer
 type TFeatureType = 'api-route' | 'ui-route' | 'ui-main-drawer' | 'ui-account-drawer'
+type TFeatureScope = 'account' | 'workspace'
+
 const featureTypes:TFeatureType[] = ['api-route', 'ui-route', 'ui-main-drawer', 'ui-account-drawer']
+const featureScopes:TFeatureScope[] = ['account', 'workspace']
 
 // queries
 interface IFeatureQuery {
@@ -26,6 +29,7 @@ interface IFeature {
     _id?: string,
     name?: string,
     type?: TFeatureType,
+    scope?: TFeatureScope,
     tags?: string[],
     value: string,
     description?: string
@@ -43,6 +47,11 @@ const FeatureSchema = new Schema<IFeature>({
         type: String,
         required: true,
         enum: featureTypes,
+    },
+    scope: {
+        type: String,
+        required: false,
+        enum: featureScopes,
     },
     tags: {
         type: [String],
@@ -66,8 +75,12 @@ const FeatureModel = model<IFeature>('Feature', FeatureSchema)
 export {
     IFeatureQuery,
     IFeatureUpdate,
+    IFeature,
     TFeatureType,
-    IFeature
+    TFeatureScope,
+
+    featureTypes,
+    featureScopes
 }
 
 export default FeatureModel
