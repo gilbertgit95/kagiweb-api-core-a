@@ -3,6 +3,10 @@ required:
   - name
   - level
 properties:
+  scope:
+    type: string
+    description: could be account or workspace
+    example: account
   name:
     type: string
     description: a unique human readable identifier for the role
@@ -36,4 +40,5 @@ example:
         createdAt: 2023-08-27T14:51:58.605+00:00
         updatedAt: 2023-08-31T14:34:32.748+00:00
   level: 1
+  scope: account
   name: Manager

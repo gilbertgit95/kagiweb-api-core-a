@@ -40,6 +40,7 @@ get:
                     createdAt: 2023-08-06T18:03:06.290Z
                     description: One of the server endpoint
                     name: 'GET \api\v1\systemInfo'
+                    scope: account
                     tags:
                       - Server
                       - Api Route
@@ -78,6 +79,9 @@ post:
             name:
               type: string
               description: to make a account friendly identifier
+            scope:
+              type: string
+              description: could be account or workspace
             tags:
               type: array
               item:
@@ -103,6 +107,7 @@ post:
                 createdAt: 2023-08-06T18:03:06.290Z
                 description: One of the server endpoint
                 name: 'GET \api\v1\systemInfo'
+                scope: account
                 tags:
                   - Server
                   - Api Route

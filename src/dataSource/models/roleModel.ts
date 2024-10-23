@@ -9,6 +9,9 @@ import TextValidators from '../validators/textValidators'
 // - Account Admin - has access to some Adminitrative features
 // - Normal Account - has access to some features
 
+type TRoleScope = 'account' | 'workspace'
+const roleScopes:TRoleScope[] = ['account', 'workspace']
+
 // queries
 interface IRoleQuery {
     _id?: string
@@ -26,6 +29,7 @@ interface IFeatureRef {
 interface IRole {
     _id?: string,
     name: string,
+    scope?: TRoleScope,
     level: number,
     reqLimitPerSec: number,
     description?: string,
@@ -46,6 +50,12 @@ const RoleSchema = new Schema<IRole>({
         required: true,
         unique: true,
         validate: TextValidators.validateObjectName
+    },
+    scope: {
+        type: String,
+        required: false,
+        default: roleScopes[0],
+        enum: roleScopes,
     },
     level: {
         type: Number,
@@ -74,9 +84,12 @@ const RoleSchema = new Schema<IRole>({
 const RoleModel = model<IRole>('Role', RoleSchema)
 
 export {
+    TRoleScope,
     IRoleQuery,
     IRoleUpdate,
     IFeatureRef,
-    IRole
+    IRole,
+
+    roleScopes
 }
 export default RoleModel

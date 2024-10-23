@@ -1,5 +1,5 @@
 import DataCache from '../utilities/dataCache'
-import RoleModel, { IRole, IRoleQuery } from '../dataSource/models/roleModel'
+import RoleModel, { IRole, IRoleQuery, TRoleScope } from '../dataSource/models/roleModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 // import Config from '../utilities/config'
 
@@ -69,8 +69,8 @@ class RoleController {
         return result
     }
 
-    public async saveRole(name:string, level:number, reqLimitPerSec:number, description:string):Promise<IRole | null> {
-        const doc:IRole = {name, level, reqLimitPerSec, description}
+    public async saveRole(scope: undefined|TRoleScope, name:string, level:number, reqLimitPerSec:number, description:string):Promise<IRole | null> {
+        const doc:IRole = {scope, name, level, reqLimitPerSec, description}
         const result = await this.cachedData.createItem<IRole>(doc)
 
         return result

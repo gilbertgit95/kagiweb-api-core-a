@@ -760,6 +760,7 @@
                           "createdAt": "2023-08-06T18:03:06.290Z",
                           "description": "One of the server endpoint",
                           "name": "GET \\api\\v1\\systemInfo",
+                          "scope": "account",
                           "tags": [
                             "Server",
                             "Api Route",
@@ -819,6 +820,10 @@
                     "type": "string",
                     "description": "to make a account friendly identifier"
                   },
+                  "scope": {
+                    "type": "string",
+                    "description": "could be account or workspace"
+                  },
                   "tags": {
                     "type": "array",
                     "item": {
@@ -860,6 +865,7 @@
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "description": "One of the server endpoint",
                       "name": "GET \\api\\v1\\systemInfo",
+                      "scope": "account",
                       "tags": [
                         "Server",
                         "Api Route",
@@ -925,6 +931,7 @@
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "description": "One of the server endpoint",
                       "name": "GET \\api\\v1\\systemInfo",
+                      "scope": "account",
                       "tags": [
                         "Server",
                         "Api Route",
@@ -1026,6 +1033,7 @@
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "description": "One of the server endpoint",
                       "name": "GET \\api\\v1\\systemInfo",
+                      "scope": "account",
                       "tags": [
                         "Server",
                         "Api Route",
@@ -1089,6 +1097,7 @@
                       "createdAt": "2023-08-06T18:03:06.290Z",
                       "description": "One of the server endpoint",
                       "name": "GET \\api\\v1\\systemInfo",
+                      "scope": "account",
                       "tags": [
                         "Server",
                         "Api Route",
@@ -1276,6 +1285,7 @@
                           ],
                           "level": 1,
                           "reqLimitPerSec": 10,
+                          "scope": "account",
                           "name": "Manager"
                         }
                       ],
@@ -1310,6 +1320,10 @@
                   "level"
                 ],
                 "properties": {
+                  "scope": {
+                    "type": "string",
+                    "description": "could be account or workspace"
+                  },
                   "name": {
                     "type": "string",
                     "description": "the name identifier for the role"
@@ -1378,6 +1392,7 @@
                       ],
                       "level": 1,
                       "reqLimitPerSec": 10,
+                      "scope": "account",
                       "name": "Manager"
                     }
                   }
@@ -1459,6 +1474,7 @@
                       ],
                       "level": 1,
                       "reqLimitPerSec": 10,
+                      "scope": "account",
                       "name": "Manager"
                     }
                   }
@@ -1563,6 +1579,7 @@
                       ],
                       "level": 1,
                       "reqLimitPerSec": 10,
+                      "scope": "account",
                       "name": "Manager"
                     }
                   }
@@ -1642,6 +1659,7 @@
                       ],
                       "level": 1,
                       "reqLimitPerSec": 10,
+                      "scope": "account",
                       "name": "Manager"
                     }
                   }
@@ -10316,6 +10334,11 @@
           "value"
         ],
         "properties": {
+          "scope": {
+            "type": "string",
+            "description": "could be account or workspace",
+            "example": "account"
+          },
           "name": {
             "type": "string",
             "enum": [
@@ -10351,6 +10374,17 @@
           "description": {
             "type": "string"
           }
+        },
+        "example": {
+          "description": "Just a test route.",
+          "tags": [
+            "account",
+            "workspace"
+          ],
+          "type": "api-route",
+          "value": "test/test-route",
+          "scope": "account",
+          "name": "Manager"
         }
       },
       "Role": {
@@ -10360,6 +10394,11 @@
           "level"
         ],
         "properties": {
+          "scope": {
+            "type": "string",
+            "description": "could be account or workspace",
+            "example": "account"
+          },
           "name": {
             "type": "string",
             "description": "a unique human readable identifier for the role",
@@ -10408,6 +10447,7 @@
             }
           ],
           "level": 1,
+          "scope": "account",
           "name": "Manager"
         }
       },

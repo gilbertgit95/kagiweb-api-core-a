@@ -56,6 +56,7 @@ get:
                         featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                     level: 1
                     reqLimitPerSec: 10
+                    scope: account
                     name: Manager
                 page: 1
                 pageSize: 100
@@ -77,6 +78,9 @@ post:
             - name
             - level
           properties:
+            scope:
+              type: string
+              description: could be account or workspace
             name:
               type: string
               description: the name identifier for the role
@@ -121,4 +125,5 @@ post:
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
                 reqLimitPerSec: 10
+                scope: account
                 name: Manager

@@ -51,6 +51,7 @@ const FeatureSchema = new Schema<IFeature>({
     scope: {
         type: String,
         required: false,
+        default: featureScopes[0],
         enum: featureScopes,
     },
     tags: {

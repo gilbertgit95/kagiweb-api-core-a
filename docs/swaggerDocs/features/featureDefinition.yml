@@ -3,6 +3,10 @@ required:
   - type
   - value
 properties:
+  scope:
+    type: string
+    description: could be account or workspace
+    example: account
   name:
     type: string
     enum: [api-route, ui-route, ui-module]
@@ -27,3 +31,13 @@ properties:
     example: '[GET]_\api\v1\systemInfo'
   description:
     type: string
+
+example:
+  description: Just a test route.
+  tags:
+      - account
+      - workspace
+  type: api-route
+  value: test/test-route
+  scope: account
+  name: Manager

@@ -46,6 +46,7 @@ get:
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
                 reqLimitPerSec: 10
+                scope: account
                 name: Manager
 put:
   tags:
@@ -111,6 +112,7 @@ put:
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
                 reqLimitPerSec: 10
+                scope: account
                 name: Manager
 delete:
   tags:
@@ -160,4 +162,5 @@ delete:
                     featureId: c2b6d920-a101-45e5-bbdb-0f6a07da1f33
                 level: 1
                 reqLimitPerSec: 10
+                scope: account
                 name: Manager
