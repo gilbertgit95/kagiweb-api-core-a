@@ -2,7 +2,7 @@
   "_id": "eadd9f55-50ff-47ef-8240-f64b4ec5e722",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/systemInfo",
@@ -11,15 +11,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:52:41.222Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/systemInfo"
+  "value": "GET - /api/v1/systemInfo",
+  "scope": "account"
 },
 {
   "_id": "ab1b6851-170e-44b5-b147-d80f7b3ec76c",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/features",
@@ -28,15 +29,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:54:08.614Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/features"
+  "value": "GET - /api/v1/features",
+  "scope": "account"
 },
 {
   "_id": "de2daa49-5dc2-45c6-b221-16004422c015",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/features",
@@ -45,15 +47,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/features"
+  "value": "POST - /api/v1/features",
+  "scope": "account"
 },
 {
   "_id": "7f1a33f7-f382-4e34-aaa0-a07663e3041c",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/features/:featureId",
@@ -62,15 +65,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/features/:featureId"
+  "value": "GET - /api/v1/features/:featureId",
+  "scope": "account"
 },
 {
   "_id": "ea1e2ae1-9f61-41e4-9904-a97bc6e0f119",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/features/:featureId",
@@ -79,15 +83,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/features/:featureId"
+  "value": "PUT - /api/v1/features/:featureId",
+  "scope": "account"
 },
 {
   "_id": "7e6311e9-70e5-40bd-8f73-d7cf22dbb6b2",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/features/:featureId",
@@ -96,15 +101,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/features/:featureId"
+  "value": "DELETE - /api/v1/features/:featureId",
+  "scope": "account"
 },
 {
   "_id": "f859ca43-4e50-408e-8cd3-271de5102a9b",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/roles",
@@ -113,15 +119,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/roles"
+  "value": "GET - /api/v1/roles",
+  "scope": "account"
 },
 {
   "_id": "c049dde2-209f-4296-816e-2dbd54f242b0",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/roles",
@@ -130,15 +137,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/roles"
+  "value": "POST - /api/v1/roles",
+  "scope": "account"
 },
 {
   "_id": "7f00752d-151c-464f-8aa1-0822720a02bb",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/roles/:roleId",
@@ -147,15 +155,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/roles/:roleId"
+  "value": "GET - /api/v1/roles/:roleId",
+  "scope": "account"
 },
 {
   "_id": "d3a7c487-8918-432c-b7c8-ecdb9db3e5a7",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/roles/:roleId",
@@ -164,15 +173,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/roles/:roleId"
+  "value": "PUT - /api/v1/roles/:roleId",
+  "scope": "account"
 },
 {
   "_id": "fb9b660e-73a1-4cbb-a9bc-a04ed23208bd",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/roles/:roleId",
@@ -181,15 +191,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/roles/:roleId"
+  "value": "DELETE - /api/v1/roles/:roleId",
+  "scope": "account"
 },
 {
   "_id": "38075849-0aeb-4af9-8d9b-03c1887a1a9a",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/roles/:roleId/features",
@@ -199,15 +210,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/roles/:roleId/features"
+  "value": "GET - /api/v1/roles/:roleId/features",
+  "scope": "account"
 },
 {
   "_id": "904e09e2-e360-4531-903f-1a853d52b68f",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/roles/:roleId/features",
@@ -217,15 +229,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/roles/:roleId/features"
+  "value": "POST - /api/v1/roles/:roleId/features",
+  "scope": "account"
 },
 {
   "_id": "c62d5258-329a-416d-ae14-e152022a8999",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/roles/:roleId/features/:featureRefId",
@@ -235,15 +248,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/roles/:roleId/features/:featureRefId"
+  "value": "GET - /api/v1/roles/:roleId/features/:featureRefId",
+  "scope": "account"
 },
 {
   "_id": "9cd90eec-f2e3-4954-9ead-96a9578c25ba",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/roles/:roleId/features/:featureRefId",
@@ -253,15 +267,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/roles/:roleId/features/:featureRefId"
+  "value": "PUT - /api/v1/roles/:roleId/features/:featureRefId",
+  "scope": "account"
 },
 {
   "_id": "22675b82-afa8-4d02-b852-dda8412c7b70",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/roles/:roleId/features/:featureRefId",
@@ -271,15 +286,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/roles/:roleId/features/:featureRefId"
+  "value": "DELETE - /api/v1/roles/:roleId/features/:featureRefId",
+  "scope": "account"
 },
 {
   "_id": "f1bf5e78-c976-4344-b134-c86f580c7e0e",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts",
@@ -288,15 +304,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts"
+  "value": "GET - /api/v1/accounts",
+  "scope": "account"
 },
 {
   "_id": "87d76cf2-1ed8-4f46-a22f-552145420f92",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts",
@@ -305,15 +322,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts"
+  "value": "POST - /api/v1/accounts",
+  "scope": "account"
 },
 {
   "_id": "1608b4c7-e076-4cd4-8781-23e41a0e3d5d",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId",
@@ -322,15 +340,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId"
+  "value": "GET - /api/v1/accounts/:accountId",
+  "scope": "account"
 },
 {
   "_id": "c143b10b-ff38-4099-b2f3-71a69ffa6a3f",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId",
@@ -339,15 +358,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId"
+  "value": "PUT - /api/v1/accounts/:accountId",
+  "scope": "account"
 },
 {
   "_id": "e17fc847-f06f-4557-977b-14d5f9e80f5f",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId",
@@ -356,15 +376,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId"
+  "value": "DELETE - /api/v1/accounts/:accountId",
+  "scope": "account"
 },
 {
   "_id": "7f15d512-83af-46b6-b0c0-940e2e566a4d",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/roles",
@@ -374,15 +395,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/roles"
+  "value": "GET - /api/v1/accounts/:accountId/roles",
+  "scope": "account"
 },
 {
   "_id": "e7bf4233-d225-4496-be8b-86f8121631ca",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/roles/:roleRefId",
@@ -392,15 +414,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/roles/:roleRefId"
+  "value": "GET - /api/v1/accounts/:accountId/roles/:roleRefId",
+  "scope": "account"
 },
 {
   "_id": "a4e020b1-0c8f-48f2-9872-974d2e936801",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/roles",
@@ -410,15 +433,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts/:accountId/roles"
+  "value": "POST - /api/v1/accounts/:accountId/roles",
+  "scope": "account"
 },
 {
   "_id": "ada2ba4a-ee69-4b15-a40f-694a0e040743",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId",
@@ -428,15 +452,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId"
+  "value": "PUT - /api/v1/accounts/:accountId/roles/:roleRefId",
+  "scope": "account"
 },
 {
   "_id": "1a923823-9cf3-4845-8a54-0f55e9a2751a",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/roles/:roleRefId",
@@ -446,15 +471,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId/roles/:roleRefId"
+  "value": "DELETE - /api/v1/accounts/:accountId/roles/:roleRefId",
+  "scope": "account"
 },
 {
   "_id": "2652318e-cf5e-490b-8c45-bc5eb1b5b622",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/accountInfos",
@@ -464,15 +490,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/accountInfos"
+  "value": "GET - /api/v1/accounts/:accountId/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "ba5e85e3-2fe5-4657-9b79-9731889cbd9a",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/accountInfos",
@@ -482,15 +509,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts/:accountId/accountInfos"
+  "value": "POST - /api/v1/accounts/:accountId/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "5a0d526a-e78b-4055-b452-b5180cc2d260",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
@@ -500,15 +528,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/accountInfos/:accountInfoId"
+  "value": "GET - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "4bb63448-f53f-4e08-9584-0a0cf67404ed",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
@@ -518,15 +547,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId/accountInfos/:accountInfoId"
+  "value": "PUT - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "77cbbf55-128e-49ec-9d3d-5cdafd70b0cd",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
@@ -536,15 +566,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId/accountInfos/:accountInfoId"
+  "value": "DELETE - /api/v1/accounts/:accountId/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "34ca3a87-22c8-404d-8661-e395ca29a707",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/contactInfos",
@@ -554,15 +585,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/contactInfos"
+  "value": "GET - /api/v1/accounts/:accountId/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "eb94f4b2-7c4e-4efe-84fc-5dbaf5de01f7",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/contactInfos",
@@ -572,15 +604,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts/:accountId/contactInfos"
+  "value": "POST - /api/v1/accounts/:accountId/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "c5e7fb9f-54cf-443a-b74b-dcdbf4c4407e",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
@@ -590,15 +623,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/contactInfos/:contactInfoId"
+  "value": "GET - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "a4a85703-3252-4c3e-abfe-86cb9f701505",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
@@ -608,15 +642,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId/contactInfos/:contactInfoId"
+  "value": "PUT - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "5b3ce0b8-f307-48c4-a7cf-305bbff602f7",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
@@ -626,15 +661,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId/contactInfos/:contactInfoId"
+  "value": "DELETE - /api/v1/accounts/:accountId/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "0cad4fdf-d6e1-4aaf-8aed-711425ec69fe",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/passwords",
@@ -644,15 +680,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/passwords"
+  "value": "GET - /api/v1/accounts/:accountId/passwords",
+  "scope": "account"
 },
 {
   "_id": "31f10e6d-4b4d-471c-8109-98750f1a2ee5",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/passwords",
@@ -662,15 +699,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts/:accountId/passwords"
+  "value": "POST - /api/v1/accounts/:accountId/passwords",
+  "scope": "account"
 },
 {
   "_id": "b7a23794-7f2f-4e59-a270-0f03be073aa2",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/passwords/:passwordId",
@@ -680,15 +718,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/passwords/:passwordId"
+  "value": "GET - /api/v1/accounts/:accountId/passwords/:passwordId",
+  "scope": "account"
 },
 {
   "_id": "4a4194a9-5370-4c34-9160-77a533320765",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/passwords/:passwordId",
@@ -698,15 +737,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId/passwords/:passwordId"
+  "value": "DELETE - /api/v1/accounts/:accountId/passwords/:passwordId",
+  "scope": "account"
 },
 {
   "_id": "9c2eda89-436b-4380-a7d5-430f0584d9a8",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/limitedTransactions",
@@ -716,15 +756,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/limitedTransactions"
+  "value": "GET - /api/v1/accounts/:accountId/limitedTransactions",
+  "scope": "account"
 },
 {
   "_id": "75e20db6-218e-4104-97fe-b7acb4631f60",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
@@ -734,15 +775,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId"
+  "value": "GET - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "ed803a0c-9e16-4adb-91f6-511c6a5f26a4",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
@@ -752,15 +794,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId"
+  "value": "PUT - /api/v1/accounts/:accountId/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "169bc403-f779-4338-b1d4-b78b2b992871",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices",
@@ -770,15 +813,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/clientDevices"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "c1f4863d-e6f0-456e-88c3-e5a156a8adfb",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/clientDevices",
@@ -788,15 +832,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts/:accountId/clientDevices"
+  "value": "POST - /api/v1/accounts/:accountId/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "ee226dff-55e8-4850-8063-9c0d45292258",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
@@ -806,15 +851,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "42004dde-532b-468a-a59b-fd103bf26226",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
@@ -824,15 +870,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId"
+  "value": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "561eb501-c0a0-4b79-a6da-f78d0ece9267",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
@@ -842,15 +889,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId"
+  "value": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "416ede4e-15d2-4a1a-8c87-2b092403d488",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
@@ -861,15 +909,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
+  "scope": "account"
 },
 {
   "_id": "906787c7-abf9-4ced-8f43-a1cbff501178",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
@@ -880,15 +929,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens"
+  "value": "POST - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens",
+  "scope": "account"
 },
 {
   "_id": "21d540c3-9309-44c8-b144-500f3922c0e8",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
@@ -899,15 +949,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "GET - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "scope": "account"
 },
 {
   "_id": "b03607ad-982f-4cd1-9c14-c51a984c2e1e",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
@@ -918,15 +969,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "PUT - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "scope": "account"
 },
 {
   "_id": "b57a0c39-e31f-4f27-b46e-e715c6d41a02",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
@@ -937,15 +989,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "DELETE - /api/v1/accounts/:accountId/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "scope": "account"
 },
 {
   "_id": "2e90dae2-32ed-4d47-8ff7-dd3c56ec4aa4",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner",
@@ -954,15 +1007,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner"
+  "value": "GET - /api/v1/owner",
+  "scope": "account"
 },
 {
   "_id": "886f4ba8-ed70-4e79-9638-838a7c45108a",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner",
@@ -971,15 +1025,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/owner"
+  "value": "PUT - /api/v1/owner",
+  "scope": "account"
 },
 {
   "_id": "d48d57d8-0bf3-4b73-b521-f30923937289",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/roles",
@@ -989,15 +1044,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/roles"
+  "value": "GET - /api/v1/owner/roles",
+  "scope": "account"
 },
 {
   "_id": "98d77b97-fbd3-4d2d-84a5-93967d6589a0",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/roles/:roleRefId",
@@ -1007,15 +1063,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/roles/:roleRefId"
+  "value": "GET - /api/v1/owner/roles/:roleRefId",
+  "scope": "account"
 },
 {
   "_id": "58471c04-be21-4508-bccf-2723364c4d3c",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/roles/:roleRefId",
@@ -1025,15 +1082,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/owner/roles/:roleRefId"
+  "value": "DELETE - /api/v1/owner/roles/:roleRefId",
+  "scope": "account"
 },
 {
   "_id": "d06f83f4-35a4-4ddc-8f84-f4e8d90e2a8d",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/accountInfos",
@@ -1043,15 +1101,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/accountInfos"
+  "value": "GET - /api/v1/owner/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "de03656f-1522-48b5-beff-8ff90874c1b2",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/accountInfos",
@@ -1061,15 +1120,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/owner/accountInfos"
+  "value": "POST - /api/v1/owner/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "e59d3de7-39cd-46d2-b780-389e6c763944",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/accountInfos/:accountInfoId",
@@ -1079,15 +1139,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/accountInfos/:accountInfoId"
+  "value": "GET - /api/v1/owner/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "e5c60129-9267-4ccb-a79b-97d941e1fc98",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/accountInfos/:accountInfoId",
@@ -1097,15 +1158,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/owner/accountInfos/:accountInfoId"
+  "value": "PUT - /api/v1/owner/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "6cb961f3-1ea3-4f6b-b930-8b088a15be95",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/accountInfos/:accountInfoId",
@@ -1115,15 +1177,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/owner/accountInfos/:accountInfoId"
+  "value": "DELETE - /api/v1/owner/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "daf025ef-e54e-4fdc-a832-8888928f9a15",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/contactInfos",
@@ -1133,15 +1196,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/contactInfos"
+  "value": "GET - /api/v1/owner/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "12cfb96b-d6fc-41fb-9457-a562deb3c20f",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/contactInfos",
@@ -1151,15 +1215,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/owner/contactInfos"
+  "value": "POST - /api/v1/owner/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "cf9234a0-2ed1-4e25-b325-0e8b7e818f5b",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/contactInfos/:contactInfoId",
@@ -1169,15 +1234,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/contactInfos/:contactInfoId"
+  "value": "GET - /api/v1/owner/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "a809f32e-4ef6-4480-9ace-b8585630cde5",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/contactInfos/:contactInfoId",
@@ -1187,15 +1253,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/owner/contactInfos/:contactInfoId"
+  "value": "PUT - /api/v1/owner/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "2ad2fc91-d555-4a39-97fb-31dfd338b8de",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/contactInfos/:contactInfoId",
@@ -1205,15 +1272,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/owner/contactInfos/:contactInfoId"
+  "value": "DELETE - /api/v1/owner/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "2d3e49bf-4a49-4c79-a391-53222ae55252",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/passwords",
@@ -1223,15 +1291,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/passwords"
+  "value": "GET - /api/v1/owner/passwords",
+  "scope": "account"
 },
 {
   "_id": "c8007276-3f8e-4962-a0c2-d8f0c9b5eb98",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/passwords",
@@ -1241,15 +1310,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/owner/passwords"
+  "value": "POST - /api/v1/owner/passwords",
+  "scope": "account"
 },
 {
   "_id": "f6e45daf-6694-4766-a81f-04c6c2375b8d",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/passwords/:passwordId",
@@ -1259,15 +1329,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/passwords/:passwordId"
+  "value": "GET - /api/v1/owner/passwords/:passwordId",
+  "scope": "account"
 },
 {
   "_id": "1b3167cf-8639-4cc0-95b4-4cfe490619c5",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/passwords/:passwordId",
@@ -1277,15 +1348,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/owner/passwords/:passwordId"
+  "value": "DELETE - /api/v1/owner/passwords/:passwordId",
+  "scope": "account"
 },
 {
   "_id": "a406c62e-36c1-46b2-9ef3-f04c2e04d8ca",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/limitedTransactions",
@@ -1295,15 +1367,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/limitedTransactions"
+  "value": "GET - /api/v1/owner/limitedTransactions",
+  "scope": "account"
 },
 {
   "_id": "11826468-7e6b-4e37-ba51-9d7d4e2d817f",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/limitedTransactions/:limitedTransactionId",
@@ -1313,15 +1386,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/limitedTransactions/:limitedTransactionId"
+  "value": "GET - /api/v1/owner/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "abd5b2af-f44a-447e-bc9e-039e773e02bf",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/limitedTransactions/:limitedTransactionId",
@@ -1331,15 +1405,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/owner/limitedTransactions/:limitedTransactionId"
+  "value": "PUT - /api/v1/owner/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "ee90cf0b-4448-4e11-a264-6c1f4f77516a",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/clientDevices",
@@ -1349,15 +1424,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/clientDevices"
+  "value": "GET - /api/v1/owner/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "33c9db06-855d-4d47-8929-ff5b74191ee1",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/clientDevices",
@@ -1367,15 +1443,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/owner/clientDevices"
+  "value": "POST - /api/v1/owner/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "3599016e-c36a-439f-908c-670525eb8e26",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/clientDevices/:clientDeviceId",
@@ -1385,15 +1462,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/clientDevices/:clientDeviceId"
+  "value": "GET - /api/v1/owner/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "172ea74c-dde3-45e0-a947-2760a486f52c",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/clientDevices/:clientDeviceId",
@@ -1403,15 +1481,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/owner/clientDevices/:clientDeviceId"
+  "value": "PUT - /api/v1/owner/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "c5481c32-deaf-4efa-8ff1-bd60c664e690",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/clientDevices/:clientDeviceId",
@@ -1421,15 +1500,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/owner/clientDevices/:clientDeviceId"
+  "value": "DELETE - /api/v1/owner/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "6935aabb-e7dc-496c-94c8-92478cfa3072",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens",
@@ -1440,15 +1520,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens"
+  "value": "GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens",
+  "scope": "account"
 },
 {
   "_id": "c8a1fd70-87e2-412c-87d0-57677f775b83",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens",
@@ -1459,15 +1540,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens"
+  "value": "POST - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens",
+  "scope": "account"
 },
 {
   "_id": "b0514442-38ba-433f-8381-2752129a0989",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
@@ -1478,15 +1560,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "GET - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "scope": "account"
 },
 {
   "_id": "6c37f2c5-035a-43eb-8c49-17e09d714cc0",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
@@ -1497,15 +1580,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "PUT - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "PUT - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "scope": "account"
 },
 {
   "_id": "958faaa1-26f6-43ef-848e-1f5136416366",
   "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:04:50.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
@@ -1516,15 +1600,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "value": "DELETE - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId"
+  "value": "DELETE - /api/v1/owner/clientDevices/:clientDeviceId/accessTokens/:accessTokenId",
+  "scope": "account"
 },
 {
   "_id": "2863101d-873b-416b-b1c0-de727de2c393",
-  "value": "GET - /api/v1/owner/workspaces",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/workspaces",
@@ -1534,14 +1619,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/workspaces",
+  "scope": "account"
 },
 {
   "_id": "7ae6c2f2-8abd-495d-aede-665465b3692b",
-  "value": "POST - /api/v1/owner/workspaces",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/workspaces",
@@ -1551,14 +1638,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "POST - /api/v1/owner/workspaces",
+  "scope": "account"
 },
 {
   "_id": "787b607c-e7f8-4aed-a463-ce7fcccedb1b",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/workspaces/:workspaceId",
@@ -1568,14 +1657,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "3c473b85-f04a-4362-904b-c28d3cbb3c11",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/workspaces/:workspaceId",
@@ -1585,14 +1676,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "c0993164-c0a8-4511-9137-9e29c757a969",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/workspaces/:workspaceId",
@@ -1602,14 +1695,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "c942f05b-3b63-4073-9779-d03192d73085",
-  "value": "POST - /api/v1/owner/workspaces/:workspaceId/select",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/workspaces/:workspaceId/select",
@@ -1619,14 +1714,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-04-03T10:12:13.688Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "POST - /api/v1/owner/workspaces/:workspaceId/select",
+  "scope": "account"
 },
 {
   "_id": "99cd716d-f87d-4df9-bf0d-d7daf940e8c9",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
@@ -1636,14 +1733,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-04-03T10:12:13.688Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "f051edc1-ab38-4b26-b8c6-ee2b30bebd9f",
-  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
@@ -1653,14 +1752,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-04-03T10:12:13.688Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "88f16fd9-ed25-4ec3-b13d-56b1c5792bed",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1670,14 +1771,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-04-03T10:12:13.688Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "8076174f-0d4f-412c-beb6-0afe5b91cd6f",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1687,14 +1790,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-04-03T10:12:13.688Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "5c87717f-d085-40ea-a385-d269a3a7f0f8",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2023-12-24T04:05:14.319Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1704,14 +1809,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-04-03T10:12:13.688Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "639944d7-e2b9-4e8b-98ce-d4736805e19e",
-  "value": "GET - /api/v1/accounts/:accountId/completeInfo",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-01-03T06:24:37.552Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/completeInfo",
@@ -1720,14 +1827,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/accounts/:accountId/completeInfo",
+  "scope": "account"
 },
 {
   "_id": "9c83b00b-f363-4e51-abd6-4f6bbdeb9176",
-  "value": "GET - /api/v1/owner/completeInfo",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-01-03T06:27:16.476Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/completeInfo",
@@ -1736,14 +1845,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/completeInfo",
+  "scope": "account"
 },
 {
   "_id": "e78073e1-3b8f-4b01-a20b-0d8e79b619b2",
-  "value": "PUT - /api/v1/roles/:roleId/cloneFeatures",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-02T00:54:01.429Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/roles/:roleId/cloneFeatures",
@@ -1752,14 +1863,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "PUT - /api/v1/roles/:roleId/cloneFeatures",
+  "scope": "account"
 },
 {
   "_id": "c1133a83-6216-4e81-87b0-6abd10274c30",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-05T01:44:28.047Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
@@ -1770,14 +1883,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "976b98e7-5991-4882-872a-9761f01e31ac",
-  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-05T01:44:28.047Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
@@ -1788,14 +1903,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "POST - /api/v1/owner/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "30cbe593-e6e4-4215-bf18-286066be9c2c",
-  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-05T01:44:28.047Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1806,14 +1923,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "8b2cee7f-dbe5-44e4-b47d-c04091ab4e99",
-  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-05T01:44:28.047Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1824,14 +1943,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "PUT - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "1968e844-b968-4cb9-9c4b-e0b916998e12",
-  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-05T01:44:28.047Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1842,14 +1963,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "DELETE - /api/v1/owner/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "5269593f-b41c-4575-ba66-fdf6fd31b1b5",
-  "value": "GET - /api/v1/accounts/:accountId/workspaces",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces",
@@ -1859,14 +1982,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/accounts/:accountId/workspaces",
+  "scope": "account"
 },
 {
   "_id": "12a87eba-f81d-49cf-a682-c5cb5d273be6",
-  "value": "POST - /api/v1/accounts/:accountId/workspaces",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/workspaces",
@@ -1876,14 +2001,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "POST - /api/v1/accounts/:accountId/workspaces",
+  "scope": "account"
 },
 {
   "_id": "de783b93-f9cb-43c8-abeb-ffb9551f74d0",
-  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId",
@@ -1893,14 +2020,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "09b4be12-6908-4a37-ae78-1f4539f485b4",
-  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId",
@@ -1910,14 +2039,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "e08b5ee2-2c7c-438a-b058-1e0defc16f25",
-  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId",
@@ -1927,14 +2058,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "1bd14996-220d-4104-8805-aec12f387e3e",
-  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
@@ -1945,14 +2078,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "91575245-bd4e-45a0-8961-8aa202fa131b",
-  "value": "POST - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "POST - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
@@ -1963,14 +2098,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "POST - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "8ecee4d8-f9d7-454b-9397-9edb79d9cebc",
-  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1981,14 +2118,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "GET - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "a91352ed-9e68-4e53-ae9b-c059017c00ad",
-  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -1999,14 +2138,16 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "PUT - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "4fad9daf-3e7c-476a-8e56-26b8e3d06027",
-  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "__v": 0,
   "createdAt": {
-    "$date": "2024-04-06T04:36:33.407Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
   "description": "One of the server endpoint",
   "name": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
@@ -2017,1730 +2158,1828 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2024-05-06T12:24:58.396Z"
-  }
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "value": "DELETE - /api/v1/accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "64fbdcb7-06e0-4524-a3fb-a675bef6e269",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - index",
-  "type": "ui-route",
   "tags": [
     "Owner"
   ],
-  "value": "PRIVATE ROUTE - index",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:56.643Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-29T11:21:22.885Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - index",
+  "scope": "account"
 },
 {
   "_id": "f7ffa6f3-3bf3-44d4-9803-7e7287286cae",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - features",
-  "type": "ui-route",
   "tags": [
     "Features"
   ],
-  "value": "PRIVATE ROUTE - features",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:56.664Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T22:39:26.348Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - features",
+  "scope": "account"
 },
 {
   "_id": "b93c3f20-66eb-4719-92ef-1636a1f2494c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - features/create",
-  "type": "ui-route",
   "tags": [
     "Features"
   ],
-  "value": "PRIVATE ROUTE - features/create",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:57.437Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:57.437Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - features/create",
+  "scope": "account"
 },
 {
   "_id": "d02426ea-eda5-4861-acde-358fc4f6082e",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - features/view/:featureId",
-  "type": "ui-route",
   "tags": [
     "Features"
   ],
-  "value": "PRIVATE ROUTE - features/view/:featureId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:57.903Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:57.903Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - features/view/:featureId",
+  "scope": "account"
 },
 {
   "_id": "9db1f112-3c0c-403a-be06-1d189c878b90",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - features/edit/:featureId",
-  "type": "ui-route",
   "tags": [
     "Features"
   ],
-  "value": "PRIVATE ROUTE - features/edit/:featureId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:57.922Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:57.922Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - features/edit/:featureId",
+  "scope": "account"
 },
 {
   "_id": "89fea2a0-71a2-4c41-a995-a7f265fb4440",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - roles",
-  "type": "ui-route",
   "tags": [
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - roles",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:57.968Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:57.968Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - roles",
+  "scope": "account"
 },
 {
   "_id": "c290a75a-36a8-4554-aa08-2746796395a4",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - roles/create",
-  "type": "ui-route",
   "tags": [
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - roles/create",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:57.979Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:57.979Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - roles/create",
+  "scope": "account"
 },
 {
   "_id": "3ab0c8e3-93c8-4505-b8ab-5ba9e4e4efdb",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - roles/view/:roleId",
-  "type": "ui-route",
   "tags": [
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - roles/view/:roleId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:57.991Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:57.991Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - roles/view/:roleId",
+  "scope": "account"
 },
 {
   "_id": "e19d8e27-d38a-46db-9022-89d233aab00c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - roles/edit/:roleId",
-  "type": "ui-route",
   "tags": [
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - roles/edit/:roleId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.002Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.002Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - roles/edit/:roleId",
+  "scope": "account"
 },
 {
   "_id": "b55fe828-b6a4-4bbf-a036-ad2fa176399f",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - roles/view/:roleId/features",
-  "type": "ui-route",
   "tags": [
     "Roles",
     "Features"
   ],
-  "value": "PRIVATE ROUTE - roles/view/:roleId/features",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.015Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.015Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - roles/view/:roleId/features",
+  "scope": "account"
 },
 {
   "_id": "8f916577-ff5a-4c8d-9cf9-7b53768e3e99",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - roles/edit/:roleId/features",
-  "type": "ui-route",
   "tags": [
     "Roles",
     "Features"
   ],
-  "value": "PRIVATE ROUTE - roles/edit/:roleId/features",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.040Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.040Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - roles/edit/:roleId/features",
+  "scope": "account"
 },
 {
   "_id": "463c5f3c-7dc3-4143-ad28-1bebe5be61b8",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts",
-  "type": "ui-route",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE ROUTE - accounts",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.048Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.048Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts",
+  "scope": "account"
 },
 {
   "_id": "521c6863-ddda-45f9-b575-4c7130c3afc5",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create",
-  "type": "ui-route",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE ROUTE - accounts/create",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.055Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.055Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create",
+  "scope": "account"
 },
 {
   "_id": "c8fb0bef-a032-466a-87ac-a41aa25fd015",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId",
-  "type": "ui-route",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.063Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.063Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId",
+  "scope": "account"
 },
 {
   "_id": "8870ba3e-4127-44b2-a8db-0cd6971475e2",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId",
-  "type": "ui-route",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.070Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.070Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId",
+  "scope": "account"
 },
 {
   "_id": "9503aaf5-33cf-4660-8b88-19dadc03a831",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/roles",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/roles",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.077Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.077Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/roles",
+  "scope": "account"
 },
 {
   "_id": "7d973fe9-9895-4d7e-aa7c-fb560879dfb9",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/roles",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/roles",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.086Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.086Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/roles",
+  "scope": "account"
 },
 {
   "_id": "2dca6744-dcc2-488a-8518-f2ef937dcd26",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/passwords",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/passwords",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.093Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.093Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/passwords",
+  "scope": "account"
 },
 {
   "_id": "cd0412f7-6fa6-41d5-abc4-a16bed42e2be",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/passwords",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/passwords",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.101Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.101Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/passwords",
+  "scope": "account"
 },
 {
   "_id": "245f47a6-365e-4154-a037-f45d5614feb4",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.109Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.109Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions",
+  "scope": "account"
 },
 {
   "_id": "9dd4605a-d915-4c66-8795-e817804a6a42",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions/:limitedTransactionId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions/:limitedTransactionId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.117Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.117Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "226ca68b-79b7-4481-bc65-7df612340c2c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/limitedTransactions/:limitedTransactionId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/limitedTransactions/:limitedTransactionId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.124Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.124Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "24e85d3c-8886-4ec5-91e7-21846a2f8c4e",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.131Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.131Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "c99042c3-39b1-4ecd-ad01-5d81f8bf0fdb",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.138Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.138Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "d0067d4d-b6f6-4c77-8d2e-815976e52ab3",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.145Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.145Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "c01b1874-ee5d-4e52-9a83-2a09ab224b0a",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.153Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.153Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "7af92d4d-bc40-4663-bb07-65ac7167fcad",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.160Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.160Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "scope": "account"
 },
 {
   "_id": "9801cb07-315f-42c8-a996-0ac0e2771263",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.168Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.168Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "scope": "account"
 },
 {
   "_id": "a9d5c483-963d-47e6-b762-3e3596a5e273",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.175Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.175Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "scope": "account"
 },
 {
   "_id": "0e2cbd12-10ae-436d-a381-348b17cf0b51",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.183Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.183Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "scope": "account"
 },
 {
   "_id": "ae489ee7-5aab-4de6-9684-f5f1250b4879",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.192Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.192Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "cc6a0ad9-f554-48cb-9b01-ed59b634ad65",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos/:contactInfoId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos/:contactInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.200Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.200Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "fe2f393b-ada6-4ca3-aaa0-88a88f79c46c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/contactInfos/:contactInfoId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/contactInfos/:contactInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.208Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.208Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "ffd07045-31ec-4842-a0ee-e68677e53bae",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/contactInfos",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/contactInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.216Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.216Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "cef3fdb0-9604-4a4a-8ecd-8c35352b56ce",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.224Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.224Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "8a32e32f-1751-4049-abd7-2808fb1d1976",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos/:accountInfoId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos/:accountInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.231Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.231Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "433901b6-2cb7-44de-bf28-2b75ac47b72f",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/accountInfos/:accountInfoId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/accountInfos/:accountInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.241Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.241Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "5172f854-55de-4f2a-9340-65519a205433",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/accountInfos",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/accountInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.249Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.249Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "80e21351-0630-4477-8e35-a5b62216cc34",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.256Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.256Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces",
+  "scope": "account"
 },
 {
   "_id": "ecec0665-c59f-4faa-946e-4909e5089534",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/workspaces",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/workspaces",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.263Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.263Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/workspaces",
+  "scope": "account"
 },
 {
   "_id": "5ac5c51b-c167-4bc1-9a74-2e5119479690",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.272Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.272Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "50b2e3bf-3052-440e-aa50-d093760a0cb9",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.279Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.279Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "df2155fd-d1bb-4e4e-bd40-72c0606c80a8",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.287Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.287Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "ed33c10f-6931-4601-a921-dfab0d6da938",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/create/:accountId/workspaces/:workspaceId/accountRefs",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - accounts/create/:accountId/workspaces/:workspaceId/accountRefs",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.294Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.294Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/create/:accountId/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "878c9621-dfdf-4637-9d8d-4a11798dfde2",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.303Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.303Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "d22eaecf-d609-4014-82ae-46544e3a9a2c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.310Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.310Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "a2ca5070-9d82-4431-9726-cbc0e8714ccb",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view",
-  "type": "ui-route",
   "tags": [
     "Owner"
   ],
-  "value": "PRIVATE ROUTE - owner/view",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.318Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.318Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view",
+  "scope": "account"
 },
 {
   "_id": "f46c3e5c-c50e-435b-b80a-949a26ab32ee",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit",
-  "type": "ui-route",
   "tags": [
     "Owner"
   ],
-  "value": "PRIVATE ROUTE - owner/edit",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.326Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.326Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit",
+  "scope": "account"
 },
 {
   "_id": "4d8e3c9d-c586-4fa6-9b74-9fb1bc2260ff",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/accountInfos",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/view/accountInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.333Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.333Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "408a8cce-0106-4c12-9c35-f88d8954e940",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/accountInfos",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/create/accountInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.342Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.342Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/accountInfos",
+  "scope": "account"
 },
 {
   "_id": "e04dc7eb-511c-4ad8-8a38-a9f25c939657",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/accountInfos/:accountInfoId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/view/accountInfos/:accountInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.349Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.349Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "db8369ca-ae32-4c21-9383-49e11aced460",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/accountInfos/:accountInfoId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/accountInfos/:accountInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.357Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.357Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/accountInfos/:accountInfoId",
+  "scope": "account"
 },
 {
   "_id": "fa4f6f3f-afa3-4968-9f94-1cd66bd86e69",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/contactInfos",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/view/contactInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.365Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.365Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "0451fa0c-3839-453f-b308-c572e2e3268c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/contactInfos",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/create/contactInfos",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.374Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.374Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/contactInfos",
+  "scope": "account"
 },
 {
   "_id": "73a463fd-9ba1-48f6-b8d6-f63839feae9a",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/contactInfos/:contactInfoId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/view/contactInfos/:contactInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.384Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.384Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "3de8cd02-560d-4c66-8866-e5dc9783bc45",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/contactInfos/:contactInfoId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Contact Infos"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/contactInfos/:contactInfoId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.395Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.395Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/contactInfos/:contactInfoId",
+  "scope": "account"
 },
 {
   "_id": "d3a59dd1-7a69-4614-b738-89b65b927d0f",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/roles",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Roles"
   ],
-  "value": "PRIVATE ROUTE - owner/view/roles",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.406Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.406Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/roles",
+  "scope": "account"
 },
 {
   "_id": "caf845fe-14fe-4f74-99dd-3335f37e62ca",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/limitedTransactions",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - owner/view/limitedTransactions",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.424Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.424Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/limitedTransactions",
+  "scope": "account"
 },
 {
   "_id": "6d9d3859-7ed8-439d-8193-2eac5963874b",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/limitedTransactions/:limitedTransactionId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - owner/view/limitedTransactions/:limitedTransactionId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.433Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.433Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "b16c150a-3de0-4e33-968c-ce04a96ba8c8",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/limitedTransactions/:limitedTransactionId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Limited Transactions"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/limitedTransactions/:limitedTransactionId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.443Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.443Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/limitedTransactions/:limitedTransactionId",
+  "scope": "account"
 },
 {
   "_id": "e6372f04-d83b-43ce-bd70-74ef1497bc70",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/passwords",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - owner/view/passwords",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.453Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.453Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/passwords",
+  "scope": "account"
 },
 {
   "_id": "6eb2cb18-df04-4279-b4ac-74ab9ece682f",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/passwords",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Passwords"
   ],
-  "value": "PRIVATE ROUTE - owner/create/passwords",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.462Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.462Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/passwords",
+  "scope": "account"
 },
 {
   "_id": "8d184051-5b7d-4dcd-a6ee-60df3b6436a4",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/clientDevices",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - owner/view/clientDevices",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.471Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.471Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "bbb722d9-3ea3-4c4b-ad2a-b65a4fe0ee5c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/clientDevices",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - owner/create/clientDevices",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.479Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.479Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/clientDevices",
+  "scope": "account"
 },
 {
   "_id": "1b99412b-0d50-4b3d-a63f-d89ae16a1761",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.490Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.490Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "4ab30376-a850-44d8-90cb-61d01e62b969",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/clientDevices/:clientDeviceId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/clientDevices/:clientDeviceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.503Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.503Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/clientDevices/:clientDeviceId",
+  "scope": "account"
 },
 {
   "_id": "eabebfb2-0dfe-4c9a-8b0f-ec2f18885d4a",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.518Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.518Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "scope": "account"
 },
 {
   "_id": "f757b04f-b51c-4da9-ad03-a49dfbf31599",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - owner/create/clientDevices/:clientDeviceId/clientDeviceTokens",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.526Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.526Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/clientDevices/:clientDeviceId/clientDeviceTokens",
+  "scope": "account"
 },
 {
   "_id": "33111107-58b2-4368-8f77-3decbc41812c",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.535Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.535Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "scope": "account"
 },
 {
   "_id": "8b71fbfe-2734-478f-b394-562fd3c120aa",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Client Devices",
     "Access Tokens"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.542Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.542Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/clientDevices/:clientDeviceId/clientDeviceTokens/:clientDeviceTokenId",
+  "scope": "account"
 },
 {
   "_id": "6329a075-0db8-4c9d-afdd-b001907dad66",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/workspaces",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.550Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.550Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/workspaces",
+  "scope": "account"
 },
 {
   "_id": "0a4e55e8-e4b4-4ca4-a9ab-4df2e07978fe",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/workspaces",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - owner/create/workspaces",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.560Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.560Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/workspaces",
+  "scope": "account"
 },
 {
   "_id": "3cb30323-4365-4424-aa1e-3c0d7af9387b",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.569Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.569Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "2394c93d-41a3-4685-9054-2aeb3b0f8349",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.577Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.577Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId",
+  "scope": "account"
 },
 {
   "_id": "11cdfeb4-25d2-49d6-a7b3-3a8d3802eb66",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.585Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.585Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "800ce6b9-31c8-4862-bc1c-3f4dd977656e",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/accountRefs",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/accountRefs",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.592Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.592Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/create/workspaces/:workspaceId/accountRefs",
+  "scope": "account"
 },
 {
   "_id": "8fb757ef-a411-4bcc-a5a8-5bf16ed7323f",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.599Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.599Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "f4595ee3-bf7e-42a0-8ad0-f5511c2bf34b",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Workspaces",
     "Account References"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:accountRefId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.609Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.609Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/workspaces/:workspaceId/accountRefs/:accountRefId",
+  "scope": "account"
 },
 {
   "_id": "33da2a17-2b32-4ed0-bc84-61ab70afa64d",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui main drawer nav",
   "name": "PRIVATE MAIN NAV - Dashboard",
-  "type": "ui-main-drawer",
   "tags": [
     "Owner",
     "Workspaces"
   ],
-  "value": "PRIVATE MAIN NAV - Dashboard",
-  "description": "One of the ui main drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.667Z"
-  },
+  "type": "ui-main-drawer",
   "updatedAt": {
-    "$date": "2024-08-18T13:34:24.938Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE MAIN NAV - Dashboard",
+  "scope": "account"
 },
 {
   "_id": "fa10f88c-2117-469d-9af0-c7f8f1db51f5",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui main drawer nav",
   "name": "PRIVATE MAIN NAV - Features",
-  "type": "ui-main-drawer",
   "tags": [
     "Features"
   ],
-  "value": "PRIVATE MAIN NAV - Features",
-  "description": "One of the ui main drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.674Z"
-  },
+  "type": "ui-main-drawer",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.674Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE MAIN NAV - Features",
+  "scope": "account"
 },
 {
   "_id": "f7b84575-8dd4-4be9-85d8-e59cb90c5f32",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui main drawer nav",
   "name": "PRIVATE MAIN NAV - Roles",
-  "type": "ui-main-drawer",
   "tags": [
     "Roles"
   ],
-  "value": "PRIVATE MAIN NAV - Roles",
-  "description": "One of the ui main drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.681Z"
-  },
+  "type": "ui-main-drawer",
   "updatedAt": {
-    "$date": "2024-06-20T00:55:58.681Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE MAIN NAV - Roles",
+  "scope": "account"
 },
 {
   "_id": "2e2000bb-4ff2-46f4-aede-e71fde170bb2",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui main drawer nav",
   "name": "PRIVATE MAIN NAV - Accounts",
-  "type": "ui-main-drawer",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE MAIN NAV - Accounts",
-  "description": "One of the ui main drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.689Z"
-  },
+  "type": "ui-main-drawer",
   "updatedAt": {
-    "$date": "2024-07-16T00:46:42.988Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE MAIN NAV - Accounts",
+  "scope": "account"
 },
 {
   "_id": "7c6ba371-eefb-49a2-920d-0bcd2a95d5bd",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private user drawer nav",
   "name": "PRIVATE USER NAV - Test Link",
-  "type": "ui-account-drawer",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE USER NAV - Test Link",
-  "description": "One of the ui private user drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.697Z"
-  },
+  "type": "ui-account-drawer",
   "updatedAt": {
-    "$date": "2024-08-10T16:44:38.878Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE USER NAV - Test Link",
+  "scope": "account"
 },
 {
   "_id": "20e77c59-ea86-4204-ad52-97d7af42b4b7",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private user drawer nav",
   "name": "PRIVATE USER NAV - Test Action",
-  "type": "ui-account-drawer",
   "tags": [
     "Accounts"
   ],
-  "value": "PRIVATE USER NAV - Test Action",
-  "description": "One of the ui private user drawer nav",
-  "createdAt": {
-    "$date": "2024-06-20T00:55:58.721Z"
-  },
+  "type": "ui-account-drawer",
   "updatedAt": {
-    "$date": "2024-06-22T10:58:47.461Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE USER NAV - Test Action",
+  "scope": "account"
 },
 {
   "_id": "9ccff8cd-9568-479e-9980-0daeff8df335",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/accountConfigs",
-  "type": "api-route",
   "tags": [
     "Accounts",
     "Account Configs"
   ],
-  "value": "GET - /api/v1/accounts/:accountId/accountConfigs",
-  "description": "One of the server endpoint",
-  "createdAt": {
-    "$date": "2024-08-17T09:56:17.885Z"
-  },
+  "type": "api-route",
   "updatedAt": {
-    "$date": "2024-08-17T09:56:17.885Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "GET - /api/v1/accounts/:accountId/accountConfigs",
+  "scope": "account"
 },
 {
   "_id": "9a65c91c-c95f-4b0c-85b2-21009631ee90",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the server endpoint",
   "name": "GET - /api/v1/accounts/:accountId/accountConfigs/:accountConfigId",
-  "type": "api-route",
   "tags": [
     "Accounts",
     "Account Configs"
   ],
-  "value": "GET - /api/v1/accounts/:accountId/accountConfigs/:accountConfigId",
-  "description": "One of the server endpoint",
-  "createdAt": {
-    "$date": "2024-08-17T09:57:41.328Z"
-  },
+  "type": "api-route",
   "updatedAt": {
-    "$date": "2024-08-17T09:57:41.328Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "GET - /api/v1/accounts/:accountId/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "b8ec8d28-161b-4547-8911-1f0f178d388e",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the server endpoint",
   "name": "PUT - /api/v1/accounts/:accountId/accountConfigs/:accountConfigId",
-  "type": "api-route",
   "tags": [
     "Accounts",
     "Account Configs"
   ],
-  "value": "PUT - /api/v1/accounts/:accountId/accountConfigs/:accountConfigId",
-  "description": "One of the server endpoint",
-  "createdAt": {
-    "$date": "2024-08-17T09:59:29.577Z"
-  },
+  "type": "api-route",
   "updatedAt": {
-    "$date": "2024-08-17T09:59:29.577Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PUT - /api/v1/accounts/:accountId/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "9556aba3-13f6-48a0-ad44-81b7ab94a674",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/accountConfigs",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Configs"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountConfigs",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-08-17T10:01:08.788Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:01:08.788Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountConfigs",
+  "scope": "account"
 },
 {
   "_id": "26ff1fd1-7fff-4a1a-a921-61d0b6072c31",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/view/:accountId/accountConfigs/:accountConfigId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Configs"
   ],
-  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountConfigs/:accountConfigId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-08-17T10:02:29.616Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:02:29.616Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/view/:accountId/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "3504f303-1afd-49d1-93ff-874c8f21cc07",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - accounts/edit/:accountId/accountConfigs/:accountConfigId",
-  "type": "ui-route",
   "tags": [
     "Accounts",
     "Account Configs"
   ],
-  "value": "PRIVATE ROUTE - accounts/edit/:accountId/accountConfigs/:accountConfigId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-08-17T10:03:46.442Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:03:46.442Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - accounts/edit/:accountId/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "c1835552-1d70-407f-9cd6-cf5c95562912",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/accountConfigs",
-  "type": "api-route",
   "tags": [
     "Owner",
     "Account Configs"
   ],
-  "value": "GET - /api/v1/owner/accountConfigs",
-  "description": "One of the server endpoint",
-  "createdAt": {
-    "$date": "2024-08-17T10:28:08.025Z"
-  },
+  "type": "api-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:28:08.025Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "GET - /api/v1/owner/accountConfigs",
+  "scope": "account"
 },
 {
   "_id": "8c9b908a-a1a7-40bb-8f91-e900d91a221d",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the server endpoint",
   "name": "GET - /api/v1/owner/accountConfigs/:accountConfigId",
-  "type": "api-route",
   "tags": [
     "Owner",
     "Account Configs"
   ],
-  "value": "GET - /api/v1/owner/accountConfigs/:accountConfigId",
-  "description": "One of the server endpoint",
-  "createdAt": {
-    "$date": "2024-08-17T10:28:54.925Z"
-  },
+  "type": "api-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:29:53.893Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "GET - /api/v1/owner/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "35d9326d-8036-4eee-8cc9-ba35c5e7429b",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the server endpoint",
   "name": "PUT - /api/v1/owner/accountConfigs/:accountConfigId",
-  "type": "api-route",
   "tags": [
     "Owner",
     "Account Configs"
   ],
-  "value": "PUT - /api/v1/owner/accountConfigs/:accountConfigId",
-  "description": "One of the server endpoint",
-  "createdAt": {
-    "$date": "2024-08-17T10:30:51.399Z"
-  },
+  "type": "api-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:30:51.399Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PUT - /api/v1/owner/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "0b8441c9-90b5-4bd5-b268-df074037bf1d",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/view/accountConfigs",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Configs"
   ],
-  "value": "PRIVATE ROUTE - owner/view/accountConfigs",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-08-17T10:32:18.220Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:32:18.220Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/view/accountConfigs",
+  "scope": "account"
 },
 {
   "_id": "58e556ad-a6be-46f7-baf7-9dcf900af277",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "RIVATE ROUTE - owner/view/accountConfigs/:accountConfigId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Configs"
   ],
-  "value": "RIVATE ROUTE - owner/view/accountConfigs/:accountConfigId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-08-17T10:33:34.920Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:33:34.920Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "RIVATE ROUTE - owner/view/accountConfigs/:accountConfigId",
+  "scope": "account"
 },
 {
   "_id": "6a5e8fdb-2f32-4707-a07a-6eaa638b1244",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-10-13T20:01:05.756Z"
+  },
+  "description": "One of the ui private route",
   "name": "PRIVATE ROUTE - owner/edit/accountConfigs/:accountConfigId",
-  "type": "ui-route",
   "tags": [
     "Owner",
     "Account Configs"
   ],
-  "value": "PRIVATE ROUTE - owner/edit/accountConfigs/:accountConfigId",
-  "description": "One of the ui private route",
-  "createdAt": {
-    "$date": "2024-08-17T10:34:38.006Z"
-  },
+  "type": "ui-route",
   "updatedAt": {
-    "$date": "2024-08-17T10:34:38.006Z"
+    "$date": "2024-10-13T20:01:05.756Z"
   },
-  "__v": 0
+  "value": "PRIVATE ROUTE - owner/edit/accountConfigs/:accountConfigId",
+  "scope": "account"
 }]
