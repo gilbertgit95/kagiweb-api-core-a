@@ -5,14 +5,6 @@ properties:
   accountId:
     type: string
     format: uuid
-  readAccess:
-    type: boolean
-  updateAccess:
-    type: boolean
-  createAccess:
-    type: boolean
-  deleteAccess:
-    type: boolean
   accepted:
     type: boolean
   declined:
@@ -22,10 +14,6 @@ properties:
 
 example:
   accountId: c54a858a-b095-4405-9a1c-8567ec91da5e
-  readAccess: true
-  updateAccess: true
-  createAccess: true
-  deleteAccess: true
   accepted: true
   declined: false
   disabled: false

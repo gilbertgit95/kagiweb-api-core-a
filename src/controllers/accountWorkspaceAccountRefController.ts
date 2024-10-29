@@ -73,10 +73,10 @@ class AccountWorkspaceAccountRefController {
             accountId:string,
             workspaceId:string,
             nameId:string,
-            readAccess:boolean|string,
-            updateAccess:boolean|string,
-            createAccess:boolean|string,
-            deleteAccess:boolean|string,
+            // readAccess:boolean|string,
+            // updateAccess:boolean|string,
+            // createAccess:boolean|string,
+            // deleteAccess:boolean|string,
             disabled:boolean|string
         ):Promise<IWorkspaceAccountRef|null> {
 
@@ -92,18 +92,18 @@ class AccountWorkspaceAccountRefController {
         const doc:IWorkspaceAccountRef = {
             accountId: assignedAccount._id
         }
-        if (DataCleaner.getBooleanData(readAccess).isValid) {
-            doc.readAccess = DataCleaner.getBooleanData(readAccess).data
-        }
-        if (DataCleaner.getBooleanData(updateAccess).isValid) {
-            doc.updateAccess = DataCleaner.getBooleanData(updateAccess).data
-        }
-        if (DataCleaner.getBooleanData(createAccess).isValid) {
-            doc.createAccess = DataCleaner.getBooleanData(createAccess).data
-        }
-        if (DataCleaner.getBooleanData(deleteAccess).isValid) {
-            doc.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
-        }
+        // if (DataCleaner.getBooleanData(readAccess).isValid) {
+        //     doc.readAccess = DataCleaner.getBooleanData(readAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(updateAccess).isValid) {
+        //     doc.updateAccess = DataCleaner.getBooleanData(updateAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(createAccess).isValid) {
+        //     doc.createAccess = DataCleaner.getBooleanData(createAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(deleteAccess).isValid) {
+        //     doc.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
+        // }
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
@@ -128,10 +128,10 @@ class AccountWorkspaceAccountRefController {
             accountId:string,
             workspaceId:string,
             accountRefId:string,
-            readAccess:boolean|string,
-            updateAccess:boolean|string,
-            createAccess:boolean|string,
-            deleteAccess:boolean|string,
+            // readAccess:boolean|string,
+            // updateAccess:boolean|string,
+            // createAccess:boolean|string,
+            // deleteAccess:boolean|string,
             disabled:boolean|string
         ):Promise<IWorkspaceAccountRef|null> {
 
@@ -141,21 +141,21 @@ class AccountWorkspaceAccountRefController {
         if (!account) throw({code: 404})
         if (!this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)) throw({code: 404})
 
-        if (DataCleaner.getBooleanData(readAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
-        }
-        if (DataCleaner.getBooleanData(updateAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.updateAccess = DataCleaner.getBooleanData(updateAccess).data
-        }
-        if (DataCleaner.getBooleanData(createAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.createAccess = DataCleaner.getBooleanData(createAccess).data
-        }
-        if (DataCleaner.getBooleanData(deleteAccess).isValid) {
-            account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
-        }
-        if (DataCleaner.getBooleanData(disabled).isValid) {
-            account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.disabled = DataCleaner.getBooleanData(disabled).data
-        }
+        // if (DataCleaner.getBooleanData(readAccess).isValid) {
+        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(updateAccess).isValid) {
+        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.updateAccess = DataCleaner.getBooleanData(updateAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(createAccess).isValid) {
+        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.createAccess = DataCleaner.getBooleanData(createAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(deleteAccess).isValid) {
+        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
+        // }
+        // if (DataCleaner.getBooleanData(disabled).isValid) {
+        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.disabled = DataCleaner.getBooleanData(disabled).data
+        // }
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)

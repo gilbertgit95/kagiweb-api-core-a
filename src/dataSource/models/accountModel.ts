@@ -94,10 +94,8 @@ interface IAccountConfig {
 interface IWorkspaceAccountRef {
     _id?: string,
     accountId: string,
-    readAccess?: boolean,
-    updateAccess?: boolean,
-    createAccess?: boolean,
-    deleteAccess?: boolean,
+    rolesRefs?: Types.DocumentArray<IRoleRef & Document>,
+    accountConfigs?: Types.DocumentArray<IAccountConfig & Document>,
     declined?: boolean,
     accepted?: boolean,
     disabled?: boolean
@@ -223,10 +221,6 @@ const AccountConfigSchema = new Schema<IAccountConfig>({
 const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
     accountId: { type: String, required: true},
-    readAccess: { type: Boolean, default: true},
-    updateAccess: { type: Boolean, default: false},
-    createAccess: { type: Boolean, default: false},
-    deleteAccess: { type: Boolean, default: false},
     declined: { type: Boolean, default: false},
     accepted: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false},

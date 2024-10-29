@@ -22,10 +22,6 @@ example:
   accountRefs:
     - _id: 62986e97-cdc0-4454-897a-bd34a8071b1c
       accountId: c54a858a-b095-4405-9a1c-8567ec91da5e
-      readAccess: true
-      updateAccess: true
-      createAccess: true
-      deleteAccess: true
       accepted: true
       disabled: false
       createdAt: '2023-08-27T14:51:58.619Z'

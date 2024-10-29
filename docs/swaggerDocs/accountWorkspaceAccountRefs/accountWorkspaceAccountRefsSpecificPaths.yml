@@ -45,10 +45,6 @@ get:
                 _id: 62986e97-cdc0-4454-897a-bd34a8071b1c
                 accountId: c54a858a-b095-4405-9a1c-8567ec91da5e
                 nameId: Bertwo
-                readAccess: true
-                updateAccess: true
-                createAccess: true
-                deleteAccess: true
                 accepted: true
                 declined: false
                 disabled: false
@@ -86,14 +82,6 @@ put:
         schema:
           type: object
           properties:
-            readAccess:
-              type: boolean
-            updateAccess:
-              type: boolean
-            createAccess:
-              type: boolean
-            deleteAccess:
-              type: boolean
             disabled:
               type: boolean
   responses:
@@ -111,10 +99,6 @@ put:
               example:
                 _id: 62986e97-cdc0-4454-897a-bd34a8071b1c
                 accountId: c54a858a-b095-4405-9a1c-8567ec91da5e
-                readAccess: true
-                updateAccess: true
-                createAccess: true
-                deleteAccess: true
                 accepted: true
                 declined: false
                 disabled: false
@@ -161,10 +145,6 @@ delete:
               example:
                 _id: 62986e97-cdc0-4454-897a-bd34a8071b1c
                 accountId: c54a858a-b095-4405-9a1c-8567ec91da5e
-                readAccess: true
-                updateAccess: true
-                createAccess: true
-                deleteAccess: true
                 accepted: true
                 declined: false
                 disabled: false
