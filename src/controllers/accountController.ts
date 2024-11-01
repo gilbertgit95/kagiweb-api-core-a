@@ -25,6 +25,9 @@ interface IAccountCompleteInfo {
     roles: IRole[]|null,
     features: IFeature[]|null,
     workspace: IWorkspace|null,
+    workspaceRole: IRole|null,
+    workspaceRoles: IRole[]|null,
+    workspaceFeatures: IFeature[]|null,
     workspaces: IWorkspace[]|null,
     externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null,
     clientDevice: IClientDevice|null,
@@ -65,6 +68,9 @@ class AccountController {
             roles: null,
             features: null,
             workspace: null,
+            workspaceRole: null,
+            workspaceRoles: null,
+            workspaceFeatures: null,
             workspaces: null,
             externalWorkspaces: null,
             clientDevice: null,
@@ -105,6 +111,9 @@ class AccountController {
                 resp.roles = accountRoles
                 resp.features = roleFeatures
                 resp.workspace = defaultWorkspace
+                resp.workspaceRole = null
+                resp.workspaceRoles = null
+                resp.workspaceFeatures = null
                 resp.workspaces = accountWorkspaces
                 resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
                 resp.accountData = account
