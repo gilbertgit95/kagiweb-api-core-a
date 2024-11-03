@@ -1,9 +1,9 @@
 import accountModel, { IAccount, IRoleRef } from '../dataSource/models/accountModel'
-import accountWorkspaceAccountRefController from './accountWorkspaceAccountRefController'
-
 import accountController from './accountController'
 import roleController from './roleController'
-import DataCleaner from '../utilities/dataCleaner'
+import accountWorkspaceAccountRefController from './accountWorkspaceAccountRefController'
+
+// import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -106,7 +106,7 @@ class AccountWorkspaceAccountRefRoleController {
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
 
-        return account.rolesRefs!.id(roleRefId)
+        return this.getRoleRefByRoleId(account, workspaceId, accountRefId, roleId)
     }
 
     public async deleteRoleRef(accountId:string, workspaceId:string, accountRefId:string, roleRefId:string):Promise<IRoleRef|null> {
