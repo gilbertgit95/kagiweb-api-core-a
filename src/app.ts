@@ -26,6 +26,8 @@ import accountClientDeviceRoutes from './routes/accountClientDeviceRoutes'
 import accountClientDeviceAccesstokenRoutes from './routes/accountClientDeviceAccesstokenRoutes'
 import accountWorkspaceRoutes from './routes/accountWorkspaceRoutes'
 import accountWorkspaceAccountRefRoutes from './routes/accountWorkspaceAccountRefRoutes'
+import accountWorkspaceAccountRefAccountConfigRoutes from './routes/accountWorkspaceAccountRefAccountConfigRoutes'
+import accountWorkspaceAccountRefRoleRoutes from './routes/accountWorkspaceAccountRefRoleRoutes'
 import ownerRoutes from './routes/ownerRoutes'
 
 const router = express.Router()
@@ -76,6 +78,8 @@ appHandler.addPrivateRoute(accountClientDeviceRoutes)
 appHandler.addPrivateRoute(accountClientDeviceAccesstokenRoutes)
 appHandler.addPrivateRoute(accountWorkspaceRoutes)
 appHandler.addPrivateRoute(accountWorkspaceAccountRefRoutes)
+appHandler.addPrivateRoute(accountWorkspaceAccountRefAccountConfigRoutes)
+appHandler.addPrivateRoute(accountWorkspaceAccountRefRoleRoutes)
 appHandler.addPrivateRoute(ownerRoutes)
 
 export {

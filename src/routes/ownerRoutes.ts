@@ -17,6 +17,8 @@ import accountClientDeviceController from '../controllers/accountClientDeviceCon
 import accountClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
 import accountWorkspaceController from '../controllers/accountWorkspaceController'
 import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
+import accountWorkspaceAccountRefAccountConfigController from '../controllers/accountWorkspaceAccountRefAcountConfigController'
+import accountWorkspaceAccountRefRoleController from '../controllers/accountWorkspaceAccountRefRoleController'
 
 import {
     IAccount, IRoleRef, IAccountInfo, IAccountConfig, IContactInfo,
@@ -559,7 +561,7 @@ router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs', a
     const { nameId, readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, nameId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
+        return await accountWorkspaceAccountRefController.saveWorkspaceAccountRef(accountId, workspaceId, nameId, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -582,7 +584,7 @@ router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:acc
     const { readAccess, updateAccess, createAccess, deleteAccess, disabled } = req.body
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
-        return await accountWorkspaceAccountRefController.updateWorkspaceAccountRef(accountId, workspaceId, accountRefId, readAccess, updateAccess, createAccess, deleteAccess, disabled)
+        return await accountWorkspaceAccountRefController.updateWorkspaceAccountRef(accountId, workspaceId, accountRefId, disabled)
     })
 
     return res.status(statusCode).send(result)
@@ -594,6 +596,98 @@ router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:
 
     const [result, statusCode] = await ErrorHandler.execute<IWorkspaceAccountRef>(async () => {
         return await accountWorkspaceAccountRefController.deleteWorkspaceAccountRef( accountId, workspaceId, accountRefId )
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+
+router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/accountConfigs', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig[]>(async () => {
+        return await accountWorkspaceAccountRefAccountConfigController.getAccountConfigs(accountId, workspaceId, accountRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/accountConfigs/:accountConfigId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId, accountConfigId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        return await accountWorkspaceAccountRefAccountConfigController.getAccountConfig(accountId, workspaceId, accountRefId, accountConfigId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/accountConfigs/:accountConfigId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId, accountConfigId } = req.params
+    const { value } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        return await accountWorkspaceAccountRefAccountConfigController.updateAccountConfig(accountId, workspaceId, accountRefId, accountConfigId, value)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/roles', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef[]>(async () => {
+        return await accountWorkspaceAccountRefRoleController.getRoleRefs(accountId, workspaceId, accountRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/roles/:roleRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId, roleRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountWorkspaceAccountRefRoleController.getRoleRef(accountId, workspaceId, accountRefId, roleRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.post(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/roles', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId } = req.params
+    const { roleId } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountWorkspaceAccountRefRoleController.saveRoleRef(accountId, workspaceId, accountRefId, roleId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/roles/:roleRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId, roleRefId } = req.params
+    const { roleId } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountWorkspaceAccountRefRoleController.updateRoleRef(accountId, workspaceId, accountRefId, roleRefId, roleId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.delete(env.RootApiEndpoint + 'owner/workspaces/:workspaceId/accountRefs/:accountRefId/roles/:roleRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { workspaceId, accountRefId, roleRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountWorkspaceAccountRefRoleController.deleteRoleRef(accountId, workspaceId, accountRefId, roleRefId)
     })
 
     return res.status(statusCode).send(result)
