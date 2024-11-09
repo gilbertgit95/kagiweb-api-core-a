@@ -9,6 +9,7 @@ import accountAccountConfigController from '../controllers/accountAccountConfigC
 import accountClientDeviceController from './accountClientDeviceController'
 import accountClientDeviceAccessTokenController from './accountClientDeviceAccessTokenController'
 
+import { generateDefaultAccountData } from '../utilities/defaultsData'
 import Encryption from '../utilities/encryption'
 import DataCleaner from '../utilities/dataCleaner'
 import { IFeature } from '../dataSource/models/featureModel'
@@ -149,38 +150,22 @@ class AccountController {
         // check nameId if already existing
         if (await accountModel.findOne({nameId})) throw({code: 409}) // conflict
 
-        const role = await roleController.getLeastRole()
         const defautPass = Encryption.generateRandPassword()
 
-        const doc:any = { // eslint-disable-line @typescript-eslint/no-explicit-any
-            nameId,
-            rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
-            accountInfos: [
-                { key: 'firstname', value: '', type: 'string' },
-                { key: 'middlename', value: '', type: 'string' },
-                { key: 'lastname', value: '', type: 'string' },
-                { key: 'birthday', value: '', type: 'date' },
-            ],
-            accountConfigs: [
-                { key: 'default-role', value: '', type: 'string' },
-                { key: 'default-workspace', value: '', type: 'string' }
-            ],
-            passwords: [
-                {
-                    key: await Encryption.hashText(defautPass),
-                    expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate(),
-                    isActive: true
-                }
-            ],
-            contactInfos: [],
-            clientDevices: [],
-            limitedTransactions: [
-                { limit: 5, type: 'signin' },
-                { limit: 5, type: 'otp-signin', disabled: true },
-                { limit: 5, type: 'forgot-pass' },
-                { limit: 5, type: 'reset-pass' },
-                { limit: 5, type: 'verify-contact'}
-            ]
+        let doc:any  = await generateDefaultAccountData()
+
+        doc = {
+            ...doc,
+            ...{ // eslint-disable-line @typescript-eslint/no-explicit-any
+                nameId,
+                passwords: [
+                    {
+                        key: await Encryption.hashText(defautPass),
+                        expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate(),
+                        isActive: true
+                    }
+                ]
+            }
         }
 
         if (DataCleaner.getBooleanData(disabled).isValid) {

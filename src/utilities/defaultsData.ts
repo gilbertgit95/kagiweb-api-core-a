@@ -1,3 +1,6 @@
+import { acountTypes } from '../dataSource/models/accountModel'
+import roleController from '../controllers/roleController'
+
 export const generateDefaultAccountsInfo = () => {
     return [
         { key: 'firstname', value: '', type: 'string' },
@@ -7,8 +10,8 @@ export const generateDefaultAccountsInfo = () => {
     ]
 }
 
-export const generateDefaultRoleRefs = () => {
-    return []
+export const generateDefaultRoleRefs = async () => {
+    return await roleController.getLeastRole()
 }
 
 export const generateDefaultAccountConfigs = () => {
@@ -16,6 +19,14 @@ export const generateDefaultAccountConfigs = () => {
         { key: 'default-role', value: '', type: 'string' },
         { key: 'default-workspace', value: '', type: 'string' }
     ]
+}
+
+export const generateDefaultContactInfos = () => {
+    return []
+}
+
+export const generateDefaultClientDevices = () => {
+    return []
 }
 
 export const generateDefaultPasswords = () => {
@@ -30,15 +41,16 @@ export const generateDefaultWorkspaces = () => {
     return []
 }
 
-export const generateDefaultAccountData = ():any => {
+export const generateDefaultAccountData = async ():Promise<any> => {
     return { // eslint-disable-line @typescript-eslint/no-explicit-any
         nameId: null,
-        rolesRefs: [],
+        accountType:         acountTypes[0],
+        rolesRefs:           await generateDefaultRoleRefs(),
         accountInfos:        generateDefaultAccountsInfo(),
         accountConfigs:      generateDefaultAccountConfigs(),
         passwords:           generateDefaultPasswords(),
-        contactInfos: [],
-        clientDevices: [],
+        contactInfos:        generateDefaultContactInfos(),
+        clientDevices:       generateDefaultClientDevices(),
         limitedTransactions: generateDefaultLimitedTransactions(),
         workspaces:          generateDefaultWorkspaces()
     }

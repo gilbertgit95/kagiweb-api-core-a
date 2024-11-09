@@ -7,6 +7,7 @@ import accountClientDeviceController from './accountClientDeviceController'
 import accountPasswordController from './accountPasswordController'
 import accountClientDeviceAccessTokenController from './accountClientDeviceAccessTokenController'
 import roleController from './roleController'
+import { generateDefaultAccountData } from '../utilities/defaultsData'
 import Encryption from '../utilities/encryption'
 import Config from '../utilities/config'
 import appEvents from '../utilities/appEvents'
@@ -231,44 +232,26 @@ class AuthController {
             }
         }
 
-        // get the least role available
-        const role = await roleController.getLeastRole()
-
         // create new account entry data with default data
         // set the contact informations
         // set the password
-        const account = {
-            accountType: acountTypes[0],
-            nameId,
-            rolesRefs: role? [{roleId: role._id, isActive: true}]: [],
-            accountInfos: [
-                { key: 'firstname', value: '', type: 'string' },
-                { key: 'middlename', value: '', type: 'string' },
-                { key: 'lastname', value: '', type: 'string' },
-                { key: 'birthday', value: '', type: 'date' },
-            ],
-            accountConfigs: [
-                { key: 'default-role', value: '', type: 'string' },
-                { key: 'default-workspace', value: '', type: 'string' }
-            ],
-            passwords: [
-                {
-                    key: await Encryption.hashText(password),
-                    expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate(),
-                    isActive: true
-                }
-            ],
-            contactInfos: contactinfos,
-            clientDevices: [],
-            limitedTransactions: [
-                { limit: 5, type: 'signin' },
-                { limit: 5, type: 'otp-signin', disabled: true },
-                { limit: 5, type: 'forgot-pass' },
-                { limit: 5, type: 'reset-pass' },
-                { limit: 5, type: 'verify-contact'}
-            ],
-            disabled: true,
-            verified: false
+        let account:any  = await generateDefaultAccountData()
+
+        account = {
+            ...account,
+            ...{
+                nameId,
+                passwords: [
+                    {
+                        key: await Encryption.hashText(password),
+                        expTime: moment().add(env.DefaultPasswordExpiration, 'days').toDate(),
+                        isActive: true
+                    }
+                ],
+                contactInfos: contactinfos,
+                disabled: true,
+                verified: false
+            }
         }
 
         // then save the new account to the database
