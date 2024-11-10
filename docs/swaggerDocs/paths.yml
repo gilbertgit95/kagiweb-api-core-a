@@ -77,8 +77,15 @@
   $ref: ./accountWorkspaceAccountRefs/accountWorkspaceAccountRefsPaths.yml
 /accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}:
   $ref: ./accountWorkspaceAccountRefs/accountWorkspaceAccountRefsSpecificPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}/roles:
+  $ref: ./accountWorkspaceAccountRefsRoles/accountWorkspaceAccountRefsRolesPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}/roles/{roleRefId}:
+  $ref: ./accountWorkspaceAccountRefsRoles/accountWorkspaceAccountRefsRolesSpecificPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}/accountConfigs:
+  $ref: ./accountWorkspaceAccountRefsAccountConfigs/accountWorkspaceAccountRefsAccountConfigsPaths.yml
+/accounts/{accountId}/workspaces/{workspaceId}/accountRefs/{accountRefId}/accountConfigs/{accountConfigId}:
+  $ref: ./accountWorkspaceAccountRefsAccountConfigs/accountWorkspaceAccountRefsAccountConfigsSpecificPaths.yml
 
-# paths inside /workspaces
 
 # paths owner
 /owner:
@@ -92,6 +99,7 @@
 /owner/accountInfos:
   $ref: ./owner/ownerAccountInfosPaths.yml
 /owner/accountInfos/{accountInfoId}:
+  $ref: ./owner/ownerAccountInfosPaths.yml
 /owner/accountConfigs:
   $ref: ./owner/ownerAccountConfigsPaths.yml
 /owner/accountConfigs/{accountConfigId}:
@@ -124,3 +132,11 @@
   $ref: ./owner/ownerWorkspaceAccountRefsPaths.yml
 /owner/workspaces/{workspaceId}/accountRefs/{accountRefId}:
   $ref: ./owner/ownerWorkspaceAccountRefsSpecificPaths.yml
+/owner/workspaces/{workspaceId}/accountRefs/{accountRefId}/roles:
+  $ref: ./owner/ownerWorkspaceAccountRefsRolesPaths.yml
+/owner/workspaces/{workspaceId}/accountRefs/{accountRefId}/roles/{roleRefId}:
+  $ref: ./owner/ownerWorkspaceAccountRefsRolesSpecificPaths.yml
+/owner/workspaces/{workspaceId}/accountRefs/{accountRefId}/accountConfigs:
+  $ref: ./owner/ownerWorkspaceAccountRefsAccountConfigsPaths.yml
+/owner/workspaces/{workspaceId}/accountRefs/{accountRefId}/accountConfigs/{accountConfigId}:
+  $ref: ./owner/ownerWorkspaceAccountRefsAccountConfigsSpecificPaths.yml

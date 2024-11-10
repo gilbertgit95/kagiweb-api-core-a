@@ -12,6 +12,6 @@ properties:
     type: string
 
 example:
-  key: default-workspace
+  key: default-role
   value: c54a858a-b095-4405-9a1c-8567ec91da5e
   type: string

@@ -33,6 +33,10 @@ AccountWorkspace:
   $ref: ./accountWorkspaces/accountWorkspaceDefinition.yml
 AccountWorkspaceAccountRef:
   $ref: ./accountWorkspaceAccountRefs/accountWorkspaceAccountRefDefinition.yml
+AccountWorkspaceAccountRefRole:
+  $ref: ./accountWorkspaceAccountRefsRoles/accountWorkspaceAccountRefsRoleDefinition.yml
+AccountWorkspaceAccountRefAccountConfig:
+  $ref: ./accountWorkspaceAccountRefsAccountConfigs/accountWorkspaceAccountRefsAccountConfigDefinition.yml
 
 
 # global data definitions
