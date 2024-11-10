@@ -49,7 +49,7 @@ const RoleSchema = new Schema<IRole>({
         type: String,
         required: true,
         unique: true,
-        validate: TextValidators.validateObjectName
+        validate: TextValidators.validateFlexibleName
     },
     scope: {
         type: String,

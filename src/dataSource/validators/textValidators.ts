@@ -10,6 +10,14 @@ class TextValidators {
         message: (props:{value:string}):string => `${props.value} is not a valid name!`
     }
 
+    // validate flexible thing names
+    public static validateFlexibleName = {
+        validator: (value:string):boolean => {
+            return /^[\w\s]+$/.test(value)
+        },
+        message: (props:{value:string}):string => `${props.value} is not a valid name!`
+    }
+
     // validate object names
     public static validateObjectName = {
         validator: (value:string):boolean => {
