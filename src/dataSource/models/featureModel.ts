@@ -10,10 +10,10 @@ import TextValidators from '../validators/textValidators'
 // - ui-main-drawer
 // - ui-account-drawer
 type TFeatureType = 'api-route' | 'ui-route' | 'ui-main-drawer' | 'ui-account-drawer' | 'workspace-access'
-type TFeatureScope = 'account' | 'workspace'
+type TFeatureScope = 'app' | 'account' | 'workspace'
 
 const featureTypes:TFeatureType[] = ['api-route', 'ui-route', 'ui-main-drawer', 'ui-account-drawer', 'workspace-access']
-const featureScopes:TFeatureScope[] = ['account', 'workspace']
+const featureScopes:TFeatureScope[] = ['app', 'account', 'workspace']
 
 // queries
 interface IFeatureQuery {

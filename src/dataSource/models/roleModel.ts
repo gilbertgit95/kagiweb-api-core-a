@@ -9,8 +9,8 @@ import TextValidators from '../validators/textValidators'
 // - Account Admin - has access to some Adminitrative features
 // - Normal Account - has access to some features
 
-type TRoleScope = 'account' | 'workspace'
-const roleScopes:TRoleScope[] = ['account', 'workspace']
+type TRoleScope = 'app' | 'account' | 'workspace'
+const roleScopes:TRoleScope[] = ['app', 'account', 'workspace']
 
 // queries
 interface IRoleQuery {
