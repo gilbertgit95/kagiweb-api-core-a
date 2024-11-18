@@ -39,7 +39,7 @@ class RoleController {
         if (roles) {
             if (roles.length > 1) {
                 result = roles
-                    .filter(item => item.scope === 'account')
+                    .filter(item => item.scope === 'app')
                     .sort((a, b) => {
                         return b.level - a.level
                     })[0]

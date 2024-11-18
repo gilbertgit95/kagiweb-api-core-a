@@ -13,7 +13,7 @@
     "$date": "2024-08-18T14:14:21.947Z"
   },
   "reqLimitPerSec": 10,
-  "scope": "account"
+  "scope": "app"
 },
 {
   "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
@@ -921,7 +921,7 @@
     "$date": "2024-10-13T03:09:52.323Z"
   },
   "reqLimitPerSec": 10,
-  "scope": "account"
+  "scope": "app"
 },
 {
   "_id": "f2b124a8-0452-40f3-b053-c6f3b426e656",
@@ -1829,7 +1829,7 @@
     "$date": "2024-10-13T03:10:26.088Z"
   },
   "reqLimitPerSec": 10,
-  "scope": "account"
+  "scope": "app"
 },
 {
   "_id": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
@@ -2737,7 +2737,7 @@
     "$date": "2024-10-13T03:11:00.982Z"
   },
   "__v": 587,
-  "scope": "account"
+  "scope": "app"
 },
 {
   "_id": "b2bbce3e-de00-43cc-9a1b-8bfc385fecf7",
@@ -3305,7 +3305,7 @@
     "$date": "2024-10-13T03:11:36.931Z"
   },
   "__v": 489,
-  "scope": "account"
+  "scope": "app"
 },
 {
   "_id": "70fb7106-0715-467d-b7d2-94ade5588cf1",
@@ -3893,7 +3893,7 @@
     "$date": "2024-08-21T00:49:53.233Z"
   },
   "__v": 131,
-  "scope": "account"
+  "scope": "app"
 },
 {
   "_id": "bd795500-e86d-4eb6-a956-db83d23d5c9c",
