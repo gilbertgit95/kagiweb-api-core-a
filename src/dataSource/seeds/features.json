@@ -3957,7 +3957,7 @@
 {
   "_id": "38b3231f-faaa-410c-b234-35e34889b03d",
   "name": "Workspace Update Access",
-  "type": "workspace-access",
+  "type": "ui-route",
   "scope": "workspace",
   "tags": [
     "workspaceSettings"
@@ -3975,7 +3975,7 @@
 {
   "_id": "119799f6-f46c-448f-beb3-1df60bbe3ffc",
   "name": "Workspace Read Access",
-  "type": "workspace-access",
+  "type": "ui-route",
   "scope": "workspace",
   "tags": [
     "workspaceSettings"
