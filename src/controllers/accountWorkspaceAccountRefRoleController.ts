@@ -66,19 +66,19 @@ class AccountWorkspaceAccountRefRoleController {
     }
 
     public async saveRoleRef(accountId:string, workspaceId:string, accountRefId:string, roleId:string):Promise<IRoleRef|null> {
-        if (!(accountId && workspaceId && accountRefId && roleId)) throw({code: 400})
 
+        if (!(accountId && workspaceId && accountRefId && roleId)) throw({code: 400})
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
-
         const rolesMap = await roleController.getRolesMap()
         // check if role existed on roles collection
         if (!rolesMap[roleId]) throw({code: 404})
         // check if the role to update is existing on the account role refs
         if (this.hasRole(account, workspaceId, accountRefId, roleId)) throw({code: 409})
-        const doc:{roleId:string, isActive?:boolean} = {roleId}
+        const doc:{roleId:string} = {roleId}
 
         account.workspaces.id(workspaceId)?.accountRefs?.id(accountRefId)?.rolesRefs?.push(doc)
+
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
 

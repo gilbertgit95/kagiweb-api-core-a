@@ -221,6 +221,8 @@ const AccountConfigSchema = new Schema<IAccountConfig>({
 const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
     accountId: { type: String, required: true},
+    rolesRefs: { type: [RoleRefSchema], required: true, },
+    accountConfigs: { type: [AccountConfigSchema], required: false },
     declined: { type: Boolean, default: false},
     accepted: { type: Boolean, default: false},
     disabled: { type: Boolean, default: false},
