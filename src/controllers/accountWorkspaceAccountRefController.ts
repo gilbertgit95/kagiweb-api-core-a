@@ -1,3 +1,4 @@
+import { Document } from 'mongoose'
 import accountModel, { IAccount, IWorkspaceAccountRef } from '../dataSource/models/accountModel'
 import accountController from './accountController'
 import accountWorkspaceController from './accountWorkspaceController'
@@ -73,10 +74,6 @@ class AccountWorkspaceAccountRefController {
             accountId:string,
             workspaceId:string,
             nameId:string,
-            // readAccess:boolean|string,
-            // updateAccess:boolean|string,
-            // createAccess:boolean|string,
-            // deleteAccess:boolean|string,
             disabled:boolean|string
         ):Promise<IWorkspaceAccountRef|null> {
 
@@ -89,21 +86,17 @@ class AccountWorkspaceAccountRefController {
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the workspace owner'})
         if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this workspace!`})
 
-        const doc:IWorkspaceAccountRef = {
-            accountId: assignedAccount._id
+        const doc:any = {
+            accountId: assignedAccount._id,
+            accountConfigs: [
+                {
+                    key: 'default-role',
+                    value: '',
+                    type: 'string'
+                }
+            ]
         }
-        // if (DataCleaner.getBooleanData(readAccess).isValid) {
-        //     doc.readAccess = DataCleaner.getBooleanData(readAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(updateAccess).isValid) {
-        //     doc.updateAccess = DataCleaner.getBooleanData(updateAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(createAccess).isValid) {
-        //     doc.createAccess = DataCleaner.getBooleanData(createAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(deleteAccess).isValid) {
-        //     doc.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
-        // }
+
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
