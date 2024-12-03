@@ -67,7 +67,9 @@ class AccountWorkspaceAccountRefConfigController {
         if (!(accountId && workspaceId && accountRefId && accountConfigId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
+
         if (!account) throw({code: 404})
+
         if (!account.workspaces.id(workspaceId)?.accountRefs?.id(accountRefId)?.accountConfigs?.id(accountConfigId)) throw({code: 404})
 
         if (value) account.workspaces.id(workspaceId)!.accountRefs!.id(accountRefId)!.accountConfigs!.id(accountConfigId)!.value = value
@@ -75,7 +77,8 @@ class AccountWorkspaceAccountRefConfigController {
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
 
-        return account.accountConfigs!.id(accountConfigId)
+        // return account.accountConfigs!.id(accountConfigId)
+        return this.getAccountConfigById(account, workspaceId, accountRefId, accountConfigId)
     }
 
 }
