@@ -13,7 +13,7 @@ class TextValidators {
     // validate flexible thing names
     public static validateFlexibleName = {
         validator: (value:string):boolean => {
-            return /^[\w\s]+$/.test(value)
+            return /^[\w\s-]+$/.test(value)
         },
         message: (props:{value:string}):string => `${props.value} is not a valid name!`
     }
