@@ -91,6 +91,16 @@ interface IAccountConfig {
     type: TAccountInfoType
 }
 
+interface IAccountAccountRef {
+    _id?: string,
+    accountId: string,
+    rolesRefs?: Types.DocumentArray<IRoleRef & Document>,
+    accountConfigs?: Types.DocumentArray<IAccountConfig & Document>,
+    declined?: boolean,
+    accepted?: boolean,
+    disabled?: boolean
+}
+
 interface IWorkspaceAccountRef {
     _id?: string,
     accountId: string,
@@ -117,6 +127,7 @@ interface IAccount {
     accountInfos: Types.DocumentArray<IAccountInfo & Document>,
     accountConfigs: Types.DocumentArray<IAccountConfig & Document>,
 
+    accountRefs?: Types.DocumentArray<IAccountAccountRef & Document>,
     passwords: Types.DocumentArray<IPassword & Document>,
 
     contactInfos: Types.DocumentArray<IContactInfo & Document>,
@@ -218,6 +229,16 @@ const AccountConfigSchema = new Schema<IAccountConfig>({
     }
 }, { timestamps: true })
 
+const AccountAccountRefSchema = new Schema<IAccountAccountRef>({
+    _id: { type: String, default: () => randomUUID() },
+    accountId: { type: String, required: true},
+    rolesRefs: { type: [RoleRefSchema], required: true, },
+    accountConfigs: { type: [AccountConfigSchema], required: false },
+    declined: { type: Boolean, default: false},
+    accepted: { type: Boolean, default: false},
+    disabled: { type: Boolean, default: false},
+}, { timestamps: true })
+
 const WorkspaceAccountRefSchema = new Schema<IWorkspaceAccountRef>({
     _id: { type: String, default: () => randomUUID() },
     accountId: { type: String, required: true},
@@ -262,6 +283,7 @@ const AccountSchema = new Schema<IAccount>({
     rolesRefs: { type: [RoleRefSchema], required: true, },
     accountInfos: { type: [AccountInfoSchema], required: false },
     accountConfigs: { type: [AccountConfigSchema], required: false },
+    accountRefs: { type: [AccountAccountRefSchema], required: false },
     passwords: { type: [PasswordSchema], required: false },
     contactInfos: { type: [ContactInfoSchema], required: false },
     clientDevices: { type: [ClientDeviceSchema], required: false },
@@ -295,6 +317,7 @@ export {
     IAccountInfo,
     IAccountConfig,
     IRoleRef,
+    IAccountAccountRef,
     IWorkspaceAccountRef,
     IWorkspace,
     IAccount
