@@ -1,20 +1,18 @@
 import { Document } from 'mongoose'
-import accountModel, { IAccount, IWorkspaceAccountRef } from '../dataSource/models/accountModel'
+import accountModel, { IAccount, IAccountAccountRef } from '../dataSource/models/accountModel'
 import accountController from './accountController'
-import accountWorkspaceController from './accountWorkspaceController'
 import DataCleaner from '../utilities/dataCleaner'
 import appEvents from '../utilities/appEvents'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
 
-class AccountWorkspaceAccountRefController {
+class AccountAccountRefController {
 
-    public getWorkspaceAccountRefById(account:IAccount, workspaceId:string, accountRefId:string):IWorkspaceAccountRef|null {
+    public getAccountAccountRefById(account:IAccount, accountRefId:string):IAccountAccountRef|null {
 
-        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
-        if (workspace && workspace.accountRefs) {
-            for (const accountRef of workspace.accountRefs) {
+        if (account && account.accountRefs) {
+            for (const accountRef of account.accountRefs) {
                 if (accountRef._id === accountRefId) return accountRef
             }
         }
@@ -22,11 +20,10 @@ class AccountWorkspaceAccountRefController {
         return null
     }
 
-    public getWorkspaceAccountRefByAccountId(account:IAccount, workspaceId:string, accountId:string):IWorkspaceAccountRef|null {
+    public getAccountAccountRefByAccountId(account:IAccount, accountId:string):IAccountAccountRef|null {
 
-        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
-        if (workspace && workspace.accountRefs) {
-            for (const accountRef of workspace.accountRefs) {
+        if (account && account.accountRefs) {
+            for (const accountRef of account.accountRefs) {
                 if (accountRef.accountId === accountId) return accountRef
             }
         }
@@ -34,13 +31,13 @@ class AccountWorkspaceAccountRefController {
         return null
     }
 
-    public async getWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef & {nameId?:string}|null> {
-        if (!(accountId && workspaceId && accountRefId)) throw({code: 400})
+    public async getAccountAccountRef(accountId:string, accountRefId:string):Promise<IAccountAccountRef & {nameId?:string}|null> {
+        if (!(accountId && accountRefId)) throw({code: 400})
 
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountRef:IWorkspaceAccountRef & {nameId?:string}|null = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
+        const accountRef:IAccountAccountRef & {nameId?:string}|null = this.getAccountAccountRefById(account, accountRefId)
         if (!accountRef) throw({code: 404})
 
         const accountData = await accountController.getAccount({_id: accountRef.accountId})
@@ -49,14 +46,13 @@ class AccountWorkspaceAccountRefController {
         return accountRef
     }
 
-    public async getWorkspaceAccountRefs(accountId:string, workspaceId:string):Promise<(IWorkspaceAccountRef & {nameId?:string})[]> {
+    public async getAccountAccountRefs(accountId:string):Promise<(IAccountAccountRef & {nameId?:string})[]> {
         if (!accountId) throw({code: 400})
 
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
-        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
-        let accountRefs:(IWorkspaceAccountRef & {nameId?:string})[] = workspace?.accountRefs? workspace.accountRefs: []
+        let accountRefs:(IAccountAccountRef & {nameId?:string})[] = account?.accountRefs? account.accountRefs: []
 
         const accountsData = await accountModel.find({_id: {$in: accountRefs.map(item => item.accountId)}})
         const accountDataMap = accountsData.reduce((acc:{[key:string]:IAccount}, item) => {
@@ -70,21 +66,20 @@ class AccountWorkspaceAccountRefController {
         })
     }
 
-    public async saveWorkspaceAccountRef(
+    public async saveAccountAccountRef(
             accountId:string,
-            workspaceId:string,
             nameId:string,
             disabled:boolean|string
-        ):Promise<IWorkspaceAccountRef|null> {
+        ):Promise<IAccountAccountRef|null> {
 
-        if (!(accountId && workspaceId && nameId)) throw({code: 400})
+        if (!(accountId && nameId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         const assignedAccount = await accountModel.findOne({nameId})
         if (!account) throw({code: 404})
         if (!assignedAccount) throw({code: 404, message: `${ nameId } does not exist!`})
-        if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the workspace owner'})
-        if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this workspace!`})
+        if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the account owner'})
+        if (this.getAccountAccountRefByAccountId(account, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this account!`})
 
         const doc:any = {
             accountId: assignedAccount._id,
@@ -100,88 +95,67 @@ class AccountWorkspaceAccountRefController {
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
-        account.workspaces!.id(workspaceId)?.accountRefs?.push(doc)
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
 
         // emit event
-        appEvents.emit('workspace-update', {
+        appEvents.emit('account-update', {
             action: 'add',
             account: account,
             assignedAccount,
-            workspace: account.workspaces!.id(workspaceId)
+            workspace: null
         })
 
-        const lastIndex = account.workspaces!.id(workspaceId)!.accountRefs!.length - 1
-        return account.workspaces!.id(workspaceId)!.accountRefs![lastIndex]
+        const lastIndex = account.accountRefs!.length - 1
+        return account.accountRefs![lastIndex]
     }
 
-    public async updateWorkspaceAccountRef(
+    public async updateAccountAccountRef(
             accountId:string,
-            workspaceId:string,
             accountRefId:string,
-            // readAccess:boolean|string,
-            // updateAccess:boolean|string,
-            // createAccess:boolean|string,
-            // deleteAccess:boolean|string,
             disabled:boolean|string
-        ):Promise<IWorkspaceAccountRef|null> {
+        ):Promise<IAccountAccountRef|null> {
 
-        if (!(accountId && workspaceId && accountRefId)) throw({code: 400})
+        if (!(accountId && accountRefId)) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
-        if (!this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)) throw({code: 404})
-
-        // if (DataCleaner.getBooleanData(readAccess).isValid) {
-        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.readAccess = DataCleaner.getBooleanData(readAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(updateAccess).isValid) {
-        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.updateAccess = DataCleaner.getBooleanData(updateAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(createAccess).isValid) {
-        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.createAccess = DataCleaner.getBooleanData(createAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(deleteAccess).isValid) {
-        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.deleteAccess = DataCleaner.getBooleanData(deleteAccess).data
-        // }
-        // if (DataCleaner.getBooleanData(disabled).isValid) {
-        //     account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)!.disabled = DataCleaner.getBooleanData(disabled).data
-        // }
+        if (!this.getAccountAccountRefById(account, accountRefId)) throw({code: 404})
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
 
-        return account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)
+        return account.accountRefs!.id(accountRefId)
     }
 
-    public async deleteWorkspaceAccountRef(accountId:string, workspaceId:string, accountRefId:string):Promise<IWorkspaceAccountRef|null> {
-        if (!(accountId && workspaceId)) throw({code: 400})
+    public async deleteAccountAccountRef(accountId:string, accountRefId:string):Promise<IAccountAccountRef|null> {
+        if (!accountId) throw({code: 400})
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
 
-        const workspaceAccountRefData = this.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
-        if (workspaceAccountRefData) {
-            account.workspaces!.id(workspaceId)!.accountRefs!.id(accountRefId)?.deleteOne()
+        const accountRefData = this.getAccountAccountRefById(account, accountRefId)
+        if (accountRefData) {
+            account.accountRefs!.id(accountRefId)?.deleteOne()
             await account.save()
             await accountController.cachedData.removeCacheData(accountId)
 
-            const assignedAccount = await accountModel.findOne({_id: workspaceAccountRefData.accountId})
+            const assignedAccount = await accountModel.findOne({_id: accountRefData.accountId})
+
             // emit event
-            appEvents.emit('workspace-update', {
+            appEvents.emit('account-update', {
                 action: 'remove',
                 account: account,
                 assignedAccount,
-                workspace: account.workspaces!.id(workspaceId)
+                workspace: null
             })
         } else {
             throw({code: 404})
         }
 
-        return workspaceAccountRefData? workspaceAccountRefData: null
+        return accountRefData? accountRefData: null
     }
 }
 
-export default new AccountWorkspaceAccountRefController()
+export default new AccountAccountRefController()
