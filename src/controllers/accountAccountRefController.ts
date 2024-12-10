@@ -9,7 +9,7 @@ import appEvents from '../utilities/appEvents'
 
 class AccountAccountRefController {
 
-    public getAccountAccountRefById(account:IAccount, accountRefId:string):IAccountAccountRef|null {
+    public getAccountRefById(account:IAccount, accountRefId:string):IAccountAccountRef|null {
 
         if (account && account.accountRefs) {
             for (const accountRef of account.accountRefs) {
@@ -20,7 +20,7 @@ class AccountAccountRefController {
         return null
     }
 
-    public getAccountAccountRefByAccountId(account:IAccount, accountId:string):IAccountAccountRef|null {
+    public getAccountRefByAccountId(account:IAccount, accountId:string):IAccountAccountRef|null {
 
         if (account && account.accountRefs) {
             for (const accountRef of account.accountRefs) {
@@ -31,13 +31,13 @@ class AccountAccountRefController {
         return null
     }
 
-    public async getAccountAccountRef(accountId:string, accountRefId:string):Promise<IAccountAccountRef & {nameId?:string}|null> {
+    public async getAccountRef(accountId:string, accountRefId:string):Promise<IAccountAccountRef & {nameId?:string}|null> {
         if (!(accountId && accountRefId)) throw({code: 400})
 
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountRef:IAccountAccountRef & {nameId?:string}|null = this.getAccountAccountRefById(account, accountRefId)
+        const accountRef:IAccountAccountRef & {nameId?:string}|null = this.getAccountRefById(account, accountRefId)
         if (!accountRef) throw({code: 404})
 
         const accountData = await accountController.getAccount({_id: accountRef.accountId})
@@ -46,7 +46,7 @@ class AccountAccountRefController {
         return accountRef
     }
 
-    public async getAccountAccountRefs(accountId:string):Promise<(IAccountAccountRef & {nameId?:string})[]> {
+    public async getAccountRefs(accountId:string):Promise<(IAccountAccountRef & {nameId?:string})[]> {
         if (!accountId) throw({code: 400})
 
         const account = await accountController.getAccount({_id: accountId})
@@ -79,7 +79,7 @@ class AccountAccountRefController {
         if (!account) throw({code: 404})
         if (!assignedAccount) throw({code: 404, message: `${ nameId } does not exist!`})
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the account owner'})
-        if (this.getAccountAccountRefByAccountId(account, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this account!`})
+        if (this.getAccountRefByAccountId(account, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this account!`})
 
         const doc:any = {
             accountId: assignedAccount._id,
@@ -121,7 +121,7 @@ class AccountAccountRefController {
 
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
-        if (!this.getAccountAccountRefById(account, accountRefId)) throw({code: 404})
+        if (!this.getAccountRefById(account, accountRefId)) throw({code: 404})
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
@@ -135,7 +135,7 @@ class AccountAccountRefController {
         const account = await accountModel.findOne({_id: accountId})
         if (!account) throw({code: 404})
 
-        const accountRefData = this.getAccountAccountRefById(account, accountRefId)
+        const accountRefData = this.getAccountRefById(account, accountRefId)
         if (accountRefData) {
             account.accountRefs!.id(accountRefId)?.deleteOne()
             await account.save()
