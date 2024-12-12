@@ -3960,4 +3960,70 @@
     "$date": "2024-11-10T00:38:24.234Z"
   },
   "__v": 1
+},
+{
+  "_id": "f1c67206-1564-4cf5-b4b4-f7f1269c28a6",
+  "name": "Account - Admin",
+  "scope": "account",
+  "level": 50,
+  "reqLimitPerSec": 120,
+  "description": "administrative access to account",
+  "absoluteAuthority": false,
+  "featuresRefs": [
+    {
+      "featureId": "188ab25b-079d-412e-a098-0a4b2468d4c1",
+      "_id": "9f861646-cfad-416e-9901-22ee283de2d1",
+      "createdAt": {
+        "$date": "2024-12-06T09:50:11.039Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-06T09:50:11.039Z"
+      }
+    },
+    {
+      "featureId": "78a81cd1-696a-49a0-b1f6-7178f3bcf52f",
+      "_id": "9cacfe69-550c-47b5-bc20-75b918b4669e",
+      "createdAt": {
+        "$date": "2024-12-06T09:50:11.103Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-06T09:50:11.103Z"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-12-06T09:48:24.648Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-06T09:50:11.103Z"
+  },
+  "__v": 2
+},
+{
+  "_id": "433cdfc3-5467-4fab-9705-45eb284869eb",
+  "name": "Account - Member",
+  "scope": "account",
+  "level": 51,
+  "reqLimitPerSec": 120,
+  "description": "read only access",
+  "absoluteAuthority": false,
+  "featuresRefs": [
+    {
+      "featureId": "188ab25b-079d-412e-a098-0a4b2468d4c1",
+      "_id": "2e8b268d-9706-46d0-921c-2d95e0f8f681",
+      "createdAt": {
+        "$date": "2024-12-06T09:50:41.741Z"
+      },
+      "updatedAt": {
+        "$date": "2024-12-06T09:50:41.741Z"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-12-06T09:49:09.744Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-06T09:50:41.741Z"
+  },
+  "__v": 1
 }]
