@@ -24,6 +24,9 @@ import accountPasswordRoutes from './routes/accountPasswordRoutes'
 import accountLimitedTransactionRoutes from './routes/accountLimitedTransactionRoutes'
 import accountClientDeviceRoutes from './routes/accountClientDeviceRoutes'
 import accountClientDeviceAccesstokenRoutes from './routes/accountClientDeviceAccesstokenRoutes'
+import accountAccountRefRoutes from './routes/accountAccountRefRoutes'
+import accountAccountRefAccountConfigRoutes from './routes/accountAccountRefAccountConfigRoutes'
+import accountAccountRefRoleRoutes from './routes/accountAccountRefRoleRoutes'
 import accountWorkspaceRoutes from './routes/accountWorkspaceRoutes'
 import accountWorkspaceAccountRefRoutes from './routes/accountWorkspaceAccountRefRoutes'
 import accountWorkspaceAccountRefAccountConfigRoutes from './routes/accountWorkspaceAccountRefAccountConfigRoutes'
@@ -80,6 +83,9 @@ appHandler.addPrivateRoute(accountWorkspaceRoutes)
 appHandler.addPrivateRoute(accountWorkspaceAccountRefRoutes)
 appHandler.addPrivateRoute(accountWorkspaceAccountRefAccountConfigRoutes)
 appHandler.addPrivateRoute(accountWorkspaceAccountRefRoleRoutes)
+appHandler.addPrivateRoute(accountAccountRefRoutes)
+appHandler.addPrivateRoute(accountAccountRefAccountConfigRoutes)
+appHandler.addPrivateRoute(accountAccountRefRoleRoutes)
 appHandler.addPrivateRoute(ownerRoutes)
 
 export {
