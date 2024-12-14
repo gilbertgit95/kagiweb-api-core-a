@@ -15,6 +15,9 @@ import accountPasswordController from '../controllers/accountPasswordController'
 import accountLimitedTransactionController from '../controllers/accountLimitedTransactionController'
 import accountClientDeviceController from '../controllers/accountClientDeviceController'
 import accountClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
+import accountAccountRefController from '../controllers/accountAccountRefController'
+import accountAccountRefAccountConfigController from '../controllers/accountAccountRefAcountConfigController'
+import accountAccountRefRoleController from '../controllers/accountAccountRefRoleController'
 import accountWorkspaceController from '../controllers/accountWorkspaceController'
 import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
 import accountWorkspaceAccountRefAccountConfigController from '../controllers/accountWorkspaceAccountRefAcountConfigController'
@@ -22,7 +25,7 @@ import accountWorkspaceAccountRefRoleController from '../controllers/accountWork
 
 import {
     IAccount, IRoleRef, IAccountInfo, IAccountConfig, IContactInfo,
-    IPassword, ILimitedTransaction, IClientDevice, IAccessToken,
+    IPassword, ILimitedTransaction, IClientDevice, IAccessToken, IAccountAccountRef,
     IWorkspace, IWorkspaceAccountRef
 } from '../dataSource/models/accountModel'
 
@@ -482,6 +485,155 @@ router.delete(env.RootApiEndpoint + 'owner/clientDevices/:clientDeviceId/accessT
     const [result, statusCode] = await ErrorHandler.execute<IAccessToken>(async () => {
         if (!accountId) return null
         return await accountClientDeviceAccessTokenController.deleteClientDeviceAccessToken( accountId, clientDeviceId, accessTokenId )
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+// account refs
+router.get(env.RootApiEndpoint + 'owner/accountRefs', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+
+    const [result, statusCode] = await ErrorHandler.execute<(IAccountAccountRef & {nameId?:string})[]>(async () => {
+        return await accountAccountRefController.getAccountRefs(accountId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.post(env.RootApiEndpoint + 'owner/accountRefs', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { nameId, disabled } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountAccountRef>(async () => {
+        return await accountAccountRefController.saveAccountAccountRef(accountId, nameId, disabled)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountAccountRef & {nameId?:string}>(async () => {
+        return await accountAccountRefController.getAccountRef(accountId, accountRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId } = req.params
+    const { disabled } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountAccountRef>(async () => {
+        return await accountAccountRefController.updateAccountAccountRef(accountId, accountRefId, disabled)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.delete(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountAccountRef>(async () => {
+        return await accountAccountRefController.deleteAccountAccountRef( accountId, accountRefId )
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+// account ref roles
+router.get(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/roles', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef[]>(async () => {
+        return await accountAccountRefRoleController.getRoleRefs(accountId, accountRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/roles/:roleRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId, roleRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountAccountRefRoleController.getRoleRef(accountId, accountRefId, roleRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.post(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/roles', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId } = req.params
+    const { roleId } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountAccountRefRoleController.saveRoleRef(accountId, accountRefId, roleId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/roles/:roleRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId, roleRefId } = req.params
+    const { roleId } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountAccountRefRoleController.updateRoleRef(accountId, accountRefId, roleRefId, roleId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.delete(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/roles/:roleRefId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId, roleRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRoleRef>(async () => {
+        return await accountAccountRefRoleController.deleteRoleRef(accountId, accountRefId, roleRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+// account ref account configs
+router.get(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/accountConfigs', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig[]>(async () => {
+        return await accountAccountRefAccountConfigController.getAccountConfigs(accountId, accountRefId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/accountConfigs/:accountConfigId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId, accountConfigId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        return await accountAccountRefAccountConfigController.getAccountConfig(accountId, accountRefId, accountConfigId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/accountRefs/:accountRefId/accountConfigs/:accountConfigId', async (req, res) => {
+    const accountId = req?.accountData?._id || ''
+    const { accountRefId, accountConfigId } = req.params
+    const { value } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccountConfig>(async () => {
+        return await accountAccountRefAccountConfigController.updateAccountConfig(accountId, accountRefId, accountConfigId, value)
     })
 
     return res.status(statusCode).send(result)
