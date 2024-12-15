@@ -1,0 +1,19 @@
+type: object
+required:
+  - accountId
+properties:
+  accountId:
+    type: string
+    format: uuid
+  accepted:
+    type: boolean
+  declined:
+    type: boolean
+  disabled:
+    type: boolean
+
+example:
+  accountId: c54a858a-b095-4405-9a1c-8567ec91da5e
+  accepted: true
+  declined: false
+  disabled: false
