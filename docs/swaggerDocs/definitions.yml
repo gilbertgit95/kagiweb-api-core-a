@@ -29,6 +29,12 @@ AccountClientDevice:
   $ref: ./accountClientDevices/accountClientDeviceDefinition.yml
 AccountClientDeviceAccessToken:
   $ref: ./accountClientDeviceAccessTokens/accountClientDeviceAccessTokenDefinition.yml
+AccountAccountRef:
+  $ref: ./accountAccountRefs/accountAccountRefDefinition.yml
+AccountAccountRefRole:
+  $ref: ./accountAccountRefsRoles/accountAccountRefsRoleDefinition.yml
+AccountAccountRefAccountConfig:
+  $ref: ./accountAccountRefsAccountConfigs/accountAccountRefsAccountConfigDefinition.yml
 AccountWorkspace:
   $ref: ./accountWorkspaces/accountWorkspaceDefinition.yml
 AccountWorkspaceAccountRef:

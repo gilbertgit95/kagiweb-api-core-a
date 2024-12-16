@@ -69,6 +69,18 @@
   $ref: ./accountClientDeviceAccessTokens/accountClientDeviceAccessTokensPaths.yml
 /accounts/{accountId}/clientDevices/{clientDeviceId}/accessTokens/{accessTokenId}:
   $ref: ./accountClientDeviceAccessTokens/accountClientDeviceAccessTokensSpecificPaths.yml
+/accounts/{accountId}/accountRefs:
+  $ref: ./accountAccountRefs/accountAccountRefsPaths.yml
+/accounts/{accountId}/accountRefs/{accountRefId}:
+  $ref: ./accountAccountRefs/accountAccountRefsSpecificPaths.yml
+/accounts/{accountId}/accountRefs/{accountRefId}/roles:
+  $ref: ./accountAccountRefsRoles/accountAccountRefsRolesPaths.yml
+/accounts/{accountId}/accountRefs/{accountRefId}/roles/{roleRefId}:
+  $ref: ./accountAccountRefsRoles/accountAccountRefsRolesSpecificPaths.yml
+/accounts/{accountId}/accountRefs/{accountRefId}/accountConfigs:
+  $ref: ./accountAccountRefsAccountConfigs/accountAccountRefsAccountConfigsPaths.yml
+/accounts/{accountId}/accountRefs/{accountRefId}/accountConfigs/{accountConfigId}:
+  $ref: ./accountAccountRefsAccountConfigs/accountAccountRefsAccountConfigsSpecificPaths.yml
 /accounts/{accountId}/workspaces:
   $ref: ./accountWorkspaces/accountWorkspacesPaths.yml
 /accounts/{accountId}/workspaces/{workspaceId}:
