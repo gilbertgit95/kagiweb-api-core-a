@@ -9125,8 +9125,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Get a owner Role",
-        "description": "Get a owner Role",
+        "summary": "Get the Owner Role",
+        "description": "Get the Owner Role",
         "produces": [
           "application/json"
         ],
@@ -10539,8 +10539,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create a owner client device into owner data",
-        "description": "Create a owner client device into owner data",
+        "summary": "Create the Owner client device into owner data",
+        "description": "Create the Owner client device into owner data",
         "produces": [
           "application/json"
         ],
@@ -10882,8 +10882,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create a owner client device access token into owner data",
-        "description": "Create a owner client device access token into owner data",
+        "summary": "Create the Owner client device access token into owner data",
+        "description": "Create the Owner client device access token into owner data",
         "produces": [
           "application/json"
         ],
@@ -12033,8 +12033,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Create a Owner Workspace account refs Role",
-        "description": "Create a Owner Workspace account refs Role",
+        "summary": "Create the Owner Workspace account refs Role",
+        "description": "Create the Owner Workspace account refs Role",
         "produces": [
           "application/json"
         ],
@@ -12125,8 +12125,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Get a Owner Workspace account refs Role",
-        "description": "Get a Owner Workspace account refs Role",
+        "summary": "Get the Owner Workspace account refs Role",
+        "description": "Get the Owner Workspace account refs Role",
         "produces": [
           "application/json"
         ],
@@ -12206,8 +12206,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Update a Owner Workspace account refs Role",
-        "description": "Update a Owner Workspace account refs Role",
+        "summary": "Update the Owner Workspace account refs Role",
+        "description": "Update the Owner Workspace account refs Role",
         "produces": [
           "application/json"
         ],
@@ -12303,8 +12303,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Delete a Owner Workspace account refs Role",
-        "description": "Delete a Owner Workspace account refs Role",
+        "summary": "Delete the Owner Workspace account refs Role",
+        "description": "Delete the Owner Workspace account refs Role",
         "produces": [
           "application/json"
         ],
@@ -12484,8 +12484,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Get a Owner Workspace account refs config",
-        "description": "Get a Owner Workspace account refs config",
+        "summary": "Get the Owner Workspace account refs config",
+        "description": "Get the Owner Workspace account refs config",
         "produces": [
           "application/json"
         ],
@@ -12567,8 +12567,8 @@
         "tags": [
           "Owner"
         ],
-        "summary": "Update a Owner Workspace account refs config",
-        "description": "Update a Owner Workspace account refs config",
+        "summary": "Update the Owner Workspace account refs config",
+        "description": "Update the Owner Workspace account refs config",
         "produces": [
           "application/json"
         ],

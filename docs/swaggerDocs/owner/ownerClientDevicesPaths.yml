@@ -38,8 +38,8 @@ get:
 post:
   tags:
     - Owner
-  summary: Create a owner client device into owner data
-  description: Create a owner client device into owner data
+  summary: Create the Owner client device into owner data
+  description: Create the Owner client device into owner data
   produces:
     - application/json
   requestBody:

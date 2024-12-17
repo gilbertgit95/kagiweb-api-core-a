@@ -1,8 +1,8 @@
 get:
   tags:
     - Owner
-  summary: Get a owner Role
-  description: Get a owner Role
+  summary: Get the Owner Role
+  description: Get the Owner Role
   produces:
     - application/json
   parameters:
