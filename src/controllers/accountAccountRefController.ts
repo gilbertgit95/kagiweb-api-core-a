@@ -76,6 +76,8 @@ class AccountAccountRefController {
 
         const account = await accountModel.findOne({_id: accountId})
         const assignedAccount = await accountModel.findOne({nameId})
+
+        console.log('test: ', account?.nameId, assignedAccount?.nameId)
         if (!account) throw({code: 404})
         if (!assignedAccount) throw({code: 404, message: `${ nameId } does not exist!`})
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the account owner'})
@@ -95,6 +97,7 @@ class AccountAccountRefController {
         if (DataCleaner.getBooleanData(disabled).isValid) {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
+        account.accountRefs?.push(doc)
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
