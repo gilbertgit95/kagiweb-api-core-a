@@ -22,13 +22,14 @@ const env = Config.getEnv()
 
 interface IAccountCompleteInfo {
     accountData: IAccount|null,
-    role: IRole|null,
-    roles: IRole[]|null,
-    features: IFeature[]|null,
-    workspace: IWorkspace|null,
+    appRole: IRole|null,
+    appRoles: IRole[]|null,
+    accountRole: IRole|null,
+    accountRoles: IRole[]|null,
     workspaceRole: IRole|null,
     workspaceRoles: IRole[]|null,
-    workspaceFeatures: IFeature[]|null,
+    features: IFeature[]|null,
+    workspace: IWorkspace|null,
     workspaces: IWorkspace[]|null,
     externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null,
     clientDevice: IClientDevice|null,
@@ -65,13 +66,14 @@ class AccountController {
     public async getAccountCompleteInfo(query:{_id: string, ua?:string, token?:string}, includeSensitiveInfo=false):Promise<IAccountCompleteInfo> {
         const resp:IAccountCompleteInfo = {
             accountData: null,
-            role: null,
-            roles: null,
-            features: null,
-            workspace: null,
+            appRole: null,
+            appRoles: null,
+            accountRole: null,
+            accountRoles: null,
             workspaceRole: null,
             workspaceRoles: null,
-            workspaceFeatures: null,
+            features: null,
+            workspace: null,
             workspaces: null,
             externalWorkspaces: null,
             clientDevice: null,
@@ -86,9 +88,9 @@ class AccountController {
                 const accountRoles = account?.rolesRefs.map(item => rolesMap[item.roleId])
 
                 const featuresMap = await featureController.getFeaturesMap()
-                let roleFeatures = defaultRole?.featuresRefs?.map(item => featuresMap[item.featureId]) || null
+                let appRoleFeatures = defaultRole?.featuresRefs?.map(item => featuresMap[item.featureId]) || null
                 if (defaultRole?.absoluteAuthority) {
-                    roleFeatures = await featureController.getAllFeatures()
+                    appRoleFeatures = await featureController.getAllFeatures()
                 }
 
                 let usedClientDevice = query.ua? accountClientDeviceController.getClientDeviceByUA(account, query.ua): null
@@ -108,13 +110,15 @@ class AccountController {
                 const defaultConfigWorkspace = accountAccountConfigController.getAccountConfigByKey(account, 'default-workspace')
                 const defaultWorkspace = allWorkspaceMap[defaultConfigWorkspace?.value || ''] || null
 
-                resp.role = defaultRole
-                resp.roles = accountRoles
-                resp.features = roleFeatures
-                resp.workspace = defaultWorkspace
+                resp.appRole = defaultRole
+                resp.appRoles = accountRoles
+                resp.accountRole = null
+                resp.accountRoles = null
                 resp.workspaceRole = null
                 resp.workspaceRoles = null
-                resp.workspaceFeatures = null
+
+                resp.features = appRoleFeatures
+                resp.workspace = defaultWorkspace
                 resp.workspaces = accountWorkspaces
                 resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
                 resp.accountData = account
