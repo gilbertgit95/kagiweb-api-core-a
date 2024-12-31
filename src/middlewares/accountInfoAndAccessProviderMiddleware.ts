@@ -57,23 +57,23 @@ class AccountInfoAndAccessProvider {
                 }
 
                 // get active account roleref
-                const defaultConfigRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
-                if (!(defaultConfigRole && defaultConfigRole.value)) throw({code: 404})
+                const defaultAppRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
+                if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
-                const defaultRole = await roleController.getMappedRole(defaultConfigRole.value)
-                if (!defaultRole) throw({code: 404})
+                const appRole = await roleController.getMappedRole(defaultAppRole.value)
+                if (!appRole) throw({code: 404})
 
                 // for the super administrator role
-                if (defaultRole && defaultRole.absoluteAuthority) {
-                    // console.log('absolute authority: ', defaultRole.absoluteAuthority)
+                if (appRole && appRole.absoluteAuthority) {
+                    // console.log('absolute authority: ', appRole.absoluteAuthority)
                     return true
                 }
 
                 // for roles that has specific accessable features
-                const roleFeatures = await roleFeatureController.getMappedFeatures(defaultRole)
+                const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole)
 
                 // check if the role can access the request path
-                if(!RouterIdentity.pathHasMatch(roleFeatures, {path: req.path, method: req.method})) {
+                if(!RouterIdentity.pathHasMatch(appRoleFeatures, {path: req.path, method: req.method})) {
                     throw({code: 401})
                 }
             }
