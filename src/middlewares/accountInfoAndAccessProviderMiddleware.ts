@@ -57,7 +57,15 @@ class AccountInfoAndAccessProvider {
                 }
 
                 // get active account roleref
+                // get this data by default
                 const defaultAppRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
+
+                // get this data if path is under accounts/
+                const defaultAccountRole = []
+
+                // get this data if path is under workspace/
+                const defaultWorkspaceRole = []
+
                 if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
                 const appRole = await roleController.getMappedRole(defaultAppRole.value)
