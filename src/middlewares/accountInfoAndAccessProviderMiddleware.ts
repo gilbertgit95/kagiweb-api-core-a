@@ -25,6 +25,7 @@ class AccountInfoAndAccessProvider {
     public static async middleware(req:Request, res:Response, next:NextFunction) {
         req.accountData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
+            const { accountId, workspaceId } = req.params
             const userAgentInfo = req.userAgentInfo
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
@@ -61,10 +62,16 @@ class AccountInfoAndAccessProvider {
                 const defaultAppRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
 
                 // get this data if path is under accounts/
-                const defaultAccountRole = []
+                const defaultAccountRole = null
+                if (accountId) {
+                    // logic here: todo
+                }
 
                 // get this data if path is under workspace/
-                const defaultWorkspaceRole = []
+                const defaultWorkspaceRole = null
+                if (accountId && workspaceId) {
+                    // logic here: todo
+                }
 
                 if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
