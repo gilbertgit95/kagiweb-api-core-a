@@ -61,18 +61,6 @@ class AccountInfoAndAccessProvider {
                 // get this data by default
                 const defaultAppRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
 
-                // get this data if path is under accounts/
-                const defaultAccountRole = null
-                if (accountId) {
-                    // logic here: todo
-                }
-
-                // get this data if path is under workspace/
-                const defaultWorkspaceRole = null
-                if (accountId && workspaceId) {
-                    // logic here: todo
-                }
-
                 if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
                 const appRole = await roleController.getMappedRole(defaultAppRole.value)
@@ -86,6 +74,18 @@ class AccountInfoAndAccessProvider {
 
                 // for roles that has specific accessable features
                 const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole)
+
+                // get this data if path is under accounts/
+                const defaultAccountRole = null
+                if (accountId) {
+                    // logic here: todo
+                }
+
+                // get this data if path is under workspace/
+                const defaultWorkspaceRole = null
+                if (accountId && workspaceId) {
+                    // logic here: todo
+                }
 
                 // check if the role can access the request path
                 if(!RouterIdentity.pathHasMatch(appRoleFeatures, {path: req.path, method: req.method})) {
