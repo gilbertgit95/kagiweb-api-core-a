@@ -7,6 +7,16 @@ import roleController from './roleController'
 // const env = Config.getEnv()
 
 class RoleFeaturesController {
+    public async mergedRolesFeatures(appRole:IRole, accountRole:IRole, workspaceRole:IRole):Promise<IFeature[]> {
+        // get all features
+
+        // merge all feature ref of the roles
+
+        // then mnap the feature refs to actual fettures data
+        
+        return []
+    }
+
     public async getMappedFeatures(role:IRole):Promise<IFeature[]> {
         const featuresMap = await featureController.getFeaturesMap()
         let result:IFeature[] = []
