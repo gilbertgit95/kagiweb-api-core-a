@@ -11,8 +11,10 @@ interface ISystemInfo {
     currentDir: string | null
     // app port
     appPort: string | null
-    // ip address
+    // ip wifi address
     localWifiAddress: string | null
+    // ip lan address
+    localEthernetAddress: string | null
     // os
     os: string | null
 
@@ -51,6 +53,7 @@ class SystemInfo {
             currentDir: process.env.PWD? process.env.PWD: null,
             appPort: String(env.AppPort),
             localWifiAddress: this.getIp('Wi-Fi'),
+            localEthernetAddress: this.getIp('Ethernet'),
             os: process.env.OS? process.env.OS: null
         }
     }

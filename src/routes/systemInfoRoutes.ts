@@ -8,10 +8,10 @@ import systemInfoController, {ISystemInfo} from '../controllers/systemInfoContro
 const router = express.Router()
 const env = Config.getEnv()
 
-router.get(env.RootApiEndpoint + 'systemInfo', async (req, res) => {
+router.get(env.RootApiEndpoint + 'system', async (req, res) => {
 
   const [result, statusCode] = await ErrorHandler.execute<ISystemInfo>(async () => {
-    return await systemInfoController.details()
+    return systemInfoController.details()
   })
 
   return res.status(statusCode).send(result)
