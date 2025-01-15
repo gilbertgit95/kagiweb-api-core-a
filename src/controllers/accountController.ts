@@ -142,7 +142,7 @@ class AccountController {
         return accounts
     }
 
-    public async getAccountsByPage(ownerAccountID:string, query:IAccountQuery = {}, pageInfo: IPgeInfo):Promise<IListOutput<IAccount>> {
+    public async getAccountsByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput<IAccount>> {
         // fetch accounts were the signedin account was assigned
         let paginatedData = await this.request.getItemsByPage<IAccount>(query, {}, {}, pageInfo)
         if (paginatedData.items) {

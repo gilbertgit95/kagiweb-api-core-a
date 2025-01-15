@@ -64,6 +64,7 @@ class AccountInfoAndAccessProvider {
                 if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
                 const appRole = await roleController.getMappedRole(defaultAppRole.value)
+                req.appRole = appRole
                 if (!appRole) throw({code: 404})
 
                 // for the super administrator role

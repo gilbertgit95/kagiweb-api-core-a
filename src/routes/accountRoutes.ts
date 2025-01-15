@@ -15,9 +15,11 @@ const env = Config.getEnv()
 router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
     const accountId = req?.accountData?._id || ''
+    const role = req?.appRole
+    const query = role?.absoluteAuthority? {}: { 'accountRefs.accountId': accountId }
 
     const [result, statusCode] = await ErrorHandler.execute<IListOutput<IAccount>>(async () => {
-        return await accountController.getAccountsByPage(accountId, {}, pageInfo)
+        return await accountController.getAccountsByPage(query, pageInfo)
     })
 
     return res.status(statusCode).send(result)
