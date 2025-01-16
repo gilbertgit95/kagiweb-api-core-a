@@ -77,12 +77,14 @@ class AccountInfoAndAccessProvider {
                 const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole)
 
                 // get this data if path is under accounts/
+                // check url if under accounts
                 const defaultAccountRole = null
                 if (accountId) {
                     // logic here: todo
                 }
 
                 // get this data if path is under workspace/
+                // check url if under accounts workspaces
                 const defaultWorkspaceRole = null
                 if (accountId && workspaceId) {
                     // logic here: todo
