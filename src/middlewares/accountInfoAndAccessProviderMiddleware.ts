@@ -11,6 +11,10 @@ import roleController from '../controllers/roleController'
 // import { errorLogsColl, combinedLogsColl } from '../utilities/logger'
 import ErrorHandler from '../utilities/errorHandler'
 import Encryption from '../utilities/encryption'
+import Config, {Env} from '../utilities/config'
+// import appEvents from './appEvents'
+
+const env = Config.getEnv()
 import { RouterIdentity } from '../utilities/routerIdentity'
 
 class AccountInfoAndAccessProvider {
@@ -25,7 +29,6 @@ class AccountInfoAndAccessProvider {
     public static async middleware(req:Request, res:Response, next:NextFunction) {
         req.accountData = null
         const [result, statusCode] = await ErrorHandler.execute<boolean>(async () => {
-            const { accountId, workspaceId } = req.params
             const userAgentInfo = req.userAgentInfo
             const accessToken = req.headers.authorization
             const type = accessToken && accessToken.split(' ')[0]? accessToken.split(' ')[0]: null
@@ -60,34 +63,41 @@ class AccountInfoAndAccessProvider {
                 // get active account roleref
                 // get this data by default
                 const defaultAppRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
-
                 if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
                 const appRole = await roleController.getMappedRole(defaultAppRole.value)
                 req.appRole = appRole
                 if (!appRole) throw({code: 404})
-
                 // for the super administrator role
                 if (appRole && appRole.absoluteAuthority) {
                     // console.log('absolute authority: ', appRole.absoluteAuthority)
                     return true
                 }
-
                 // for roles that has specific accessable features
                 const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole)
 
+
+                const { accountId, workspaceId } = req.params
+                const isUnderAccountsRoute = req.path.indexOf('/accounts/') > 0
+                const isUnderWorkspaceRoute = req.path.indexOf('/workspaces/') > 0
+                console.log('endpoint: ', req.path, accountId, workspaceId)
+
                 // get this data if path is under accounts/
                 // check url if under accounts
-                const defaultAccountRole = null
-                if (accountId) {
+                if (isUnderAccountsRoute && accountId) {
+                    console.log('accounts: ', req.path)
+                    const defaultAccountRole = null
                     // logic here: todo
                 }
 
                 // get this data if path is under workspace/
                 // check url if under accounts workspaces
-                const defaultWorkspaceRole = null
-                if (accountId && workspaceId) {
+                if (   isUnderAccountsRoute && accountId
+                    && isUnderWorkspaceRoute && workspaceId) {
+                    console.log('workspaces: ', req.path)
+                    const defaultWorkspaceRole = null
                     // logic here: todo
+
                 }
 
                 // check if the role can access the request path
