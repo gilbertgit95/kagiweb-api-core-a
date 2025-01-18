@@ -18,6 +18,28 @@ const env = Config.getEnv()
 import { RouterIdentity } from '../utilities/routerIdentity'
 
 class AccountInfoAndAccessProvider {
+    public static parseAccountAndWorspaceId(path?:string):{workspaceId?:string, accountId?:string} {
+        let result:{workspaceId?:string, accountId?:string} = {
+            accountId: undefined,
+            workspaceId: undefined
+        }
+
+        if (path) {
+            const accountSubRoute = path.split('/accounts/')[1]
+            const workspaceSubRoute = path.split('/workspaces/')[1]
+
+            const accountId = accountSubRoute?.split('/')[0]
+            const workspaceId = workspaceSubRoute?.split('/')[0]
+
+            result = {
+                accountId,
+                workspaceId
+            }
+        }
+
+        return result
+    }
+
     /**
      * this midddleware inserts accountdata into request object base on jwt data,
      * then checks account access
@@ -77,24 +99,12 @@ class AccountInfoAndAccessProvider {
                 const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole)
 
 
-                const { accountId, workspaceId } = req.params
-                const isUnderAccountsRoute = req.path.indexOf('/accounts/') > 0
-                const isUnderWorkspaceRoute = req.path.indexOf('/workspaces/') > 0
-                console.log('endpoint: ', req.path, accountId, workspaceId)
-
-                // get this data if path is under accounts/
-                // check url if under accounts
-                if (isUnderAccountsRoute && accountId) {
-                    console.log('accounts: ', req.path)
+                const { accountId, workspaceId } = AccountInfoAndAccessProvider.parseAccountAndWorspaceId(req.path)
+                if (accountId) {
                     const defaultAccountRole = null
                     // logic here: todo
                 }
-
-                // get this data if path is under workspace/
-                // check url if under accounts workspaces
-                if (   isUnderAccountsRoute && accountId
-                    && isUnderWorkspaceRoute && workspaceId) {
-                    console.log('workspaces: ', req.path)
+                if (accountId && workspaceId) {
                     const defaultWorkspaceRole = null
                     // logic here: todo
 
