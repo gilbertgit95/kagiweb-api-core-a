@@ -96,18 +96,19 @@ class AccountInfoAndAccessProvider {
                     return true
                 }
                 // for roles that has specific accessable features
-                const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole)
+                const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole.featuresRefs || [])
 
 
                 const { accountId, workspaceId } = AccountInfoAndAccessProvider.parseAccountAndWorspaceId(req.path)
                 if (accountId) {
                     const defaultAccountRole = null
                     // logic here: todo
+                    req.accountRole = defaultAccountRole
                 }
                 if (accountId && workspaceId) {
                     const defaultWorkspaceRole = null
                     // logic here: todo
-
+                    req.workspaceRole = defaultWorkspaceRole
                 }
 
                 // check if the role can access the request path

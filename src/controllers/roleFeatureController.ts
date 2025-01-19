@@ -29,12 +29,12 @@ class RoleFeaturesController {
         return result
     }
 
-    public async getMappedFeatures(role:IRole):Promise<IFeature[]> {
+    public async getMappedFeatures(featureRefs:IFeatureRef[]):Promise<IFeature[]> {
         const featuresMap = await featureController.getFeaturesMap()
         let result:IFeature[] = []
 
-        if (role && role.featuresRefs) {
-            result = role.featuresRefs
+        if (featureRefs) {
+            result = featureRefs
                 .map(item => featuresMap[item.featureId])
                 .filter(item => Boolean(item))
         }
