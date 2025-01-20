@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express'
 // import { AppRequest } from '../utilities/globalTypes'
 import { IAccount } from '../dataSource/models/accountModel'
 import accountAccountConfigController from '../controllers/accountAccountConfigController'
+import accountAccountRefAccountConfigController from '../controllers/accountAccountRefAcountConfigController'
+import accountWorkspaceAccountRefAccountConfigController from '../controllers/accountWorkspaceAccountRefAcountConfigController'
 import accountController from '../controllers/accountController'
 // import accountRoleController from '../controllers/accountRoleController'
 import accountClientDeviceController from '../controllers/accountClientDeviceController'
@@ -16,6 +18,8 @@ import Config, {Env} from '../utilities/config'
 
 const env = Config.getEnv()
 import { RouterIdentity } from '../utilities/routerIdentity'
+import { IFeature, IFeatureQuery } from '../dataSource/models/featureModel'
+import { IFeatureRef } from '../dataSource/models/roleModel'
 
 class AccountInfoAndAccessProvider {
     public static parseAccountAndWorspaceId(path?:string):{workspaceId?:string, accountId?:string} {
@@ -84,6 +88,7 @@ class AccountInfoAndAccessProvider {
 
                 // get active account roleref
                 // get this data by default
+                let consolidatedFeatureRefs:IFeatureRef[] = []
                 const defaultAppRole = accountAccountConfigController.getAccountConfigByKey(account, 'default-role')
                 if (!(defaultAppRole && defaultAppRole.value)) throw({code: 404})
                 // get active role info
@@ -96,23 +101,28 @@ class AccountInfoAndAccessProvider {
                     return true
                 }
                 // for roles that has specific accessable features
-                const appRoleFeatures = await roleFeatureController.getMappedFeatures(appRole.featuresRefs || [])
+                consolidatedFeatureRefs = appRole.featuresRefs || []
 
 
                 const { accountId, workspaceId } = AccountInfoAndAccessProvider.parseAccountAndWorspaceId(req.path)
                 if (accountId) {
-                    const defaultAccountRole = null
-                    // logic here: todo
-                    req.accountRole = defaultAccountRole
+                    const defaultAccountRole = accountAccountRefAccountConfigController.getAccountConfigByKey(account, accountId, 'default-role')
+                    const accountRole = await roleController.getMappedRole(defaultAccountRole?.value || '')
+
+                    consolidatedFeatureRefs = [...consolidatedFeatureRefs, ...accountRole?.featuresRefs || []]
+                    req.accountRole = accountRole
                 }
                 if (accountId && workspaceId) {
-                    const defaultWorkspaceRole = null
-                    // logic here: todo
-                    req.workspaceRole = defaultWorkspaceRole
+                    const defaultWorkspaceRole = accountWorkspaceAccountRefAccountConfigController.getAccountConfigByKey(account, accountId, workspaceId, 'default-role')
+                    const accountWorkspaceRole = await roleController.getMappedRole(defaultWorkspaceRole?.value || '')
+
+                    consolidatedFeatureRefs = [...consolidatedFeatureRefs, ...accountWorkspaceRole?.featuresRefs || []]
+                    req.workspaceRole = accountWorkspaceRole
                 }
 
+                const consolidatedFeatures = await roleFeatureController.getMappedFeatures(consolidatedFeatureRefs)
                 // check if the role can access the request path
-                if(!RouterIdentity.pathHasMatch(appRoleFeatures, {path: req.path, method: req.method})) {
+                if(!RouterIdentity.pathHasMatch(consolidatedFeatures, {path: req.path, method: req.method})) {
                     throw({code: 401})
                 }
             }
