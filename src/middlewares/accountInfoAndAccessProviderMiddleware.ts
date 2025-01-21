@@ -20,6 +20,8 @@ const env = Config.getEnv()
 import { RouterIdentity } from '../utilities/routerIdentity'
 import { IFeature, IFeatureQuery } from '../dataSource/models/featureModel'
 import { IFeatureRef } from '../dataSource/models/roleModel'
+import accountAccountRefController from '../controllers/accountAccountRefController'
+import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
 
 class AccountInfoAndAccessProvider {
     public static parseAccountAndWorspaceId(path?:string):{workspaceId?:string, accountId?:string} {
@@ -105,15 +107,18 @@ class AccountInfoAndAccessProvider {
 
 
                 const { accountId, workspaceId } = AccountInfoAndAccessProvider.parseAccountAndWorspaceId(req.path)
-                if (accountId) {
-                    const defaultAccountRole = accountAccountRefAccountConfigController.getAccountConfigByKey(account, accountId, 'default-role')
+                const accessedAccount = await accountController.getAccount({_id: accountId}, true)
+                if (accessedAccount) {
+                    const signedinAccountRef = accountAccountRefController.getAccountRefByAccountId(accessedAccount, account._id!)
+                    const defaultAccountRole = accountAccountRefAccountConfigController.getAccountConfigByKey(accessedAccount, signedinAccountRef?._id!, 'default-role')
                     const accountRole = await roleController.getMappedRole(defaultAccountRole?.value || '')
 
                     consolidatedFeatureRefs = [...consolidatedFeatureRefs, ...accountRole?.featuresRefs || []]
                     req.accountRole = accountRole
                 }
-                if (accountId && workspaceId) {
-                    const defaultWorkspaceRole = accountWorkspaceAccountRefAccountConfigController.getAccountConfigByKey(account, accountId, workspaceId, 'default-role')
+                if (accessedAccount && workspaceId) {
+                    const workspaceSignedinAccountRef = accountWorkspaceAccountRefController.getWorkspaceAccountRefByAccountId(accessedAccount, workspaceId, account._id!)
+                    const defaultWorkspaceRole = accountWorkspaceAccountRefAccountConfigController.getAccountConfigByKey(accessedAccount, workspaceId, workspaceSignedinAccountRef?._id!, 'default-role')
                     const accountWorkspaceRole = await roleController.getMappedRole(defaultWorkspaceRole?.value || '')
 
                     consolidatedFeatureRefs = [...consolidatedFeatureRefs, ...accountWorkspaceRole?.featuresRefs || []]
