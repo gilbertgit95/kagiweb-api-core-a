@@ -1,6 +1,9 @@
 import UrlPattern from 'url-pattern'
 import expressListRoutes from 'express-list-routes'
 import FeatureModel, { IFeature } from '../dataSource/models/featureModel'
+import Config from './config'
+
+const env = Config.getEnv()
 
 interface IRouteInfo {
     method: string,
@@ -49,6 +52,33 @@ class RouterIdentity {
                 tags: ['Server', 'Api Route', item.method],
                 value: val,
                 description: 'One of the server endpoint'
+            }
+
+            // todo:
+            // breakdown path
+            const subPaths = item.path
+                .replace(env.RootApiEndpoint.replace(/\//g, '\\'), '')
+                .split('\\')
+                .filter(path => path.indexOf(':') < 0)
+                .filter(sub => Boolean(sub))
+            
+            // console.log(subPaths)
+
+            // assign tags
+            obj.tags = subPaths
+            
+            // assign scope
+            const hasAccount = subPaths.indexOf('accounts') > -1
+            const hasWorkspace = subPaths.indexOf('workspaces') > -1
+            // check for accounts and workspace: assign workspace
+            if (hasAccount && hasWorkspace) {
+                obj.scope = 'workspace'
+            // else if check for accounts: assign account
+            } else if (hasAccount) {
+                obj.scope = 'account'
+            // else: asign app
+            } else {
+                obj.scope = 'app'
             }
 
             return {

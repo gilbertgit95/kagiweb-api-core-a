@@ -36,7 +36,7 @@ import ownerRoutes from './routes/ownerRoutes'
 const router = express.Router()
 const env = Config.getEnv()
 
-// import routerIdentity from './utilities/routerIdentity'
+import routerIdentity from './utilities/routerIdentity'
 import AppHandler from './utilities/appHandler'
 // export default express().use(routes)
 
@@ -44,7 +44,7 @@ const appHandler = new AppHandler()
 
 // register post methods to execute
 appHandler.addPostDBConnectionProcess(async () => {
-    // await routerIdentity.syncAppRoutes() // enable only if you want to sync routes
+    await routerIdentity.syncAppRoutes() // enable only if you want to sync routes
 })
 
 // public routes for webapp files, api assets and api documentation
