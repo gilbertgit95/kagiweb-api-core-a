@@ -42,6 +42,25 @@ class RoleFeaturesController {
         return result
     }
 
+    public async getUniqueMappedFeatures(featureRefs:IFeatureRef[]):Promise<IFeature[]> {
+        const featuresMap = await featureController.getFeaturesMap()
+        let result:IFeature[] = []
+        const featureIdSet = new Set<string|undefined>([])
+
+        if (featureRefs) {
+            result = featureRefs
+                .map(item => featuresMap[item.featureId])
+                .filter(item => Boolean(item))
+                .filter(item => {
+                    if (featureIdSet.has(item._id)) return false
+                    featureIdSet.add(item._id)
+                    return true
+                })
+        }
+
+        return result
+    }
+
     public hasFeature(role:IRole, featureId:string):boolean {
         if (role && role.featuresRefs) {
             for (const ref of role.featuresRefs) {

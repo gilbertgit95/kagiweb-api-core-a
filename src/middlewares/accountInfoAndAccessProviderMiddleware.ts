@@ -105,6 +105,8 @@ class AccountInfoAndAccessProvider {
                 // for roles that has specific accessable features
                 consolidatedFeatureRefs = appRole.featuresRefs || []
 
+                console.log('app role: ', appRole?.name || '--', appRole?.featuresRefs?.length)
+
 
                 const { accountId, workspaceId } = AccountInfoAndAccessProvider.parseAccountAndWorspaceId(req.path)
                 const accessedAccount = await accountController.getAccount({_id: accountId}, true)
@@ -115,6 +117,8 @@ class AccountInfoAndAccessProvider {
 
                     consolidatedFeatureRefs = [...consolidatedFeatureRefs, ...accountRole?.featuresRefs || []]
                     req.accountRole = accountRole
+
+                    console.log('account role: ', accountRole?.name || '--', accountRole?.featuresRefs?.length)
                 }
                 if (accessedAccount && workspaceId) {
                     const workspaceSignedinAccountRef = accountWorkspaceAccountRefController.getWorkspaceAccountRefByAccountId(accessedAccount, workspaceId, account._id!)
@@ -123,9 +127,12 @@ class AccountInfoAndAccessProvider {
 
                     consolidatedFeatureRefs = [...consolidatedFeatureRefs, ...accountWorkspaceRole?.featuresRefs || []]
                     req.workspaceRole = accountWorkspaceRole
+
+                    console.log('workspace role: ', accountWorkspaceRole?.name || '--', accountWorkspaceRole?.featuresRefs?.length)
                 }
 
-                const consolidatedFeatures = await roleFeatureController.getMappedFeatures(consolidatedFeatureRefs)
+                const consolidatedFeatures = await roleFeatureController.getUniqueMappedFeatures(consolidatedFeatureRefs)
+                console.log('consolidatedFeatures: ', consolidatedFeatures?.length)
                 // check if the role can access the request path
                 if(!RouterIdentity.pathHasMatch(consolidatedFeatures, {path: req.path, method: req.method})) {
                     throw({code: 401})
