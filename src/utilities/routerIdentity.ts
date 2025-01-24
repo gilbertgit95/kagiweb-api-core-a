@@ -54,7 +54,6 @@ class RouterIdentity {
                 description: 'One of the server endpoint'
             }
 
-            // todo:
             // breakdown path
             const subPaths = item.path
                 .replace(env.RootApiEndpoint.replace(/\//g, '\\'), '')

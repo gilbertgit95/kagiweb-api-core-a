@@ -1,6 +1,6 @@
 [{
   "_id": "37410e75-1760-4bb6-85e0-d0a138d374bc",
-  "__v": 319,
+  "__v": 331,
   "clientDevices": [
     {
       "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36",
@@ -38,18 +38,33 @@
       "_id": "ad362fc5-fca9-4481-bca2-5fcccaf3e889",
       "accessTokens": [
         {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MzMyOTQyNzksImV4cCI6MTczMzg5OTA3OX0.r8OrQciK2kX4QPrwTzZncS5KESzOG9IYgrLf321zPPw",
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MzY5NDYxNTMsImV4cCI6MTczNzU1MDk1M30.0eYMzMblfaWTwl1ZTMvMzCtCq39iMSWsF-FbCzbD9Mc",
           "ipAddress": "::ffff:127.0.0.1",
           "expTime": {
-            "$date": "2024-12-11T06:37:59.000Z"
+            "$date": "2025-01-22T13:02:33.000Z"
           },
           "disabled": false,
-          "_id": "654b6775-6c58-4441-b512-01fb19c345fc",
+          "_id": "428e17df-3423-4306-a4ac-2825830a344f",
           "createdAt": {
-            "$date": "2024-12-04T06:38:00.004Z"
+            "$date": "2025-01-15T13:02:33.054Z"
           },
           "updatedAt": {
-            "$date": "2024-12-04T06:38:00.004Z"
+            "$date": "2025-01-15T13:02:33.054Z"
+          }
+        },
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3Mzc1NTExNDQsImV4cCI6MTczODE1NTk0NH0.ii7XVee2BtY1a3YrEE9q5fPh9QEq-xA0sD8slZ38bxA",
+          "ipAddress": "::ffff:127.0.0.1",
+          "expTime": {
+            "$date": "2025-01-29T13:05:44.000Z"
+          },
+          "disabled": false,
+          "_id": "02732b22-349f-4b45-87af-a8df8579c719",
+          "createdAt": {
+            "$date": "2025-01-22T13:05:44.024Z"
+          },
+          "updatedAt": {
+            "$date": "2025-01-22T13:05:44.024Z"
           }
         }
       ],
@@ -57,7 +72,7 @@
         "$date": "2024-11-19T11:42:27.555Z"
       },
       "updatedAt": {
-        "$date": "2024-12-04T06:38:00.037Z"
+        "$date": "2025-01-22T13:05:44.038Z"
       }
     }
   ],
@@ -131,7 +146,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2024-12-04T06:38:00.005Z"
+        "$date": "2025-01-22T13:05:44.025Z"
       }
     },
     {
@@ -147,7 +162,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2024-12-04T06:38:00.005Z"
+        "$date": "2025-01-22T13:05:44.025Z"
       }
     },
     {
@@ -306,7 +321,7 @@
     }
   ],
   "updatedAt": {
-    "$date": "2024-12-08T15:08:49.387Z"
+    "$date": "2025-01-23T01:57:52.668Z"
   },
   "accountInfos": [
     {
@@ -427,19 +442,19 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2024-08-30T02:38:33.248Z"
+        "$date": "2025-01-23T01:57:30.429Z"
       }
     },
     {
       "_id": "5f1dd305-20c1-45d1-a02c-8a877e78ff1e",
       "key": "default-workspace",
-      "value": "46f67e2b-79a4-4208-b69b-8010e77ea154",
+      "value": "b6fa7ceb-71d0-4e49-bd86-422849727811",
       "type": "string",
       "createdAt": {
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2024-12-06T09:58:49.814Z"
+        "$date": "2025-01-23T01:57:52.668Z"
       }
     }
   ],
@@ -450,13 +465,13 @@
   "accountType": "user",
   "rolesRefs": [
     {
-      "roleId": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-      "_id": "8023f47d-00df-4ccb-a8aa-5c96da28e866",
+      "roleId": "70fb7106-0715-467d-b7d2-94ade5588cf1",
+      "_id": "bbff9878-16b9-47cc-b8d3-3177afaa6b78",
       "createdAt": {
-        "$date": "2024-06-12T15:59:47.689Z"
+        "$date": "2025-01-23T02:38:39.158Z"
       },
       "updatedAt": {
-        "$date": "2024-06-12T15:59:53.667Z"
+        "$date": "2025-01-23T02:38:39.158Z"
       }
     }
   ],
@@ -916,21 +931,21 @@
     "$date": "2024-01-10T13:07:57.314Z"
   },
   "updatedAt": {
-    "$date": "2024-08-26T07:42:01.468Z"
+    "$date": "2025-01-23T02:41:44.311Z"
   },
-  "__v": 64,
+  "__v": 66,
   "workspaces": [],
   "accountConfigs": [
     {
       "_id": "c43ae69c-099a-48e3-bad0-5f848bec3b9c",
       "key": "default-role",
-      "value": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+      "value": "70fb7106-0715-467d-b7d2-94ade5588cf1",
       "type": "string",
       "createdAt": {
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2024-08-20T02:24:31.147Z"
+        "$date": "2025-01-23T02:39:12.645Z"
       }
     },
     {
@@ -946,282 +961,8 @@
       }
     }
   ],
-  "nameId": "master101"
-},
-{
-  "_id": "482fada3-1bf7-46ae-a4c4-b4f7636a028c",
-  "accountType": "user",
-  "rolesRefs": [
-    {
-      "roleId": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
-      "_id": "3b018ce1-e407-44cf-8cfa-8cd86f4a2c26",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.953Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T01:53:12.576Z"
-      }
-    },
-    {
-      "roleId": "f2b124a8-0452-40f3-b053-c6f3b426e656",
-      "_id": "76e36f94-3fd9-41b3-aebb-c77815deb540",
-      "createdAt": {
-        "$date": "2024-03-08T01:53:24.270Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T01:53:24.270Z"
-      }
-    }
-  ],
-  "passwords": [
-    {
-      "key": "$2b$10$ATGX2/2QUQZpU3PnOZxUlu7YkKSkuw9FGcUv9VBd7K/vARynunXAa",
-      "isActive": false,
-      "_id": "c4c1acf6-3418-4a4f-b4e2-20a1c81766d0",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    },
-    {
-      "key": "$2b$10$H0yWLIKKmKTRWIzFAX8YFuS5lgFmbemlWOwea4QZDhNZ4mF.LQR7.",
-      "isActive": true,
-      "_id": "5136e1f4-0c25-49c6-8966-474efdeee82e",
-      "createdAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    }
-  ],
-  "contactInfos": [
-    {
-      "type": "email-address",
-      "value": "robertothree@gmail.com",
-      "verified": false,
-      "_id": "50c8e5e8-af27-4a9a-a3c0-c4f3fa9ee211",
-      "createdAt": {
-        "$date": "2024-03-08T07:25:30.634Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T07:25:30.634Z"
-      }
-    }
-  ],
-  "clientDevices": [
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "c242b6fa-269a-4c45-9253-f2a7647f3649",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI0ODJmYWRhMy0xYmY3LTQ2YWUtYTRjNC1iNGY3NjM2YTAyOGMiLCJpYXQiOjE3MjQ1Njk0MDksImV4cCI6MTcyNTE3NDIwOX0.9-GwquctlXeCtWy9eeXBZcQ4vFTRo_wwtiSdp6lpD9k",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T07:03:29.000Z"
-          },
-          "disabled": false,
-          "_id": "779dd556-552f-452a-a070-4b1212d861f9",
-          "createdAt": {
-            "$date": "2024-08-25T07:03:29.075Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T07:03:29.075Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI0ODJmYWRhMy0xYmY3LTQ2YWUtYTRjNC1iNGY3NjM2YTAyOGMiLCJpYXQiOjE3MjQ1Njk2MDAsImV4cCI6MTcyNTE3NDQwMH0.E1P_CLv_8YSE1SKikeApA3bj8G74_p3CVufMo8vLpRk",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-01T07:06:40.000Z"
-          },
-          "disabled": false,
-          "_id": "644b3c31-548d-4460-8588-c46b644b2d0e",
-          "createdAt": {
-            "$date": "2024-08-25T07:06:40.401Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T07:06:40.401Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiI0ODJmYWRhMy0xYmY3LTQ2YWUtYTRjNC1iNGY3NjM2YTAyOGMiLCJpYXQiOjE3MjQ2NTgxNTksImV4cCI6MTcyNTI2Mjk1OX0.zeah1dGrEPjty6Jqiml6AR9jrX6MwJz5i0sXwtC0FnY",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-09-02T07:42:39.000Z"
-          },
-          "disabled": false,
-          "_id": "f3c7a520-07a3-4ca8-a141-7f5280718500",
-          "createdAt": {
-            "$date": "2024-08-26T07:42:39.718Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-26T07:42:39.718Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2024-08-25T07:03:29.063Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-26T07:42:39.719Z"
-      }
-    }
-  ],
-  "limitedTransactions": [
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "signin",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "f08882c1-f9fe-4bc2-b339-f3159b6e53f0",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-26T07:42:39.720Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 1,
-      "type": "otp-signin",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": true,
-      "_id": "90479859-7568-4dc9-a084-54ebf4563b6a",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:03:05.579Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "forgot-pass",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "9ab15735-2077-4996-a3a0-3d02c662124c",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "reset-pass",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "52587dc0-cfde-45a5-83a0-5aab052b4585",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T07:02:25.220Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "verify-contact",
-      "key": "",
-      "value": "",
-      "expTime": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "378a270d-d2eb-4383-8ad3-f5d148b1936a",
-      "createdAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      },
-      "updatedAt": {
-        "$date": "2024-02-08T00:47:28.954Z"
-      }
-    }
-  ],
-  "disabled": false,
-  "verified": true,
-  "accountInfos": [
-    {
-      "key": "Fullname",
-      "value": "Roberto",
-      "type": "string",
-      "_id": "a31e00f2-828a-4c69-bfad-a35fef510f96",
-      "createdAt": {
-        "$date": "2024-03-08T07:25:07.540Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-08T07:25:07.540Z"
-      }
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-02-08T00:47:28.955Z"
-  },
-  "updatedAt": {
-    "$date": "2024-08-26T07:42:39.720Z"
-  },
-  "__v": 19,
-  "workspaces": [
-    {
-      "name": "Berting Default Workspace",
-      "description": "use for personal and some shared projects",
-      "disabled": false,
-      "_id": "6cf90820-2d55-409e-ab9c-d1d7cca9b376",
-      "accountRefs": [],
-      "createdAt": {
-        "$date": "2024-04-27T06:08:34.310Z"
-      },
-      "updatedAt": {
-        "$date": "2024-07-12T00:44:50.711Z"
-      }
-    }
-  ],
-  "accountConfigs": [
-    {
-      "_id": "f160d9b1-a2d5-4801-80a7-1b2dcd22f882",
-      "key": "default-role",
-      "value": "5a898c34-c5ea-461b-a6a3-93c6e4d54b72",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-20T02:24:52.742Z"
-      }
-    },
-    {
-      "_id": "97af7332-387d-4ece-936b-b28cc399b66e",
-      "key": "default-workspace",
-      "value": "39635615-70bc-4fad-84cf-ef9d672eed52",
-      "type": "string",
-      "createdAt": {
-        "$date": "2023-12-24T04:04:50.147Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-25T10:16:52.701Z"
-      }
-    }
-  ],
-  "nameId": "Berting89"
+  "nameId": "BertTest101",
+  "accountRefs": []
 },
 {
   "_id": "d5c52e70-a40a-421a-8b14-cc0cfa595c24",
@@ -1502,268 +1243,59 @@
     "$date": "2024-07-10T15:01:21.007Z"
   },
   "updatedAt": {
-    "$date": "2024-12-04T09:43:57.596Z"
+    "$date": "2024-12-26T14:10:20.421Z"
   },
-  "__v": 24,
-  "nameId": "lunaOrg"
-},
-{
-  "_id": "2357d6bd-a86c-45be-9eae-22012e92a6ec",
-  "accountType": "user",
-  "nameId": "master",
-  "rolesRefs": [
+  "__v": 28,
+  "nameId": "lunaOrg",
+  "accountRefs": [
     {
-      "roleId": "798c16ff-d75c-41b6-b9f5-69e21b08879a",
-      "_id": "85f441eb-971b-428f-8757-c06577260ea8",
-      "createdAt": {
-        "$date": "2024-10-10T08:35:37.932Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:35:37.932Z"
-      }
-    }
-  ],
-  "accountInfos": [
-    {
-      "key": "firstname",
-      "value": "",
-      "type": "string",
-      "_id": "541dab60-52a7-4c6d-bf10-b0037ae433c3",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      }
-    },
-    {
-      "key": "middlename",
-      "value": "",
-      "type": "string",
-      "_id": "ad2efb35-ee8d-439d-80fd-69b407b72f09",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      }
-    },
-    {
-      "key": "lastname",
-      "value": "",
-      "type": "string",
-      "_id": "561e55c3-bc68-4032-a975-3f293e31ba40",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      }
-    },
-    {
-      "key": "birthday",
-      "value": "",
-      "type": "date",
-      "_id": "27fdac69-0a54-485a-a402-6092710e4891",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      }
-    }
-  ],
-  "accountConfigs": [
-    {
-      "key": "default-role",
-      "value": "798c16ff-d75c-41b6-b9f5-69e21b08879a",
-      "type": "string",
-      "_id": "4c9127b3-898a-474e-8348-4432926ad093",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:36:28.333Z"
-      }
-    },
-    {
-      "key": "default-workspace",
-      "value": "69b858d2-3ebc-418c-a0b5-691ff4c53684",
-      "type": "string",
-      "_id": "05244ab9-c19c-4c2e-8cff-9bcc0c0e79b4",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:37:21.659Z"
-      }
-    }
-  ],
-  "passwords": [
-    {
-      "key": "$2b$10$ThDznsdwsm7EIzol7KpcIeOFRPTsrZIr3dWwtdQaYCnZaCzTZyzwG",
-      "expTime": {
-        "$date": "2025-01-08T08:34:30.103Z"
-      },
-      "isActive": false,
-      "_id": "9d48c53a-88f5-4fda-9b87-925526c1eb67",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.125Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:39:03.375Z"
-      }
-    },
-    {
-      "key": "$2b$10$sStBXdqJfHTYQsxLnwgHU.S.YIbmmnyoU216DIde8wap733ik54qu",
-      "expTime": {
-        "$date": "2025-01-08T08:39:03.371Z"
-      },
-      "isActive": true,
-      "_id": "0f49514d-91e9-4959-9a61-1f8a589d2e76",
-      "createdAt": {
-        "$date": "2024-10-10T08:39:03.375Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:39:03.375Z"
-      }
-    }
-  ],
-  "contactInfos": [],
-  "clientDevices": [
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "2c6e3b37-c6d9-4cd5-a619-52a7e76ce98c",
-      "accessTokens": [
+      "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+      "accountConfigs": [
         {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIyMzU3ZDZiZC1hODZjLTQ1YmUtOWVhZS0yMjAxMmU5MmE2ZWMiLCJpYXQiOjE3Mjg1NTI1NTAsImV4cCI6MTcyOTE1NzM1MH0.rSlAg5sIaaQUFnDuwMCt978vLHySXD_WZ2dHmFmP6z8",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2024-10-17T09:29:10.000Z"
-          },
-          "disabled": false,
-          "_id": "aaa7d3fd-8230-49c3-8996-acdbb988984f",
+          "key": "default-role",
+          "value": "f1c67206-1564-4cf5-b4b4-f7f1269c28a6",
+          "type": "string",
+          "_id": "a6811e28-6101-4d06-8f44-6bdf444aac0a",
           "createdAt": {
-            "$date": "2024-10-10T09:29:10.976Z"
+            "$date": "2024-12-26T14:09:05.156Z"
           },
           "updatedAt": {
-            "$date": "2024-10-10T09:29:10.976Z"
+            "$date": "2024-12-26T14:10:20.420Z"
+          }
+        }
+      ],
+      "declined": false,
+      "accepted": false,
+      "disabled": false,
+      "_id": "5546e098-7604-4d50-adea-66eafa1c1ae3",
+      "rolesRefs": [
+        {
+          "roleId": "f1c67206-1564-4cf5-b4b4-f7f1269c28a6",
+          "_id": "80e97977-9b55-4164-8c35-0ec2e6164a08",
+          "createdAt": {
+            "$date": "2024-12-26T14:10:00.293Z"
+          },
+          "updatedAt": {
+            "$date": "2024-12-26T14:10:00.293Z"
+          }
+        },
+        {
+          "roleId": "433cdfc3-5467-4fab-9705-45eb284869eb",
+          "_id": "a3289452-b680-478d-8055-a063805fc055",
+          "createdAt": {
+            "$date": "2024-12-26T14:10:00.306Z"
+          },
+          "updatedAt": {
+            "$date": "2024-12-26T14:10:00.306Z"
           }
         }
       ],
       "createdAt": {
-        "$date": "2024-10-10T09:29:10.966Z"
+        "$date": "2024-12-26T14:09:05.157Z"
       },
       "updatedAt": {
-        "$date": "2024-10-10T09:29:10.976Z"
+        "$date": "2024-12-26T14:10:20.421Z"
       }
     }
-  ],
-  "limitedTransactions": [
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "signin",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "c7a63179-83f7-416b-9e37-da6783006ddc",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T09:29:10.976Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "otp-signin",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": true,
-      "_id": "6b2326ec-4607-4775-b74c-5e62ffb225bd",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "forgot-pass",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "0a5eded7-c04c-43ab-ba27-d0429a8bc7e7",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "reset-pass",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "8d2f2dea-2871-4d61-b0ae-fe9da9ce67ff",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      }
-    },
-    {
-      "limit": 5,
-      "attempts": 0,
-      "type": "verify-contact",
-      "key": "",
-      "value": "",
-      "recipient": "app-admin",
-      "disabled": false,
-      "_id": "330a0ec8-5037-4ea9-8aa1-f094bd7d0a2c",
-      "createdAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:34:30.126Z"
-      }
-    }
-  ],
-  "disabled": false,
-  "verified": true,
-  "workspaces": [
-    {
-      "name": "master workspace",
-      "description": "just a default workspace",
-      "disabled": false,
-      "_id": "69b858d2-3ebc-418c-a0b5-691ff4c53684",
-      "accountRefs": [],
-      "createdAt": {
-        "$date": "2024-10-10T08:37:10.483Z"
-      },
-      "updatedAt": {
-        "$date": "2024-10-10T08:37:10.483Z"
-      }
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-10-10T08:34:30.127Z"
-  },
-  "updatedAt": {
-    "$date": "2024-10-10T09:29:10.976Z"
-  },
-  "__v": 6
+  ]
 }]
