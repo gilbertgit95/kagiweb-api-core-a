@@ -24,16 +24,19 @@ interface IAccountCompleteInfo {
     accountData: IAccount|null,
     appRole: IRole|null,
     appRoles: IRole[]|null,
-    accountRole: IRole|null,
-    accountRoles: IRole[]|null,
-    workspaceRole: IRole|null,
-    workspaceRoles: IRole[]|null,
-    features: IFeature[]|null,
+    appFeatures: IFeature[]|null,
     workspace: IWorkspace|null,
     workspaces: IWorkspace[]|null,
     externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null,
     clientDevice: IClientDevice|null,
-    accessToken: IAccessToken|null
+    accessToken: IAccessToken|null,
+
+    visitedAccount?: IAccount|null,
+    visitedAccountRole?: IRole|null,
+    visitedAccountRoles?: IRole[]|null,
+    visitedAccountWorkspace?: IWorkspace|null,
+    visitedAccountWorkspaceRole?: IRole|null,
+    visitedAccountWorkspaceRoles?: IRole[]|null,
 }
 
 class AccountController {
@@ -68,16 +71,19 @@ class AccountController {
             accountData: null,
             appRole: null,
             appRoles: null,
-            accountRole: null,
-            accountRoles: null,
-            workspaceRole: null,
-            workspaceRoles: null,
-            features: null,
+            appFeatures: null,
             workspace: null,
             workspaces: null,
             externalWorkspaces: null,
             clientDevice: null,
-            accessToken: null
+            accessToken: null,
+
+            visitedAccount: null,
+            visitedAccountRole: null,
+            visitedAccountRoles: null,
+            visitedAccountWorkspace: null,
+            visitedAccountWorkspaceRole: null,
+            visitedAccountWorkspaceRoles: null
         }
         if (query._id) {
             let account = await this.cachedData.getItem<IAccount>(query._id)
@@ -112,18 +118,21 @@ class AccountController {
 
                 resp.appRole = defaultRole
                 resp.appRoles = accountRoles
-                resp.accountRole = null
-                resp.accountRoles = null
-                resp.workspaceRole = null
-                resp.workspaceRoles = null
 
-                resp.features = appRoleFeatures
+                resp.appFeatures = appRoleFeatures
                 resp.workspace = defaultWorkspace
                 resp.workspaces = accountWorkspaces
                 resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
                 resp.accountData = account
                 resp.clientDevice = usedClientDevice
                 resp.accessToken = usedToken
+
+                resp.visitedAccount = null
+                resp.visitedAccountRole = null
+                resp.visitedAccountRoles = null
+                resp.visitedAccountWorkspace = null
+                resp.visitedAccountWorkspaceRole = null
+                resp.visitedAccountWorkspaceRoles = null
             }
         }
         return resp
