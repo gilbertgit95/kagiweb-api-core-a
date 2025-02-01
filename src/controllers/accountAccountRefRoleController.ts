@@ -2,6 +2,9 @@ import accountModel, { IAccount, IRoleRef } from '../dataSource/models/accountMo
 import accountController from './accountController'
 import roleController from './roleController'
 import accountAccountRefController from './accountAccountRefController'
+import featureController from './featureController'
+import { IFeature } from '../dataSource/models/featureModel'
+import { IRole } from '../dataSource/models/roleModel' 
 
 // import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -63,6 +66,29 @@ class AccountAccountRefRoleController {
         const accRef = accountAccountRefController.getAccountRefById(account, accountRefId)
         
         return accRef!.rolesRefs? accRef!.rolesRefs: []
+    }
+
+    public async getDefaultMappedRoleRef(accountId:string, accountRefId:string, roleRefId:string):Promise<(IRole & {accountFeatures: IFeature[]})|null> {
+        if (!(accountId && accountRefId && roleRefId)) throw({code: 400})
+        // get default account ref
+        const defaultAccountRole:IRole | null = null
+        if (!defaultAccountRole) throw({code: 404})
+
+        const account = await accountController.getAccount({_id: accountId})
+        if (!account) throw({code: 404})
+
+        const roleRef = await this.getRoleRefByRefId(account, accountRefId, roleRefId)
+
+        if (!roleRef) throw({code: 404})
+
+            // get mapped role
+        const role = await roleController.getMappedRole(roleRef.roleId)
+        // map role feature refs to the real features
+        const featuresMap = await featureController.getFeaturesMap()
+
+        if (!role) throw({code: 404})
+
+        return {...role, ...{accountFeatures: role.featuresRefs?.map(item => featuresMap[item.featureId]) || []}}
     }
 
     public async saveRoleRef(accountId:string, accountRefId:string, roleId:string):Promise<IRoleRef|null> {
