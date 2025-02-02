@@ -2,6 +2,10 @@ import accountModel, { IAccount, IRoleRef } from '../dataSource/models/accountMo
 import accountController from './accountController'
 import roleController from './roleController'
 import accountWorkspaceAccountRefController from './accountWorkspaceAccountRefController'
+import accountWorkspaceAccountRefAcountConfigController from './accountWorkspaceAccountRefAcountConfigController'
+import featureController from './featureController'
+import { IRole } from '../dataSource/models/roleModel'
+import { IFeature } from '../dataSource/models/featureModel'
 
 // import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -63,6 +67,30 @@ class AccountWorkspaceAccountRefRoleController {
         const accRef = accountWorkspaceAccountRefController.getWorkspaceAccountRefById(account, workspaceId, accountRefId)
         
         return accRef!.rolesRefs? accRef!.rolesRefs: []
+    }
+
+    public async getDefaultMappedRoleRef(accountId:string, workspaceId:string, accountRefAccountId:string):Promise<(IRole & {accountFeatures: IFeature[]})|null> {
+        if (!(accountId && accountRefAccountId)) throw({code: 400})
+        
+        const account = await accountController.getAccount({_id: accountId})
+        if (!account) throw({code: 404})
+
+        
+        const accountRef = accountWorkspaceAccountRefController.getWorkspaceAccountRefByAccountId(account, workspaceId, accountRefAccountId)
+        if (!accountRef) throw({code: 404})
+
+        const configRole = accountWorkspaceAccountRefAcountConfigController.getAccountConfigByKey(account, workspaceId, accountRef._id!, 'default-role')
+        if (!configRole) throw({code: 404})
+
+        const defaultAccountRole:IRole | null = await roleController.getMappedRole(configRole.value)
+        if (!defaultAccountRole) throw({code: 404})
+
+        // map role feature refs to the real features
+        const featuresMap = await featureController.getFeaturesMap()
+
+        if (!defaultAccountRole) throw({code: 404})
+
+        return {...defaultAccountRole, ...{accountFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || []}}
     }
 
     public async saveRoleRef(accountId:string, workspaceId:string, accountRefId:string, roleId:string):Promise<IRoleRef|null> {
