@@ -6,21 +6,9 @@ import routerIdentity from '../utilities/routerIdentity'
 
 import accountWorkspaceAccountRefRoleController from '../controllers/accountWorkspaceAccountRefRoleController'
 import { IRoleRef } from '../dataSource/models/accountModel'
-import { IRole } from '../dataSource/models/roleModel'
-import { IFeature } from '../dataSource/models/featureModel'
 
 const router = express.Router()
 const env = Config.getEnv()
-
-router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId/defaultMappedRole', async (req, res) => {
-    const { accountId, workspaceId, accountRefId } = req.params
-
-    const [result, statusCode] = await ErrorHandler.execute<IRole & {accountFeatures: IFeature[]}>(async () => {
-        return await accountWorkspaceAccountRefRoleController.getDefaultMappedRoleRef(accountId, workspaceId, accountRefId)
-    })
-
-    return res.status(statusCode).send(result)
-})
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/accountRefs/:accountRefId/roles', async (req, res) => {
     const { accountId, workspaceId, accountRefId } = req.params

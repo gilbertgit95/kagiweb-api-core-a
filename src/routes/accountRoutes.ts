@@ -8,6 +8,8 @@ import routerIdentity from '../utilities/routerIdentity'
 
 import accountController, { IAccountCompleteInfo } from '../controllers/accountController'
 import { IAccount } from '../dataSource/models/accountModel'
+import { IRole } from '../dataSource/models/roleModel'
+import { IFeature } from '../dataSource/models/featureModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -45,7 +47,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId', async (req, res) => {
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'accounts/:accountId/completeInfo', async (req, res) => {
+router.get(env.RootApiEndpoint + 'accounts/:accountId/accessInfo', async (req, res) => {
     const { accountId } = req.params
     const ua = req.userAgentInfo?.ua
     const token = req.accessToken || undefined

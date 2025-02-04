@@ -28,6 +28,8 @@ import {
     IPassword, ILimitedTransaction, IClientDevice, IAccessToken, IAccountAccountRef,
     IWorkspace, IWorkspaceAccountRef
 } from '../dataSource/models/accountModel'
+import { IRole } from '../dataSource/models/roleModel'
+import { IFeature } from '../dataSource/models/featureModel'
 
 
 const router = express.Router()
@@ -56,13 +58,36 @@ router.put(env.RootApiEndpoint + 'owner', async (req:Request, res:Response) => {
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'owner/completeInfo', async (req:Request, res:Response) => {
+router.get(env.RootApiEndpoint + 'owner/accessInfo', async (req:Request, res:Response) => {
     const accountId = req?.accountData?._id || ''
     const ua = req.userAgentInfo?.ua
     const token = req.accessToken || undefined
 
     const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
         return await accountController.getAccountCompleteInfo({_id: accountId, ua, token})
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/accessInfo/rootAccount/:rootAccountId', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id || ''
+    const { rootAccountId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRole & {accountFeatures: IFeature[]}>(async () => {
+        return await accountAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, accountId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.get(env.RootApiEndpoint + 'owner/accessInfo/rootAccount/:rootAccountId/rootWorkspace/:rootWorkspaceId', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id || ''
+    const { rootAccountId } = req.params
+    const { rootWorkspaceId } = req.params
+
+    const [result, statusCode] = await ErrorHandler.execute<IRole & {accountFeatures: IFeature[]}>(async () => {
+        return await accountWorkspaceAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, rootWorkspaceId, accountId)
     })
 
     return res.status(statusCode).send(result)
