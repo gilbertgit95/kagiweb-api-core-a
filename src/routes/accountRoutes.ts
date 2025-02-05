@@ -6,7 +6,7 @@ import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 
-import accountController, { IAccountCompleteInfo } from '../controllers/accountController'
+import accountController, { IAccessInfo } from '../controllers/accountController'
 import { IAccount } from '../dataSource/models/accountModel'
 import { IRole } from '../dataSource/models/roleModel'
 import { IFeature } from '../dataSource/models/featureModel'
@@ -52,7 +52,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/accessInfo', async (req, r
     const ua = req.userAgentInfo?.ua
     const token = req.accessToken || undefined
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IAccessInfo>(async () => {
         return await accountController.getAccountCompleteInfo({_id: accountId, ua, token})
     })
 

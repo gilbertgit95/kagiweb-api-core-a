@@ -3,9 +3,10 @@ import accountController from './accountController'
 import roleController from './roleController'
 import accountAccountRefController from './accountAccountRefController'
 import featureController from './featureController'
-import { IFeature } from '../dataSource/models/featureModel'
+// import { IFeature } from '../dataSource/models/featureModel'
 import { IRole } from '../dataSource/models/roleModel' 
-import accountAccountConfigController from './accountAccountConfigController'
+import { IAccessInfo } from './accountController'
+// import accountAccountConfigController from './accountAccountConfigController'
 import accountAccountRefAcountConfigController from './accountAccountRefAcountConfigController'
 
 // import DataCleaner from '../utilities/dataCleaner'
@@ -70,7 +71,7 @@ class AccountAccountRefRoleController {
         return accRef!.rolesRefs? accRef!.rolesRefs: []
     }
 
-    public async getDefaultMappedRoleRef(accountId:string, accountRefAccountId:string):Promise<(IRole & {accountFeatures: IFeature[]})|null> {
+    public async getDefaultMappedRoleRef(accountId:string, accountRefAccountId:string):Promise<IAccessInfo> {
         if (!(accountId && accountRefAccountId)) throw({code: 400})
         
         const account = await accountController.getAccount({_id: accountId})
@@ -91,7 +92,12 @@ class AccountAccountRefRoleController {
 
         if (!defaultAccountRole) throw({code: 404})
 
-        return {...defaultAccountRole, ...{accountFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || []}}
+        // return {...defaultAccountRole, ...{accountFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || []}}
+        return {
+            visitedAccount: account,
+            visitedAccountRole: defaultAccountRole,
+            visitedAccountFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || [],
+        }
     }
 
     public async saveRoleRef(accountId:string, accountRefId:string, roleId:string):Promise<IRoleRef|null> {

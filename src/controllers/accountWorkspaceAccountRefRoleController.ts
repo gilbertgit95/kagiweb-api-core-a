@@ -5,7 +5,9 @@ import accountWorkspaceAccountRefController from './accountWorkspaceAccountRefCo
 import accountWorkspaceAccountRefAcountConfigController from './accountWorkspaceAccountRefAcountConfigController'
 import featureController from './featureController'
 import { IRole } from '../dataSource/models/roleModel'
-import { IFeature } from '../dataSource/models/featureModel'
+// import { IFeature } from '../dataSource/models/featureModel'
+import { IAccessInfo } from './accountController'
+import accountWorkspaceController from './accountWorkspaceController'
 
 // import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
@@ -69,12 +71,14 @@ class AccountWorkspaceAccountRefRoleController {
         return accRef!.rolesRefs? accRef!.rolesRefs: []
     }
 
-    public async getDefaultMappedRoleRef(accountId:string, workspaceId:string, accountRefAccountId:string):Promise<(IRole & {accountFeatures: IFeature[]})|null> {
+    public async getDefaultMappedRoleRef(accountId:string, workspaceId:string, accountRefAccountId:string):Promise<IAccessInfo> {
         if (!(accountId && accountRefAccountId)) throw({code: 400})
         
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
 
+        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
+        if (!workspace) throw({code: 404})
         
         const accountRef = accountWorkspaceAccountRefController.getWorkspaceAccountRefByAccountId(account, workspaceId, accountRefAccountId)
         if (!accountRef) throw({code: 404})
@@ -90,7 +94,12 @@ class AccountWorkspaceAccountRefRoleController {
 
         if (!defaultAccountRole) throw({code: 404})
 
-        return {...defaultAccountRole, ...{accountFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || []}}
+        // return {...defaultAccountRole, ...{accountFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || []}}
+        return {
+            visitedAccountWorkspace: workspace,
+            visitedAccountWorkspaceRole: defaultAccountRole,
+            visitedAccountWorkspaceFeatures: defaultAccountRole.featuresRefs?.map(item => featuresMap[item.featureId]) || []
+        }
     }
 
     public async saveRoleRef(accountId:string, workspaceId:string, accountRefId:string, roleId:string):Promise<IRoleRef|null> {

@@ -20,23 +20,26 @@ import Config from '../utilities/config'
 
 const env = Config.getEnv()
 
-interface IAccountCompleteInfo {
-    accountData: IAccount|null,
-    appRole: IRole|null,
-    appRoles: IRole[]|null,
-    appFeatures: IFeature[]|null,
-    workspace: IWorkspace|null,
-    workspaces: IWorkspace[]|null,
-    externalWorkspaces: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null,
-    clientDevice: IClientDevice|null,
-    accessToken: IAccessToken|null,
+interface IAccessInfo {
+    accountData?: IAccount|null,
+    appRole?: IRole|null,
+    appRoles?: IRole[]|null,
+    appFeatures?: IFeature[]|null,
+    workspace?: IWorkspace|null,
+    workspaces?: IWorkspace[]|null,
+    externalWorkspaces?: (IWorkspace & {ownerId:string, ownerNameId: string})[]|null,
+    clientDevice?: IClientDevice|null,
+    accessToken?: IAccessToken|null,
 
     visitedAccount?: IAccount|null,
     visitedAccountRole?: IRole|null,
-    visitedAccountRoles?: IRole[]|null,
+    // visitedAccountRoles?: IRole[]|null,
+    visitedAccountFeatures?: IFeature[]|null,
+
     visitedAccountWorkspace?: IWorkspace|null,
     visitedAccountWorkspaceRole?: IRole|null,
-    visitedAccountWorkspaceRoles?: IRole[]|null,
+    // visitedAccountWorkspaceRoles?: IRole[]|null,
+    visitedAccountWorkspaceFeatures?: IFeature[]|null,
 }
 
 class AccountController {
@@ -66,8 +69,8 @@ class AccountController {
         return account
     }
 
-    public async getAccountCompleteInfo(query:{_id: string, ua?:string, token?:string}, includeSensitiveInfo=false):Promise<IAccountCompleteInfo> {
-        const resp:IAccountCompleteInfo = {
+    public async getAccountCompleteInfo(query:{_id: string, ua?:string, token?:string}, includeSensitiveInfo=false):Promise<IAccessInfo> {
+        const resp:IAccessInfo = {
             accountData: null,
             appRole: null,
             appRoles: null,
@@ -80,10 +83,11 @@ class AccountController {
 
             visitedAccount: null,
             visitedAccountRole: null,
-            visitedAccountRoles: null,
+            // visitedAccountRoles: null,
+
             visitedAccountWorkspace: null,
-            visitedAccountWorkspaceRole: null,
-            visitedAccountWorkspaceRoles: null
+            visitedAccountWorkspaceRole: null
+            // visitedAccountWorkspaceRoles: null
         }
         if (query._id) {
             let account = await this.cachedData.getItem<IAccount>(query._id)
@@ -129,10 +133,11 @@ class AccountController {
 
                 resp.visitedAccount = null
                 resp.visitedAccountRole = null
-                resp.visitedAccountRoles = null
+                // resp.visitedAccountRoles = null
+
                 resp.visitedAccountWorkspace = null
                 resp.visitedAccountWorkspaceRole = null
-                resp.visitedAccountWorkspaceRoles = null
+                // resp.visitedAccountWorkspaceRoles = null
             }
         }
         return resp
@@ -277,6 +282,6 @@ class AccountController {
 }
 
 export {
-    IAccountCompleteInfo
+    IAccessInfo
 }
 export default new AccountController()

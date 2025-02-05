@@ -6,7 +6,7 @@ import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 // import DataRequest, {IListOutput}  from '../utilities/dataQuery'
 
-import accountController, {IAccountCompleteInfo  } from '../controllers/accountController'
+import accountController, {IAccessInfo  } from '../controllers/accountController'
 import accountRoleController from '../controllers/accountRoleController'
 import accountAccountInfoController from '../controllers/accountAccountInfoController'
 import accountAccountConfigController from '../controllers/accountAccountConfigController'
@@ -63,7 +63,7 @@ router.get(env.RootApiEndpoint + 'owner/accessInfo', async (req:Request, res:Res
     const ua = req.userAgentInfo?.ua
     const token = req.accessToken || undefined
 
-    const [result, statusCode] = await ErrorHandler.execute<IAccountCompleteInfo>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IAccessInfo>(async () => {
         return await accountController.getAccountCompleteInfo({_id: accountId, ua, token})
     })
 
@@ -73,8 +73,9 @@ router.get(env.RootApiEndpoint + 'owner/accessInfo', async (req:Request, res:Res
 router.get(env.RootApiEndpoint + 'owner/accessInfo/rootAccount/:rootAccountId', async (req:Request, res:Response) => {
     const accountId = req?.accountData?._id || ''
     const { rootAccountId } = req.params
+    console.log('account accessInfo: ', rootAccountId, accountId)
 
-    const [result, statusCode] = await ErrorHandler.execute<IRole & {accountFeatures: IFeature[]}>(async () => {
+    const [result, statusCode] = await ErrorHandler.execute<IAccessInfo>(async () => {
         return await accountAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, accountId)
     })
 
@@ -86,7 +87,9 @@ router.get(env.RootApiEndpoint + 'owner/accessInfo/rootAccount/:rootAccountId/ro
     const { rootAccountId } = req.params
     const { rootWorkspaceId } = req.params
 
-    const [result, statusCode] = await ErrorHandler.execute<IRole & {accountFeatures: IFeature[]}>(async () => {
+    console.log('account workspace accessInfo: ', rootAccountId, rootWorkspaceId, accountId)
+
+    const [result, statusCode] = await ErrorHandler.execute<IAccessInfo>(async () => {
         return await accountWorkspaceAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, rootWorkspaceId, accountId)
     })
 
