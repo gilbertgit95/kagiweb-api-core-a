@@ -12,7 +12,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -29,7 +29,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -46,7 +46,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -63,7 +63,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -80,7 +80,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -97,7 +97,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -114,7 +114,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -131,7 +131,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -148,7 +148,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -165,7 +165,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -182,7 +182,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -200,7 +200,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -218,7 +218,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -236,7 +236,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -254,7 +254,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -272,7 +272,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -290,7 +290,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -307,7 +307,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -324,7 +324,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -341,25 +341,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
-  }
-},
-{
-  "_id": "381b03b1-6308-462d-94f0-e7af7fb22874",
-  "value": "GET - /api/v1/accounts/:accountId/completeInfo",
-  "createdAt": {
-    "$date": "2025-01-22T14:14:56.668Z"
-  },
-  "description": "One of the server endpoint",
-  "name": "GET - /api/v1/accounts/:accountId/completeInfo",
-  "scope": "account",
-  "tags": [
-    "accounts",
-    "completeInfo"
-  ],
-  "type": "api-route",
-  "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -376,7 +358,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -393,7 +375,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -411,7 +393,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -429,7 +411,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -447,7 +429,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -465,7 +447,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -483,7 +465,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -501,7 +483,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -519,7 +501,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -537,7 +519,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -555,7 +537,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -573,7 +555,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -591,7 +573,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -609,7 +591,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -627,7 +609,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -645,7 +627,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -663,7 +645,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -681,7 +663,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -699,7 +681,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -717,7 +699,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -735,7 +717,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -753,7 +735,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -771,7 +753,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -789,7 +771,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -807,7 +789,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -825,7 +807,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -843,7 +825,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -861,7 +843,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -879,7 +861,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -897,7 +879,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -915,7 +897,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -933,7 +915,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -952,7 +934,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -971,7 +953,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -990,7 +972,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1009,7 +991,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1028,7 +1010,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1046,7 +1028,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1064,7 +1046,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1082,7 +1064,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1100,7 +1082,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1118,7 +1100,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1137,7 +1119,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1156,7 +1138,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1175,7 +1157,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1194,7 +1176,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1213,7 +1195,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1232,7 +1214,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1251,7 +1233,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1270,7 +1252,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1288,7 +1270,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1306,7 +1288,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1324,7 +1306,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1342,7 +1324,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1360,7 +1342,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1379,7 +1361,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1398,7 +1380,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1417,7 +1399,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1436,7 +1418,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1455,7 +1437,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1475,7 +1457,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1495,7 +1477,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1515,7 +1497,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1535,7 +1517,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1555,7 +1537,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1575,7 +1557,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1595,7 +1577,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1615,7 +1597,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1632,7 +1614,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1649,25 +1631,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
-  }
-},
-{
-  "_id": "0ca78eb7-4319-44b7-a4a0-a4021b374648",
-  "value": "GET - /api/v1/owner/completeInfo",
-  "createdAt": {
-    "$date": "2025-01-22T14:14:56.668Z"
-  },
-  "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/completeInfo",
-  "scope": "app",
-  "tags": [
-    "owner",
-    "completeInfo"
-  ],
-  "type": "api-route",
-  "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1685,7 +1649,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1703,7 +1667,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1721,7 +1685,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1739,7 +1703,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1757,7 +1721,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1775,7 +1739,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1793,7 +1757,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1811,7 +1775,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1829,7 +1793,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1847,7 +1811,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1865,7 +1829,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1883,7 +1847,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1901,7 +1865,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1919,7 +1883,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1937,7 +1901,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1955,7 +1919,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1973,7 +1937,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -1991,7 +1955,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2009,7 +1973,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2027,7 +1991,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2045,7 +2009,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2063,7 +2027,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2081,7 +2045,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2099,7 +2063,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2117,7 +2081,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2135,7 +2099,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2153,7 +2117,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2171,7 +2135,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2190,7 +2154,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2209,7 +2173,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2228,7 +2192,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2247,7 +2211,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2266,7 +2230,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2284,7 +2248,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2302,7 +2266,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2320,7 +2284,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2338,7 +2302,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2356,7 +2320,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2375,7 +2339,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2394,7 +2358,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2413,7 +2377,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2432,7 +2396,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2451,7 +2415,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2470,7 +2434,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2489,7 +2453,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2508,7 +2472,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2526,7 +2490,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2544,7 +2508,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2562,7 +2526,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2580,7 +2544,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2598,7 +2562,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2617,7 +2581,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2636,7 +2600,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2655,7 +2619,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2674,7 +2638,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2693,7 +2657,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2713,7 +2677,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2733,7 +2697,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2753,7 +2717,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2773,7 +2737,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2793,7 +2757,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2813,7 +2777,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2833,7 +2797,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -2853,7 +2817,7 @@
   ],
   "type": "api-route",
   "updatedAt": {
-    "$date": "2025-01-22T23:11:13.048Z"
+    "$date": "2025-02-04T07:39:24.517Z"
   }
 },
 {
@@ -4997,14 +4961,16 @@
   "name": "PRIVATE MAIN NAV - Dashboard",
   "type": "ui-main-drawer",
   "scope": "app",
-  "tags": [],
+  "tags": [
+    "index"
+  ],
   "value": "PRIVATE MAIN NAV - Dashboard",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2025-01-22T14:15:41.384Z"
   },
   "updatedAt": {
-    "$date": "2025-01-22T14:22:46.876Z"
+    "$date": "2025-02-05T07:04:50.451Z"
   },
   "__v": 0
 },
@@ -5013,14 +4979,16 @@
   "name": "PRIVATE MAIN NAV - Features",
   "type": "ui-main-drawer",
   "scope": "app",
-  "tags": [],
+  "tags": [
+    "features"
+  ],
   "value": "PRIVATE MAIN NAV - Features",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2025-01-22T14:15:41.389Z"
   },
   "updatedAt": {
-    "$date": "2025-01-22T14:22:46.882Z"
+    "$date": "2025-02-05T07:04:20.283Z"
   },
   "__v": 0
 },
@@ -5029,14 +4997,16 @@
   "name": "PRIVATE MAIN NAV - Roles",
   "type": "ui-main-drawer",
   "scope": "app",
-  "tags": [],
+  "tags": [
+    "roles"
+  ],
   "value": "PRIVATE MAIN NAV - Roles",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2025-01-22T14:15:41.394Z"
   },
   "updatedAt": {
-    "$date": "2025-01-22T14:22:46.887Z"
+    "$date": "2025-02-05T07:04:01.756Z"
   },
   "__v": 0
 },
@@ -5045,14 +5015,16 @@
   "name": "PRIVATE MAIN NAV - Accounts",
   "type": "ui-main-drawer",
   "scope": "app",
-  "tags": [],
+  "tags": [
+    "accounts"
+  ],
   "value": "PRIVATE MAIN NAV - Accounts",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2025-01-22T14:15:41.399Z"
   },
   "updatedAt": {
-    "$date": "2025-01-22T14:22:46.894Z"
+    "$date": "2025-02-05T07:03:42.110Z"
   },
   "__v": 0
 },
@@ -5061,14 +5033,91 @@
   "name": "PRIVATE MAIN NAV - System",
   "type": "ui-main-drawer",
   "scope": "app",
-  "tags": [],
+  "tags": [
+    "system"
+  ],
   "value": "PRIVATE MAIN NAV - System",
   "description": "One of the ui main drawer nav",
   "createdAt": {
     "$date": "2025-01-22T14:15:41.405Z"
   },
   "updatedAt": {
-    "$date": "2025-01-22T14:22:46.900Z"
+    "$date": "2025-02-05T07:02:34.165Z"
   },
   "__v": 0
+},
+{
+  "_id": "84d1c0e6-d9f1-4fc3-83d1-6177f92c9534",
+  "value": "GET - /api/v1/owner/accessInfo",
+  "createdAt": {
+    "$date": "2025-02-04T07:05:54.905Z"
+  },
+  "description": "One of the server endpoint",
+  "name": "GET - /api/v1/owner/accessInfo",
+  "scope": "app",
+  "tags": [
+    "owner",
+    "accessInfo"
+  ],
+  "type": "api-route",
+  "updatedAt": {
+    "$date": "2025-02-04T07:39:24.517Z"
+  }
+},
+{
+  "_id": "f4fc5999-c3a3-4a3c-a4c6-27f70b38cfe5",
+  "value": "GET - /api/v1/owner/accessInfo/rootAccount/:rootAccountId",
+  "createdAt": {
+    "$date": "2025-02-04T07:05:54.905Z"
+  },
+  "description": "One of the server endpoint",
+  "name": "GET - /api/v1/owner/accessInfo/rootAccount/:rootAccountId",
+  "scope": "app",
+  "tags": [
+    "owner",
+    "accessInfo",
+    "rootAccount"
+  ],
+  "type": "api-route",
+  "updatedAt": {
+    "$date": "2025-02-04T07:39:24.517Z"
+  }
+},
+{
+  "_id": "b46baeaf-bc4e-4f88-be19-106e1e6a5629",
+  "value": "GET - /api/v1/owner/accessInfo/rootAccount/:rootAccountId/rootWorkspace/:rootWorkspaceId",
+  "createdAt": {
+    "$date": "2025-02-04T07:05:54.905Z"
+  },
+  "description": "One of the server endpoint",
+  "name": "GET - /api/v1/owner/accessInfo/rootAccount/:rootAccountId/rootWorkspace/:rootWorkspaceId",
+  "scope": "app",
+  "tags": [
+    "owner",
+    "accessInfo",
+    "rootAccount",
+    "rootWorkspace"
+  ],
+  "type": "api-route",
+  "updatedAt": {
+    "$date": "2025-02-04T07:39:24.517Z"
+  }
+},
+{
+  "_id": "b39e8097-099e-4128-8800-157d6c8bfbde",
+  "value": "GET - /api/v1/accounts/:accountId/accessInfo",
+  "createdAt": {
+    "$date": "2025-02-04T07:39:24.517Z"
+  },
+  "description": "One of the server endpoint",
+  "name": "GET - /api/v1/accounts/:accountId/accessInfo",
+  "scope": "account",
+  "tags": [
+    "accounts",
+    "accessInfo"
+  ],
+  "type": "api-route",
+  "updatedAt": {
+    "$date": "2025-02-04T07:39:24.517Z"
+  }
 }]

@@ -1,6 +1,6 @@
 [{
   "_id": "37410e75-1760-4bb6-85e0-d0a138d374bc",
-  "__v": 331,
+  "__v": 338,
   "clientDevices": [
     {
       "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36",
@@ -36,43 +36,85 @@
       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
       "disabled": false,
       "_id": "ad362fc5-fca9-4481-bca2-5fcccaf3e889",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MzY5NDYxNTMsImV4cCI6MTczNzU1MDk1M30.0eYMzMblfaWTwl1ZTMvMzCtCq39iMSWsF-FbCzbD9Mc",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2025-01-22T13:02:33.000Z"
-          },
-          "disabled": false,
-          "_id": "428e17df-3423-4306-a4ac-2825830a344f",
-          "createdAt": {
-            "$date": "2025-01-15T13:02:33.054Z"
-          },
-          "updatedAt": {
-            "$date": "2025-01-15T13:02:33.054Z"
-          }
-        },
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3Mzc1NTExNDQsImV4cCI6MTczODE1NTk0NH0.ii7XVee2BtY1a3YrEE9q5fPh9QEq-xA0sD8slZ38bxA",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2025-01-29T13:05:44.000Z"
-          },
-          "disabled": false,
-          "_id": "02732b22-349f-4b45-87af-a8df8579c719",
-          "createdAt": {
-            "$date": "2025-01-22T13:05:44.024Z"
-          },
-          "updatedAt": {
-            "$date": "2025-01-22T13:05:44.024Z"
-          }
-        }
-      ],
+      "accessTokens": [],
       "createdAt": {
         "$date": "2024-11-19T11:42:27.555Z"
       },
       "updatedAt": {
-        "$date": "2025-01-22T13:05:44.038Z"
+        "$date": "2025-02-04T07:18:17.538Z"
+      }
+    },
+    {
+      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+      "disabled": false,
+      "_id": "e91eefa4-df35-4ccc-9e19-52acde9f434c",
+      "accessTokens": [
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3MzgyMzAxMzQsImV4cCI6MTczODgzNDkzNH0.8xucvHap6UdgyJKRO5hMW_suI_XAkx6iRRRx-dgqDNA",
+          "ipAddress": "::ffff:127.0.0.1",
+          "expTime": {
+            "$date": "2025-02-06T09:42:14.000Z"
+          },
+          "disabled": false,
+          "_id": "2818f68e-93f5-4154-9b5c-0e1b0fe5a930",
+          "createdAt": {
+            "$date": "2025-01-30T09:42:14.063Z"
+          },
+          "updatedAt": {
+            "$date": "2025-01-30T09:42:14.063Z"
+          }
+        },
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3Mzg2NTM0OTcsImV4cCI6MTczOTI1ODI5N30.Ypu9-qNBWK1XSQf2cG2gOQPKj0w1VnJnlCqYJoMPhDs",
+          "ipAddress": "::ffff:127.0.0.1",
+          "expTime": {
+            "$date": "2025-02-11T07:18:17.000Z"
+          },
+          "disabled": false,
+          "_id": "2ccd6aa7-9fdd-4187-ade8-4378027f16e3",
+          "createdAt": {
+            "$date": "2025-02-04T07:18:17.528Z"
+          },
+          "updatedAt": {
+            "$date": "2025-02-04T07:18:17.528Z"
+          }
+        },
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3Mzg2NTM1ODYsImV4cCI6MTczOTI1ODM4Nn0.LWcvIwD8Cpv0JNKm83ZDaB9ttJx1ptcw1Q9Im0vCRWU",
+          "ipAddress": "::ffff:127.0.0.1",
+          "expTime": {
+            "$date": "2025-02-11T07:19:46.000Z"
+          },
+          "disabled": false,
+          "_id": "8672066a-cd6e-439a-a4e6-50b6979fe790",
+          "createdAt": {
+            "$date": "2025-02-04T07:19:46.705Z"
+          },
+          "updatedAt": {
+            "$date": "2025-02-04T07:19:46.705Z"
+          }
+        },
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3Mzg2NTM2MjgsImV4cCI6MTczOTI1ODQyOH0.1LZklji7XVAAJBevQteKPzGnnmPtp1Q0QSIZDt2JuWY",
+          "ipAddress": "::ffff:127.0.0.1",
+          "expTime": {
+            "$date": "2025-02-11T07:20:28.000Z"
+          },
+          "disabled": false,
+          "_id": "efd88dd9-6d95-438f-a323-7e9b666a85e5",
+          "createdAt": {
+            "$date": "2025-02-04T07:20:28.730Z"
+          },
+          "updatedAt": {
+            "$date": "2025-02-04T07:20:28.730Z"
+          }
+        }
+      ],
+      "createdAt": {
+        "$date": "2025-01-30T09:42:14.051Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-04T07:20:28.730Z"
       }
     }
   ],
@@ -146,7 +188,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-01-22T13:05:44.025Z"
+        "$date": "2025-02-04T07:20:28.731Z"
       }
     },
     {
@@ -162,7 +204,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-01-22T13:05:44.025Z"
+        "$date": "2025-02-04T07:20:28.731Z"
       }
     },
     {
@@ -321,7 +363,7 @@
     }
   ],
   "updatedAt": {
-    "$date": "2025-01-23T01:57:52.668Z"
+    "$date": "2025-02-05T07:38:28.949Z"
   },
   "accountInfos": [
     {
@@ -442,7 +484,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-01-23T01:57:30.429Z"
+        "$date": "2025-02-05T07:38:28.949Z"
       }
     },
     {
@@ -904,14 +946,14 @@
   "accountInfos": [
     {
       "key": "Fullname",
-      "value": "Robert Lustiva",
+      "value": "Roberto",
       "type": "string",
       "_id": "19c8ea81-3a07-4b40-ba6d-109b91f226ea",
       "createdAt": {
         "$date": "2024-03-07T10:51:30.186Z"
       },
       "updatedAt": {
-        "$date": "2024-03-07T10:51:30.186Z"
+        "$date": "2025-02-05T13:25:24.331Z"
       }
     },
     {
@@ -931,7 +973,7 @@
     "$date": "2024-01-10T13:07:57.314Z"
   },
   "updatedAt": {
-    "$date": "2025-01-23T02:41:44.311Z"
+    "$date": "2025-02-05T13:25:24.332Z"
   },
   "__v": 66,
   "workspaces": [],
