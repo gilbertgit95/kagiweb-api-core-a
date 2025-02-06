@@ -28,8 +28,6 @@ import {
     IPassword, ILimitedTransaction, IClientDevice, IAccessToken, IAccountAccountRef,
     IWorkspace, IWorkspaceAccountRef
 } from '../dataSource/models/accountModel'
-import { IRole } from '../dataSource/models/roleModel'
-import { IFeature } from '../dataSource/models/featureModel'
 
 
 const router = express.Router()
@@ -73,10 +71,10 @@ router.get(env.RootApiEndpoint + 'owner/accessInfo', async (req:Request, res:Res
 router.get(env.RootApiEndpoint + 'owner/accessInfo/rootAccount/:rootAccountId', async (req:Request, res:Response) => {
     const accountId = req?.accountData?._id || ''
     const { rootAccountId } = req.params
-    console.log('account accessInfo: ', rootAccountId, accountId)
+    // console.log('account accessInfo: ', rootAccountId, accountId)
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessInfo>(async () => {
-        return await accountAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, accountId)
+        return await accountAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, accountId, req.appRole?.absoluteAuthority)
     })
 
     return res.status(statusCode).send(result)
@@ -87,10 +85,10 @@ router.get(env.RootApiEndpoint + 'owner/accessInfo/rootAccount/:rootAccountId/ro
     const { rootAccountId } = req.params
     const { rootWorkspaceId } = req.params
 
-    console.log('account workspace accessInfo: ', rootAccountId, rootWorkspaceId, accountId)
+    // console.log('account workspace accessInfo: ', rootAccountId, rootWorkspaceId, accountId)
 
     const [result, statusCode] = await ErrorHandler.execute<IAccessInfo>(async () => {
-        return await accountWorkspaceAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, rootWorkspaceId, accountId)
+        return await accountWorkspaceAccountRefRoleController.getDefaultMappedRoleRef(rootAccountId, rootWorkspaceId, accountId, req.appRole?.absoluteAuthority)
     })
 
     return res.status(statusCode).send(result)

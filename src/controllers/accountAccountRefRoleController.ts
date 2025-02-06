@@ -71,11 +71,20 @@ class AccountAccountRefRoleController {
         return accRef!.rolesRefs? accRef!.rolesRefs: []
     }
 
-    public async getDefaultMappedRoleRef(accountId:string, accountRefAccountId:string):Promise<IAccessInfo> {
+    public async getDefaultMappedRoleRef(accountId:string, accountRefAccountId:string, ownerAppRoleIsAbsolute = false):Promise<IAccessInfo> {
         if (!(accountId && accountRefAccountId)) throw({code: 400})
         
         const account = await accountController.getAccount({_id: accountId})
         if (!account) throw({code: 404})
+
+        // if the owner app role is absolute, then return the account without role
+        if (ownerAppRoleIsAbsolute) {
+            return {
+                visitedAccount: account,
+                visitedAccountRole: undefined,
+                visitedAccountFeatures: undefined,
+            }
+        }
 
         const accountRef = accountAccountRefController.getAccountRefByAccountId(account, accountRefAccountId)
         if (!accountRef) throw({code: 404})

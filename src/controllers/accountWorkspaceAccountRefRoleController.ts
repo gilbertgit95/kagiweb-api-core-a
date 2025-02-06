@@ -71,7 +71,7 @@ class AccountWorkspaceAccountRefRoleController {
         return accRef!.rolesRefs? accRef!.rolesRefs: []
     }
 
-    public async getDefaultMappedRoleRef(accountId:string, workspaceId:string, accountRefAccountId:string):Promise<IAccessInfo> {
+    public async getDefaultMappedRoleRef(accountId:string, workspaceId:string, accountRefAccountId:string, ownerAppRoleIsAbsolute = false):Promise<IAccessInfo> {
         if (!(accountId && accountRefAccountId)) throw({code: 400})
         
         const account = await accountController.getAccount({_id: accountId})
@@ -79,6 +79,15 @@ class AccountWorkspaceAccountRefRoleController {
 
         const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
         if (!workspace) throw({code: 404})
+
+            // if the owner app role is absolute, then return the account worskpace without role
+        if (ownerAppRoleIsAbsolute) {
+            return {
+                visitedAccountWorkspace: workspace,
+                visitedAccountWorkspaceRole: undefined,
+                visitedAccountWorkspaceFeatures: undefined
+            }
+        }
         
         const accountRef = accountWorkspaceAccountRefController.getWorkspaceAccountRefByAccountId(account, workspaceId, accountRefAccountId)
         if (!accountRef) throw({code: 404})
