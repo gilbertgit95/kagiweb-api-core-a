@@ -32,6 +32,7 @@ import accountWorkspaceAccountRefRoutes from './routes/accountWorkspaceAccountRe
 import accountWorkspaceAccountRefAccountConfigRoutes from './routes/accountWorkspaceAccountRefAccountConfigRoutes'
 import accountWorkspaceAccountRefRoleRoutes from './routes/accountWorkspaceAccountRefRoleRoutes'
 import ownerRoutes from './routes/ownerRoutes'
+import notificationRoutes from './routes/notificationRoutes'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -87,6 +88,7 @@ appHandler.addPrivateRoute(accountAccountRefRoutes)
 appHandler.addPrivateRoute(accountAccountRefAccountConfigRoutes)
 appHandler.addPrivateRoute(accountAccountRefRoleRoutes)
 appHandler.addPrivateRoute(ownerRoutes)
+appHandler.addPrivateRoute(notificationRoutes)
 
 export {
     appEvents

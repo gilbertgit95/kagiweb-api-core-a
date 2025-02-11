@@ -14,9 +14,11 @@ class NotificationController {
         this.request = new DataRequest(NotificationModel)
     }
 
-    public async getNotification(query:any):Promise<INotification|null> {
-        if (!query._id) return null
-        return await this.cachedData.getItem<INotification>(query._id)
+    public async getNotification(accountId:string, notifId:string):Promise<INotification|null> {
+        if (!accountId || !notifId) return null
+        // check that the account existed
+        // check if the ntif is really under this account
+        return await this.cachedData.getItem<INotification>(notifId)
     }
 
     public async getNotificationsByPage(query:{accountId?:string, seen?:boolean} = {}, pageInfo: IPgeInfo):Promise<IListOutput<INotification>> {
@@ -49,9 +51,13 @@ class NotificationController {
         return result
     }
 
-    public async deleteNotification(id:string):Promise<INotification | null> {
+    public async deleteNotification(accountId:string, notifId:string):Promise<INotification | null> {
 
-        const result = await this.cachedData.deleteItem<INotification>(id)
+        if (!accountId || !notifId) return null
+        // check that the account existed
+        // check if the ntif is really under this account
+
+        const result = await this.cachedData.deleteItem<INotification>(notifId)
 
         return result
     }
