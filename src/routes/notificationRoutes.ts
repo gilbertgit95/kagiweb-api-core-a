@@ -45,6 +45,17 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/notifications/:notificatio
     return res.status(statusCode).send(result)
 })
 
+router.put(env.RootApiEndpoint + 'accounts/:accountId/notifications/:notificationId', async (req:Request, res:Response) => {
+    const { accountId, notificationId} = req.params
+    const { type, title, message, link, seen } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<INotification>(async () => {
+        return await notificationController.updateNotification(accountId, notificationId, type, title, message, link, seen)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
 router.delete(env.RootApiEndpoint + 'accounts/:accountId/notifications/:notificationId', async (req:Request, res:Response) => {
    const { accountId, notificationId } = req.params
 
@@ -84,6 +95,18 @@ router.get(env.RootApiEndpoint + 'owner/notifications/:notificationId', async (r
 
     const [result, statusCode] = await ErrorHandler.execute<INotification>(async () => {
         return await notificationController.getNotification(accountId, notificationId)
+    })
+
+    return res.status(statusCode).send(result)
+})
+
+router.put(env.RootApiEndpoint + 'owner/notifications/:notificationId', async (req:Request, res:Response) => {
+    const accountId = req?.accountData?._id || ''
+    const { notificationId} = req.params
+    const { type, title, message, link, seen } = req.body
+
+    const [result, statusCode] = await ErrorHandler.execute<INotification>(async () => {
+        return await notificationController.updateNotification(accountId, notificationId, type, title, message, link, seen)
     })
 
     return res.status(statusCode).send(result)
