@@ -15,6 +15,11 @@ class NotificationController {
         this.request = new DataRequest(NotificationModel)
     }
 
+    public async getActiveNotifications(accountId:string):Promise<{activeNotifications: number}> {
+        const result = await NotificationModel.count({accountId, seen: false}) || 0
+        return {activeNotifications: result}
+    }
+
     public async getNotification(accountId:string, notifId:string):Promise<INotification|null> {
         if (!accountId || !notifId) return null
         // check that the account existed
