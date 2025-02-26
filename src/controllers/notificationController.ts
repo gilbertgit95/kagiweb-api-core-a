@@ -2,6 +2,7 @@ import DataCache from '../utilities/dataCache'
 import NotificationModel, { INotification, TNotificationType } from '../dataSource/models/notificationModel'
 import DataRequest, { IListOutput, IPgeInfo } from '../utilities/dataQuery'
 import accountController from './accountController'
+import DataCleaner from '../utilities/dataCleaner'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -50,13 +51,16 @@ class NotificationController {
 
     public async updateNotification(accountId:string, notifId:string, type:TNotificationType, title:string, message:string, link?:string, seen?:boolean):Promise<INotification | null> {
         const doc:INotification = {}
+        const seenData = DataCleaner.getBooleanData(seen || '')
 
         if (accountId) doc.accountId = accountId
         if (type) doc.type = type
         if (title) doc.title = title
         if (message) doc.message = message
         if (link) doc.link = link
-        if (seen) doc.seen = seen
+        if (seenData.isValid) doc.seen = seenData.data
+
+        // console.log('to update fields: ', doc, seen, typeof seen)
 
         // check that the account existed
         const account = await accountController.getAccount({_id: accountId})
