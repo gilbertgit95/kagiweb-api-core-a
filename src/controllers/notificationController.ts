@@ -90,6 +90,22 @@ class NotificationController {
 
         return result
     }
+
+    public async acceptAccountInvitation(accountId:string, toAccountId:string):Promise<void> {
+        return
+    }
+
+    public async declineAccountInvitation(accountId:string, toAccountId:string):Promise<void> {
+        return
+    }
+
+    public async acceptAccountWorkspaceInvitation(accountId:string, toAccountId:string, toWorkspaceId:string):Promise<void> {
+        return
+    }
+
+    public async declineAccountWorkspaceInvitation(accountId:string, toAccountId:string, toWorkspaceId:string):Promise<void> {
+        return
+    }
 }
 
 export default new NotificationController()
