@@ -1,4 +1,4 @@
-class InvitationController {
+class ActionsController {
     public async acceptAccountInvitation(accountId:string, toAccountId:string):Promise<boolean> {
         // get invited account data
 
@@ -48,4 +48,4 @@ class InvitationController {
     }
 }
 
-export default new InvitationController()
+export default new ActionsController()
