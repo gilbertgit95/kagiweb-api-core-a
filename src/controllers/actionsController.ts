@@ -1,5 +1,5 @@
 class ActionsController {
-    public async acceptAccountInvitation(accountId:string, toAccountId:string):Promise<boolean> {
+    public async acceptAccountInvitation(forAccountId:string, toAccountId:string, refId:string):Promise<boolean> {
         // get invited account data
 
         // get account invitation is comming from
@@ -10,7 +10,7 @@ class ActionsController {
         return true
     }
 
-    public async declineAccountInvitation(accountId:string, toAccountId:string):Promise<boolean> {
+    public async declineAccountInvitation(forAccountId:string, toAccountId:string, refId:string):Promise<boolean> {
         // get invited account data
 
         // get account invitation is comming from
@@ -21,7 +21,7 @@ class ActionsController {
         return true
     }
 
-    public async acceptAccountWorkspaceInvitation(accountId:string, toAccountId:string, toWorkspaceId:string):Promise<boolean> {
+    public async acceptAccountWorkspaceInvitation(forAccountId:string, toAccountId:string, toWorkspaceId:string, refId:string):Promise<boolean> {
         // get invited account data
 
         // get account invitation is comming from
@@ -34,7 +34,7 @@ class ActionsController {
         return true
     }
 
-    public async declineAccountWorkspaceInvitation(accountId:string, toAccountId:string, toWorkspaceId:string):Promise<boolean> {
+    public async declineAccountWorkspaceInvitation(forAccountId:string, toAccountId:string, toWorkspaceId:string, refId:string):Promise<boolean> {
         // get invited account data
 
         // get account invitation is comming from
