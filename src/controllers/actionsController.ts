@@ -1,49 +1,21 @@
 class ActionsController {
-    public async acceptAccountInvitation(forAccountId:string, toAccountId:string, refId:string):Promise<boolean> {
-        // get invited account data
-
-        // get account invitation is comming from
-
-        // check if the invitation was sent
-
-        // update the accoumt reference so that accepeted field is true and decliend remains false
+    // accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId
+    public async getAccountActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string):Promise<boolean> {
         return true
     }
 
-    public async declineAccountInvitation(forAccountId:string, toAccountId:string, refId:string):Promise<boolean> {
-        // get invited account data
-
-        // get account invitation is comming from
-
-        // check if the invitation was sent
-
-        // update the accoumt reference so that declined field is true and accepted remains false
+    // accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId
+    public async getAccountWorkspaceActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, subModuleType:string, subModuleId:string, refType:string, refId:string):Promise<boolean> {
         return true
     }
 
-    public async acceptAccountWorkspaceInvitation(forAccountId:string, toAccountId:string, toWorkspaceId:string, refId:string):Promise<boolean> {
-        // get invited account data
+    public async acceptOrDeclineAccountAction(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string, accept:boolean):Promise<boolean> {
 
-        // get account invitation is comming from
-
-        // check workspace is existing
-
-        // check if the invitation was sent
-
-        // update the accoumt reference so that decliend field is true and accepted remains false
         return true
     }
 
-    public async declineAccountWorkspaceInvitation(forAccountId:string, toAccountId:string, toWorkspaceId:string, refId:string):Promise<boolean> {
-        // get invited account data
+    public async acceptOrDeclineAccountWorkspaceAction(accountId:string, actionType:string, moduleType:string, moduleId:string, subModuleType:string, subModuleId:string, refType:string, refId:string, accept:boolean):Promise<boolean> {
 
-        // get account invitation is comming from
-
-        // check workspace is existing
-
-        // check if the invitation was sent
-
-        // update the accoumt reference so that declined field is true and accepted remains false
         return true
     }
 }

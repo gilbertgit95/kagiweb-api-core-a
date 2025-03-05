@@ -67,16 +67,6 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/notifications/:notifica
 })
 
 // for owner notifications
-router.get(env.RootApiEndpoint + 'owner/activeNotifications', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-
-    const [result, statusCode] = await ErrorHandler.execute<{activeNotifications: number}>(async () => {
-        return await notificationController.getActiveNotifications(accountId)
-    })
-
-    return res.status(statusCode).send(result)
-})
-
 router.get(env.RootApiEndpoint + 'owner/notifications', async (req:Request, res:Response) => {
     const accountId = req?.accountData?._id || ''
     const pageInfo = DataRequest.getPageInfoQuery(req.query)

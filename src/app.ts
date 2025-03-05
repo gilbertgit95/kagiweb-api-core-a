@@ -33,6 +33,7 @@ import accountWorkspaceAccountRefAccountConfigRoutes from './routes/accountWorks
 import accountWorkspaceAccountRefRoleRoutes from './routes/accountWorkspaceAccountRefRoleRoutes'
 import ownerRoutes from './routes/ownerRoutes'
 import notificationRoutes from './routes/notificationRoutes'
+import quickCheckRoutes from './routes/quickCheckRoutes'
 import actionRoutes from './routes/actionRoutes'
 
 const router = express.Router()
@@ -90,6 +91,7 @@ appHandler.addPrivateRoute(accountAccountRefAccountConfigRoutes)
 appHandler.addPrivateRoute(accountAccountRefRoleRoutes)
 appHandler.addPrivateRoute(ownerRoutes)
 appHandler.addPrivateRoute(notificationRoutes)
+appHandler.addPrivateRoute(quickCheckRoutes)
 appHandler.addPrivateRoute(actionRoutes)
 
 export {
