@@ -1,0 +1,64 @@
+[{
+  "_id": "cb8dc480-d66c-40cc-8b10-a872c83715f3",
+  "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+  "title": "Test Notification",
+  "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
+  "type": "info",
+  "link": "https://google.com",
+  "seen": true,
+  "createdAt": {
+    "$date": "2025-02-23T14:39:22.554Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-17T14:12:22.843Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "21ad3381-52bb-40e3-acfa-86942c3012fb",
+  "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+  "title": "Test II",
+  "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
+  "type": "warning",
+  "link": "https://google.com",
+  "seen": true,
+  "createdAt": {
+    "$date": "2025-02-23T14:42:19.916Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-05T12:21:09.759Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "47e69b5c-cffe-4f45-b18d-6c2fde1f160d",
+  "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+  "title": "Test III",
+  "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
+  "type": "error",
+  "link": "https://google.com",
+  "seen": true,
+  "createdAt": {
+    "$date": "2025-02-23T14:42:19.941Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-04T13:38:13.259Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "edfaf5e1-9122-4b2f-9523-1edc1191efae",
+  "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+  "title": "Test IV",
+  "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
+  "type": "success",
+  "link": "https://google.com",
+  "seen": true,
+  "createdAt": {
+    "$date": "2025-02-23T14:42:19.949Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-04T13:38:12.720Z"
+  },
+  "__v": 0
+}]

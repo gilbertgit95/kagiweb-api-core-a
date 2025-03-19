@@ -17,7 +17,7 @@
 },
 {
   "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-  "__v": 2743,
+  "__v": 2756,
   "absoluteAuthority": false,
   "createdAt": {
     "$date": "2023-12-24T04:04:50.138Z"
@@ -1393,12 +1393,122 @@
       "updatedAt": {
         "$date": "2025-02-05T07:37:43.521Z"
       }
+    },
+    {
+      "featureId": "a98a3fc8-4748-4314-856c-26208a08520c",
+      "_id": "11aab4de-198d-4628-91ab-eddb9d8f6cbb",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:18.789Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:18.789Z"
+      }
+    },
+    {
+      "featureId": "5eab99e0-d729-4e2c-a1b8-1982608ecc5c",
+      "_id": "7f6b255e-d8da-4f6f-9e31-9fe10e0acae8",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:18.819Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:18.819Z"
+      }
+    },
+    {
+      "featureId": "f38bd2c7-aff0-442b-b65a-8f13b4b64861",
+      "_id": "7e8c016f-6aad-497d-ba1b-a2067041c198",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:18.841Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:18.841Z"
+      }
+    },
+    {
+      "featureId": "7256ea15-4cf5-42e8-9bc8-f5b79ad4c714",
+      "_id": "79afd908-fdb1-4350-a7b2-36e73b8a5e49",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:18.866Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:18.866Z"
+      }
+    },
+    {
+      "featureId": "e3d5f910-8c9e-4952-a419-eac9799a61b7",
+      "_id": "07987546-aeab-4793-a65a-ad6d5e6dc270",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:18.887Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:18.887Z"
+      }
+    },
+    {
+      "featureId": "f558fde8-1069-46c7-baea-c1acd8a087be",
+      "_id": "068d73bb-8dbb-4f5b-9411-c5a277d123d9",
+      "createdAt": {
+        "$date": "2025-02-18T14:49:51.499Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-18T14:49:51.499Z"
+      }
+    },
+    {
+      "featureId": "4e21f59c-07d9-4329-8913-e38d5fcbc32a",
+      "_id": "8f9817f6-8654-4965-9361-0ae32e391d1b",
+      "createdAt": {
+        "$date": "2025-02-18T14:49:51.525Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-18T14:49:51.525Z"
+      }
+    },
+    {
+      "featureId": "a7678e3e-b043-432d-a084-db2908dd555e",
+      "_id": "ccca0793-4bfa-46db-bc61-74b9c2caa914",
+      "createdAt": {
+        "$date": "2025-02-18T14:49:51.542Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-18T14:49:51.542Z"
+      }
+    },
+    {
+      "featureId": "ea9a0a79-d337-4837-928a-233091d32fe7",
+      "_id": "476da1dd-b9e4-42f3-93f4-c962f7ba4cae",
+      "createdAt": {
+        "$date": "2025-02-18T14:49:51.557Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-18T14:49:51.557Z"
+      }
+    },
+    {
+      "featureId": "2fc30897-2b39-40df-b314-8644e7c7f54e",
+      "_id": "f48a115d-c017-4a33-8b00-7640df2d58db",
+      "createdAt": {
+        "$date": "2025-02-18T14:49:51.575Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-18T14:49:51.575Z"
+      }
+    },
+    {
+      "featureId": "6447a083-2b4d-4984-9456-9bb5e06b6a9a",
+      "_id": "232f0bca-581f-4bb3-aa61-d1197b44ce3b",
+      "createdAt": {
+        "$date": "2025-02-18T14:49:51.592Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-18T14:49:51.592Z"
+      }
     }
   ],
   "level": 1,
   "name": "Manager",
   "updatedAt": {
-    "$date": "2025-02-05T07:37:43.522Z"
+    "$date": "2025-03-04T23:40:46.669Z"
   },
   "reqLimitPerSec": 10,
   "scope": "app"
@@ -2620,15 +2730,65 @@
       "updatedAt": {
         "$date": "2025-02-05T07:38:50.699Z"
       }
+    },
+    {
+      "featureId": "a98a3fc8-4748-4314-856c-26208a08520c",
+      "_id": "75a3ba15-0369-47a9-9e21-c49e656cf601",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:52.865Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:52.865Z"
+      }
+    },
+    {
+      "featureId": "5eab99e0-d729-4e2c-a1b8-1982608ecc5c",
+      "_id": "084a0fb8-d606-45c2-b5c3-0bf72186a17b",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:52.890Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:52.890Z"
+      }
+    },
+    {
+      "featureId": "f38bd2c7-aff0-442b-b65a-8f13b4b64861",
+      "_id": "898da271-2c27-4b74-be62-70562e8c59b0",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:52.903Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:52.903Z"
+      }
+    },
+    {
+      "featureId": "7256ea15-4cf5-42e8-9bc8-f5b79ad4c714",
+      "_id": "3f633b78-948a-45f4-8948-5e84bb739b93",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:52.916Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:52.916Z"
+      }
+    },
+    {
+      "featureId": "e3d5f910-8c9e-4952-a419-eac9799a61b7",
+      "_id": "7b83d3b3-b108-4d04-8609-51a0a0b7b6ad",
+      "createdAt": {
+        "$date": "2025-02-12T15:21:52.928Z"
+      },
+      "updatedAt": {
+        "$date": "2025-02-12T15:21:52.928Z"
+      }
     }
   ],
   "createdAt": {
     "$date": "2024-08-21T00:45:08.486Z"
   },
   "updatedAt": {
-    "$date": "2025-02-05T07:38:50.700Z"
+    "$date": "2025-03-04T23:41:26.668Z"
   },
-  "__v": 781,
+  "__v": 788,
   "scope": "app"
 },
 {
