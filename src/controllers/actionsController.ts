@@ -7,45 +7,49 @@ class ActionsController {
         if (actionType === 'invitation') {
             // if moduleType is account get account invitation
             if (moduleType === 'account') {
-                const extWorkspaces:(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string}>([
-                    {
-                      '$match': {
-                        'workspaces.accountRefs.accountId': accountId
-                      }
-                    }, {
-                      '$unwind': {
-                        'path': '$workspaces', 
-                        'preserveNullAndEmptyArrays': false
-                      }
-                    }, {
-                      '$addFields': {
-                        'account': '$workspaces.accountRefs'
-                      }
-                    }, {
-                      '$unwind': {
-                        'path': '$account', 
-                        'preserveNullAndEmptyArrays': false
-                      }
-                    }, {
-                      '$match': {
-                        'account.accountId': accountId
-                      }
-                    }, {
-                      '$project': {
-                        '_id': '$workspaces._id',
-                        'name': '$workspaces.name',
-                        'description': '$workspaces.description',
-                        'ownerId': '$_id',
-                        'ownerNameId': '$nameId',
-                        'ownerAccountType': '$accountType',
-                        'isActive': '$workspaces.isActive',
-                        'accountRefs': '$workspaces.accountRefs',
-                        'createdAt': '$workspaces.createdAt',
-                        'updatedAt': '$workspaces.updatedAt',
-                        'disabled': '$workspaces.disabled'
-                      }
-                    }
-                ])
+                // get account where the account is referenced: username, id
+                // get the the account reference data
+                // get the account reference role
+
+                // const extWorkspaces:(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string}>([
+                //     {
+                //       '$match': {
+                //         'workspaces.accountRefs.accountId': accountId
+                //       }
+                //     }, {
+                //       '$unwind': {
+                //         'path': '$workspaces', 
+                //         'preserveNullAndEmptyArrays': false
+                //       }
+                //     }, {
+                //       '$addFields': {
+                //         'account': '$workspaces.accountRefs'
+                //       }
+                //     }, {
+                //       '$unwind': {
+                //         'path': '$account', 
+                //         'preserveNullAndEmptyArrays': false
+                //       }
+                //     }, {
+                //       '$match': {
+                //         'account.accountId': accountId
+                //       }
+                //     }, {
+                //       '$project': {
+                //         '_id': '$workspaces._id',
+                //         'name': '$workspaces.name',
+                //         'description': '$workspaces.description',
+                //         'ownerId': '$_id',
+                //         'ownerNameId': '$nameId',
+                //         'ownerAccountType': '$accountType',
+                //         'isActive': '$workspaces.isActive',
+                //         'accountRefs': '$workspaces.accountRefs',
+                //         'createdAt': '$workspaces.createdAt',
+                //         'updatedAt': '$workspaces.updatedAt',
+                //         'disabled': '$workspaces.disabled'
+                //       }
+                //     }
+                // ])
             }
         }
 
