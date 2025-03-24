@@ -11,45 +11,62 @@ class ActionsController {
                 // get the the account reference data
                 // get the account reference role
 
-                // const extWorkspaces:(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string}>([
-                //     {
-                //       '$match': {
-                //         'workspaces.accountRefs.accountId': accountId
-                //       }
-                //     }, {
-                //       '$unwind': {
-                //         'path': '$workspaces', 
-                //         'preserveNullAndEmptyArrays': false
-                //       }
-                //     }, {
-                //       '$addFields': {
-                //         'account': '$workspaces.accountRefs'
-                //       }
-                //     }, {
-                //       '$unwind': {
-                //         'path': '$account', 
-                //         'preserveNullAndEmptyArrays': false
-                //       }
-                //     }, {
-                //       '$match': {
-                //         'account.accountId': accountId
-                //       }
-                //     }, {
-                //       '$project': {
-                //         '_id': '$workspaces._id',
-                //         'name': '$workspaces.name',
-                //         'description': '$workspaces.description',
-                //         'ownerId': '$_id',
-                //         'ownerNameId': '$nameId',
-                //         'ownerAccountType': '$accountType',
-                //         'isActive': '$workspaces.isActive',
-                //         'accountRefs': '$workspaces.accountRefs',
-                //         'createdAt': '$workspaces.createdAt',
-                //         'updatedAt': '$workspaces.updatedAt',
-                //         'disabled': '$workspaces.disabled'
-                //       }
-                //     }
-                // ])
+                const extWorkspaces:(IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string})[] = await accountModel.aggregate<IWorkspace & {ownerId:string, ownerNameId: string, ownerAccountType: string}>([
+                        {
+                          $match: {
+                            'accountRefs.accountId':
+                              '37410e75-1760-4bb6-85e0-d0a138d374bc'
+                          }
+                        },
+                        {
+                          $unwind: {
+                            path: '$accountRefs',
+                            preserveNullAndEmptyArrays: false
+                          }
+                        },
+                        {
+                          $match: {
+                            'accountRefs.accountId':
+                              '37410e75-1760-4bb6-85e0-d0a138d374bc'
+                          }
+                        },
+                        {
+                          $unwind: {
+                            path: '$accountRefs.accountConfigs',
+                            preserveNullAndEmptyArrays: false
+                          }
+                        },
+                        {
+                          $match: {
+                            'accountRefs.accountConfigs.key':
+                              'default-role'
+                          }
+                        },
+                        {
+                          $lookup: {
+                            from: 'roles',
+                            localField:
+                              'accountRefs.accountConfigs.value',
+                            foreignField: '_id',
+                            as: 'accountAccountRole'
+                          }
+                        },
+                        {
+                          $unwind: {
+                            path: '$accountAccountRole',
+                            preserveNullAndEmptyArrays: false
+                          }
+                        },
+                        {
+                          $project: {
+                            'toAccount._id': '$_id',
+                            'toAccount.nameId': '$nameId',
+                            accountRef: 1
+                          }
+                        }
+                      ],
+                    );
+                ])
             }
         }
 
