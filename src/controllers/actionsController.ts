@@ -17,16 +17,18 @@ interface IAccountActionInfo {
 
 class ActionsController {
     // accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId
-    public async getAccountActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string):Promise<boolean> {
-        // invitations
+    public async getAccountActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string):Promise<IAccountActionInfo|undefined> {
+      let actionInfo:IAccountActionInfo|undefined = undefined
+      
+      // invitations
         if (actionType === 'invitation') {
             // if moduleType is account get account invitation
-            if (moduleType === 'account') {
+            if (moduleType === 'account' && refType === 'accountRefs') {
                 // get account where the account is referenced: username, id
                 // get the the account reference data
                 // get the account reference role
 
-                const actionInfo:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
+                const actionInfoResp:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
                   {
                     $match: {
                       "accountRefs.accountId":
@@ -99,15 +101,102 @@ class ActionsController {
                     }
                   }
                 ])
+
+                actionInfo = actionInfoResp.length? actionInfoResp[0]: undefined
             }
         }
 
-        return true
+        return actionInfo
     }
 
     // accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId
     public async getAccountWorkspaceActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, subModuleType:string, subModuleId:string, refType:string, refId:string):Promise<boolean> {
-        return true
+         // invitations
+         if (actionType === 'invitation') {
+          // if moduleType is account get account invitation
+          if (moduleType === 'account' && subModuleType === 'workspace' && refType === 'accountRefs') {
+              // get account where the account is referenced: username, id
+              // get workspace where the workspace
+              // get the the account reference data
+              // get the account reference role
+
+              const actionInfo:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
+                {
+                  $match: {
+                    "accountRefs.accountId":
+                      "37410e75-1760-4bb6-85e0-d0a138d374bc"
+                  }
+                },
+                {
+                  $unwind: {
+                    path: "$accountRefs",
+                    preserveNullAndEmptyArrays: false
+                  }
+                },
+                {
+                  $match: {
+                    "accountRefs.accountId":
+                      "37410e75-1760-4bb6-85e0-d0a138d374bc"
+                  }
+                },
+                {
+                  $unwind: {
+                    path: "$accountRefs.accountConfigs",
+                    preserveNullAndEmptyArrays: false
+                  }
+                },
+                {
+                  $match: {
+                    "accountRefs.accountConfigs.key":
+                      "default-role"
+                  }
+                },
+                {
+                  $lookup: {
+                    from: "roles",
+                    localField:
+                      "accountRefs.accountConfigs.value",
+                    foreignField: "_id",
+                    as: "accountAccountRole"
+                  }
+                },
+                {
+                  $unwind: {
+                    path: "$accountAccountRole",
+                    preserveNullAndEmptyArrays: false
+                  }
+                },
+                {
+                  $lookup:
+                    {
+                      from: "accounts",
+                      localField: "accountRefs.accountId",
+                      foreignField: "_id",
+                      as: "fromAccount"
+                    }
+                },
+                {
+                  $unwind:
+                    {
+                      path: "$fromAccount",
+                      preserveNullAndEmptyArrays: false
+                    }
+                },
+                {
+                  $project: {
+                    "toAccount._id": "$_id",
+                    "toAccount.nameId": "$nameId",
+                    "fromAccount._id": "$fromAccount._id",
+                    "fromAccount.nameId": "$fromAccount.nameId",
+                    ref: "$accountRefs",
+                    refRole: "$accountAccountRole"
+                  }
+                }
+              ])
+          }
+      }
+
+      return true
     }
 
     public async acceptOrDeclineAccountAction(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string, accept:boolean):Promise<boolean> {
