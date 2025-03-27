@@ -11,8 +11,22 @@ interface IAccountActionInfo {
         _id: string,
         nameId: string
     },
-    ref: IAccountAccountRef,
-    refRole: IRole
+    workspace?: {
+      _id: string,
+      name: string
+    },
+    ref: {
+      _id: string,
+      accepted: boolean,
+      declined: boolean,
+      disabled: boolean,
+      createdAt: Date,
+      updatedAt: Date
+    },
+    refRole: {
+      _id: string,
+      name: string
+    }
 }
 
 class ActionsController {
@@ -31,8 +45,9 @@ class ActionsController {
                 const actionInfoResp:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
                   {
                     $match: {
-                      "accountRefs.accountId":
-                        "37410e75-1760-4bb6-85e0-d0a138d374bc"
+                      _id: moduleId,
+                      "accountRefs._id": refId,
+                      "accountRefs.accountId": accountId
                     }
                   },
                   {
@@ -43,8 +58,8 @@ class ActionsController {
                   },
                   {
                     $match: {
-                      "accountRefs.accountId":
-                        "37410e75-1760-4bb6-85e0-d0a138d374bc"
+                      "accountRefs._id": refId,
+                      "accountRefs.accountId": accountId
                     }
                   },
                   {
@@ -75,20 +90,18 @@ class ActionsController {
                     }
                   },
                   {
-                    $lookup:
-                      {
-                        from: "accounts",
-                        localField: "accountRefs.accountId",
-                        foreignField: "_id",
-                        as: "fromAccount"
-                      }
+                    $lookup: {
+                      from: "accounts",
+                      localField: "accountRefs.accountId",
+                      foreignField: "_id",
+                      as: "fromAccount"
+                    }
                   },
                   {
-                    $unwind:
-                      {
-                        path: "$fromAccount",
-                        preserveNullAndEmptyArrays: false
-                      }
+                    $unwind: {
+                      path: "$fromAccount",
+                      preserveNullAndEmptyArrays: false
+                    }
                   },
                   {
                     $project: {
@@ -96,8 +109,14 @@ class ActionsController {
                       "toAccount.nameId": "$nameId",
                       "fromAccount._id": "$fromAccount._id",
                       "fromAccount.nameId": "$fromAccount.nameId",
-                      ref: "$accountRefs",
-                      refRole: "$accountAccountRole"
+                      "ref._id": "$accountRefs._id",
+                      "ref.accepted": "$accountRefs.accepted",
+                      "ref.declined": "$accountRefs.declined",
+                      "ref.disabled": "$accountRefs.disabled",
+                      "ref.createdAt": "$accountRefs.createdAt",
+                      "ref.updatedAt": "$accountRefs.updatedAt",
+                      "refRole._id": "$accountAccountRole._id",
+                      "refRole.name": "$accountAccountRole.name"
                     }
                   }
                 ])
@@ -110,8 +129,10 @@ class ActionsController {
     }
 
     // accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId
-    public async getAccountWorkspaceActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, subModuleType:string, subModuleId:string, refType:string, refId:string):Promise<boolean> {
-         // invitations
+    public async getAccountWorkspaceActionInfo(accountId:string, actionType:string, moduleType:string, moduleId:string, subModuleType:string, subModuleId:string, refType:string, refId:string):Promise<IAccountActionInfo|undefined> {
+      let actionInfo:IAccountActionInfo|undefined = undefined
+      
+      // invitations
          if (actionType === 'invitation') {
           // if moduleType is account get account invitation
           if (moduleType === 'account' && subModuleType === 'workspace' && refType === 'accountRefs') {
@@ -120,67 +141,78 @@ class ActionsController {
               // get the the account reference data
               // get the account reference role
 
-              const actionInfo:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
+              const actionInfoResp:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
                 {
                   $match: {
-                    "accountRefs.accountId":
-                      "37410e75-1760-4bb6-85e0-d0a138d374bc"
+                    _id: moduleId,
+                    "workspaces._id": subModuleId,
+                    "workspaces.accountRefs._id": refId,
+                    "workspaces.accountRefs.accountId": accountId
                   }
                 },
                 {
                   $unwind: {
-                    path: "$accountRefs",
+                      path: "$workspaces",
+                      preserveNullAndEmptyArrays: false
+                    }
+                },
+                {
+                  $match: {
+                      "workspaces._id": subModuleId,
+                      "workspaces.accountRefs._id": refId,
+                      "workspaces.accountRefs.accountId": accountId
+                    }
+                },
+                {
+                  $unwind: {
+                      path: "$workspaces.accountRefs",
+                      preserveNullAndEmptyArrays: false
+                    }
+                },
+                {
+                  $match: {
+                      "workspaces.accountRefs._id": refId,
+                      "workspaces.accountRefs.accountId": accountId
+                    }
+                },
+                {
+                  $unwind: {
+                    path: "$workspaces.accountRefs.accountConfigs",
                     preserveNullAndEmptyArrays: false
                   }
                 },
                 {
                   $match: {
-                    "accountRefs.accountId":
-                      "37410e75-1760-4bb6-85e0-d0a138d374bc"
-                  }
-                },
-                {
-                  $unwind: {
-                    path: "$accountRefs.accountConfigs",
-                    preserveNullAndEmptyArrays: false
-                  }
-                },
-                {
-                  $match: {
-                    "accountRefs.accountConfigs.key":
-                      "default-role"
+                    "workspaces.accountRefs.accountConfigs.key": "default-role"
                   }
                 },
                 {
                   $lookup: {
                     from: "roles",
-                    localField:
-                      "accountRefs.accountConfigs.value",
+                    localField: "workspaces.accountRefs.accountConfigs.value",
                     foreignField: "_id",
-                    as: "accountAccountRole"
+                    as: "accountWorkspaceRole"
                   }
                 },
                 {
                   $unwind: {
-                    path: "$accountAccountRole",
+                    path: "$accountWorkspaceRole",
                     preserveNullAndEmptyArrays: false
                   }
                 },
                 {
-                  $lookup:
-                    {
-                      from: "accounts",
-                      localField: "accountRefs.accountId",
-                      foreignField: "_id",
-                      as: "fromAccount"
-                    }
+                  $lookup: {
+                    from: "accounts",
+                    localField: "workspaces.accountRefs.accountId",
+                    foreignField: "_id",
+                    as: "fromAccount"
+                  }
                 },
                 {
-                  $unwind:
-                    {
-                      path: "$fromAccount",
-                      preserveNullAndEmptyArrays: false
-                    }
+                  $unwind: {
+                    path: "$fromAccount",
+                    preserveNullAndEmptyArrays: false
+                  }
                 },
                 {
                   $project: {
@@ -188,15 +220,25 @@ class ActionsController {
                     "toAccount.nameId": "$nameId",
                     "fromAccount._id": "$fromAccount._id",
                     "fromAccount.nameId": "$fromAccount.nameId",
-                    ref: "$accountRefs",
-                    refRole: "$accountAccountRole"
+                    "workspace._id": "$workspaces._id",
+                    "workspace.name": "$workspaces.name",
+                    "ref._id": "$workspaces.accountRefs._id",
+                    "ref.accepted": "$workspaces.accountRefs.accepted",
+                    "ref.declined": "$workspaces.accountRefs.declined",
+                    "ref.disabled": "$workspaces.accountRefs.disabled",
+                    "ref.createdAt": "$workspaces.accountRefs.createdAt",
+                    "ref.updatedAt": "$workspaces.accountRefs.updatedAt",
+                    "refRole._id": "$accountWorkspaceRole._id",
+                    "refRole.name": "$accountWorkspaceRole.name"
                   }
                 }
               ])
+
+              actionInfo = actionInfoResp.length? actionInfoResp[0]: undefined
           }
       }
 
-      return true
+      return actionInfo
     }
 
     public async acceptOrDeclineAccountAction(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string, accept:boolean):Promise<boolean> {
