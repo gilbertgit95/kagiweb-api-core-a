@@ -126,7 +126,8 @@ class AccountController {
                 resp.appFeatures = appRoleFeatures
                 resp.workspace = defaultWorkspace
                 resp.workspaces = accountWorkspaces
-                resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
+                // resp.externalWorkspaces = await accountWorkspaceController.getExternalWorkspaces(account._id!)
+                resp.externalWorkspaces = accountExtWorkspaces
                 resp.accountData = account
                 resp.clientDevice = usedClientDevice
                 resp.accessToken = usedToken
