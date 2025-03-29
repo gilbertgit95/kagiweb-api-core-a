@@ -13,7 +13,7 @@ interface INotification {
     title?: string,
     message?: string,
     type?: TNotificationType,
-    link?: string
+    links?: {url:string, label:string}[],
     seen?: boolean
 }
 
@@ -40,10 +40,10 @@ const NotificationSchema = new Schema<INotification>({
         required: false,
         enum: notificationTypes,
     },
-    link: {
-        type: String,
+    links: {
+        type: Array<{url:string, label:string}>,
         required: false,
-        default: ''
+        default: []
     },
     seen: {
         type: Boolean,

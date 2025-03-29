@@ -4,7 +4,7 @@
   "title": "Test Notification",
   "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
   "type": "info",
-  "link": "https://google.com",
+  "links": [],
   "seen": true,
   "createdAt": {
     "$date": "2025-02-23T14:39:22.554Z"
@@ -20,7 +20,7 @@
   "title": "Test II",
   "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
   "type": "warning",
-  "link": "https://google.com",
+  "links": [],
   "seen": true,
   "createdAt": {
     "$date": "2025-02-23T14:42:19.916Z"
@@ -36,7 +36,7 @@
   "title": "Test III",
   "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
   "type": "error",
-  "link": "https://google.com",
+  "links": [],
   "seen": true,
   "createdAt": {
     "$date": "2025-02-23T14:42:19.941Z"
@@ -52,7 +52,7 @@
   "title": "Test IV",
   "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
   "type": "success",
-  "link": "https://google.com",
+  "links": [],
   "seen": true,
   "createdAt": {
     "$date": "2025-02-23T14:42:19.949Z"
