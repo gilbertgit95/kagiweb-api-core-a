@@ -72,9 +72,9 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/actions/:actionType/mod
 })
 
 // owner
-router.get(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-    const { actionType, moduleType, moduleId, refType, refId } = req.params
+router.get(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
+    const moduleId = req?.accountData?._id || ''
+    const { accountId, actionType, moduleType, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountActionInfo(accountId, actionType, moduleType, moduleId, refType, refId)
@@ -83,9 +83,9 @@ router.get(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:
     return res.status(statusCode).send(result)
 })
 
-router.get(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-    const { actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId } = req.params
+router.get(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
+    const moduleId = req?.accountData?._id || ''
+    const { accountId, actionType, moduleType, subModuleType, subModuleId, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountWorkspaceActionInfo(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId)
@@ -94,9 +94,9 @@ router.get(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-    const { actionType, moduleType, moduleId, refType, refId } = req.params
+router.put(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
+    const moduleId = req?.accountData?._id || ''
+    const { accountId, actionType, moduleType, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         if (actionType === 'Action' && moduleType === 'account') {
@@ -109,9 +109,9 @@ router.put(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-    const { actionType, moduleType, moduleId, refType, refId } = req.params
+router.delete(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
+    const moduleId = req?.accountData?._id || ''
+    const { accountId, actionType, moduleType, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.acceptOrDeclineAccountAction(accountId, actionType, moduleType, moduleId, refType, refId, false)
@@ -120,9 +120,9 @@ router.delete(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleTyp
     return res.status(statusCode).send(result)
 })
 
-router.put(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-    const { actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId } = req.params
+router.put(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
+    const moduleId = req?.accountData?._id || ''
+    const { accountId, actionType, moduleType, subModuleType, subModuleId, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.acceptOrDeclineAccountWorkspaceAction(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId, true)
@@ -131,9 +131,9 @@ router.put(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:
     return res.status(statusCode).send(result)
 })
 
-router.delete(env.RootApiEndpoint + 'owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
-    const accountId = req?.accountData?._id || ''
-    const { actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId } = req.params
+router.delete(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
+    const moduleId = req?.accountData?._id || ''
+    const { accountId, actionType, moduleType, subModuleType, subModuleId, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.acceptOrDeclineAccountWorkspaceAction(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId, false)
