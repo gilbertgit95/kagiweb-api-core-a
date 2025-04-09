@@ -1,8 +1,9 @@
 import accountModel, { IWorkspace, IAccountAccountRef } from '../dataSource/models/accountModel'
 import { IRole } from '../dataSource/models/roleModel'
 
-interface IAccountActionInfo {
+export interface IAccountActionInfo {
     _id: string,
+    actionType: string,
     fromAccount: {
         _id: string,
         nameId: string
@@ -37,7 +38,7 @@ class ActionsController {
       // invitations
         if (actionType === 'invitation') {
             // if moduleType is account get account invitation
-            if (moduleType === 'account' && refType === 'accountRefs') {
+            if (moduleType === 'account' && refType === 'accountRef') {
                 // get account where the account is referenced: username, id
                 // get the the account reference data
                 // get the account reference role
@@ -125,6 +126,10 @@ class ActionsController {
             }
         }
 
+        if (actionInfo) {
+          actionInfo.actionType = actionType
+        }
+
         return actionInfo
     }
 
@@ -135,11 +140,22 @@ class ActionsController {
       // invitations
          if (actionType === 'invitation') {
           // if moduleType is account get account invitation
-          if (moduleType === 'account' && subModuleType === 'workspace' && refType === 'accountRefs') {
+          if (moduleType === 'account' && subModuleType === 'workspace' && refType === 'accountRef') {
               // get account where the account is referenced: username, id
               // get workspace where the workspace
               // get the the account reference data
               // get the account reference role
+
+              // console.log(`
+              //   accountId: ${accountId},
+              //   actionType: ${actionType},
+              //   moduleType: ${moduleType},
+              //   moduleId: ${moduleId},
+              //   subModuleType: ${subModuleType},
+              //   subModuleId: ${subModuleId},
+              //   refType: ${refType},
+              //   refId: ${refId}
+              // `)
 
               const actionInfoResp:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
                 {
@@ -236,6 +252,10 @@ class ActionsController {
 
               actionInfo = actionInfoResp.length? actionInfoResp[0]: undefined
           }
+      }
+
+      if (actionInfo) {
+        actionInfo.actionType = actionType
       }
 
       return actionInfo

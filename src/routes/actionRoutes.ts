@@ -24,6 +24,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/actions/:actionType/module
 router.get(env.RootApiEndpoint + 'accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
     const { accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId } = req.params
 
+    console.log(req.url)
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountWorkspaceActionInfo(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId)
     })
@@ -75,6 +76,15 @@ router.delete(env.RootApiEndpoint + 'accounts/:accountId/actions/:actionType/mod
 router.get(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId', async (req:Request, res:Response) => {
     const moduleId = req?.accountData?._id || ''
     const { accountId, actionType, moduleType, refType, refId } = req.params
+
+    console.log(`
+        accountId: ${accountId},
+        actionType: ${actionType}, 
+        moduleType: ${moduleType},
+        moduleId: ${moduleId}, 
+        refType: ${refType},
+        refId: ${refId}
+    `)
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountActionInfo(accountId, actionType, moduleType, moduleId, refType, refId)
