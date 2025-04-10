@@ -3,6 +3,7 @@ import accountModel, { IAccount, IAccountAccountRef } from '../dataSource/models
 import accountController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 import appEvents from '../utilities/appEvents'
+import roleController from './roleController'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -83,15 +84,21 @@ class AccountAccountRefController {
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the account owner'})
         if (this.getAccountRefByAccountId(account, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this account!`})
 
+        const leastRole = await roleController.getLeastRole('account')
+        if (!leastRole) throw({code: 404, message: 'Empty role'})
+
         const doc:any = {
             accountId: assignedAccount._id,
             accountConfigs: [
                 {
                     key: 'default-role',
-                    value: '',
+                    value: leastRole._id,
                     type: 'string'
                 }
-            ]
+            ],
+            rolesRefs: [{
+                roleId: leastRole._id
+            }]
         }
 
         if (DataCleaner.getBooleanData(disabled).isValid) {

@@ -31,7 +31,7 @@ class RoleController {
         }, {})
     }
 
-    public async getLeastRole():Promise<IRole|null> {
+    public async getLeastRole(scope:string = 'app'):Promise<IRole|null> {
         let result:IRole|null = null
 
         const roles = await this.getAllRoles()
@@ -39,7 +39,7 @@ class RoleController {
         if (roles) {
             if (roles.length > 1) {
                 result = roles
-                    .filter(item => item.scope === 'app')
+                    .filter(item => item.scope === scope)
                     .sort((a, b) => {
                         return b.level - a.level
                     })[0]

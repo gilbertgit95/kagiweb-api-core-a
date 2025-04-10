@@ -1,6 +1,7 @@
 import { Document } from 'mongoose'
 import accountModel, { IAccount, IWorkspaceAccountRef } from '../dataSource/models/accountModel'
 import accountController from './accountController'
+import roleController from './roleController'
 import accountWorkspaceController from './accountWorkspaceController'
 import DataCleaner from '../utilities/dataCleaner'
 import appEvents from '../utilities/appEvents'
@@ -86,15 +87,21 @@ class AccountWorkspaceAccountRefController {
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the workspace owner'})
         if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this workspace!`})
 
+        const leastRole = await roleController.getLeastRole('workspace')
+        if (!leastRole) throw({code: 404, message: 'Empty role'})
+
         const doc:any = {
             accountId: assignedAccount._id,
             accountConfigs: [
                 {
                     key: 'default-role',
-                    value: '',
+                    value: leastRole._id,
                     type: 'string'
                 }
-            ]
+            ],
+            rolesRefs: [{
+                roleId: leastRole._id
+            }]
         }
 
         if (DataCleaner.getBooleanData(disabled).isValid) {

@@ -77,15 +77,6 @@ router.get(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:m
     const moduleId = req?.accountData?._id || ''
     const { accountId, actionType, moduleType, refType, refId } = req.params
 
-    console.log(`
-        accountId: ${accountId},
-        actionType: ${actionType}, 
-        moduleType: ${moduleType},
-        moduleId: ${moduleId}, 
-        refType: ${refType},
-        refId: ${refId}
-    `)
-
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountActionInfo(accountId, actionType, moduleType, moduleId, refType, refId)
     })

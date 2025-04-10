@@ -43,6 +43,17 @@ class ActionsController {
                 // get the the account reference data
                 // get the account reference role
 
+                // console.log(
+                // `
+                // getAccountActionInfo:
+                //     accountId: ${accountId},
+                //     actionType: ${actionType}, 
+                //     moduleType: ${moduleType},
+                //     moduleId: ${moduleId}, 
+                //     refType: ${refType},
+                //     refId: ${refId}
+                // `)
+
                 const actionInfoResp:IAccountActionInfo[] = await accountModel.aggregate<IAccountActionInfo>([
                   {
                     $match: {
@@ -123,6 +134,7 @@ class ActionsController {
                 ])
 
                 actionInfo = actionInfoResp.length? actionInfoResp[0]: undefined
+                // console.log(`actionInfo result: `, actionInfo) 
             }
         }
 
