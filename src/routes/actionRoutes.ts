@@ -88,6 +88,18 @@ router.get(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:m
     const moduleId = req?.accountData?._id || ''
     const { accountId, actionType, moduleType, subModuleType, subModuleId, refType, refId } = req.params
 
+    // console.log(
+    // `route:
+    //     accountId: ${accountId},
+    //     actionType: ${actionType},
+    //     moduleType: ${moduleType},
+    //     moduleId: ${moduleId},
+    //     subModuleType: ${subModuleType},
+    //     subModuleId: ${subModuleId},
+    //     refType: ${refType},
+    //     refId: ${refId}
+    // `)
+
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountWorkspaceActionInfo(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId)
     })
