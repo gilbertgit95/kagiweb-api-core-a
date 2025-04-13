@@ -5422,7 +5422,7 @@
 },
 {
   "_id": "32d121ac-b476-4092-a8e1-c64bb9e38eb2",
-  "name": "PRIVATE ROUTE - owner/view/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "name": "PRIVATE ROUTE - owner/view/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "type": "ui-route",
   "scope": "app",
   "tags": [
@@ -5431,19 +5431,19 @@
     "module",
     "ref"
   ],
-  "value": "PRIVATE ROUTE - owner/view/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "value": "PRIVATE ROUTE - owner/view/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2025-03-05T03:18:51.976Z"
   },
   "updatedAt": {
-    "$date": "2025-03-05T03:19:04.117Z"
+    "$date": "2025-04-07T00:22:01.448Z"
   },
   "__v": 0
 },
 {
   "_id": "ffcfbbb1-1866-40e4-912c-c2193c80e107",
-  "name": "PRIVATE ROUTE - owner/view/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "name": "PRIVATE ROUTE - owner/view/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "type": "ui-route",
   "scope": "app",
   "tags": [
@@ -5453,7 +5453,7 @@
     "subModule",
     "ref"
   ],
-  "value": "PRIVATE ROUTE - owner/view/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "value": "PRIVATE ROUTE - owner/view/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "description": "One of the ui private route",
   "createdAt": {
     "$date": "2025-03-05T03:18:51.981Z"
@@ -5588,12 +5588,12 @@
 },
 {
   "_id": "f26ae7c1-c047-4df5-af56-d4428e862804",
-  "value": "GET - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "value": "GET - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "createdAt": {
     "$date": "2025-03-05T03:20:48.915Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "name": "GET - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "scope": "app",
   "tags": [
     "owner",
@@ -5608,12 +5608,12 @@
 },
 {
   "_id": "4328cccc-3066-4090-a5b4-22430ca575f8",
-  "value": "GET - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "value": "GET - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "createdAt": {
     "$date": "2025-03-05T03:20:48.915Z"
   },
   "description": "One of the server endpoint",
-  "name": "GET - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "name": "GET - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "scope": "app",
   "tags": [
     "owner",
@@ -5629,12 +5629,12 @@
 },
 {
   "_id": "4f400d39-6027-4681-a1a9-967a2283e719",
-  "value": "PUT - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "value": "PUT - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "createdAt": {
     "$date": "2025-03-05T03:20:48.915Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "name": "PUT - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "scope": "app",
   "tags": [
     "owner",
@@ -5649,12 +5649,12 @@
 },
 {
   "_id": "59f52b86-be3f-4143-89be-c7d7a997c1ed",
-  "value": "DELETE - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "value": "DELETE - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "createdAt": {
     "$date": "2025-03-05T03:20:48.915Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
+  "name": "DELETE - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/ref/:refType/:refId",
   "scope": "app",
   "tags": [
     "owner",
@@ -5669,12 +5669,12 @@
 },
 {
   "_id": "32ff5fc3-08a3-47d7-a87a-fd480b1424a3",
-  "value": "PUT - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "value": "PUT - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "createdAt": {
     "$date": "2025-03-05T03:20:48.915Z"
   },
   "description": "One of the server endpoint",
-  "name": "PUT - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "name": "PUT - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "scope": "app",
   "tags": [
     "owner",
@@ -5690,12 +5690,12 @@
 },
 {
   "_id": "2b4ec4d4-6cb4-4e2a-87d3-964dd66aab75",
-  "value": "DELETE - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "value": "DELETE - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "createdAt": {
     "$date": "2025-03-05T03:20:48.915Z"
   },
   "description": "One of the server endpoint",
-  "name": "DELETE - /api/v1/owner/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
+  "name": "DELETE - /api/v1/owner/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId",
   "scope": "app",
   "tags": [
     "owner",

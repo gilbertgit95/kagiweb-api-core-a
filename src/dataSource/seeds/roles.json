@@ -17,7 +17,7 @@
 },
 {
   "_id": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
-  "__v": 2756,
+  "__v": 2766,
   "absoluteAuthority": false,
   "createdAt": {
     "$date": "2023-12-24T04:04:50.138Z"
@@ -1503,12 +1503,112 @@
       "updatedAt": {
         "$date": "2025-02-18T14:49:51.592Z"
       }
+    },
+    {
+      "featureId": "0044a46a-50a6-43cf-9f9a-fd463d155e88",
+      "_id": "2f8e4a40-c9f0-49cb-99bc-a6e83ed4a961",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.439Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.439Z"
+      }
+    },
+    {
+      "featureId": "f0527476-7755-4abe-8a5c-97f7bb6e9189",
+      "_id": "d10167f8-c683-4e40-946c-0580279d1cf4",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.496Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.496Z"
+      }
+    },
+    {
+      "featureId": "32d121ac-b476-4092-a8e1-c64bb9e38eb2",
+      "_id": "f32f18ef-83a3-49be-8183-6f4eee1b0d62",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.525Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.525Z"
+      }
+    },
+    {
+      "featureId": "ffcfbbb1-1866-40e4-912c-c2193c80e107",
+      "_id": "f30de56a-a009-4711-a220-6ec7ca6f12bc",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.543Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.543Z"
+      }
+    },
+    {
+      "featureId": "f26ae7c1-c047-4df5-af56-d4428e862804",
+      "_id": "3a3dfd94-7595-4478-a025-4dbaa2911b11",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.564Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.564Z"
+      }
+    },
+    {
+      "featureId": "4328cccc-3066-4090-a5b4-22430ca575f8",
+      "_id": "ac2aee65-74f3-4dac-bf48-03c7bf011d1c",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.584Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.584Z"
+      }
+    },
+    {
+      "featureId": "4f400d39-6027-4681-a1a9-967a2283e719",
+      "_id": "b249c0d3-7f1b-49f1-84b4-b1f85cc4b253",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.600Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.600Z"
+      }
+    },
+    {
+      "featureId": "59f52b86-be3f-4143-89be-c7d7a997c1ed",
+      "_id": "5fa5e80e-6e40-4087-ba04-5d6b9744aa61",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.614Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.614Z"
+      }
+    },
+    {
+      "featureId": "32ff5fc3-08a3-47d7-a87a-fd480b1424a3",
+      "_id": "0ecf2da3-dce8-477c-b142-f49e54ddf1d9",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.629Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.629Z"
+      }
+    },
+    {
+      "featureId": "2b4ec4d4-6cb4-4e2a-87d3-964dd66aab75",
+      "_id": "6dc00e6c-0bf6-47bf-bf9d-3cb244b29d8a",
+      "createdAt": {
+        "$date": "2025-04-12T00:50:01.648Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-12T00:50:01.648Z"
+      }
     }
   ],
   "level": 1,
   "name": "Manager",
   "updatedAt": {
-    "$date": "2025-03-04T23:40:46.669Z"
+    "$date": "2025-04-12T00:50:01.649Z"
   },
   "reqLimitPerSec": 10,
   "scope": "app"

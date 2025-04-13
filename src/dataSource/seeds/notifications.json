@@ -4,13 +4,22 @@
   "title": "Test Notification",
   "message": "Lorem ipsum dolor sit amet. Vel distinctio facere et iure praesentium vel perferendis voluptatem et eaque unde. Et eaque tenetur aut inventore consequatur est dolorum fuga ut ipsa odit et molestias quidem est minus eaque sit iusto iusto.",
   "type": "info",
-  "links": [],
+  "links": [
+    {
+      "label": "please open",
+      "url": "http://localhost:8080/accounts/view/37410e75-1760-4bb6-85e0-d0a138d374bc/actions/invitation/module/account/d5c52e70-a40a-421a-8b14-cc0cfa595c24/ref/accountRef/5546e098-7604-4d50-adea-66eafa1c1ae3"
+    },
+    {
+      "label": "research",
+      "url": "http://localhost:8080/accounts/view/37410e75-1760-4bb6-85e0-d0a138d374bc/actions/invitation/module/account/d5c52e70-a40a-421a-8b14-cc0cfa595c24/subModule/workspace/b6fa7ceb-71d0-4e49-bd86-422849727811/ref/accountRef/600c5220-cc88-43d4-8485-ad69d9e8f633"
+    }
+  ],
   "seen": true,
   "createdAt": {
     "$date": "2025-02-23T14:39:22.554Z"
   },
   "updatedAt": {
-    "$date": "2025-03-17T14:12:22.843Z"
+    "$date": "2025-04-11T03:30:29.028Z"
   },
   "__v": 0
 },
