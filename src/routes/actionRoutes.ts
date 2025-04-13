@@ -24,7 +24,7 @@ router.get(env.RootApiEndpoint + 'accounts/:accountId/actions/:actionType/module
 router.get(env.RootApiEndpoint + 'accounts/:accountId/actions/:actionType/module/:moduleType/:moduleId/subModule/:subModuleType/:subModuleId/ref/:refType/:refId', async (req:Request, res:Response) => {
     const { accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId } = req.params
 
-    console.log(req.url)
+    // console.log(req.url)
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountWorkspaceActionInfo(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId)
     })
@@ -88,18 +88,6 @@ router.get(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:m
     const moduleId = req?.accountData?._id || ''
     const { accountId, actionType, moduleType, subModuleType, subModuleId, refType, refId } = req.params
 
-    // console.log(
-    // `route:
-    //     accountId: ${accountId},
-    //     actionType: ${actionType},
-    //     moduleType: ${moduleType},
-    //     moduleId: ${moduleId},
-    //     subModuleType: ${subModuleType},
-    //     subModuleId: ${subModuleId},
-    //     refType: ${refType},
-    //     refId: ${refId}
-    // `)
-
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
         return await actionController.getAccountWorkspaceActionInfo(accountId, actionType, moduleType, moduleId, subModuleType, subModuleId, refType, refId)
     })
@@ -112,11 +100,7 @@ router.put(env.RootApiEndpoint + 'owner/:accountId/actions/:actionType/module/:m
     const { accountId, actionType, moduleType, refType, refId } = req.params
 
     const [result, statusCode] = await ErrorHandler.execute<any>(async () => {
-        if (actionType === 'Action' && moduleType === 'account') {
-            return await actionController.acceptOrDeclineAccountAction(accountId, actionType, moduleType, moduleId, refType, refId, true)
-        }
-
-        throw({code: 404})
+        return await actionController.acceptOrDeclineAccountAction(accountId, actionType, moduleType, moduleId, refType, refId, true)
     })
 
     return res.status(statusCode).send(result)

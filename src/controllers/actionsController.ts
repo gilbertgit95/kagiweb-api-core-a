@@ -1,5 +1,7 @@
 import accountModel, { IWorkspace, IAccountAccountRef } from '../dataSource/models/accountModel'
 import { IRole } from '../dataSource/models/roleModel'
+import accountController from './accountController'
+import DataCleaner from '../utilities/dataCleaner'
 
 export interface IAccountActionInfo {
     _id: string,
@@ -275,12 +277,66 @@ class ActionsController {
     }
 
     public async acceptOrDeclineAccountAction(accountId:string, actionType:string, moduleType:string, moduleId:string, refType:string, refId:string, accept:boolean):Promise<boolean> {
+        // invitations
+        if (actionType === 'invitation') {
+          // if moduleType is account get account invitation
+          if (moduleType === 'account' && refType === 'accountRef') {
+            let acc = await accountModel.findOne({_id: moduleId})
+            if (!acc) throw({code: 404, message: 'Module not found.'})
 
+            let accountRef = acc.accountRefs?.id(refId)
+            if (!accountRef) throw({code: 404, message: 'Account reference not found.'})
+            if (accountRef?.accountId !== accountId) throw({code: 404, message: 'Account reference not found.'})
+
+            if (DataCleaner.getBooleanData(accept).isValid) {
+                if (DataCleaner.getBooleanData(accept).data) {
+                  acc.accountRefs!.id(refId)!.accepted = true
+                  acc.accountRefs!.id(refId)!.declined = false
+                } else {
+                  acc.accountRefs!.id(refId)!.accepted = false
+                  acc.accountRefs!.id(refId)!.declined = true
+                }
+
+                await acc.save()
+                await accountController.cachedData.removeCacheData(moduleId)
+            }
+          }
+        }
         return true
     }
 
     public async acceptOrDeclineAccountWorkspaceAction(accountId:string, actionType:string, moduleType:string, moduleId:string, subModuleType:string, subModuleId:string, refType:string, refId:string, accept:boolean):Promise<boolean> {
 
+      // invitations
+      if (actionType === 'invitation') {
+        // if moduleType is account get account invitation
+        if (moduleType === 'account' && subModuleType === 'workspace' && refType === 'accountRef') {
+          let acc = await accountModel.findOne({_id: moduleId})
+          if (!acc) throw({code: 404, message: 'Module not found.'})
+
+          // check account workspace
+          let workspace = acc.workspaces?.id(subModuleId)
+          if (!workspace) throw({code: 404, message: 'Workspace not found.'})
+
+          // check account refs
+          let accountRef = acc.workspaces?.id(subModuleId)?.accountRefs?.id(refId)
+          if (!accountRef) throw({code: 404, message: 'Account reference not found.'})
+          if (accountRef?.accountId !== accountId) throw({code: 404, message: 'Account reference not found.'})
+
+          if (DataCleaner.getBooleanData(accept).isValid) {
+              if (DataCleaner.getBooleanData(accept).data) {
+                acc.workspaces!.id(subModuleId)!.accountRefs!.id(refId)!.accepted = true
+                acc.workspaces!.id(subModuleId)!.accountRefs!.id(refId)!.declined = false
+              } else {
+                acc.workspaces!.id(subModuleId)!.accountRefs!.id(refId)!.accepted = false
+                acc.workspaces!.id(subModuleId)!.accountRefs!.id(refId)!.declined = true
+              }
+
+              await acc.save()
+              await accountController.cachedData.removeCacheData(moduleId)
+          }
+        }
+      }
         return true
     }
 }

@@ -56,9 +56,9 @@ class AccountWorkspaceController {
             }, {
               '$match': {
                 'account.accountId': accountId,
-                'accepted': true,
-                'declined': false,
-                'disabled': false
+                'account.accepted': true,
+                'account.declined': false,
+                'account.disabled': false
               }
             }, {
               '$project': {
