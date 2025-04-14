@@ -133,6 +133,10 @@ class AccountAccountRefController {
         if (!account) throw({code: 404})
         if (!this.getAccountRefById(account, accountRefId)) throw({code: 404})
 
+        if (DataCleaner.getBooleanData(disabled).isValid) {
+            account.accountRefs!.id(accountRefId)!.disabled = DataCleaner.getBooleanData(disabled).data
+        }
+
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
 
