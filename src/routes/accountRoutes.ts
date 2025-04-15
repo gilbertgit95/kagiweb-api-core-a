@@ -1,6 +1,5 @@
 import express from 'express'
 
-// import accountModel, { IAccount } from '../dataSource/models/accountModel'
 import ErrorHandler from '../utilities/errorHandler'
 import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import Config from '../utilities/config'
@@ -8,8 +7,6 @@ import routerIdentity from '../utilities/routerIdentity'
 
 import accountController, { IAccessInfo } from '../controllers/accountController'
 import { IAccount } from '../dataSource/models/accountModel'
-import { IRole } from '../dataSource/models/roleModel'
-import { IFeature } from '../dataSource/models/featureModel'
 
 const router = express.Router()
 const env = Config.getEnv()
@@ -18,6 +15,9 @@ router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const pageInfo = DataRequest.getPageInfoQuery(req.query)
     const accountId = req?.accountData?._id || ''
     const role = req?.appRole
+
+    // update this query soa that it will be more strict
+    // and will exactly match all search fields
     const query = role?.absoluteAuthority? {}: {
         'accountRefs.accountId': accountId,
         'accountRefs.accepted': true,
