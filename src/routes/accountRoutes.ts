@@ -16,7 +16,7 @@ router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const accountId = req?.accountData?._id || ''
     const role = req?.appRole
 
-    // update this query soa that it will be more strict
+    // update this query so that it will be more strict
     // and will exactly match all search fields
     const query = role?.absoluteAuthority? {}: {
         'accountRefs.accountId': accountId,

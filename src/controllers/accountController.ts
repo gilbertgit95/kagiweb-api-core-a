@@ -159,7 +159,7 @@ class AccountController {
 
     public async getAccountsByPage(query:any = {}, pageInfo: IPgeInfo):Promise<IListOutput<IAccount>> {
         // fetch accounts were the signedin account was assigned
-        let paginatedData = await this.request.getItemsByPage<IAccount>(query, {}, {}, pageInfo)
+        let paginatedData = await this.request.getAggregatedItemsByPage<IAccount>(query, {}, {}, pageInfo)
         if (paginatedData.items) {
             paginatedData.items.forEach(account => {this.clearSensitiveInfo(account)})
         }
