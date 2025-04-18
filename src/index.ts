@@ -10,6 +10,7 @@ const env = appHandler.getEnv()
 const appRoutes = appHandler.getAppRoutes()
 const app = express().use(appRoutes)
 
+
 // bind app event callbacks
 appEvents.on('otp', (data) => {
     if (data.module === 'signin') {

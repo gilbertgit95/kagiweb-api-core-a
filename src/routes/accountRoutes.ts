@@ -16,14 +16,18 @@ router.get(env.RootApiEndpoint + 'accounts', async (req, res) => {
     const accountId = req?.accountData?._id || ''
     const role = req?.appRole
 
-    // update this query so that it will be more strict
-    // and will exactly match all search fields
     const query = role?.absoluteAuthority? {}: {
-        'accountRefs.accountId': accountId,
-        'accountRefs.accepted': true,
-        'accountRefs.declined': false,
-        'accountRefs.disabled': false
+        accountRefs: {
+            $elemMatch: {
+                accountId: accountId,
+                accepted: true,
+                declined: false,
+                disabled: false,
+            }
+        }
     }
+
+    console.log(JSON.stringify(query))
 
     const [result, statusCode] = await ErrorHandler.execute<IListOutput<IAccount>>(async () => {
         return await accountController.getAccountsByPage(query, pageInfo)
