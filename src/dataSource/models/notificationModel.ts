@@ -33,7 +33,7 @@ const NotificationSchema = new Schema<INotification>({
         type: String,
         required: false,
         default: '',
-        validate: TextValidators.validateDescription
+        // validate: TextValidators.validateDescription
     },
     type: {
         type: String,

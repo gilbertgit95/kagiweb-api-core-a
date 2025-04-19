@@ -3,6 +3,7 @@ import accountModel, { IAccount, IWorkspaceAccountRef } from '../dataSource/mode
 import accountController from './accountController'
 import roleController from './roleController'
 import accountWorkspaceController from './accountWorkspaceController'
+import notificationController from './notificationController'
 import DataCleaner from '../utilities/dataCleaner'
 import appEvents from '../utilities/appEvents'
 // import Config from '../utilities/config'
@@ -111,6 +112,30 @@ class AccountWorkspaceAccountRefController {
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
+
+        // create notification to assigned account
+        // const notificationData = {
+        //     accountId: assignedAccount._id,
+        //     type: 'info',
+        //     title: 'Account Level Access Invitation',
+        //     message: `Hello ${ assignedAccount.nameId }, you are invited to join the account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
+        //     links: [{
+        //         label: 'Accept/Decline',
+        //         url: `owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/ref/accountRef/${ subdoc._id }`,
+        //     }]
+        // }
+        // console.log('notificationData: ', notificationData)
+
+        // await notificationController.saveNotification(
+        //     assignedAccount._id,
+        //     'info',
+        //     'Account Level Access Invitation',
+        //     `Hello ${ assignedAccount.nameId }, you are invited to join the account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
+        //     [{
+        //         label: 'Accept/Decline',
+        //         url: `/owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/ref/accountRef/${ subdoc._id }`,
+        //     }]
+        // )
 
         // emit event
         appEvents.emit('workspace-update', {

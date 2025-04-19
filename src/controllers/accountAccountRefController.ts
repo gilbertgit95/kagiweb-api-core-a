@@ -4,6 +4,8 @@ import accountController from './accountController'
 import DataCleaner from '../utilities/dataCleaner'
 import appEvents from '../utilities/appEvents'
 import roleController from './roleController'
+import notificationController from './notificationController'
+import { title } from 'process'
 // import Config from '../utilities/config'
 
 // const env = Config.getEnv()
@@ -78,7 +80,7 @@ class AccountAccountRefController {
         const account = await accountModel.findOne({_id: accountId})
         const assignedAccount = await accountModel.findOne({nameId})
 
-        console.log('test: ', account?.nameId, assignedAccount?.nameId)
+        // console.log('test: ', account?.nameId, assignedAccount?.nameId)
         if (!account) throw({code: 404})
         if (!assignedAccount) throw({code: 404, message: `${ nameId } does not exist!`})
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the account owner'})
@@ -105,9 +107,34 @@ class AccountAccountRefController {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
         account.accountRefs?.push(doc)
+        const subdoc = account.accountRefs![account.accountRefs!.length - 1]
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
+
+        // create notification to assigned account
+        // const notificationData = {
+        //     accountId: assignedAccount._id,
+        //     type: 'info',
+        //     title: 'Account Level Access Invitation',
+        //     message: `Hello ${ assignedAccount.nameId }, you are invited to join the account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
+        //     links: [{
+        //         label: 'Accept/Decline',
+        //         url: `owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/ref/accountRef/${ subdoc._id }`,
+        //     }]
+        // }
+        // console.log('notificationData: ', notificationData)
+
+        await notificationController.saveNotification(
+            assignedAccount._id,
+            'info',
+            'Account Level Access Invitation',
+            `Hello ${ assignedAccount.nameId }, you are invited to join the account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
+            [{
+                label: 'Accept/Decline',
+                url: `/owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/ref/accountRef/${ subdoc._id }`,
+            }]
+        )
 
         // emit event
         appEvents.emit('account-update', {

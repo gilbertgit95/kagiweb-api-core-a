@@ -41,15 +41,15 @@ class NotificationController {
         return result
     }
 
-    public async saveNotification(accountId:string, type:TNotificationType, title:string, message:string, link?:string):Promise<INotification | null> {
-        const data:INotification = {accountId, type, title, message, link, seen: false}
+    public async saveNotification(accountId:string, type:TNotificationType, title:string, message:string, links?:{url:string, label:string}[]):Promise<INotification | null> {
+        const data:INotification = {accountId, type, title, message, links, seen: false}
 
         const result = await this.cachedData.createItem<INotification>(data)
 
         return result
     }
 
-    public async updateNotification(accountId:string, notifId:string, type:TNotificationType, title:string, message:string, link?:string, seen?:boolean):Promise<INotification | null> {
+    public async updateNotification(accountId:string, notifId:string, type:TNotificationType, title:string, message:string, links?:{url:string, label:string}[], seen?:boolean):Promise<INotification | null> {
         const doc:INotification = {}
         const seenData = DataCleaner.getBooleanData(seen || '')
 
@@ -57,7 +57,7 @@ class NotificationController {
         if (type) doc.type = type
         if (title) doc.title = title
         if (message) doc.message = message
-        if (link) doc.link = link
+        if (links) doc.links = links
         if (seenData.isValid) doc.seen = seenData.data
 
         // console.log('to update fields: ', doc, seen, typeof seen)
