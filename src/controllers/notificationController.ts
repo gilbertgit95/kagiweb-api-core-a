@@ -36,7 +36,7 @@ class NotificationController {
 
     public async getNotificationsByPage(query:{accountId?:string, seen?:boolean} = {}, pageInfo: IPgeInfo):Promise<IListOutput<INotification>> {
 
-        const result = await this.request.getItemsByPage<INotification>(query, {}, {}, pageInfo)
+        const result = await this.request.getItemsByPage<INotification>(query, {}, {sort: {createdAt: -1}}, pageInfo)
 
         return result
     }

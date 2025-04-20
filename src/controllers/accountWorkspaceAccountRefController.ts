@@ -88,6 +88,9 @@ class AccountWorkspaceAccountRefController {
         if (account._id === assignedAccount._id) throw({code: 409, message: 'cannot assign the workspace owner'})
         if (this.getWorkspaceAccountRefByAccountId(account, workspaceId, assignedAccount._id)) throw({code: 409, message: `${ nameId } was already assigned to this workspace!`})
 
+        const workspace = accountWorkspaceController.getWorkspaceById(account, workspaceId)
+        if (!workspace) throw({code: 404, message: 'Workspace not found!'})
+
         const leastRole = await roleController.getLeastRole('workspace')
         if (!leastRole) throw({code: 404, message: 'Empty role'})
 
@@ -109,6 +112,7 @@ class AccountWorkspaceAccountRefController {
             doc.disabled = DataCleaner.getBooleanData(disabled).data
         }
         account.workspaces!.id(workspaceId)?.accountRefs?.push(doc)
+        const refDoc = account.workspaces!.id(workspaceId)?.accountRefs![account.workspaces!.id(workspaceId)!.accountRefs!.length - 1]
 
         await account.save()
         await accountController.cachedData.removeCacheData(accountId)
@@ -117,25 +121,25 @@ class AccountWorkspaceAccountRefController {
         // const notificationData = {
         //     accountId: assignedAccount._id,
         //     type: 'info',
-        //     title: 'Account Level Access Invitation',
-        //     message: `Hello ${ assignedAccount.nameId }, you are invited to join the account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
+        //     title: 'Workspace Level Access Invitation',
+        //     message: `Hello ${ assignedAccount.nameId }, you are invited to join the workspace ${ workspace.name } under account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
         //     links: [{
         //         label: 'Accept/Decline',
-        //         url: `owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/ref/accountRef/${ subdoc._id }`,
+        //         url: `/owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/subModule/workspace/${workspaceId}/ref/accountRef/${ refDoc!._id }`,
         //     }]
         // }
         // console.log('notificationData: ', notificationData)
 
-        // await notificationController.saveNotification(
-        //     assignedAccount._id,
-        //     'info',
-        //     'Account Level Access Invitation',
-        //     `Hello ${ assignedAccount.nameId }, you are invited to join the account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
-        //     [{
-        //         label: 'Accept/Decline',
-        //         url: `/owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/ref/accountRef/${ subdoc._id }`,
-        //     }]
-        // )
+        await notificationController.saveNotification(
+            assignedAccount._id,
+            'info',
+            'Workspace Level Access Invitation',
+            `Hello ${ assignedAccount.nameId }, you are invited to join the workspace ${ workspace.name } under account ${ account.nameId } with a role ${ leastRole.name }. Please accept the invitation.`,
+            [{
+                label: 'Accept/Decline',
+                url: `/owner/view/${ assignedAccount._id }/actions/invitation/module/account/${ account._id }/subModule/workspace/${workspaceId}/ref/accountRef/${ refDoc!._id }`,
+            }]
+        )
 
         // emit event
         appEvents.emit('workspace-update', {
