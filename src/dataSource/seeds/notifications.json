@@ -19,7 +19,7 @@
     "$date": "2025-02-23T14:39:22.554Z"
   },
   "updatedAt": {
-    "$date": "2025-04-11T03:30:29.028Z"
+    "$date": "2025-04-18T04:27:55.175Z"
   },
   "__v": 0
 },
@@ -68,6 +68,48 @@
   },
   "updatedAt": {
     "$date": "2025-03-04T13:38:12.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "c5f43b90-fa0e-4972-a1a6-2199ce7a6dc7",
+  "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+  "title": "Account Level Access Invitation",
+  "message": "Hello gilbertgit95, you are invited to join the account BertTest101 with a role Account - Member. Please accept the invitation.",
+  "type": "info",
+  "links": [
+    {
+      "label": "Accept/Decline",
+      "url": "/owner/view/37410e75-1760-4bb6-85e0-d0a138d374bc/actions/invitation/module/account/7e4ad416-4a8e-48d7-ae8b-740b1dade87f/ref/accountRef/ac492c58-2d36-4eb6-9611-88534383a6c0"
+    }
+  ],
+  "seen": true,
+  "createdAt": {
+    "$date": "2025-04-19T13:07:29.856Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-20T00:42:06.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": "4b0c47e6-1633-45da-8061-56909aa37bd8",
+  "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+  "title": "Workspace Level Access Invitation",
+  "message": "Hello gilbertgit95, you are invited to join the workspace Bertos Home Workspace under account BertTest101 with a role Workspace - Member. Please accept the invitation.",
+  "type": "info",
+  "links": [
+    {
+      "label": "Accept/Decline",
+      "url": "/owner/view/37410e75-1760-4bb6-85e0-d0a138d374bc/actions/invitation/module/account/7e4ad416-4a8e-48d7-ae8b-740b1dade87f/subModule/workspace/163b164d-d391-4376-a8fc-7551b5060c1d/ref/accountRef/305cd2ca-49e2-45d4-ab53-6b696787d28b"
+    }
+  ],
+  "seen": false,
+  "createdAt": {
+    "$date": "2025-04-20T00:38:04.443Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-20T00:42:05.220Z"
   },
   "__v": 0
 }]

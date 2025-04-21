@@ -1,6 +1,6 @@
 [{
   "_id": "37410e75-1760-4bb6-85e0-d0a138d374bc",
-  "__v": 364,
+  "__v": 372,
   "clientDevices": [
     {
       "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36",
@@ -33,87 +33,23 @@
       "description": "Chrome browser on Gilbert huawie phone"
     },
     {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "ad362fc5-fca9-4481-bca2-5fcccaf3e889",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-11-19T11:42:27.555Z"
-      },
-      "updatedAt": {
-        "$date": "2025-02-04T07:18:17.538Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "e91eefa4-df35-4ccc-9e19-52acde9f434c",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2025-01-30T09:42:14.051Z"
-      },
-      "updatedAt": {
-        "$date": "2025-02-27T00:18:06.928Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "4da64cbd-05cc-4422-af30-b7289f0ef71a",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2025-02-19T14:43:12.199Z"
-      },
-      "updatedAt": {
-        "$date": "2025-03-28T13:24:10.939Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "b35ead4e-0da4-4e41-a345-a951506b0055",
-      "accessTokens": [
-        {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3NDM5NDc5NjYsImV4cCI6MTc0NDU1Mjc2Nn0.rDy5gV-diad-O8a3HT40BmUwObfAIdGa3TIMcx48174",
-          "ipAddress": "::ffff:127.0.0.1",
-          "expTime": {
-            "$date": "2025-04-13T13:59:26.000Z"
-          },
-          "disabled": false,
-          "_id": "96fd9533-73e2-4b95-b75a-2ea106c019dc",
-          "createdAt": {
-            "$date": "2025-04-06T13:59:26.851Z"
-          },
-          "updatedAt": {
-            "$date": "2025-04-06T13:59:26.851Z"
-          }
-        }
-      ],
-      "createdAt": {
-        "$date": "2025-03-21T12:01:10.713Z"
-      },
-      "updatedAt": {
-        "$date": "2025-04-06T13:59:26.865Z"
-      }
-    },
-    {
       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
       "disabled": false,
       "_id": "8ecb88bb-6a34-4464-8941-483ca788c4ea",
       "accessTokens": [
         {
-          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3NDQxNTIzNTUsImV4cCI6MTc0NDc1NzE1NX0.5KR08TCldp3nB5fhEJv5hsLL_i8f-5rhlfviPRxIJsA",
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3NDQ5NTA0NTUsImV4cCI6MTc0NTU1NTI1NX0.zVMEjah-qAxry9Cq7N_iySmrAqJMRSkVQS0hehGJfe4",
           "ipAddress": "::ffff:127.0.0.1",
           "expTime": {
-            "$date": "2025-04-15T22:45:55.000Z"
+            "$date": "2025-04-25T04:27:35.000Z"
           },
           "disabled": false,
-          "_id": "0e976cc2-7a9e-439b-8701-236240edf8b6",
+          "_id": "42777854-8032-4aa0-931e-bb661fce7ac8",
           "createdAt": {
-            "$date": "2025-04-08T22:45:55.498Z"
+            "$date": "2025-04-18T04:27:35.971Z"
           },
           "updatedAt": {
-            "$date": "2025-04-08T22:45:55.498Z"
+            "$date": "2025-04-18T04:27:35.971Z"
           }
         }
       ],
@@ -121,7 +57,36 @@
         "$date": "2025-04-08T22:45:55.485Z"
       },
       "updatedAt": {
-        "$date": "2025-04-08T22:45:55.498Z"
+        "$date": "2025-04-18T04:27:35.986Z"
+      }
+    },
+    {
+      "ua": "Kagiweb-tech - Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36",
+      "description": "Used by Kagiweb Tech integrations",
+      "disabled": false,
+      "_id": "a0162d6f-9494-4c9f-9a60-784b85d3ea61",
+      "accessTokens": [
+        {
+          "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOiIzNzQxMGU3NS0xNzYwLTRiYjYtODVlMC1kMGExMzhkMzc0YmMiLCJpYXQiOjE3NDUwNjk4ODcsImV4cCI6MTkwMjc0OTg4N30.3-tc7VquoPGFJp74ETIyeCiDCLAC33Tqi3SUeqHMOEA",
+          "description": "5 years token",
+          "expTime": {
+            "$date": "2030-04-18T13:38:07.000Z"
+          },
+          "disabled": false,
+          "_id": "faf61f57-fcca-4eb2-a607-85e761215ce3",
+          "createdAt": {
+            "$date": "2025-04-19T13:38:07.762Z"
+          },
+          "updatedAt": {
+            "$date": "2025-04-19T13:38:07.762Z"
+          }
+        }
+      ],
+      "createdAt": {
+        "$date": "2025-04-19T13:36:51.975Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-19T13:38:07.762Z"
       }
     }
   ],
@@ -195,7 +160,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-04-08T22:45:55.498Z"
+        "$date": "2025-04-18T04:27:35.971Z"
       }
     },
     {
@@ -211,7 +176,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-04-08T22:45:55.498Z"
+        "$date": "2025-04-18T04:27:35.971Z"
       }
     },
     {
@@ -370,7 +335,7 @@
     }
   ],
   "updatedAt": {
-    "$date": "2025-04-13T05:31:07.259Z"
+    "$date": "2025-04-19T13:38:07.762Z"
   },
   "accountInfos": [
     {
@@ -496,13 +461,13 @@
     {
       "_id": "a27b7a66-eeef-4269-8e0b-0d2d0118185f",
       "key": "default-role",
-      "value": "cbe58c3c-9d86-466c-a8b4-1b26c379f276",
+      "value": "798c16ff-d75c-41b6-b9f5-69e21b08879a",
       "type": "string",
       "createdAt": {
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-04-13T05:31:07.259Z"
+        "$date": "2025-04-19T13:30:07.252Z"
       }
     },
     {
@@ -514,7 +479,7 @@
         "$date": "2023-12-24T04:04:50.147Z"
       },
       "updatedAt": {
-        "$date": "2025-04-13T05:27:20.970Z"
+        "$date": "2025-04-19T12:14:43.295Z"
       }
     }
   ],
@@ -626,117 +591,6 @@
     }
   ],
   "clientDevices": [
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-      "browser": {
-        "name": "Chrome",
-        "version": "120.0.0.0",
-        "major": "120"
-      },
-      "engine": {
-        "name": "Blink",
-        "version": "120.0.0.0"
-      },
-      "os": {
-        "name": "Windows",
-        "version": "10"
-      },
-      "device": {
-        "vendor": "",
-        "model": "",
-        "type": ""
-      },
-      "cpu": {
-        "architecture": "amd64"
-      },
-      "disabled": false,
-      "_id": "71a2fea9-3d90-409e-946a-82911ff1302d",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-01-10T13:08:54.649Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-21T05:36:10.980Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-      "browser": {
-        "name": "Chrome",
-        "version": "121.0.0.0",
-        "major": "121"
-      },
-      "engine": {
-        "name": "Blink",
-        "version": "121.0.0.0"
-      },
-      "os": {
-        "name": "Windows",
-        "version": "10"
-      },
-      "device": {
-        "vendor": "",
-        "model": "",
-        "type": ""
-      },
-      "cpu": {
-        "architecture": "amd64"
-      },
-      "disabled": false,
-      "_id": "c8ec7fa7-ba11-4132-aad8-345f814e6c41",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-02-23T08:51:03.192Z"
-      },
-      "updatedAt": {
-        "$date": "2024-03-21T05:43:20.347Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-      "browser": {
-        "name": "Chrome",
-        "version": "122.0.0.0",
-        "major": "122"
-      },
-      "engine": {
-        "name": "Blink",
-        "version": "122.0.0.0"
-      },
-      "os": {
-        "name": "Windows",
-        "version": "10"
-      },
-      "device": {
-        "vendor": "",
-        "model": "",
-        "type": ""
-      },
-      "cpu": {
-        "architecture": "amd64"
-      },
-      "disabled": false,
-      "_id": "2ef53142-cc43-4cb8-b0a7-cd618adab086",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-03-21T05:43:20.328Z"
-      },
-      "updatedAt": {
-        "$date": "2024-08-24T01:59:22.577Z"
-      }
-    },
-    {
-      "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-      "disabled": false,
-      "_id": "a40829fa-3589-4f60-a035-8659a140f61c",
-      "accessTokens": [],
-      "createdAt": {
-        "$date": "2024-04-26T01:47:56.033Z"
-      },
-      "updatedAt": {
-        "$date": "2024-06-11T00:57:41.375Z"
-      }
-    },
     {
       "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
       "disabled": false,
@@ -1031,10 +885,64 @@
     "$date": "2024-01-10T13:07:57.314Z"
   },
   "updatedAt": {
-    "$date": "2025-02-05T13:25:24.332Z"
+    "$date": "2025-04-20T00:38:04.432Z"
   },
-  "__v": 66,
-  "workspaces": [],
+  "__v": 75,
+  "workspaces": [
+    {
+      "name": "Bertos Home Workspace",
+      "description": "",
+      "disabled": false,
+      "_id": "163b164d-d391-4376-a8fc-7551b5060c1d",
+      "accountRefs": [
+        {
+          "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+          "rolesRefs": [
+            {
+              "roleId": "120cfac2-ca41-490f-8921-271992d99cc6",
+              "_id": "5b89c66d-a5de-45d5-a07b-41807d217768",
+              "createdAt": {
+                "$date": "2025-04-20T00:38:04.432Z"
+              },
+              "updatedAt": {
+                "$date": "2025-04-20T00:38:04.432Z"
+              }
+            }
+          ],
+          "accountConfigs": [
+            {
+              "key": "default-role",
+              "value": "120cfac2-ca41-490f-8921-271992d99cc6",
+              "type": "string",
+              "_id": "ad9f1551-4ae6-41cf-bf99-7c1d90e72090",
+              "createdAt": {
+                "$date": "2025-04-20T00:38:04.432Z"
+              },
+              "updatedAt": {
+                "$date": "2025-04-20T00:38:04.432Z"
+              }
+            }
+          ],
+          "declined": false,
+          "accepted": false,
+          "disabled": false,
+          "_id": "305cd2ca-49e2-45d4-ab53-6b696787d28b",
+          "createdAt": {
+            "$date": "2025-04-20T00:38:04.432Z"
+          },
+          "updatedAt": {
+            "$date": "2025-04-20T00:38:04.432Z"
+          }
+        }
+      ],
+      "createdAt": {
+        "$date": "2025-04-20T00:37:51.726Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-20T00:38:04.432Z"
+      }
+    }
+  ],
   "accountConfigs": [
     {
       "_id": "c43ae69c-099a-48e3-bad0-5f848bec3b9c",
@@ -1062,7 +970,47 @@
     }
   ],
   "nameId": "BertTest101",
-  "accountRefs": []
+  "accountRefs": [
+    {
+      "accountId": "37410e75-1760-4bb6-85e0-d0a138d374bc",
+      "rolesRefs": [
+        {
+          "roleId": "433cdfc3-5467-4fab-9705-45eb284869eb",
+          "_id": "1086f841-0dea-4ca3-9007-d0e37bdd50df",
+          "createdAt": {
+            "$date": "2025-04-19T13:07:29.846Z"
+          },
+          "updatedAt": {
+            "$date": "2025-04-19T13:07:29.846Z"
+          }
+        }
+      ],
+      "accountConfigs": [
+        {
+          "key": "default-role",
+          "value": "433cdfc3-5467-4fab-9705-45eb284869eb",
+          "type": "string",
+          "_id": "ed296115-5ea9-4262-995d-43584cafea74",
+          "createdAt": {
+            "$date": "2025-04-19T13:07:29.846Z"
+          },
+          "updatedAt": {
+            "$date": "2025-04-19T13:07:29.846Z"
+          }
+        }
+      ],
+      "declined": false,
+      "accepted": true,
+      "disabled": false,
+      "_id": "ac492c58-2d36-4eb6-9611-88534383a6c0",
+      "createdAt": {
+        "$date": "2025-04-19T13:07:29.846Z"
+      },
+      "updatedAt": {
+        "$date": "2025-04-19T13:13:26.608Z"
+      }
+    }
+  ]
 },
 {
   "_id": "d5c52e70-a40a-421a-8b14-cc0cfa595c24",
@@ -1392,7 +1340,7 @@
     "$date": "2024-07-10T15:01:21.007Z"
   },
   "updatedAt": {
-    "$date": "2025-04-13T03:49:25.537Z"
+    "$date": "2025-04-13T08:06:05.113Z"
   },
   "__v": 35,
   "nameId": "lunaOrg",
@@ -1443,7 +1391,7 @@
         "$date": "2024-12-26T14:09:05.157Z"
       },
       "updatedAt": {
-        "$date": "2025-04-13T02:50:11.187Z"
+        "$date": "2025-04-13T08:06:05.113Z"
       }
     },
     {
@@ -1476,7 +1424,7 @@
       ],
       "declined": false,
       "accepted": true,
-      "disabled": false,
+      "disabled": true,
       "_id": "3290ee81-7ee0-4956-9c53-99b02ed4dd95",
       "createdAt": {
         "$date": "2025-04-11T00:10:03.087Z"
