@@ -11,13 +11,18 @@ export const generateDefaultAccountsInfo = () => {
 }
 
 export const generateDefaultRoleRefs = async () => {
-    return await roleController.getLeastRole()
+    const leastRole = await roleController.getLeastRole()
+    return (leastRole? [leastRole]: []).map((item) => {
+        return {
+            roleId: item._id
+        }
+    })
 }
 
-export const generateDefaultAccountConfigs = () => {
+export const generateDefaultAccountConfigs = (data?:{defaultRole?:string, defaultWorkspace?:string}) => {
     return [
-        { key: 'default-role', value: '', type: 'string' },
-        { key: 'default-workspace', value: '', type: 'string' }
+        { key: 'default-role', value: data?.defaultRole || '', type: 'string' },
+        { key: 'default-workspace', value: '', type: data?.defaultWorkspace || 'string' }
     ]
 }
 
@@ -42,10 +47,11 @@ export const generateDefaultWorkspaces = () => {
 }
 
 export const generateDefaultAccountData = async ():Promise<any> => {
+    const rolesRefs = await generateDefaultRoleRefs()
     return { // eslint-disable-line @typescript-eslint/no-explicit-any
         nameId: null,
         accountType:         acountTypes[0],
-        rolesRefs:           await generateDefaultRoleRefs(),
+        rolesRefs:           rolesRefs,
         accountInfos:        generateDefaultAccountsInfo(),
         accountConfigs:      generateDefaultAccountConfigs(),
         passwords:           generateDefaultPasswords(),

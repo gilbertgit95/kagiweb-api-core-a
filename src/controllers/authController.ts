@@ -249,7 +249,7 @@ class AuthController {
                     }
                 ],
                 contactInfos: contactinfos,
-                disabled: true,
+                disabled: false,
                 verified: false
             }
         }
