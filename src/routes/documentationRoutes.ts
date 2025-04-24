@@ -1,21 +1,21 @@
 import express from 'express'
 import swaggerUI from 'swagger-ui-express'
-import { SwaggerTheme } from 'swagger-themes'
+import { SwaggerTheme, SwaggerThemeName } from 'swagger-themes'
 
 import Config from '../utilities/config'
 import swaggerData from '../../docs/swaggerDocs/__swaggerDocsBuild.json'
 import appPackageInfo from '../../package.json'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 // theme for swagger ui
-const theme = new SwaggerTheme('v3') // Specifying the Swagger Version
+const theme = new SwaggerTheme() // Specifying the Swagger Version
 const swaggerOptions = {
     // explorer: true,
     customSiteTitle: (appPackageInfo.name || '') + ' Documentation',
     customfavIcon: env.RootAssetsEndpoint + 'logoV2/favicon.ico',
-    customCss: theme.getBuffer('dark')
+    customCss: theme.getBuffer('dark' as SwaggerThemeName)
 }
 
 swaggerOptions.customCss += `

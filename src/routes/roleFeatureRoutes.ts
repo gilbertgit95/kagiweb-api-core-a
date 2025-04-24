@@ -7,7 +7,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import roleFeatureController from '../controllers/roleFeatureController'
 import { IFeatureRef } from '../dataSource/models/roleModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'roles/:roleId/features', async (req, res) => {

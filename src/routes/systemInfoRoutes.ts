@@ -5,7 +5,7 @@ import ErrorHandler from '../utilities/errorHandler'
 import routerIdentity from '../utilities/routerIdentity'
 import systemInfoController, {ISystemInfo} from '../controllers/systemInfoController'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'system', async (req, res) => {

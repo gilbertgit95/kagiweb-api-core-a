@@ -7,7 +7,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import accountAccountInfoController from '../controllers/accountAccountInfoController'
 import { IAccountInfo } from '../dataSource/models/accountModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/accountInfos', async (req, res) => {

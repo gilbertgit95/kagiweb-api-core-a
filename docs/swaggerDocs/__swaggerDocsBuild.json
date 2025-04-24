@@ -2942,7 +2942,7 @@
                             ]
                           }
                         },
-                        "features": {
+                        "appFeatures": {
                           "type": "array",
                           "items": {
                             "type": "object",
@@ -3153,7 +3153,7 @@
                           "name": "Manager"
                         }
                       ],
-                      "features": [
+                      "appFeatures": [
                         {
                           "_id": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
                           "createdAt": "2023-08-06T18:03:06.290Z",
@@ -3179,8 +3179,8 @@
                           {
                             "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
                             "accountId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                            "createdAt": "2023-08-27T14:51:58.605Z",
-                            "updatedAt": "2023-08-31T14:34:32.748Z",
+                            "createdAt": "2023-08-27T14:51:58.605+00:00",
+                            "updatedAt": "2023-08-31T14:34:32.748+00:00",
                             "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
                             "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                           }
@@ -3202,8 +3202,8 @@
                             {
                               "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
                               "accountId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-                              "createdAt": "2023-08-27T14:51:58.605Z",
-                              "updatedAt": "2023-08-31T14:34:32.748Z",
+                              "createdAt": "2023-08-27T14:51:58.605+00:00",
+                              "updatedAt": "2023-08-31T14:34:32.748+00:00",
                               "createdBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
                               "modifiedBy": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b"
                             }
@@ -12773,8 +12773,8 @@
             {
               "_id": "bea762cf-aceb-41ce-b6bf-410ad69ffc9d",
               "featureId": "3f74c3a5-3200-4c9f-a5c7-077515e1e45b",
-              "createdAt": "2023-08-27T14:51:58.605Z",
-              "updatedAt": "2023-08-31T14:34:32.748Z"
+              "createdAt": "2023-08-27T14:51:58.605+00:00",
+              "updatedAt": "2023-08-31T14:34:32.748+00:00"
             }
           ],
           "level": 1,

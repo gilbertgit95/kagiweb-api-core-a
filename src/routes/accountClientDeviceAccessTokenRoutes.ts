@@ -7,7 +7,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import accountClientDeviceAccessTokenController from '../controllers/accountClientDeviceAccessTokenController'
 import { IAccessToken } from '../dataSource/models/accountModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/clientDevices/:clientDeviceId/accessTokens', async (req, res) => {

@@ -5,7 +5,7 @@ import Config from '../utilities/config'
 import routerIdentity from '../utilities/routerIdentity'
 import actionController from '../controllers/actionsController'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 // account

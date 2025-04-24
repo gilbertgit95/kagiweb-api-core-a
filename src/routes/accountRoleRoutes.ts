@@ -7,7 +7,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import accountRoleController from '../controllers/accountRoleController'
 import { IRoleRef } from '../dataSource/models/accountModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/roles', async (req, res) => {

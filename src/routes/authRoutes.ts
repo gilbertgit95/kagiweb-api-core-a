@@ -8,7 +8,7 @@ import authController from '../controllers/authController'
 // import { IAccount } from '../dataSource/models/accountModel'
 
 const env = Config.getEnv()
-const router = express.Router()
+const router: express.Router = express.Router()
 
 router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
     const ua = req.userAgentInfo? req.userAgentInfo: null

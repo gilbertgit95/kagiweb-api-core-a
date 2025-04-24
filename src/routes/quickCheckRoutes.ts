@@ -8,7 +8,7 @@ import DataRequest, {IListOutput} from '../utilities/dataQuery'
 import notificationController from '../controllers/notificationController'
 import { INotification } from '../dataSource/models/notificationModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 // for account notifications

@@ -30,7 +30,7 @@ import {
 } from '../dataSource/models/accountModel'
 
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 

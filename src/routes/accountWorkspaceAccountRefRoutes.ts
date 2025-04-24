@@ -7,7 +7,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import accountWorkspaceAccountRefController from '../controllers/accountWorkspaceAccountRefController'
 import { IWorkspaceAccountRef } from '../dataSource/models/accountModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/workspaces/:workspaceId/accountRefs', async (req, res) => {

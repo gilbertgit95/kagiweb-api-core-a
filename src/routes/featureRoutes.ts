@@ -9,7 +9,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import featureController from '../controllers/featureController'
 import { IFeature } from '../dataSource/models/featureModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'features', async (req, res) => {

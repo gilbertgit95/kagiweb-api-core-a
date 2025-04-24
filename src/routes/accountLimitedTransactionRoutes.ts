@@ -7,7 +7,7 @@ import routerIdentity from '../utilities/routerIdentity'
 import accountLimitedTransactionController from '../controllers/accountLimitedTransactionController'
 import { ILimitedTransaction } from '../dataSource/models/accountModel'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 const env = Config.getEnv()
 
 router.get(env.RootApiEndpoint + 'accounts/:accountId/limitedTransactions', async (req, res) => {
