@@ -15,7 +15,7 @@ router.post(env.RootApiEndpoint + 'signin', async (req: Request, res) => {
     const ip = req.clientIp? req.clientIp: null
     const { nameId, password } = req.body
 
-    // console.log(nameId, password)
+    console.log('Signin: ', nameId, password)
 
     const [result, statusCode] = await ErrorHandler.execute<{token?: string, nameId?: string, message?: string, expiration?: Date, createdAt?: Date}>(async () => {
         if (!ua || !ip) return null

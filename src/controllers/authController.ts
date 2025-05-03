@@ -21,6 +21,8 @@ class AuthController {
         let account = await accountModel.findOne({ nameId, verified: true, accountType: 'user' })
         let result:{token?: string, nameId?: string, message?: string, expiration?: Date, createdAt?: Date} | null
 
+        console.log('Signinin!!!')
+
         // if no account found
         if (!account) {
             throw({code: 404}) // resource not found

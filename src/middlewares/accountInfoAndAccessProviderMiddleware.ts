@@ -73,7 +73,7 @@ class AccountInfoAndAccessProvider {
                 account = await accountController.getAccount({_id: tokenObj.accountId}, true)
                 req.accountData = account
             } else {
-                console.log('ni dagan!')
+                console.log('ni dagan ang middleware! ')
                 throw({code: 401}) // Unauthorize
             }
 

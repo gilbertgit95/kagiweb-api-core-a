@@ -55,6 +55,8 @@ appEvents.on('workspace-update', (data) => {
     }
 })
 
+console.log(JSON.stringify(env))
+
 // start express application
 app.listen(env.AppPort, async () => {
     // const jwtDoc = await Encryption.generateJWT({accountId: 'test'})
